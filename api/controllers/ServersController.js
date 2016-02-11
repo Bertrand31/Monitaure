@@ -13,6 +13,12 @@ module.exports = {
     list: function (req, res) {
         Servers.find().exec(function listServers(err, records) {
             if (err) throw err;
+
+            //TMP
+            Networking.checkPort('comme-un-arbre.fr', 80, function(open) {
+                console.log(open);
+            });
+
             return res.json(records);
         });
     },
