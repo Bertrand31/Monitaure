@@ -1,17 +1,17 @@
 /**
- * ServersController
+ * ChecksController
  *
- * @description :: Server-side logic for managing Servers
+ * @description :: Server-side logic for managing Checks
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
 module.exports = {
 
     /*
-    * ServersController.list()
+    * ChecksController.list()
     */
     list: function (req, res) {
-        Servers.find().exec(function listServers(err, records) {
+        Checks.find().exec(function listChecks(err, records) {
             if (err) throw err;
 
             //TMP
@@ -24,10 +24,11 @@ module.exports = {
     },
 
     /*
-    * ServersController.create()
+    * ChecksController.create()
     */
     create: function (req, res) {
-        Servers.create({
+		console.log(req.query);
+        Checks.create({
             name: req.query.name,
             domainNameOrIP: req.query.domainNameOrIP,
             port: req.query.port
@@ -38,10 +39,10 @@ module.exports = {
     },
 
     /*
-    * ServersController.update()
+    * ChecksController.update()
     */
     update: function (req, res) {
-        Servers.update({name: req.query.name}, {
+        Checks.update({name: req.query.name}, {
             name: req.query.name,
             domainNameOrIP: req.query.domainNameOrIP,
             port: req.query.port
@@ -52,10 +53,10 @@ module.exports = {
     },
 
     /*
-    * CommentController.destroy()
+    * ChecksController.destroy()
     */
     destroy: function (req, res) {
-        Servers.destroy({
+        Checks.destroy({
             name: req.query.name
         }).exec(function destoryServer(err) {
             if (err) throw err;
