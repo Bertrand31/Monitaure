@@ -7,8 +7,23 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-  }
+        name: {
+            type: 'string',
+            required: true,
+            primaryKey: true,
+            unique: true
+        },
+        domainNameOrIP: {
+            type: 'string',
+            required: true
+        },
+        port: {
+            type: 'integer',
+            required: true
+        }
+
+    }
 };
 
