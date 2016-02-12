@@ -1,29 +1,23 @@
 $(document).ready(function() {
 
-    var addCheck = function(data) {
-        var url = 'http://192.168.1.59:1337/Checks/create';
+    var addCheck = function(form) {
+        var url = window.location.origin + '/Checks/create';
         //$.post(url, data, function(res) { console.log(res); });
         $.ajax({
-			type: "POST",
 			url: url,
-			contentType: "application/json",
-			data: JSON.stringify(data),
+            type: form.attr('method'),
+			data: form.serialize(),
 			beforeSend: function() {},
-			complete: function() {},
-			success: function(data) {},
-			error: function(data) {},
-			dataType: 'json'
+			complete: function() {alert('fini');},
+			success: function(data) {alert('success' + data);},
+			error: function(data) {alert('failure' + data);},
 		});
 
     };
 
-    $('#check-add-button').click(function(e) {
+    $('#check-add').on('submit', function(e) {
         e.preventDefault();
-        addCheck({
-            name: 'test',
-            domainNameOrIP: 'commeunarbre.fr',
-            port: 80
-        });
+        addCheck($(this));
     });
 });
 
