@@ -15,8 +15,8 @@ module.exports = {
             if (err) throw err;
 
             //TMP
-            Networking.checkPort('comme-un-arbre.fr', 80, function(open) {
-                console.log(open);
+            Networking.checkPort('commeunarbre.fr', 81, function(results) {
+                console.log(results);
             });
 
             return res.json(records);
