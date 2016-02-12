@@ -8,9 +8,9 @@ $(document).ready(function() {
             type: form.attr('method'),
 			data: form.serialize(),
 			beforeSend: function() {},
-			complete: function() {alert('fini');},
-			success: function(data) {alert('success' + data);},
-			error: function(data) {alert('failure' + data);},
+			complete: function() {},
+			success: function(data) {console.log(data);},
+			error: function(data) {console.log(data);},
 		});
 
     };
