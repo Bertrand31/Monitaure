@@ -2,9 +2,9 @@ var ObjectId = require('mongodb').ObjectID;
 
 module.exports = {
 
-    listChecks: function(id, callback) {
-        console.log({_id: new ObjectId(id)});
-        Checks.find({_id: new ObjectId(id)}).exec(function listChecks(err, records) {
+    listChecks: function(check_id, callback) {
+        var criteria = check_id ? {id: check_id} : null;
+        Checks.find(criteria).exec(function (err, records) {
             if (err) throw err;
             callback(records);
         });
@@ -24,9 +24,9 @@ module.exports = {
         });
     },
 
-    destroyCheck: function(id, callback) {
-        console.log({_id: new ObjectId(id)});
-        Checks.destroy({_id: new ObjectId(id)}).exec(function (err, destroyed) {
+    destroyCheck: function(check_id, callback) {
+        var criteria = check_id ? {id: check_id} : null;
+        Checks.destroy(criteria).exec(function (err, destroyed) {
             if (err) throw err;
             callback(destroyed);
         });

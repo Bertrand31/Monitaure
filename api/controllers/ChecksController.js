@@ -1,9 +1,9 @@
 module.exports = {
 
     show: function (req, res) {
-        ChecksManagement.listChecks(req.query.id, function(records) {
-            //return res.json(records);
-            return res.view({checks: records});
+        ChecksManagement.listChecks(req.query.check_id, function(checks) {
+            //return res.json(checks);
+            return res.view({checks: checks});
         });
     },
 
