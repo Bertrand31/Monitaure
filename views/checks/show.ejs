@@ -1,0 +1,42 @@
+<div class="default-page">
+  <div class="header">
+    <h1 id="main-title" class="container"><%= __('Monitaure') %></h1>
+    <h3 class="container">You're looking at: <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
+  </div>
+  <div class="main container clearfix">
+    <form id="check-add" method="get">
+        <fieldset>
+            <legend>Ajouter un check</legend>
+            <label for="name">
+            <input type="text" id="name" name="name" />
+            <label for="domainNameOrIP">
+            <input type="text" id="domaineNameOrIP" name="domainNameOrIP" />
+            <label for="port">
+            <input type="text" id="port" name="port" />
+            <input type="submit" value="Ajoute le check" id="check-add-button" />
+        </fieldset>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Domain name or IP</th>
+                <th>Port</th>
+                <th>Supprimer</th>
+            <tr>
+        </thead>
+        <tbody>
+            <% checks.forEach(function(check) { %>
+                <tr id="<%= check.id %>">
+                    <td>OK</td>
+                    <td><%= check.name %></td>
+                    <td><%= check.domainNameOrIP %></td>
+                    <td><%= check.port %></td>
+                    <td><button class="destroy-check">Delete</button></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+  </div>
+</div>
