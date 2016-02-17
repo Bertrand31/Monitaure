@@ -11,7 +11,18 @@
 
 module.exports.bootstrap = function(cb) {
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+    sails.on('lifted', function() {
+        var spawn = require('child_process').spawn;
+        var worker = spawn('node', ['./worker.js']);
+
+        worker.stdout.on('data', function(data) {
+            console.log('Notice : ' + data);
+        });
+        worker.stderr.on('data', function(data) {
+            console.log('Error : ' + data);
+        });
+    });
+
+    cb();
+
 };
