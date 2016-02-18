@@ -37,6 +37,7 @@ var destroyCheckLine = function(data) {
 
 $(document).ready(function() {
 
+    var socket = io();
 
     $('#check-add').on('submit', function(e) {
         e.preventDefault();
@@ -46,6 +47,10 @@ $(document).ready(function() {
     $('.destroy-check').click(function(e) {
         var idTarget = $(this).closest('tr').attr('id');
         destroyCheck({id: idTarget});
+    });
+
+    socket.on('checksData', function(data) {
+        console.log(data);
     });
 });
 

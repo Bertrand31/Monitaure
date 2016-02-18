@@ -12,15 +12,13 @@
 module.exports.bootstrap = function(cb) {
 
     sails.on('lifted', function() {
-        var spawn = require('child_process').spawn;
-        var worker = spawn('node', ['./worker.js']);
-
-        worker.stdout.on('data', function(data) {
-            console.log('Notice : ' + data);
-        });
-        worker.stderr.on('data', function(data) {
-            console.log('Error : ' + data);
-        });
+        var worker  = require(__dirname + '/../worker.js');
+        setInterval(function() {
+            worker(function(data) {
+                console.log(data);
+                sails.sockets.blast('checksData', data);
+            });
+        },5000);
     });
 
     cb();

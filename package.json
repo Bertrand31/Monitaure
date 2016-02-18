@@ -17,6 +17,7 @@
     "Waterline"
   ],
   "dependencies": {
+    "async": "^1.5.2",
     "ejs": "2.4.1",
     "grunt": "0.4.5",
     "grunt-contrib-clean": "1.0.0",
