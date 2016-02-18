@@ -23,16 +23,18 @@
                 <th>Name</th>
                 <th>Domain name or IP</th>
                 <th>Port</th>
+                <th>Response time</th>
                 <th>Supprimer</th>
             <tr>
         </thead>
         <tbody>
             <% checks.forEach(function(check) { %>
                 <tr id="<%= check.id %>">
-                    <td>OK</td>
+                    <td class="status"></td>
                     <td><%= check.name %></td>
                     <td><%= check.domainNameOrIP %></td>
                     <td><%= check.port %></td>
+                    <td class="response-time"></td>
                     <td><button class="destroy-check">Delete</button></td>
                 </tr>
             <% }); %>

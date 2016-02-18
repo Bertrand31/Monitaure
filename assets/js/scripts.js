@@ -13,7 +13,7 @@ var addCheck = function(form) {
 
 };
 var addCheckLine = function (data) {
-    $('#checks>tbody').append('<tr id="'+data.id+'"><td>OK</td><td>'+data.name+'</td><td>'+data.domainNameOrIP+'</td><td>'+data.port+'</td><td><button class="destroy-check">Delete</button></td></tr>');
+    $('#checks>tbody').append('<tr id="'+data.id+'"><td>OK</td><td>'+data.name+'</td><td>'+data.domainNameOrIP+'</td><td>'+data.port+'</td><td class="response-time"></td><td><button class="destroy-check">Delete</button></td></tr>');
 };
 
 var destroyCheck = function(data) {
@@ -50,7 +50,11 @@ $(document).ready(function() {
     });
 
     socket.on('checksData', function(data) {
-        console.log(data);
+        for(i = 0; i < data.length; i++) {
+            var target = $('tr#' + data[i].id);
+            target.find('td.response-time').text(data[i].duration);
+            target.find('td.status').text(data[i].open ? 'OK' : 'NOK');
+        }
     });
 });
 

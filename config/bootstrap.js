@@ -15,7 +15,6 @@ module.exports.bootstrap = function(cb) {
         var worker  = require(__dirname + '/../worker.js');
         setInterval(function() {
             worker(function(data) {
-                console.log(data);
                 sails.sockets.blast('checksData', data);
             });
         },5000);
