@@ -1,3 +1,16 @@
+// Includes
 @import 'includes/bourbon/bourbon';
-@import 'includes/neat/neat';
 @import 'includes/foundation';
+
+// Base
+@import 'variables';
+@import 'typography';
+@import 'template';
+
+// Layout
+@import 'includes/neat/neat';
+@import 'layout/base';
+@media screen and (min-width:481px) { @import 'layout/481'; }
+@media screen and (min-width:768px) { @import 'layout/768'; }
+@media screen and (min-width:1030px) { @import 'layout/1030'; }
+@media screen and (min-width:1240px) { @import 'layout/1240'; }
