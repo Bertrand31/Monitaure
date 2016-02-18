@@ -1,0 +1,10 @@
+table {
+    width:100%;
+    tbody {
+        tr {
+            &:nth-child(even) {
+                background:rgba(255,255,255,.4);
+            }
+        }
+    }
+}
