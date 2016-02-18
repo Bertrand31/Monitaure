@@ -4,13 +4,21 @@ var timeout = 1000;
 
 var checkPort = function(check, callback) {
     var timeStart = Date.now();
-    var connection = net.connect(check.port, check.domainNameOrIP, function() {
+    var connection = net.connect(check.port, check.domainNameOrIP, function(err) {
+        if (err) console.log(err);
         var difference = Date.now() - timeStart;
         connection.destroy();
         callback({
             id: check.id,
             open: true,
             duration: difference
+        });
+    });
+    connection.on('error', function(err) {
+        callback({
+            id: check.id,
+            open: false,
+            duration: null
         });
     });
     setTimeout(function() {
