@@ -23,7 +23,7 @@ var checkPort = function(check, callback) {
             });
         }
     },timeout);
-}
+};
 
 module.exports = function (sendData) {
     ChecksManagement.listChecks(null, function(checks) {
@@ -34,7 +34,7 @@ module.exports = function (sendData) {
             asyncChecks.push(function(callback) {
                 checkPort(check, function(result){
                     callback(null, result);
-                })
+                });
             });
         });
 

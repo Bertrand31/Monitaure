@@ -1,6 +1,5 @@
 var addCheck = function(form) {
     var url = window.location.origin + '/Checks/create';
-    //$.post(url, data, function(res) { console.log(res); });
     $.ajax({
         url: url,
         method: form.attr('method'),

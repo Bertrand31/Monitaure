@@ -23,7 +23,7 @@ module.exports = {
             name: req.query.name,
             domainNameOrIP: req.query.domainNameOrIP,
             port: req.query.port
-        }
+        };
         ChecksManagement.updateCheck({name: req.query.name}, data, function(updated) {
             return res.json(updated);
         });
