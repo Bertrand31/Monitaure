@@ -1,0 +1,43 @@
+%button {
+    @include appearance(none);
+    background:$softblack;
+    color:$softwhite;
+    border:0;
+    padding:.3em .5em;
+    cursor:pointer;
+    &:hover {
+        background:$softblack;
+    }
+}
+%button-sensitive {
+    color:$softwhite;
+    background:$alert;
+}
+
+fieldset {
+    border:0;
+    legend {
+        @extend h2;
+    }
+}
+input {
+    &[type="text"] {
+        background:transparent;
+        border:0;
+        border-bottom:1px solid $softblack;
+        font:1em $pts;
+    }
+}
+input[type="submit"], button {
+    @extend %button;
+}
+
+#check-add {
+    legend {
+        float:left;
+        margin:0 .5em 0 0;
+    }
+}
+.destroy-check {
+    @extend %button-sensitive;
+}

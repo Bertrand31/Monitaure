@@ -12,7 +12,7 @@ var addCheck = function(form) {
 
 };
 var addCheckLine = function (data) {
-    $('#checks>tbody').append('<tr id="'+data.id+'"><td>OK</td><td>'+data.name+'</td><td>'+data.domainNameOrIP+'</td><td>'+data.port+'</td><td class="response-time"></td><td><button class="destroy-check">Delete</button></td></tr>');
+    $('#checks>tbody').append('<tr id="'+data.id+'"><td class="status"></td><td>'+data.name+'</td><td>'+data.domainNameOrIP+'</td><td>'+data.port+'</td><td class="response-time"></td><td><button class="destroy-check">Delete</button></td></tr>');
 };
 
 var destroyCheck = function(data) {
@@ -30,7 +30,9 @@ var destroyCheck = function(data) {
 };
 var destroyCheckLine = function(data) {
     data.forEach(function(item) {
-        $('#checks tr#'+item.id).remove();
+        $('#checks tr#'+item.id).fadeOut(function() {
+            $('#checks tr#'+item.id).remove();
+        });
     });
 };
 
@@ -52,7 +54,7 @@ $(document).ready(function() {
         for(i = 0; i < data.length; i++) {
             var target = $('tr#' + data[i].id);
             target.find('td.response-time').text(data[i].duration + 'ms');
-            target.find('td.status').text(data[i].open ? 'OK' : 'NOK');
+            target.find('td.status').removeClass().addClass(data[i].open ? 'ok' : 'nok');
         }
     });
 });

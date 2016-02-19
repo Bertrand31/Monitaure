@@ -1,6 +1,22 @@
 table {
     width:100%;
+    //font-family:$monospace;
+    text-align:center;
+    margin:1em 0;
+    td,th {
+        padding:.5em;
+    }
+    thead {
+        background:$softblack;
+        color:$softwhite;
+    }
     tbody {
+        .ok {
+            background:$good;
+        }
+        .nok {
+            background:$alert;
+        }
         tr {
             &:nth-child(even) {
                 background:rgba(255,255,255,.4);

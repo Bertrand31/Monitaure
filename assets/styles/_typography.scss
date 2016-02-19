@@ -1,0 +1,14 @@
+body {
+    font:normal 400 16px/20px $pts;
+    color:$softblack;
+}
+h1,h2,h3,h4 {
+    margin:1em 0 .8em;
+}
+h1 {
+    color:$softwhite;
+    font-size:3em;
+}
+h2 {
+    font-size:2em;
+}
