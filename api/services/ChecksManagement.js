@@ -1,5 +1,3 @@
-var ObjectId = require('mongodb').ObjectID;
-
 module.exports = {
 
     listChecks: function(check_id, callback) {
@@ -31,17 +29,18 @@ module.exports = {
         });
     },
 
-    insertHistory: function(check, callback) {
-        Checks.find({id: check[0].id}).exec(function (err, target) {
-            if (err) throw err;
-
-            var newHistoryArray = target[0].history;
-            newHistoryArray.push({date: check[0].date, time: check[0].open ? check[0].duration : null});
-            Checks.update({id: check[0].id}, {history: newHistoryArray}).exec(function(err, updated) {
+    insertHistory: function(checks) {
+        checks.forEach(function(check) {
+            Checks.find({id: check.id}).exec(function (err, target) {
                 if (err) throw err;
-                callback('success');
-            });
 
+                var newHistoryArray = target[0].history;
+                newHistoryArray.push({date: check.date, time: check.open ? check.duration : null});
+                Checks.update({id: check.id}, {history: newHistoryArray}).exec(function(err, updated) {
+                    if (err) throw err;
+                });
+
+            });
         });
     }
 

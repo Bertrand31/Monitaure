@@ -13,13 +13,7 @@ module.exports.bootstrap = function(cb) {
 
     sails.on('lifted', function() {
         setInterval(function() {
-            Worker(function(data) {
-                console.log(data);
-                ChecksManagement.insertHistory(data, function(blop) {
-                    console.log(blop);
-                });
-                sails.sockets.blast('checksData', data);
-            });
+            Worker();
         },60000);
     });
 

@@ -37,7 +37,7 @@ var checkPort = function(check, callback) {
     },timeout);
 };
 
-module.exports = function (sendData) {
+module.exports = function (callback) {
     ChecksManagement.listChecks(null, function(checks) {
         var results = [];
         var asyncChecks = [];
@@ -51,7 +51,8 @@ module.exports = function (sendData) {
         });
 
         async.parallel(asyncChecks, function(err, results){
-            sendData(results);
+            sails.sockets.blast('checksData', results);
+            ChecksManagement.insertHistory(results);
         });
     });
 };

@@ -52,6 +52,7 @@ $(document).ready(function() {
     });
 
     socket.on('checksData', function(data) {
+        console.log(data);
         for(i = 0; i < data.length; i++) {
             var target = $('tr#' + data[i].id);
             target.find('td.response-time').text(data[i].duration + 'ms');
