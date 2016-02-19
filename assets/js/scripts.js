@@ -43,9 +43,10 @@ $(document).ready(function() {
     $('#check-add').on('submit', function(e) {
         e.preventDefault();
         addCheck($(this));
+        $('#check-add')[0].reset();
     });
 
-    $('.destroy-check').click(function(e) {
+    $('#checks').on('click', '.destroy-check', function() {
         var idTarget = $(this).closest('tr').attr('id');
         destroyCheck({id: idTarget});
     });
