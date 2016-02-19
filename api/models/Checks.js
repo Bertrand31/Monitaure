@@ -20,6 +20,9 @@ module.exports = {
         port: {
             type: 'integer',
             required: true
+        },
+        history: {
+            type: 'array'
         }
 
     }

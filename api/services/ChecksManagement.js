@@ -25,10 +25,24 @@ module.exports = {
     },
 
     destroyCheck: function(check_id, callback) {
-        var criteria = check_id ? {id: check_id} : null;
-        Checks.destroy(criteria).exec(function (err, destroyed) {
+        Checks.destroy(check_id).exec(function (err, destroyed) {
             if (err) throw err;
             callback(destroyed);
+        });
+    },
+
+    insertHistory: function(check_id, newHistory, callback) {
+        Checks.find({id: check_id}).exec(function (err, target) {
+            if (err) throw err;
+
+            var newHistoryArray = target.history;
+            newHistoryArray.push({date: newHistory.date, rt: newHistory.rt});
+
+            Checks.update({id: check_id}, {history: newHistory}).exec(function(err, updated) {
+                if (err) throw err;
+                console.log(updated);
+            });
+
         });
     }
 

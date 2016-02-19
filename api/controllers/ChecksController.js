@@ -18,7 +18,7 @@ module.exports = {
                 return res.json(created);
             });
         } else {
-            return res.status(500);
+            return res.serverError(500);
         }
     },
 
