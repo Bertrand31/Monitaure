@@ -3,6 +3,7 @@ var net = require('net');
 var timeout = 1000;
 
 var checkPort = function(check, callback) {
+    var dateStart = new Date();
     var timeStart = Date.now();
     var connection = net.connect(check.port, check.domainNameOrIP, function(err) {
         if (err) console.log(err);
@@ -11,14 +12,16 @@ var checkPort = function(check, callback) {
         callback({
             id: check.id,
             open: true,
-            duration: difference
+            duration: difference,
+            date: dateStart
         });
     });
     connection.on('error', function(err) {
         callback({
             id: check.id,
             open: false,
-            duration: null
+            duration: null,
+            date: timeStart
         });
     });
     setTimeout(function() {
@@ -27,7 +30,8 @@ var checkPort = function(check, callback) {
             callback({
                 id: check.id,
                 open: false,
-                duration: null
+                duration: null,
+                date: timeStart
             });
         }
     },timeout);

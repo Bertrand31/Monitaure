@@ -11,7 +11,7 @@ module.exports = {
         var data = {
             name: req.query.name,
             domainNameOrIP: req.query.domainNameOrIP,
-            port: req.query.port
+            port: req.query.port,
         };
         if (data.name.length !== 0 && data.domainNameOrIP.length !== 0 && data.port !== 0) {
             ChecksManagement.createCheck(data, function(created) {

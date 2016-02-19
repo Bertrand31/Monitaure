@@ -12,12 +12,15 @@
 module.exports.bootstrap = function(cb) {
 
     sails.on('lifted', function() {
-        // var worker  = require(__dirname + '/../worker.js');
         setInterval(function() {
             Worker(function(data) {
+                console.log(data);
+                ChecksManagement.insertHistory(data, function(blop) {
+                    console.log(blop);
+                });
                 sails.sockets.blast('checksData', data);
             });
-        },5000);
+        },60000);
     });
 
     cb();

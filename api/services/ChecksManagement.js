@@ -31,16 +31,15 @@ module.exports = {
         });
     },
 
-    insertHistory: function(check_id, newHistory, callback) {
-        Checks.find({id: check_id}).exec(function (err, target) {
+    insertHistory: function(check, callback) {
+        Checks.find({id: check[0].id}).exec(function (err, target) {
             if (err) throw err;
 
-            var newHistoryArray = target.history;
-            newHistoryArray.push({date: newHistory.date, rt: newHistory.rt});
-
-            Checks.update({id: check_id}, {history: newHistory}).exec(function(err, updated) {
+            var newHistoryArray = target[0].history;
+            newHistoryArray.push({date: check[0].date, time: check[0].open ? check[0].duration : null});
+            Checks.update({id: check[0].id}, {history: newHistoryArray}).exec(function(err, updated) {
                 if (err) throw err;
-                console.log(updated);
+                callback('success');
             });
 
         });
