@@ -13,9 +13,13 @@ module.exports = {
             domainNameOrIP: req.query.domainNameOrIP,
             port: req.query.port
         };
-        ChecksManagement.createCheck(data, function(created) {
-            return res.json(created);
-        });
+        if (data.name.length !== 0 && data.domainNameOrIP.length !== 0 && data.port !== 0) {
+            ChecksManagement.createCheck(data, function(created) {
+                return res.json(created);
+            });
+        } else {
+            return res.status(500);
+        }
     },
 
     update: function (req, res) {

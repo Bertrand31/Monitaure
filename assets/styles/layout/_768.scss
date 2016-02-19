@@ -1,0 +1,12 @@
+body {
+    background:url('../images/background.jpg') center center no-repeat fixed;
+    background-size: cover;
+}
+.main {
+    background:rgba(255,255,255,.7);
+    border-radius:.4em;
+    width:90%;
+    max-width:1400px;
+    margin:1.5em auto;
+    box-shadow:0 0 .3em 0 rgba(0,0,0,.4);
+}
