@@ -40,24 +40,46 @@ $(document).ready(function() {
 
     var socket = io();
 
+    var chartContainer = $('#mainChart');
+	var mainChartOptions = {
+		type: 'line',
+        data: {
+            labels: [],
+			datasets: [{
+				label: 'HTTP @ SYS',
+				data: []
+            }]
+        }
+	};
+    var mainChart = new Chart(chartContainer, mainChartOptions);
+
+    // Actions handling
     $('#check-add').on('submit', function(e) {
         e.preventDefault();
         addCheck($(this));
         $('#check-add')[0].reset();
     });
-
     $('#checks').on('click', '.destroy-check', function() {
         var idTarget = $(this).closest('tr').attr('id');
         destroyCheck({id: idTarget});
     });
 
+    // Data updating
     socket.on('checksData', function(data) {
-        console.log(data);
+
         for(i = 0; i < data.length; i++) {
+            // Update the table
             var target = $('tr#' + data[i].id);
             target.find('td.response-time').text(data[i].duration + 'ms');
             target.find('td.status').removeClass().addClass(data[i].open ? 'ok' : 'nok');
         }
+
+        var activeCheck = '56c766659b5e10b71efaf330';
+        // Update the chart
+        mainChartOptions.data.labels.push(moment(data[0].date).format('h:mm:ss'));
+        mainChartOptions.data.datasets[0].data.push(data[0].duration);
+        mainChart.update();
+
     });
 });
 

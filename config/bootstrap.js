@@ -14,7 +14,7 @@ module.exports.bootstrap = function(cb) {
     sails.on('lifted', function() {
         setInterval(function() {
             Worker();
-        },60000);
+        },10000);
     });
 
     cb();
