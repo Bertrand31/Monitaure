@@ -35,7 +35,13 @@ module.exports = {
                 if (err) throw err;
 
                 var newHistoryArray = target[0].history;
+                // Keep the history to 20 elements maximum
+                if (target[0].history.length >= 20) {
+                    newHistoryArray.shift();
+                }
+                // Push the new data
                 newHistoryArray.push({date: check.date, time: check.open ? check.duration : null});
+                // And update the DB record
                 Checks.update({id: check.id}, {history: newHistoryArray}).exec(function(err, updated) {
                     if (err) throw err;
                 });
