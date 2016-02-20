@@ -11,6 +11,7 @@ var checkPort = function(check, callback) {
         connection.destroy();
         callback({
             id: check.id,
+            name: check.name,
             open: true,
             duration: difference,
             date: dateStart
@@ -19,6 +20,7 @@ var checkPort = function(check, callback) {
     connection.on('error', function(err) {
         callback({
             id: check.id,
+            name: check.name,
             open: false,
             duration: null,
             date: timeStart
@@ -29,6 +31,7 @@ var checkPort = function(check, callback) {
             connection.destroy();
             callback({
                 id: check.id,
+                name: check.name,
                 open: false,
                 duration: null,
                 date: timeStart
