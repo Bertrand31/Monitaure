@@ -1,0 +1,7 @@
+nguage: node_js
+node_js:
+    - "stable"
+    - "5.5"
+services:
+    - mongodb
+
