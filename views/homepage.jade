@@ -1,0 +1,14 @@
+extends ./layout
+
+
+block body
+
+    header.header
+      h1#main-title Monitaure
+
+    main.main
+        h2 Welcome on Monitaure! Please log in to access the main panel:
+        form#authentication(method="get")
+            input#username(type="text", placeholder="Username")
+            input#password(type="password", placeholder="Password")
+            input#submit(type="submit", value="Submit")

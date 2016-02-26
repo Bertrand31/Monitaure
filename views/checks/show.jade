@@ -1,0 +1,36 @@
+extends ../layout
+
+
+block body
+
+    header.header
+        h1#main-title Monitaure
+    main.main
+        form#check-add(method="get")
+            fieldset
+                legend
+                    | Add a check:
+                input#name(type="text", name="name", placeholder="Name of the check")
+                input#domainNameOrIP(type="text", name="domainNameOrIP", placeholder="Domain name or IP to check")
+                input#port(type="text", name="port", placeholder="Port to check")
+                input#check-add-button(type="submit", value="Add")
+        section#graph-container
+        table#checks
+            thead
+                tr
+                    th Status
+                    th Name
+                    th Domain name or IP
+                    th Port
+                    th Response time
+                    th Delete
+            tbody
+                each check in checks
+                    tr(id=check.id)
+                        td.status
+                        td= check.name
+                        td= check.domainNameOrIP
+                        td= check.port
+                        td.response-time
+                        td
+                            button.destroy-check Delete
