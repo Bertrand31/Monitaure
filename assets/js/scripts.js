@@ -52,7 +52,7 @@ var addCheckLine = function (data) {
 // Update the table data
 var updateCheck = function(check) {
     var target = $('tr#' + check.id);
-    target.find('td.status').removeClass().addClass(check.open ? 'ok' : 'nok');
+    target.find('td.status').removeClass('ok nok').addClass(check.open ? 'ok' : 'nok');
     target.find('td.response-time').text(check.duration !== null ? check.duration + 'ms' : 'Timeout');
 };
 
