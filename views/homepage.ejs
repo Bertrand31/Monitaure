@@ -1,19 +1,11 @@
-<div class="main-container">
-  <div class="header">
-    <h1 id="main-title" class="container"><%= __('Monitaure') %></h1>
-  </div>
-  <div class="main container clearfix">
-    <form id="check-add" method="get">
-        <fieldset>
-            <legend>Ajouter un check</legend>
-            <label for="name">
-            <input type="text" id="name" name="name" />
-            <label for="domainNameOrIP">
-            <input type="text" id="domaineNameOrIP" name="domainNameOrIP" />
-            <label for="port">
-            <input type="text" id="port" name="port" />
-            <input type="submit" value="Ajoute le check" id="check-add-button" />
-        </fieldset>
+<header class="header">
+    <h1 id="main-title">Monitaure</h1>
+</header>
+<main class="main">
+    <h2>Welcome on Monitaure! Please log in to access the main panel:</h2>
+    <form id="authentication" method="get">
+        <input id="username" placeholder="Username" type="text" />
+        <input id="password" placeholder="Password" type="password" />
+        <input type="submit" value="Submit" />
     </form>
-  </div>
-</div>
+</main>

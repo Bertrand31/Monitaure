@@ -1,7 +1,7 @@
 <header class="header">
-    <h1 id="main-title" class="container"><%= __('Monitaure') %></h1>
+    <h1 id="main-title">Monitaure</h1>
 </header>
-<main class="main container clearfix">
+<main class="main">
     <form id="check-add" method="get">
         <fieldset>
             <legend>Add a check:</legend>
@@ -14,9 +14,8 @@
             <input type="submit" value="Add" id="check-add-button" />
         </fieldset>
     </form>
-    <div id="graph">
-        <canvas id="mainChart" width="100%" height="400"></canvas>
-    </div>
+    <section id="graph-container">
+    </section>
     <table id="checks">
         <thead>
             <tr>
