@@ -1,27 +1,3 @@
-var chartContainer = document.getElementById('mainChart');
-var chartOptions = {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [
-            {
-                id: '56c7b06363ef1807771ec118',
-                label: 'HTTP @SYS',
-                data: []
-            },
-            {
-                id: '56c7b06b63ef1807771ec119',
-                label: 'HTTPS @ SYS',
-                data: []
-            }
-        ]
-    },
-    options: {
-        maintainAspectRatio: false
-    }
-};
-var mainChart = new Chart(chartContainer, chartOptions);
-
 // Insert a check into the DB
 var addCheck = function(form) {
     var url = window.location.origin + '/Checks/create';
@@ -79,23 +55,11 @@ var destroyCheckLine = function(data) {
     });
 };
 
-var addDataToGraph = function(data) {
-    // Push new data into the chart datasets
-    for(j = 0; j < chartOptions.data.datasets.length; j++) {
-        if (chartOptions.data.datasets[j].id === data.id) {
-            chartOptions.data.datasets[j].data.push(data.duration);
-        }
-    }
-};
 
 var processData = function(data) {
     for(i = 0; i < data.length; i++) {
         updateCheck(data[i]);
-        addDataToGraph(data[i]);
     }
-    // Update the chart
-    chartOptions.data.labels.push(moment(data[0].date).format('h:mm:ss'));
-    mainChart.update();
 };
 
 $(document).ready(function() {
