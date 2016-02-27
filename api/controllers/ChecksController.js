@@ -37,7 +37,7 @@ module.exports = {
     },
 
     destroy: function (req, res) {
-        ChecksManagement.destroyCheck(req.query.id, function(destroyed) {
+        ChecksManagement.destroyCheck(req.param('id'), function(destroyed) {
             return res.json(destroyed);
         });
     }
