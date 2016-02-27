@@ -1,9 +1,12 @@
 module.exports = {
 
     show: function (req, res) {
-        ChecksManagement.listChecks(req.query.check_id, function(checks) {
-            //return res.json(checks);
-            return res.view({checks: checks});
+        ChecksManagement.listChecks(req.param('id'), function(checks) {
+            if (req.wantsJSON) {
+                return res.json(checks);
+            } else {
+                return res.view({checks: checks});
+            }
         });
     },
 
@@ -28,7 +31,7 @@ module.exports = {
             domainNameOrIP: req.query.domainNameOrIP,
             port: req.query.port
         };
-        ChecksManagement.updateCheck({name: req.query.name}, data, function(updated) {
+        ChecksManagement.updateCheck(req.param('id'), data, function(updated) {
             return res.json(updated);
         });
     },

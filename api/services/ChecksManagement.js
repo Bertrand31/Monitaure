@@ -1,7 +1,7 @@
 module.exports = {
 
-    listChecks: function(check_id, callback) {
-        var criteria = check_id ? {id: check_id} : null;
+    listChecks: function(id, callback) {
+        var criteria = id ? {id: id} : null;
         Checks.find(criteria).exec(function (err, records) {
             if (err) throw err;
             callback(records);
@@ -15,7 +15,8 @@ module.exports = {
         });
     },
 
-    updateCheck: function(criteria, data, callback) {
+    updateCheck: function(id, data, callback) {
+        var criteria = {id: id};
         Checks.update(criteria, data).exec(function (err, updated) {
             if (err) throw err;
             callback(updated);
