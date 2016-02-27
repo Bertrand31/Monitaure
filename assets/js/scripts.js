@@ -11,6 +11,9 @@ var updateCheck = function(check) {
 var processData = function(data) {
     for(i = 0; i < data.length; i++) {
         updateCheck(data[i]);
+        if (data[i].id === currentChartId) {
+            addDataToChart(data[i]);
+        }
     }
 };
 
@@ -32,11 +35,10 @@ var addCheck = function(form, callback) {
 };
 // Deletes a check from the DB
 var destroyCheck = function(id, callback) {
-    var url = window.location.origin + '/Checks/destroy';
+    var url = window.location.origin + '/Checks/destroy/'+id;
     $.ajax({
         url: url,
         method: 'GET',
-        data: {id: id},
         beforeSend: function() {},
         complete: function() {},
         success: function(data) {callback(data);},
@@ -83,14 +85,17 @@ var destroyCheckRow = function(id) {
         });
     });
 };
-// Create a graph for the request row
-var createGraph = function(id, chartOptions) {
+// Create a chart for the request row
+var createChart = function(id, chartOptions) {
     getCheck(id, function(check) {
         historyToChartData(check[0].history, function(chartData) {
-            new Chartist.Line('.main-chart', chartData, chartOptions);
+            var chart = new Chartist.Line('.main-chart', chartData, chartOptions);
         });
 
     });
+};
+var addDataToChart = function(data) {
+    console.log(data);
 };
 
 /**************
@@ -115,6 +120,7 @@ var historyToChartData = function(history, callback) {
     callback(chartData);
 };
 
+var currentChartId = '';
 
 $(document).ready(function() {
 
@@ -138,6 +144,7 @@ $(document).ready(function() {
     });
     $('#checks tbody').on('click', 'tr', function() {
         var id = $(this).attr('id');
+        currentChartId = id;
         var chartOptions = {
             fullWidth: true,
             showArea: true,
@@ -152,7 +159,7 @@ $(document).ready(function() {
                 Chartist.plugins.tooltip()
             ]
         };
-        createGraph(id, chartOptions);
+        createChart(id, chartOptions);
     });
 
 });
