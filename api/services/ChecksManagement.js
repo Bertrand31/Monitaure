@@ -23,8 +23,8 @@ module.exports = {
         });
     },
 
-    destroyCheck: function(check_id, callback) {
-        Checks.destroy(check_id).exec(function (err, destroyed) {
+    destroyCheck: function(id, callback) {
+        Checks.destroy(id).exec(function (err, destroyed) {
             if (err) throw err;
             callback(destroyed);
         });
