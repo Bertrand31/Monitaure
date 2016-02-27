@@ -86,41 +86,44 @@ var destroyCheckRow = function(id) {
     });
 };
 // Create a chart for the request row
-var createChart = function(id, chartOptions) {
+var createChart = function(id, chartContainer) {
     getCheck(id, function(check) {
-        historyToChartData(check[0].history, function(chartData) {
-            var chart = new Chartist.Line('.main-chart', chartData, chartOptions);
+        checkToChartData(check[0], function(chartData) {
+            chart = new Chart(chartContainer, {
+                type: 'line',
+                data: chartData,
+            });
         });
 
     });
 };
 var addDataToChart = function(data) {
-    console.log(data);
+    var lightDate = moment(data.date).format('hh:mm');
+    console.log(chart);
+    chart.addElements(data.duration, lightDate);
 };
 
 /**************
  * UTILITIES *
  **************/
-var historyToChartData = function(history, callback) {
+var checkToChartData = function(check, callback) {
     var chartData = {
         labels: [],
-        series: [
-            []
-        ]
+        datasets: [{
+            label: check.name,
+            data: []
+        }]
     };
-    for (i=0; i<history.length; i++) {
-        var fancyDate = moment(history[i].date).fromNow();
-        var lightDate = moment(history[i].date).format('hh:mm');
+    for (i=0; i<check.history.length; i++) {
+        var lightDate = moment(check.history[i].date).format('hh:mm');
         chartData.labels.push(lightDate);
-        chartData.series[0].push({
-            meta: fancyDate,
-            value: history[i].time
-        });
+        chartData.datasets[0].data.push(check.history[i].time);
     }
     callback(chartData);
 };
 
-var currentChartId = '';
+var currentChartId = '',
+    chart;
 
 $(document).ready(function() {
 
@@ -144,22 +147,9 @@ $(document).ready(function() {
     });
     $('#checks tbody').on('click', 'tr', function() {
         var id = $(this).attr('id');
-        currentChartId = id;
-        var chartOptions = {
-            fullWidth: true,
-            showArea: true,
-            low: 0,
-            height: 250,
-            onlyInteger: true,
-            axisY: {
-                showLabel: false,
-                showGrid: false
-            },
-            plugins: [
-                Chartist.plugins.tooltip()
-            ]
-        };
-        createChart(id, chartOptions);
+		currentChartId = id;
+        var chartContainer = document.getElementById('main-chart');
+        createChart(id, chartContainer);
     });
 
 });
