@@ -1,0 +1,7 @@
+.aside {
+    @include span-columns(3);
+}
+.main {
+    @include span-columns(9);
+    @include omega();
+}

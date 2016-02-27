@@ -1,6 +1,16 @@
 body {
     background:$dark;
 }
+.aside {
+    background:$sidebar;
+    .profile {
+        img {
+            width:50px;
+            height:50px;
+            border-radius:50%;
+        }
+    }
+}
 table {
     width:100%;
     margin:1em 0;
@@ -19,11 +29,10 @@ table {
         color:$softwhite;
     }
     tbody {
-        .ok { background:$good; }
-        .nok { background:$alert; }
-        .name {
-            color:#fff;
-        }
+        [data-health="ok"] { color:$good; }
+        [data-health="nok"] { color:$alert; }
+        [data-speed="slow"] { color:$warn; }
+        .name { color:#fff; }
         tr {
             @include transition(background .3s ease-in-out);
             &:nth-child(even) {

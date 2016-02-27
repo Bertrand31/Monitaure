@@ -2,8 +2,29 @@ extends ../layout
 
 block body
 
-    header.header
+    aside.aside
         h1#main-title Monitaure
+        nav.main-nav
+            ul
+                li
+                    a(href="#_") Activity
+                    a(href="#_") Reports
+                        span.alert 1
+                    a(href="#_") Messages
+                        span.alert 123
+        nav.misc-nav
+            ul
+                li
+                    a(href="#_") Settings
+                    a(href="#_") Help
+        nav.auth-nav
+            ul
+                li
+                    a(href="#_") Log out
+        .profile
+            p
+                img(src="/images/profile.jpg" alt="Profile picture")
+                | Bertrand Junqua
     main.main
         form#check-add(method="get")
             fieldset
@@ -13,6 +34,13 @@ block body
                 input#domainNameOrIP(type="text", name="domainNameOrIP", placeholder="Domain name or IP to check")
                 input#port(type="text", name="port", placeholder="Port to check")
                 input#check-add-button(type="submit", value="Add")
+        .gradient
+            svg(width="100", height="50", version="1.1", xmlns="http://www.w3.org/2000/svg")
+                defs
+                    linearGradient#MyGradient
+                        stop(offset="0%", stop-color="#5eed80")
+                        stop(offset="100%", stop-color="#357e2e")
+
         section#graph-container
             .main-chart
         table#checks
@@ -27,10 +55,10 @@ block body
             tbody
                 each check in checks
                     tr(id=check.id)
-                        td.status
+                        td.status x
                         td.name= check.name
                         td= check.domainNameOrIP
                         td= check.port
                         td.response-time
-                        td
-                            button.destroy-check Delete
+                            td
+                                button.destroy-check Delete

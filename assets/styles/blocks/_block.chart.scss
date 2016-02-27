@@ -1,0 +1,19 @@
+.main-chart {
+    .ct-series-a .ct-line {
+        stroke: $darkgreen;
+        stroke-width: 3px;
+    }
+    .ct-series-a .ct-point {
+        stroke:$darkgreen;
+        stroke-width: 6px;
+    }
+    .ct-series-a .ct-area {
+        fill:url(#MyGradient);
+    }
+    .ct-label.ct-horizontal.ct-end {
+        font-size:1em;
+        color:$lighter;
+        position:relative;
+        left:-34%;
+    }
+}
