@@ -1,16 +1,20 @@
 %button {
     @include appearance(none);
-    background:$softblack;
-    color:$softwhite;
     border:0;
-    padding:.3em .5em;
+    padding:.7em 2.8em;
+    @include background(linear-gradient(left, $lightgreen, $darkgreen));
+    color:#fff;
+    display:block;
+    font:normal 400 1em $montserrat;
+    text-transform:uppercase;
+    border-radius:4px;
     cursor:pointer;
     &:hover {
-        background:$softblack;
+        background:$middark;
     }
 }
 %button-sensitive {
-    color:$softwhite;
+    color:#fff;
     background:$alert;
 }
 
@@ -24,8 +28,8 @@ input {
     &[type="text"],&[type="email"],&[type="password"] {
         background:transparent;
         border:0;
-        border-bottom:1px solid $softblack;
-        font:1em $pts;
+        border-bottom:1px solid #fff;
+        font:1em $montserrat;
     }
 }
 input[type="submit"], button {

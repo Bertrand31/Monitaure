@@ -1,11 +1,22 @@
-$good: #67bb6d;
+$good:  #67bb6d;
 $alert: #c95758;
-$softwhite: #efefef;
-$softblack: #333;
 
-//TYPO
+// Shades of gray
+$dark:      #212121;
+$middark:   #2a2a2a;
+$light:     #323232;
+$lighter:   #565656;
+$softwhite: #ccc;
+
+$lightgreen:    #70e164;
+$darkgreen:     #51d96d;
+
+// TYPOGRAPHY
+// Generic
 $monospace: Consolas, monospace;
 $ssf: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $sf: Georgia, 'Times New Roman', serif;
 
-$pts: 'PT Sans', $ssf;
+// Custom
+$montserrat: 'Montserrat', $ssf;
+$roboto: 'Roboto', $ssf; 

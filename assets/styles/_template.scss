@@ -1,25 +1,36 @@
+body {
+    background:$dark;
+}
 table {
     width:100%;
-    //font-family:$monospace;
-    text-align:center;
     margin:1em 0;
-    td,th {
+    border-spacing:0;
+    border-collapse:collapse;
+    color:$softwhite;
+    th {
+        padding:1.5em .5em;
+    }
+    td {
         padding:.5em;
     }
     thead {
-        background:$softblack;
+        text-align:left;
+        background:$middark;
         color:$softwhite;
     }
     tbody {
-        .ok {
-            background:$good;
-        }
-        .nok {
-            background:$alert;
+        .ok { background:$good; }
+        .nok { background:$alert; }
+        .name {
+            color:#fff;
         }
         tr {
+            @include transition(background .3s ease-in-out);
             &:nth-child(even) {
-                background:rgba(255,255,255,.4);
+                background:$light;
+            }
+            &:hover,&.active {
+                background:$lighter;
             }
         }
     }
