@@ -63,14 +63,14 @@ var getCheck = function(id, callback) {
 var addCheckLine = function (form) {
     addCheck(form, function(data) {
         $('#checks>tbody').append(
-                '<tr id="'+data.id+'">' +
-                '<td class="status"></td><td>'+data.name+'</td>' +
-                '<td>'+data.domainNameOrIP+'</td>' +
-                '<td>'+data.port+'</td>' +
-                '<td class="response-time"></td>' +
-                '<td><button class="destroy-check">Delete</button></td>' +
-                '</tr>'
-                );
+            '<tr id="'+data.id+'">' +
+            '<td class="status"></td><td>'+data.name+'</td>' +
+            '<td>'+data.domainNameOrIP+'</td>' +
+            '<td>'+data.port+'</td>' +
+            '<td class="response-time"></td>' +
+            '<td><button class="destroy-check">Delete</button></td>' +
+            '</tr>'
+        );
     });
 };
 // Removes a row from the checks table
@@ -104,9 +104,13 @@ var historyToChartData = function(history, callback) {
         ]
     };
     for (i=0; i<history.length; i++) {
-        console.log(history[i].date);
-        chartData.labels.push(history[i].date);
-        chartData.series[0].push(history[i].time);
+        var fancyDate = moment(history[i].date).fromNow();
+        var lightDate = moment(history[i].date).format('hh:mm');
+        chartData.labels.push(lightDate);
+        chartData.series[0].push({
+            meta: fancyDate,
+            value: history[i].time
+        });
     }
     callback(chartData);
 };
@@ -137,15 +141,16 @@ $(document).ready(function() {
         var chartOptions = {
             fullWidth: true,
             showArea: true,
-            high: 1000,
             low: 0,
+            height: 250,
+            onlyInteger: true,
             axisY: {
                 showLabel: false,
                 showGrid: false
             },
-            // plugins: [
-            //     Chartist.plugins.tooltip()
-            // ]
+            plugins: [
+                Chartist.plugins.tooltip()
+            ]
         };
         createGraph(id, chartOptions);
     });
