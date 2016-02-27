@@ -11,12 +11,39 @@ body {
         }
     }
 }
+.info {
+    background:$info;
+    border-radius:1em;
+    color:$dark;
+    padding:.3em .5em;
+    font:700 .75em $montserrat;
+}
+.fullscreen-wrapper {
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.8);
+    @include align-items(center);
+    @include justify-content(center);
+}
+.blurred {
+    @include filter(blur(5px));
+}
+.gradient { display:none; }
 table {
     width:100%;
     margin:1em 0;
     border-spacing:0;
     border-collapse:collapse;
     color:$softwhite;
+    cursor:default;
+    td, th {
+        &:first-child { padding-left:2em; }
+        &:last-child { padding-right:2em; }
+    }
     th {
         padding:1.5em .5em;
     }

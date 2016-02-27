@@ -1,0 +1,22 @@
+.aside {
+    nav {
+        padding:1em 0;
+        font: 1.2em $roboto;
+        border-bottom:1px solid $dark;
+        &:last-of-type {
+            border:0;
+        }
+        li {
+            padding:1em 0;
+        }
+    }
+}
+.profile {
+    img,span {
+        display:inline-block;
+        vertical-align:middle;
+    }
+    img {
+        margin-right:1.5em;
+    }
+}

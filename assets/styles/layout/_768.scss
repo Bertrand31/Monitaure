@@ -1,7 +1,11 @@
 .aside {
-    @include span-columns(3);
+    width: 20%;
+    -ms-flex: 0 20%;
+    @include box-flex(0);
+    padding:2em 2% 0 5%;
 }
 .main {
-    @include span-columns(9);
-    @include omega();
+    -ms-flex: 1;
+    @include box-flex(1);
+    padding:2em 0;
 }

@@ -1,7 +1,7 @@
 %button {
     @include appearance(none);
     border:0;
-    padding:.7em 2.8em;
+    padding:.7em 2.6em;
     @include background(linear-gradient(left, $lightgreen, $darkgreen));
     color:#fff;
     display:block;
@@ -9,9 +9,6 @@
     text-transform:uppercase;
     border-radius:4px;
     cursor:pointer;
-    &:hover {
-        background:$middark;
-    }
 }
 %button-sensitive {
     color:#fff;
@@ -27,9 +24,11 @@ fieldset {
 input {
     &[type="text"],&[type="email"],&[type="password"] {
         background:transparent;
+        display:block;
         border:0;
-        border-bottom:1px solid #fff;
-        font:1em $montserrat;
+        border-bottom:1px solid $softwhite;
+        font:3.5em $montserrat;
+        color:#fff;
     }
 }
 input[type="submit"], button {
@@ -37,10 +36,10 @@ input[type="submit"], button {
 }
 
 #check-add {
-    legend {
-        float:left;
-        margin:0 .5em 0 0;
+    input {
+        margin:.8em 0;
     }
+    input[type="submit"] { display:none; }
 }
 .destroy-check {
     @extend %button-sensitive;

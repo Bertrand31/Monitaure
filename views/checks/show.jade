@@ -2,63 +2,68 @@ extends ../layout
 
 block body
 
-    aside.aside
-        h1#main-title Monitaure
-        nav.main-nav
-            ul
-                li
-                    a(href="#_") Activity
-                    a(href="#_") Reports
-                        span.alert 1
-                    a(href="#_") Messages
-                        span.alert 123
-        nav.misc-nav
-            ul
-                li
-                    a(href="#_") Settings
-                    a(href="#_") Help
-        nav.auth-nav
-            ul
-                li
-                    a(href="#_") Log out
-        .profile
-            p
+    #main-container
+        aside.aside
+            h1#main-title Monitaure
+            nav.main-nav
+                ul
+                    li
+                        a(href="#_") Activity
+                    li
+                        a(href="#_") Reports
+                            span.info 14
+                    li
+                        a(href="#_") Messages
+                            span.info 123
+            nav.misc-nav
+                ul
+                    li
+                        a(href="#_") Settings
+                    li
+                        a(href="#_") Help
+            nav.auth-nav
+                ul
+                    li
+                        a(href="#_") Log out
+            .profile
                 img(src="/images/profile.jpg" alt="Profile picture")
-                | Bertrand Junqua
-    main.main
+                span Bertrand Junqua
+        main.main
+
+            section#graph-container
+                button#open-form Add a check
+                .main-chart
+            table#checks
+                thead
+                    tr
+                        th Status
+                        th Name
+                        th Domain name or IP
+                        th Port
+                        th Response time
+                        th Delete
+                tbody
+                    each check in checks
+                        tr(id=check.id)
+                            td.status x
+                            td.name= check.name
+                            td= check.domainNameOrIP
+                            td= check.port
+                            td.response-time
+                                td
+                                    button.destroy-check Delete
+
+    .fullscreen-wrapper#check-add-form
         form#check-add(method="get")
             fieldset
-                legend
-                    | Add a check:
-                input#name(type="text", name="name", placeholder="Name of the check")
-                input#domainNameOrIP(type="text", name="domainNameOrIP", placeholder="Domain name or IP to check")
-                input#port(type="text", name="port", placeholder="Port to check")
-                input#check-add-button(type="submit", value="Add")
-        .gradient
-            svg(width="100", height="50", version="1.1", xmlns="http://www.w3.org/2000/svg")
-                defs
-                    linearGradient#MyGradient
-                        stop(offset="0%", stop-color="#5eed80")
-                        stop(offset="100%", stop-color="#357e2e")
+                input#name(type="text", name="name", placeholder="Name")
+                input#domainNameOrIP(type="text", name="domainNameOrIP", placeholder="Domain name or IP")
+                input#port(type="text", name="port", placeholder="Port")
+                input(type="submit")
 
-        section#graph-container
-            .main-chart
-        table#checks
-            thead
-                tr
-                    th Status
-                    th Name
-                    th Domain name or IP
-                    th Port
-                    th Response time
-                    th Delete
-            tbody
-                each check in checks
-                    tr(id=check.id)
-                        td.status x
-                        td.name= check.name
-                        td= check.domainNameOrIP
-                        td= check.port
-                        td.response-time
-                            td
-                                button.destroy-check Delete
+    .gradient
+        svg(width="100", height="50", version="1.1", xmlns="http://www.w3.org/2000/svg")
+            defs
+                linearGradient#MyGradient
+                    stop(offset="0%", stop-color="#5eed80")
+                    stop(offset="100%", stop-color="#357e2e")

@@ -1,3 +1,14 @@
-body {
-    @include outer-container(100%);
+html,body {
+    height: 100%;
+}
+#main-container {
+    height:100%;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box;
+
+    -ms-flex-direction: row;
+    @include box-orient(horizontal);
 }

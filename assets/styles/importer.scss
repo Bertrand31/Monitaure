@@ -2,7 +2,6 @@
 @import 'includes/bourbon/bourbon';
 @import 'includes/foundation';
 @import 'includes/chartist/chartist';
-@import 'includes/chartist/chartist-plugin-tooltip';
 
 // Base
 @import 'variables';
@@ -10,8 +9,10 @@
 @import 'template';
 @import 'forms';
 
-//Specific
+//Blocks
 @import 'blocks/block.chart';
+//Regions
+@import 'regions/region.sidebar';
 
 // Layout
 @import 'includes/neat/neat';

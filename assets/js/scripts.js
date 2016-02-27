@@ -140,12 +140,21 @@ $(document).ready(function() {
         processData(data);
     });
 
-    // Actions handling
+    // 'Add a check' form actions
+    $('#open-form').click(function() {
+        $('#main-container').addClass('blurred');
+        $('#check-add-form').fadeIn().css('display', 'flex');
+    });
     $('#check-add').on('submit', function(e) {
         e.preventDefault();
         addCheckLine($(this));
-        $('#check-add')[0].reset();
+        $('#main-container').removeClass('blurred');
+        $('#check-add-form').fadeOut('slow', function() {
+            $('#check-add')[0].reset();
+        });
     });
+
+    // Table actions
     $('#checks').on('click', '.destroy-check', function(e) {
         e.stopPropagation();
         var id = $(this).closest('tr').attr('id');
@@ -155,21 +164,26 @@ $(document).ready(function() {
         var id = $(this).attr('id');
         currentChartId = id;
         var chartOptions = {
-            fullWidth: true,
+            fullWidth: false,
             showArea: true,
             low: 0,
             height: 250,
             onlyInteger: true,
+            axisX: {
+            },
             axisY: {
                 showLabel: false,
                 showGrid: false
             },
             plugins: [
-                Chartist.plugins.tooltip()
+                Chartist.plugins.tooltip({
+                    valueTransform: function (value) {
+                        return value + 'ms';
+                    }
+                })
             ]
         };
         createGraph(id, chartOptions);
     });
 
 });
-
