@@ -1,13 +1,15 @@
-.ct-series-a .ct-line {
-	stroke: $darkgreen;
-	stroke-width: 3px;
-}
-.ct-series-a .ct-point {
-	stroke:$darkgreen;
-	stroke-width: 6px;
-}
-.ct-series-a .ct-area {
-	fill:url(#MyGradient);
+.ct-series-a {
+    .ct-line {
+        stroke: $darkgreen;
+        stroke-width: 3px;
+    }
+    .ct-point {
+        stroke:$darkgreen;
+        stroke-width: 6px;
+    }
+    .ct-area {
+        fill: url(#GreenGradient);
+    }
 }
 .ct-label.ct-horizontal.ct-end {
 	font-size:1em;

@@ -169,18 +169,12 @@ $(document).ready(function() {
             low: 0,
             height: 250,
             onlyInteger: true,
-            axisX: {
-            },
             axisY: {
                 showLabel: false,
                 showGrid: false
             },
             plugins: [
-                Chartist.plugins.tooltip({
-                    valueTransform: function (value) {
-                        return value + 'ms';
-                    }
-                })
+                Chartist.plugins.tooltip()
             ]
         };
         createGraph(id, chartOptions);

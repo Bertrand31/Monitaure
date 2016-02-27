@@ -17,6 +17,7 @@ body {
     color:$dark;
     padding:.3em .5em;
     font:700 .75em $montserrat;
+    float:right;
 }
 .fullscreen-wrapper {
     display:none;
@@ -29,10 +30,13 @@ body {
     @include align-items(center);
     @include justify-content(center);
 }
+.svgs {
+    overflow:hidden;
+    height:0;
+}
 .blurred {
     @include filter(blur(5px));
 }
-.gradient { display:none; }
 table {
     width:100%;
     margin:1em 0;

@@ -29,10 +29,9 @@ block body
                 img(src="/images/profile.jpg" alt="Profile picture")
                 span Bertrand Junqua
         main.main
-
             section#graph-container
-                button#open-form Add a check
                 .main-chart
+            button#open-form Add a check
             table#checks
                 thead
                     tr
@@ -61,9 +60,9 @@ block body
                 input#port(type="text", name="port", placeholder="Port")
                 input(type="submit")
 
-    .gradient
+    .svgs
         svg(width="100", height="50", version="1.1", xmlns="http://www.w3.org/2000/svg")
             defs
-                linearGradient#MyGradient
+                linearGradient#GreenGradient
                     stop(offset="0%", stop-color="#5eed80")
                     stop(offset="100%", stop-color="#357e2e")
