@@ -90,9 +90,16 @@ var destroyCheckRow = function(id) {
         });
     });
 };
-// Create a graph for the request row
-var createGraph = function(id, chartOptions) {
+// Create a chart for the request row
+var createChart = function(id, chartOptions) {
     getCheck(id, function(check) {
+
+        calcMinMaxAvg(check[0].history, function(min, max, avg) {
+            $('.data').find('.min').text(min + 'ms');
+            $('.data').find('.max').text(max + 'ms');
+            $('.data').find('.avg').text(avg + 'ms');
+        });
+
         historyToChartData(check[0].history, function(chartData) {
             chart = new Chartist.Line('.main-chart', chartData, chartOptions);
         });
@@ -127,7 +134,25 @@ var historyToChartData = function(history, callback) {
     }
     callback(chartData);
 };
+var calcMinMaxAvg = function(dataArray, callback) {
+    var sum = 0,
+        min = dataArray[0].time,
+        max = 0,
+        avg = 0;
 
+    for (i=0; i<dataArray.length; i++) {
+        sum += dataArray[i].time;
+        min = dataArray[i].time < min ? dataArray[i].time : min;
+        max = dataArray[i].time > max ? dataArray[i].time : max;
+    }
+    avg = Math.round(sum / dataArray.length);
+
+    callback(min, max, avg);
+};
+
+/*********************
+ * MAIN CONTROLLERS *
+*********************/
 var currentChartId = '',
     chart;
 
@@ -177,7 +202,7 @@ $(document).ready(function() {
                 Chartist.plugins.tooltip()
             ]
         };
-        createGraph(id, chartOptions);
+        createChart(id, chartOptions);
     });
 
 });
