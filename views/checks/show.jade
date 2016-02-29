@@ -37,6 +37,10 @@ block body
                         span.max 0ms
                     p Avg: 
                         span.avg 0ms
+                    p Availability: 
+                        span.availability 100%
+                    p Last error: 
+                        span.last-error 0/00/0000 00:00
 
                 .main-chart
             button#open-form Add a check
@@ -61,6 +65,7 @@ block body
                                     button.destroy-check Delete
 
     .fullscreen-wrapper#check-add-form
+        button.close-fullscreen
         form#check-add(method="get")
             fieldset
                 input#name(type="text", name="name", placeholder="Name")

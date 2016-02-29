@@ -94,10 +94,12 @@ var destroyCheckRow = function(id) {
 var createChart = function(id, chartOptions) {
     getCheck(id, function(check) {
 
-        calcMinMaxAvg(check[0].history, function(min, max, avg) {
+        historyStats(check[0].history, function(min, max, avg, availability, lastError) {
             $('.data').find('.min').text(min + 'ms');
             $('.data').find('.max').text(max + 'ms');
             $('.data').find('.avg').text(avg + 'ms');
+            $('.data').find('.availability').text(availability + '%');
+            $('.data').find('.last-error').text(lastError);
         });
 
         historyToChartData(check[0].history, function(chartData) {
@@ -115,7 +117,7 @@ var addDataToChart = function(data) {
 
 /**************
  * UTILITIES *
- **************/
+***************/
 var historyToChartData = function(history, callback) {
     var chartData = {
         labels: [],
@@ -125,7 +127,7 @@ var historyToChartData = function(history, callback) {
     };
     for (i=0; i<history.length; i++) {
         var fancyDate = moment(history[i].date).fromNow();
-        var lightDate = moment(history[i].date).format('hh:mm');
+        var lightDate = moment(history[i].date).format('H:mm');
         chartData.labels.push(lightDate);
         chartData.series[0].push({
             meta: fancyDate,
@@ -134,20 +136,45 @@ var historyToChartData = function(history, callback) {
     }
     callback(chartData);
 };
-var calcMinMaxAvg = function(dataArray, callback) {
+var historyStats = function(dataArray, callback) {
     var sum = 0,
         min = dataArray[0].time,
         max = 0,
-        avg = 0;
+        avg = 0,
+        errors = 0,
+        lastError = '';
 
     for (i=0; i<dataArray.length; i++) {
         sum += dataArray[i].time;
         min = dataArray[i].time < min ? dataArray[i].time : min;
         max = dataArray[i].time > max ? dataArray[i].time : max;
+        if (dataArray[i].time == null) {
+            errors++;
+            lastError = dataArray[i].date;
+        }
     }
     avg = Math.round(sum / dataArray.length);
+    var availability = 100 - (errors * 100) / dataArray.length;
+    lastError = lastError != '' ? moment(lastError).format('Do MMM YYYY, H:mm:ss') : '-';
 
-    callback(min, max, avg);
+    callback(min, max, avg, availability, lastError);
+};
+
+/*************************
+ * MAIN FRONT FUNCTIONS *
+*************************/
+var openFullscreen = function(target) {
+    $('#main-container').addClass('blurred');
+    target.fadeIn().css('display', 'flex');
+    target.find('.close-fullscreen').click(function() {
+        closeFullscreen(target);
+    });
+};
+var closeFullscreen = function(target) {
+    $('#main-container').removeClass('blurred');
+    target.fadeOut('slow', function() {
+        target.find('form')[0].reset();
+    });
 };
 
 /*********************
@@ -167,16 +194,12 @@ $(document).ready(function() {
 
     // 'Add a check' form actions
     $('#open-form').click(function() {
-        $('#main-container').addClass('blurred');
-        $('#check-add-form').fadeIn().css('display', 'flex');
+        openFullscreen($('#check-add-form'));
     });
     $('#check-add').on('submit', function(e) {
         e.preventDefault();
         addCheckLine($(this));
-        $('#main-container').removeClass('blurred');
-        $('#check-add-form').fadeOut('slow', function() {
-            $('#check-add')[0].reset();
-        });
+        closeFullscreen($(this).parent('.fullscreen-wrapper'));
     });
 
     // Table actions
