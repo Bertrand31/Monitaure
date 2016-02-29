@@ -1,10 +1,10 @@
 %button {
     @include appearance(none);
     border:0;
-    padding:.7em 2.6em;
+    padding:.8em 2.4em;
     @include background(linear-gradient(left, $lightgreen, $darkgreen));
     color:#fff;
-    display:block;
+    display:inline-block;
     font:normal 400 1em $montserrat;
     text-transform:uppercase;
     border-radius:4px;

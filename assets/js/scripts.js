@@ -95,6 +95,7 @@ var createChart = function(id, chartOptions) {
     getCheck(id, function(check) {
 
         historyStats(check[0].history, function(min, max, avg, availability, lastError) {
+            $('.data').find('.name').text(check[0].name);
             $('.data').find('.min').text(min + 'ms');
             $('.data').find('.max').text(max + 'ms');
             $('.data').find('.avg').text(avg + 'ms');
@@ -104,7 +105,9 @@ var createChart = function(id, chartOptions) {
 
         historyToChartData(check[0].history, function(chartData) {
             chart = new Chartist.Line('.main-chart', chartData, chartOptions);
+            $('#chart-container').fadeIn().css('display', 'flex');
         });
+
 
     });
 };
@@ -139,23 +142,24 @@ var historyToChartData = function(history, callback) {
 var historyStats = function(dataArray, callback) {
     var sum = 0,
         min = dataArray[0].time,
-        max = 0,
+        max = dataArray[0].time,
         avg = 0,
         errors = 0,
         lastError = '';
 
     for (i=0; i<dataArray.length; i++) {
-        sum += dataArray[i].time;
-        min = dataArray[i].time < min ? dataArray[i].time : min;
-        max = dataArray[i].time > max ? dataArray[i].time : max;
-        if (dataArray[i].time == null) {
+        if (dataArray[i].time === null) {
             errors++;
             lastError = dataArray[i].date;
+        } else {
+            sum += dataArray[i].time;
+            min = dataArray[i].time < min ? dataArray[i].time : min;
+            max = dataArray[i].time > max ? dataArray[i].time : max;
         }
     }
     avg = Math.round(sum / dataArray.length);
     var availability = 100 - (errors * 100) / dataArray.length;
-    lastError = lastError != '' ? moment(lastError).format('Do MMM YYYY, H:mm:ss') : '-';
+    lastError = lastError !== '' ? moment(lastError).format('D/MM/YY H:mm') : '-';
 
     callback(min, max, avg, availability, lastError);
 };

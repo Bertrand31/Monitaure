@@ -29,21 +29,24 @@ block body
                 img(src="/images/profile.jpg" alt="Profile picture")
                 span Bertrand Junqua
         main.main
-            section#graph-container
-                .data
-                    p Min: 
-                        span.min 0ms
-                    p Max: 
-                        span.max 0ms
-                    p Avg: 
-                        span.avg 0ms
-                    p Availability: 
-                        span.availability 100%
-                    p Last error: 
-                        span.last-error 0/00/0000 00:00
+            .content-wrapper
+                section.top-buttons
+                    button#open-form Add a check
+                section#chart-container
+                    .data
+                        p.name
+                        p Avg latency: 
+                            span.avg
+                        p Min latency: 
+                            span.min
+                        p Max latency: 
+                            span.max
+                        p Availability: 
+                            span.availability
+                        p Last error: 
+                            span.last-error
 
-                .main-chart
-            button#open-form Add a check
+                    .main-chart
             table#checks
                 thead
                     tr

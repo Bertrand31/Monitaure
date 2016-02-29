@@ -12,3 +12,20 @@ html,body {
     -ms-flex-direction: row;
     @include box-orient(horizontal);
 }
+.content-wrapper {
+    width:92%;
+    margin:2em auto;
+}
+.top-buttons {
+    text-align:right;
+}
+#chart-container {
+    @include justify-content(space-around);
+    @include align-items(center);
+    .data {
+        width:200px;
+    }
+    .main-chart {
+        flex-grow:1;
+    }
+}
