@@ -52,7 +52,7 @@ table {
         padding:1.5em .5em;
     }
     td {
-        padding:.5em;
+        padding:1em .5em;
     }
     thead {
         text-align:left;
@@ -60,13 +60,19 @@ table {
         color:$softwhite;
     }
     tbody {
-        [data-health="ok"] { color:$good; }
-        [data-health="nok"] { color:$alert; }
+        [data-health="ok"], [data-health="nok"] {
+            background-size:26px 26px;
+            background-position: center center;
+            background-repeat:no-repeat;
+        }
+        [data-health="ok"] { background-image:url('../images/status-ok.svg'); }
+        [data-health="nok"] { background-image:url('../images/status-error.svg'); }
         [data-speed="slow"] { color:$warn; }
         .name { color:#fff; }
         tr {
             @include transition(background .3s ease-in-out);
-            &:nth-child(even) {
+            background:$middark;
+            &:nth-child(odd) {
                 background:$light;
             }
             &:hover,&.active {
@@ -74,4 +80,20 @@ table {
             }
         }
     }
+}
+.destroy-check,.settings-check {
+    background-position:center center;
+    background-repeat:no-repeat;
+}
+.destroy-check {
+    width:20px;
+    height:20px;
+    background-image:url('../images/trash.svg');
+    background-size:20px 20px;
+}
+.settings-check {
+    width:20px;
+    height:20px;
+    background-image:url('../images/settings.svg');
+    background-size:20px 20px;
 }

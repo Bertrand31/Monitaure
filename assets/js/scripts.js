@@ -1,12 +1,12 @@
 /**************************
- * GENERAL DATA HADNLING *
+ * GENERAL DATA HANDLING *
  **************************/
 // Update the table data
 var updateCheck = function(check) {
     var target = $('tr#' + check.id);
     target.find('td.status').attr('data-health', check.open ? 'ok' : 'nok');
     target.find('td.response-time')
-        .text(check.duration !== null ? check.duration + 'ms' : 'Timeout')
+        .text(check.duration !== null ? check.duration + 'ms' : '-')
         .attr('data-speed', check.duration>200 ? 'slow' : 'fast');
 };
 // Trigger updateCheck for each table row
@@ -70,12 +70,13 @@ var addCheckLine = function (form) {
     addCheck(form, function(data) {
         $('#checks>tbody').append(
             '<tr id="'+data.id+'">' +
-            '<td class="status">x</td>' +
+            '<td class="status"></td>' +
             '<td>'+data.name+'</td>' +
             '<td>'+data.domainNameOrIP+'</td>' +
             '<td>'+data.port+'</td>' +
             '<td class="response-time"></td>' +
-            '<td><button class="destroy-check">Delete</button></td>' +
+            '<td class="settings"><button class="settings-check"></button></td>' +
+            '<td class="destroy"><button class="destroy-check"></button></td>' +
             '</tr>'
         );
     });

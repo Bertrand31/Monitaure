@@ -12,12 +12,13 @@
 }
 .ct-series-a {
     .ct-line {
-        stroke:url(#LightGreenGradient);;
+        stroke:url(#LightGreenGradient);
         stroke-width: 3px;
     }
     .ct-point {
         stroke:$darkgreen;
         stroke-width: 6px;
+        @include filter(drop-shadow(3px 3px 2px rgba($darkgreen,.7)));
     }
     .ct-area {
         fill: url(#GreenGradient);

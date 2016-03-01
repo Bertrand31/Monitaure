@@ -10,10 +10,6 @@
     border-radius:4px;
     cursor:pointer;
 }
-%button-sensitive {
-    color:#fff;
-    background:$alert;
-}
 
 fieldset {
     border:0;
@@ -31,7 +27,7 @@ input {
         color:#fff;
     }
 }
-input[type="submit"], button {
+input[type="submit"], .button {
     @extend %button;
 }
 
@@ -40,7 +36,4 @@ input[type="submit"], button {
         margin:.8em 0;
     }
     input[type="submit"] { display:none; }
-}
-.destroy-check {
-    @extend %button-sensitive;
 }

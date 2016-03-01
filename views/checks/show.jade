@@ -31,7 +31,7 @@ block body
         main.main
             .content-wrapper
                 section.top-buttons
-                    button#open-form Add a check
+                    button.button#open-form Add a check
                 section#chart-container
                     .data
                         p.name
@@ -55,17 +55,20 @@ block body
                         th Domain name or IP
                         th Port
                         th Response time
-                        th Delete
+                        th
+                        th
                 tbody
                     each check in checks
                         tr(id=check.id)
-                            td.status x
+                            td.status
                             td.name= check.name
                             td= check.domainNameOrIP
                             td= check.port
                             td.response-time
-                                td
-                                    button.destroy-check Delete
+                            td.settings
+                                button.settings-check
+                            td.destroy
+                                button.destroy-check
 
     .fullscreen-wrapper#check-add-form
         button.close-fullscreen
