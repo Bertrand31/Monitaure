@@ -91,19 +91,23 @@ var destroyCheckRow = function(id) {
         });
     });
 };
-// Create a chart for the request row
+// Create a chart and show stats for the request row
 var createChart = function(id, chartOptions) {
     getCheck(id, function(check) {
 
+        // Process data to output statistics along the chart
         historyStats(check[0].history, function(min, max, avg, availability, lastError) {
             $('.data').find('.name').text(check[0].name);
             $('.data').find('.min').text(min + 'ms');
             $('.data').find('.max').text(max + 'ms');
             $('.data').find('.avg').text(avg + 'ms');
-            $('.data').find('.availability').text(availability + '%');
+            $('.data').find('.availability')
+                .text(availability + '%')
+                .attr('data-perfect', availability == 100 ? true : false);
             $('.data').find('.last-error').text(lastError);
         });
 
+        // Turn data into chart dataset and create the chart
         historyToChartData(check[0].history, function(chartData) {
             chart = new Chartist.Line('.main-chart', chartData, chartOptions);
             $('#chart-container').fadeIn().css('display', 'flex');

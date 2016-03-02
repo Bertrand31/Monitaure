@@ -37,6 +37,15 @@ body {
 .blurred {
     @include filter(blur(5px));
 }
+[data-health="ok"], [data-health="nok"] {
+    background-size:26px 26px;
+    background-position: center center;
+    background-repeat:no-repeat;
+}
+[data-health="ok"] { background-image:url('../images/status-ok.svg'); }
+[data-health="nok"] { background-image:url('../images/status-error.svg'); }
+[data-speed="slow"] { color:$warn; }
+[data-perfect=true] { color:$lightgreen; }
 table {
     width:100%;
     margin:1em 0;
@@ -60,14 +69,6 @@ table {
         color:$softwhite;
     }
     tbody {
-        [data-health="ok"], [data-health="nok"] {
-            background-size:26px 26px;
-            background-position: center center;
-            background-repeat:no-repeat;
-        }
-        [data-health="ok"] { background-image:url('../images/status-ok.svg'); }
-        [data-health="nok"] { background-image:url('../images/status-error.svg'); }
-        [data-speed="slow"] { color:$warn; }
         .name { color:#fff; }
         tr {
             @include transition(background .3s ease-in-out);
