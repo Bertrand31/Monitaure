@@ -96,7 +96,7 @@ var createChart = function(id, chartOptions) {
     getCheck(id, function(check) {
 
         // Process data to output statistics along the chart
-        historyStats(check[0].history, function(min, max, avg, availability, lastError) {
+        historyStats(check[0], function(min, max, avg, availability, lastError) {
             $('.data').find('.name').text(check[0].name);
             $('.data').find('.min').text(min + 'ms');
             $('.data').find('.max').text(max + 'ms');
@@ -104,12 +104,22 @@ var createChart = function(id, chartOptions) {
             $('.data').find('.availability')
                 .text(availability + '%')
                 .attr('data-perfect', availability == 100 ? true : false);
-            $('.data').find('.last-error').text(lastError);
+            $('.data').find('.last-outag').text(lastError);
         });
 
         // Turn data into chart dataset and create the chart
         historyToChartData(check[0].history, function(chartData) {
             chart = new Chartist.Line('.main-chart', chartData, chartOptions);
+
+            // chart.on('draw', function(data) {
+            //     if (data.type === 'area') {
+            //         console.log(data);
+            //         $(data.element).attr({
+            //             // fill: 'url(#GreenGradient)'
+            //         });
+            //     }
+            // });
+
             $('#chart-container').fadeIn().css('display', 'flex');
         });
 
@@ -144,29 +154,36 @@ var historyToChartData = function(history, callback) {
     }
     callback(chartData);
 };
-var historyStats = function(dataArray, callback) {
+var historyStats = function(check, callback) {
+    var historyArray = check.history;
+    var outagesArray = check.outages;
     var sum = 0,
-        min = dataArray[0].time,
-        max = dataArray[0].time,
+        min = historyArray[0].time,
+        max = historyArray[0].time,
         avg = 0,
         errors = 0,
-        lastError = '';
+        lastOutage = '';
 
-    for (i=0; i<dataArray.length; i++) {
-        if (dataArray[i].time === null) {
+    // Min/Max/Avg
+    for (i=0; i<historyArray.length; i++) {
+        if (historyArray[i].time === null) {
             errors++;
-            lastError = dataArray[i].date;
         } else {
-            sum += dataArray[i].time;
-            min = dataArray[i].time < min ? dataArray[i].time : min;
-            max = dataArray[i].time > max ? dataArray[i].time : max;
+            sum += historyArray[i].time;
+            min = historyArray[i].time < min ? historyArray[i].time : min;
+            max = historyArray[i].time > max ? historyArray[i].time : max;
         }
     }
-    avg = Math.round(sum / dataArray.length);
-    var availability = 100 - (errors * 100) / dataArray.length;
-    lastError = lastError !== '' ? moment(lastError).format('D/MM/YY H:mm') : '-';
+    avg = Math.round(sum / historyArray.length);
 
-    callback(min, max, avg, availability, lastError);
+    // Availability - Needs work to leverage outages history
+    var availability = 100 - (errors * 100) / historyArray.length;
+
+    // Last Error
+    lastOutage = outagesArray[outagesArray.length - 1];
+    lastOutage = typeof lastOutage !== 'undefined' ? moment(lastOutage).format('D/MM/YY H:mm') : '-';
+
+    callback(min, max, avg, availability, lastOutage);
 };
 
 /*************************
