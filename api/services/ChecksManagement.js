@@ -30,36 +30,38 @@ module.exports = {
         });
     },
 
-    insertHistory: function(checks) {
+    insertHistoryAndOutage: function(checks) {
         checks.forEach(function(check) {
-            Checks.find({id: check.id}).exec(function (err, target) {
+            Checks.findOne({id: check.id}).exec(function (err, target) {
                 if (err) throw err;
 
-                var newHistoryArray = target[0].history;
+                var newHistoryArray = target.history;
+                var newOutagesArray = target.outages;
+
                 // Keep the history to 20 elements maximum
-                if (target[0].history.length >= 20) {
+                while (newHistoryArray.length >= 20) {
                     newHistoryArray.shift();
                 }
-                // Push the new data
                 newHistoryArray.push({date: check.date, time: check.open ? check.duration : null});
+
+                var oneMonthAgo = new Date();
+                oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+                // If the first value of the array is older than a month, we remove it
+                // We keep doing that until the oldest value is younger than a month
+                if (typeof newOutagesArray[0] !== 'undefined') {
+                    while (newOutagesArray[0].getTime() < oneMonthAgo.getTime()) {
+                        newOutagesArray.shift();
+                    }
+                }
+                if (!check.open) {
+                    newOutagesArray.push(check.date);
+                }
+
                 // And update the DB record
-                Checks.update({id: check.id}, {history: newHistoryArray}).exec(function(err, updated) {
+                Checks.update({id: check.id}, {history: newHistoryArray, outages: newOutagesArray}).exec(function(err, updated) {
                     if (err) throw err;
                 });
 
-            });
-        });
-    },
-
-    insertOutage: function(check) {
-        Checks.findOne({id: check.id}).exec(function (err, target) {
-            if (err) throw err;
-
-            var newOutagesArray = target.outages;
-            newOutagesArray.push(check.date);
-
-            Checks.update({id: check.id}, {outages: newOutagesArray}).exec(function(err, updated) {
-                if (err) throw err;
             });
         });
     }
