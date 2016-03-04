@@ -21,6 +21,10 @@ module.exports = {
             type: 'integer',
             required: true
         },
+        interval: {
+            type: 'integer',
+            defaultsTo: 10000
+        },
         history: {
             type: 'array',
             defaultsTo: []

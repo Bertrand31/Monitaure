@@ -49,12 +49,12 @@ module.exports = {
                 // If the first value of the array is older than a month, we remove it
                 // We keep doing that until the oldest value is younger than a month
                 if (typeof newOutagesArray[0] !== 'undefined') {
-                    while (newOutagesArray[0].getTime() < oneMonthAgo.getTime()) {
+                    while (newOutagesArray[0].date.getTime() < oneMonthAgo.getTime()) {
                         newOutagesArray.shift();
                     }
                 }
                 if (!check.open) {
-                    newOutagesArray.push(check.date);
+                    newOutagesArray.push({date: check.date, interval: target.interval});
                 }
 
                 // And update the DB record

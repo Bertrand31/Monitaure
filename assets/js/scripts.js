@@ -104,7 +104,7 @@ var createChart = function(id, chartOptions) {
             $('.data').find('.availability')
                 .text(availability + '%')
                 .attr('data-perfect', availability == 100 ? true : false);
-            $('.data').find('.last-outag').text(lastError);
+            $('.data').find('.last-outage').text(lastError);
         });
 
         // Turn data into chart dataset and create the chart
@@ -136,6 +136,9 @@ var addDataToChart = function(data) {
 /**************
  * UTILITIES *
 ***************/
+var customFloor = function(number, places) {
+    return Math.floor(number * Math.pow(10, places)) / Math.pow(10, places);
+};
 var historyToChartData = function(history, callback) {
     var chartData = {
         labels: [],
@@ -161,14 +164,10 @@ var historyStats = function(check, callback) {
         min = historyArray[0].time,
         max = historyArray[0].time,
         avg = 0,
-        errors = 0,
-        lastOutage = '';
-
+        totalOutage = 0;
     // Min/Max/Avg
     for (i=0; i<historyArray.length; i++) {
-        if (historyArray[i].time === null) {
-            errors++;
-        } else {
+        if (historyArray[i].time !== null) {
             sum += historyArray[i].time;
             min = historyArray[i].time < min ? historyArray[i].time : min;
             max = historyArray[i].time > max ? historyArray[i].time : max;
@@ -176,11 +175,20 @@ var historyStats = function(check, callback) {
     }
     avg = Math.round(sum / historyArray.length);
 
-    // Availability - Needs work to leverage outages history
-    var availability = 100 - (errors * 100) / historyArray.length;
+    // Availability
+    // Total time spend down: we add up the intervals of each outage
+    // The total is the time spend down
+    for(i=0; i<outagesArray.length; i++) {
+        console.log(outagesArray[i].interval);
+        totalOutage += outagesArray[i].interval;
+    }
+    // Number of miliseconds in a month (30 days more exactly)
+    var monthMs = 1000 * 60 * 60 * 24 * 30;
+    alert(100 - (totalOutage * 100) / monthMs);
+    var availability = customFloor(100 - (totalOutage * 100) / monthMs, 2);
 
-    // Last Error
-    lastOutage = outagesArray[outagesArray.length - 1];
+    // Last outage
+    var lastOutage = outagesArray[outagesArray.length - 1].date;
     lastOutage = typeof lastOutage !== 'undefined' ? moment(lastOutage).format('D/MM/YY H:mm') : '-';
 
     callback(min, max, avg, availability, lastOutage);
