@@ -10,6 +10,12 @@ module.exports = {
         });
     },
 
+    getstats: function (req, res) {
+        ChecksManagement.getData(req.param('id'), function(data) {
+            return res.json(data);
+        });
+    },
+
     create: function (req, res) {
         var data = {
             name: req.query.name,

@@ -30,38 +30,75 @@ module.exports = {
         });
     },
 
-    insertHistoryAndOutage: function(checks) {
-        checks.forEach(function(check) {
-            Checks.findOne({id: check.id}).exec(function (err, target) {
+    insertHistory: function(pings) {
+        pings.forEach(function(ping) {
+            Checks.findOne({id: ping.checkId}).exec(function (err, check) {
                 if (err) throw err;
 
-                var newHistoryArray = target.history;
-                var newOutagesArray = target.outages;
-
-                // Keep the history to 20 elements maximum
-                while (newHistoryArray.length >= 20) {
-                    newHistoryArray.shift();
-                }
-                newHistoryArray.push({date: check.date, time: check.open ? check.duration : null});
+                var newHistoryArray = check.history;
 
                 var oneMonthAgo = new Date();
                 oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
                 // If the first value of the array is older than a month, we remove it
                 // We keep doing that until the oldest value is younger than a month
-                if (typeof newOutagesArray[0] !== 'undefined') {
-                    while (newOutagesArray[0].date.getTime() < oneMonthAgo.getTime()) {
-                        newOutagesArray.shift();
+                if (typeof newHistoryArray[0] !== 'undefined') {
+                    while (newHistoryArray[0].date.getTime() < oneMonthAgo.getTime()) {
+                        newHistoryArray.shift();
                     }
                 }
-                if (!check.open) {
-                    newOutagesArray.push({date: check.date, interval: target.interval});
-                }
+
+                newHistoryArray.push({date: ping.date, time: ping.open ? ping.duration : null, interval: check.interval});
 
                 // And update the DB record
-                Checks.update({id: check.id}, {history: newHistoryArray, outages: newOutagesArray}).exec(function(err, updated) {
+                Checks.update({id: ping.checkId}, {history: newHistoryArray}).exec(function(err, updated) {
                     if (err) throw err;
                 });
 
+            });
+        });
+    },
+
+    getData: function(checkId, callback) {
+        Checks.findOne({id: checkId}).exec(function (err, check) {
+
+            var historyArray = check.history,
+                sum = 0,
+                min = historyArray[0].time,
+                max = historyArray[0].time,
+                avg = 0,
+                totalOutage = 0,
+                lastOutage = null;
+
+            for (i=0; i<historyArray.length; i++) {
+                if (historyArray[i].time !== null) {
+                    sum += historyArray[i].time;
+                    min = historyArray[i].time < min ? historyArray[i].time : min;
+                    max = historyArray[i].time > max ? historyArray[i].time : max;
+                } else {
+                    totalOutage += historyArray[i].interval;
+                    lastOutage = historyArray[i].date;
+                }
+            }
+            avg = Math.round(sum / historyArray.length);
+            lastOutage = lastOutage !== null ? lastOutage : '-';
+
+            // Number of miliseconds in a month (30 days more exactly)
+            var monthMs = 1000 * 60 * 60 * 24 * 30;
+            var percent = 100 - (totalOutage * 100) / monthMs;
+            // We round the percentage to two places
+            var availability = Utilities.customFloor(percent, 2);
+
+            var historyShort = historyArray.splice(historyArray.length - 1 - 20, 20);
+
+            callback({
+                name: check.name,
+                min: min,
+                max: max,
+                avg: avg,
+                availability: availability,
+                lastOutage: lastOutage,
+                history: historyShort
             });
         });
     }

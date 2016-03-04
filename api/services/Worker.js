@@ -7,8 +7,8 @@ var checkPort = function(check, callback) {
     var timeStart = Date.now();
 
     var callbackObject = {
-        id: check.id,
-        name: check.name,
+        checkId: check.id,
+        checkName: check.name,
         open: false,
         duration: null,
         date: dateStart
@@ -46,9 +46,9 @@ module.exports = function (callback) {
             });
         });
 
-        async.parallel(asyncChecks, function(err, results){
-            sails.sockets.blast('checksData', results);
-            ChecksManagement.insertHistoryAndOutage(results);
+        async.parallel(asyncChecks, function(err, pings){
+            sails.sockets.blast('pings', pings);
+            ChecksManagement.insertHistory(pings);
         });
     });
 };

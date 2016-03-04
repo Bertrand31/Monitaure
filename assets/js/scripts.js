@@ -49,9 +49,9 @@ var destroyCheck = function(id, callback) {
         error: function(data) {alert('error');console.log(data);},
     });
 };
-// Get a check from the DB
-var getCheck = function(id, callback) {
-    var url = window.location.origin + '/Checks/show/'+id;
+// Get a check statistics
+var getCheckStats = function(id, callback) {
+    var url = window.location.origin + '/Checks/getstats/'+id;
     $.ajax({
         url: url,
         method: 'GET',
@@ -93,22 +93,22 @@ var destroyCheckRow = function(id) {
 };
 // Create a chart and show stats for the request row
 var createChart = function(id, chartOptions) {
-    getCheck(id, function(check) {
+    getCheckStats(id, function(checkStats) {
 
+        console.log(checkStats);
+        var lastOutage = moment(checkStats.lastOutage).format('D/MM/YY H:mm');
         // Process data to output statistics along the chart
-        historyStats(check[0], function(min, max, avg, availability, lastError) {
-            $('.data').find('.name').text(check[0].name);
-            $('.data').find('.min').text(min + 'ms');
-            $('.data').find('.max').text(max + 'ms');
-            $('.data').find('.avg').text(avg + 'ms');
-            $('.data').find('.availability')
-                .text(availability + '%')
-                .attr('data-perfect', availability == 100 ? true : false);
-            $('.data').find('.last-outage').text(lastError);
-        });
+        $('.data').find('.name').text(checkStats.name);
+        $('.data').find('.min').text(checkStats.min + 'ms');
+        $('.data').find('.max').text(checkStats.max + 'ms');
+        $('.data').find('.avg').text(checkStats.avg + 'ms');
+        $('.data').find('.availability')
+            .text(checkStats.availability + '%')
+            .attr('data-perfect', checkStats.availability == 100 ? true : false);
+        $('.data').find('.last-outage').text(lastOutage);
 
         // Turn data into chart dataset and create the chart
-        historyToChartData(check[0].history, function(chartData) {
+        historyToChartData(checkStats.history, function(chartData) {
             chart = new Chartist.Line('.main-chart', chartData, chartOptions);
 
             // chart.on('draw', function(data) {
@@ -136,9 +136,6 @@ var addDataToChart = function(data) {
 /**************
  * UTILITIES *
 ***************/
-var customFloor = function(number, places) {
-    return Math.floor(number * Math.pow(10, places)) / Math.pow(10, places);
-};
 var historyToChartData = function(history, callback) {
     var chartData = {
         labels: [],
@@ -156,42 +153,6 @@ var historyToChartData = function(history, callback) {
         });
     }
     callback(chartData);
-};
-var historyStats = function(check, callback) {
-    var historyArray = check.history;
-    var outagesArray = check.outages;
-    var sum = 0,
-        min = historyArray[0].time,
-        max = historyArray[0].time,
-        avg = 0,
-        totalOutage = 0;
-    // Min/Max/Avg
-    for (i=0; i<historyArray.length; i++) {
-        if (historyArray[i].time !== null) {
-            sum += historyArray[i].time;
-            min = historyArray[i].time < min ? historyArray[i].time : min;
-            max = historyArray[i].time > max ? historyArray[i].time : max;
-        }
-    }
-    avg = Math.round(sum / historyArray.length);
-
-    // Availability
-    // Total time spend down: we add up the intervals of each outage
-    // The total is the time spend down
-    for(i=0; i<outagesArray.length; i++) {
-        console.log(outagesArray[i].interval);
-        totalOutage += outagesArray[i].interval;
-    }
-    // Number of miliseconds in a month (30 days more exactly)
-    var monthMs = 1000 * 60 * 60 * 24 * 30;
-    alert(100 - (totalOutage * 100) / monthMs);
-    var availability = customFloor(100 - (totalOutage * 100) / monthMs, 2);
-
-    // Last outage
-    var lastOutage = outagesArray[outagesArray.length - 1].date;
-    lastOutage = typeof lastOutage !== 'undefined' ? moment(lastOutage).format('D/MM/YY H:mm') : '-';
-
-    callback(min, max, avg, availability, lastOutage);
 };
 
 /*************************
@@ -221,8 +182,8 @@ $(document).ready(function() {
 
     var socket = io();
 
-    // Update table data on 'checksData' event
-    socket.on('checksData', function(data) {
+    // Update table data on 'pings' event
+    socket.on('pings', function(data) {
         processData(data);
     });
 
