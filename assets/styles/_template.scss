@@ -30,6 +30,33 @@ body {
     @include align-items(center);
     @include justify-content(center);
 }
+.close-fullscreen {
+    position: absolute;
+    right:50px;
+    top:50px;
+    width:50px;
+    height:50px;
+    opacity:.7;
+    &:hover {
+        opacity:1;
+    }
+    &:before,&:after {
+        position: absolute;
+        top:-50%;
+        left:50%;
+        content: ' ';
+        height:70px;
+        width: 2px;
+        background-color:$softwhite;
+
+    }
+    &:before {
+        transform: rotate(45deg);
+    }
+    &:after {
+       transform: rotate(-45deg);
+    }
+}
 .svgs {
     overflow:hidden;
     height:0;
