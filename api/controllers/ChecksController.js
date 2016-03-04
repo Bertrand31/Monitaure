@@ -25,16 +25,16 @@ module.exports = {
         }
     },
 
-    update: function (req, res) {
-        var data = {
-            name: req.query.name,
-            domainNameOrIP: req.query.domainNameOrIP,
-            port: req.query.port
-        };
-        ChecksManagement.updateCheck(req.param('id'), data, function(updated) {
-            return res.json(updated);
-        });
-    },
+//    update: function (req, res) {
+//        var data = {
+//            name: req.query.name,
+//            domainNameOrIP: req.query.domainNameOrIP,
+//            port: req.query.port
+//        };
+//        ChecksManagement.updateCheck(req.param('id'), data, function(updated) {
+//            return res.json(updated);
+//        });
+//    },
 
     destroy: function (req, res) {
         ChecksManagement.destroyCheck(req.param('id'), function(destroyed) {

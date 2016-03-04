@@ -24,6 +24,10 @@ module.exports = {
         history: {
             type: 'array',
             defaultsTo: []
+        },
+        outages: {
+            type: 'array',
+            defaultsTo: []
         }
 
     }

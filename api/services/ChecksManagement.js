@@ -49,6 +49,19 @@ module.exports = {
 
             });
         });
+    },
+
+    insertOutage: function(check) {
+        Checks.findOne({id: check.id}).exec(function (err, target) {
+            if (err) throw err;
+
+            var newOutagesArray = target.outages;
+            newOutagesArray.push(check.date);
+
+            Checks.update({id: check.id}, {outages: newOutagesArray}).exec(function(err, updated) {
+                if (err) throw err;
+            });
+        });
     }
 
 };
