@@ -89,7 +89,7 @@ module.exports = {
             // We round the percentage to two places
             var availability = Utilities.customFloor(percent, 2);
 
-            var historyShort = historyArray.splice(historyArray.length - 1 - 20, 20);
+            var historyShort = historyArray.splice(historyArray.length - 20, 20);
 
             callback({
                 name: check.name,
