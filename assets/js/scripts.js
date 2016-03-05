@@ -2,17 +2,17 @@
  * GENERAL DATA HANDLING *
  **************************/
 // Update the table data
-var updateCheck = function(check) {
-    var target = $('tr#' + check.id);
-    target.find('td.status').attr('data-health', check.open ? 'ok' : 'nok');
+var updateTableRow = function(ping) {
+    var target = $('tr#' + ping.checkId);
+    target.find('td.status').attr('data-health', ping.open ? 'ok' : 'nok');
     target.find('td.response-time')
-        .text(check.duration !== null ? check.duration + 'ms' : '-')
-        .attr('data-speed', check.duration>200 ? 'slow' : 'fast');
+        .text(ping.duration !== null ? ping.duration + 'ms' : '-')
+        .attr('data-speed', ping.duration>200 ? 'slow' : 'fast');
 };
-// Trigger updateCheck for each table row
+// Trigger updateTableRow for each table row
 var processData = function(data) {
     for(i = 0; i < data.length; i++) {
-        updateCheck(data[i]);
+        updateTableRow(data[i]);
         if (data[i].id === currentChartId) {
             addDataToChart(data[i]);
         }
@@ -95,7 +95,6 @@ var destroyCheckRow = function(id) {
 var createChart = function(id, chartOptions) {
     getCheckStats(id, function(checkStats) {
 
-        console.log(checkStats);
         var lastOutage = moment(checkStats.lastOutage).format('D/MM/YY H:mm');
         // Process data to output statistics along the chart
         $('.data').find('.name').text(checkStats.name);
@@ -107,18 +106,67 @@ var createChart = function(id, chartOptions) {
             .attr('data-perfect', checkStats.availability == 100 ? true : false);
         $('.data').find('.last-outage').text(lastOutage);
 
+        // Show last ping data on top of the chart
+        var lastPing = checkStats.history[checkStats.history.length - 1];
+        $('.top-data').find('.latency-value').text(lastPing.time);
+        $('.top-data').find('.last-check-date').text(moment(lastPing.date).format('HH:mm:ss'));
+
         // Turn data into chart dataset and create the chart
         historyToChartData(checkStats.history, function(chartData) {
             chart = new Chartist.Line('.main-chart', chartData, chartOptions);
+            var seq = 0,
+                delays = 80,
+                durations = 500;
 
-            // chart.on('draw', function(data) {
-            //     if (data.type === 'area') {
-            //         console.log(data);
-            //         $(data.element).attr({
-            //             // fill: 'url(#GreenGradient)'
-            //         });
-            //     }
-            // });
+            chart.on('draw', function(data) {
+                if (data.type === 'area') {
+                    // console.log(data);
+                    // data.element.attr({
+                    //     // fill: 'url(#GreenGradient)'
+                    // });
+                    data.element.animate({
+                        opacity: {
+                            begin: seq * delays + 400,
+                            dur: durations,
+                            from: 0,
+                            to: 1
+                        }
+                    });
+                } else if (data.type === 'point' ) {
+                    data.element.animate({
+                        opacity: {
+                            begin: seq * delays + 400,
+                            dur: durations,
+                            from: 0,
+                            to: 1
+                        },
+						y1: {
+							begin: seq * delays + 400,
+							dur: durations,
+							from: data.y + 100,
+							to: data.y,
+							easing: 'easeOutQuart'
+						},
+						y2: {
+							begin: seq * delays + 400,
+							dur: durations,
+							from: data.y + 160,
+							to: data.y,
+							easing: 'easeOutQuart'
+						}
+                    });
+                } else if (data.type === 'line' ) {
+                    data.element.animate({
+                        opacity: {
+                            begin: seq * delays + 200,
+                            dur: durations,
+                            from: 0,
+                            to: 1
+                        }
+                    });
+                }
+
+            });
 
             $('#chart-container').fadeIn().css('display', 'flex');
         });
@@ -213,8 +261,13 @@ $(document).ready(function() {
             height: 250,
             onlyInteger: true,
             axisY: {
-                showLabel: false,
-                showGrid: false
+                // showLabel: false,
+                offset: 50,
+                showGrid: false,
+                scaleMinSpace: 100,
+                labelInterpolationFnc: function(value) {
+                    return value + 'ms';
+                }
             },
             plugins: [
                 Chartist.plugins.tooltip()

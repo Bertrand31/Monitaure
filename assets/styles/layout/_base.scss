@@ -20,6 +20,29 @@ html,body {
 .top-buttons {
     text-align:right;
 }
+.top-data {
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:flex-end;
+    .latency-wrapper {
+        .latency-title {
+            color:$info;
+            text-transform:uppercase;
+        }
+        .latency {
+            .latency-value {
+                font-size:3.8em;
+                line-height:.9em;
+            }
+            color:#fff;
+        }
+    }
+    .last-check-date {
+        font-size:2em;
+    }
+}
 #chart-container {
     @include justify-content(space-around);
     @include align-items(center);

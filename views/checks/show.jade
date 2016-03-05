@@ -48,6 +48,14 @@ block body
                             span.last-outage
 
                     .main-chart
+                        .top-data
+                            p.latency-wrapper 
+                                span.latency-title Latency
+                                br
+                                span.latency
+                                    span.latency-value
+                                    | ms
+                            p.last-check-date
             table#checks
                 thead
                     tr
@@ -55,7 +63,7 @@ block body
                         th Name
                         th Domain name or IP
                         th Port
-                        th Response time
+                        th Latency
                         th
                         th
                 tbody

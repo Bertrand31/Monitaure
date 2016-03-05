@@ -24,15 +24,20 @@
         fill:url(#GreenGradient);
     }
 }
-.ct-label.ct-horizontal.ct-end {
-	font-size:1em;
+.ct-label {
 	color:$lighter;
-	position:relative;
-	left:-34%;
+    &.ct-horizontal {
+        font-size:.95em;
+        position:relative;
+        left:-34%;
+    }
+    &.ct-vertical {
+        font-size:.8em;
+    }
 }
 .ct-grid {
-    stroke:rgba(158, 158, 158, 0.2);
-    stroke-dasharray:2px;
+    stroke:rgba($lighter, 0.3);
+    stroke-dasharray:0;
 }
 .chartist-tooltip {
     position: absolute;
