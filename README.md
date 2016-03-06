@@ -8,6 +8,5 @@ The application will not need any client-side installation or configuration.
 Upcoming features:
 - authentication ;
 - email and SMS alert, for each check ;
-- authentication ;
-- (monthly reports) ;
+- monthly reports ;
 - (web page load time monitoring).
