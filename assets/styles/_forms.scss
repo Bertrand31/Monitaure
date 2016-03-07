@@ -37,3 +37,91 @@ input[type="submit"], .button {
     }
     input[type="submit"] { display:none; }
 }
+
+.log {
+    background: url(../images/background-log.jpg) no-repeat center fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    font-family: $roboto;
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        h1 {
+            text-align: center;
+            order: 1;
+            margin:.8em 0;
+        }
+
+        #form{
+            margin:.8em 0;
+            padding: 1em 4em;
+            width: 500px;
+            background: white;
+            order: 2;
+            align-self: center;
+            text-transform: uppercase;
+            font-weight: 600;
+
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+
+           -webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
+            box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
+
+            h2 {
+                color: $dark;
+                text-align: center;
+                font-weight: 200;
+                margin: 1em 0 3em 0;
+                font-family: $montserrat;
+            }
+
+            form {
+                /*text-align:center;*/
+                a{
+                    display: inline-block;
+                    width: 100%;
+                    color: #bcbcbc;
+                    text-align: center;
+                    margin: 0 0 1em 0;
+                    font-size: .8em;
+                }
+            }
+
+            label {
+                color: $lightgreen;
+                text-align: left;
+                font-size: .8em;
+            }
+
+            input[type="text"], input[type="password"] {
+                color: $middark;
+                font-size: 1em;
+                margin: 0 0 1em 0 ; 
+                width: 100%;
+                text-transform: uppercase;
+                font-family: $roboto;
+                font-weight: 600;
+            }
+
+            input[type="submit"] {
+                width: 100%;
+                margin: 1em 0;
+            }
+
+        }
+
+        p {
+            color: $middark;
+            text-align: center;
+            font-size: .8em;
+            a{
+                color: $lightgreen;
+            }
+        }
+
+    }
+}

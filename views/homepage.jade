@@ -3,15 +3,18 @@ extends ./layout
 
 block body
 
-    #main-container
-        header.header
+    #main-container.log
+        main.main
             h1
                 img(src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses")
-
-        main.main
-            h2 Welcome on Monitaure! Please log in to access the main panel:
-            form#authentication(method="get")
-                input#username(type="text", placeholder="Username")
-                input#password(type="password", placeholder="Password")
-                input#submit(type="submit", value="Log in")
-            a(href="#_") Create an account
+            #form
+                h2 Enter your stuff
+                form#authentication(method="get")
+                    label Email
+                    input#username(type="text", placeholder="Your email")
+                    label Password
+                    input#password(type="password", placeholder="Your password")
+                    a(href="#_") Password forgotten?
+                    input#submit(type="submit", value="Log in")
+                p Don't have an account? 
+                    a(href="#_") Sign up!
