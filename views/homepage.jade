@@ -3,12 +3,12 @@ extends ./layout
 
 block body
 
-    #main-container.log
+    #main-container.sign-in
         main.main
-            h1
+            h1.logo
                 img(src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses")
-            #form
-                h2 Enter your stuff
+            .form-wrapper
+                h2.form-title Enter your stuff
                 form#authentication(method="get")
                     label Email
                     input#username(type="text", placeholder="Your email")

@@ -1,0 +1,19 @@
+.sign-in {
+    background: url('/images/background-log.jpg') no-repeat center center fixed;
+    background-size: cover;
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p {
+            font-family:$roboto;
+            color: $lighter;
+            text-align: center;
+            font-size: .75em;
+            a {
+                color: $lightgreen;
+            }
+        }
+    }
+}
+
