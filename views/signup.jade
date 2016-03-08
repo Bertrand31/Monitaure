@@ -1,0 +1,19 @@
+extends ./layout
+
+
+block body
+
+    #main-container.sign-in
+        main.main
+            h1.logo
+                img(src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses")
+            .form-wrapper
+                h2.form-title Create an account
+                form#signup(method="post", action="/signup")
+                    label Email
+                    input#email(name="email", type="text", placeholder="Your email")
+                    label Password
+                    input#password(name="password", type="password", placeholder="Your password")
+                    input#submit(type="submit", value="Log in")
+                p Already have an account? 
+                    a(href="/login") Log in!
