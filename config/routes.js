@@ -39,9 +39,14 @@ module.exports.routes = {
     'get /signup': {
         view: 'signup'
     },
+    'post /signup': 'UserController.create',
+
     'get /login': {
         view: 'login'
     },
+    'post /login': 'AuthController.login',
+
+    '/logout': 'AuthController.logout',
 
     'get /dashboard': 'Checks.show'
 
