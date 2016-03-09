@@ -6,6 +6,20 @@ var currentChartId = '',
 
 $(document).ready(function() {
 
+    // Users management
+
+    $('#signup').on('submit', function(e) {
+        e.preventDefault();
+        createUser($(this), function(err, message) {
+            if (err) {
+                alert(err);
+            } else {
+                alert(message);
+            }
+
+        });
+    });
+
     var socket = io();
 
     // Update table data on 'pings' event

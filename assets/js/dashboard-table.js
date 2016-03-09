@@ -25,27 +25,35 @@ var processData = function(data) {
 // ADDING AND REMOVING CHECKS
 // Add a line to the checks table
 var addCheckLine = function (form) {
-    addCheck(form, function(data) {
-        $('#checks>tbody').append(
-            '<tr id="'+data.id+'">' +
-            '<td class="status"></td>' +
-            '<td>'+data.name+'</td>' +
-            '<td>'+data.domainNameOrIP+'</td>' +
-            '<td>'+data.port+'</td>' +
-            '<td class="response-time"></td>' +
-            '<td class="settings"><button class="settings-check"></button></td>' +
-            '<td class="destroy"><button class="destroy-check"></button></td>' +
-            '</tr>'
-        );
+    addCheck(form, function(err, data) {
+        if (err) {
+            alert(err);
+        } else {
+            $('#checks>tbody').append(
+                '<tr id="'+data.id+'">' +
+                '<td class="status"></td>' +
+                '<td>'+data.name+'</td>' +
+                '<td>'+data.domainNameOrIP+'</td>' +
+                '<td>'+data.port+'</td>' +
+                '<td class="response-time"></td>' +
+                '<td class="settings"><button class="settings-check"></button></td>' +
+                '<td class="destroy"><button class="destroy-check"></button></td>' +
+                '</tr>'
+            );
+        }
     });
 };
 // Removes a row from the checks table
 var destroyCheckRow = function(id) {
-    destroyCheck(id, function(data) {
-        data.forEach(function(item) {
-            $('#checks tr#'+item.id).fadeOut(function() {
-                $('#checks tr#'+item.id).remove();
+    destroyCheck(id, function(err, data) {
+        if (err) {
+            alert(err);
+        } else {
+            data.forEach(function(item) {
+                $('#checks tr#'+item.id).fadeOut(function() {
+                    $('#checks tr#'+item.id).remove();
+                });
             });
-        });
+        }
     });
 };
