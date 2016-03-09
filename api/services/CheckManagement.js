@@ -2,14 +2,14 @@ module.exports = {
 
     listChecks: function(id, callback) {
         var criteria = id ? {id: id} : null;
-        Checks.find(criteria).exec(function (err, records) {
+        Check.find(criteria).exec(function (err, records) {
             if (err) throw err;
             callback(records);
         });
     },
 
     createCheck: function(data, callback) {
-        Checks.create(data).exec(function (err, created) {
+        Check.create(data).exec(function (err, created) {
             if (err) throw err;
             callback(created);
         });
@@ -17,14 +17,14 @@ module.exports = {
 
     updateCheck: function(id, data, callback) {
         var criteria = {id: id};
-        Checks.update(criteria, data).exec(function (err, updated) {
+        Check.update(criteria, data).exec(function (err, updated) {
             if (err) throw err;
             callback(updated);
         });
     },
 
     destroyCheck: function(id, callback) {
-        Checks.destroy(id).exec(function (err, destroyed) {
+        Check.destroy(id).exec(function (err, destroyed) {
             if (err) throw err;
             callback(destroyed);
         });
@@ -32,7 +32,7 @@ module.exports = {
 
     insertHistory: function(pings) {
         pings.forEach(function(ping) {
-            Checks.findOne({id: ping.checkId}).exec(function (err, check) {
+            Check.findOne({id: ping.checkId}).exec(function (err, check) {
                 if (err) throw err;
 
                 var newHistoryArray = check.history;
@@ -51,7 +51,7 @@ module.exports = {
                 newHistoryArray.push({date: ping.date, time: ping.open ? ping.duration : null, interval: check.interval});
 
                 // And update the DB record
-                Checks.update({id: ping.checkId}, {history: newHistoryArray}).exec(function(err, updated) {
+                Check.update({id: ping.checkId}, {history: newHistoryArray}).exec(function(err, updated) {
                     if (err) throw err;
                 });
 
@@ -60,7 +60,7 @@ module.exports = {
     },
 
     getData: function(checkId, callback) {
-        Checks.findOne({id: checkId}).exec(function (err, check) {
+        Check.findOne({id: checkId}).exec(function (err, check) {
 
             var historyArray = check.history,
                 sum = 0,

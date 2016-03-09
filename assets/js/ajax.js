@@ -4,7 +4,7 @@
 
 // Insert a check into the DB
 var addCheck = function(form, callback) {
-    var url = window.location.origin + '/Checks/create';
+    var url = window.location.origin + '/Check/create';
     $.ajax({
         url: url,
         method: form.attr('method'),
@@ -17,7 +17,7 @@ var addCheck = function(form, callback) {
 };
 // Deletes a check from the DB
 var destroyCheck = function(id, callback) {
-    var url = window.location.origin + '/Checks/destroy';
+    var url = window.location.origin + '/Check/destroy';
     $.ajax({
         url: url,
         method: 'GET',
@@ -30,7 +30,7 @@ var destroyCheck = function(id, callback) {
 };
 // Get a check statistics
 var getCheckStats = function(id, callback) {
-    var url = window.location.origin + '/Checks/getstats/'+id;
+    var url = window.location.origin + '/Check/getstats/'+id;
     $.ajax({
         url: url,
         method: 'GET',

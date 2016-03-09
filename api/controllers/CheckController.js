@@ -1,7 +1,7 @@
 module.exports = {
 
     show: function (req, res) {
-        ChecksManagement.listChecks(req.param('id'), function(checks) {
+        CheckManagement.listChecks(req.param('id'), function(checks) {
             if (req.wantsJSON) {
                 return res.json(checks);
             } else {
@@ -11,7 +11,7 @@ module.exports = {
     },
 
     getstats: function (req, res) {
-        ChecksManagement.getData(req.param('id'), function(data) {
+        CheckManagement.getData(req.param('id'), function(data) {
             return res.json(data);
         });
     },
@@ -23,7 +23,7 @@ module.exports = {
             port: req.query.port,
         };
         if (data.name.length !== 0 && data.domainNameOrIP.length !== 0 && data.port !== 0) {
-            ChecksManagement.createCheck(data, function(created) {
+            CheckManagement.createCheck(data, function(created) {
                 return res.json(created);
             });
         } else {
@@ -37,13 +37,13 @@ module.exports = {
 //            domainNameOrIP: req.query.domainNameOrIP,
 //            port: req.query.port
 //        };
-//        ChecksManagement.updateCheck(req.param('id'), data, function(updated) {
+//        CheckManagement.updateCheck(req.param('id'), data, function(updated) {
 //            return res.json(updated);
 //        });
 //    },
 
     destroy: function (req, res) {
-        ChecksManagement.destroyCheck(req.param('id'), function(destroyed) {
+        CheckManagement.destroyCheck(req.param('id'), function(destroyed) {
             return res.json(destroyed);
         });
     }
