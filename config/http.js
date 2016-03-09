@@ -23,6 +23,9 @@ module.exports.http = {
 
     middleware: {
 
+        passportInit    : require('passport').initialize(),
+        passportSession : require('passport').session(),
+
         order: [
             'startRequestTimer',
             'cookieParser',
@@ -34,7 +37,7 @@ module.exports.http = {
             'handleBodyParserError',
             'compress',
             'methodOverride',
-            'poweredBy',
+            'disablePoweredBy',
             '$custom',
             'router',
             'www',
