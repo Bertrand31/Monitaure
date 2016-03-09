@@ -7,7 +7,7 @@
 
 module.exports = {
 
-    identity: 'check',
+    identity: 'Check',
 
     attributes: {
 
@@ -37,7 +37,7 @@ module.exports = {
         },
 
         owner: {
-            model: 'user'
+            model: 'User'
         }
 
     }

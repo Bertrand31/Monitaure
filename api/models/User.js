@@ -9,7 +9,7 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
 
-    identity: 'user',
+    identity: 'User',
 
     attributes: {
         email: {
@@ -31,7 +31,7 @@ module.exports = {
         },
 
         checks: {
-            collection: 'check',
+            collection: 'Check',
             via: 'owner'
         }
 
