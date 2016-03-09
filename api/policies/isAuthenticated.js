@@ -3,7 +3,6 @@ module.exports = function(req, res, next) {
         return next();
     }
     else {
-        console.log('FAIL');
         return res.redirect('/login');
     }
 };
