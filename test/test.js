@@ -29,7 +29,6 @@ describe('Checks management', function() {
 	describe('Create a check', function () {
 		it('should return the created check', function () {
             ChecksManagement.createCheck(sampleCheck, function(created) {
-                console.log(created.name);
                 // test.string(created.name).isIdenticalTo('HTTP @ SYS');
                 // test.object(created).hasKey('name', 'HTTP @ SYS');
                 // done();

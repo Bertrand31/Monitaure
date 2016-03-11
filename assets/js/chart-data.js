@@ -16,7 +16,7 @@ var createChart = function(id, chartOptions) {
             $('.data').find('.avg').text(checkStats.avg + 'ms');
             $('.data').find('.availability')
                 .text(checkStats.availability + '%')
-                .attr('data-perfect', checkStats.availability == 100 ? true : false);
+                .attr('data-perfect', checkStats.availability === 100 ? true : false);
             $('.data').find('.last-outage').text(lastOutage);
 
             // Show last ping data on top of the chart

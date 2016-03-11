@@ -15,13 +15,13 @@ module.exports = {
         });
     },
 
-    updateCheck: function(id, data, callback) {
-        var criteria = {id: id};
-        Check.update(criteria, data).exec(function (err, updated) {
-            if (err) throw err;
-            callback(updated);
-        });
-    },
+    // updateCheck: function(id, data, callback) {
+    //     var criteria = {id: id};
+    //     Check.update(criteria, data).exec(function (err, updated) {
+    //         if (err) throw err;
+    //         callback(updated);
+    //     });
+    // },
 
     destroyCheck: function(id, callback) {
         Check.destroy(id).exec(function (err, destroyed) {
@@ -70,7 +70,7 @@ module.exports = {
                 totalOutage = 0,
                 lastOutage = null;
 
-            for (i=0; i<historyArray.length; i++) {
+            for (var i=0; i<historyArray.length; i++) {
                 if (historyArray[i].time !== null) {
                     sum += historyArray[i].time;
                     min = historyArray[i].time < min ? historyArray[i].time : min;

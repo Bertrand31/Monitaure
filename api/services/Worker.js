@@ -14,23 +14,22 @@ var checkPort = function(check, callback) {
         date: dateStart
     };
 
-    var connection = net.connect(check.port, check.domainNameOrIP, function(err) {
-        if (err) console.log(err);
+    var connection = net.connect(check.port, check.domainNameOrIP, function() {
         var difference = Date.now() - timeStart;
         connection.destroy();
         callbackObject.open = true;
         callbackObject.duration = difference;
-        callback(callbackObject);
+        return callback(callbackObject);
     });
-    connection.on('error', function(err) {
-        callback(callbackObject);
+    connection.on('error', function() {
+        return callback(callbackObject);
     });
     setTimeout(function() {
         if (!connection.destroyed) {
             connection.destroy();
-            callback(callbackObject);
+            return callback(callbackObject);
         }
-    },timeout);
+    }, timeout);
 };
 
 module.exports = function (callback) {

@@ -1,8 +1,7 @@
 /*********************
  * MAIN CONTROLLERS *
 *********************/
-var currentChartId = '',
-    chart;
+var chart;
 
 $(document).ready(function() {
 

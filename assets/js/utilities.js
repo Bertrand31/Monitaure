@@ -9,7 +9,7 @@ var historyToChartData = function(history, callback) {
             []
         ]
     };
-    for (i=0; i<history.length; i++) {
+    for (var i=0; i<history.length; i++) {
         var fancyDate = moment(history[i].date).fromNow();
         var lightDate = moment(history[i].date).format('H:mm');
         chartData.labels.push(lightDate);
