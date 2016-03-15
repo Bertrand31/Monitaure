@@ -9,7 +9,7 @@ block body
             nav.main-nav
                 ul
                     li.active
-                        a(href="#_") Activity
+                        a(href="/dashboard") Activity
                     li
                         a(href="#_") Reports
                             span.info 14
@@ -21,14 +21,14 @@ block body
                     li
                         a(href="#_") Settings
                     li
-                        a(href="#_") Help
+                        a(href="https://github.com/Bertrand31/Monitaure/issues", target="_blank") Help
             nav.auth-nav
                 ul
                     li
-                        a(href="#_") Log out
+                        a(href="/logout") Log out
             .profile
-                img(src="/images/profile.jpg" alt="Profile picture")
-                span Bertrand Junqua
+                img(src="https://fr.gravatar.com/avatar/" + useremail_md5 + "?size=100" alt="Profile picture")
+                span= useremail
         main.main
             .content-wrapper
                 section.top-buttons
