@@ -1,11 +1,16 @@
 module.exports = {
 
     show: function (req, res) {
-        CheckManagement.listChecks(req.param('id'), function(checks) {
+        CheckManagement.listUserChecks(req.user.id, function(user) {
             if (req.wantsJSON) {
-                return res.json(checks);
+                return res.json(user.checks);
             } else {
-                return res.view({checks: checks});
+                var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
+                return res.view({
+                    checks: user.checks,
+                    useremail: user.email,
+                    useremail_md5: emailHash
+                });
             }
         });
     },
@@ -21,6 +26,7 @@ module.exports = {
             name: req.query.name,
             domainNameOrIP: req.query.domainNameOrIP,
             port: req.query.port,
+            owner: req.user.id
         };
         if (data.name.length !== 0 && data.domainNameOrIP.length !== 0 && data.port !== 0) {
             CheckManagement.createCheck(data, function(created) {

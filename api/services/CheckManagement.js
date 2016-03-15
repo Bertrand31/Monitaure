@@ -1,10 +1,10 @@
 module.exports = {
 
-    listChecks: function(id, callback) {
-        var criteria = id ? {id: id} : null;
-        Check.find(criteria).exec(function (err, records) {
+    listUserChecks: function(id, callback) {
+        var criteria = {id: id};
+        User.findOne(criteria).populate('checks').exec(function (err, user) {
             if (err) throw err;
-            callback(records);
+            callback(user);
         });
     },
 

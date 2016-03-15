@@ -33,7 +33,7 @@ var checkPort = function(check, callback) {
 };
 
 module.exports = function (callback) {
-    CheckManagement.listChecks(null, function(checks) {
+    Check.find().exec(function(err, checks) {
         var results = [];
         var asyncChecks = [];
 
