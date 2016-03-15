@@ -16,3 +16,13 @@ var closeFullscreen = function(target) {
     });
 };
 
+var createPopin = function(type, message) {
+    var html = '<div data-type="' + type + '" class="pop-in">' +
+                    '<p class="content">' + message + '</p>' +
+                    '<div class="close-popin"></div>' +
+                '</div>';
+    $('body').append(html);
+    $('.close-popin').click(function() {
+        $(this).parent('.pop-in').remove();
+    });
+};

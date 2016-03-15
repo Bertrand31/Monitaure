@@ -1,0 +1,58 @@
+.pop-in {
+    position:absolute;
+    top:1.8em;
+    right:2.3em;
+    background:#fff;
+    border-radius:6px;
+    color:$lighter;
+    box-shadow:0 0 10px 0 rgba(0,0,0,.8);
+    padding:1.5em 1.1em;
+    font-family:$roboto;
+    font-weight:700;
+    @include transition(all .3s ease-in-out);
+    cursor:default;
+    .close-popin {
+        cursor:pointer;
+        position: absolute;
+        top:calc(50% - 6px);
+        right:1.2em;
+        &:before,&:after {
+            position: absolute;
+            top:-50%;
+            left:50%;
+            content:"";
+            height:12px;
+            width:2px;
+            background-color:#dbdbdb;
+
+        }
+        &:before { transform: rotate(45deg); }
+        &:after { transform: rotate(-45deg); }
+    }
+    p {
+        position:relative;
+        padding:0 3em 0 57px;
+        &:before {
+            content:"";
+            display:block;
+            position:absolute;
+            left:0;
+            top:calc(50% - 17px);
+            padding:2px;
+            height:34px;
+            width:34px;
+            box-sizing:border-box;
+            border-radius:17px;
+            background:transparent center center no-repeat;
+            background-size:26px;
+        }
+    }
+    &[data-type="info"] p:before {
+        border:2px solid $info;
+        background-image:url('/images/status-ok.svg');
+    }
+    &[data-type="alert"] p:before {
+        border:2px solid $alert;
+        background-image:url('/images/status-error.svg');
+    }
+}

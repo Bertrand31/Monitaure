@@ -6,7 +6,7 @@
 var createChart = function(id, chartOptions) {
     getCheckStats(id, function(err, checkStats) {
         if (err) {
-            alert(err);
+            createPopin('alert', err);
         } else {
             var lastOutage = moment(checkStats.lastOutage).format('D/MM/YY H:mm');
             // Process data to output statistics along the chart

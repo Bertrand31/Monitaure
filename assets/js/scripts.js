@@ -11,9 +11,9 @@ $(document).ready(function() {
         e.preventDefault();
         createUser($(this), function(err, message) {
             if (err) {
-                alert(err);
+                createPopin('alert', err);
             } else {
-                alert(message);
+                createPopin('info', message);
             }
 
         });

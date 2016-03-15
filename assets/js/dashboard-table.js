@@ -27,7 +27,7 @@ var processData = function(data) {
 var addCheckLine = function (form) {
     addCheck(form, function(err, data) {
         if (err) {
-            alert(err);
+            createPopin('alert', err);
         } else {
             $('#checks>tbody').append(
                 '<tr id="'+data.id+'">' +
@@ -47,7 +47,7 @@ var addCheckLine = function (form) {
 var destroyCheckRow = function(id) {
     destroyCheck(id, function(err, data) {
         if (err) {
-            alert(err);
+            createPopin('alert', err);
         } else {
             data.forEach(function(item) {
                 $('#checks tr#'+item.id).fadeOut(function() {
