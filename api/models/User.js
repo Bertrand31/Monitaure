@@ -41,10 +41,10 @@ module.exports = {
             bcrypt.hash(user.password, salt, function(err, hash) {
                 if (err) {
                     console.log(err);
-                    cb(err);
+                    return cb(err);
                 } else {
                     user.password = hash;
-                    cb();
+                    return cb();
                 }
             });
         });

@@ -9,7 +9,7 @@ module.exports = {
                 return res.view({
                     checks: user.checks,
                     userEmail: user.email,
-                    userEmail_md5: emailHash
+                    userEmailMD5: emailHash
                 });
             }
         });

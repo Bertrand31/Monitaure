@@ -32,8 +32,10 @@ var checkPort = function(check, callback) {
     }, timeout);
 };
 
-module.exports = function (callback) {
+module.exports = function () {
     Check.find().exec(function(err, checks) {
+        if (err) throw err;
+
         var results = [];
         var asyncChecks = [];
 
@@ -46,6 +48,7 @@ module.exports = function (callback) {
         });
 
         async.parallel(asyncChecks, function(err, pings){
+            if (err) throw err;
             sails.sockets.blast('pings', pings);
             CheckManagement.insertHistory(pings);
         });
