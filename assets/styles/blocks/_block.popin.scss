@@ -1,16 +1,17 @@
-.pop-in {
+.popins-container {
     position:absolute;
     top:1.8em;
     right:2.3em;
-    background:#fff;
-    border-radius:6px;
+}
+.pop-in {
+    @extend %box;
     color:$lighter;
-    box-shadow:0 0 10px 0 rgba(0,0,0,.8);
     padding:1.5em 1.1em;
+    margin-bottom:1em;
     font-family:$roboto;
     font-weight:700;
-    @include transition(all .3s ease-in-out);
     cursor:default;
+    position:relative;
     .close-popin {
         cursor:pointer;
         position: absolute;

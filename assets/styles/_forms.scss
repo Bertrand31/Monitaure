@@ -68,17 +68,15 @@ input[type="submit"], .button {
     input[type="submit"] { display:none; }
 }
 .form-wrapper {
+    @extend %box;
     margin:.8em 0;
     padding: 1em 4em;
     width:100%;
     max-width:460px;
-    background:#fff;
     align-self: center;
     text: {
         align:center;
         transform: uppercase;
     }
     font-weight: 600;
-    border-radius:5px;
-    box-shadow:0 0 15px 0 rgba(#000, .5);
 }

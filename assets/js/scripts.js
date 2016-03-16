@@ -9,11 +9,11 @@ $(document).ready(function() {
 
     $('#signup').on('submit', function(e) {
         e.preventDefault();
-        createUser($(this), function(err, message) {
+        createUser($(this), function(err, data) {
             if (err) {
-                createPopin('alert', err);
+                createPopin('alert', 'Error: ' + err.statusText);
             } else {
-                createPopin('info', message);
+                createPopin('info', 'User ' + data.user.email + ' successfully created');
             }
 
         });
