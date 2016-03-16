@@ -11,8 +11,8 @@ var addCheck = function(form, callback) {
         data: form.serialize(),
         beforeSend: function() {},
         complete: function() {},
-        success: function(data){callback(null, data);},
-        error: function(err) {callback(err, null);},
+        success: function(data) { callback(null, data); },
+        error: function(err) { callback(err, null); },
     });
 };
 // Deletes a check from the DB
@@ -24,8 +24,8 @@ var destroyCheck = function(id, callback) {
         data: {id: id},
         beforeSend: function() {},
         complete: function() {},
-        success: function(data){callback(null, data);},
-        error: function(err) {callback(err, null);},
+        success: function(data) { callback(null, data); },
+        error: function(err) { callback(err, null); },
     });
 };
 // Get a check statistics
@@ -36,8 +36,8 @@ var getCheckStats = function(id, callback) {
         method: 'GET',
         beforeSend: function() {},
         complete: function() {},
-        success: function(data){callback(null, data);},
-        error: function(err) {callback(err, null);},
+        success: function(data) { callback(null, data); },
+        error: function(err) { callback(err, null); },
     });
 };
 // Create user
@@ -49,7 +49,7 @@ var createUser = function(form, callback) {
         data: form.serialize(),
         beforeSend: function() {},
         complete: function() {},
-        success: function(data){callback(null, data);},
-        error: function(err) {callback(err, null);},
+        success: function(data) { callback(null, data); },
+        error: function(err) { callback(err, null); },
     });
 };

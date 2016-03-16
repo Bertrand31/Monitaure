@@ -10,19 +10,21 @@ var createChart = function(id, chartOptions) {
         } else {
             var lastOutage = moment(checkStats.lastOutage).format('D/MM/YY H:mm');
             // Process data to output statistics along the chart
-            $('.data').find('.name').text(checkStats.name);
-            $('.data').find('.min').text(checkStats.min + 'ms');
-            $('.data').find('.max').text(checkStats.max + 'ms');
-            $('.data').find('.avg').text(checkStats.avg + 'ms');
-            $('.data').find('.availability')
+            var dataPanel = $('.data');
+            dataPanel.find('.name').text(checkStats.name);
+            dataPanel.find('.min').text(checkStats.min + 'ms');
+            dataPanel.find('.max').text(checkStats.max + 'ms');
+            dataPanel.find('.avg').text(checkStats.avg + 'ms');
+            dataPanel.find('.availability')
                 .text(checkStats.availability + '%')
                 .attr('data-perfect', checkStats.availability === 100 ? true : false);
-            $('.data').find('.last-outage').text(lastOutage);
+            dataPanel.find('.last-outage').text(lastOutage);
 
             // Show last ping data on top of the chart
             var lastPing = checkStats.history[checkStats.history.length - 1];
-            $('.top-data').find('.latency-value').text(lastPing.time);
-            $('.top-data').find('.last-check-date').text(moment(lastPing.date).format('HH:mm:ss'));
+            var topDataPanel = $('.top-data');
+            topDataPanel.find('.latency-value').text(lastPing.time);
+            topDataPanel.find('.last-check-date').text(moment(lastPing.date).format('HH:mm:ss'));
 
             // Turn data into chart dataset and create the chart
             historyToChartData(checkStats.history, function(chartData) {
