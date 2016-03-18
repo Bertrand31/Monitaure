@@ -12,6 +12,12 @@ module.exports = {
     identity: 'User',
 
     attributes: {
+        username: {
+            type: 'string',
+            required: true,
+            unique: true
+        },
+
         email: {
             type: 'email',
             required: true,

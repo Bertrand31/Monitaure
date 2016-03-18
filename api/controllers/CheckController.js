@@ -8,7 +8,7 @@ module.exports = {
                 var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
                 return res.view({
                     checks: user.checks,
-                    userEmail: user.email,
+                    userUsername: user.username,
                     userEmailMD5: emailHash
                 });
             }
