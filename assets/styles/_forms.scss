@@ -20,6 +20,19 @@ form {
         margin: 0 0 1em;
         font-size: .8em;
     }
+    .error {
+        margin-bottom:2em;
+        &:before {
+            content:'';
+            display:inline-block;
+            background:transparent url('/images/status-error.svg') center center no-repeat;
+            height:1.5em;;
+            width:1.5em;
+            margin-right:.6em;
+            position:relative;
+            top:calc(.5em / 2);
+        }
+    }
 }
 .form-title {
     color: $dark;
@@ -44,7 +57,6 @@ input {
         font-size: 1em;
         margin:.15em 0 1em 0 ;
         width: 100%;
-        text-transform: uppercase;
         font-family: $roboto;
         font-weight: 600;
         color:$lighter;
