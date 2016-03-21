@@ -16,8 +16,12 @@ module.exports = {
     },
 
     getstats: function (req, res) {
-        CheckManagement.getData(req.param('id'), function(data) {
-            return res.json(data);
+        CheckManagement.getData(req.param('id'), function(err, data) {
+            if (err) {
+               return res.serverError(err);
+            } else {
+                return res.json(data);
+            }
         });
     },
 

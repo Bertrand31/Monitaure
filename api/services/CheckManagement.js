@@ -62,44 +62,48 @@ module.exports = {
     getData: function(checkId, callback) {
         Check.findOne({id: checkId}).exec(function (err, check) {
 
-            var historyArray = check.history,
-                sum = 0,
-                min = historyArray[0].time,
-                max = historyArray[0].time,
-                avg = 0,
-                totalOutage = 0,
-                lastOutage = null;
+            var historyArray = check.history;
+            if (historyArray.length > 0) {
+                var sum = 0,
+                    min = historyArray[0].time,
+                    max = historyArray[0].time,
+                    avg = 0,
+                    totalOutage = 0,
+                    lastOutage = null;
 
-            for (var i=0; i<historyArray.length; i++) {
-                if (historyArray[i].time !== null) {
-                    sum += historyArray[i].time;
-                    min = historyArray[i].time < min ? historyArray[i].time : min;
-                    max = historyArray[i].time > max ? historyArray[i].time : max;
-                } else {
-                    totalOutage += historyArray[i].interval;
-                    lastOutage = historyArray[i].date;
+                for (var i=0; i<historyArray.length; i++) {
+                    if (historyArray[i].time !== null) {
+                        sum += historyArray[i].time;
+                        min = historyArray[i].time < min ? historyArray[i].time : min;
+                        max = historyArray[i].time > max ? historyArray[i].time : max;
+                    } else {
+                        totalOutage += historyArray[i].interval;
+                        lastOutage = historyArray[i].date;
+                    }
                 }
+                avg = Math.round(sum / historyArray.length);
+                lastOutage = lastOutage !== null ? lastOutage : '-';
+
+                // Number of miliseconds in a month (30 days more exactly)
+                var monthMs = 1000 * 60 * 60 * 24 * 30;
+                var percent = 100 - (totalOutage * 100) / monthMs;
+                // We round the percentage to two places
+                var availability = Utilities.customFloor(percent, 2);
+
+                var historyShort = historyArray.splice(historyArray.length - 20, 20);
+
+                callback(null, {
+                    name: check.name,
+                    min: min,
+                    max: max,
+                    avg: avg,
+                    availability: availability,
+                    lastOutage: lastOutage,
+                    history: historyShort
+                });
+            } else {
+                callback('No data yet!', null);
             }
-            avg = Math.round(sum / historyArray.length);
-            lastOutage = lastOutage !== null ? lastOutage : '-';
-
-            // Number of miliseconds in a month (30 days more exactly)
-            var monthMs = 1000 * 60 * 60 * 24 * 30;
-            var percent = 100 - (totalOutage * 100) / monthMs;
-            // We round the percentage to two places
-            var availability = Utilities.customFloor(percent, 2);
-
-            var historyShort = historyArray.splice(historyArray.length - 20, 20);
-
-            callback({
-                name: check.name,
-                min: min,
-                max: max,
-                avg: avg,
-                availability: availability,
-                lastOutage: lastOutage,
-                history: historyShort
-            });
         });
     }
 
