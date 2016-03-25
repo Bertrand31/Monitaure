@@ -4,14 +4,9 @@ html,body {
 #main-container {
     height:100%;
     width:100%;
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-box;
-    display: box;
-
-    -ms-flex-direction: row;
-    @include box-orient(horizontal);
+}
+.aside {
+    padding:2em 2.5em 0 2em;
 }
 .content-wrapper {
     width:92%;
@@ -54,6 +49,7 @@ html,body {
         width:200px;
     }
     .main-chart {
+        display:none;
         flex-grow:1;
     }
 }

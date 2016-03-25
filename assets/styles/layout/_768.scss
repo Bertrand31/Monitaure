@@ -1,3 +1,13 @@
+#main-container {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: box;
+
+    -ms-flex-direction: row;
+    @include box-orient(horizontal);
+}
 .aside {
     width: 20%;
     height:100%;
@@ -9,4 +19,10 @@
 .main {
     -ms-flex: 1;
     @include box-flex(1);
+    overflow-y:scroll;
+}
+#chart-container {
+    .main-chart {
+        display:block;
+    }
 }
