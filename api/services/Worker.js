@@ -50,7 +50,9 @@ module.exports = function () {
         async.parallel(asyncChecks, function(err, pings){
             if (err) throw err;
             sails.sockets.blast('pings', pings);
-            CheckManagement.insertHistory(pings);
+            pings.forEach(function(ping) {
+                CheckManagement.insertHistory(ping);
+            });
         });
     });
 };

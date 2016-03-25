@@ -30,32 +30,30 @@ module.exports = {
         });
     },
 
-    insertHistory: function(pings) {
-        pings.forEach(function(ping) {
-            Check.findOne({id: ping.checkId}).exec(function (err, check) {
-                if (err) throw err;
+    insertHistory: function(ping) {
+        Check.findOne({id: ping.checkId}).exec(function (err, check) {
+            if (err) throw err;
 
-                var newHistoryArray = check.history;
+            var newHistoryArray = check.history;
 
-                var oneMonthAgo = new Date();
-                oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+            var oneMonthAgo = new Date();
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
-                // If the first value of the array is older than a month, we remove it
-                // We keep doing that until the oldest value is younger than a month
-                if (typeof newHistoryArray[0] !== 'undefined') {
-                    while (newHistoryArray[0].date.getTime() < oneMonthAgo.getTime()) {
-                        newHistoryArray.shift();
-                    }
+            // If the first value of the array is older than a month, we remove it
+            // We keep doing that until the oldest value is younger than a month
+            if (typeof newHistoryArray[0] !== 'undefined') {
+                while (newHistoryArray[0].date.getTime() < oneMonthAgo.getTime()) {
+                    newHistoryArray.shift();
                 }
+            }
 
-                newHistoryArray.push({date: ping.date, time: ping.open ? ping.duration : null, interval: check.interval});
+            newHistoryArray.push({date: ping.date, time: ping.open ? ping.duration : null, interval: check.interval});
 
-                // And update the DB record
-                Check.update({id: ping.checkId}, {history: newHistoryArray}).exec(function(err, updated) {
-                    if (err) throw err;
-                });
-
+            // And update the DB record
+            Check.update({id: ping.checkId}, {history: newHistoryArray}).exec(function(err, updated) {
+                if (err) throw err;
             });
+
         });
     },
 
@@ -92,7 +90,7 @@ module.exports = {
 
                 var historyShort = historyArray.splice(historyArray.length - 20, 20);
 
-                callback(null, {
+                return callback(null, {
                     name: check.name,
                     min: min,
                     max: max,
@@ -102,7 +100,7 @@ module.exports = {
                     history: historyShort
                 });
             } else {
-                callback('No data yet!', null);
+                return callback('No data yet!', null);
             }
         });
     }
