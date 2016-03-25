@@ -84,7 +84,6 @@ module.exports = {
                     historyLength += historyArray[i].interval;
                 }
                 avg = Math.round(sum / historyArray.length);
-                lastOutage = lastOutage !== null ? lastOutage : '-';
 
                 // Number of miliseconds in a month (30 days more exactly)
                 var percent = 100 - (totalOutage * 100) / historyLength;
