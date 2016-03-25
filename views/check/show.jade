@@ -68,30 +68,33 @@ block body
                         th
                 tbody
                     each check in checks
-                        tr(id=check.id)
 
-                            -var lastHistory = check.history[check.history.length - 1]
+                        if check.history.length > 0
 
-                            if lastHistory.time !== null
-                                td.status(data-health="ok")
-                            else
-                                td.status(data-health="nok")
+                            tr(id=check.id)
 
-                            td.name= check.name
-                            td= check.domainNameOrIP
-                            td= check.port
+                                -var lastHistory = check.history[check.history.length - 1]
 
-                            if lastHistory.time > 200
-                                td.response-time(data-speed="slow")= lastHistory.time + 'ms'
-                            else if lastHistory.time !== null
-                                td.response-time(data-speed="fast")= lastHistory.time + 'ms'
-                            else
-                                td.response-time(data-speed="down") -
+                                if lastHistory.time !== null
+                                    td.status(data-health="ok")
+                                else
+                                    td.status(data-health="nok")
 
-                            td.settings
-                                button.settings-check
-                            td.destroy
-                                button.destroy-check
+                                td.name= check.name
+                                td= check.domainNameOrIP
+                                td= check.port
+
+                                if lastHistory.time > 200
+                                    td.response-time(data-speed="slow")= lastHistory.time + 'ms'
+                                else if lastHistory.time !== null
+                                    td.response-time(data-speed="fast")= lastHistory.time + 'ms'
+                                else
+                                    td.response-time(data-speed="down") -
+
+                                td.settings
+                                    button.settings-check
+                                td.destroy
+                                    button.destroy-check
 
     .fullscreen-wrapper#check-add-form
         button.close-fullscreen

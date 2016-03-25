@@ -62,7 +62,6 @@ module.exports = {
     getData: function(checkId, callback) {
         Check.findOne({id: checkId}).exec(function (err, check) {
 
-            console.log(check);
             var historyArray = check.history;
             if (historyArray.length > 0) {
                 var sum = 0,
