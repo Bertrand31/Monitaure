@@ -53,7 +53,6 @@ label {
 }
 input {
     &[type="text"], &[type="email"], &[type="password"] {
-        color: $middark;
         font-size: 1em;
         margin:.15em 0 1em 0 ;
         width: 100%;

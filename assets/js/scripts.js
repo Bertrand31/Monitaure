@@ -10,8 +10,22 @@ $(document).ready(function() {
     $('#signup').on('submit', function(e) {
         e.preventDefault();
         createUser($(this), function(err, data) {
+            console.log(err);
             if (err) {
-                createPopin('alert', 'Error: ' + err.statusText);
+                var errorMsg = '';
+                if (err.responseJSON.hasOwnProperty('invalidAttributes')) {
+                    var invalidAttrs = err.responseJSON.invalidAttributes;
+                    for (var invalidAttr in invalidAttrs) {
+                        if (invalidAttrs.hasOwnProperty(invalidAttr)) {
+                            errorMsg = $('#signup #'+invalidAttr).attr('data-error');
+                        }
+                    }
+                } else if (err.responseJSON === 'passwords-mismatch') {
+                    errorMsg = $('#signup #confirmPassword').attr('data-error');
+                } else {
+                    errorMsg = err.statusText;
+                }
+                createPopin('alert', errorMsg);
             } else {
                 createPopin('info', 'User ' + data.user.email + ' successfully created');
             }
