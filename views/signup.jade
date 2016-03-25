@@ -11,13 +11,13 @@ block body
                 h2.form-title Create an account
                 form#signup(method="post", action="/signup")
                     label Username
-                    input#username(name="username", type="text", placeholder="Your username")
+                    input#username(name="username", type="text", placeholder="Your username", required)
                     label Email
-                    input#email(name="email", type="email", placeholder="Your email")
+                    input#email(name="email", type="email", placeholder="Your email", required)
                     label Password
-                    input#password(name="password", type="password", placeholder="Your password")
+                    input#password(name="password", type="password", placeholder="Your password", required)
                     label Password confirmation
-                    input#password(name="confirmPassword", type="password", placeholder="Type your password again")
+                    input#password(name="confirmPassword", type="password", placeholder="Type your password again", required)
                     input#submit(type="submit", value="Sign up")
                 p Already have an account? 
                     a(href="/login") Log in!
