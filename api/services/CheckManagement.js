@@ -62,6 +62,7 @@ module.exports = {
     getData: function(checkId, callback) {
         Check.findOne({id: checkId}).exec(function (err, check) {
 
+            console.log(check);
             var historyArray = check.history;
             if (historyArray.length > 0) {
                 var sum = 0,
@@ -69,6 +70,7 @@ module.exports = {
                     max = historyArray[0].time,
                     avg = 0,
                     totalOutage = 0,
+                    historyLength = 0,
                     lastOutage = null;
 
                 for (var i=0; i<historyArray.length; i++) {
@@ -80,13 +82,13 @@ module.exports = {
                         totalOutage += historyArray[i].interval;
                         lastOutage = historyArray[i].date;
                     }
+                    historyLength += historyArray[i].interval;
                 }
                 avg = Math.round(sum / historyArray.length);
                 lastOutage = lastOutage !== null ? lastOutage : '-';
 
                 // Number of miliseconds in a month (30 days more exactly)
-                var monthMs = 1000 * 60 * 60 * 24 * 30;
-                var percent = 100 - (totalOutage * 100) / monthMs;
+                var percent = 100 - (totalOutage * 100) / historyLength;
                 // We round the percentage to two places
                 var availability = Utilities.customFloor(percent, 2);
 
