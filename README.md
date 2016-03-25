@@ -4,11 +4,10 @@
 [![Travis build status](https://travis-ci.org/Bertrand31/Monitaure.svg)](https://travis-ci.org/Bertrand31/Monitaure/)
 
 
-A NodeJS application aiming to provide SysAdmins with a clean, lightweight and easy to install monitoring dashboard.
+A NodeJS application aiming to provide SysAdmins with a clean, lightweight and quick to configure monitoring dashboard.
 The application will not need any client-side installation or configuration.
 
 Upcoming features:
-- authentication ;
-- email and SMS alert, for each check ;
-- monthly reports ;
-- (web page load time monitoring).
+- email alerts ;
+- SMS alerts ;
+- monthly reports, in the dashboard and/or sent by mail.
