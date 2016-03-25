@@ -37,12 +37,12 @@ $(document).ready(function() {
     });
 
     // Table actions
-    $('#checks').on('click', '.destroy-check', function(e) {
+    $('#checks tbody').on('click', '.destroy-check', function(e) {
         e.stopPropagation();
         var id = $(this).closest('tr').attr('id');
         destroyCheckRow(id);
     });
-    $('#checks tbody').on('click', 'tr', function() {
+    $('#checks').on('click', 'tr', function() {
         var id = $(this).attr('id');
         currentChartId = id;
         var chartOptions = {
