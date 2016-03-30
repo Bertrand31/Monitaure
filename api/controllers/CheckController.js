@@ -2,16 +2,15 @@ module.exports = {
 
     show: function (req, res) {
         CheckManagement.listUserChecks(req.user.id, function(user) {
-            if (req.wantsJSON) {
-                return res.json(user.checks);
-            } else {
-                var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
-                return res.view({
-                    checks: user.checks,
-                    userUsername: user.username,
-                    userEmailMD5: emailHash
-                });
-            }
+            // if (req.wantsJSON)
+            //     return res.json(user.checks);
+            // else
+            var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
+            return res.view({
+                checks: user.checks,
+                userUsername: user.username,
+                userEmailMD5: emailHash
+            });
         });
     },
 
