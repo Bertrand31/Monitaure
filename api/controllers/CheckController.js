@@ -12,6 +12,10 @@ module.exports = {
                 userEmailMD5: emailHash
             });
         });
+        CheckManagement.getGlobalData(req.user.id, function(err, stats) {
+            if (err) throw err;
+            console.log(stats);
+        });
     },
 
     getstats: function (req, res) {
@@ -21,6 +25,13 @@ module.exports = {
             } else {
                 return res.json(data);
             }
+        });
+    },
+
+    getglobalstats: function (req, res) {
+        CheckManagement.getGlobalData(req.user.id, function(err, stats) {
+            if (err) throw err;
+            console.log(stats);
         });
     },
 
