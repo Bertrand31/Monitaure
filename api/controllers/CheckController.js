@@ -1,20 +1,30 @@
+var async = require('async');
+
 module.exports = {
 
     show: function (req, res) {
-        CheckManagement.listUserChecks(req.user.id, function(user) {
-            // if (req.wantsJSON)
-            //     return res.json(user.checks);
-            // else
-            var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
+
+        async.parallel([
+            function(callback) {
+                CheckManagement.listUserChecks(req.user.id, function(err, user) {
+                    var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
+                    callback(err, {
+                        checks: user.checks,
+                        userName: user.username,
+                        userEmailMD5: emailHash
+                    });
+                });
+            },
+            function(callback) {
+                CheckManagement.getGlobalData(req.user.id, function(err, globalStats) {
+                    callback(err, globalStats);
+                });
+            }
+        ], function(err, data) {
             return res.view({
-                checks: user.checks,
-                userUsername: user.username,
-                userEmailMD5: emailHash
+                userChecks: data[0],
+                globalData: data[1]
             });
-        });
-        CheckManagement.getGlobalData(req.user.id, function(err, stats) {
-            if (err) throw err;
-            console.log(stats);
         });
     },
 
@@ -25,13 +35,6 @@ module.exports = {
             } else {
                 return res.json(data);
             }
-        });
-    },
-
-    getglobalstats: function (req, res) {
-        CheckManagement.getGlobalData(req.user.id, function(err, stats) {
-            if (err) throw err;
-            console.log(stats);
         });
     },
 

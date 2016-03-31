@@ -3,8 +3,7 @@ module.exports = {
     listUserChecks: function(id, callback) {
         var criteria = {id: id};
         User.findOne(criteria).populate('checks').exec(function (err, user) {
-            if (err) throw err;
-            callback(user);
+            return callback(err, user);
         });
     },
 
@@ -86,7 +85,6 @@ module.exports = {
 
                 CheckManagement.checkStats(currentCheck, function(err, checkStats) {
 
-                    console.log(checkStats);
                     // If current check is currently down, we add increment checksDown array
                     // We do that by looking up his last 'history' array value
                     if (checkStats.history[checkStats.history.length - 1].time === null) {
@@ -109,7 +107,7 @@ module.exports = {
             for(var j = 0; j < availabilitiesArray.length; j++) {
                 sumAvailabilities += availabilitiesArray[j];
             }
-            availabilitiesAvg = sumAvailabilities / availabilitiesArray.length;
+            var availabilitiesAvg = sumAvailabilities / availabilitiesArray.length;
 
             callback(err, {
                 checksDown,
