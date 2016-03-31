@@ -11,10 +11,12 @@
 
 module.exports.bootstrap = function(cb) {
 
+    var interval = 120 * 1000; // 120 sec
+
     sails.on('lifted', function() {
         setInterval(function() {
             Worker();
-        },10000);
+        }, interval);
     });
 
     cb();
