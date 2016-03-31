@@ -1,0 +1,15 @@
+#parallax-container {
+    position:absolute;
+    overflow:hidden;
+    height:100%;
+    width:100%;
+    .parallax--layer {
+        display:block;
+        position:absolute;
+        min-height:100%;
+        bottom:0;
+        &#page-404--layer-2 {
+            width:120%;
+        }
+    }
+}
