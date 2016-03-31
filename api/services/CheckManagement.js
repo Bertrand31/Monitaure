@@ -61,7 +61,7 @@ module.exports = {
             if (err) throw err;
 
             CheckManagement.checkStats(check, function(err, data) {
-                callback(err, data);
+                return callback(err, data);
             });
 
        });
@@ -109,7 +109,7 @@ module.exports = {
             }
             var availabilitiesAvg = sumAvailabilities / availabilitiesArray.length;
 
-            callback(err, {
+            return callback(err, {
                 checksDown,
                 availabilitiesAvg,
                 lastError

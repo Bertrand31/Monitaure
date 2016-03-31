@@ -21,10 +21,14 @@ module.exports = {
                 });
             }
         ], function(err, data) {
-            return res.view({
-                userChecks: data[0],
-                globalData: data[1]
-            });
+            if (err) {
+               return res.serverError(err);
+            } else {
+                return res.view({
+                    userChecks: data[0],
+                    globalData: data[1]
+                });
+            }
         });
     },
 
