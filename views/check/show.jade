@@ -69,9 +69,9 @@ block body
                 tbody
                     each check in checks
 
-                        if check.history.length > 0
+                        tr(id=check.id)
 
-                            tr(id=check.id)
+                            if check.history.length > 0
 
                                 -var lastHistory = check.history[check.history.length - 1]
 
@@ -90,6 +90,21 @@ block body
                                     td.response-time(data-speed="fast")= lastHistory.time + 'ms'
                                 else
                                     td.response-time(data-speed="down") -
+
+                                td.settings
+                                    button.settings-check
+                                td.destroy
+                                    button.destroy-check
+
+                            else
+
+                                td.status(data-health="ok")
+
+                                td.name= check.name
+                                td= check.domainNameOrIP
+                                td= check.port
+
+                                td.response-time(data-speed="down") -
 
                                 td.settings
                                     button.settings-check
