@@ -28,7 +28,7 @@ module.exports = {
 
         interval: {
             type: 'integer',
-            defaultsTo: 10000
+            defaultsTo: sails.config.checkInterval
         },
 
         history: {

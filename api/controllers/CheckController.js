@@ -16,7 +16,7 @@ module.exports = {
             if (err) {
                 return res.serverError(err);
             } else {
-                return res.json({ data });
+                return res.json(data);
             }
         });
     },

@@ -34,9 +34,14 @@ block body
                 section.top-buttons
                     button.button#open-form Add a check
                 .global-data
-                    p.checks-down= data.globalStats.checksDown
-                    p.availability-avg= data.globalStats.availabilitiesAvg
+                    p.global-status
+                        span.checks-down= data.globalStats.checksDown
+                        span.total-checks= data.globalStats.numberOfChecks
+                    p.availability
+                        span.availabilities-avg= data.globalStats.availabilitiesAvg
+                        | average availability
                     p.last-error
+                        | Last downtime
                         span.last-error--check-name= data.globalStats.lastError.checkName
                         span.last-error--time= data.globalStats.lastError.time
                 section#chart-container

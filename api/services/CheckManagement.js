@@ -80,7 +80,7 @@ module.exports = {
 
                     // If current check is currently down, we add increment checksDown array
                     // We do that by looking up his last 'history' array value
-                    if (checkStats.history[checkStats.history.length - 1].time === null) {
+                    if (checkStats.history[0].time === null) {
                         checksDown++;
                     }
                     // We add current check's availability stats to the ad hoc array
@@ -91,10 +91,8 @@ module.exports = {
                         lastError.time = checkStats.lastOutage;
                         lastError.checkName = checkStats.name;
                     }
-                    shortHistoryArray.push(checkStats.history);
+                    user.checks[i].history = checkStats.history;
                 });
-
-                user.checks[i].history = shortHistoryArray;
             }
 
             // Calculate the average of all the checks availabilities
@@ -109,11 +107,11 @@ module.exports = {
             var userData = {
                 userName: user.username,
                 userEmailMD5: emailHash,
-                // Faulty line: we send the full, out-of-Mongo checks array instead of using the spliced one from checkStats
                 checks: user.checks
             };
             // Object containing all previously computed stats
             var globalStats = {
+                numberOfChecks: user.checks.length,
                 checksDown,
                 availabilitiesAvg,
                 lastError

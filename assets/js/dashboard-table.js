@@ -2,21 +2,29 @@
  * TABLE *
  **********/
 
-// UPDATING DATA
-// Update the table data
-var updateTableRow = function(ping) {
-    var target = $('tr#' + ping.checkId);
-    target.find('td.status').attr('data-health', ping.open ? 'ok' : 'nok');
-    target.find('td.response-time')
-        .text(ping.duration !== null ? ping.duration + 'ms' : '-')
-        .attr('data-speed', ping.duration>200 ? 'slow' : 'fast');
+var updateGlobalStats = function (data) {
+    var globalWrapper = $('.global-data');
+    globalWrapper.find('.checks-down').text(data.checksDown);
+    globalWrapper.find('.total-checks').text(data.numberOfChecks);
+    globalWrapper.find('.availabilities-avg').text(data.availabilitiesAvg);
+    globalWrapper.find('.last-error--check-name').text(data.lastError.checkName);
+    globalWrapper.find('.last-error--time').text(data.lastError.time);
+};
+// Update table data
+var updateTableRows = function (data) {
+    for (var i = 0; i < data.length; i++) {
+        var lastHistory = data[i].history[0];
+        var target = $('#checks').find('tr#' + data[i].id);
+        target.find('td.status').attr('data-health', lastHistory.time ? 'ok' : 'nok');
+        target.find('td.response-time')
+            .text(data[i].time !== null ? lastHistory.time + 'ms' : '-')
+            .attr('data-speed', lastHistory.time > 200 ? 'slow' : 'fast');
+    }
 };
 // Trigger updateTableRow for each table row
 var processData = function(data) {
-    console.log(data);
-    // for(var i = 0; i < data.length; i++) {
-    //     updateTableRow(data[i]);
-    // }
+    updateGlobalStats(data.globalStats);
+    updateTableRows(data.userData.checks);
 };
 
 // ADDING AND REMOVING CHECKS

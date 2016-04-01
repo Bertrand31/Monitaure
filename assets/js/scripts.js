@@ -34,7 +34,7 @@ $(document).ready(function() {
     });
 
     // Interval between each data update (5mn)
-    var interval = 5  * 60 * 1000;
+    var updateInterval = 5  * 60 * 1000;
     // Update table data
     setInterval(function() {
         getAllStats(function(err, data) {
@@ -44,7 +44,7 @@ $(document).ready(function() {
                 processData(data);
             }
         });
-    }, interval);
+    }, updateInterval);
 
     // 'Add a check' form actions
     $('#open-form').click(function() {
