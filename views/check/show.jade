@@ -27,18 +27,18 @@ block body
                     li
                         a(href="/logout") Log out
             .profile
-                img(src="https://fr.gravatar.com/avatar/" + userChecks.userEmailMD5 + "?size=100" alt="Profile picture")
-                span= userChecks.name
+                img(src="https://fr.gravatar.com/avatar/" + data.userData.userEmailMD5 + "?size=100" alt="Profile picture")
+                span= data.userData.name
         main.main
             .content-wrapper
                 section.top-buttons
                     button.button#open-form Add a check
                 .global-data
-                    p.checks-down= globalData.checksDown
-                    p.availability-avg= globalData.availabilitiesAvg
+                    p.checks-down= data.globalStats.checksDown
+                    p.availability-avg= data.globalStats.availabilitiesAvg
                     p.last-error
-                        span.last-error--check-name= globalData.lastError.checkName
-                        span.last-error--time= globalData.lastError.time
+                        span.last-error--check-name= data.globalStats.lastError.checkName
+                        span.last-error--time= data.globalStats.lastError.time
                 section#chart-container
                     .data
                         p.name
@@ -73,7 +73,7 @@ block body
                         th
                         th
                 tbody
-                    each check in userChecks.checks
+                    each check in data.userData.checks
 
                         tr(id=check.id)
 

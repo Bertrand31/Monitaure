@@ -13,13 +13,10 @@ var updateTableRow = function(ping) {
 };
 // Trigger updateTableRow for each table row
 var processData = function(data) {
-    for(var i = 0; i < data.length; i++) {
-        updateTableRow(data[i]);
-        // if (data[i].id === currentChartId) {
-        //     addDataToChart(data[i]);
-        // }
-
-    }
+    console.log(data);
+    // for(var i = 0; i < data.length; i++) {
+    //     updateTableRow(data[i]);
+    // }
 };
 
 // ADDING AND REMOVING CHECKS

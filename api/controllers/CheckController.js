@@ -1,38 +1,27 @@
-var async = require('async');
-
 module.exports = {
 
     show: function (req, res) {
 
-        async.parallel([
-            function(callback) {
-                CheckManagement.listUserChecks(req.user.id, function(err, user) {
-                    var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
-                    callback(err, {
-                        checks: user.checks,
-                        userName: user.username,
-                        userEmailMD5: emailHash
-                    });
-                });
-            },
-            function(callback) {
-                CheckManagement.getGlobalData(req.user.id, function(err, globalStats) {
-                    callback(err, globalStats);
-                });
-            }
-        ], function(err, data) {
+            CheckManagement.getUserAndChecksData(req.user.id, function(err, data) {
+                if (err) {
+                    return res.serverError(err);
+                } else {
+                    return res.view({ data });
+                }
+            });
+    },
+
+    getallstats: function (req, res) {
+        CheckManagement.getUserAndChecksData(req.user.id, function(err, data) {
             if (err) {
-               return res.serverError(err);
+                return res.serverError(err);
             } else {
-                return res.view({
-                    userChecks: data[0],
-                    globalData: data[1]
-                });
+                return res.json({ data });
             }
         });
     },
 
-    getstats: function (req, res) {
+    getcheckstats: function (req, res) {
         CheckManagement.getData(req.param('id'), function(err, data) {
             if (err) {
                return res.serverError(err);

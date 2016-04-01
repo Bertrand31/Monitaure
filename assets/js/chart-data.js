@@ -87,9 +87,3 @@ var createChart = function(id, chartOptions) {
         }
     });
 };
-
-// Add new data to existing chart
-// var addDataToChart = function(data) {
-    // console.log(data);
-    // chart.update();
-// };

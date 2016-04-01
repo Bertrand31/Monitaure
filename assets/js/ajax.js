@@ -28,9 +28,21 @@ var destroyCheck = function(id, callback) {
         error: function(err) { callback(err, null); },
     });
 };
+// Get user's global stats and checks
+var getAllStats = function(callback) {
+    var url = window.location.origin + '/Check/getallstats/';
+    $.ajax({
+        url: url,
+        method: 'GET',
+        beforeSend: function() {},
+        complete: function() {},
+        success: function(data) { callback(null, data); },
+        error: function(err) { callback(err, null); },
+    });
+};
 // Get a check statistics
 var getCheckStats = function(id, callback) {
-    var url = window.location.origin + '/Check/getstats/'+id;
+    var url = window.location.origin + '/Check/getcheckstats/'+id;
     $.ajax({
         url: url,
         method: 'GET',

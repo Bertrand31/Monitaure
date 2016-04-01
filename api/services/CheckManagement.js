@@ -1,12 +1,5 @@
 module.exports = {
 
-    listUserChecks: function(id, callback) {
-        var criteria = {id: id};
-        User.findOne(criteria).populate('checks').exec(function (err, user) {
-            return callback(err, user);
-        });
-    },
-
     createCheck: function(data, callback) {
         Check.create(data).exec(function (err, created) {
             if (err) throw err;
@@ -60,14 +53,14 @@ module.exports = {
         Check.findOne({id: checkId}).exec(function (err, check) {
             if (err) throw err;
 
-            CheckManagement.checkStats(check, function(err, data) {
+            CheckManagement.checkStats(check, 20, function(err, data) {
                 return callback(err, data);
             });
 
        });
     },
 
-    getGlobalData: function(id, callback) {
+    getUserAndChecksData: function(id, callback) {
         var criteria = {id: id};
         User.findOne(criteria).populate('checks').exec(function (err, user) {
 
@@ -76,14 +69,14 @@ module.exports = {
                     checkName: null
                 },
                 checksDown = 0,
-                availabilitiesArray = [],
-                userChecks = user.checks;
+                availabilitiesArray = [];
 
-            for(var i = 0; i < userChecks.length; i++) {
+            for(var i = 0; i < user.checks.length; i++) {
 
-                var currentCheck = userChecks[i];
+                var currentCheck = user.checks[i];
+                var shortHistoryArray = [];
 
-                CheckManagement.checkStats(currentCheck, function(err, checkStats) {
+                CheckManagement.checkStats(currentCheck, 1, function(err, checkStats) {
 
                     // If current check is currently down, we add increment checksDown array
                     // We do that by looking up his last 'history' array value
@@ -98,8 +91,10 @@ module.exports = {
                         lastError.time = checkStats.lastOutage;
                         lastError.checkName = checkStats.name;
                     }
-
+                    shortHistoryArray.push(checkStats.history);
                 });
+
+                user.checks[i].history = shortHistoryArray;
             }
 
             // Calculate the average of all the checks availabilities
@@ -107,17 +102,31 @@ module.exports = {
             for(var j = 0; j < availabilitiesArray.length; j++) {
                 sumAvailabilities += availabilitiesArray[j];
             }
-            var availabilitiesAvg = sumAvailabilities / availabilitiesArray.length;
+            var availabilitiesAvg = Utilities.customFloor(sumAvailabilities / availabilitiesArray.length, 2);
 
-            return callback(err, {
+            // Object containing the user information and its checks
+            var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
+            var userData = {
+                userName: user.username,
+                userEmailMD5: emailHash,
+                // Faulty line: we send the full, out-of-Mongo checks array instead of using the spliced one from checkStats
+                checks: user.checks
+            };
+            // Object containing all previously computed stats
+            var globalStats = {
                 checksDown,
                 availabilitiesAvg,
                 lastError
+            };
+
+            return callback(err, {
+                userData,
+                globalStats
             });
         });
     },
 
-    checkStats: function(check, callback) {
+    checkStats: function(check, historyLength, callback) {
         var historyArray = check.history;
         if (historyArray.length > 0) {
             var sum = 0,
@@ -125,7 +134,7 @@ module.exports = {
                 max = historyArray[0].time,
                 avg = 0,
                 totalOutage = 0,
-                historyLength = 0,
+                historyTimeSpan = 0,
                 lastOutage = null;
 
             for (var i=0; i<historyArray.length; i++) {
@@ -137,16 +146,16 @@ module.exports = {
                     totalOutage += historyArray[i].interval;
                     lastOutage = historyArray[i].date;
                 }
-                historyLength += historyArray[i].interval;
+                historyTimeSpan += historyArray[i].interval;
             }
             avg = Math.round(sum / historyArray.length);
 
             // Number of miliseconds in a month (30 days more exactly)
-            var percent = 100 - (totalOutage * 100) / historyLength;
+            var percent = 100 - (totalOutage * 100) / historyTimeSpan;
             // We round the percentage to two places
             var availability = Utilities.customFloor(percent, 2);
 
-            var historyShort = historyArray.splice(historyArray.length - 20, 20);
+            var historyShort = historyArray.splice(historyArray.length - historyLength - 1, historyLength);
 
             return callback(null, {
                 name: check.name,

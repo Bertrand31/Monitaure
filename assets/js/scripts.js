@@ -33,12 +33,18 @@ $(document).ready(function() {
         });
     });
 
-    var socket = io();
-
-    // Update table data on 'pings' event
-    socket.on('pings', function(data) {
-        processData(data);
-    });
+    // Interval between each data update (5mn)
+    var interval = 5  * 60 * 1000;
+    // Update table data
+    setInterval(function() {
+        getAllStats(function(err, data) {
+            if (err) {
+                createPopin('alert', err);
+            } else {
+                processData(data);
+            }
+        });
+    }, interval);
 
     // 'Add a check' form actions
     $('#open-form').click(function() {

@@ -36,7 +36,6 @@ module.exports = function () {
     Check.find().exec(function(err, checks) {
         if (err) throw err;
 
-        var results = [];
         var asyncChecks = [];
 
         checks.forEach(function(check) {
@@ -49,7 +48,6 @@ module.exports = function () {
 
         async.parallel(asyncChecks, function(err, pings){
             if (err) throw err;
-            sails.sockets.blast('pings', pings);
             pings.forEach(function(ping) {
                 CheckManagement.insertHistory(ping);
             });
