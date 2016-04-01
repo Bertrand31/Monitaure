@@ -1,8 +1,6 @@
 /*********************
  * MAIN CONTROLLERS *
 *********************/
-var chart;
-
 $(document).ready(function() {
 
     // Users management
@@ -10,7 +8,6 @@ $(document).ready(function() {
     $('#signup').on('submit', function(e) {
         e.preventDefault();
         createUser($(this), function(err, data) {
-            console.log(err);
             if (err) {
                 var errorMsg = '';
                 if (err.responseJSON.hasOwnProperty('invalidAttributes')) {
@@ -64,7 +61,6 @@ $(document).ready(function() {
     });
     $('#checks').on('click', 'tr', function() {
         var id = $(this).attr('id');
-        currentChartId = id;
         var chartOptions = {
             fullWidth: false,
             showArea: true,

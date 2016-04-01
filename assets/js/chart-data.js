@@ -31,7 +31,7 @@ var createChart = function(id, chartOptions) {
 
             // Turn data into chart dataset and create the chart
             historyToChartData(checkStats.history, function(chartData) {
-                chart = new Chartist.Line('.main-chart', chartData, chartOptions);
+                var chart = new Chartist.Line('.main-chart', chartData, chartOptions);
                 var seq = 0,
                     delays = 80,
                     durations = 500;

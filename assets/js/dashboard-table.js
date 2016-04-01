@@ -12,9 +12,12 @@ var updateGlobalStats = function (data) {
 };
 // Update table data
 var updateTableRows = function (data) {
+    var lastHistory = null,
+        target = null;
+
     for (var i = 0; i < data.length; i++) {
-        var lastHistory = data[i].history[0];
-        var target = $('#checks').find('tr#' + data[i].id);
+        lastHistory = data[i].history[0];
+        target = $('#checks').find('tr#' + data[i].id);
         target.find('td.status').attr('data-health', lastHistory.time ? 'ok' : 'nok');
         target.find('td.response-time')
             .text(data[i].time !== null ? lastHistory.time + 'ms' : '-')
