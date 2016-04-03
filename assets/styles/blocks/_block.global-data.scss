@@ -39,6 +39,7 @@
         }
     }
     .availability {
+        max-width:230px;
         .donut {
             .primary-bar {
                 stroke:$lightgreen;
@@ -66,6 +67,8 @@
         }
         .last-error--check-name {
             display:block;
+            max-width:170px;
+            margin:0 auto;
         }
         .last-error--time { display:none; }
         .last-error--hour,.last-error--day {

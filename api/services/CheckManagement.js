@@ -42,7 +42,7 @@ module.exports = {
             newHistoryArray.push({date: ping.date, time: ping.open ? ping.duration : null, interval: check.interval});
 
             // And update the DB record
-            Check.update({id: ping.checkId}, {history: newHistoryArray}).exec(function(err, updated) {
+            Check.update({id: ping.checkId}, {history: newHistoryArray}).exec(function(err) {
                 if (err) throw err;
             });
 

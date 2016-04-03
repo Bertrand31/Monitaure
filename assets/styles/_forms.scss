@@ -70,20 +70,9 @@ input {
 input[type="submit"], .button {
     @extend %button;
 }
-.fullscreen-wrapper {
-    input {
-        &[type="text"],&[type="email"],&[type="password"] {
-            background:transparent;
-            display:block;
-            font:3.5em $montserrat;
-            color:#fff;
-            margin:.8em 0;
-        }
-    }
-    input[type="submit"] { display:none; }
-}
 .form-wrapper {
     @extend %box;
+    position:relative;
     margin:.8em 0;
     padding: 1em 4em;
     width:100%;
