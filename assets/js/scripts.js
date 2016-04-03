@@ -115,7 +115,7 @@ $(document).ready(function() {
         var id = $(this).closest('tr').attr('id');
         destroyCheckRow(id);
     });
-    $('#checks').on('click', 'tr', function() {
+    $('#checks').on('click', 'tbody>tr', function() {
         var id = $(this).attr('id');
         var chartOptions = {
             fullWidth: false,
