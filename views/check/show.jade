@@ -34,16 +34,32 @@ block body
                 section.top-buttons
                     button.button#open-form Add a check
                 .global-data
-                    p.global-status
-                        span.checks-down= data.globalStats.checksDown
-                        span.total-checks= data.globalStats.numberOfChecks
-                    p.availability
-                        span.availabilities-avg= data.globalStats.availabilitiesAvg
-                        | average availability
-                    p.last-error
-                        | Last downtime
-                        span.last-error--check-name= data.globalStats.lastError.checkName
-                        span.last-error--time= data.globalStats.lastError.time
+                    .global-data-block.global-status
+                        .donut.checks-down-donut
+                        p.donut-content
+                            span.main-text
+                                span.checks-down= data.globalStats.checksDown
+                                | /
+                                span.total-checks= data.globalStats.numberOfChecks
+                                |  servers
+                                span.secondary-text are responding
+                            span.aside-text servers responding
+                    .global-data-block.availability
+                        .donut.availability-donut
+                        p.donut-content
+                            span.main-text
+                                span.availabilities-avg= data.globalStats.availabilitiesAvg
+                                span.secondary-text %
+                            span.aside-text average availability
+                    .global-data-block.last-error
+                        .donut.last-error-donut
+                        p.donut-content
+                            span.main-text
+                                span.last-error--check-name= data.globalStats.lastError.checkName
+                                span.secondary-text.last-error--time= data.globalStats.lastError.time
+                                span.secondary-text.last-error--hour
+                                span.secondary-text.last-error--day
+                            span.aside-text Last downtime
                 section#chart-container
                     .data
                         p.name

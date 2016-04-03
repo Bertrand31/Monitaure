@@ -1,10 +1,23 @@
 /*********************
  * MAIN CONTROLLERS *
 *********************/
+
 $(document).ready(function() {
 
-    // Users management
+    // Automatic data pulling and udpate
+    var updateInterval = 5 * 60 * 1000; // 5mn
+    // Every `updateInterval`, we pull updated data and send it to processData
+    setInterval(function() {
+        getAllStats(function(err, data) {
+            if (err) {
+                createPopin('alert', err.responseJSON);
+            } else {
+                processData(data);
+            }
+        });
+    }, updateInterval);
 
+    // Users management
     $('#signup').on('submit', function(e) {
         e.preventDefault();
         createUser($(this), function(err, data) {
@@ -30,19 +43,6 @@ $(document).ready(function() {
         });
     });
 
-    // Interval between each data update (5mn)
-    var updateInterval = 5  * 60 * 1000;
-    // Update table data
-    setInterval(function() {
-        getAllStats(function(err, data) {
-            if (err) {
-                createPopin('alert', err);
-            } else {
-                processData(data);
-            }
-        });
-    }, updateInterval);
-
     // 'Add a check' form actions
     $('#open-form').click(function() {
         openFullscreen($('#check-add-form'));
@@ -52,6 +52,62 @@ $(document).ready(function() {
         addCheckLine($(this));
         closeFullscreen($(this).parent('.fullscreen-wrapper'));
     });
+
+    // Global stats
+    var donutOptions = {
+        width: '200px',
+        height: '200px',
+        donut: true,
+        donutWidth: 5,
+        startAngle: 230,
+        total: 140,
+        showLabel: false
+    };
+    var totalChecks = $('.total-checks').text();
+    var percentageOfChecksDown = ($('.checks-down').text() * 100) / totalChecks;
+    new Chartist.Pie('.checks-down-donut', {
+            series: [
+                {
+                    value: 100 - percentageOfChecksDown,
+                    className: 'primary-bar'
+                },
+                {
+                    value: percentageOfChecksDown,
+                    classname: 'secondary-bar'
+                }
+            ]
+        },
+        donutOptions
+    );
+    var availabilitiesAvg = $('.availabilities-avg').text();
+    new Chartist.Pie('.availability-donut', {
+        series: [
+            {
+                value: availabilitiesAvg,
+                className: 'primary-bar'
+            },
+            {
+                value: 100 - availabilitiesAvg,
+                className: 'secondary-bar'
+            }
+        ]},
+        donutOptions
+    );
+    var lastErrorTime = $('.last-error--time').text();
+    var lastErrorHour = moment(lastErrorTime).format('HH:SS');
+    var lastErrorDay = moment(lastErrorTime).format('MM/DD');
+    $('.last-error--hour').text(lastErrorHour);
+    $('.last-error--day').text(lastErrorDay);
+    new Chartist.Pie('.last-error-donut', {
+            series: [
+                {
+                    value: 100,
+                    className: 'primary-bar--nok'
+                }
+            ]
+        },
+        donutOptions
+    );
 
     // Table actions
     $('#checks tbody').on('click', '.destroy-check', function(e) {
@@ -82,5 +138,4 @@ $(document).ready(function() {
         };
         createChart(id, chartOptions);
     });
-
 });

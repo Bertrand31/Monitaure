@@ -1,0 +1,76 @@
+.global-data {
+    margin:2em 0;
+    display:flex;
+    .global-data-block {
+        flex-grow:1;
+        text-align:center;
+        position:relative;
+    }
+    .donut-content {
+        text-transform:uppercase;
+    }
+    .main-text {
+        font-size:1.4em;
+        line-height:1em;
+        position:absolute;
+        top:5rem;
+        left:0;
+        right:0;
+        .secondary-text {
+            display:block;
+            color:$lighter;
+            font-size:.9rem;
+            line-height:1.6rem;
+        }
+    }
+    .aside-text {
+        display:block;
+        text-transform:uppercase;
+        color:$lighter;
+    }
+    .global-status {
+        .donut {
+            .primary-bar {
+                stroke:$lightgreen;
+            }
+            .secondary-bar {
+                stroke:$alert;
+            }
+        }
+    }
+    .availability {
+        .donut {
+            .primary-bar {
+                stroke:$lightgreen;
+            }
+            .secondary-bar {
+                stroke:$middark;
+            }
+        }
+        .main-text {
+            font-size:3.3em;
+            top:4.4rem;
+            .secondary-text {
+                font-size:1.2rem;
+            }
+        }
+    }
+    .last-error {
+        .donut {
+            .primary-bar--ok {
+                stroke:$lightgreen;
+            }
+            .primary-bar--nok {
+                stroke:$alert;
+            }
+        }
+        .last-error--check-name {
+            display:block;
+        }
+        .last-error--time { display:none; }
+        .last-error--hour,.last-error--day {
+            display:inline;
+            padding:0 .3em;
+        }
+    }
+}
