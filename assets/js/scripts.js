@@ -83,16 +83,4 @@ $(document).ready(function() {
         createChart(id, chartOptions);
     });
 
-	var target = $("#parallax-container");
-
-	target
-		.children('.parallax--layer')
-		.parallax(
-			{ mouseport: target },
-			{ xparallax: 0, yparallax: 0 },
-			{ xparallax: '100px', yparallax: 0 },
-			{ xparallax: '200px', yparallax: 0 }
-		);
-
-
 });

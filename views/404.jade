@@ -3,8 +3,8 @@ extends ./layout
 
 block body
 
-    #main-container.page-404
-        #parallax-container
-            img.parallax--layer#page-404--layer-0(src="/images/404-layer-0.svg")
-            img.parallax--layer#page-404--layer-1(src="/images/404-layer-1.svg")
-            img.parallax--layer#page-404--layer-2(src="/images/404-layer-2.svg")
+    #main-container.page-404.page-error
+        .content
+            h1 404
+            p You're lost kid…
+            a.button(href="/") Go home

@@ -1,15 +1,25 @@
-#parallax-container {
-    position:absolute;
-    overflow:hidden;
-    height:100%;
-    width:100%;
-    .parallax--layer {
-        display:block;
-        position:absolute;
-        min-height:100%;
-        bottom:0;
-        &#page-404--layer-2 {
-            width:120%;
+.page-error#main-container {
+    display:flex;
+    align-items:center;
+    background:transparent center bottom no-repeat;
+    background-size:cover;
+    &.page-404 {
+        background-image:url('/images/404.svg');
+    }
+    .content {
+        font-size:2em;
+        z-index:1;
+        text-align:center;
+        color:$lightwhite;
+        margin-left:auto;
+        margin-right:15%;
+        h1 {
+            font-size:5em;
+            line-height:1em;
+            margin:.2em 0;
+        }
+        .button {
+            margin-top:1.5em;
         }
     }
 }
