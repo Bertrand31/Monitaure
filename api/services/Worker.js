@@ -33,24 +33,26 @@ var checkPort = function(check, callback) {
 };
 
 module.exports = function () {
-    Check.find().exec(function(err, checks) {
-        if (err) throw err;
+    setInterval(function() {
+        Check.find().exec(function(err, checks) {
+            if (err) throw err;
 
-        var asyncChecks = [];
+            var asyncChecks = [];
 
-        checks.forEach(function(check) {
-            asyncChecks.push(function(callback) {
-                checkPort(check, function(result){
-                    callback(null, result);
+            checks.forEach(function(check) {
+                asyncChecks.push(function(callback) {
+                    checkPort(check, function(result){
+                        callback(null, result);
+                    });
+                });
+            });
+
+            async.parallel(asyncChecks, function(err, pings){
+                if (err) throw err;
+                pings.forEach(function(ping) {
+                    CheckManagement.insertHistory(ping);
                 });
             });
         });
-
-        async.parallel(asyncChecks, function(err, pings){
-            if (err) throw err;
-            pings.forEach(function(ping) {
-                CheckManagement.insertHistory(ping);
-            });
-        });
-    });
+    }, sails.config.checkInterval);
 };

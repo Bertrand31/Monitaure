@@ -12,9 +12,7 @@
 module.exports.bootstrap = function(cb) {
 
     sails.on('lifted', function() {
-        setInterval(function() {
-            Worker();
-        }, sails.config.checkInterval);
+        Worker();
     });
 
     cb();
