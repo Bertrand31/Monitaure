@@ -70,15 +70,15 @@ $(document).ready(function() {
         showLabel: false
     };
     var totalChecks = $('.total-checks').text();
-    var percentageOfChecksDown = ($('.checks-down').text() * 100) / totalChecks;
-    new Chartist.Pie('.checks-down-donut', {
+    var percentageOfChecksUp = ($('.checks-up').text() * 100) / totalChecks;
+    new Chartist.Pie('.checks-up-donut', {
             series: [
                 {
-                    value: 100 - percentageOfChecksDown,
+                    value: percentageOfChecksUp,
                     className: 'primary-bar'
                 },
                 {
-                    value: percentageOfChecksDown,
+                    value: 100 - percentageOfChecksUp,
                     classname: 'secondary-bar'
                 }
             ]

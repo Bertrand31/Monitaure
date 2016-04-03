@@ -68,7 +68,7 @@ module.exports = {
                     time: null,
                     checkName: null
                 },
-                checksDown = 0,
+                checksUp = 0,
                 availabilitiesArray = [];
 
             for(var i = 0; i < user.checks.length; i++) {
@@ -78,10 +78,10 @@ module.exports = {
 
                 CheckManagement.checkStats(currentCheck, 1, function(err, checkStats) {
 
-                    // If current check is currently down, we add increment checksDown array
+                    // If current check is currently up, we add increment checksUp array
                     // We do that by looking up his last 'history' array value
-                    if (checkStats.history[0].time === null) {
-                        checksDown++;
+                    if (checkStats.history[0].time !== null) {
+                        checksUp++;
                     }
                     // We add current check's availability stats to the ad hoc array
                     availabilitiesArray.push(checkStats.availability);
@@ -112,7 +112,7 @@ module.exports = {
             // Object containing all previously computed stats
             var globalStats = {
                 numberOfChecks: user.checks.length,
-                checksDown,
+                checksUp,
                 availabilitiesAvg,
                 lastError
             };

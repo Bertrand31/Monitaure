@@ -35,14 +35,14 @@ block body
                     button.button#open-form Add a check
                 .global-data
                     .global-data-block.global-status
-                        .donut.checks-down-donut
+                        .donut.checks-up-donut
                         p.donut-content
                             span.main-text
-                                span.checks-down= data.globalStats.checksDown
+                                span.checks-up= data.globalStats.checksUp
                                 | /
                                 span.total-checks= data.globalStats.numberOfChecks
                                 |  servers
-                                span.secondary-text are down
+                                span.secondary-text are responding
                             span.aside-text servers responding
                     .global-data-block.availability
                         .donut.availability-donut
