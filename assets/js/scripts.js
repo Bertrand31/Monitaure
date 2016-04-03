@@ -50,7 +50,13 @@ $(document).ready(function() {
     $('#check-add').on('submit', function(e) {
         e.preventDefault();
         addCheckLine($(this));
-        closeFullscreen($(this).parent('.fullscreen-wrapper'));
+        closeFullscreen($('.fullscreen-wrapper'));
+    });
+    $('.fullscreen-wrapper').click(function() {
+        closeFullscreen($(this));
+    });
+    $('.form-wrapper').click(function(e) {
+        e.stopPropagation();
     });
 
     // Global stats

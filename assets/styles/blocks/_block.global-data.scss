@@ -65,9 +65,12 @@
                 stroke:$alert;
             }
         }
+        .main-text {
+            top:4.6rem;
+        }
         .last-error--check-name {
             display:block;
-            max-width:170px;
+            max-width:167px;
             margin:0 auto;
         }
         .last-error--time { display:none; }

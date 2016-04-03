@@ -3,9 +3,9 @@
 ***********************/
 
 var closeFullscreen = function(target) {
-    $('#main-container').removeClass('blurred');
     target.fadeOut('slow', function() {
         target.find('form')[0].reset();
+        $('#main-container').removeClass('blurred');
     });
 };
 var openFullscreen = function(target) {

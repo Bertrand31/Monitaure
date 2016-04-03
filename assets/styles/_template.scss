@@ -60,6 +60,9 @@ body {
     overflow:hidden;
     height:0;
 }
+#main-container {
+    transition:all .2s ease-in-out;
+}
 .blurred {
     @include filter(blur(5px));
 }
