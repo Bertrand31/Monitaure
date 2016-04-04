@@ -74,7 +74,6 @@ module.exports = {
             for(var i = 0; i < user.checks.length; i++) {
 
                 var currentCheck = user.checks[i];
-                var shortHistoryArray = [];
 
                 CheckManagement.checkStats(currentCheck, 1, function(err, checkStats) {
 

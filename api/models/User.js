@@ -44,15 +44,20 @@ module.exports = {
     },
     beforeCreate: function(user, cb) {
         bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(user.password, salt, function(err, hash) {
-                if (err) {
-                    console.log(err);
-                    return cb(err);
-                } else {
-                    user.password = hash;
-                    return cb();
-                }
-            });
+            if (err) {
+                console.log(err);
+                return cb(err);
+            } else {
+                bcrypt.hash(user.password, salt, function(err, hash) {
+                    if (err) {
+                        console.log(err);
+                        return cb(err);
+                    } else {
+                        user.password = hash;
+                        return cb();
+                    }
+                });
+            }
         });
     }
 };
