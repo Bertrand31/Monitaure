@@ -69,8 +69,7 @@ $(document).ready(function() {
         total: 140,
         showLabel: false
     };
-    var totalChecks = $('.total-checks').text();
-    var percentageOfChecksUp = ($('.checks-up').text() * 100) / totalChecks;
+    var percentageOfChecksUp = (globalStats.checksUp * 100) / globalStats.numberOfChecks;
     new Chartist.Pie('.checks-up-donut', {
             series: [
                 {
@@ -85,23 +84,21 @@ $(document).ready(function() {
         },
         donutOptions
     );
-    var availabilitiesAvg = $('.availabilities-avg').text();
     new Chartist.Pie('.availability-donut', {
         series: [
             {
-                value: availabilitiesAvg,
+                value: globalStats.availabilitiesAvg,
                 className: 'primary-bar'
             },
             {
-                value: 100 - availabilitiesAvg,
+                value: 100 - globalStats.availabilitiesAvg,
                 className: 'secondary-bar'
             }
         ]},
         donutOptions
     );
-    var lastErrorTime = $('.last-error--time').text();
-    var lastErrorHour = moment(lastErrorTime).format('HH:SS');
-    var lastErrorDay = moment(lastErrorTime).format('MM/DD');
+    var lastErrorHour = moment(globalStats.lastError.time).format('HH:SS');
+    var lastErrorDay = moment(globalStats.lastError.time).format('MM/DD');
     $('.last-error--hour').text(lastErrorHour);
     $('.last-error--day').text(lastErrorDay);
     new Chartist.Pie('.last-error-donut', {
