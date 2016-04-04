@@ -3,10 +3,10 @@
 ***********************/
 
 var closeFullscreen = function(target) {
-    target.fadeOut('slow', function() {
+    target.fadeOut(function() {
         target.find('form')[0].reset();
-        $('#main-container').removeClass('blurred');
     });
+    $('#main-container').removeClass('blurred');
 };
 var openFullscreen = function(target) {
     $('#main-container').addClass('blurred');

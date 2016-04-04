@@ -1,10 +1,28 @@
-sudo: required
+sudo: false
+
 language: node_js
+
 node_js:
     - "stable"
     - "5.5"
+
+compiler: clang-3.6
+
+env:
+    - CXX=clang-3.6
+
 before_install:
     npm install -g mocha
+
+addons:
+    apt:
+        sources:
+            - llvm-toolchain-precise-3.6
+            - ubuntu-toolchain-r-test
+        packages:
+            - clang-3.6
+            - g++-4.8
+
 services:
     - mongodb
-
+    - redis-server

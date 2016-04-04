@@ -61,7 +61,7 @@ body {
     height:0;
 }
 #main-container {
-    transition:all .2s ease-in-out;
+    transition:all .4s linear;
 }
 .blurred {
     @include filter(blur(5px));
