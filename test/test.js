@@ -14,11 +14,6 @@ before(function(done) {
     });
 });
 
-after(function(done) {
-    // here you can clear fixtures, etc.
-    sails.lower(done);
-});
-
 describe('UserModel', function() {
 
     describe('#find()', function() {
@@ -57,3 +52,7 @@ describe('UserController', function() {
 
 });
 
+after(function(done) {
+    // here you can clear fixtures, etc.
+    sails.lower(done);
+});
