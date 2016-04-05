@@ -3,8 +3,19 @@
     align-items:center;
     background:transparent center bottom no-repeat;
     background-size:cover;
+    overflow-x:hidden;
     &.page-404 {
         background-image:url('/images/404.svg');
+    }
+    .background-video {
+		position:fixed;
+		top:50%;
+		left:50%;
+		min-width:100%;
+		min-height:100%;
+		width:auto;
+		height:auto;
+        @include transform(translateX(-50%) translateY(-50%));
     }
     .content {
         font-size:2em;

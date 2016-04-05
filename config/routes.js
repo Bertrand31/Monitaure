@@ -48,7 +48,11 @@ module.exports.routes = {
 
     '/logout': 'AuthController.logout',
 
-    'get /dashboard': 'Check.show'
+    'get /dashboard': 'Check.show',
+
+    'get /500': {
+        view: '500'
+    }
 
     /***************************************************************************
      *                                                                          *
