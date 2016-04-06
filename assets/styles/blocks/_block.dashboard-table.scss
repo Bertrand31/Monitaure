@@ -8,6 +8,9 @@ table {
     td, th {
         &:first-child { padding-left:2em; }
         &:last-child { padding-right:2em; }
+        &:first-child, &:last-child, &:nth-last-child(2) {
+            max-width:60px;
+        }
     }
     th {
         padding:1.5em .5em;
