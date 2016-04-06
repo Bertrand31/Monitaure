@@ -31,33 +31,11 @@ module.exports = {
     },
 
     create: function (req, res) {
-        // TODO: Move logic to services?
-        CheckManagement.getChecksNumber(req.user.id, function (err, numberOfChecks) {
+        CheckManagement.createCheck(req.user.id, req.query, function (err, created) {
             if (err) {
-                return res.serverError(err.responseText);
+                return res.serverError(err);
             } else {
-                if (numberOfChecks >= sails.config.checksNbLimit) {
-                    return res.serverError('You reached the limit of ten checks per user');
-                } else {
-                    var data = {
-                        name: req.query.name,
-                        domainNameOrIP: req.query.domainNameOrIP,
-                        port: req.query.port,
-                        owner: req.user.id
-                    };
-                    // TODO: Improve & throw appropriate error message
-                    if (data.name.length === 0 || data.domainNameOrIP.length === 0 || data.port === 0) {
-                        return res.serverError('Invalid attributes');
-                    } else {
-                        CheckManagement.createCheck(data, function(err, created) {
-                            if (err) {
-                                return res.serverError(err);
-                            } else {
-                                return res.json(created);
-                            }
-                        });
-                    }
-                }
+                return res.json(created);
             }
         });
     },

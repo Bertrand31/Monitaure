@@ -1,14 +1,31 @@
 module.exports = {
 
-    getChecksNumber: function (userId, callback) {
+    createCheck: function(userId, data, callback) {
         User.findOne({id: userId}).populate('checks').exec(function (err, user) {
-            callback(err, user.checks.length);
-        });
-    },
-
-    createCheck: function(data, callback) {
-        Check.create(data).exec(function (err, created) {
-            return callback(err, created);
+            if (err) {
+                return callback(err);
+            } else {
+                // We test the number of checks this user has against the limit
+                if (user.checks.length >= sails.config.checksNbLimit) {
+                    return callback('You reached the limit of ten checks per user');
+                } else {
+                    var checkData = {
+                        name: data.name,
+                        domainNameOrIP: data.domainNameOrIP,
+                        port: data.port,
+                        owner: userId
+                    };
+                    // TODO: Improve & throw appropriate error message
+                    if (checkData.name.length === 0 || checkData.domainNameOrIP.length === 0 || checkData.port === 0) {
+                        return callback('Invalid attributes');
+                    } else {
+                        Check.create(checkData).exec(function (err, created) {
+                            console.log(created);
+                            return callback(err, created);
+                        });
+                    }
+                }
+            }
         });
     },
 
