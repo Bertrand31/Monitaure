@@ -1,22 +1,26 @@
 module.exports = {
 
-    createCheck: function(data, callback) {
-        Check.create(data).exec(function (err, created) {
-            if (err) throw err;
-            callback(created);
+    getChecksNumber: function (userId, callback) {
+        User.findOne({id: userId}).populate('checks').exec(function (err, user) {
+            callback(err, user.checks.length);
         });
     },
 
-    // updateCheck: function(id, data, callback) {
-    //     var criteria = {id: id};
-    //     Check.update(criteria, data).exec(function (err, updated) {
+    createCheck: function(data, callback) {
+        Check.create(data).exec(function (err, created) {
+            return callback(err, created);
+        });
+    },
+
+    // updateCheck: function(checkId, data, callback) {
+    //     Check.update({id: checkId}, data).exec(function (err, updated) {
     //         if (err) throw err;
     //         callback(updated);
     //     });
     // },
 
-    destroyCheck: function(id, callback) {
-        Check.destroy(id).exec(function (err, destroyed) {
+    destroyCheck: function(checkId, callback) {
+        Check.destroy(checkId).exec(function (err, destroyed) {
             if (err) throw err;
             callback(destroyed);
         });
@@ -51,7 +55,7 @@ module.exports = {
 
     getData: function(checkId, callback) {
         Check.findOne({id: checkId}).exec(function (err, check) {
-            if (err) throw err;
+            if (err) return callback(err);
 
             CheckManagement.checkStats(check, 20, function(err, data) {
                 return callback(err, data);
@@ -60,9 +64,8 @@ module.exports = {
        });
     },
 
-    getUserAndChecksData: function(id, callback) {
-        var criteria = {id: id};
-        User.findOne(criteria).populate('checks').exec(function (err, user) {
+    getUserAndChecksData: function(userId, callback) {
+        User.findOne({id: userId}).populate('checks').exec(function (err, user) {
 
             var lastError = {
                     time: null,
@@ -73,10 +76,7 @@ module.exports = {
 
             for(var i = 0; i < user.checks.length; i++) {
 
-                var currentCheck = user.checks[i];
-
-                CheckManagement.checkStats(currentCheck, 1, function(err, checkStats) {
-
+                CheckManagement.checkStats(user.checks[i], 1, function(err, checkStats) {
                     // If current check is currently up, we add increment checksUp array
                     // We do that by looking up his last 'history' array value
                     if (checkStats.history[0].time !== null) {
@@ -95,6 +95,7 @@ module.exports = {
             }
 
             // Calculate the average of all the checks availabilities
+            // TODO: Migrate this chunk into the above loop
             var sumAvailabilities = 0;
             for(var j = 0; j < availabilitiesArray.length; j++) {
                 sumAvailabilities += availabilitiesArray[j];
