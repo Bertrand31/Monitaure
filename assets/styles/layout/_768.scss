@@ -9,17 +9,18 @@
     @include box-orient(horizontal);
 }
 .aside {
-    width: 20%;
+    width:18%;
     height:100%;
-    max-width:300px;
-    -ms-flex: 0 20%;
-    @include box-flex(0);
+    position:fixed;
     padding:2em 2.5em 0 2em;
 }
 .main {
-    -ms-flex: 1;
+    -ms-flex:1;
     @include box-flex(1);
-    overflow-y:scroll;
+    &.dashboard {
+        width:82%;
+        margin-left:auto;
+    }
 }
 #chart-container {
     .main-chart {
