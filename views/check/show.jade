@@ -27,13 +27,14 @@ block body
                     li
                         a(href="/logout") Log out
             .profile
-                img(src="https://fr.gravatar.com/avatar/" + data.userData.userEmailMD5 + "?size=100" alt="Profile picture")
+                a(href="http://gravatar.com", target="_blank", title="Set or change your profile picture")
+                    img(src="https://fr.gravatar.com/avatar/" + data.userData.userEmailMD5 + "?size=100" alt="Profile picture")
                 span= data.userData.userName
-        main.main
+        main.main.dashboard
             .content-wrapper
                 section.top-buttons
                     button.button#open-form Add a check
-                .global-data
+                section.global-data
                     .global-data-block.global-status
                         .donut.checks-up-donut
                         p.donut-content
@@ -59,7 +60,7 @@ block body
                                 span.secondary-text.last-error--time= data.globalStats.lastError.time
                                 span.secondary-text.last-error--hour
                                 span.secondary-text.last-error--day
-                            span.aside-text Last downtime
+                            span.aside-text Last outage
                 section#chart-container
                     .data
                         p.name
