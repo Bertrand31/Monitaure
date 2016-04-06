@@ -72,7 +72,8 @@ module.exports = {
                     checkName: null
                 },
                 checksUp = 0,
-                availabilitiesArray = [];
+                numberOfChecks = user.checks.length,
+                availabilitiesSum = 0;
 
             for(var i = 0; i < user.checks.length; i++) {
 
@@ -82,8 +83,8 @@ module.exports = {
                     if (checkStats.history[0].time !== null) {
                         checksUp++;
                     }
-                    // We add current check's availability stats to the ad hoc array
-                    availabilitiesArray.push(checkStats.availability);
+                    // We add current check's availability stats to the availabilities sum
+                    availabilitiesSum += checkStats.availability;
                     // If current check's last outage is more recent than the one
                     // stored in lastError, we update the lastError object
                     if (checkStats.lastOutage > lastError.time) {
@@ -95,12 +96,7 @@ module.exports = {
             }
 
             // Calculate the average of all the checks availabilities
-            // TODO: Migrate this chunk into the above loop
-            var sumAvailabilities = 0;
-            for(var j = 0; j < availabilitiesArray.length; j++) {
-                sumAvailabilities += availabilitiesArray[j];
-            }
-            var availabilitiesAvg = Utilities.customFloor(sumAvailabilities / availabilitiesArray.length, 2);
+            var availabilitiesAvg = Utilities.customFloor(availabilitiesSum / numberOfChecks, 2);
 
             // Object containing the user information and its checks
             var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
@@ -111,7 +107,7 @@ module.exports = {
             };
             // Object containing all previously computed stats
             var globalStats = {
-                numberOfChecks: user.checks.length,
+                numberOfChecks,
                 checksUp,
                 availabilitiesAvg,
                 lastError
