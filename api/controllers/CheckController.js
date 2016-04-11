@@ -40,16 +40,20 @@ module.exports = {
         });
     },
 
-//    update: function (req, res) {
-//        var data = {
-//            name: req.query.name,
-//            domainNameOrIP: req.query.domainNameOrIP,
-//            port: req.query.port
-//        };
-//        CheckManagement.updateCheck(req.param('id'), data, function(updated) {
-//            return res.json(updated);
-//        });
-//    },
+    // update: function (req, res) {
+    //     var data = {
+    //         name: req.query.name,
+    //         domainNameOrIP: req.query.domainNameOrIP,
+    //         port: req.query.port
+    //     };
+    //     CheckManagement.updateCheck(req.param('id'), data, function(err, updated) {
+    //         if (err) {
+    //             return res.serverError(err);
+    //         } else {
+    //             return res.json(updated);
+    //         }
+    //     });
+    // },
 
     destroy: function (req, res) {
         // TODO: Only allow user's checks deletion

@@ -20,7 +20,6 @@ module.exports = {
                         return callback('Invalid attributes');
                     } else {
                         Check.create(checkData).exec(function (err, created) {
-                            console.log(created);
                             return callback(err, created);
                         });
                     }
@@ -31,8 +30,7 @@ module.exports = {
 
     // updateCheck: function(checkId, data, callback) {
     //     Check.update({id: checkId}, data).exec(function (err, updated) {
-    //         if (err) throw err;
-    //         callback(updated);
+    //         callback(err, updated);
     //     });
     // },
 
@@ -95,20 +93,22 @@ module.exports = {
             for(var i = 0; i < user.checks.length; i++) {
 
                 CheckManagement.checkStats(user.checks[i], 1, function(err, checkStats) {
-                    // If current check is currently up, we add increment checksUp array
-                    // We do that by looking up his last 'history' array value
-                    if (checkStats.history[0].time !== null) {
-                        checksUp++;
+                    if (!err) {
+                        // If current check is currently up, we add increment checksUp array
+                        // We do that by looking up his last 'history' array value
+                        if (checkStats.history[0].time !== null) {
+                            checksUp++;
+                        }
+                        // We add current check's availability stats to the availabilities sum
+                        availabilitiesSum += checkStats.availability;
+                        // If current check's last outage is more recent than the one
+                        // stored in lastError, we update the lastError object
+                        if (checkStats.lastOutage > lastError.time) {
+                            lastError.time = checkStats.lastOutage;
+                            lastError.checkName = checkStats.name;
+                        }
+                        user.checks[i].history = checkStats.history;
                     }
-                    // We add current check's availability stats to the availabilities sum
-                    availabilitiesSum += checkStats.availability;
-                    // If current check's last outage is more recent than the one
-                    // stored in lastError, we update the lastError object
-                    if (checkStats.lastOutage > lastError.time) {
-                        lastError.time = checkStats.lastOutage;
-                        lastError.checkName = checkStats.name;
-                    }
-                    user.checks[i].history = checkStats.history;
                 });
             }
 
