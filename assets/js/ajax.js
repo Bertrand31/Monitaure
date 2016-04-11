@@ -15,6 +15,19 @@ var addCheck = function(form, callback) {
         error: function(err) { callback(err, null); },
     });
 };
+// Updates an existing check
+var updateCheck = function(form, callback) {
+    var url = window.location.origin + '/Check/update';
+    $.ajax({
+        url: url,
+        method: form.attr('method'),
+        data: form.serialize(),
+        beforeSend: function() {},
+        complete: function() {},
+        success: function(data) { callback(null, data); },
+        error: function(err) { callback(err, null); },
+    });
+};
 // Deletes a check from the DB
 var destroyCheck = function(id, callback) {
     var url = window.location.origin + '/Check/destroy';

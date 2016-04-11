@@ -115,8 +115,13 @@ $(document).ready(function() {
     // Table actions
     $('#checks tbody').on('click', '.destroy-check', function(e) {
         e.stopPropagation();
-        var id = $(this).closest('tr').attr('id');
-        destroyCheckRow(id);
+        var checkId = $(this).closest('tr').attr('id');
+        destroyCheckRow(checkId);
+    });
+    $('#checks tbody').on('click', '.settings-check', function(e) {
+        e.stopPropagation();
+        var checkId = $(this).closest('tr').attr('id');
+        openFullscreen($('#check-update-form'));
     });
     $('#checks').on('click', 'tbody>tr', function() {
         var id = $(this).attr('id');
