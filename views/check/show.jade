@@ -49,7 +49,10 @@ block body
                         .donut.availability-donut
                         p.donut-content
                             span.main-text
-                                span.availabilities-avg= data.globalStats.availabilitiesAvg
+                                if data.globalStats.availabilitiesAvg
+                                    span.availabilities-avg= data.globalStats.availabilitiesAvg
+                                else
+                                    span.availabilities-avg -
                                 span.secondary-text %
                             span.aside-text average availability
                     .global-data-block.last-error

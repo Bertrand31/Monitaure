@@ -75,7 +75,8 @@ $(document).ready(function() {
         showLabel: false
     };
     var percentageOfChecksUp = (globalStats.checksUp * 100) / globalStats.numberOfChecks;
-    new Chartist.Pie('.checks-up-donut', {
+    new Chartist.Pie('.checks-up-donut',
+        {
             series: [
                 {
                     value: percentageOfChecksUp,
@@ -102,8 +103,8 @@ $(document).ready(function() {
         ]},
         donutOptions
     );
-    var lastErrorHour = moment(globalStats.lastError.time).format('HH:SS');
-    var lastErrorDay = moment(globalStats.lastError.time).format('MM/DD');
+    var lastErrorHour = globalStats.lastError.time ? moment(globalStats.lastError.time).format('HH:SS') : '-';
+    var lastErrorDay = globalStats.lastError.time ? moment(globalStats.lastError.time).format('MM/DD') : '-';
     $('.last-error--hour').text(lastErrorHour);
     $('.last-error--day').text(lastErrorDay);
     new Chartist.Pie('.last-error-donut', {
