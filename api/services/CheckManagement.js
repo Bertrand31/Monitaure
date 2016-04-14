@@ -28,11 +28,19 @@ module.exports = {
         });
     },
 
-    // updateCheck: function(checkId, data, callback) {
-    //     Check.update({id: checkId}, data).exec(function (err, updated) {
-    //         callback(err, updated);
-    //     });
-    // },
+    updateCheck: function(userId, checkId, data, callback) {
+        Check.findOne({id: checkId}).exec(function (err, check) {
+            if (err) {
+                callback(err);
+            } else if (check.owner !== userId) {
+                return callback('You do not have access to this check');
+            } else {
+                Check.update({id: checkId}, data).exec(function (err, updated) {
+                    return callback(err, updated);
+                });
+            }
+        });
+    },
 
     destroyCheck: function(checkId, callback) {
         Check.destroy(checkId).exec(function (err, destroyed) {
@@ -75,6 +83,22 @@ module.exports = {
             CheckManagement.checkStats(check, 20, function(err, data) {
                 return callback(err, data);
             });
+
+       });
+    },
+
+    getCheckMinimalData: function(userId, checkId, callback) {
+        Check.findOne({id: checkId}).exec(function (err, check) {
+            if (check.owner !== userId) {
+                return callback('You do not have access to this check');
+            } else {
+                return callback(err, {
+                    name: check.name,
+                    domainNameOrIP: check.domainNameOrIP,
+                    port: check.port,
+                    emailNotifications: check.emailNotifications
+                });
+            }
 
        });
     },

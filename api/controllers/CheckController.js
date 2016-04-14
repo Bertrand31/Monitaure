@@ -10,6 +10,16 @@ module.exports = {
         });
     },
 
+    showsimple: function (req, res) {
+        CheckManagement.getCheckMinimalData(req.user.id, req.param('checkId'), function(err, data) {
+            if (err) {
+                return res.serverError(err);
+            } else {
+                return res.json(data);
+            }
+        });
+    },
+
     getallstats: function (req, res) {
         CheckManagement.getUserAndChecksData(req.user.id, function(err, data) {
             if (err) {
@@ -21,6 +31,7 @@ module.exports = {
     },
 
     getcheckstats: function (req, res) {
+        // Todo: only allow user's check retrieval
         CheckManagement.getData(req.param('id'), function(err, data) {
             if (err) {
                return res.serverError(err);
@@ -40,20 +51,19 @@ module.exports = {
         });
     },
 
-    // update: function (req, res) {
-    //     var data = {
-    //         name: req.query.name,
-    //         domainNameOrIP: req.query.domainNameOrIP,
-    //         port: req.query.port
-    //     };
-    //     CheckManagement.updateCheck(req.param('id'), data, function(err, updated) {
-    //         if (err) {
-    //             return res.serverError(err);
-    //         } else {
-    //             return res.json(updated);
-    //         }
-    //     });
-    // },
+    update: function (req, res) {
+        var data = {
+            name: req.query.name,
+            emailNotifications: req.query.emailNotifications ? true : false
+        };
+        CheckManagement.updateCheck(req.user.id, req.query.checkId, data, function(err, updated) {
+            if (err) {
+                return res.serverError(err);
+            } else {
+                return res.json(updated[0]);
+            }
+        });
+    },
 
     destroy: function (req, res) {
         // TODO: Only allow user's checks deletion

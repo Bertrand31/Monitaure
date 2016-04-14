@@ -28,6 +28,19 @@ var updateCheck = function(form, callback) {
         error: function(err) { callback(err, null); },
     });
 };
+// Show minimal check data
+var showSimple = function(checkId, callback) {
+    var url = window.location.origin + '/Check/showsimple';
+    $.ajax({
+        url: url,
+        method: 'GET',
+        data: {checkId: checkId},
+        beforeSend: function() {},
+        complete: function() {},
+        success: function(data) { callback(null, data); },
+        error: function(err) { callback(err, null); },
+    });
+};
 // Deletes a check from the DB
 var destroyCheck = function(id, callback) {
     var url = window.location.origin + '/Check/destroy';

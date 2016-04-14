@@ -10,12 +10,13 @@ block body
             .form-wrapper
                 h2.form-title Log in
                 form#login(method="post", action="/login")
-                    if message
-                        p.error= locals.message
-                    label Username
-                    input#username(name="username", type="text", placeholder="Your username")
-                    label Password
-                    input#password(name="password", type="password", placeholder="Your password")
+                    fieldset.login
+                        if message
+                            p.error= locals.message
+                        label Username
+                        input#username(name="username", type="text", placeholder="Your username")
+                        label Password
+                        input#password(name="password", type="password", placeholder="Your password")
                     a(href="#_") Password forgotten?
                     input#submit(type="submit", value="Log in")
                 p Don't have an account? 

@@ -36,6 +36,11 @@ module.exports = {
             defaultsTo: []
         },
 
+        emailNotifications: {
+            type: 'boolean',
+            defaultsTo: false
+        },
+
         owner: {
             model: 'User'
         }

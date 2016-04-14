@@ -45,6 +45,7 @@ form {
 }
 fieldset {
     border:0;
+    text-align:left;
     legend {
         @extend h2;
     }
@@ -52,7 +53,6 @@ fieldset {
 label {
     display:block;
     color: $lightgreen;
-    text-align: left;
     font-size: .8em;
 }
 input {
@@ -65,6 +65,13 @@ input {
         color:$lighter;
         border:0;
         border-bottom:1px solid $softwhite;
+    }
+    &[type="radio"],&[type="checkbox"] {
+        display:inline-flex;
+        margin-right:.8em;
+        + label {
+            display:inline-flex;
+        }
     }
 }
 input[type="submit"], .button {

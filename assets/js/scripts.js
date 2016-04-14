@@ -50,7 +50,12 @@ $(document).ready(function() {
     $('#check-add').on('submit', function(e) {
         e.preventDefault();
         addCheckLine($(this));
-        closeFullscreen($('.fullscreen-wrapper'));
+        closeFullscreen($('.fullscreen-wrapper#check-add-form'));
+    });
+    $('#check-update').on('submit', function(e) {
+        e.preventDefault();
+        updateCheckLine($(this));
+        closeFullscreen($('.fullscreen-wrapper#check-update-form'));
     });
     $('.fullscreen-wrapper').click(function() {
         closeFullscreen($(this));
@@ -121,6 +126,22 @@ $(document).ready(function() {
     $('#checks tbody').on('click', '.settings-check', function(e) {
         e.stopPropagation();
         var checkId = $(this).closest('tr').attr('id');
+        var form = $('#check-update-form').find('form#check-update');
+        showSimple(checkId, function(err, data) {
+            if (err) {
+                createPopin('alert', err.responseJSON);
+            } else {
+                form.find('#checkId').attr('value', checkId);
+                form.find('#name').attr('value', data.name);
+                form.find('#domainNameOrIP').attr('value', data.domainNameOrIP);
+                form.find('#port').attr('value', data.port);
+                console.log(data.emailNotifications ? true : false);
+                if (data.emailNotifications)
+                    form.find('#emailNotifications').prop('checked', true);
+                else
+                    form.find('#emailNotifications').prop('checked', false);
+            }
+        });
         openFullscreen($('#check-update-form'));
     });
     $('#checks').on('click', 'tbody>tr', function() {

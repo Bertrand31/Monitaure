@@ -52,6 +52,16 @@ var addCheckLine = function (form) {
         }
     });
 };
+// Update an existing check
+var updateCheckLine = function (form) {
+    updateCheck(form, function(err, data) {
+        if (err) {
+            createPopin('alert', err);
+        } else {
+            $('#checks').find('tr#' + data.id + ' .name').text(data.name);
+        }
+    });
+};
 // Removes a row from the checks table
 var destroyCheckRow = function(id) {
     destroyCheck(id, function(err, data) {

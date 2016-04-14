@@ -156,16 +156,19 @@ block body
         .form-wrapper
             button.close-fullscreen
             h2.form-title Update a check
-            form#check-add(method="get")
-                fieldset
-                    input#check-id(type="hidden", name="checkId", value="")
+            form#check-update(method="get")
+                fieldset.check-data
+                    input#checkId(type="hidden", name="checkId", value="")
                     label(for="name") Check name
                     input#name(type="text", name="name", placeholder="e.g. HTTP @ Google")
                     label(for="domainNameOrIP") Domain name or IP
                     input#domainNameOrIP(type="text", disabled, name="domainNameOrIP", placeholder="e.g. 5.196.72.154")
                     label(for="port") Port
                     input#port(type="text", disabled, name="port", placeholder="e.g. 80")
-                    input(type="submit", value="Add")
+                fieldset.notifications
+                    input#emailNotifications(type="checkbox", name="emailNotifications", value="true")
+                    label(for="emailNotifications") Send email alerts?
+                input(type="submit", value="Update")
     .svgs
         svg(xmlns="http://www.w3.org/2000/svg")
             defs
