@@ -1,22 +1,13 @@
 #main-container {
-    display: -ms-flexbox;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-box;
-    display: box;
-
-    -ms-flex-direction: row;
-    @include box-orient(horizontal);
 }
 .aside {
     width:18%;
     height:100%;
     position:fixed;
+    top:0;
     padding:2em 2.5em 0 2em;
 }
 .main {
-    -ms-flex:1;
-    @include box-flex(1);
     &.dashboard {
         width:82%;
         margin-left:auto;
