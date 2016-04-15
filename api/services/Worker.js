@@ -1,6 +1,5 @@
 var async = require('async');
 var net = require('net');
-var timeout = 1000;
 
 var checkPort = function(check, callback) {
     var dateStart = new Date();
@@ -29,7 +28,7 @@ var checkPort = function(check, callback) {
             connection.destroy();
             return callback(callbackObject);
         }
-    }, timeout);
+    }, sails.config.checkTimeout);
 };
 
 module.exports = function () {
