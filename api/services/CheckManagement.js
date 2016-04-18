@@ -128,10 +128,11 @@ module.exports = {
             for(var i = 0; i < user.checks.length; i++) {
 
                 CheckManagement.checkStats(user.checks[i], 1, function(err, checkStats) {
+                    // If `err` the check's history array is empty: we have no data to process
                     if (!err) {
                         // If current check is currently up, we add increment checksUp array
                         // We do that by looking up his last 'history' array value
-                        if (checkStats.history[0].time !== null) {
+                        if (checkStats.history[history.length - 1].time !== null) {
                             checksUp++;
                         }
                         // We add current check's availability stats to the availabilities sum
@@ -142,6 +143,7 @@ module.exports = {
                             lastError.time = checkStats.lastOutage;
                             lastError.checkName = checkStats.name;
                         }
+                        // We replace current check's history with the trimmed version from 'checkStats'
                         user.checks[i].history = checkStats.history;
                     }
                 });
