@@ -91,9 +91,12 @@ module.exports = {
         Check.findOne({id: checkId}).exec(function (err, check) {
             if (err) return callback(err);
 
-            CheckManagement.checkStats(check, 20, function(err, data) {
-                return callback(err, data);
-            });
+            var checkStats = CheckManagement.checkStats(check, 20);
+            if (!checkStats) {
+                return callback('No data yet!');
+            } else {
+                return callback(null, checkStats);
+            }
 
        });
     },
@@ -127,26 +130,25 @@ module.exports = {
 
             for(var i = 0; i < user.checks.length; i++) {
 
-                CheckManagement.checkStats(user.checks[i], 1, function(err, checkStats) {
-                    // If `err` the check's history array is empty: we have no data to process
-                    if (!err) {
-                        // If current check is currently up, we add increment checksUp array
-                        // We do that by looking up his last 'history' array value
-                        if (checkStats.history[history.length - 1].time !== null) {
-                            checksUp++;
-                        }
-                        // We add current check's availability stats to the availabilities sum
-                        availabilitiesSum += checkStats.availability;
-                        // If current check's last outage is more recent than the one
-                        // stored in lastError, we update the lastError object
-                        if (checkStats.lastOutage > lastError.time) {
-                            lastError.time = checkStats.lastOutage;
-                            lastError.checkName = checkStats.name;
-                        }
-                        // We replace current check's history with the trimmed version from 'checkStats'
-                        user.checks[i].history = checkStats.history;
+                var checkStats = CheckManagement.checkStats(user.checks[i], 1);
+                // If `err` the check's history array is empty: we have no data to process
+                if (checkStats) {
+                    // If current check is currently up, we add increment checksUp array
+                    // We do that by looking up his last 'history' array value
+                    if (checkStats.history[checkStats.history.length - 1].time !== null) {
+                        checksUp++;
                     }
-                });
+                    // We add current check's availability stats to the availabilities sum
+                    availabilitiesSum += checkStats.availability;
+                    // If current check's last outage is more recent than the one
+                    // stored in lastError, we update the lastError object
+                    if (checkStats.lastOutage > lastError.time) {
+                        lastError.time = checkStats.lastOutage;
+                        lastError.checkName = checkStats.name;
+                    }
+                    // We replace current check's history with the trimmed version from 'checkStats'
+                    user.checks[i].history = checkStats.history;
+                }
             }
 
             // Calculate the average of all the checks availabilities
@@ -204,7 +206,7 @@ module.exports = {
 
             var historyShort = historyArray.splice(historyArray.length - historyLength - 1, historyLength);
 
-            return callback(null, {
+            return {
                 name: check.name,
                 min: min,
                 max: max,
@@ -212,9 +214,9 @@ module.exports = {
                 availability: availability,
                 lastOutage: lastOutage,
                 history: historyShort
-            });
+            };
         } else {
-            return callback('No data yet!', null);
+            return null;
         }
     }
 
