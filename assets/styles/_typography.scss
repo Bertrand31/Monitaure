@@ -6,8 +6,29 @@ h1,h2,h3,h4 {
     margin:1em 0 .8em;
 }
 h1 {
-    font-size:1.5em;
+    font-size:1.8em;
+    .page & {
+        font-size:4em;
+    }
 }
 h2 {
     font-size:1.4em;
+    text-transform:uppercase;
+    .page & {
+        font-size:3em;
+    }
+}
+h3 {
+    font-size:2.5em;
+    line-height:1.3em;
+    font-weight:400;
+    margin:1.7em 0;
+}
+.bar:after {
+    content:"";
+    display:block;
+    margin:1.4em auto 2em;
+    height:2px;
+    width:60px;
+    background:$lightgreen;
 }

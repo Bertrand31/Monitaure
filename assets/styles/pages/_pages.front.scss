@@ -1,0 +1,67 @@
+.front {
+    text-align:center;
+    background:#383B3E;
+}
+.header {
+    .logo {
+        position:absolute;
+        left:0;
+        top:0;
+        margin:2rem;
+    }
+}
+.top-nav {
+    position:absolute;
+    right:0;
+    top:0;
+    margin:2em;
+    li {
+        display:inline-block;
+        text-transform:uppercase;
+        font-size:1.24em;
+        font-weight:600;
+        margin-left:2em;
+    }
+    .button {
+        margin:0;
+    }
+}
+.hp-section {
+    display:flex;
+    align-items:center;
+    .wrapper {
+        margin:0 auto;
+    }
+}
+.desk-section {
+    height:100vh;
+    background:url('/images/hp-desktop.jpg') center center no-repeat;
+    background-size:cover;
+    border-bottom:solid 20px $green;
+}
+.social-links {
+    a {
+        background:transparent url('/images/social-sprite.png') no-repeat;
+        display:inline-block;
+        margin-right:1em;
+        height:29px;
+        width:30px;
+    }
+    .web {
+        background-position:0 0;
+    }
+    .twitter {
+        background-position:-31px 0;
+        width:35px;
+    }
+    .github {
+        background-position:-67px 0;
+        width:32px;
+    }
+    .dribble {
+        background-position:-100px 0;
+    }
+}
+.footer {
+    background:$dark;
+}
