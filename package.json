@@ -17,7 +17,7 @@
         "Jade"
     ],
     "dependencies": {
-        "async": "^2.0.0-rc.2",
+        "async": "^2.0.0-rc.3",
         "bcrypt": "^0.8.5",
         "connect-redis": "3.0.2",
         "crypto": "0.0.3",
