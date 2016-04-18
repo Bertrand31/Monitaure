@@ -1,3 +1,6 @@
+var domainNameRegex = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i,
+    ipAddressRegex = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/i;
+
 module.exports = {
 
     createCheck: function(userId, data, callback) {
@@ -10,14 +13,15 @@ module.exports = {
                     return callback('You reached the limit of ten checks per user');
                 } else {
                     var checkData = {
-                        name: data.name,
-                        domainNameOrIP: data.domainNameOrIP,
-                        port: data.port,
-                        owner: userId
+                        name: String(data.name),
+                        domainNameOrIP: String(data.domainNameOrIP),
+                        port: Number(data.port),
+                        owner: String(userId)
                     };
-                    // TODO: Improve & throw appropriate error message
-                    if (checkData.name.length === 0 || checkData.domainNameOrIP.length === 0 || checkData.port === 0) {
-                        return callback('Invalid attributes');
+                    if (!domainNameRegex.test(checkData.domainNameOrIP) && !ipAddressRegex.test(checkData.domainNameOrIp)) {
+                        return callback('Incorrect domain name or IP');
+                    } else if (!checkData.name || !checkData.port) {
+                        return callback('Incorrect attributes');
                     } else {
                         Check.create(checkData).exec(function (err, created) {
                             return callback(err, created);

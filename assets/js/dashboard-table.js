@@ -36,7 +36,7 @@ var processData = function(data) {
 var addCheckLine = function (form) {
     addCheck(form, function(err, data) {
         if (err) {
-            createPopin('alert', err);
+            createPopin('alert', err.responseText);
         } else {
             $('#checks>tbody').append(
                 '<tr id="'+data.id+'">' +
