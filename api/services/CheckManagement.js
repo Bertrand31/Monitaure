@@ -42,10 +42,17 @@ module.exports = {
         });
     },
 
-    destroyCheck: function(checkId, callback) {
-        Check.destroy(checkId).exec(function (err, destroyed) {
-            if (err) throw err;
-            callback(destroyed);
+    destroyCheck: function(userId, checkId, callback) {
+        Check.findOne({id: checkId}).exec(function (err, check) {
+            if (err) {
+                callback(err);
+            } else if (check.owner !== userId) {
+                return callback('You do not have access to this check');
+            } else {
+                Check.destroy(checkId).exec(function (err, destroyed) {
+                    return callback(err, destroyed);
+                });
+            }
         });
     },
 

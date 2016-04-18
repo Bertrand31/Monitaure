@@ -64,14 +64,12 @@ var updateCheckLine = function (form) {
 };
 // Removes a row from the checks table
 var destroyCheckRow = function(id) {
-    destroyCheck(id, function(err, data) {
+    destroyCheck(id, function(err, item) {
         if (err) {
             createPopin('alert', err);
         } else {
-            data.forEach(function(item) {
-                $('#checks tr#'+item.id).fadeOut(function() {
-                    $('#checks tr#'+item.id).remove();
-                });
+            $('#checks tr#'+item.id).fadeOut(function() {
+                $('#checks tr#'+item.id).remove();
             });
         }
     });

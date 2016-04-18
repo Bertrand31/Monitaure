@@ -66,9 +66,12 @@ module.exports = {
     },
 
     destroy: function (req, res) {
-        // TODO: Only allow user's checks deletion
-        CheckManagement.destroyCheck(req.param('id'), function(destroyed) {
-            return res.json(destroyed);
+        CheckManagement.destroyCheck(req.user.id, req.query.checkId, function(err, destroyed) {
+            if (err) {
+                return res.serverError(err);
+            } else {
+                return res.json(destroyed[0]);
+            }
         });
     }
 };

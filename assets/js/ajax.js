@@ -42,12 +42,12 @@ var showSimple = function(checkId, callback) {
     });
 };
 // Deletes a check from the DB
-var destroyCheck = function(id, callback) {
+var destroyCheck = function(checkId, callback) {
     var url = window.location.origin + '/Check/destroy';
     $.ajax({
         url: url,
         method: 'GET',
-        data: {id: id},
+        data: {checkId: checkId},
         beforeSend: function() {},
         complete: function() {},
         success: function(data) { callback(null, data); },
