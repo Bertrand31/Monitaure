@@ -5,7 +5,8 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt'),
+    crypto = require('crypto');
 
 module.exports = {
 
@@ -22,6 +23,10 @@ module.exports = {
             type: 'email',
             required: true,
             unique: true
+        },
+
+        emailMD5: {
+            type: 'string'
         },
 
         password: {
@@ -43,6 +48,9 @@ module.exports = {
 
     },
     beforeCreate: function(user, cb) {
+
+        user.emailHash = crypto.createHash('md5').update(user.email).digest('hex');
+
         bcrypt.genSalt(10, function(err, salt) {
             if (err) {
                 console.log(err);

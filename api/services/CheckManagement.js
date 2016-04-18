@@ -151,10 +151,9 @@ module.exports = {
             var availabilitiesAvg = Utilities.customFloor(availabilitiesSum / numberOfChecks, 2);
 
             // Object containing the user information and its checks
-            var emailHash = require('crypto').createHash('md5').update(user.email).digest('hex');
             var userData = {
                 userName: user.username,
-                userEmailMD5: emailHash,
+                userEmailMD5: user.emailHash,
                 checks: user.checks
             };
             // Object containing all previously computed stats
