@@ -147,14 +147,19 @@ block body
             button.close-fullscreen
             h2.form-title Add a check
             form#check-add(method="get")
-                fieldset
-                    label(for="name") Check name
-                    input#name(type="text", name="name", placeholder="e.g. HTTP @ Google")
-                    label(for="domainNameOrIP") Domain name or IP
-                    input#domainNameOrIP(type="text", name="domainNameOrIP", placeholder="e.g. 5.196.72.154")
-                    label(for="port") Port
-                    input#port(type="text", name="port", placeholder="e.g. 80")
-                    input(type="submit", value="Add")
+                fieldset.check-data
+                    label(for="add-name") Check name
+                    input#add-name(type="text", name="name", placeholder="e.g. HTTP @ Google")
+                    label(for="add-domainNameOrIP") Domain name or IP
+                    input#add-domainNameOrIP(type="text", name="add-domainNameOrIP", placeholder="e.g. 5.196.72.154")
+                    label(for="add-port") Port
+                    input#add-port(type="text", name="port", placeholder="e.g. 80")
+                fieldset.notifications
+                    .rounded-checkbox
+                        input#add-emailNotifications(type="checkbox", name="emailNotifications", value="true")
+                        label(for="add-emailNotifications")
+                    label(for="add-emailNotifications") Email alerts?
+                input(type="submit", value="Add")
     .fullscreen-wrapper#check-update-form
         .form-wrapper
             button.close-fullscreen
@@ -162,15 +167,17 @@ block body
             form#check-update(method="get")
                 fieldset.check-data
                     input#checkId(type="hidden", name="checkId", value="")
-                    label(for="name") Check name
-                    input#name(type="text", name="name", placeholder="e.g. HTTP @ Google")
-                    label(for="domainNameOrIP") Domain name or IP
-                    input#domainNameOrIP(type="text", disabled, name="domainNameOrIP", placeholder="e.g. 5.196.72.154")
-                    label(for="port") Port
-                    input#port(type="text", disabled, name="port", placeholder="e.g. 80")
+                    label(for="update-name") Check name
+                    input#update-name(type="text", name="name", placeholder="e.g. HTTP @ Google")
+                    label(for="update-domainNameOrIP") Domain name or IP
+                    input#update-domainNameOrIP(type="text", disabled, name="domainNameOrIP", placeholder="e.g. 5.196.72.154")
+                    label(for="update-port") Port
+                    input#update-port(type="text", disabled, name="port", placeholder="e.g. 80")
                 fieldset.notifications
-                    input#emailNotifications(type="checkbox", name="emailNotifications", value="true")
-                    label(for="emailNotifications") Send email alerts?
+                    .rounded-checkbox
+                        input#update-emailNotifications(type="checkbox", name="emailNotifications", value="true")
+                        label(for="update-emailNotifications")
+                    label(for="add-emailNotifications") Email alerts?
                 input(type="submit", value="Update")
     .svgs
         svg(xmlns="http://www.w3.org/2000/svg")
