@@ -77,7 +77,7 @@ module.exports = {
                 }
             }
 
-            newHistoryArray.push({date: ping.date, time: ping.open ? ping.duration : null, interval: check.interval});
+            newHistoryArray.push({date: ping.date, time: ping.open ? ping.duration : null});
 
             // And update the DB record
             Check.update({id: ping.checkId}, {history: newHistoryArray}).exec(function(err) {
@@ -183,7 +183,7 @@ module.exports = {
                 max = historyArray[0].time,
                 avg = 0,
                 totalOutage = 0,
-                historyTimeSpan = 0,
+                checkInterval = sails.config.checkInterval,
                 lastOutage = null;
 
             for (var i=0; i<historyArray.length; i++) {
@@ -192,16 +192,13 @@ module.exports = {
                     min = historyArray[i].time < min ? historyArray[i].time : min;
                     max = historyArray[i].time > max ? historyArray[i].time : max;
                 } else {
-                    totalOutage += historyArray[i].interval;
+                    totalOutage += checkInterval;
                     lastOutage = historyArray[i].date;
                 }
-                historyTimeSpan += historyArray[i].interval;
             }
             avg = Math.round(sum / historyArray.length);
 
-            // Number of miliseconds in a month (30 days more exactly)
-            var percent = 100 - (totalOutage * 100) / historyTimeSpan;
-            // We round the percentage to two places
+            var percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
             var availability = Utilities.customFloor(percent, 2);
 
             var historyShort = historyArray.splice(historyArray.length - historyLength , historyLength);
