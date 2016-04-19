@@ -87,13 +87,12 @@ module.exports = {
         });
     },
 
-    getData: function(checkId, callback) {
+    getData: function(userId, checkId, callback) {
         Check.findOne({id: checkId}).exec(function (err, check) {
-            if (err) return callback(err);
-
-            var checkStats = CheckManagement.checkStats(check, 20);
-            if (!checkStats) {
-                return callback('No data yet!');
+            if (err) {
+                return callback(err);
+            } else if (check.owner !== userId) {
+                return callback('You do not have access to this check');
             } else {
                 return callback(null, checkStats);
             }

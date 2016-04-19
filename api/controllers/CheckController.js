@@ -31,8 +31,7 @@ module.exports = {
     },
 
     getcheckstats: function (req, res) {
-        // Todo: only allow user's check retrieval
-        CheckManagement.getData(req.param('id'), function(err, data) {
+        CheckManagement.getData(req.user.id, req.param('id'), function(err, data) {
             if (err) {
                return res.serverError(err);
             } else {
