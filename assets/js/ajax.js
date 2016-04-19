@@ -30,7 +30,7 @@ var updateCheck = function(form, callback) {
 };
 // Show minimal check data
 var showSimple = function(checkId, callback) {
-    var url = window.location.origin + '/Check/showsimple';
+    var url = window.location.origin + '/Check/showsimple/'+checkId;
     $.ajax({
         url: url,
         method: 'GET',
@@ -67,8 +67,8 @@ var getAllStats = function(callback) {
     });
 };
 // Get a check statistics
-var getCheckStats = function(id, callback) {
-    var url = window.location.origin + '/Check/getcheckstats/'+id;
+var getCheckStats = function(checkId, callback) {
+    var url = window.location.origin + '/Check/getcheckstats/'+checkId;
     $.ajax({
         url: url,
         method: 'GET',

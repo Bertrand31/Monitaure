@@ -11,7 +11,7 @@ module.exports = {
     },
 
     showsimple: function (req, res) {
-        CheckManagement.getCheckMinimalData(req.user.id, req.param('checkId'), function(err, data) {
+        CheckManagement.getCheckMinimalData(req.user.id, req.param('id'), function(err, data) {
             if (err) {
                 return res.serverError(err);
             } else {

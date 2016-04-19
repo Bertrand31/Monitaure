@@ -16,6 +16,7 @@ module.exports = {
                         name: String(data.name),
                         domainNameOrIP: String(data.domainNameOrIP),
                         port: Number(data.port),
+                        emailNotifications: Boolean(data.emailNotifications),
                         owner: String(userId)
                     };
                     if (!domainNameRegex.test(checkData.domainNameOrIP) && !ipAddressRegex.test(checkData.domainNameOrIp)) {
@@ -49,7 +50,7 @@ module.exports = {
     destroyCheck: function(userId, checkId, callback) {
         Check.findOne({id: checkId}).exec(function (err, check) {
             if (err) {
-                callback(err);
+                return callback(err);
             } else if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
@@ -62,7 +63,7 @@ module.exports = {
 
     insertHistory: function(ping) {
         Check.findOne({id: ping.checkId}).exec(function (err, check) {
-            if (err) throw err;
+            if (err) console.log(err);
 
             var newHistoryArray = check.history;
 
@@ -80,7 +81,7 @@ module.exports = {
             newHistoryArray.push({date: ping.date, time: ping.open ? ping.duration : null});
 
             // And update the DB record
-            Check.update({id: ping.checkId}, {history: newHistoryArray}).exec(function(err) {
+            Check.update({id: check.id}, {history: newHistoryArray}).exec(function(err) {
                 if (err) throw err;
             });
 
@@ -94,9 +95,13 @@ module.exports = {
             } else if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                return callback(null, checkStats);
+                var checkStats = CheckManagement.checkStats(check, 20);
+                if (!checkStats) {
+                    return callback('No data yet!');
+                } else {
+                    return callback(null, checkStats);
+                }
             }
-
        });
     },
 
