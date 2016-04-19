@@ -179,7 +179,7 @@ module.exports = {
         });
     },
 
-    checkStats: function(check, historyLength, callback) {
+    checkStats: function(check, historyLength) {
         var historyArray = check.history;
         if (historyArray.length > 0) {
             var sum = 0,
@@ -205,7 +205,7 @@ module.exports = {
             var percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
             var availability = Utilities.customFloor(percent, 2);
 
-            var historyShort = historyArray.splice(historyArray.length - historyLength , historyLength);
+            var historyShort = historyArray.splice(historyArray.length - historyLength, historyLength);
 
             return {
                 name: check.name,

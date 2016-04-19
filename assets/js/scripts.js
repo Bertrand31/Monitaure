@@ -74,6 +74,7 @@ $(document).ready(function() {
         total: 140,
         showLabel: false
     };
+    // globalStats is declared inline, in the Jade template
     var percentageOfChecksUp = (globalStats.checksUp * 100) / globalStats.numberOfChecks;
     new Chartist.Pie('.checks-up-donut',
         {
@@ -119,12 +120,13 @@ $(document).ready(function() {
     );
 
     // Table actions
-    $('#checks tbody').on('click', '.destroy-check', function(e) {
+    var tableBody = $('#checks tbody');
+    tableBody.on('click', '.destroy-check', function(e) {
         e.stopPropagation();
         var checkId = $(this).closest('tr').attr('id');
         destroyCheckRow(checkId);
     });
-    $('#checks tbody').on('click', '.settings-check', function(e) {
+    tableBody.on('click', '.settings-check', function(e) {
         e.stopPropagation();
         var checkId = $(this).closest('tr').attr('id');
         var form = $('#check-update-form').find('form#check-update');

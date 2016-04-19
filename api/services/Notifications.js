@@ -11,14 +11,14 @@ var sendgridOptions = {
 var emailClient = nodemailer.createTransport(sgTransport(sendgridOptions));
 
 module.exports = {
-    sendEmailAlert: function(recipient, checkName, callback) {
+    sendEmailAlert: function(recipient, checkName) {
         var email = {
             from: sails.config.emailAddress,
             to: recipient,
             subject: 'Monitaure alert: ' + checkName + ' is down!',
             text: 'Alert: ' + checkName + ' is down'
         };
-        emailClient.sendMail(email, function(err, info) {
+        emailClient.sendMail(email, function(err) {
             if (err) console.log(err);
         });
     }

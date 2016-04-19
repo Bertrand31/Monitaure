@@ -55,6 +55,7 @@ module.exports = function () {
 					CheckManagement.insertHistory(ping);
 					if (ping.checkEmailNotifications && !ping.open) {
 						User.findOne({id: ping.checkOwner}).exec(function(err, user) {
+                            if (err) console.log(err);
 							Notifications.sendEmailAlert(user.email, ping.checkName);
 						});
 					}
