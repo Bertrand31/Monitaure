@@ -1,7 +1,7 @@
 #main-container {
 }
 .aside {
-    width:18%;
+    width:265px;
     height:100%;
     position:fixed;
     top:0;
@@ -9,7 +9,7 @@
 }
 .main {
     &.dashboard {
-        width:82%;
+        width:calc(100% - 265px);
         margin-left:auto;
     }
 }
