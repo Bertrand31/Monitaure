@@ -155,10 +155,10 @@ block body
                     label(for="add-port") Port
                     input#add-port(type="text", name="port", placeholder="e.g. 80")
                 fieldset.notifications
+                    label.checkbox-label(for="add-emailNotifications") Email alerts?
                     .rounded-checkbox
                         input#add-emailNotifications(type="checkbox", name="emailNotifications", value="true")
                         label(for="add-emailNotifications")
-                    label(for="add-emailNotifications") Email alerts?
                 input(type="submit", value="Add")
     .fullscreen-wrapper#check-update-form
         .form-wrapper
@@ -166,7 +166,7 @@ block body
             h2.form-title Update a check
             form#check-update(method="get")
                 fieldset.check-data
-                    input#checkId(type="hidden", name="checkId", value="")
+                    input#update-checkId(type="hidden", name="checkId", value="")
                     label(for="update-name") Check name
                     input#update-name(type="text", name="name", placeholder="e.g. HTTP @ Google")
                     label(for="update-domainNameOrIP") Domain name or IP
@@ -174,10 +174,10 @@ block body
                     label(for="update-port") Port
                     input#update-port(type="text", disabled, name="port", placeholder="e.g. 80")
                 fieldset.notifications
+                    label.checkbox-label(for="add-emailNotifications") Email alerts?
                     .rounded-checkbox
                         input#update-emailNotifications(type="checkbox", name="emailNotifications", value="true")
                         label(for="update-emailNotifications")
-                    label(for="add-emailNotifications") Email alerts?
                 input(type="submit", value="Update")
     .svgs
         svg(xmlns="http://www.w3.org/2000/svg")

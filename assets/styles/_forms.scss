@@ -120,11 +120,11 @@ input {
 		z-index: 1;
 		box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
 		background: #fcfff4;
-		background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-		background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-		background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-		background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-		background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+		background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 100%);
+		background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 100%);
+		background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 100%);
+		background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 100%);
+		background: linear-gradient(top, #fcfff4 0%, #dfe5d7 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
     }
 	input[type="checkbox"] {
@@ -133,9 +133,10 @@ input {
 	input[type="checkbox"]:checked + label {
 		left: 43px;
 	}
-    &+label {
-        display:inline-block;
-    }
+}
+.checkbox-label {
+    display:inline-block;
+    margin-right:1em;
 }
 input[type="submit"], .button {
 	@extend %button;
