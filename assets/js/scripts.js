@@ -134,15 +134,15 @@ $(document).ready(function() {
             if (err) {
                 createPopin('alert', err.responseJSON);
             } else {
-                form.find('#checkId').attr('value', checkId);
-                form.find('#name').attr('value', data.name);
-                form.find('#domainNameOrIP').attr('value', data.domainNameOrIP);
-                form.find('#port').attr('value', data.port);
+                form.find('#update-checkId').attr('value', checkId);
+                form.find('#update-name').attr('value', data.name);
+                form.find('#update-domainNameOrIP').attr('value', data.domainNameOrIP);
+                form.find('#update-port').attr('value', data.port);
                 console.log(data.emailNotifications ? true : false);
                 if (data.emailNotifications)
-                    form.find('#emailNotifications').prop('checked', true);
+                    form.find('#update-emailNotifications').prop('checked', true);
                 else
-                    form.find('#emailNotifications').prop('checked', false);
+                    form.find('#update-emailNotifications').prop('checked', false);
             }
         });
         openFullscreen($('#check-update-form'));
