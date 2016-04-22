@@ -129,7 +129,7 @@ block body
 
                             else
 
-                                td.status(data-health="ok")
+                                td.status
 
                                 td.name= check.name
                                 td= check.domainNameOrIP
@@ -151,7 +151,7 @@ block body
                     label(for="add-name") Check name
                     input#add-name(type="text", name="name", placeholder="e.g. HTTP @ Google")
                     label(for="add-domainNameOrIP") Domain name or IP
-                    input#add-domainNameOrIP(type="text", name="add-domainNameOrIP", placeholder="e.g. 5.196.72.154")
+                    input#add-domainNameOrIP(type="text", name="domainNameOrIP", placeholder="e.g. 5.196.72.154")
                     label(for="add-port") Port
                     input#add-port(type="text", name="port", placeholder="e.g. 80")
                 fieldset.notifications
