@@ -32,8 +32,8 @@ var createChart = function(id, chartOptions) {
             // Turn data into chart dataset and create the chart
             historyToChartData(checkStats.history, function(chartData) {
                 var chart = new Chartist.Line('.main-chart', chartData, chartOptions);
-                var seq = 0,
-                    delays = 80,
+                var seq = 1,
+                    delays = 500,
                     durations = 500;
 
                 chart.on('draw', function(data) {
@@ -82,8 +82,15 @@ var createChart = function(id, chartOptions) {
 
                 });
 
-                $('#chart-container').fadeIn().css('display', 'flex');
+                $('#chart-container').slideDown().css('display', 'flex');
             });
         }
+    });
+};
+
+var hideChart = function(callback) {
+    currentChartId = null;
+    $('#chart-container').slideUp(function() {
+        callback();
     });
 };

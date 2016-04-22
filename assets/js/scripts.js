@@ -2,6 +2,8 @@
  * MAIN CONTROLLERS *
 *********************/
 
+var currentChartId;
+
 $(document).ready(function() {
 
     // Automatic data pulling and udpate
@@ -49,12 +51,34 @@ $(document).ready(function() {
     });
     $('#check-add').on('submit', function(e) {
         e.preventDefault();
-        addCheckLine($(this));
+        addCheck($(this), function(err, data) {
+            if (err) {
+                createPopin('alert', err.responseText);
+            } else {
+                $('#checks>tbody').append(
+                    '<tr id="'+data.id+'">' +
+                        '<td class="status"></td>' +
+                        '<td>'+data.name+'</td>' +
+                        '<td>'+data.domainNameOrIP+'</td>' +
+                        '<td>'+data.port+'</td>' +
+                        '<td class="response-time"></td>' +
+                        '<td class="settings"><button class="settings-check"></button></td>' +
+                        '<td class="destroy"><button class="destroy-check"></button></td>' +
+                    '</tr>'
+                );
+            }
+        });
         closeFullscreen($('.fullscreen-wrapper#check-add-form'));
     });
     $('#check-update').on('submit', function(e) {
         e.preventDefault();
-        updateCheckLine($(this));
+        updateCheck($(this), function(err, data) {
+            if (err) {
+                createPopin('alert', err);
+            } else {
+                $('#checks').find('tr#' + data.id + ' .name').text(data.name);
+            }
+        });
         closeFullscreen($('.fullscreen-wrapper#check-update-form'));
     });
     $('.fullscreen-wrapper').click(function() {
@@ -124,7 +148,18 @@ $(document).ready(function() {
     tableBody.on('click', '.destroy-check', function(e) {
         e.stopPropagation();
         var checkId = $(this).closest('tr').attr('id');
-        destroyCheckRow(checkId);
+        destroyCheck(checkId, function(err, item) {
+            if (err) {
+                createPopin('alert', err);
+            } else {
+                $('#checks tr#'+item.id).fadeOut(function() {
+                    $('#checks tr#'+item.id).remove();
+                });
+                if (checkId = currentChartId) {
+                    hideChart();
+                }
+            }
+        });
     });
     tableBody.on('click', '.settings-check', function(e) {
         e.stopPropagation();
@@ -138,7 +173,6 @@ $(document).ready(function() {
                 form.find('#update-name').attr('value', data.name);
                 form.find('#update-domainNameOrIP').attr('value', data.domainNameOrIP);
                 form.find('#update-port').attr('value', data.port);
-                console.log(data.emailNotifications ? true : false);
                 if (data.emailNotifications)
                     form.find('#update-emailNotifications').prop('checked', true);
                 else
@@ -147,27 +181,42 @@ $(document).ready(function() {
         });
         openFullscreen($('#check-update-form'));
     });
+
+    // CLICK ON A TABLE ROW
+    // Chart handling
+    var chartOptions = {
+        fullWidth: false,
+        showArea: true,
+        low: 0,
+        height: 250,
+        onlyInteger: true,
+        axisY: {
+            // showLabel: false,
+            offset: 50,
+            showGrid: false,
+            scaleMinSpace: 100,
+            labelInterpolationFnc: function(value) {
+                return value + 'ms';
+            }
+        },
+        plugins: [
+            Chartist.plugins.tooltip()
+        ]
+    };
     $('#checks').on('click', 'tbody>tr', function() {
-        var id = $(this).attr('id');
-        var chartOptions = {
-            fullWidth: false,
-            showArea: true,
-            low: 0,
-            height: 250,
-            onlyInteger: true,
-            axisY: {
-                // showLabel: false,
-                offset: 50,
-                showGrid: false,
-                scaleMinSpace: 100,
-                labelInterpolationFnc: function(value) {
-                    return value + 'ms';
-                }
-            },
-            plugins: [
-                Chartist.plugins.tooltip()
-            ]
-        };
-        createChart(id, chartOptions);
+        var currentLine = $(this);
+        var id = currentLine.attr('id');
+        if (id === currentChartId) {
+            hideChart(function() {
+                currentLine.siblings('.active').removeClass('active');
+            });
+        } else {
+            hideChart(function() {
+                createChart(id, chartOptions);
+                currentChartId = id;
+                currentLine.siblings('.active').removeClass('active');
+                currentLine.addClass('active');
+            });
+        }
     });
 });
