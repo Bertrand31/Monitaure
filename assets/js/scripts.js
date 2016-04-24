@@ -35,6 +35,7 @@ $(document).ready(function() {
                 createPopin('alert', err.responseJSON);
             } else {
                 processData(data);
+                createChart(currentChartId, chartOptions);
             }
         });
     }, updateInterval);
