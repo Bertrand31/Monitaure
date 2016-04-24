@@ -6,8 +6,28 @@ var currentChartId;
 
 $(document).ready(function() {
 
+    const chartOptions = {
+        fullWidth: false,
+        showArea: true,
+        low: 0,
+        height: 250,
+        onlyInteger: true,
+        axisY: {
+            // showLabel: false,
+            offset: 50,
+            showGrid: false,
+            scaleMinSpace: 100,
+            labelInterpolationFnc: function(value) {
+                return value + 'ms';
+            }
+        },
+        plugins: [
+            Chartist.plugins.tooltip()
+        ]
+    };
+
     // Automatic data pulling and udpate
-    var updateInterval = 5 * 60 * 1000; // 5mn
+    const updateInterval = 2 * 60 * 1000; // 2mn
     // Every `updateInterval`, we pull updated data and send it to processData
     setInterval(function() {
         getAllStats(function(err, data) {
@@ -70,6 +90,7 @@ $(document).ready(function() {
         });
         closeFullscreen($('.fullscreen-wrapper#check-add-form'));
     });
+    // Check update form
     $('#check-update').on('submit', function(e) {
         e.preventDefault();
         updateCheck($(this), function(err, data) {
@@ -155,7 +176,7 @@ $(document).ready(function() {
                 $('#checks tr#'+item.id).fadeOut(function() {
                     $('#checks tr#'+item.id).remove();
                 });
-                if (checkId = currentChartId) {
+                if (checkId == currentChartId) {
                     hideChart();
                 }
             }
@@ -184,25 +205,6 @@ $(document).ready(function() {
 
     // CLICK ON A TABLE ROW
     // Chart handling
-    var chartOptions = {
-        fullWidth: false,
-        showArea: true,
-        low: 0,
-        height: 250,
-        onlyInteger: true,
-        axisY: {
-            // showLabel: false,
-            offset: 50,
-            showGrid: false,
-            scaleMinSpace: 100,
-            labelInterpolationFnc: function(value) {
-                return value + 'ms';
-            }
-        },
-        plugins: [
-            Chartist.plugins.tooltip()
-        ]
-    };
     $('#checks').on('click', 'tbody>tr', function() {
         var currentLine = $(this);
         var id = currentLine.attr('id');
