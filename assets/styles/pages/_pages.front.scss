@@ -39,6 +39,10 @@
     background-size:cover;
     border-bottom:solid 20px $green;
 }
+.notifications-section {
+    background:url('/images/hp-notifications.png') center center no-repeat;
+    min-height:1695px;
+}
 .social-links {
     a {
         background:transparent url('/images/social-sprite.png') no-repeat;
