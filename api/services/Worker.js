@@ -10,6 +10,8 @@ var checkPort = function(check, callback) {
 		checkName: check.name,
 		checkEmailNotifications: check.emailNotifications,
 		checkOwner: check.owner,
+        // TODO: Improve
+        lastPing: check.history[check.history.length - 1] ? Boolean(check.history[check.history.length - 1].time) : false,
 		open: false,
 		duration: null,
 		date: dateStart
@@ -53,11 +55,19 @@ module.exports = function () {
 
 				pings.forEach(function(ping) {
 					CheckManagement.insertHistory(ping);
-					if (ping.checkEmailNotifications && !ping.open) {
-						User.findOne({id: ping.checkOwner}).exec(function(err, user) {
-                            if (err) console.log(err);
-							Notifications.sendEmailAlert(user.email, ping.checkName);
-						});
+					if (ping.checkEmailNotifications) {
+                        // TODO: Improve
+                        if (!ping.open && ping.lastPing) {
+                            User.findOne({id: ping.checkOwner}).exec(function(err, user) {
+                                if (err) console.log(err);
+                                Notifications.sendEmailAlert(user.email, ping.checkName, 'down');
+                            });
+                        } else if (ping.open && !ping.lastPing) {
+                            User.findOne({id: ping.checkOwner}).exec(function(err, user) {
+                                if (err) console.log(err);
+                                Notifications.sendEmailAlert(user.email, ping.checkName, 'up');
+                            });
+                        }
 					}
 				});
 			});
