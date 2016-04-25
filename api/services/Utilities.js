@@ -1,5 +1,3 @@
 module.exports = {
-    customFloor: function(number, places) {
-        return Math.floor(number * Math.pow(10, places)) / Math.pow(10, places);
-    }
+    customFloor: (number, places) => Math.floor(number * Math.pow(10, places)) / Math.pow(10, places)
 };
