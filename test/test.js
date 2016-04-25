@@ -14,20 +14,20 @@ before(function(done) {
     });
 });
 
-describe('UserModel', function() {
+// describe('UserModel', function() {
 
-    describe('#find()', function() {
-        it('should check find function', function (done) {
-            User.find()
-                .then(function(results) {
-                    // Tests
-                    done();
-                })
-            .catch(done);
-        });
-    });
+//     describe('#find()', function() {
+//         it('should check find function', function (done) {
+//             User.find()
+//                 .then(function(results) {
+//                     // Tests
+//                     done();
+//                 })
+//             .catch(done);
+//         });
+//     });
 
-});
+// });
 
 describe('UserController', function() {
 
@@ -54,5 +54,6 @@ describe('UserController', function() {
 
 after(function(done) {
     // here you can clear fixtures, etc.
-    sails.lower(done);
+    // sails.lower(done);
+    done();
 });
