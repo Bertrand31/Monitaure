@@ -5,6 +5,9 @@
     background:$light;
     position:relative;
     box-shadow:0 0 60px 0 rgba(0,0,0,.4);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
     nav {
         padding:1em 0;
         font: 1.2em $roboto;
@@ -36,6 +39,7 @@
     }
 }
 .profile {
+    margin-bottom:1.5em;
     img,span {
         display:inline-block;
         vertical-align:middle;
