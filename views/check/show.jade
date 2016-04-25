@@ -4,32 +4,34 @@ block body
 
     #main-container
         aside.aside
-            h1#logo
-                img(src="/images/logo.svg" alt="Monitaure - Monitoring for the masses")
-            nav.main-nav
-                ul
-                    li.active
-                        a(href="/dashboard") Activity
-                    li
-                        a(href="#_") Reports
-                            span.info 14
-                    li
-                        a(href="#_") Messages
-                            span.info 123
-            nav.misc-nav
-                ul
-                    li
-                        a(href="#_") Settings
-                    li
-                        a(href="https://github.com/Bertrand31/Monitaure/issues", target="_blank") Help
-            nav.auth-nav
-                ul
-                    li
-                        a(href="/logout") Log out
-            .profile
-                a(href="http://gravatar.com", target="_blank", title="Set or change your profile picture")
-                    img(src="https://gravatar.com/avatar/" + data.userData.userEmailMD5 + "?size=100" alt="Profile picture")
-                span= data.userData.userName
+            .sidebar-top
+                h1#logo
+                    img(src="/images/logo.svg" alt="Monitaure - Monitoring for the masses")
+                nav.main-nav
+                    ul
+                        li.active
+                            a(href="/dashboard") Activity
+                        li
+                            a(href="#_") Reports
+                                span.info 14
+                        li
+                            a(href="#_") Messages
+                                span.info 123
+                nav.misc-nav
+                    ul
+                        li
+                            a(href="#_") Settings
+                        li
+                            a(href="https://github.com/Bertrand31/Monitaure/issues", target="_blank") Help
+                nav.auth-nav
+                    ul
+                        li
+                            a(href="/logout") Log out
+            .sidebar-bottom
+                .profile
+                    a(href="http://gravatar.com", target="_blank", title="Set or change your profile picture")
+                        img(src="https://gravatar.com/avatar/" + data.userData.userEmailMD5 + "?size=100" alt="Profile picture")
+                    span= data.userData.userName
         main.main.dashboard
             .content-wrapper
                 section.top-buttons
