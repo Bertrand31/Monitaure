@@ -2,7 +2,7 @@
  * MAIN CONTROLLERS *
 *********************/
 
-var currentChartId;
+var currentChartId = null;
 
 $(document).ready(function() {
 
@@ -35,7 +35,9 @@ $(document).ready(function() {
                 createPopin('alert', err.responseJSON);
             } else {
                 processData(data);
-                createChart(currentChartId, chartOptions);
+                if (currentChartId !== null) {
+                    createChart(currentChartId, chartOptions);
+                }
             }
         });
     }, updateInterval);
