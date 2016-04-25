@@ -179,7 +179,7 @@ $(document).ready(function() {
                 $('#checks tr#'+item.id).fadeOut(function() {
                     $('#checks tr#'+item.id).remove();
                 });
-                if (checkId == currentChartId) {
+                if (checkId === currentChartId) {
                     hideChart();
                 }
             }
