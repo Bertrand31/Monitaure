@@ -7,7 +7,8 @@ process.chdir(__dirname);
     var newrelic,
         sails;
     try {
-        newrelic = require('newrelic');
+        if (sails.config.newRelic)
+            newrelic = require('newrelic');
         sails = require('sails');
 
     } catch (e) {
