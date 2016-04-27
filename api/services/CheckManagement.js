@@ -19,7 +19,7 @@ module.exports = {
                         emailNotifications: Boolean(data.emailNotifications),
                         owner: String(userId)
                     };
-                    if (!domainNameRegex.test(checkData.domainNameOrIP) && !ipAddressRegex.test(checkData.domainNameOrIp)) {
+                    if (!domainNameRegex.test(checkData.domainNameOrIP) && !ipAddressRegex.test(checkData.domainNameOrIP)) {
                         return callback('Incorrect domain name or IP');
                     } else if (!checkData.name || !checkData.port) {
                         return callback('Incorrect attributes');
@@ -36,7 +36,7 @@ module.exports = {
     updateCheck: function(userId, checkId, data, callback) {
         Check.findOne({id: checkId}).exec(function (err, check) {
             if (err) {
-                callback(err);
+                return callback(err);
             } else if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
