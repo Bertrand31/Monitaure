@@ -153,7 +153,7 @@ $(document).ready(function() {
         donutOptions
     );
     var lastErrorHour = globalStats.lastError.time ? moment(globalStats.lastError.time).format('HH:SS') : '-';
-    var lastErrorDay = globalStats.lastError.time ? moment(globalStats.lastError.time).format('MM/DD') : '-';
+    var lastErrorDay = globalStats.lastError.time ? moment(globalStats.lastError.time).format('DD/MM') : '-';
     $('.last-error--hour').text(lastErrorHour);
     $('.last-error--day').text(lastErrorDay);
     new Chartist.Pie('.last-error-donut', {
