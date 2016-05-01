@@ -148,7 +148,7 @@ block body
         .form-wrapper
             button.close-fullscreen
             h2.form-title Add a check
-            form#check-add(method="get")
+            form#check-add(method="post")
                 fieldset.check-data
                     label(for="add-name") Check name
                     input#add-name(type="text", name="name", placeholder="e.g. HTTP @ Google")
@@ -166,7 +166,7 @@ block body
         .form-wrapper
             button.close-fullscreen
             h2.form-title Update a check
-            form#check-update(method="get")
+            form#check-update(method="post")
                 fieldset.check-data
                     input#update-checkId(type="hidden", name="checkId", value="")
                     label(for="update-name") Check name
