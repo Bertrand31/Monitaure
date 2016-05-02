@@ -3,7 +3,7 @@ var domainNameRegex = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-z
 
 module.exports = {
 
-    createCheck: function(userId, data, callback) {
+    createCheck: function(userId, checkData, callback) {
         User.findOne({id: userId}).populate('checks').exec(function (err, user) {
             if (err) {
                 return callback(err);
@@ -12,15 +12,8 @@ module.exports = {
                 if (user.checks.length >= sails.config.checksNbLimit) {
                     return callback('You reached the limit of ten checks per user');
                 } else {
-                    var checkData = {
-                        name: String(data.name),
-                        domainNameOrIP: String(data.domainNameOrIP),
-                        port: Number(data.port),
-                        emailNotifications: Boolean(data.emailNotifications),
-                        owner: String(userId)
-                    };
                     if (!domainNameRegex.test(checkData.domainNameOrIP) && !ipAddressRegex.test(checkData.domainNameOrIP)) {
-                        return callback('Incorrect domain name or IP');
+                        return callback('Incorrect domain name or IP address');
                     } else if (!checkData.name || !checkData.port) {
                         return callback('Incorrect attributes');
                     } else {

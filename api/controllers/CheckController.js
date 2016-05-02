@@ -41,7 +41,14 @@ module.exports = {
     },
 
     create: function (req, res) {
-        CheckManagement.createCheck(req.param('id'), req.query, function (err, created) {
+        var data = {
+            name: String(req.param('name')),
+            domainNameOrIP: String(req.param('domainNameOrIP')),
+            port: Number(req.param('port')),
+            emailNotifications: Boolean(req.param('emailNotifications')),
+            owner: req.user.id
+        };
+        CheckManagement.createCheck(req.user.id, data, function (err, created) {
             if (err) {
                 return res.serverError(err);
             } else {
@@ -52,7 +59,7 @@ module.exports = {
 
     update: function (req, res) {
         var data = {
-            name: req.param('name'),
+            name: String(req.param('name')),
             emailNotifications: req.param('emailNotifications') ? true : false
         };
         CheckManagement.updateCheck(req.user.id, req.param('checkId'), data, function(err, updated) {
