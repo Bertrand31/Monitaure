@@ -82,7 +82,7 @@ var createChart = function(id, chartOptions) {
 
                 });
 
-                $('#chart-container').slideDown().css('display', 'flex');
+                $('#chart-container').slideDown('easeOutBounce').css('display', 'flex');
             });
         }
     });
@@ -90,7 +90,7 @@ var createChart = function(id, chartOptions) {
 
 var hideChart = function(callback) {
     currentChartId = null;
-    $('#chart-container').slideUp(function() {
+    $('#chart-container').slideUp('easeOutBounce', function() {
         callback();
     });
 };

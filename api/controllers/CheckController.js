@@ -41,7 +41,7 @@ module.exports = {
     },
 
     create: function (req, res) {
-        CheckManagement.createCheck(req.user.id, req.query, function (err, created) {
+        CheckManagement.createCheck(req.param('id'), req.query, function (err, created) {
             if (err) {
                 return res.serverError(err);
             } else {
@@ -52,10 +52,10 @@ module.exports = {
 
     update: function (req, res) {
         var data = {
-            name: req.query.name,
-            emailNotifications: req.query.emailNotifications ? true : false
+            name: req.param('name'),
+            emailNotifications: req.param('emailNotifications') ? true : false
         };
-        CheckManagement.updateCheck(req.user.id, req.query.checkId, data, function(err, updated) {
+        CheckManagement.updateCheck(req.user.id, req.param('checkId'), data, function(err, updated) {
             if (err) {
                 return res.serverError(err);
             } else {
