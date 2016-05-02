@@ -80,7 +80,7 @@ $(document).ready(function() {
             } else {
                 $('#checks>tbody').append(
                     '<tr id="'+data.id+'">' +
-                        '<td class="status"></td>' +
+                        '<td class="status" data-health="waiting"></td>' +
                         '<td>'+data.name+'</td>' +
                         '<td>'+data.domainNameOrIP+'</td>' +
                         '<td>'+data.port+'</td>' +
