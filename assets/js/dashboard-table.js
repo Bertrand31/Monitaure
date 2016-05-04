@@ -3,7 +3,7 @@
  **********/
 
 var updateGlobalStats = function (data) {
-    var globalWrapper = $('.global-data');
+    const globalWrapper = $('.global-data');
     globalWrapper.find('.checks-down').text(data.checksDown);
     globalWrapper.find('.total-checks').text(data.numberOfChecks);
     globalWrapper.find('.availabilities-avg').text(data.availabilitiesAvg);
@@ -12,9 +12,9 @@ var updateGlobalStats = function (data) {
 };
 // Update table data
 var updateTableRows = function (data) {
-    var lastHistory = null,
-        table = $('#checks'),
-        target = null;
+    var     lastHistory = null,
+            target = null;
+    const   table = $('#checks');
 
     for (var i = 0; i < data.length; i++) {
         lastHistory = data[i].history[0];

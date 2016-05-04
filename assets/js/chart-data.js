@@ -13,7 +13,7 @@ var createChart = function(id, chartOptions) {
                 lastOutage = moment(checkStats.lastOutage).format('D/MM/YY H:mm');
             }
             // Process data to output statistics along the chart
-            var dataPanel = $('.data');
+            const dataPanel = $('.data');
             dataPanel.find('.name').text(checkStats.name);
             dataPanel.find('.min').text(checkStats.min + 'ms');
             dataPanel.find('.max').text(checkStats.max + 'ms');
@@ -25,14 +25,14 @@ var createChart = function(id, chartOptions) {
 
             // Show last ping data on top of the chart
             var lastPing = checkStats.history[checkStats.history.length - 1];
-            var topDataPanel = $('.top-data');
+            const topDataPanel = $('.top-data');
             topDataPanel.find('.latency-value').text(lastPing.time);
             topDataPanel.find('.last-check-date').text(moment(lastPing.date).format('HH:mm:ss'));
 
             // Turn data into chart dataset and create the chart
             historyToChartData(checkStats.history, function(chartData) {
                 var chart = new Chartist.Line('.main-chart', chartData, chartOptions);
-                var seq = 1,
+                const seq = 1,
                     delays = 500,
                     durations = 500;
 

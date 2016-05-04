@@ -79,15 +79,15 @@ $(document).ready(function() {
                 createPopin('alert', err.responseText);
             } else {
                 $('#checks>tbody').append(
-                    '<tr id="'+data.id+'">' +
-                        '<td class="status" data-health="waiting"></td>' +
-                        '<td>'+data.name+'</td>' +
-                        '<td>'+data.domainNameOrIP+'</td>' +
-                        '<td>'+data.port+'</td>' +
-                        '<td class="response-time"></td>' +
-                        '<td class="settings"><button class="settings-check"></button></td>' +
-                        '<td class="destroy"><button class="destroy-check"></button></td>' +
-                    '</tr>'
+                    `<tr id="${data.id}">
+                        <td class="status" data-health="waiting"></td>
+                        <td>${data.name}</td>
+                        <td>${data.domainNameOrIP}</td>
+                        <td>${data.port}</td>
+                        <td class="response-time">-</td>
+                        <td class="settings"><button class="settings-check"></button></td>
+                        <td class="destroy"><button class="destroy-check"></button></td>
+                    </tr>`
                 );
             }
         });
@@ -168,7 +168,7 @@ $(document).ready(function() {
     );
 
     // Table actions
-    var tableBody = $('#checks tbody');
+    const tableBody = $('#checks tbody');
     tableBody.on('click', '.destroy-check', function(e) {
         e.stopPropagation();
         var checkId = $(this).closest('tr').attr('id');
@@ -187,8 +187,8 @@ $(document).ready(function() {
     });
     tableBody.on('click', '.settings-check', function(e) {
         e.stopPropagation();
-        var checkId = $(this).closest('tr').attr('id');
-        var form = $('#check-update-form').find('form#check-update');
+        const checkId = $(this).closest('tr').attr('id');
+        const form = $('#check-update-form').find('form#check-update');
         showSimple(checkId, function(err, data) {
             if (err) {
                 createPopin('alert', err.responseJSON);
@@ -209,8 +209,8 @@ $(document).ready(function() {
     // CLICK ON A TABLE ROW
     // Chart handling
     $('#checks').on('click', 'tbody>tr', function() {
-        var currentLine = $(this);
-        var id = currentLine.attr('id');
+        const currentLine = $(this);
+        const id = currentLine.attr('id');
         if (id === currentChartId) {
             hideChart(function() {
                 currentLine.siblings('.active').removeClass('active');
