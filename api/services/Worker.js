@@ -1,11 +1,11 @@
 var async = require('async');
 var net = require('net');
 
-var checkPort = function(check, callback) {
-	var dateStart = new Date();
-	var timeStart = Date.now();
+let checkPort = function(check, callback) {
+	const dateStart = new Date();
+	const timeStart = Date.now();
 
-	var callbackObject = {
+	let callbackObject = {
 		checkId: check.id,
 		checkName: check.name,
 		checkEmailNotifications: check.emailNotifications,
@@ -17,14 +17,15 @@ var checkPort = function(check, callback) {
 		date: dateStart
 	};
 
-	var connection = net.connect(check.port, check.domainNameOrIP, function() {
-		var difference = Date.now() - timeStart;
+	let connection = net.connect(check.port, check.domainNameOrIP, function() {
+		let difference = Date.now() - timeStart;
 		connection.destroy();
 		callbackObject.open = true;
 		callbackObject.duration = difference;
 		return callback(callbackObject);
 	});
 	connection.on('error', function() {
+
 		return callback(callbackObject);
 	});
 	setTimeout(function() {
@@ -40,7 +41,7 @@ module.exports = function () {
 		Check.find().exec(function(err, checks) {
 			if (err) throw err;
 
-			var asyncChecks = [];
+			let asyncChecks = [];
 
 			checks.forEach(function(check) {
 				asyncChecks.push(function(callback) {

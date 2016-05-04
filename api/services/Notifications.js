@@ -12,7 +12,7 @@ var emailClient = nodemailer.createTransport(sgTransport(sendgridOptions));
 
 module.exports = {
     sendEmailAlert: function(recipient, checkName, notificationType) {
-        var email = {
+        let email = {
             from: sails.config.emailAddress,
             to: recipient,
             subject: `Monitaure alert: ${checkName} is ${notificationType}!`,

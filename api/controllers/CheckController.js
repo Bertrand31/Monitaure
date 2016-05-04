@@ -41,7 +41,7 @@ module.exports = {
     },
 
     create: function (req, res) {
-        var data = {
+        let data = {
             name: String(req.param('name')),
             domainNameOrIP: String(req.param('domainNameOrIP')),
             port: Number(req.param('port')),
@@ -58,7 +58,7 @@ module.exports = {
     },
 
     update: function (req, res) {
-        var data = {
+        let data = {
             name: String(req.param('name')),
             emailNotifications: req.param('emailNotifications') ? true : false
         };

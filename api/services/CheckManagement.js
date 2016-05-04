@@ -58,9 +58,9 @@ module.exports = {
         Check.findOne({id: ping.checkId}).exec(function (err, check) {
             if (err) console.log(err);
 
-            var newHistoryArray = check.history;
+            let newHistoryArray = check.history;
 
-            var oneMonthAgo = new Date();
+            let oneMonthAgo = new Date();
             oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
             // If the first value of the array is older than a month, we remove it
@@ -88,7 +88,7 @@ module.exports = {
             } else if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                var checkStats = CheckManagement.checkStats(check, 20);
+                let checkStats = CheckManagement.checkStats(check, 20);
                 if (!checkStats) {
                     return callback('No data yet!');
                 } else {
@@ -117,7 +117,7 @@ module.exports = {
     getUserAndChecksData: function(userId, callback) {
         User.findOne({id: userId}).populate('checks').exec(function (err, user) {
 
-            var lastError = {
+            let lastError = {
                     time: null,
                     checkName: null
                 },
@@ -125,9 +125,9 @@ module.exports = {
                 numberOfChecks = user.checks.length,
                 availabilitiesSum = 0;
 
-            for(var i = 0; i < user.checks.length; i++) {
+            for (let i = 0; i < user.checks.length; i++) {
 
-                var checkStats = CheckManagement.checkStats(user.checks[i], 1);
+                let checkStats = CheckManagement.checkStats(user.checks[i], 1);
                 // If `err` the check's history array is empty: we have no data to process
                 if (checkStats) {
                     // If current check is currently up, we add increment checksUp array
@@ -149,16 +149,16 @@ module.exports = {
             }
 
             // Calculate the average of all the checks availabilities
-            var availabilitiesAvg = Utilities.customFloor(availabilitiesSum / numberOfChecks, 2);
+            let availabilitiesAvg = Utilities.customFloor(availabilitiesSum / numberOfChecks, 2);
 
             // Object containing the user information and its checks
-            var userData = {
+            let userData = {
                 userName: user.username,
                 userEmailMD5: user.emailHash,
                 checks: user.checks
             };
             // Object containing all previously computed stats
-            var globalStats = {
+            let globalStats = {
                 numberOfChecks,
                 checksUp,
                 availabilitiesAvg,
@@ -173,9 +173,9 @@ module.exports = {
     },
 
     checkStats: function(check, historyLength) {
-        var historyArray = check.history;
+        let historyArray = check.history;
         if (historyArray.length > 0) {
-            var sum = 0,
+            let sum = 0,
                 min = historyArray[0].time,
                 max = historyArray[0].time,
                 avg = 0,
@@ -183,7 +183,7 @@ module.exports = {
                 checkInterval = sails.config.checkInterval,
                 lastOutage = null;
 
-            for (var i=0; i<historyArray.length; i++) {
+            for (let i=0; i<historyArray.length; i++) {
                 if (historyArray[i].time !== null) {
                     sum += historyArray[i].time;
                     min = historyArray[i].time < min ? historyArray[i].time : min;
@@ -195,10 +195,10 @@ module.exports = {
             }
             avg = Math.round(sum / historyArray.length);
 
-            var percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
-            var availability = Utilities.customFloor(percent, 2);
+            let percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
+            let availability = Utilities.customFloor(percent, 2);
 
-            var historyShort = historyArray.splice(historyArray.length - historyLength, historyLength);
+            let historyShort = historyArray.splice(historyArray.length - historyLength, historyLength);
 
             return {
                 name: check.name,
