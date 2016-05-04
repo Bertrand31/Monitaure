@@ -24,14 +24,14 @@ var createChart = function(id, chartOptions) {
             dataPanel.find('.last-outage').text(lastOutage);
 
             // Show last ping data on top of the chart
-            var lastPing = checkStats.history[checkStats.history.length - 1];
+            const lastPing = checkStats.history[checkStats.history.length - 1];
             const topDataPanel = $('.top-data');
             topDataPanel.find('.latency-value').text(lastPing.time);
             topDataPanel.find('.last-check-date').text(moment(lastPing.date).format('HH:mm:ss'));
 
             // Turn data into chart dataset and create the chart
             historyToChartData(checkStats.history, function(chartData) {
-                var chart = new Chartist.Line('.main-chart', chartData, chartOptions);
+                const chart = new Chartist.Line('.main-chart', chartData, chartOptions);
                 const seq = 1,
                     delays = 500,
                     durations = 500;
@@ -82,7 +82,7 @@ var createChart = function(id, chartOptions) {
 
                 });
 
-                $('#chart-container').slideDown('easeOutBounce').css('display', 'flex');
+                $('#chart-container').slideDown(300).css('display', 'flex');
             });
         }
     });
@@ -90,7 +90,7 @@ var createChart = function(id, chartOptions) {
 
 var hideChart = function(callback) {
     currentChartId = null;
-    $('#chart-container').slideUp('easeOutBounce', function() {
+    $('#chart-container').slideUp(300, function() {
         callback();
     });
 };

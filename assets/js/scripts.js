@@ -49,7 +49,7 @@ $(document).ready(function() {
             if (err) {
                 var errorMsg = '';
                 if (err.responseJSON.hasOwnProperty('invalidAttributes')) {
-                    var invalidAttrs = err.responseJSON.invalidAttributes;
+                    const invalidAttrs = err.responseJSON.invalidAttributes;
                     for (var invalidAttr in invalidAttrs) {
                         if (invalidAttrs.hasOwnProperty(invalidAttr)) {
                             errorMsg = $('#signup #'+invalidAttr).attr('data-error');
@@ -113,7 +113,7 @@ $(document).ready(function() {
     });
 
     // Global stats
-    var donutOptions = {
+    const donutOptions = {
         width: '200px',
         height: '200px',
         donut: true,
@@ -123,7 +123,7 @@ $(document).ready(function() {
         showLabel: false
     };
     // globalStats is declared inline, in the Jade template
-    var percentageOfChecksUp = (globalStats.checksUp * 100) / globalStats.numberOfChecks;
+    const percentageOfChecksUp = (globalStats.checksUp * 100) / globalStats.numberOfChecks;
     new Chartist.Pie('.checks-up-donut',
         {
             series: [
@@ -152,8 +152,8 @@ $(document).ready(function() {
         ]},
         donutOptions
     );
-    var lastErrorHour = globalStats.lastError.time ? moment(globalStats.lastError.time).format('HH:SS') : '-';
-    var lastErrorDay = globalStats.lastError.time ? moment(globalStats.lastError.time).format('DD/MM') : '-';
+    const lastErrorHour = globalStats.lastError.time ? moment(globalStats.lastError.time).format('HH:SS') : '-';
+    const lastErrorDay = globalStats.lastError.time ? moment(globalStats.lastError.time).format('DD/MM') : '-';
     $('.last-error--hour').text(lastErrorHour);
     $('.last-error--day').text(lastErrorDay);
     new Chartist.Pie('.last-error-donut', {
@@ -171,7 +171,7 @@ $(document).ready(function() {
     const tableBody = $('#checks tbody');
     tableBody.on('click', '.destroy-check', function(e) {
         e.stopPropagation();
-        var checkId = $(this).closest('tr').attr('id');
+        const checkId = $(this).closest('tr').attr('id');
         destroyCheck(checkId, function(err, item) {
             if (err) {
                 createPopin('alert', err);
