@@ -35,7 +35,7 @@
         "grunt-sync": "0.5.2",
         "include-all": "~0.1.6",
         "jade": "^1.11.0",
-        "newrelic": "^1.26.2",
+        "newrelic": "^1.27.1",
         "nodemailer": "^2.3.2",
         "nodemailer-sendgrid-transport": "^0.2.0",
         "passport": "^0.3.2",
