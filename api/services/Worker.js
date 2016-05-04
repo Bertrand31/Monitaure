@@ -11,7 +11,7 @@ let checkPort = function(check, callback) {
 		checkEmailNotifications: check.emailNotifications,
 		checkOwner: check.owner,
         // TODO: Improve
-        lastPing: check.history[check.history.length - 1] ? Boolean(check.history[check.history.length - 1].time) : false,
+        lastPing: check.history[check.history.length - 1] ? Boolean(check.history[check.history.length - 1].time) : null,
 		open: false,
 		duration: null,
 		date: dateStart
@@ -56,17 +56,21 @@ module.exports = function () {
 
 				pings.forEach(function(ping) {
 					CheckManagement.insertHistory(ping);
-					if (ping.checkEmailNotifications) {
-                        // TODO: Improve
+                    // If notifications are activated for this check and
+                    // this isn't the first time we ping it
+					if (ping.checkEmailNotifications && ping.lastPing !== null) {
+                        // If the check is down and wasn't last time we checked
                         if (!ping.open && ping.lastPing) {
                             User.findOne({id: ping.checkOwner}).exec(function(err, user) {
                                 if (err) console.log(err);
-                                Notifications.sendEmailAlert(user.email, ping.checkName, 'down');
+                                Notifications.sendEmailAlert(user.email, ping.checkName);
                             });
-                        } else if (ping.open && !ping.lastPing) {
+                        }
+                        // If the check is up and was down last time we checked
+                        else if (ping.open && !ping.lastPing) {
                             User.findOne({id: ping.checkOwner}).exec(function(err, user) {
                                 if (err) console.log(err);
-                                Notifications.sendEmailAlert(user.email, ping.checkName, 'up');
+                                Notifications.sendUpAlert(user.email, ping.checkName, 'XXX');
                             });
                         }
 					}

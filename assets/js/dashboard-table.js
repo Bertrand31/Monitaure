@@ -12,9 +12,9 @@ var updateGlobalStats = function (data) {
 };
 // Update table data
 var updateTableRows = function (data) {
-    var     lastHistory = null,
-            target = null;
-    const   table = $('#checks');
+    var lastHistory = null,
+        target = null;
+    const table = $('#checks');
 
     for (var i = 0; i < data.length; i++) {
         lastHistory = data[i].history[0];
