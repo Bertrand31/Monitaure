@@ -12,10 +12,6 @@
  * Finally, if those don't match either, the default 404 handler is triggered.
  * See `api/responses/notFound.js` to adjust your app's 404 logic.
  *
- * Note: Sails doesn't ACTUALLY serve stuff from `assets`-- the default Gruntfile in Sails copies
- * flat files from `assets` to `.tmp/public`.  This allows you to do things like compile LESS or
- * CoffeeScript for the front-end.
- *
  * For more information on configuring custom routes, check out:
  * http://sailsjs.org/#!/documentation/concepts/Routes/RouteTargetSyntax.html
  */
@@ -32,18 +28,22 @@ module.exports.routes = {
      *                                                                          *
     ***************************************************************************/
 
-    '/': {
-        view: 'homepage'
-    },
+    '/': [
+        { policy: 'forceDashboard' },
+        { view: 'homepage' }
+    ],
 
-    'get /signup': {
-        view: 'signup'
-    },
+    'get /signup': [
+        { policy: 'forceDashboard' },
+        { view: 'signup' }
+    ],
+
     'post /signup': 'UserController.create',
 
-    'get /login': {
-        view: 'login'
-    },
+    'get /login': [
+        { policy: 'forceDashboard' },
+        { view: 'login' }
+    ],
     'post /login': 'AuthController.login',
 
     '/logout': 'AuthController.logout',
