@@ -16,7 +16,7 @@ module.exports = {
         let email = {
             from: sails.config.emailAddress,
             to: recipient,
-            subject: `Monitaure alert: ${checkName} is DOWN!`,
+            subject: `🚨  Monitaure alert: ${checkName} is DOWN!`,
             text: `Alert: ${checkName} is DOWN`
         };
         emailClient.sendMail(email, function(err) {
@@ -28,7 +28,7 @@ module.exports = {
         let email = {
             from: sails.config.emailAddress,
             to: recipient,
-            subject: `Monitaure alert: ${checkName} is back UP!`,
+            subject: `✓ Monitaure alert: ${checkName} is back UP!`,
             text: `${checkName} is back up after ${outageDuration} minutes of downtime.`
         };
         emailClient.sendMail(email, function(err) {
