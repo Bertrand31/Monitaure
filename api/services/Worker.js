@@ -63,7 +63,7 @@ module.exports = function () {
                         if (!ping.open && ping.lastPing) {
                             User.findOne({id: ping.checkOwner}).exec(function(err, user) {
                                 if (err) console.log(err);
-                                Notifications.sendEmailAlert(user.email, ping.checkName);
+                                Notifications.sendDownAlert(user.email, ping.checkName);
                             });
                         }
                         // If the check is up and was down last time we checked
