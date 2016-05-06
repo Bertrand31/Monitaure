@@ -109,9 +109,9 @@ block body
                                 -var lastHistory = check.history[check.history.length - 1]
 
                                 if lastHistory.time !== null
-                                    td.status(data-health="ok")
+                                    td.status(data-health="up")
                                 else
-                                    td.status(data-health="nok")
+                                    td.status(data-health="down")
 
                                 td.name= check.name
                                 td= check.domainNameOrIP

@@ -37,13 +37,13 @@ table {
         }
     }
 }
-[data-health="ok"], [data-health="nok"], [data-health="waiting"] {
+[data-health="up"], [data-health="down"], [data-health="waiting"] {
     background-size:26px 26px;
     background-position: center center;
     background-repeat:no-repeat;
 }
-[data-health="ok"] { background-image:url('../images/status-ok.svg'); }
-[data-health="nok"] { background-image:url('../images/status-error.svg'); }
+[data-health="up"] { background-image:url('../images/status-ok.svg'); }
+[data-health="down"] { background-image:url('../images/status-error.svg'); }
 [data-health="waiting"] { background-image:url('../images/status-waiting.svg'); }
 
 [data-speed="slow"] { color:$warn; }

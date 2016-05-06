@@ -19,7 +19,7 @@ var updateTableRows = function (data) {
     for (var i = 0; i < data.length; i++) {
         lastHistory = data[i].history[0];
         target = table.find('tr#' + data[i].id);
-        target.find('td.status').attr('data-health', lastHistory.time ? 'ok' : 'nok');
+        target.find('td.status').attr('data-health', lastHistory.time ? 'up' : 'down');
         target.find('td.response-time')
             .text(data[i].time !== null ? lastHistory.time + 'ms' : '-')
             .attr('data-speed', lastHistory.time > 200 ? 'slow' : 'fast');
