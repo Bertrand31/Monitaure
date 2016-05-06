@@ -40,7 +40,11 @@ $(document).ready(function() {
             }
         });
         getGlobalStats(function(err, data) {
-            createGlobalStats(data.globalStats);
+            if (err) {
+                createPopin('alert', err.responseJSON);
+            } else {
+                createGlobalStats(data.globalStats);
+            }
         });
     }, updateInterval);
 

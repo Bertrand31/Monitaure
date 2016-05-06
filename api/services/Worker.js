@@ -87,7 +87,7 @@ module.exports = function () {
             async.parallel(asyncChecks, function(err, pings) {
                 if (err) throw err;
                 pings.forEach(function(ping) {
-                    pingHandling(ping)
+                    pingHandling(ping);
                 });
             });
         });
