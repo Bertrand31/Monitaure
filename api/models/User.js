@@ -53,12 +53,12 @@ module.exports = {
 
         bcrypt.genSalt(10, function(err, salt) {
             if (err) {
-                console.log(err);
+                sails.log.eror(err);
                 return cb(err);
             } else {
                 bcrypt.hash(user.password, salt, function(err, hash) {
                     if (err) {
-                        console.log(err);
+                        sails.log.error(err);
                         return cb(err);
                     } else {
                         user.password = hash;

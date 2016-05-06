@@ -56,7 +56,7 @@ module.exports = {
 
     insertHistory: function(ping) {
         Check.findOne({id: ping.checkId}).exec(function (err, check) {
-            if (err) console.log(err);
+            if (err) return sails.log.error(err);
 
             let newHistoryArray = check.history;
 

@@ -20,7 +20,7 @@ module.exports = {
             text: `Alert: ${checkName} is DOWN`
         };
         emailClient.sendMail(email, function(err) {
-            if (err) console.log(err);
+            if (err) sails.log.error(err);
         });
     },
 
@@ -32,7 +32,7 @@ module.exports = {
             text: `${checkName} is back up after ${outageDuration} minutes of downtime.`
         };
         emailClient.sendMail(email, function(err) {
-            if (err) console.log(err);
+            if (err) sails.log.error(err);
         });
     }
 };
