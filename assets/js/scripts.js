@@ -40,6 +40,9 @@ $(document).ready(function() {
                 }
             }
         });
+        getGlobalStats(function(err, data) {
+            createGlobalStats(data.globalStats);
+        });
     }, updateInterval);
 
     // Users management
@@ -112,60 +115,8 @@ $(document).ready(function() {
         e.stopPropagation();
     });
 
-    // Global stats
-    const donutOptions = {
-        width: '200px',
-        height: '200px',
-        donut: true,
-        donutWidth: 5,
-        startAngle: 230,
-        total: 140,
-        showLabel: false
-    };
     // globalStats is declared inline, in the Jade template
-    const percentageOfChecksUp = (globalStats.checksUp * 100) / globalStats.numberOfChecks;
-    new Chartist.Pie('.checks-up-donut',
-        {
-            series: [
-                {
-                    value: percentageOfChecksUp,
-                    className: 'primary-bar'
-                },
-                {
-                    value: 100 - percentageOfChecksUp,
-                    classname: 'secondary-bar'
-                }
-            ]
-        },
-        donutOptions
-    );
-    new Chartist.Pie('.availability-donut', {
-        series: [
-            {
-                value: globalStats.availabilitiesAvg,
-                className: 'primary-bar'
-            },
-            {
-                value: 100 - globalStats.availabilitiesAvg,
-                className: 'secondary-bar'
-            }
-        ]},
-        donutOptions
-    );
-    const lastErrorHour = globalStats.lastError.time ? moment(globalStats.lastError.time).format('HH:SS') : '-';
-    const lastErrorDay = globalStats.lastError.time ? moment(globalStats.lastError.time).format('DD/MM') : '-';
-    $('.last-error--hour').text(lastErrorHour);
-    $('.last-error--day').text(lastErrorDay);
-    new Chartist.Pie('.last-error-donut', {
-            series: [
-                {
-                    value: 100,
-                    className: 'primary-bar--nok'
-                }
-            ]
-        },
-        donutOptions
-    );
+    createGlobalStats(globalStats);
 
     // Table actions
     const tableBody = $('#checks tbody');

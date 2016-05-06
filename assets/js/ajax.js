@@ -54,6 +54,18 @@ var destroyCheck = function(checkId, callback) {
         error: function(err) { callback(err, null); },
     });
 };
+// Get globalStats
+var getGlobalStats = function(callback) {
+    var url = window.location.origin + '/Check/show/';
+    $.ajax({
+        url: url,
+        method: 'GET',
+        beforeSend: function() {},
+        complete: function() {},
+        success: function(data) { callback(null, data); },
+        error: function(err) { callback(err, null); },
+    });
+};
 // Get user's global stats and checks
 var getAllStats = function(callback) {
     var url = window.location.origin + '/Check/getallstats/';
