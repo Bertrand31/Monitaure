@@ -24,7 +24,6 @@
 @import 'pages/pages.errors';
 
 // Layout
-@import 'includes/neat/neat';
 @import 'layout/base';
 @media screen and (min-width:481px) { @import 'layout/481'; }
 @media screen and (min-width:768px) { @import 'layout/768'; }
