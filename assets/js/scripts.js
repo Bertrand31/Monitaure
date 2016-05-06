@@ -27,8 +27,7 @@ $(document).ready(function() {
     };
 
     // Automatic data pulling and udpate
-    const updateInterval = 2 * 60 * 1000; // 2mn
-    // Every `updateInterval`, we pull updated data and send it to processData
+    const updateInterval = 1 * 60 * 1000; // 1mn
     setInterval(function() {
         getAllStats(function(err, data) {
             if (err) {
