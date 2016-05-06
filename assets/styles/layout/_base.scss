@@ -6,6 +6,7 @@ html,body {
     width:100%;
     display: flex;
     justify-content: center;
+    flex-direction:column;
 }
 .main {
     width:100%;
@@ -23,6 +24,10 @@ html,body {
     button {
         margin:0 1em 0 0;
     }
+}
+.global-data {
+    display:flex;
+    flex-direction:column;
 }
 .top-data {
     width:100%;

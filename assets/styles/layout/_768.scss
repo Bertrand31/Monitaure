@@ -1,4 +1,5 @@
 #main-container {
+    flex-direction:row;
 }
 .aside {
     width:265px;
@@ -6,12 +7,16 @@
     position:fixed;
     top:0;
     padding:2em 2.5em 0 2em;
+    justify-content:space-between;
 }
 .main {
     &.dashboard {
         width:calc(100% - 265px);
         margin-left:auto;
     }
+}
+.global-data {
+    flex-direction:row;
 }
 #chart-container {
     .main-chart {
