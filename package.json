@@ -17,7 +17,7 @@
         "Jade"
     ],
     "dependencies": {
-        "async": "^2.0.0-rc.3",
+        "async": "^2.0.0-rc.4",
         "bcrypt": "^0.8.6",
         "connect-redis": "3.0.2",
         "crypto": "0.0.3",
@@ -35,7 +35,7 @@
         "grunt-sync": "0.5.2",
         "include-all": "~0.1.6",
         "jade": "^1.11.0",
-        "newrelic": "^1.27.1",
+        "newrelic": "^1.27.2",
         "nodemailer": "^2.3.2",
         "nodemailer-sendgrid-transport": "^0.2.0",
         "passport": "^0.3.2",
