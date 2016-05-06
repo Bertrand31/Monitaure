@@ -24,3 +24,10 @@
         position:relative;
     }
 }
+table {
+    th,td {
+        &:nth-child(3) {
+            display:table-cell;
+        }
+    }
+}

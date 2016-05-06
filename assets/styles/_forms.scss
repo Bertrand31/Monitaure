@@ -161,6 +161,7 @@ input[type="submit"], .button {
 	padding: 1em 4em;
 	width:100%;
 	max-width:460px;
+    box-sizing:border-box;
 	align-self: center;
 	text: {
 		align:center;

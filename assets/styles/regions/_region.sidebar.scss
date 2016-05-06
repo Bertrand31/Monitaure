@@ -3,10 +3,7 @@
 }
 .aside {
     background:$light;
-    position:relative;
     box-shadow:0 0 60px 0 rgba(0,0,0,.4);
-    display:flex;
-    flex-direction:column;
     nav {
         padding:1em 0;
         font: 1.2em $roboto;
@@ -15,24 +12,27 @@
             border:0;
         }
         li {
-            padding:1em 0;
-            position:relative;
-            &:before {
-                content:"";
-                display:block;
-                position:absolute;
-                top:calc(50% - .7em);
-                left:calc(-2em + 7px);
-                height:1.4em;
-                width:3px;
-                background:$info;
-                opacity:0;
-                @include transition(all .4s ease-in-out);
-            }
-            &.active,&:hover {
+            a {
+                position:relative;
                 &:before {
-                    opacity:1;
+                    content:"";
+                    display:block;
+                    position:absolute;
+                    top:calc(50% - .7em);
+                    left:calc(-2em + 7px);
+                    height:1.4em;
+                    width:3px;
+                    background:$info;
+                    opacity:0;
+                    @include transition(all .4s ease-in-out);
                 }
+                &.active,&:hover {
+                    &:before {
+                        opacity:1;
+                    }
+                }
+                padding:1em 0;
+                display:block;
             }
         }
     }
