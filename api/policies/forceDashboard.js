@@ -1,7 +1,6 @@
 module.exports = function(req, res, next) {
     if (req.user) {
-        return res.redirect('/dashboard');
+        return res.redirect('/');
     }
-
     return next();
 };

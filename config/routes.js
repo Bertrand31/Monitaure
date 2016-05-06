@@ -28,10 +28,7 @@ module.exports.routes = {
      *                                                                          *
     ***************************************************************************/
 
-    '/': [
-        { policy: 'forceDashboard' },
-        { view: 'homepage' }
-    ],
+    '/': 'CheckController.show',
 
     'get /signup': [
         { policy: 'forceDashboard' },
@@ -47,8 +44,6 @@ module.exports.routes = {
     'post /login': 'AuthController.login',
 
     '/logout': 'AuthController.logout',
-
-    'get /dashboard': 'Check.show',
 
     'get /500': {
         view: '500'

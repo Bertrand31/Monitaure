@@ -30,6 +30,10 @@ module.exports.policies = {
         'isAuthenticated'
     ],
 
+    'CheckController': {
+        'show': true
+    },
+
     'UserController': {
         'create': true
     },

@@ -1,13 +1,21 @@
 module.exports = {
 
     show: function (req, res) {
-        CheckManagement.getUserAndChecksData(req.user.id, function(err, data) {
-            if (err) {
-                return res.serverError(err);
-            } else {
-                return res.view({ data });
-            }
-        });
+        if (req.user) {
+            CheckManagement.getUserAndChecksData(req.user.id, function(err, data) {
+                if (err) {
+                    return res.serverError(err);
+                } else {
+                    if (req.wantsJSON) {
+                        return res.json(data);
+                    } else {
+                        return res.view({ data });
+                    }
+                }
+            });
+        } else {
+            return res.view('homepage');
+        }
     },
 
     showsimple: function (req, res) {
