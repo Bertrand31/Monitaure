@@ -41,7 +41,7 @@ module.exports = {
             from: sails.config.emailAddress,
             to: user.email,
             subject: `Monitaure account confirmation`,
-            text: `Please copy and paste this URL into your browser to activate your account : ${sails.config.baseUrl}/account/confirm/${user.confirmationToken}`
+            html: `To confirm your email address and activate your Monitaure account, <a href="${sails.config.baseUrl}/account/confirm/${user.confirmationToken}">click here</a>.<br/>If your did not try to create such account, please ignore this email.`
         };
         emailClient.sendMail(email, function(err) {
             if (err) {
