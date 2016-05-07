@@ -42,7 +42,7 @@ module.exports.routes = {
         { view: 'login' }
     ],
     'post /login': 'AuthController.login',
-    'get /confirm-account/:id': 'UserController.confirm',
+    'get /account/confirm/:id': 'UserController.confirm',
 
     '/logout': 'AuthController.logout',
 

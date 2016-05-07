@@ -68,7 +68,8 @@ $(document).ready(function() {
                 }
                 createPopin('alert', errorMsg);
             } else {
-                createPopin('info', 'User ' + data.user.email + ' successfully created');
+                $('.signup-block').slideUp();
+                $('.confirmation-block>p').text('A confirmation email has just been sent to ' + data.user.email + '.').slideDown();
             }
 
         });

@@ -34,7 +34,7 @@ module.exports = {
             } else {
                 //TODO
                 //Retourner page de succès avec lien pour se connecter
-                return res.json(200, {updated});
+                return res.render('confirmed');
             }
         });
     }

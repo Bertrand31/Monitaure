@@ -38,11 +38,6 @@ form {
 		}
 	}
 }
-.form-title {
-	color: $dark;
-	font-weight: 200;
-	margin: 1em 0 4em;
-}
 fieldset {
 	border:0;
 	text-align:left;
@@ -154,18 +149,10 @@ input[type="submit"], .button {
 .button-huge {
 	font-size:2.4em;
 }
-.form-wrapper {
+.centered-box {
 	@extend %box;
 	position:relative;
-	margin:.8em 0;
-	padding: 1em 4em;
 	width:100%;
 	max-width:460px;
-    box-sizing:border-box;
 	align-self: center;
-	text: {
-		align:center;
-		transform: uppercase;
-	}
-	font-weight: 600;
 }
