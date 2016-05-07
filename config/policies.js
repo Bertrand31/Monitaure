@@ -35,7 +35,8 @@ module.exports.policies = {
     },
 
     'UserController': {
-        'create': true
+        'create': true,
+        'confirm': true
     },
 
     'AuthController': {

@@ -23,7 +23,9 @@ passport.use(new LocalStrategy({
 
 			if (!user) {
 				return done(null, false, { message: 'Incorrect username.' });
-			}
+			} else if (!user.confirmedAccount) {
+                return done(null, false, { message: 'Account not confirmed yet. Check your emails.' });
+            }
 
 			bcrypt.compare(password, user.password, function (err, res) {
                 if (err) throw err;

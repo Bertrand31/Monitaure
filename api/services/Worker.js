@@ -47,7 +47,7 @@ let pingHandling = function(ping) {
         if (!ping.open && lastCheckHistory.time !== null) {
             User.findOne({id: ping.checkOwner}).exec(function(err, user) {
                 if (err) sails.log.error(err);
-                Notifications.sendDownAlert(user.email, ping.checkName);
+                Messages.sendDownAlert(user.email, ping.checkName);
             });
         }
         // If the check is up and was down last time we checked
@@ -63,7 +63,7 @@ let pingHandling = function(ping) {
                     i--;
                 }
 
-                Notifications.sendUpAlert(user.email, ping.checkName, downtime);
+                Messages.sendUpAlert(user.email, ping.checkName, downtime);
             });
         }
     }

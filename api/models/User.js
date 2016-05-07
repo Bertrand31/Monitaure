@@ -29,6 +29,15 @@ module.exports = {
             type: 'string'
         },
 
+        confirmationToken: {
+            type: 'string'
+        },
+
+        confirmedAccount: {
+            type: 'boolean',
+            defaultsTo: false
+        },
+
         password: {
             type: 'string',
             minLength: 6,
@@ -47,9 +56,12 @@ module.exports = {
         }
 
     },
+
     beforeCreate: function(user, cb) {
 
         user.emailHash = crypto.createHash('md5').update(user.email).digest('hex');
+
+        user.confirmationToken = crypto.randomBytes(16).toString('hex');
 
         bcrypt.genSalt(10, function(err, salt) {
             if (err) {

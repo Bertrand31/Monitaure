@@ -14,11 +14,27 @@ module.exports = {
         User.create(req.body).exec(function (err, user) {
             if (err) {
                 return res.json(err.status, err);
+            } else if (user) {
+                Messages.sendConfirmationEmail(user, function(err) {
+                    if (err) {
+                        sails.log.error(err);
+                    } else {
+                        res.json(200, {user});
+                    }
+                });
             }
+        });
+    },
 
-            // If user created successfuly we return user
-            if (user) {
-                res.json(200, {user: user});
+    confirm: function (req, res) {
+        User.update({ confirmationToken: req.param('id') }, {confirmedAccount: true}).exec(function(err, updated) {
+            if (err) {
+                //TODO
+                //Retourner page d'erreur: token invalide
+            } else {
+                //TODO
+                //Retourner page de succès avec lien pour se connecter
+                return res.json(200, {updated});
             }
         });
     }

@@ -34,5 +34,21 @@ module.exports = {
         emailClient.sendMail(email, function(err) {
             if (err) sails.log.error(err);
         });
+    },
+
+    sendConfirmationEmail: function(user, callback) {
+        let email = {
+            from: sails.config.emailAddress,
+            to: user.email,
+            subject: `Monitaure account confirmation`,
+            text: `Please copy and paste this URL into your browser to activate your account : ${sails.config.baseUrl}/confirm-account/${user.confirmationToken}`
+        };
+        emailClient.sendMail(email, function(err) {
+            if (err) {
+                return callback(err);
+            } else {
+                return callback();
+            }
+        });
     }
 };
