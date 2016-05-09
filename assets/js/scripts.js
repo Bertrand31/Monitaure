@@ -115,7 +115,7 @@ $(document).ready(function() {
     $('.fullscreen-wrapper').click(function() {
         closeFullscreen($(this));
     });
-    $('.form-wrapper').click(function(e) {
+    $('.fullscreen-wrapper').find('.centered-box').click(function(e) {
         e.stopPropagation();
     });
 

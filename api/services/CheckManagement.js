@@ -183,7 +183,7 @@ module.exports = {
                 checkInterval = sails.config.checkInterval,
                 lastOutage = null;
 
-            for (let i=0; i<historyArray.length; i++) {
+            for (let i = 0; i < historyArray.length; i++) {
                 if (historyArray[i].time !== null) {
                     sum += historyArray[i].time;
                     min = historyArray[i].time < min ? historyArray[i].time : min;
@@ -198,7 +198,7 @@ module.exports = {
             let percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
             let availability = Utilities.customFloor(percent, 2);
 
-            let historyShort = historyArray.splice(historyArray.length - historyLength, historyLength);
+            let historyShort = historyArray.slice(-historyLength);
 
             return {
                 name: check.name,
