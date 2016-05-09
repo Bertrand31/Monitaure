@@ -31,7 +31,7 @@ $(document).ready(function() {
     setInterval(function() {
         getAllStats(function(err, data) {
             if (err) {
-                createPopin('alert', err.responseJSON);
+                createPopin('alert', err.responseText);
             } else {
                 processData(data);
                 if (currentChartId !== null) {
@@ -41,7 +41,7 @@ $(document).ready(function() {
         });
         getGlobalStats(function(err, data) {
             if (err) {
-                createPopin('alert', err.responseJSON);
+                createPopin('alert', err.responseText);
             } else {
                 createGlobalStats(data.globalStats);
             }
@@ -61,7 +61,7 @@ $(document).ready(function() {
                             errorMsg = $('#signup #'+invalidAttr).attr('data-error');
                         }
                     }
-                } else if (err.responseJSON === 'passwords-mismatch') {
+                } else if (err.responseText === 'passwords-mismatch') {
                     errorMsg = $('#signup #confirmPassword').attr('data-error');
                 } else {
                     errorMsg = err.statusText;
@@ -105,7 +105,7 @@ $(document).ready(function() {
         e.preventDefault();
         updateCheck($(this), function(err, data) {
             if (err) {
-                createPopin('alert', err);
+                createPopin('alert', err.responseText);
             } else {
                 $('#checks').find('tr#' + data.id + ' .name').text(data.name);
             }
@@ -146,7 +146,7 @@ $(document).ready(function() {
         const form = $('#check-update-form').find('form#check-update');
         showSimple(checkId, function(err, data) {
             if (err) {
-                createPopin('alert', err.responseJSON);
+                createPopin('alert', err.responseText);
             } else {
                 form.find('#update-checkId').attr('value', checkId);
                 form.find('#update-name').attr('value', data.name);
