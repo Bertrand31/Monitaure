@@ -26,13 +26,13 @@
                     opacity:0;
                     @include transition(all .4s ease-in-out);
                 }
-                &.active,&:hover {
-                    &:before {
-                        opacity:1;
-                    }
-                }
                 padding:1em 0;
                 display:block;
+            }
+            &.active a, a:hover {
+                &:before {
+                    opacity:1;
+                }
             }
         }
     }

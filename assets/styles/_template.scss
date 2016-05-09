@@ -2,9 +2,6 @@ body {
     background:$dark;
 }
 %box {
-    box-sizing:border-box;
-	margin:.8em 0;
-	padding: 1em 4em;
     background:#fff;
     border-radius:5px;
     box-shadow:0 0 15px 0 rgba(#000, .5);
@@ -16,7 +13,7 @@ body {
     h2 {
         color:$dark;
         font-weight:200;
-        margin:1em 0 4em;
+        margin:1em 0 1.5em;
         line-height:1.2em;
     }
 }

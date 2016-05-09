@@ -1,3 +1,15 @@
+%box {
+    box-sizing:border-box;
+    padding:1em;
+	margin:.8em 2.5%;
+}
+.centered-box {
+	@extend %box;
+    max-width:95%;
+	position:relative;
+	width:460px;
+	align-self: center;
+}
 html,body {
     height:100%;
 }
@@ -28,7 +40,7 @@ html,body {
     padding:2em 0;
 }
 .top-buttons {
-    text-align:right;
+    text-align:center;
     button {
         margin:0 1em 0 0;
     }
@@ -38,7 +50,7 @@ html,body {
     flex-direction:column;
     align-items:center;
     .global-data-block {
-        margin:2em 0;
+        margin:1em 0;
     }
 }
 .top-data {
@@ -83,9 +95,16 @@ html,body {
     }
 }
 table {
+    th:first-child {
+        text-indent:-9999px;
+    }
     th,td {
-        &:nth-child(3) {
+        &:nth-child(3),
+        &:nth-child(4) {
             display:none;
         }
     }
+}
+.background-video {
+    display:none;
 }

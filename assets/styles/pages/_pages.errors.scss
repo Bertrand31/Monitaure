@@ -1,29 +1,17 @@
 .page-error#main-container {
     display:flex;
     align-items:center;
+    height:100%;
     background:transparent center bottom no-repeat;
     background-size:cover;
     overflow-x:hidden;
     &.page-404 {
         background-image:url('/images/404.svg');
     }
-    .background-video {
-		position:fixed;
-		top:50%;
-		left:50%;
-		min-width:100%;
-		min-height:100%;
-		width:auto;
-		height:auto;
-        @include transform(translateX(-50%) translateY(-50%));
-    }
     .content {
-        font-size:2em;
-        z-index:1;
+        font-size:1.2em;
         text-align:center;
         color:$lightwhite;
-        margin-left:auto;
-        margin-right:15%;
         h1 {
             font-size:5em;
             line-height:1em;

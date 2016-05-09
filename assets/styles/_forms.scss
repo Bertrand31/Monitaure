@@ -1,7 +1,7 @@
 %button {
 	@include appearance(none);
 	border:0;
-	margin:3em 0 1.5em;
+	margin:1.5em 0;
 	padding:.8em 2.4em;
 	@include background(linear-gradient(left, $lightgreen, $darkgreen));
 	color:#fff;
@@ -148,11 +148,4 @@ input[type="submit"], .button {
 }
 .button-huge {
 	font-size:2.4em;
-}
-.centered-box {
-	@extend %box;
-	position:relative;
-	width:100%;
-	max-width:460px;
-	align-self: center;
 }
