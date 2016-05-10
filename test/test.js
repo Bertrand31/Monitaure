@@ -16,42 +16,60 @@ before(function(done) {
 });
 
 
-let userId;
-
 describe('UserManagement', function() {
     describe('#create', function() {
-        const userData = {
-            username: 'test',
-            email: 'bertrandjun@gmail.com',
-            password: 'testtest',
-            confirmPassword: 'testtest'
-        };
-        it('should create an user', function(done) {
+        let user,
+            check;
+
+        step('should create an user', function(done) {
+            const userData = {
+                username: 'test',
+                email: 'bertrandjun@gmail.com',
+                password: 'testtest',
+                confirmPassword: 'testtest'
+            };
             UserManagement.createUser(userData, function(err, createdUser) {
                 assert.isNull(err, 'did not throw an error');
                 assert.isObject(createdUser, 'return an user');
-                userId = createdUser.id;
+                user = createdUser;
                 done();
             });
         });
-    });
-});
-describe('CheckManagement', function() {
-    describe('#createCheck()', function() {
-        const checkData = {
-            name: 'HTTP @ Google',
-            domainNameOrIP: 'google.fr',
-            port: '80',
-            emailNotifications: 'true',
-            owner: userId
-        };
-        it('should create a check', function(done) {
-            CheckManagement.createCheck(userId, checkData, function(err, created) {
+        step('should create a check', function(done) {
+            const checkData = {
+                name: 'HTTP @ Google',
+                domainNameOrIP: 'google.fr',
+                port: '80',
+                emailNotifications: true,
+                owner: user.id
+            };
+            CheckManagement.createCheck(user.id, checkData, function(err, created) {
                 assert.isNull(err, 'did not throw an error');
                 assert.isObject(created, 'created a check');
+                check = created;
                 done();
             });
         });
+        step('should update the created check', function(done) {
+            const data = {
+                name: 'HTTP @ Google',
+                emailNotifications: false,
+            };
+            CheckManagement.updateCheck(user.id, check.id, data, function(err, updated) {
+                assert.isNull(err, 'did not throw an error');
+                assert.isArray(updated, 'updated the check');
+                done();
+            });
+        });
+        step('should destroy the created check', function(done) {
+            CheckManagement.destroyCheck(user.id, check.id, function(err, destroyed) {
+                assert.isNull(err, 'did not throw an error');
+                assert.isArray(destroyed, 'updated the check');
+                done();
+            });
+        });
+        // step('should delete the created account', function(done) {
+        // });
     });
 });
 
