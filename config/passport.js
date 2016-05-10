@@ -1,6 +1,6 @@
-var passport = require('passport'),
-	LocalStrategy = require('passport-local').Strategy,
-	bcrypt = require('bcrypt');
+const passport = require('passport'),
+	  LocalStrategy = require('passport-local').Strategy,
+	  bcrypt = require('bcrypt');
 
 passport.serializeUser(function(user, callback) {
 	return callback(null, user.id);
@@ -8,6 +8,8 @@ passport.serializeUser(function(user, callback) {
 
 passport.deserializeUser(function(id, callback) {
 	User.findOne({ id: id }, function (err, user) {
+        if (err) return sails.log.error(err);
+
         if (!user) {
             return callback(null, false);
         } else {
@@ -37,7 +39,7 @@ passport.use(new LocalStrategy({
 					return callback(null, false, {
 						message: 'Invalid Password'
 					});
-				var returnUser = {
+				const returnUser = {
                     username: username,
 					email: user.email,
 					createdAt: user.createdAt,

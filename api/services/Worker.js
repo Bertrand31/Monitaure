@@ -16,7 +16,7 @@ const checkPort = function(check, callback) {
         date: dateStart
     };
 
-    let connection = net.connect(check.port, check.domainNameOrIP, function() {
+    const connection = net.connect(check.port, check.domainNameOrIP, function() {
         callbackObject.open = true;
         callbackObject.duration = Date.now() - timeStart;
         connection.destroy();
@@ -38,7 +38,7 @@ const checkPort = function(check, callback) {
 
 const pingHandling = function(ping) {
     CheckManagement.insertHistory(ping, function(err) {
-        if (err) sails.log.error(err);
+        if (err) return sails.log.error(err);
     });
 
     const lastCheckHistory = ping.checkHistory[ping.checkHistory.length -1] || null;
@@ -47,14 +47,14 @@ const pingHandling = function(ping) {
     if (ping.checkEmailNotifications && lastCheckHistory !== null) {
         // If the check is down and wasn't last time we checked
         if (!ping.open && lastCheckHistory.time !== null) {
-            User.findOne({id: ping.checkOwner}).exec(function(err, user) {
+            User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
                 if (err) sails.log.error(err);
                 Messages.sendDownAlert(user.email, ping.checkName);
             });
         }
         // If the check is up and was down last time we checked
         else if (ping.open && lastCheckHistory.time === null) {
-            User.findOne({id: ping.checkOwner}).exec(function(err, user) {
+            User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
                 if (err) sails.log.error(err);
 
                 let downtime = 0,

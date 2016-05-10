@@ -10,8 +10,7 @@ module.exports = {
             // We test the number of checks this user has against the limit
             if (user.checks.length >= sails.config.checksNbLimit) {
                 return callback('You reached the limit of ten checks per user');
-            } else if (!domainNameRegex.test(checkData.domainNameOrIP) &&
-                       !ipAddressRegex.test(checkData.domainNameOrIP)) {
+            } else if (!domainNameRegex.test(checkData.domainNameOrIP) && !ipAddressRegex.test(checkData.domainNameOrIP)) {
                 return callback('Incorrect domain name or IP address');
             } else if (!checkData.name || !checkData.port) {
                 return callback('Incorrect attributes');
@@ -85,7 +84,7 @@ module.exports = {
             } else if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                let checkStats = CheckManagement.checkStats(check, 20);
+                const checkStats = CheckManagement.checkStats(check, 20);
                 if (!checkStats) {
                     return callback('No data yet!');
                 } else {
@@ -96,7 +95,7 @@ module.exports = {
     },
 
     getCheckMinimalData: function(userId, checkId, callback) {
-        Check.findOne({id: checkId}).exec(function (err, check) {
+        Check.findOne({ id: checkId }).exec(function (err, check) {
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
@@ -112,7 +111,7 @@ module.exports = {
     },
 
     getUserAndChecksData: function(userId, callback) {
-        User.findOne({id: userId}).populate('checks').exec(function (err, user) {
+        User.findOne({ id: userId }).populate('checks').exec(function (err, user) {
 
             let lastError = {
                     time: null,
