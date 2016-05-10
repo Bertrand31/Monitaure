@@ -7,22 +7,11 @@
 
 module.exports = {
     create: function (req, res) {
-        if (req.body.password !== req.body.confirmPassword) {
-            return res.json(400, 'passwords-mismatch');
-        }
-        delete req.body.confirmPassword;
-        User.create(req.body).exec(function (err, user) {
-            if (err) {
-                return res.json(err.status, err);
-            } else if (user) {
-                Messages.sendConfirmationEmail(user, function(err) {
-                    if (err) {
-                        sails.log.error(err);
-                    } else {
-                        res.json(200, { user });
-                    }
-                });
-            }
+        UserManagement.createUser(req.body, function(err, createdUser) {
+            if (err) return res.json(err);
+
+            console.log(createdUser);
+            return res.json(200, { createdUser });
         });
     },
 
