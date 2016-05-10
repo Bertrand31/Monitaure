@@ -1,11 +1,11 @@
-var async = require('async');
-var net = require('net');
+const async = require('async');
+const net = require('net');
 
-let checkPort = function(check, callback) {
+const checkPort = function(check, callback) {
     const dateStart = new Date();
     const timeStart = Date.now();
 
-    let callbackObject = {
+    const callbackObject = {
         checkId: check.id,
         checkName: check.name,
         checkEmailNotifications: check.emailNotifications,
@@ -36,10 +36,12 @@ let checkPort = function(check, callback) {
     }, sails.config.checkTimeout);
 };
 
-let pingHandling = function(ping) {
-    CheckManagement.insertHistory(ping);
+const pingHandling = function(ping) {
+    CheckManagement.insertHistory(ping, function(err) {
+        if (err) sails.log.error(err);
+    });
 
-    let lastCheckHistory = ping.checkHistory[ping.checkHistory.length -1] || null;
+    const lastCheckHistory = ping.checkHistory[ping.checkHistory.length -1] || null;
     // If email notifications are activated for this check and
     // this isn't the first time we ping it
     if (ping.checkEmailNotifications && lastCheckHistory !== null) {
@@ -74,7 +76,7 @@ module.exports = function () {
         Check.find().exec(function(err, checks) {
             if (err) throw err;
 
-            let asyncChecks = [];
+            const asyncChecks = [];
 
             checks.forEach(function(check) {
                 asyncChecks.push(function(callback) {

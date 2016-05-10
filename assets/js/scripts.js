@@ -86,15 +86,15 @@ $(document).ready(function() {
                 createPopin('alert', err.responseText);
             } else {
                 $('#checks>tbody').append(
-                    `<tr id="${data.id}">
-                        <td class="status" data-health="waiting"></td>
-                        <td>${data.name}</td>
-                        <td>${data.domainNameOrIP}</td>
-                        <td>${data.port}</td>
-                        <td class="response-time">-</td>
-                        <td class="settings"><button class="settings-check"></button></td>
-                        <td class="destroy"><button class="destroy-check"></button></td>
-                    </tr>`
+                    '<tr id="' + data.id + '">' +
+                        '<td class="status" data-health="waiting"></td>' +
+                        '<td>' + data.name + '</td>' +
+                        '<td>' + data.domainNameOrIP + '</td>' +
+                        '<td>' + data.port + '</td>' +
+                        '<td class="response-time">-</td>' +
+                        '<td class="settings"><button class="settings-check"></button></td>' +
+                        '<td class="destroy"><button class="destroy-check"></button></td>' +
+                    '</tr>'
                 );
             }
         });

@@ -5,8 +5,8 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-var bcrypt = require('bcrypt'),
-    crypto = require('crypto');
+const bcrypt = require('bcrypt'),
+      crypto = require('crypto');
 
 module.exports = {
 
@@ -45,7 +45,7 @@ module.exports = {
         },
 
         toJSON: function() {
-            let obj = this.toObject();
+            const obj = this.toObject();
             delete obj.password;
             return obj;
         },
@@ -57,7 +57,7 @@ module.exports = {
 
     },
 
-    beforeCreate: function(user, cb) {
+    beforeCreate: function(user, callback) {
 
         user.emailHash = crypto.createHash('md5').update(user.email).digest('hex');
 
@@ -66,18 +66,18 @@ module.exports = {
         bcrypt.genSalt(10, function(err, salt) {
             if (err) {
                 sails.log.eror(err);
-                return cb(err);
-            } else {
-                bcrypt.hash(user.password, salt, function(err, hash) {
-                    if (err) {
-                        sails.log.error(err);
-                        return cb(err);
-                    } else {
-                        user.password = hash;
-                        return cb();
-                    }
-                });
+                return callback(err);
             }
+
+            bcrypt.hash(user.password, salt, function(err, hash) {
+                if (err) {
+                    sails.log.error(err);
+                    return callback(err);
+                } else {
+                    user.password = hash;
+                    return callback();
+                }
+            });
         });
     }
 };

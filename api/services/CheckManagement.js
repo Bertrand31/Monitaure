@@ -4,36 +4,33 @@ var domainNameRegex = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-z
 module.exports = {
 
     createCheck: function(userId, checkData, callback) {
-        User.findOne({id: userId}).populate('checks').exec(function (err, user) {
-            if (err) {
-                return callback(err);
+        User.findOne({ id: userId }).populate('checks').exec(function (err, user) {
+            if (err) return callback(err);
+
+            // We test the number of checks this user has against the limit
+            if (user.checks.length >= sails.config.checksNbLimit) {
+                return callback('You reached the limit of ten checks per user');
+            } else if (!domainNameRegex.test(checkData.domainNameOrIP) &&
+                       !ipAddressRegex.test(checkData.domainNameOrIP)) {
+                return callback('Incorrect domain name or IP address');
+            } else if (!checkData.name || !checkData.port) {
+                return callback('Incorrect attributes');
             } else {
-                // We test the number of checks this user has against the limit
-                if (user.checks.length >= sails.config.checksNbLimit) {
-                    return callback('You reached the limit of ten checks per user');
-                } else {
-                    if (!domainNameRegex.test(checkData.domainNameOrIP) && !ipAddressRegex.test(checkData.domainNameOrIP)) {
-                        return callback('Incorrect domain name or IP address');
-                    } else if (!checkData.name || !checkData.port) {
-                        return callback('Incorrect attributes');
-                    } else {
-                        Check.create(checkData).exec(function (err, created) {
-                            return callback(err, created);
-                        });
-                    }
-                }
+                Check.create(checkData).exec(function (err, created) {
+                    return callback(err, created);
+                });
             }
         });
     },
 
     updateCheck: function(userId, checkId, data, callback) {
-        Check.findOne({id: checkId}).exec(function (err, check) {
-            if (err) {
-                return callback(err);
-            } else if (check.owner !== userId) {
+        Check.findOne({ id: checkId }).exec(function (err, check) {
+            if (err) return callback(err);
+
+            if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                Check.update({id: checkId}, data).exec(function (err, updated) {
+                Check.update({ id: checkId }, data).exec(function (err, updated) {
                     return callback(err, updated);
                 });
             }
@@ -41,10 +38,10 @@ module.exports = {
     },
 
     destroyCheck: function(userId, checkId, callback) {
-        Check.findOne({id: checkId}).exec(function (err, check) {
-            if (err) {
-                return callback(err);
-            } else if (check.owner !== userId) {
+        Check.findOne({ id: checkId }).exec(function (err, check) {
+            if (err) return callback(err);
+
+            if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
                 Check.destroy(checkId).exec(function (err, destroyed) {
@@ -55,12 +52,12 @@ module.exports = {
     },
 
     insertHistory: function(ping) {
-        Check.findOne({id: ping.checkId}).exec(function (err, check) {
-            if (err) return sails.log.error(err);
+        Check.findOne({ id: ping.checkId }).exec(function (err, check, callback) {
+            if (err) return callback(err);
 
             let newHistoryArray = check.history;
 
-            let oneMonthAgo = new Date();
+            const oneMonthAgo = new Date();
             oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
             // If the first value of the array is older than a month, we remove it
@@ -71,18 +68,18 @@ module.exports = {
                 }
             }
 
-            newHistoryArray.push({date: ping.date, time: ping.open ? ping.duration : null});
+            newHistoryArray.push({ date: ping.date, time: ping.open ? ping.duration : null });
 
             // And update the DB record
-            Check.update({id: check.id}, {history: newHistoryArray}).exec(function(err) {
-                if (err) throw err;
+            Check.update({ id: check.id }, { history: newHistoryArray }).exec(function(err) {
+                if (err) sails.log.error(err);
             });
 
         });
     },
 
     getData: function(userId, checkId, callback) {
-        Check.findOne({id: checkId}).exec(function (err, check) {
+        Check.findOne({ id: checkId }).exec(function (err, check) {
             if (err) {
                 return callback(err);
             } else if (check.owner !== userId) {
@@ -127,7 +124,7 @@ module.exports = {
 
             for (let i = 0; i < user.checks.length; i++) {
 
-                let checkStats = CheckManagement.checkStats(user.checks[i], 1);
+                const checkStats = CheckManagement.checkStats(user.checks[i], 1);
                 // If `err` the check's history array is empty: we have no data to process
                 if (checkStats) {
                     // If current check is currently up, we add increment checksUp array
@@ -149,16 +146,16 @@ module.exports = {
             }
 
             // Calculate the average of all the checks availabilities
-            let availabilitiesAvg = Utilities.customFloor(availabilitiesSum / numberOfChecks, 2);
+            const availabilitiesAvg = Utilities.customFloor(availabilitiesSum / numberOfChecks, 2);
 
             // Object containing the user information and its checks
-            let userData = {
+            const userData = {
                 userName: user.username,
                 userEmailMD5: user.emailHash,
                 checks: user.checks
             };
             // Object containing all previously computed stats
-            let globalStats = {
+            const globalStats = {
                 numberOfChecks,
                 checksUp,
                 availabilitiesAvg,
@@ -173,7 +170,7 @@ module.exports = {
     },
 
     checkStats: function(check, historyLength) {
-        let historyArray = check.history;
+        const historyArray = check.history;
         if (historyArray.length > 0) {
             let sum = 0,
                 min = historyArray[0].time,
@@ -195,10 +192,10 @@ module.exports = {
             }
             avg = Math.round(sum / historyArray.length);
 
-            let percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
-            let availability = Utilities.customFloor(percent, 2);
+            const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
+            const availability = Utilities.customFloor(percent, 2);
 
-            let historyShort = historyArray.slice(-historyLength);
+            const historyShort = historyArray.slice(-historyLength);
 
             return {
                 name: check.name,

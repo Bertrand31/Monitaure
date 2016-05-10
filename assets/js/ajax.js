@@ -3,8 +3,8 @@
 *********/
 
 // Insert a check into the DB
-var addCheck = function(form, callback) {
-    var url = window.location.origin + '/Check/create';
+const addCheck = function(form, callback) {
+    const url = window.location.origin + '/Check/create';
     $.ajax({
         url: url,
         method: form.attr('method'),
@@ -12,12 +12,12 @@ var addCheck = function(form, callback) {
         beforeSend: function() {},
         complete: function() {},
         success: function(data) { callback(null, data); },
-        error: function(err) { callback(err, null); },
+        error: function(err) { callback(err, null); }
     });
 };
 // Updates an existing check
-var updateCheck = function(form, callback) {
-    var url = window.location.origin + '/Check/update';
+const updateCheck = function(form, callback) {
+    const url = window.location.origin + '/Check/update';
     $.ajax({
         url: url,
         method: form.attr('method'),
@@ -25,74 +25,74 @@ var updateCheck = function(form, callback) {
         beforeSend: function() {},
         complete: function() {},
         success: function(data) { callback(null, data); },
-        error: function(err) { callback(err, null); },
+        error: function(err) { callback(err, null); }
     });
 };
 // Show minimal check data
-var showSimple = function(checkId, callback) {
-    var url = window.location.origin + '/Check/showsimple/'+checkId;
+const showSimple = function(checkId, callback) {
+    const url = window.location.origin + '/Check/showsimple/'+checkId;
     $.ajax({
         url: url,
         method: 'GET',
-        data: {checkId: checkId},
+        data: { checkId: checkId },
         beforeSend: function() {},
         complete: function() {},
         success: function(data) { callback(null, data); },
-        error: function(err) { callback(err, null); },
+        error: function(err) { callback(err, null); }
     });
 };
 // Deletes a check from the DB
-var destroyCheck = function(checkId, callback) {
-    var url = window.location.origin + '/Check/destroy';
+const destroyCheck = function(checkId, callback) {
+    const url = window.location.origin + '/Check/destroy';
     $.ajax({
         url: url,
         method: 'GET',
-        data: {checkId: checkId},
+        data: { checkId: checkId },
         beforeSend: function() {},
         complete: function() {},
         success: function(data) { callback(null, data); },
-        error: function(err) { callback(err, null); },
+        error: function(err) { callback(err, null); }
     });
 };
 // Get globalStats
-var getGlobalStats = function(callback) {
-    var url = window.location.origin + '/Check/show/';
+const getGlobalStats = function(callback) {
+    const url = window.location.origin + '/Check/show/';
     $.ajax({
         url: url,
         method: 'GET',
         beforeSend: function() {},
         complete: function() {},
         success: function(data) { callback(null, data); },
-        error: function(err) { callback(err, null); },
+        error: function(err) { callback(err, null); }
     });
 };
 // Get user's global stats and checks
-var getAllStats = function(callback) {
-    var url = window.location.origin + '/Check/getallstats/';
+const getAllStats = function(callback) {
+    const url = window.location.origin + '/Check/getallstats/';
     $.ajax({
         url: url,
         method: 'GET',
         beforeSend: function() {},
         complete: function() {},
         success: function(data) { callback(null, data); },
-        error: function(err) { callback(err, null); },
+        error: function(err) { callback(err, null); }
     });
 };
 // Get a check statistics
-var getCheckStats = function(checkId, callback) {
-    var url = window.location.origin + '/Check/getcheckstats/'+checkId;
+const getCheckStats = function(checkId, callback) {
+    const url = window.location.origin + '/Check/getcheckstats/'+checkId;
     $.ajax({
         url: url,
         method: 'GET',
         beforeSend: function() {},
         complete: function() {},
         success: function(data) { callback(null, data); },
-        error: function(err) { callback(err, null); },
+        error: function(err) { callback(err, null); }
     });
 };
 // Create user
-var createUser = function(form, callback) {
-    var url = window.location.origin + '/User/create/';
+const createUser = function(form, callback) {
+    const url = window.location.origin + '/User/create/';
     $.ajax({
         url: url,
         method: form.attr('method'),
@@ -100,6 +100,6 @@ var createUser = function(form, callback) {
         beforeSend: function() {},
         complete: function() {},
         success: function(data) { callback(null, data); },
-        error: function(err) { callback(err, null); },
+        error: function(err) { callback(err, null); }
     });
 };

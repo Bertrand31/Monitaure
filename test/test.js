@@ -1,6 +1,6 @@
-var sails = require('sails');
-var assert = require('assert');
-var request = require('supertest');
+const sails = require('sails');
+const assert = require('assert');
+const request = require('supertest');
 
 before(function(done) {
     // Increase the Mocha timeout so that Sails has enough time to lift.

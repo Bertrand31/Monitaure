@@ -19,7 +19,7 @@ module.exports = {
                     if (err) {
                         sails.log.error(err);
                     } else {
-                        res.json(200, {user});
+                        res.json(200, { user });
                     }
                 });
             }
@@ -27,7 +27,7 @@ module.exports = {
     },
 
     confirm: function (req, res) {
-        User.update({ confirmationToken: req.param('id') }, {confirmedAccount: true}).exec(function(err, updated) {
+        User.update({ confirmationToken: req.param('id') }, { confirmedAccount: true }).exec(function(err, updated) {
             if (err) {
                 //TODO
                 //Retourner page d'erreur: token invalide

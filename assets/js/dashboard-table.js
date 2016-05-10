@@ -2,7 +2,7 @@
  * TABLE *
  **********/
 
-var updateGlobalStats = function (data) {
+const updateGlobalStats = function (data) {
     const globalWrapper = $('.global-data');
     globalWrapper.find('.checks-up').text(data.checksUp);
     globalWrapper.find('.total-checks').text(data.numberOfChecks);
@@ -11,7 +11,7 @@ var updateGlobalStats = function (data) {
     globalWrapper.find('.last-error--time').text(data.lastError.time);
 };
 // Update table data
-var updateTableRows = function (data) {
+const updateTableRows = function (data) {
     var lastHistory = null,
         target = null;
     const table = $('#checks');
@@ -26,7 +26,7 @@ var updateTableRows = function (data) {
     }
 };
 // Trigger updateTableRow for each table row
-var processData = function(data) {
+const processData = function(data) {
     updateGlobalStats(data.globalStats);
     updateTableRows(data.userData.checks);
 };
