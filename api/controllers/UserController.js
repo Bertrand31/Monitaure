@@ -8,10 +8,9 @@
 module.exports = {
     create: function (req, res) {
         UserManagement.createUser(req.body, function(err, createdUser) {
-            if (err) return res.json(err);
+            if (err) return res.json(err.status, err);
 
-            console.log(createdUser);
-            return res.json(200, { createdUser });
+            return res.json(200, createdUser);
         });
     },
 

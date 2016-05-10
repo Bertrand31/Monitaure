@@ -51,7 +51,7 @@ $(document).ready(function() {
     // Users management
     $('#signup').on('submit', function(e) {
         e.preventDefault();
-        createUser($(this), function(err, data) {
+        createUser($(this), function(err, user) {
             if (err) {
                 var errorMsg = '';
                 if (err.responseJSON.hasOwnProperty('invalidAttributes')) {
@@ -69,9 +69,8 @@ $(document).ready(function() {
                 createPopin('alert', errorMsg);
             } else {
                 $('.signup-block').slideUp();
-                $('.confirmation-block>p').text('A confirmation email has just been sent to ' + data.user.email + '.').slideDown();
+                $('.confirmation-block>p').text('A confirmation email has just been sent to ' + user.email + '.').slideDown();
             }
-
         });
     });
 
