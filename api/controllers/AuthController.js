@@ -1,4 +1,4 @@
-var passport = require('passport');
+const passport = require('passport');
 
 module.exports = {
 
@@ -11,7 +11,7 @@ module.exports = {
     login: function(req, res) {
 
         passport.authenticate('local', function(err, user, info) {
-            if ((err) || (!user)) {
+            if (err || !user) {
                 return res.view('login', {
                     message: info.message,
                     user: user

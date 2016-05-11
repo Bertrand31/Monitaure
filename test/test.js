@@ -53,7 +53,7 @@ describe('UserManagement', function() {
         step('should update the created check', function(done) {
             const data = {
                 name: 'HTTP @ Google',
-                emailNotifications: false,
+                emailNotifications: false
             };
             CheckManagement.updateCheck(user.id, check.id, data, function(err, updated) {
                 assert.isNull(err, 'did not throw an error');

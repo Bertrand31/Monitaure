@@ -4,7 +4,7 @@ process.chdir(__dirname);
 
 // Ensure a "sails" can be located:
 (function() {
-    var newrelic = require('newrelic'),
+    let newrelic = require('newrelic'),
         sails;
     try {
         sails = require('sails');
@@ -20,7 +20,7 @@ process.chdir(__dirname);
     }
 
     // Try to get `rc` dependency
-    var rc;
+    let rc;
     try {
         rc = require('rc');
     } catch (e0) {

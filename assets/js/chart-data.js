@@ -3,7 +3,7 @@
  *********/
 
 // Create a chart and show stats for the request row
-var createChart = function(id, chartOptions) {
+const createChart = function(id, chartOptions) {
     getCheckStats(id, function(err, checkStats) {
         if (err) {
             createPopin('alert', err.responseText);
@@ -105,7 +105,7 @@ const donutOptions = {
     total: 140,
     showLabel: false
 };
-var createGlobalStats = function(globalStats) {
+const createGlobalStats = function(globalStats) {
     const percentageOfChecksUp = (globalStats.checksUp * 100) / globalStats.numberOfChecks;
     new Chartist.Pie('.checks-up-donut',
         {

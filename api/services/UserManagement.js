@@ -3,6 +3,7 @@ module.exports = {
         if (userData.password !== userData.confirmPassword) {
             return callback('passwords-mismatch');
         }
+
         delete userData.confirmPassword;
         User.create(userData).exec(function (err, user) {
             if (err) return callback(err);
