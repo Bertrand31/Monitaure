@@ -3,8 +3,14 @@ const domainNameRegex = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a
 
 module.exports = {
 
+    /**
+     * Creates a check in database and returns it
+     * @param {String} userId - the id of the user requesting this action
+     * @param {Object} checkData - the attributes of the check to create
+     * @param {Function} callback
+     */
     createCheck: function(userId, checkData, callback) {
-        User.findOne({ id: userId }).populate('checks').exec(function (err, user) {
+        DB.fetchAndPopulate('user', userId, 'checks', function(err, user) {
             if (err) return callback(err);
 
             // We test the number of checks this user has against the limit
@@ -15,43 +21,60 @@ module.exports = {
             } else if (!checkData.name || !checkData.port) {
                 return callback('Incorrect attributes');
             } else {
-                Check.create(checkData).exec(function (err, created) {
+                DB.create('check', checkData, function (err, created) {
                     return callback(err, created);
                 });
             }
         });
     },
 
+    /**
+     * Update a check's name and notifications preferences
+     * @param {String} userId - the id of the user requesting this action
+     * @param {String} checkId - the id of the check to update
+     * @param {Object} data - the attributes to update and their new contents
+     * @param {Function} callback
+     */
     updateCheck: function(userId, checkId, data, callback) {
-        Check.findOne({ id: checkId }).exec(function (err, check) {
+        DB.fetchOne('check', checkId, function (err, check) {
             if (err) return callback(err);
 
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                Check.update({ id: checkId }, data).exec(function (err, updated) {
+                DB.update('check', checkId, data, function (err, updated) {
                     return callback(err, updated);
                 });
             }
         });
     },
 
+    /**
+     * Destroy specified check from the dabatase
+     * @param {String} userId - the id of the user requesting this action
+     * @param {String} checkId - the id of the check to destroy
+     * @param {Function} callback
+     */
     destroyCheck: function(userId, checkId, callback) {
-        Check.findOne({ id: checkId }).exec(function (err, check) {
+        DB.fetchOne('check', checkId, function(err, check) {
             if (err) return callback(err);
 
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                Check.destroy(checkId).exec(function (err, destroyed) {
+                DB.destroy('check', checkId, function (err, destroyed) {
                     return callback(err, destroyed);
                 });
             }
         });
     },
 
+    /**
+     * Insert a ping into a check's history
+     * @param {Object} ping - the result of a connexion attempt to a check
+     */
     insertHistory: function(ping) {
-        Check.findOne({ id: ping.checkId }).exec(function (err, check, callback) {
+        DB.fetchOne('check', ping.checkId, function (err, check) {
             if (err) return callback(err);
 
             const newHistoryArray = check.history;
@@ -70,15 +93,21 @@ module.exports = {
             newHistoryArray.push({ date: ping.date, time: ping.open ? ping.duration : null });
 
             // And update the DB record
-            Check.update({ id: check.id }, { history: newHistoryArray }).exec(function(err) {
+            DB.update('check', check.id, { history: newHistoryArray }, function(err) {
                 if (err) sails.log.error(err);
             });
 
         });
     },
 
+    /**
+     * Retrieves a check's data, including its last 20 pings
+     * @param {String} userId - the id of the user requesting this action
+     * @param {String} checkId - the id of the check to retrieve data from
+     * @param {Funtion} callback
+     */
     getData: function(userId, checkId, callback) {
-        Check.findOne({ id: checkId }).exec(function (err, check) {
+        DB.fetchOne('check', checkId, function (err, check) {
             if (err) {
                 return callback(err);
             } else if (check.owner !== userId) {
@@ -94,8 +123,14 @@ module.exports = {
        });
     },
 
+    /**
+     * Retrieves a check's minimal data (name, domainNameOrIP, port and notifications)
+     * @param {String} userId - the id of the user requesting this action
+     * @param {String} checkId - the id of the check to retrieve data from
+     * @param {Function} callback
+     */
     getCheckMinimalData: function(userId, checkId, callback) {
-        Check.findOne({ id: checkId }).exec(function (err, check) {
+        DB.fetchOne('check', checkId, function (err, check) {
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
@@ -110,8 +145,14 @@ module.exports = {
        });
     },
 
+    /**
+     * Retrieve the user's data and its checks, and then trims
+     * their histories to keep only the last ping
+     * @param {String} userId - the id of the user requesting this action
+     * @param {Function} callback
+     */
     getUserAndChecksData: function(userId, callback) {
-        User.findOne({ id: userId }).populate('checks').exec(function (err, user) {
+        DB.fetchAndPopulate('user', userId, 'checks', function(err, user) {
 
             let lastError = {
                     time: null,
@@ -168,6 +209,12 @@ module.exports = {
         });
     },
 
+    /**
+     * Calculates a check various stats by analyzing its history
+     * Trims the check's history to only return a specified number of pings
+     *  @param {Object} check - the raw db record of a check
+     *  @param {Number} historyLength - the number of history entries to return
+     */
     checkStats: function(check, historyLength) {
         const historyArray = check.history;
         if (historyArray.length > 0) {
@@ -209,5 +256,4 @@ module.exports = {
             return null;
         }
     }
-
 };

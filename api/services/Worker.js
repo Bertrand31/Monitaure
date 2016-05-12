@@ -73,7 +73,7 @@ const pingHandling = function(ping) {
 
 module.exports = function () {
     setInterval(function() {
-        Check.find().exec(function(err, checks) {
+        DB.fetch('check', {}, function(err, checks) {
             if (err) throw err;
 
             const asyncChecks = [];

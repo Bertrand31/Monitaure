@@ -1,21 +1,30 @@
-/**
- * UsersController
- *
- * @description :: Server-side logic for managing users
- * @help        :: See http://links.sailsjs.org/docs/controllers
- */
-
 module.exports = {
+    /**
+     * HTTP route to create a user account
+     * req.body contains the user data (name, email, etc.)
+     * @param {Object} req - HTTP request
+     * @param {Object} res - Express' response object
+     */
     create: function (req, res) {
         UserManagement.createUser(req.body, function(err, createdUser) {
             if (err) return res.json(err.status, err);
 
-            return res.json(200, createdUser);
+            if (createdUser) {
+                Messages.sendConfirmationEmail(createdUser);
+                return res.json(200, createdUser);
+            }
         });
     },
 
+    /**
+     * HTTP route to confirm a newly created user account
+     * Is called like this: /account/verify/:confirmationToken
+     * The confirmation token is passed as the 'id' paramter
+     * @param {Object} req - HTTP request
+     * @param {Object} res - Express' response object
+     */
     confirm: function (req, res) {
-        User.update({ confirmationToken: req.param('id') }, { confirmedAccount: true }).exec(function(err, updated) {
+        UserManagement.confirm(req.param('id'), function(err) {
             if (err) {
                 //TODO
                 //Retourner page d'erreur: token invalide
