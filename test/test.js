@@ -16,57 +16,55 @@ before(function(done) {
 });
 
 
-describe('UserManagement', function() {
-    describe('#create', function() {
-        let user,
-            check;
+describe('#user and check management', function() {
+    let user,
+        check;
 
-        step('should create an user', function(done) {
-            const userData = {
-                username: 'test',
-                email: 'bertrandjun@gmail.com',
-                password: 'testtest',
-                confirmPassword: 'testtest'
-            };
-            UserManagement.create(DB.create, userData, function(err, createdUser) {
-                assert.isNull(err, 'did not throw an error');
-                assert.isObject(createdUser, 'return an user');
-                user = createdUser;
-                done();
-            });
+    step('should create an user', function(done) {
+        const userData = {
+            username: 'test',
+            email: 'bertrandjun@gmail.com',
+            password: 'testtest',
+            confirmPassword: 'testtest'
+        };
+        UserManagement.create(DB.create, userData, function(err, createdUser) {
+            assert.isNull(err, 'did not throw an error');
+            assert.isObject(createdUser, 'return an user');
+            user = createdUser;
+            done();
         });
-        step('should create a check', function(done) {
-            const checkData = {
-                name: 'HTTP @ Google',
-                domainNameOrIP: 'google.fr',
-                port: '80',
-                emailNotifications: true,
-                owner: user.id
-            };
-            CheckManagement.createCheck(DB.fetchAndPopulate, DB.create, user.id, checkData, function(err, created) {
-                assert.isNull(err, 'did not throw an error');
-                assert.isObject(created, 'created a check');
-                check = created;
-                done();
-            });
+    });
+    step('should create a check', function(done) {
+        const checkData = {
+            name: 'HTTP @ Google',
+            domainNameOrIP: 'google.fr',
+            port: '80',
+            emailNotifications: true,
+            owner: user.id
+        };
+        CheckManagement.createCheck(DB.fetchAndPopulate, DB.create, user.id, checkData, function(err, created) {
+            assert.isNull(err, 'did not throw an error');
+            assert.isObject(created, 'created a check');
+            check = created;
+            done();
         });
-        step('should update the created check', function(done) {
-            const data = {
-                name: 'HTTP @ Google',
-                emailNotifications: false
-            };
-            CheckManagement.updateCheck(DB.fetchOne, DB.update, user.id, check.id, data, function(err, updated) {
-                assert.isNull(err, 'did not throw an error');
-                assert.isArray(updated, 'updated the check');
-                done();
-            });
+    });
+    step('should update the created check', function(done) {
+        const data = {
+            name: 'HTTP @ Google',
+            emailNotifications: false
+        };
+        CheckManagement.updateCheck(DB.fetchOne, DB.update, user.id, check.id, data, function(err, updated) {
+            assert.isNull(err, 'did not throw an error');
+            assert.isArray(updated, 'updated the check');
+            done();
         });
-        step('should destroy the created check', function(done) {
-            CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, user.id, check.id, function(err, destroyed) {
-                assert.isNull(err, 'did not throw an error');
-                assert.isArray(destroyed, 'updated the check');
-                done();
-            });
+    });
+    step('should destroy the created check', function(done) {
+        CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, user.id, check.id, function(err, destroyed) {
+            assert.isNull(err, 'did not throw an error');
+            assert.isArray(destroyed, 'updated the check');
+            done();
         });
     });
 });
