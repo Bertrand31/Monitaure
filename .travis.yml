@@ -4,7 +4,7 @@ language: node_js
 
 node_js:
     - "stable"
-    - "6.0"
+    - "6.1"
 
 compiler: clang-3.6
 
@@ -13,6 +13,7 @@ env:
 
 before_install:
     npm install -g mocha
+    gem install sass
 
 addons:
     apt:
@@ -26,3 +27,6 @@ addons:
 services:
     - mongodb
     - redis-server
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
