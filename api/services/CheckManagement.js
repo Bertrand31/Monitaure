@@ -6,11 +6,12 @@ module.exports = {
     /**
      * Creates a check in the database and returns it
      * @param {Function} fetcher - record fetching and population function
+     * @param {Function} creator - create a record with provided data
      * @param {String} userId - the id of the user requesting this action
      * @param {Object} checkData - the attributes of the check to create
      * @param {Function} callback
      */
-    createCheck: function(fetcher, userId, checkData, callback) {
+    createCheck: function(fetcher, creator, userId, checkData, callback) {
         fetcher('user', userId, 'checks', function(err, user) {
             if (err) return callback(err);
 
@@ -22,7 +23,7 @@ module.exports = {
             } else if (!checkData.name || !checkData.port) {
                 return callback('Incorrect attributes');
             } else {
-                DB.create('check', checkData, function (err, created) {
+                creator('check', checkData, function (err, created) {
                     return callback(err, created);
                 });
             }

@@ -28,7 +28,7 @@ describe('UserManagement', function() {
                 password: 'testtest',
                 confirmPassword: 'testtest'
             };
-            UserManagement.create(DB.create, function(err, createdUser) {
+            UserManagement.create(DB.create, userData, function(err, createdUser) {
                 assert.isNull(err, 'did not throw an error');
                 assert.isObject(createdUser, 'return an user');
                 user = createdUser;
@@ -43,7 +43,7 @@ describe('UserManagement', function() {
                 emailNotifications: true,
                 owner: user.id
             };
-            CheckManagement.createCheck(DB.create, user.id, checkData, function(err, created) {
+            CheckManagement.createCheck(DB.fetchAndPopulate, DB.create, user.id, checkData, function(err, created) {
                 assert.isNull(err, 'did not throw an error');
                 assert.isObject(created, 'created a check');
                 check = created;
@@ -55,14 +55,14 @@ describe('UserManagement', function() {
                 name: 'HTTP @ Google',
                 emailNotifications: false
             };
-            CheckManagement.updateCheck(DB.update, user.id, check.id, data, function(err, updated) {
+            CheckManagement.updateCheck(DB.fetchOne, DB.update, user.id, check.id, data, function(err, updated) {
                 assert.isNull(err, 'did not throw an error');
                 assert.isArray(updated, 'updated the check');
                 done();
             });
         });
         step('should destroy the created check', function(done) {
-            CheckManagement.destroyCheck(DB.destroy, user.id, check.id, function(err, destroyed) {
+            CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, user.id, check.id, function(err, destroyed) {
                 assert.isNull(err, 'did not throw an error');
                 assert.isArray(destroyed, 'updated the check');
                 done();

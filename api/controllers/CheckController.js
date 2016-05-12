@@ -48,7 +48,7 @@ module.exports = {
             emailNotifications: Boolean(req.param('emailNotifications')),
             owner: req.user.id
         };
-        CheckManagement.createCheck(DB.fetchAndPopulate, req.user.id, data, function (err, created) {
+        CheckManagement.createCheck(DB.fetchAndPopulate, DB.create, req.user.id, data, function (err, created) {
             if (err) return res.serverError(err);
 
             return res.json(created);
