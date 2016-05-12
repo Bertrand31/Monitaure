@@ -26,11 +26,6 @@ module.exports = {
             required: true
         },
 
-        interval: {
-            type: 'integer',
-            defaultsTo: sails.config.checkInterval
-        },
-
         history: {
             type: 'array',
             defaultsTo: []
