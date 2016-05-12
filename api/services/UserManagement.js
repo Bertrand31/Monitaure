@@ -27,9 +27,7 @@ module.exports = {
      * @param {Function} callback
      */
     confirm: function(updater, confirmationToken, callback) {
-        console.log('We enter the "confirm" service');
         updater('user', { confirmationToken: confirmationToken }, { confirmedAccount: true }, function(err) {
-            console.log('We exit the "confirm" service');
             return callback(err);
         });
     }

@@ -24,7 +24,6 @@ module.exports = {
      * @param {Object} res - Express' response object
      */
     confirm: function (req, res) {
-        console.log('We trigger the "confirm" service');
         UserManagement.confirm(DB.update, req.param('id'), function(err) {
             if (err) {
                 //TODO

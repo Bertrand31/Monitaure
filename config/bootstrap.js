@@ -12,7 +12,7 @@
 module.exports.bootstrap = function(cb) {
 
     sails.on('lifted', function() {
-        Worker();
+        Worker(DB.fetch);
     });
 
     cb();
