@@ -93,9 +93,7 @@ module.exports = {
     destroy: function(itemType, itemId, callback) {
         if (typeof itemType !== 'string' || typeof itemId !== 'string') throw new Error('Incorrect input types');
 
-        const targetModel = findModel(itemType);
-
-        targetModel.destroy(itemId).exec(function (err, destroyed) {
+        findModel(itemType).destroy(itemId).exec(function (err, destroyed) {
             return callback(err, destroyed);
         });
     },
