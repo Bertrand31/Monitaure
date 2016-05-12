@@ -101,7 +101,7 @@ module.exports = {
             newHistoryArray.push({ date: ping.date, time: ping.open ? ping.duration : null });
 
             // And update the DB record
-            updater('check', check.id, { history: newHistoryArray }, function(err) {
+            updater('check', { id: check.id }, { history: newHistoryArray }, function(err) {
                 if (err) sails.log.error(err);
             });
 
