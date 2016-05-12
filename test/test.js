@@ -124,7 +124,7 @@ describe('#user and check management', function() {
     let user,
         check;
 
-    step('should create an user', function(done) {
+    it('should create an user', function(done) {
         const userData = {
             username: 'test',
             email: 'bertrandjun@gmail.com',
@@ -138,7 +138,7 @@ describe('#user and check management', function() {
             done();
         });
     });
-    step('should create a check', function(done) {
+    it('should create a check', function(done) {
         const checkData = {
             name: 'HTTP @ Google',
             domainNameOrIP: 'google.fr',
@@ -153,7 +153,7 @@ describe('#user and check management', function() {
             done();
         });
     });
-    step('should update the created check', function(done) {
+    it('should update the created check', function(done) {
         const data = {
             name: 'HTTP @ Google 2',
         };
@@ -163,7 +163,7 @@ describe('#user and check management', function() {
             done();
         });
     });
-    step('should destroy the created check', function(done) {
+    it('should destroy the created check', function(done) {
         CheckManagement.destroyCheck(fakeDB.fetchOne, fakeDB.destroy, fakeUser.id, fakeCheck.id, function(err, destroyed) {
             assert.isNull(err, 'did not throw an error');
             assert.isArray(destroyed, 'updated the check');
