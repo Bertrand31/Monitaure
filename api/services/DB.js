@@ -63,7 +63,7 @@ module.exports = {
     * @param {Function} callback
     */
     create: function(itemType, data, callback) {
-        if (typeof itemType !== 'string' || typeof data !== 'object') return callback('Incorrect input types');
+        if (typeof itemType !== 'string' || typeof data !== 'object') throw new Error('Incorrect input types');
 
         findModel(itemType).create(data).exec(function (err, created) {
             return callback(err, created);
@@ -77,10 +77,10 @@ module.exports = {
     * @param {Object} data - the attributes to update and their new contents
     * @param {Function} callback
     */
-    update: function(itemType, itemId, newData, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string' || typeof newData !== 'object') return callback('Incorrect input types');
+    update: function(itemType, filterCriteria, newData, callback) {
+        if (typeof itemType !== 'string' || typeof filterCriteria !== 'object' || typeof newData !== 'object') throw new Error('Incorrect input types');
 
-        findModel(itemType).update({ id: itemId }, newData).exec(function (err, updated) {
+        findModel(itemType).update(filterCriteria, newData).exec(function (err, updated) {
             return callback(err, updated);
         });
     },
@@ -91,7 +91,7 @@ module.exports = {
     * @param {Function} callback
     */
     destroy: function(itemType, itemId, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string') return callback('Incorrect input types');
+        if (typeof itemType !== 'string' || typeof itemId !== 'string') throw new Error('Incorrect input types');
 
         const targetModel = findModel(itemType);
 

@@ -4,13 +4,14 @@ const domainNameRegex = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a
 module.exports = {
 
     /**
-     * Creates a check in database and returns it
+     * Creates a check in the database and returns it
+     * @param {Function} fetcher - record fetching and population function
      * @param {String} userId - the id of the user requesting this action
      * @param {Object} checkData - the attributes of the check to create
      * @param {Function} callback
      */
-    createCheck: function(userId, checkData, callback) {
-        DB.fetchAndPopulate('user', userId, 'checks', function(err, user) {
+    createCheck: function(fetcher, userId, checkData, callback) {
+        fetcher('user', userId, 'checks', function(err, user) {
             if (err) return callback(err);
 
             // We test the number of checks this user has against the limit
@@ -30,19 +31,21 @@ module.exports = {
 
     /**
      * Update a check's name and notifications preferences
+     * @param {Function} fetcher - a function fetching a single record
+     * @param {Function} updater - a function updating a record's content
      * @param {String} userId - the id of the user requesting this action
      * @param {String} checkId - the id of the check to update
      * @param {Object} data - the attributes to update and their new contents
      * @param {Function} callback
      */
-    updateCheck: function(userId, checkId, data, callback) {
-        DB.fetchOne('check', checkId, function (err, check) {
+    updateCheck: function(fetcher, updater, userId, checkId, data, callback) {
+        fetcher('check', checkId, function (err, check) {
             if (err) return callback(err);
 
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                DB.update('check', checkId, data, function (err, updated) {
+                updater('check', { id: checkId }, data, function (err, updated) {
                     return callback(err, updated);
                 });
             }
@@ -51,18 +54,20 @@ module.exports = {
 
     /**
      * Destroy specified check from the dabatase
+     * @param {Function} fetcher - a function fetching a single record
+     * @param {Function} destroyer - a function destroying a record
      * @param {String} userId - the id of the user requesting this action
      * @param {String} checkId - the id of the check to destroy
      * @param {Function} callback
      */
-    destroyCheck: function(userId, checkId, callback) {
-        DB.fetchOne('check', checkId, function(err, check) {
+    destroyCheck: function(fetcher, destroyer, userId, checkId, callback) {
+        fetcher('check', checkId, function(err, check) {
             if (err) return callback(err);
 
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                DB.destroy('check', checkId, function (err, destroyed) {
+                destroyer('check', checkId, function (err, destroyed) {
                     return callback(err, destroyed);
                 });
             }
@@ -71,10 +76,12 @@ module.exports = {
 
     /**
      * Insert a ping into a check's history
+     * @param {Function} fetcher - a function fetching a single record
+     * @param {Function} updater - a function updating a record
      * @param {Object} ping - the result of a connexion attempt to a check
      */
-    insertHistory: function(ping) {
-        DB.fetchOne('check', ping.checkId, function (err, check) {
+    insertHistory: function(fetcher, updater, ping) {
+        fetcher('check', ping.checkId, function (err, check) {
             if (err) return callback(err);
 
             const newHistoryArray = check.history;
@@ -93,7 +100,7 @@ module.exports = {
             newHistoryArray.push({ date: ping.date, time: ping.open ? ping.duration : null });
 
             // And update the DB record
-            DB.update('check', check.id, { history: newHistoryArray }, function(err) {
+            updater('check', check.id, { history: newHistoryArray }, function(err) {
                 if (err) sails.log.error(err);
             });
 
@@ -102,12 +109,13 @@ module.exports = {
 
     /**
      * Retrieves a check's data, including its last 20 pings
+     * @param {Function} fetcher - a function fetching a single record
      * @param {String} userId - the id of the user requesting this action
      * @param {String} checkId - the id of the check to retrieve data from
      * @param {Funtion} callback
      */
-    getData: function(userId, checkId, callback) {
-        DB.fetchOne('check', checkId, function (err, check) {
+    getData: function(fetcher, userId, checkId, callback) {
+        fetcher('check', checkId, function (err, check) {
             if (err) {
                 return callback(err);
             } else if (check.owner !== userId) {
@@ -125,12 +133,13 @@ module.exports = {
 
     /**
      * Retrieves a check's minimal data (name, domainNameOrIP, port and notifications)
+     * @param {Function} fetcher - a function fetching a single record
      * @param {String} userId - the id of the user requesting this action
      * @param {String} checkId - the id of the check to retrieve data from
      * @param {Function} callback
      */
-    getCheckMinimalData: function(userId, checkId, callback) {
-        DB.fetchOne('check', checkId, function (err, check) {
+    getCheckMinimalData: function(fetcher, userId, checkId, callback) {
+        fetcher('check', checkId, function (err, check) {
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
@@ -148,11 +157,12 @@ module.exports = {
     /**
      * Retrieve the user's data and its checks, and then trims
      * their histories to keep only the last ping
+     * @param {Function} fetcher - record fetching and population function
      * @param {String} userId - the id of the user requesting this action
      * @param {Function} callback
      */
-    getUserAndChecksData: function(userId, callback) {
-        DB.fetchAndPopulate('user', userId, 'checks', function(err, user) {
+    getUserAndChecksData: function(fetcher, userId, callback) {
+        fetcher('user', userId, 'checks', function(err, user) {
 
             let lastError = {
                     time: null,
@@ -210,7 +220,7 @@ module.exports = {
     },
 
     /**
-     * Calculates a check various stats by analyzing its history
+     * Calculates a check's various stats by analyzing its history
      * Trims the check's history to only return a specified number of pings
      *  @param {Object} check - the raw db record of a check
      *  @param {Number} historyLength - the number of history entries to return

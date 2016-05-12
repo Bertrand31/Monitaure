@@ -6,7 +6,7 @@ module.exports = {
      * @param {Object} res - Express' response object
      */
     create: function (req, res) {
-        UserManagement.createUser(req.body, function(err, createdUser) {
+        UserManagement.create(DB.create, req.body, function(err, createdUser) {
             if (err) return res.json(err.status, err);
 
             if (createdUser) {
@@ -24,7 +24,8 @@ module.exports = {
      * @param {Object} res - Express' response object
      */
     confirm: function (req, res) {
-        UserManagement.confirm(req.param('id'), function(err) {
+        console.log('We trigger the "confirm" service');
+        UserManagement.confirm(DB.update, req.param('id'), function(err) {
             if (err) {
                 //TODO
                 //Retourner page d'erreur: token invalide

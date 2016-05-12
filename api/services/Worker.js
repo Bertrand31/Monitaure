@@ -37,7 +37,7 @@ const checkPort = function(check, callback) {
 };
 
 const pingHandling = function(ping) {
-    CheckManagement.insertHistory(ping, function(err) {
+    CheckManagement.insertHistory(DB.fetchOne, DB.update, ping, function(err) {
         if (err) return sails.log.error(err);
     });
 

@@ -8,6 +8,11 @@ module.exports = {
         rest: false
     },
 
+    /**
+     * HTTP route for login requests
+     * @param {Object} req - HTTP request
+     * @param {Object} res - Express' response object
+     */
     login: function(req, res) {
 
         passport.authenticate('local', function(err, user, info) {
@@ -26,6 +31,11 @@ module.exports = {
         })(req, res);
     },
 
+    /**
+     * HTTP route for logout requests
+     * @param {Object} req - HTTP request
+     * @param {Object} res - Express' response object
+     */
     logout: function(req, res) {
         req.logout();
         res.redirect('/');

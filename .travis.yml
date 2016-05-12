@@ -12,8 +12,8 @@ env:
     - CXX=clang-3.6
 
 before_install:
-    npm install -g mocha
-    gem install sass
+    - npm install -g mocha
+    - gem install sass
 
 addons:
     apt:
