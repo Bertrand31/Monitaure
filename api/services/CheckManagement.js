@@ -1,5 +1,21 @@
-const domainNameRegex = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i,
-      ipAddressRegex = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/i;
+/**
+ * Deletes history records older than a month
+ * Accepts empty histories
+ * @param {Array} historyArray - check.history
+ */
+const cleanHistory = function(historyArray) {
+    if (typeof historyArray[0] === 'undefined') return [];
+
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+    // If the first value of the array is older than a month, we remove it
+    // We keep doing that until the oldest value is younger than a month
+    while (historyArray[0].date.getTime() < oneMonthAgo.getTime()) {
+        historyArray.shift();
+    }
+    return historyArray;
+};
 
 module.exports = {
 
@@ -16,9 +32,10 @@ module.exports = {
             if (err) return callback(err);
 
             // We test the number of checks this user has against the limit
-            if (user.checks.length >= sails.config.checksNbLimit) {
+            const checksNbLimit = (typeof sails !== 'undefined') ? sails.config.checkNbLimit : 10;
+            if (user.checks.length >= checksNbLimit) {
                 return callback('You reached the limit of ten checks per user');
-            } else if (!domainNameRegex.test(checkData.domainNameOrIP) && !ipAddressRegex.test(checkData.domainNameOrIP)) {
+            } else if (!Utilities.isDomainNameOrIP(checkData.domainNameOrIP)) {
                 return callback('Incorrect domain name or IP address');
             } else if (!checkData.name || !checkData.port) {
                 return callback('Incorrect attributes');
@@ -81,28 +98,19 @@ module.exports = {
      * @param {Function} updater - a function updating a record
      * @param {Object} ping - the result of a connexion attempt to a check
      */
-    insertHistory: function(fetcher, updater, ping) {
+    insertHistory: function(fetcher, updater, ping, callback) {
         fetcher('check', ping.checkId, function (err, check) {
             if (err) return callback(err);
 
-            const newHistoryArray = check.history;
+            let newHistoryArray = cleanHistory(check.history);
 
-            const oneMonthAgo = new Date();
-            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-
-            // If the first value of the array is older than a month, we remove it
-            // We keep doing that until the oldest value is younger than a month
-            if (typeof newHistoryArray[0] !== 'undefined') {
-                while (newHistoryArray[0].date.getTime() < oneMonthAgo.getTime()) {
-                    newHistoryArray.shift();
-                }
-            }
-
-            newHistoryArray.push({ date: ping.date, time: ping.open ? ping.duration : null });
+            newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
             // And update the DB record
             updater('check', { id: check.id }, { history: newHistoryArray }, function(err) {
-                if (err) sails.log.error(err);
+                if (err) return callback(err);
+
+                return callback(null);
             });
 
         });

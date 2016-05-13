@@ -10,7 +10,7 @@ module.exports = {
             if (err) return res.json(err.status, err);
 
             if (createdUser) {
-                Messages.sendConfirmationEmail(createdUser);
+                Messages.sendConfirmationEmail(Sendgrid.send, createdUser);
                 return res.json(200, createdUser);
             }
         });

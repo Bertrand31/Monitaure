@@ -37,7 +37,9 @@ const checkPort = function(check, callback) {
 };
 
 const pingHandling = function(ping) {
-    CheckManagement.insertHistory(DB.fetchOne, DB.update, ping);
+    CheckManagement.insertHistory(DB.fetchOne, DB.update, ping, function(err) {
+        if (err) return sails.log.error(err);
+    });
 
     const lastCheckHistory = ping.checkHistory[ping.checkHistory.length -1] || null;
     // If email notifications are activated for this check and
@@ -47,7 +49,7 @@ const pingHandling = function(ping) {
         if (!ping.open && lastCheckHistory.time !== null) {
             User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
                 if (err) sails.log.error(err);
-                Messages.sendDownAlert(user.email, ping.checkName);
+                Messages.sendDownAlert(SendGrid.send, user.email, ping.checkName);
             });
         }
         // If the check is up and was down last time we checked
@@ -63,7 +65,7 @@ const pingHandling = function(ping) {
                     i--;
                 }
 
-                Messages.sendUpAlert(user.email, ping.checkName, downtime);
+                Messages.sendUpAlert(sendGrid.send, user.email, ping.checkName, downtime);
             });
         }
     }
