@@ -96,5 +96,5 @@ module.exports = {
         findModel(itemType).destroy(itemId).exec(function (err, destroyed) {
             return callback(err, destroyed);
         });
-    },
+    }
 };

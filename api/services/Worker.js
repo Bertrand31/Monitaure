@@ -46,21 +46,21 @@ const pingHandling = function(ping) {
     // this isn't the first time we ping it
     if (ping.checkEmailNotifications && lastCheckHistory !== null) {
         // If the check is down and wasn't last time we checked
-        if (!ping.open && lastCheckHistory.time !== null) {
+        if (!ping.open && lastCheckHistory.duration !== null) {
             User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
                 if (err) sails.log.error(err);
                 Messages.sendDownAlert(SendGrid.send, user.email, ping.checkName);
             });
         }
         // If the check is up and was down last time we checked
-        else if (ping.open && lastCheckHistory.time === null) {
+        else if (ping.open && lastCheckHistory.duration === null) {
             User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
                 if (err) sails.log.error(err);
 
                 let downtime = 0,
                     i = ping.checkHistory.length - 1;
 
-                while (ping.checkHistory[i].time === null) {
+                while (ping.checkHistory[i].duration === null) {
                     downtime += sails.config.checkInterval / 60000;
                     i--;
                 }

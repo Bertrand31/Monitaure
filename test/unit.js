@@ -153,7 +153,7 @@ describe('#user and check management', function() {
     });
     it('should update the created check', function(done) {
         const data = {
-            name: 'HTTP @ Google 2',
+            name: 'HTTP @ Google 2'
         };
         CheckManagement.updateCheck(fakeDB.fetchOne, fakeDB.update, fakeUser.id, fakeCheck.id, data, function(err, updatedChecks) {
             assert.isNull(err, 'did not throw an error');

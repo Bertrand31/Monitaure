@@ -15,7 +15,7 @@ const historyToChartData = function(history, callback) {
         chartData.labels.push(lightDate);
         chartData.series[0].push({
             meta: fancyDate,
-            value: history[i].time
+            value: history[i].duration
         });
     }
     callback(chartData);

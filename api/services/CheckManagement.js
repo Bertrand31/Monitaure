@@ -188,15 +188,15 @@ module.exports = {
                 if (checkStats) {
                     // If current check is currently up, we add increment checksUp array
                     // We do that by looking up his last 'history' array value
-                    if (checkStats.history[checkStats.history.length - 1].time !== null) {
+                    if (checkStats.history[checkStats.history.length - 1].duration !== null) {
                         checksUp++;
                     }
                     // We add current check's availability stats to the availabilities sum
                     availabilitiesSum += checkStats.availability;
                     // If current check's last outage is more recent than the one
                     // stored in lastError, we update the lastError object
-                    if (checkStats.lastOutage > lastError.time) {
-                        lastError.time = checkStats.lastOutage;
+                    if (checkStats.lastOutage > lastError.duration) {
+                        lastError.duration = checkStats.lastOutage;
                         lastError.checkName = checkStats.name;
                     }
                     // We replace current check's history with the trimmed version from 'checkStats'
@@ -238,18 +238,18 @@ module.exports = {
         const historyArray = check.history;
         if (historyArray.length > 0) {
             let sum = 0,
-                min = historyArray[0].time,
-                max = historyArray[0].time,
+                min = historyArray[0].duration,
+                max = historyArray[0].duration,
                 avg = 0,
                 totalOutage = 0,
                 checkInterval = sails.config.checkInterval,
                 lastOutage = null;
 
             for (let i = 0; i < historyArray.length; i++) {
-                if (historyArray[i].time !== null) {
-                    sum += historyArray[i].time;
-                    min = historyArray[i].time < min ? historyArray[i].time : min;
-                    max = historyArray[i].time > max ? historyArray[i].time : max;
+                if (historyArray[i].duration !== null) {
+                    sum += historyArray[i].duration;
+                    min = historyArray[i].duration < min ? historyArray[i].duration : min;
+                    max = historyArray[i].duration > max ? historyArray[i].duration : max;
                 } else {
                     totalOutage += checkInterval;
                     lastOutage = historyArray[i].date;

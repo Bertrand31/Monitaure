@@ -26,7 +26,7 @@ const createChart = function(id, chartOptions) {
             // Show last ping data on top of the chart
             const lastPing = checkStats.history[checkStats.history.length - 1];
             const topDataPanel = $('.top-data');
-            topDataPanel.find('.latency-value').text(lastPing.time);
+            topDataPanel.find('.latency-value').text(lastPing.duration);
             topDataPanel.find('.last-check-date').text(moment(lastPing.date).format('HH:mm:ss'));
 
             // Turn data into chart dataset and create the chart
@@ -135,8 +135,8 @@ const createGlobalStats = function(globalStats) {
         ]},
         donutOptions
     );
-    const lastErrorHour = globalStats.lastError.time ? moment(globalStats.lastError.time).format('HH:SS') : '-';
-    const lastErrorDay = globalStats.lastError.time ? moment(globalStats.lastError.time).format('DD/MM') : '-';
+    const lastErrorHour = globalStats.lastError.duration ? moment(globalStats.lastError.duration).format('HH:SS') : '-';
+    const lastErrorDay = globalStats.lastError.duration ? moment(globalStats.lastError.duration).format('DD/MM') : '-';
     $('.last-error--hour').text(lastErrorHour);
     $('.last-error--day').text(lastErrorDay);
     new Chartist.Pie('.last-error-donut', {

@@ -62,7 +62,7 @@ block body
                         p.donut-content
                             span.main-text
                                 span.last-error--check-name= data.globalStats.lastError.checkName
-                                span.secondary-text.last-error--time= data.globalStats.lastError.time
+                                span.secondary-text.last-error--time= data.globalStats.lastError.duration
                                 span.secondary-text.last-error--hour
                                 span.secondary-text.last-error--day
                             span.aside-text Last outage
@@ -108,7 +108,7 @@ block body
 
                                 -var lastHistory = check.history[check.history.length - 1]
 
-                                if lastHistory.time !== null
+                                if lastHistory.duration !== null
                                     td.status(data-health="up")
                                 else
                                     td.status(data-health="down")
@@ -117,10 +117,10 @@ block body
                                 td= check.domainNameOrIP
                                 td= check.port
 
-                                if lastHistory.time > 200
-                                    td.response-time(data-speed="slow")= lastHistory.time + 'ms'
-                                else if lastHistory.time !== null
-                                    td.response-time(data-speed="fast")= lastHistory.time + 'ms'
+                                if lastHistory.duration > 200
+                                    td.response-time(data-speed="slow")= lastHistory.duration + 'ms'
+                                else if lastHistory.duration !== null
+                                    td.response-time(data-speed="fast")= lastHistory.duration + 'ms'
                                 else
                                     td.response-time(data-speed="down") -
 
