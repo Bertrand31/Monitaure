@@ -8,6 +8,5 @@ A NodeJS application aiming to provide SysAdmins with a clean, lightweight and q
 The application will not need any client-side installation or configuration.
 
 Upcoming features:
-- email alerts ;
 - SMS alerts ;
-- monthly reports, in the dashboard and/or sent by mail.
+- monthly reports, both in the dashboard and sent by email.

@@ -14,7 +14,10 @@
     "SASS",
     "Grunt",
     "Waterline",
-    "Jade"
+    "Jade",
+    "RequireJS",
+    "AMD",
+    "Webpack"
   ],
   "dependencies": {
     "async": "^2.0.0-rc.4",
