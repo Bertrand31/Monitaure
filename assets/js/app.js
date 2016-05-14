@@ -2,10 +2,12 @@ require(
     ['jquery', 'moment', 'chartist', 'chartist-plugin-tooltip',
     './charts/create-chart', './charts/create-global-stats', './charts/hide-chart',
     './popins/openFullscreen', './popins/closeFullscreen', './popins/createPopin', './popins/closePopin',
+    './dashboard-table/process-data', './dashboard-table/update-global-stats', './dashboard-table/update-table-rows',
     './ajax/add-check', './ajax/create-user', './ajax/destroy-check', './ajax/get-all-stats', './ajax/get-global-stats', './ajax/show-simple', './ajax/update-check'],
     function($, moment, Chartist, chartistTooltip,
         createChart, createGlobalStats, hideChart,
         openFullscreen, closeFullscreen, createPopin, closePopin,
+        processData, updateGlobalStats, updateTableRows,
         addCheck, createUser, destroyCheck, getAllStats, getGlobalStats, showSimple, updateCheck) {
 
         var currentChartId = null;
