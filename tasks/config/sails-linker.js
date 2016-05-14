@@ -39,8 +39,6 @@ module.exports = function(grunt) {
       },
       files: {
         '.tmp/public/**/*.html': require('../pipeline').jsFilesToInject,
-        'views/**/*.html': require('../pipeline').jsFilesToInject,
-        'views/**/*.ejs': require('../pipeline').jsFilesToInject
       }
     },
 
@@ -149,19 +147,19 @@ module.exports = function(grunt) {
     },
 
     // Bring in JST template object
-    devTpl: {
-      options: {
-        startTag: '<!--TEMPLATES-->',
-        endTag: '<!--TEMPLATES END-->',
-        fileTmpl: '<script type="text/javascript" src="%s"></script>',
-        appRoot: '.tmp/public'
-      },
-      files: {
-        '.tmp/public/index.html': ['.tmp/public/jst.js'],
-        'views/**/*.html': ['.tmp/public/jst.js'],
-        'views/**/*.ejs': ['.tmp/public/jst.js']
-      }
-    },
+    // devTpl: {
+    //   options: {
+    //     startTag: '<!--TEMPLATES-->',
+    //     endTag: '<!--TEMPLATES END-->',
+    //     fileTmpl: '<script type="text/javascript" src="%s"></script>',
+    //     appRoot: '.tmp/public'
+    //   },
+    //   files: {
+    //     '.tmp/public/index.html': ['.tmp/public/jst.js'],
+    //     'views/**/*.html': ['.tmp/public/jst.js'],
+    //     'views/**/*.ejs': ['.tmp/public/jst.js']
+    //   }
+    // },
 
     devJsJade: {
       options: {
@@ -263,20 +261,20 @@ module.exports = function(grunt) {
       files: {
         'views/**/*.jade': ['.tmp/public/min/production.min.css']
       }
-    },
+    }
 
     // Bring in JST template object
-    devTplJade: {
-      options: {
-        startTag: '// TEMPLATES',
-        endTag: '// TEMPLATES END',
-        fileTmpl: 'script(type="text/javascript", src="%s")',
-        appRoot: '.tmp/public'
-      },
-      files: {
-        'views/**/*.jade': ['.tmp/public/jst.js']
-      }
-    }
+    // devTplJade: {
+    //   options: {
+    //     startTag: '// TEMPLATES',
+    //     endTag: '// TEMPLATES END',
+    //     fileTmpl: 'script(type="text/javascript", src="%s")',
+    //     appRoot: '.tmp/public'
+    //   },
+    //   files: {
+    //     'views/**/*.jade': ['.tmp/public/jst.js']
+    //   }
+    // }
   });
 
   grunt.loadNpmTasks('grunt-sails-linker');
