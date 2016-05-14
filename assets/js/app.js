@@ -1,14 +1,49 @@
 require(
-    ['jquery', 'moment', 'chartist', 'chartist-plugin-tooltip',
+    ['jquery', 'react', 'react-dom', 'moment', 'chartist', 'chartist-plugin-tooltip',
     './charts/create-chart', './charts/create-global-stats', './charts/hide-chart',
     './popins/openFullscreen', './popins/closeFullscreen', './popins/createPopin', './popins/closePopin',
-    './dashboard-table/update-global-stats', './dashboard-table/update-table-rows',
+    './dashboard-table/update-table-rows',
     './ajax/add-check', './ajax/create-user', './ajax/destroy-check', './ajax/get-all-stats', './ajax/get-global-stats', './ajax/show-simple', './ajax/update-check'],
-    function($, moment, Chartist, chartistTooltip,
+    function($, React, ReactDOM, moment, Chartist, chartistTooltip,
         createChart, createGlobalStats, hideChart,
         openFullscreen, closeFullscreen, createPopin, closePopin,
-        updateGlobalStats, updateTableRows,
+        updateTableRows,
         addCheck, createUser, destroyCheck, getAllStats, getGlobalStats, showSimple, updateCheck) {
+
+        let store = {
+            globalStats: {
+                data: globalStats,
+                render: function() {
+                    ReactDOM.render(
+                        <TotalChecks data={store.globalStats.data} />,
+                        document.getElementById('totalChecks')
+                    );
+                    ReactDOM.render(
+                        <AvailabilitiesAvg data={store.globalStats.data} />,
+                        document.getElementById('availabilitiesAvg')
+                    );
+                }
+            }
+        };
+
+        let TotalChecks = React.createClass({
+            render: function() {
+                return (
+                    <span>
+                        {this.props.data.numberOfChecks}/{this.props.data.checksUp} servers
+                    </span>
+                );
+            }
+        });
+        let AvailabilitiesAvg = React.createClass({
+            render: function() {
+                return (
+                    <span>
+                        {this.props.data.availabilitiesAvg}
+                    </span>
+                );
+            }
+        });
 
         let currentChartId = null;
 
@@ -41,7 +76,14 @@ require(
                     if (err) {
                         createPopin('alert', err.responseText);
                     } else {
-                        updateGlobalStats(data.globalStats);
+
+                        store.globalStats.data = data.globalStats;
+                        store.globalStats.render();
+
+                        const globalWrapper = $('.global-data');
+                        globalWrapper.find('.last-error--check-name').text(data.globalStats.lastError.checkName);
+                        globalWrapper.find('.last-error--time').text(data.globalStats.lastError.duration);
+
                         updateTableRows(data.userData.checks);
                         if (currentChartId !== null) {
                             createChart(currentChartId, chartOptions);

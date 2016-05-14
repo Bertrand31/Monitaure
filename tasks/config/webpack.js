@@ -2,19 +2,25 @@ module.exports = function(grunt) {
     grunt.config.set('webpack', {
         dev: {
 			entry: './assets/js/app.js',
+
+            resolve: {
+                extensions: ['', '.js', '.jsx']
+            },
+
 			output: {
 				path: '.tmp/public/js/',
 				filename: 'bundle.js',
                 publicPath: '/js/'
 			},
+
             module: {
                 loaders: [{
-                    // test: /\.jsx?$/,
+                    test: /\.jsx?$/,
                     exclude: /node_modules/,
                     loader: 'babel',
-                    query: {
-                        presets: ['es2015']
-                    }
+                    // query: {
+                    //     presets: ['es2015']
+                    // }
                 }]
             }
         }

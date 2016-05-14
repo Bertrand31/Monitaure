@@ -40,21 +40,19 @@ block body
                     .global-data-block.global-status
                         .donut.checks-up-donut
                         p.donut-content
-                            span.main-text
-                                span.checks-up= data.globalStats.checksUp
-                                | /
-                                span.total-checks= data.globalStats.numberOfChecks
+                            span#totalChecks.main-text
+                                | #{data.globalStats.checksUp}/#{data.globalStats.numberOfChecks}
                                 |  servers
                                 span.secondary-text are responding
                             span.aside-text servers responding
                     .global-data-block.availability
                         .donut.availability-donut
                         p.donut-content
-                            span.main-text
+                            span#availabilitiesAvg.main-text
                                 if data.globalStats.availabilitiesAvg
-                                    span.availabilities-avg= data.globalStats.availabilitiesAvg
+                                    span#availabilitiesAvg= data.globalStats.availabilitiesAvg
                                 else
-                                    span.availabilities-avg -
+                                    span#availabilitiesAvg -
                                 span.secondary-text %
                             span.aside-text average availability
                     .global-data-block.last-error
