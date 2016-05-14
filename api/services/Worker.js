@@ -49,7 +49,7 @@ const pingHandling = function(ping) {
         if (!ping.open && lastCheckHistory.duration !== null) {
             User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
                 if (err) sails.log.error(err);
-                Messages.sendDownAlert(SendGrid.send, user.email, ping.checkName);
+                Messages.sendDownAlert(Sendgrid.send, user.email, ping.checkName);
             });
         }
         // If the check is up and was down last time we checked
