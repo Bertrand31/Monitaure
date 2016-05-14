@@ -1,10 +1,10 @@
 define(['jquery'], function($) {
     return function(data) {
-        var lastHistory = null,
+        let lastHistory = null,
             target = null;
         const table = $('#checks');
 
-        for (var i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             lastHistory = data[i].history[0];
             target = table.find('tr#' + data[i].id);
             target.find('td.status').attr('data-health', lastHistory.duration ? 'up' : 'down');

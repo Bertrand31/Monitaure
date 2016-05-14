@@ -6,7 +6,17 @@ module.exports = function(grunt) {
 				path: '.tmp/public/js/',
 				filename: 'bundle.js',
                 publicPath: '/js/'
-			}
+			},
+            module: {
+                loaders: [{
+                    // test: /\.jsx?$/,
+                    exclude: /node_modules/,
+                    loader: 'babel',
+                    query: {
+                        presets: ['es2015']
+                    }
+                }]
+            }
         }
     });
 

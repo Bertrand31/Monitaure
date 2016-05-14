@@ -10,7 +10,7 @@ require(
         updateGlobalStats, updateTableRows,
         addCheck, createUser, destroyCheck, getAllStats, getGlobalStats, showSimple, updateCheck) {
 
-        var currentChartId = null;
+        let currentChartId = null;
 
         $(document).ready(function() {
 
@@ -62,10 +62,10 @@ require(
                 e.preventDefault();
                 createUser($(this), function(err, user) {
                     if (err) {
-                        var errorMsg = '';
+                        let errorMsg = '';
                         if (err.responseJSON.hasOwnProperty('invalidAttributes')) {
                             const invalidAttrs = err.responseJSON.invalidAttributes;
-                            for (var invalidAttr in invalidAttrs) {
+                            for (let invalidAttr in invalidAttrs) {
                                 if (invalidAttrs.hasOwnProperty(invalidAttr)) {
                                     errorMsg = $('#signup #'+invalidAttr).attr('data-error');
                                 }

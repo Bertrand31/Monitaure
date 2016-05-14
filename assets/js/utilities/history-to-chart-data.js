@@ -6,7 +6,7 @@ define(['jquery', 'moment'], function($, moment) {
                 []
             ]
         };
-        for (var i=0; i<history.length; i++) {
+        for (let i=0; i<history.length; i++) {
             const fancyDate = moment(history[i].date).fromNow();
             const lightDate = moment(history[i].date).format('H:mm');
             chartData.labels.push(lightDate);

@@ -4,7 +4,7 @@ define(['jquery', 'chartist', 'moment', 'chartist-plugin-tooltip', '../ajax/get-
             if (err) {
                 createPopin('alert', err.responseText);
             } else {
-                var lastOutage = '-';
+                let lastOutage = '-';
                 if (checkStats.lastOutage !== null) {
                     lastOutage = moment(checkStats.lastOutage).format('D/MM/YY H:mm');
                 }
