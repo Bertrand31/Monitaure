@@ -65,7 +65,7 @@ const pingHandling = function(ping) {
                     i--;
                 }
 
-                Messages.sendUpAlert(sendGrid.send, user.email, ping.checkName, downtime);
+                Messages.sendUpAlert(Sendgrid.send, user.email, ping.checkName, downtime);
             });
         }
     }

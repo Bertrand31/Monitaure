@@ -11,6 +11,15 @@ require(
         addCheck, createUser, destroyCheck, getAllStats, getGlobalStats, showSimple, updateCheck) {
 
         let store = {
+            tableData: {
+                data: [],
+                render: function () {
+                    ReactDOM.render(
+                        <TableData data={store.tableData.data} />,
+                        document.getElementById('checks-table-wrapper')
+                    );
+                }
+            },
             globalStats: {
                 data: globalStats,
                 render: function() {
@@ -26,12 +35,57 @@ require(
             }
         };
 
-        let TotalChecks = React.createClass({
+		const CheckRow = React.createClass({
+			render: function() {
+                return (
+
+                );
+			};
+		);
+        const TableData = React.createClass({
+            render: function() {
+                return (
+                    <tbody>
+                        {this.props.data.map(function(row) {
+							let lastPingDuration = '-',
+								lastPingSpeed = '';
+							if (typeof row.history[0] !== 'undefined') {
+								lastPingDuration = row.history[0].duration;
+								if (lastPingDuration > 200) {
+									lastPingSpeed = 'slow';
+								} else {
+									lastPingSpeed = 'fast';
+								}
+							}
+                            return (
+                                <tr key={row.id} id={row.id}>
+									<td data-health="up" class="status"></td>
+									<td class="name">{row.name}</td>
+									<td>{row.domainNameOrIP}</td>
+									<td>{row.port}</td>
+									<td data-speed={lastPingSpeed} class="response-time">
+										{lastPingDuration}ms
+									</td>
+									<td class="settings">
+										<button class="settings-check"></button>
+									</td>
+									<td class="destroy">
+										<button class="destroy-check"></button>
+									</td>
+								</tr>
+                            );
+                        })}
+                    </tbody>
+                );
+            }
+        });
+        const TotalChecks = React.createClass({
             render: function() {
                 return (
                     <span>
                         {this.props.data.numberOfChecks}/{this.props.data.checksUp} servers
                     </span>
+                    // <span class="secondary-text">are responding</span>
                 );
             }
         });
@@ -77,6 +131,8 @@ require(
                         createPopin('alert', err.responseText);
                     } else {
 
+                        store.tableData.data = data.userData.checks;
+                        store.tableData.render();
                         store.globalStats.data = data.globalStats;
                         store.globalStats.render();
 

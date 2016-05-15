@@ -87,60 +87,61 @@ block body
                                     span.latency-value
                                     | ms
                             p.last-check-date
-            table#checks
-                thead
-                    tr
-                        th Status
-                        th Name
-                        th Domain name or IP
-                        th Port
-                        th Latency
-                        th
-                        th
-                tbody
-                    each check in data.userData.checks
+            #checks-table-wrapper
+                table
+                    thead
+                        tr
+                            th Status
+                            th Name
+                            th Domain name or IP
+                            th Port
+                            th Latency
+                            th
+                            th
+                    tbody
+                        each check in data.userData.checks
 
-                        tr(id=check.id)
+                            tr(id=check.id)
 
-                            if check.history.length > 0
+                                if check.history.length > 0
 
-                                -var lastHistory = check.history[check.history.length - 1]
+                                    -var lastHistory = check.history[check.history.length - 1]
 
-                                if lastHistory.duration !== null
-                                    td.status(data-health="up")
+                                    if lastHistory.duration !== null
+                                        td.status(data-health="up")
+                                    else
+                                        td.status(data-health="down")
+
+                                    td.name= check.name
+                                    td= check.domainNameOrIP
+                                    td= check.port
+
+                                    if lastHistory.duration > 200
+                                        td.response-time(data-speed="slow")= lastHistory.duration + 'ms'
+                                    else if lastHistory.duration !== null
+                                        td.response-time(data-speed="fast")= lastHistory.duration + 'ms'
+                                    else
+                                        td.response-time(data-speed="down") -
+
+                                    td.settings
+                                        button.settings-check
+                                    td.destroy
+                                        button.destroy-check
+
                                 else
-                                    td.status(data-health="down")
 
-                                td.name= check.name
-                                td= check.domainNameOrIP
-                                td= check.port
+                                    td.status(data-health="waiting")
 
-                                if lastHistory.duration > 200
-                                    td.response-time(data-speed="slow")= lastHistory.duration + 'ms'
-                                else if lastHistory.duration !== null
-                                    td.response-time(data-speed="fast")= lastHistory.duration + 'ms'
-                                else
+                                    td.name= check.name
+                                    td= check.domainNameOrIP
+                                    td= check.port
+
                                     td.response-time(data-speed="down") -
 
-                                td.settings
-                                    button.settings-check
-                                td.destroy
-                                    button.destroy-check
-
-                            else
-
-                                td.status(data-health="waiting")
-
-                                td.name= check.name
-                                td= check.domainNameOrIP
-                                td= check.port
-
-                                td.response-time(data-speed="down") -
-
-                                td.settings
-                                    button.settings-check
-                                td.destroy
-                                    button.destroy-check
+                                    td.settings
+                                        button.settings-check
+                                    td.destroy
+                                        button.destroy-check
 
     .fullscreen-wrapper#check-add-form
         .centered-box
