@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = function(grunt) {
     grunt.config.set('webpack', {
         dev: {
@@ -16,13 +18,23 @@ module.exports = function(grunt) {
             module: {
                 loaders: [{
                     test: /\.jsx?$/,
-                    exclude: /node_modules/,
                     loader: 'babel',
+                    exclude: /node_modules/
                     // query: {
                     //     presets: ['es2015']
                     // }
                 }]
-            }
+            },
+            plugins: [
+                new webpack.optimize.UglifyJsPlugin({
+                    compress: {
+                        // warnings: false,
+                    },
+                    output: {
+                        comments: false,
+                    },
+                }),
+            ]
         }
     });
 
