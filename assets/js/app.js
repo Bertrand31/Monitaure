@@ -55,6 +55,9 @@ require(
 
         let _checks = {};
 
+        function loadChecks(data) {
+            //TODO : résultat de la requete AJAX
+        }
         function update(id, data) {
             updateCheck(id, data, function(data) {
                 _todos[data.id] = {
