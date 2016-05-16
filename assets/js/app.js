@@ -1,81 +1,135 @@
 require(
-    ['jquery', 'react', 'react-dom', 'moment', 'chartist', 'chartist-plugin-tooltip',
+    ['flux', 'jquery', 'react', 'react-dom', 'moment', 'chartist', 'chartist-plugin-tooltip',
     './charts/create-chart', './charts/create-global-stats', './charts/hide-chart',
-    './popins/openFullscreen', './popins/closeFullscreen', './popins/createPopin', './popins/closePopin',
-    './dashboard-table/update-table-rows',
+    './popins/openFullscreen', './popins/closeFullscreen', './popins/createPopin',
     './ajax/add-check', './ajax/create-user', './ajax/destroy-check', './ajax/get-all-stats', './ajax/get-global-stats', './ajax/show-simple', './ajax/update-check'],
-    function($, React, ReactDOM, moment, Chartist, chartistTooltip,
+    function(flux, $, React, ReactDOM, moment, Chartist, chartistTooltip,
         createChart, createGlobalStats, hideChart,
-        openFullscreen, closeFullscreen, createPopin, closePopin,
-        updateTableRows,
+        openFullscreen, closeFullscreen, createPopin,
         addCheck, createUser, destroyCheck, getAllStats, getGlobalStats, showSimple, updateCheck) {
 
-        let store = {
-            tableData: {
-                data: [],
-                render: function () {
-                    ReactDOM.render(
-                        <TableData data={store.tableData.data} />,
-                        document.getElementById('checks-table-wrapper')
-                    );
-                }
+        let AppDispatcher = new flux.Dispatcher();
+
+        let CheckActions = {
+
+            create: function(data) {
+                AppDispatcher.dispatch({
+                    actionName: 'create-check',
+                    checkData: data
+                });
             },
-            globalStats: {
-                data: globalStats,
-                render: function() {
-                    ReactDOM.render(
-                        <TotalChecks data={store.globalStats.data} />,
-                        document.getElementById('totalChecks')
-                    );
-                    ReactDOM.render(
-                        <AvailabilitiesAvg data={store.globalStats.data} />,
-                        document.getElementById('availabilitiesAvg')
-                    );
-                }
+
+            update: function(id, data) {
+                AppDispatcher.dispatch({
+                    actionName: 'update-check',
+                    checkId: id,
+                    checkData: data
+                });
+            },
+
+            destroy: function(id) {
+                AppDispatcher.dispatch({
+                    actionName: 'destroy-check',
+                    checkId: id
+                });
             }
         };
 
+        AppDispatcher.register(function(payload) {
+
+			switch(payload.actionName) {
+
+				case 'create-check':
+					createCheck(data, function(data) {
+						_todos[data.id] = {
+							id: data.id,
+							name: data.id,
+							domainNameOrIP: data.domainNameOrIP,
+							port: data.port
+						};
+					});
+					break;
+			}
+		});
+
+
+        let _checks = {};
+
+        function update(id, data) {
+            updateCheck(id, data, function(data) {
+                _todos[data.id] = {
+                    id: data.id,
+                    name: data.id,
+                    domainNameOrIP: data.domainNameOrIP,
+                    port: data.port
+                };
+            });
+        }
+        function destroy(id) {
+            destroyCheck(id, function(data) {
+                delete _todos[data.id];
+            });
+        }
+
 		const CheckRow = React.createClass({
 			render: function() {
-                return (
+                let lastPingDuration = '-',
+                    lastPingSpeed = '',
+                    checkState = 'up',
+                    row = this.props.row;
 
-                );
-			};
-		);
-        const TableData = React.createClass({
-            render: function() {
+                if (typeof row.history[0] !== 'undefined') {
+                    if (row.history[0] === null)
+                        checkState = 'down';
+                    else if (row.history[0] > 200) {
+                        lastPingDuration = `${row.history[0].duration} ms`;
+                        lastPingSpeed = 'slow';
+                    } else {
+                        lastPingDuration = `${row.history[0].duration} ms`;
+                        lastPingSpeed = 'fast';
+                    }
+                } else {
+                    checkState = 'waiting';
+                }
+
                 return (
-                    <tbody>
-                        {this.props.data.map(function(row) {
-							let lastPingDuration = '-',
-								lastPingSpeed = '';
-							if (typeof row.history[0] !== 'undefined') {
-								lastPingDuration = row.history[0].duration;
-								if (lastPingDuration > 200) {
-									lastPingSpeed = 'slow';
-								} else {
-									lastPingSpeed = 'fast';
-								}
-							}
-                            return (
-                                <tr key={row.id} id={row.id}>
-									<td data-health="up" class="status"></td>
-									<td class="name">{row.name}</td>
-									<td>{row.domainNameOrIP}</td>
-									<td>{row.port}</td>
-									<td data-speed={lastPingSpeed} class="response-time">
-										{lastPingDuration}ms
-									</td>
-									<td class="settings">
-										<button class="settings-check"></button>
-									</td>
-									<td class="destroy">
-										<button class="destroy-check"></button>
-									</td>
-								</tr>
-                            );
-                        })}
-                    </tbody>
+                    <tr id={row.id}>
+                        <td data-health={checkState} className="status"></td>
+                        <td className="name">{row.name}</td>
+                        <td>{row.domainNameOrIP}</td>
+                        <td>{row.port}</td>
+                        <td data-speed={lastPingSpeed} className="response-time">
+                            {lastPingDuration}
+                        </td>
+                        <td className="settings">
+                            <button onClick={this._onUpdateClick} className="settings-check"></button>
+                        </td>
+                        <td className="destroy">
+                            <button onClick={this._onDestroyClick} className="destroy-check"></button>
+                        </td>
+                    </tr>
+                );
+			},
+
+            _onDestroyClick: function() {
+                CheckActions.destroy(this.props.row.id);
+            }
+        });
+
+        const TableData = React.createClass({
+
+            render: function() {
+
+                let rows = [];
+                this.props.data.map(function(row) {
+                    rows.push(<CheckRow row={row} key={row.id} />);
+                });
+
+                return (
+                    <table id="checks">
+                        <thead><tr><th>Status</th><th>Name</th><th>Domain name or IP</th><th>Port</th><th>Latency</th><th></th><th></th></tr></thead>
+                        <tbody>{rows}</tbody>
+                    </table>
                 );
             }
         });
@@ -140,7 +194,7 @@ require(
                         globalWrapper.find('.last-error--check-name').text(data.globalStats.lastError.checkName);
                         globalWrapper.find('.last-error--time').text(data.globalStats.lastError.duration);
 
-                        updateTableRows(data.userData.checks);
+                        // updateTableRows(data.userData.checks);
                         if (currentChartId !== null) {
                             createChart(currentChartId, chartOptions);
                         }
@@ -192,15 +246,15 @@ require(
                         createPopin('alert', err.responseText);
                     } else {
                         $('#checks>tbody').append(
-                            '<tr id="' + data.id + '">' +
-                                '<td class="status" data-health="waiting"></td>' +
-                                '<td>' + data.name + '</td>' +
-                                '<td>' + data.domainNameOrIP + '</td>' +
-                                '<td>' + data.port + '</td>' +
-                                '<td class="response-time">-</td>' +
-                                '<td class="settings"><button class="settings-check"></button></td>' +
-                                '<td class="destroy"><button class="destroy-check"></button></td>' +
-                            '</tr>'
+                            `<tr id="${data.id}">
+                                <td class="status" data-health="waiting"></td>
+                                <td>${data.name}</td>
+                                <td>${data.domainNameOrIP}</td>
+                                <td>${data.port}</td>
+                                <td class="response-time">-</td>
+                                <td class="settings"><button class="settings-check"></button></td>
+                                <td class="destroy"><button class="destroy-check"></button></td>
+                            </tr>`
                         );
                     }
                 });
@@ -229,8 +283,8 @@ require(
             createGlobalStats(globalStats);
 
             // Table actions
-            const tableBody = $('#checks tbody');
-            tableBody.on('click', '.destroy-check', function(e) {
+            const tableWrapper = $('#checks-table-wrapper');
+            tableWrapper.on('click', '.destroy-check', function(e) {
                 e.stopPropagation();
                 const checkId = $(this).closest('tr').attr('id');
                 destroyCheck(checkId, function(err, item) {
@@ -248,7 +302,7 @@ require(
                     }
                 });
             });
-            tableBody.on('click', '.settings-check', function(e) {
+            tableWrapper.on('click', '.settings-check', function(e) {
                 e.stopPropagation();
                 const checkId = $(this).closest('tr').attr('id');
                 const form = $('#check-update-form').find('form#check-update');
@@ -271,7 +325,7 @@ require(
 
             // CLICK ON A TABLE ROW
             // Chart handling
-            $('#checks').on('click', 'tbody>tr', function() {
+            $('#checks-table-wrapper').on('click', 'tbody>tr', function() {
                 const currentLine = $(this);
                 const id = currentLine.attr('id');
                 if (id === currentChartId) {

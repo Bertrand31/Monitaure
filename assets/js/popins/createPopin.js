@@ -1,4 +1,4 @@
-define(['jquery'], function($) {
+require(['jquery', './closePopin.js'], function($, closePopin) {
     return function(type, message) {
         const html = `<div data-type="${type}" class="pop-in">
                         <p class="content">${message}</p>

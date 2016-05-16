@@ -85,10 +85,10 @@ block body
                                 br
                                 span.latency
                                     span.latency-value
-                                    | ms
+                                    |  ms
                             p.last-check-date
             #checks-table-wrapper
-                table
+                table#checks
                     thead
                         tr
                             th Status
@@ -117,9 +117,9 @@ block body
                                     td= check.port
 
                                     if lastHistory.duration > 200
-                                        td.response-time(data-speed="slow")= lastHistory.duration + 'ms'
+                                        td.response-time(data-speed="slow")= lastHistory.duration + ' ms'
                                     else if lastHistory.duration !== null
-                                        td.response-time(data-speed="fast")= lastHistory.duration + 'ms'
+                                        td.response-time(data-speed="fast")= lastHistory.duration + ' ms'
                                     else
                                         td.response-time(data-speed="down") -
 
