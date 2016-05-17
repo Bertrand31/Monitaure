@@ -28,20 +28,24 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore', '../server
                     return null;
                 }
 
-                let rows = [];
-                this.state.allChecks.map(function(row) {
-                    rows.push(<CheckRow row={row} key={row.id} />);
-                });
+                const allChecks = this.state.allChecks;
+                const checks = [];
+
+                for(let key in allChecks) {
+                    if (allChecks.hasOwnProperty(key)) {
+                        checks.push(<CheckRow row={allChecks[key]} key={allChecks[key].id} />);
+                    }
+                }
 
                 return (
                     <table id="checks">
                         <thead><tr><th>Status</th><th>Name</th><th>Domain name or IP</th><th>Port</th><th>Latency</th><th></th><th></th></tr></thead>
-                        <tbody>{rows}</tbody>
+                        <tbody>{checks}</tbody>
                     </table>
                 );
             },
             _onChange: function() {
-                this.setState(getPopinsState());
+                this.setState(getChecksState());
             }
         });
         const CheckRow = React.createClass({

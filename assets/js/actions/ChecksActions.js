@@ -5,14 +5,14 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants'],
 
             populateAll: function(checks) {
                 AppDispatcher.dispatch({
-                    actionType: ChecksConstants.CHECKS_POPULATE_ALL,
+                    actionType: ChecksConstants.CHECK_POPULATE_ALL,
                     checks: checks
                 });
             },
 
             create: function(id, name, domainNameOrIP, port, emailNotifications) {
                 AppDispatcher.dispatch({
-                    actionType: ChecksConstants.CHECKS_CREATE,
+                    actionType: ChecksConstants.CHECK_CREATE,
                     id,
                     name,
                     domainNameOrIP,
@@ -23,7 +23,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants'],
 
             update: function(id, name, emailNotifications) {
                 AppDispatcher.dispatch({
-                    actionType: ChecksConstants.CHECKS_UPDATE,
+                    actionType: ChecksConstants.CHECK_UPDATE,
                     id,
                     name,
                     emailNotifications
@@ -32,7 +32,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants'],
 
             destroy: function(id) {
                 AppDispatcher.dispatch({
-                    actionType: ChecksConstants.CHECKS_DESTROY,
+                    actionType: ChecksConstants.CHECK_DESTROY,
                     id: id
                 });
             }

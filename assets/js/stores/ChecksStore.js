@@ -55,7 +55,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
             }
         });
 
-        AppDispatcher.register(function(action) {
+        ChecksStore.dispatchToken = AppDispatcher.register(function(action) {
 
             const history = action.history,
                   checks = action.checks;
@@ -72,7 +72,6 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
                     break;
 
                 case ChecksConstants.CHECK_POPULATE_ALL:
-                    console.log(checks);
                     populateAll(checks);
                     ChecksStore.emitChange();
                     break;

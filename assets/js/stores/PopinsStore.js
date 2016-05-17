@@ -36,7 +36,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/PopinsConstants',
             }
         });
 
-        AppDispatcher.register(function(action) {
+        PopinsStore.dispatchToken = AppDispatcher.register(function(action) {
 
             const type = action.type,
                   text = action.text,
