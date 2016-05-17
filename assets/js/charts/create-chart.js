@@ -1,4 +1,160 @@
-define(['jquery', 'chartist', 'moment', 'chartist-plugin-tooltip', '../ajax/get-check-stats', '../utilities/history-to-chart-data'], function($, Chartist, moment, chartistTooltip, getCheckStats, historyToChartData) {
+//MISC
+        let currentChartId = null;
+
+        $(document).ready(function() {
+
+            const chartOptions = {
+                fullWidth: false,
+                showArea: true,
+                low: 0,
+                height: 250,
+                onlyInteger: true,
+                axisY: {
+                    // showLabel: false,
+                    offset: 50,
+                    showGrid: false,
+                    scaleMinSpace: 100,
+                    labelInterpolationFnc: function(value) {
+                        return value + 'ms';
+                    }
+                },
+                plugins: [
+                    chartistTooltip()
+                ]
+            };
+
+            // Automatic data pulling and udpating
+            const updateInterval = 1 * 60 * 1000; // 1mn
+            setInterval(function() {
+                getAllStats(function(err, data) {
+                    if (err) {
+                        createPopin('alert', err.responseText);
+                    } else {
+
+                        store.tableData.data = data.userData.checks;
+                        store.tableData.render();
+                        store.globalStats.data = data.globalStats;
+                        store.globalStats.render();
+
+                        const globalWrapper = $('.global-data');
+                        globalWrapper.find('.last-error--check-name').text(data.globalStats.lastError.checkName);
+                        globalWrapper.find('.last-error--time').text(data.globalStats.lastError.duration);
+
+                        // updateTableRows(data.userData.checks);
+                        if (currentChartId !== null) {
+                            createChart(currentChartId, chartOptions);
+                        }
+                    }
+                });
+                getGlobalStats(function(err, data) {
+                    if (err) {
+                        createPopin('alert', err.responseText);
+                    } else {
+                        createGlobalStats(data.globalStats);
+                    }
+                });
+            }, updateInterval);
+
+            // Users management
+            $('#signup').on('submit', function(e) {
+                e.preventDefault();
+                createUser($(this), function(err, user) {
+                    if (err) {
+                        let errorMsg = '';
+                        if (err.responseJSON.hasOwnProperty('invalidAttributes')) {
+                            const invalidAttrs = err.responseJSON.invalidAttributes;
+                            for (let invalidAttr in invalidAttrs) {
+                                if (invalidAttrs.hasOwnProperty(invalidAttr)) {
+                                    errorMsg = $('#signup #'+invalidAttr).attr('data-error');
+                                }
+                            }
+                        } else if (err.responseText === 'passwords-mismatch') {
+                            errorMsg = $('#signup #confirmPassword').attr('data-error');
+                        } else {
+                            errorMsg = err.statusText;
+                        }
+                        createPopin('alert', errorMsg);
+                    } else {
+                        $('.signup-block').slideUp();
+                        $('.confirmation-block>p').text('A confirmation email has just been sent to ' + user.email + '.').slideDown();
+                    }
+                });
+            });
+
+            // 'Add a check' form actions
+            $('#open-form').click(function() {
+                openFullscreen($('#check-add-form'));
+            });
+            $('#check-add').on('submit', function(e) {
+                e.preventDefault();
+                addCheck($(this), function(err, data) {
+                    if (err) {
+                        createPopin('alert', err.responseText);
+                    } else {
+                    }
+                });
+                closeFullscreen($('.fullscreen-wrapper#check-add-form'));
+            });
+            // Check update form
+            $('#check-update').on('submit', function(e) {
+                e.preventDefault();
+                updateCheck($(this), function(err, data) {
+                    if (err) {
+                        createPopin('alert', err.responseText);
+                    } else {
+                        $('#checks').find('tr#' + data.id + ' .name').text(data.name);
+                    }
+                });
+                closeFullscreen($('.fullscreen-wrapper#check-update-form'));
+            });
+            $('.fullscreen-wrapper').click(function() {
+                closeFullscreen($(this));
+            });
+            $('.fullscreen-wrapper').find('.centered-box').click(function(e) {
+                e.stopPropagation();
+            });
+
+            // globalStats is declared inline, in the Jade template
+            createGlobalStats(globalStats);
+
+            // CLICK ON A TABLE ROW
+            $('#checks-table-wrapper').on('click', 'tbody>tr', function() {
+                const currentLine = $(this);
+                const id = currentLine.attr('id');
+                if (id === currentChartId) {
+                    hideChart(function() {
+                        currentChartId = null;
+                        currentLine.removeClass('active');
+                    });
+                } else {
+                    hideChart(function() {
+                        createChart(id, chartOptions);
+                        currentChartId = id;
+                        currentLine.siblings('.active').removeClass('active');
+                        currentLine.addClass('active');
+                    });
+                }
+            });
+        });
+define(['jquery', 'chartist', 'moment', 'chartist-plugin-tooltip'], function($, Chartist, moment, chartistTooltip) {
+    const historyToChartData = function(history, callback) {
+        const chartData = {
+            labels: [],
+            series: [
+                []
+            ]
+        };
+        for (let i=0; i<history.length; i++) {
+            const fancyDate = moment(history[i].date).fromNow();
+            const lightDate = moment(history[i].date).format('H:mm');
+            chartData.labels.push(lightDate);
+            chartData.series[0].push({
+                meta: fancyDate,
+                value: history[i].duration
+            });
+        }
+        return callback(chartData);
+    };
     return function(id, chartOptions) {
         getCheckStats(id, function(err, checkStats) {
             if (err) {
