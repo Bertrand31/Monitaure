@@ -1,12 +1,16 @@
-define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants'],
-    function(AppDispatcher, ChecksConstants) {
+define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serverIO/ajaxMethods', '../serverIO/dataHandling'],
+    function(AppDispatcher, ChecksConstants, ajaxMethods, dataHandling) {
 
         const ChecksActions = {
 
             populateAll: function(checks) {
-                AppDispatcher.dispatch({
-                    actionType: ChecksConstants.CHECK_POPULATE_ALL,
-                    checks: checks
+                dataHandling.getAllStats(ajaxMethods.GETer, function(err, data) {
+                    // TODO: if (err)
+                    // TODO: améliorer la route pour ne retourner que les checks
+                    AppDispatcher.dispatch({
+                        actionType: ChecksConstants.CHECK_POPULATE_ALL,
+                        checks: data.userData.checks
+                    });
                 });
             },
 
@@ -31,9 +35,11 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants'],
             },
 
             destroy: function(id) {
-                AppDispatcher.dispatch({
-                    actionType: ChecksConstants.CHECK_DESTROY,
-                    id: id
+                dataHandling.destroyCheck(ajaxMethods.POSTer, id, function(err, data) {
+                    AppDispatcher.dispatch({
+                        actionType: ChecksConstants.CHECK_DESTROY,
+                        id: data.id
+                    });
                 });
             }
         };

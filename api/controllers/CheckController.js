@@ -60,7 +60,7 @@ module.exports = {
     },
 
     destroy: function (req, res) {
-        CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.query.checkId, function(err, destroyed) {
+        CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.body.checkId, function(err, destroyed) {
             if (err) return res.serverError(err);
 
             return res.json(destroyed[0]);

@@ -1,5 +1,5 @@
-define(['react', '../actions/ChecksActions', '../stores/ChecksStore', '../serverIO/ajaxMethods', '../serverIO/dataHandling'],
-    function(React, ChecksActions, ChecksStore, ajaxMethods, dataHandling) {
+define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
+    function(React, ChecksActions, ChecksStore) {
 
         function getChecksState() {
             return {
@@ -12,11 +12,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore', '../server
                 return getChecksState();
             },
             componentWillMount: function() {
-                dataHandling.getAllStats(ajaxMethods.GETer, function(err, data) {
-                    //if (err) TODO
-                    // TODO: améliorer la route pour ne retourner que les checks
-                    ChecksActions.populateAll(data.userData.checks);
-                });
+                ChecksActions.populateAll();
             },
             componentDidMount: function() {
                 ChecksStore.addChangeListener(this._onChange);
