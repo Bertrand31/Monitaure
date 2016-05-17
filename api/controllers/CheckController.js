@@ -24,14 +24,6 @@ module.exports = {
         });
     },
 
-    getallstats: function (req, res) {
-        CheckManagement.getUserAndChecksData(DB.fetchAndPopulate, req.user.id, function(err, data) {
-            if (err) return res.serverError(err);
-
-            return res.json(data);
-        });
-    },
-
     getcheckstats: function (req, res) {
         CheckManagement.getData(DB.fetchOne, req.user.id, req.param('id'), function(err, data) {
             if (err) return res.serverError(err);
