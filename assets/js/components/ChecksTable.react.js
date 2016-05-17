@@ -11,13 +11,15 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore', '../server
             getInitialState: function() {
                 return getChecksState();
             },
-            componentDidMount: function() {
-                ChecksStore.addChangeListener(this._onChange);
+            componentWillMount: function() {
                 dataHandling.getAllStats(ajaxMethods.GETer, function(err, data) {
                     //if (err) TODO
                     // TODO: améliorer la route pour ne retourner que les checks
                     ChecksActions.populateAll(data.userData.checks);
                 });
+            },
+            componentDidMount: function() {
+                ChecksStore.addChangeListener(this._onChange);
             },
             componentWillUnmount: function() {
                 ChecksStore.removeChangeListener(this._onChange);
@@ -90,10 +92,10 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore', '../server
 
             _onUpdateClick: function() {
                 //TEMPORARY
-                CheckActions.update(this.props.row.id, "TODO", true);
+                ChecksActions.update(this.props.row.id, "TODO", true);
             },
             _onDestroyClick: function() {
-                CheckActions.destroy(this.props.row.id);
+                ChecksActions.destroy(this.props.row.id);
             }
         });
 
