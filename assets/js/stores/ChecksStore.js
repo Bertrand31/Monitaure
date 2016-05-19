@@ -7,6 +7,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
         const CHANGE_EVENT = 'change';
 
         const _checks = {};
+        let   _updateTarget = {};
 
         function populateSingle(id, history, stats) {
             _checks[id].history = history;
@@ -40,9 +41,19 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
             delete _checks[id];
         }
 
+        function setUpdateTarget(id) {
+            _updateTarget = _checks[id];
+        }
+
         const ChecksStore = assign({}, EventEmitter.prototype, {
             getAll: function() {
                 return _checks;
+            },
+            getSingle: function(id) {
+                return _checks[id];
+            },
+            getSelected: function() {
+                return _updateTarget;
             },
             emitChange: function() {
                 this.emit(CHANGE_EVENT);
@@ -88,6 +99,11 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
 
                 case ChecksConstants.CHECK_DESTROY:
                     destroy(id);
+                    ChecksStore.emitChange();
+                    break;
+
+                case ChecksConstants.OPEN_CHECK_UPDATE:
+                    setUpdateTarget(id);
                     ChecksStore.emitChange();
                     break;
 

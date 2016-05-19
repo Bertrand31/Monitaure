@@ -13,6 +13,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
             },
             componentWillMount: function() {
                 ChecksActions.populateAll();
+                setInterval(ChecksActions.populateAll, 60*1000);
             },
             componentDidMount: function() {
                 ChecksStore.addChangeListener(this._onChange);
@@ -29,9 +30,9 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                 const allChecks = this.state.allChecks;
                 const checks = [];
 
-                for(let key in allChecks) {
-                    if (allChecks.hasOwnProperty(key)) {
-                        checks.push(<CheckRow row={allChecks[key]} key={allChecks[key].id} />);
+                for(let singleCheck in allChecks) {
+                    if (allChecks.hasOwnProperty(singleCheck)) {
+                        checks.push(<CheckRow row={allChecks[singleCheck]} key={allChecks[singleCheck].id} />);
                     }
                 }
 
@@ -87,8 +88,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
             },
 
             _onUpdateClick: function() {
-                //TEMPORARY
-                ChecksActions.update(this.props.row.id, "TODO", true);
+                ChecksActions.openCheckUpdate(this.props.row.id);
             },
             _onDestroyClick: function() {
                 ChecksActions.destroy(this.props.row.id);

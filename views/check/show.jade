@@ -89,43 +89,7 @@ block body
                             p.last-check-date
             #checks-table-wrapper
 
-    .fullscreen-wrapper#check-add-form
-        .centered-box
-            button.close-fullscreen
-            h2.form-title Add a check
-            form#check-add(method="post")
-                fieldset.check-data
-                    label(for="add-name") Check name
-                    input#add-name(type="text", name="name", placeholder="e.g. HTTP @ Google")
-                    label(for="add-domainNameOrIP") Domain name or IP
-                    input#add-domainNameOrIP(type="text", name="domainNameOrIP", placeholder="e.g. 5.196.72.154")
-                    label(for="add-port") Port
-                    input#add-port(type="text", name="port", placeholder="e.g. 80")
-                fieldset.notifications
-                    label.checkbox-label(for="add-emailNotifications") Email alerts?
-                    .rounded-checkbox
-                        input#add-emailNotifications(type="checkbox", name="emailNotifications", value="true")
-                        label(for="add-emailNotifications")
-                input(type="submit", value="Add")
-    .fullscreen-wrapper#check-update-form
-        .centered-box
-            button.close-fullscreen
-            h2.form-title Update a check
-            form#check-update(method="post")
-                fieldset.check-data
-                    input#update-checkId(type="hidden", name="checkId", value="")
-                    label(for="update-name") Check name
-                    input#update-name(type="text", name="name", placeholder="e.g. HTTP @ Google")
-                    label(for="update-domainNameOrIP") Domain name or IP
-                    input#update-domainNameOrIP(type="text", disabled, name="domainNameOrIP", placeholder="e.g. 5.196.72.154")
-                    label(for="update-port") Port
-                    input#update-port(type="text", disabled, name="port", placeholder="e.g. 80")
-                fieldset.notifications
-                    label.checkbox-label(for="add-emailNotifications") Email alerts?
-                    .rounded-checkbox
-                        input#update-emailNotifications(type="checkbox", name="emailNotifications", value="true")
-                        label(for="update-emailNotifications")
-                input(type="submit", value="Update")
+    .fullscreen-wrapper#fullscreen-wrapper
     .svgs
         svg(xmlns="http://www.w3.org/2000/svg")
             defs

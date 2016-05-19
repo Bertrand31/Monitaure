@@ -3,7 +3,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
 
         const ChecksActions = {
 
-            populateAll: function(checks) {
+            populateAll: function() {
                 dataHandling.getAllStats(ajaxMethods.GETer, function(err, data) {
                     // TODO: if (err)
                     // TODO: améliorer la route pour ne retourner que les checks
@@ -40,6 +40,13 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
                         actionType: ChecksConstants.CHECK_DESTROY,
                         id: data.id
                     });
+                });
+            },
+
+            openCheckUpdate: function(id) {
+                AppDispatcher.dispatch({
+                    actionType: ChecksConstants.OPEN_CHECK_UPDATE,
+                    id: id
                 });
             }
         };

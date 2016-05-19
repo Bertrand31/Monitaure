@@ -1,6 +1,3 @@
-body {
-    background:$dark;
-}
 %box {
     background:#fff;
     border-radius:5px;
@@ -29,8 +26,8 @@ body {
     font:700 .75em $montserrat;
     float:right;
 }
-.fullscreen-wrapper {
-    display:none;
+#fullscreen-wrapper {
+    // display:none;
     position:fixed;
     top:0;
     left:0;
