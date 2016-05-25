@@ -5,7 +5,8 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
 
             populateAll: function() {
                 dataHandling.getAllStats(ajaxMethods.GETer, function(err, data) {
-                    // TODO: if (err)
+                    if (err) return PopinsActions.create('alert', err.reponseText);
+
                     // TODO: améliorer la route pour ne retourner que les checks
                     AppDispatcher.dispatch({
                         actionType: ChecksConstants.CHECK_POPULATE_ALL,
