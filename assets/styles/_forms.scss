@@ -51,7 +51,7 @@ label {
 	font-size: .8em;
 }
 input {
-	&[type="text"], &[type="email"], &[type="password"], &[type="search"] {
+	&[type="text"], &[type="number"], &[type="email"], &[type="password"], &[type="search"] {
         @include appearance(none);
 		font-size: 1em;
 		margin:.15em 0 1em 0 ;

@@ -7,7 +7,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
         const CHANGE_EVENT = 'change';
 
         const _checks = {};
-        let   _updateTarget = {};
+        let   _updateTarget = null;
 
         function populateSingle(id, history, stats) {
             _checks[id].history = history;

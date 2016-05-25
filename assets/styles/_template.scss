@@ -26,8 +26,8 @@
     font:700 .75em $montserrat;
     float:right;
 }
-#fullscreen-wrapper {
-    // display:none;
+.fullscreen {
+    display:flex;
     position:fixed;
     top:0;
     left:0;
@@ -36,6 +36,9 @@
     background:rgba(0,0,0, .3);
     @include align-items(center);
     @include justify-content(center);
+    &.hidden {
+        display:none;
+    }
 }
 .close-fullscreen {
     position: absolute;

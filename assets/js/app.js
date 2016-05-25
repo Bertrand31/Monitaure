@@ -1,9 +1,5 @@
-require(['react', 'react-dom', './components/Popins.react', './actions/PopinsActions', './components/ChecksTable.react', './components/OverlayForm.react'],
-    function(React, ReactDOM, Popins, PopinsActions, ChecksTable, OverlayForm) {
-
-        // setTimeout(() => {
-            // PopinsActions.create('alert', 'Test popin');
-        // }, 2000);
+require(['react', 'react-dom', './components/Popins.react', './components/ChecksTable.react', './components/OverlayForm.react'],
+    function(React, ReactDOM, Popins, ChecksTable, OverlayForm) {
 
         ReactDOM.render(
             <Popins />,
