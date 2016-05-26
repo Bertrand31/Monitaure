@@ -13,7 +13,7 @@ block body
                     form#signup(method="post", action="/signup")
                         fieldset
                             label Username
-                            input#username(name="username", type="text", placeholder="Your username", data-error="This username is already taken", required)
+                            input#username(name="username", type="text", placeholder="Your username", data-error="This username is already taken", required, autofocus)
                             label Email
                             input#email(name="email", type="email", placeholder="Your email", data-error="An account with this email address already exists", required)
                             label Password
