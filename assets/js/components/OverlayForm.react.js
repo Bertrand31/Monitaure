@@ -15,14 +15,19 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                 // BUG
                 // ChecksStore.addChangeListener(this._onUpdateSubmit);
                 // ChecksStore.addChangeListener(this.getInitialState);
-                ChecksStore.addChangeListener(this.handleChange);
+                ChecksStore.addChangeListener(this._onChange);
             },
             componentWillUnmount: function() {
                 // ChecksStore.removeChangeListener(this._onUpdateSubmit);
-                ChecksStore.removeChangeListener(this.getInitialState);
+                // ChecksStore.removeChangeListener(this.getInitialState);
+                ChecksStore.removeChangeListener(this._onChange);
             },
-            handleChange: function(event) {
-                this.setState({value: event.target.value});
+            _onChange: function(event) {
+                console.log(event);
+                // console.log(event.target.value);
+                // this.setState({value: event.target.value});
+                this.setState(getCheckState());
+                // this.setState(selectedCheck[event.target.name]: event.target.vakue);
             },
 
             render: function() {
