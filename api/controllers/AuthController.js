@@ -24,7 +24,8 @@ module.exports = {
             }
             req.logIn(user, function(err) {
                 if (err) res.send(err);
-                UserController.updateLastConnection(user.id);
+
+                UserManagement.updateLastConnection(DB.update, user.id);
                 return res.redirect('/');
             });
 
