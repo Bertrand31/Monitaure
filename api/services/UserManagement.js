@@ -21,14 +21,13 @@ module.exports = {
     },
 
     /**
-     * Update a user's last connection time
+     * Update a user's last connection date
      * @param {Function} updater - record update function
      * @param {String} userId - user id
-     * @param {Function} callback
      */
     updateLastConnection: function(updater, userId) {
         updater('user', { id: userId }, { lastConnection: new Date() }, function(err) {
-            return callback(err);
+            return sails.log.error(err);
         });
     },
 
