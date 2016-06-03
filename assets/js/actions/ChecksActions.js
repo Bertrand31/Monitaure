@@ -1,17 +1,11 @@
-define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serverIO/ajaxMethods', '../serverIO/dataHandling'],
-    function(AppDispatcher, ChecksConstants, ajaxMethods, dataHandling) {
+define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants'],
+    function(AppDispatcher, ChecksConstants) {
 
         const ChecksActions = {
 
             populateAll: function() {
-                dataHandling.getAllStats(ajaxMethods.GETer, function(err, data) {
-                    if (err) return PopinsActions.create('alert', err.reponseText);
-
-                    // TODO: améliorer la route pour ne retourner que les checks
-                    AppDispatcher.dispatch({
-                        actionType: ChecksConstants.CHECK_POPULATE_ALL,
-                        checks: data.userData.checks
-                    });
+                AppDispatcher.dispatch({
+                    actionType: ChecksConstants.CHECK_POPULATE_ALL
                 });
             },
 
@@ -36,18 +30,30 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
             },
 
             destroy: function(id) {
-                dataHandling.destroyCheck(ajaxMethods.POSTer, id, function(err, data) {
-                    AppDispatcher.dispatch({
-                        actionType: ChecksConstants.CHECK_DESTROY,
-                        id: data.id
-                    });
+                AppDispatcher.dispatch({
+                    actionType: ChecksConstants.CHECK_DESTROY,
+                    id: data.id
                 });
             },
 
-            openCheckUpdate: function(id) {
+            setWorkingCheck: function(id) {
                 AppDispatcher.dispatch({
-                    actionType: ChecksConstants.OPEN_CHECK_UPDATE,
+                    actionType: ChecksConstants.SET_WORKING_CHECK,
                     id: id
+                });
+            },
+
+            updateWorkingCheck: function(attrName, attrValue) {
+                AppDispatcher.dispatch({
+                    actionType: ChecksConstants.UPDATE_WORKING_CHECK,
+                    attrName,
+                    attrValue
+                });
+            },
+
+            saveWorkingCheck: function() {
+                AppDispatcher.dispatch({
+                    actionType: ChecksConstants.SAVE_WORKING_CHECK,
                 });
             }
         };

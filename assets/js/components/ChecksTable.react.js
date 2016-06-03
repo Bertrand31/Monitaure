@@ -1,5 +1,5 @@
-define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
-    function(React, ChecksActions, ChecksStore) {
+define(['react', '../actions/ChecksActions', '../actions/FormsActions', '../stores/ChecksStore'],
+    function(React, ChecksActions, FormsActions, ChecksStore) {
 
         function getChecksState() {
             return {
@@ -88,7 +88,8 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
             },
 
             _onUpdateClick: function() {
-                ChecksActions.openCheckUpdate(this.props.row.id);
+                ChecksActions.setWorkingCheck(this.props.row.id);
+                FormsActions.setForm('update');
             },
             _onDestroyClick: function() {
                 ChecksActions.destroy(this.props.row.id);

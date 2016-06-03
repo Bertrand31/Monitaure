@@ -50,9 +50,9 @@ module.exports = {
     update: function (req, res) {
         const data = {
             name: String(req.param('name')),
-            emailNotifications: req.param('emailNotifications') ? true : false
+            emailNotifications: Boolean(req.param('emailNotifications')),
         };
-        CheckManagement.updateCheck(DB.fetchOne, DB.update, req.user.id, req.param('checkId'), data, function(err, updated) {
+        CheckManagement.updateCheck(DB.fetchOne, DB.update, req.user.id, req.param('id'), data, function(err, updated) {
             if (err) return res.serverError(err);
 
             return res.json(updated[0]);

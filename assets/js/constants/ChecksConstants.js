@@ -5,6 +5,8 @@ define(['keymirror'], function(keyMirror) {
         CHECK_CREATE: null,
         CHECK_UPDATE: null,
         CHECK_DESTROY: null,
-        OPEN_CHECK_UPDATE: null
+        SET_WORKING_CHECK: null,
+        UPDATE_WORKING_CHECK: null,
+        SAVE_WORKING_CHECK: null
     });
 });

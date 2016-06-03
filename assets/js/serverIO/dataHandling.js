@@ -14,9 +14,9 @@ define([], function() {
                 return callback(err, data);
             });
         },
-        updateCheck: function(ajaxPost, form, callback) {
+        updateCheck: function(ajaxPost, data, callback) {
             const url = window.location.origin + '/Check/update';
-            ajaxPost(url, form.serialize(), function(err, data) {
+            ajaxPost(url, data, function(err, data) {
                 return callback(err, data);
             });
         },

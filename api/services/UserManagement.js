@@ -27,7 +27,7 @@ module.exports = {
      */
     updateLastConnection: function(updater, userId) {
         updater('user', { id: userId }, { lastConnection: new Date() }, function(err) {
-            return sails.log.error(err);
+            if (err) return sails.log.error(err);
         });
     },
 
