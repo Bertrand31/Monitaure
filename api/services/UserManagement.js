@@ -21,6 +21,18 @@ module.exports = {
     },
 
     /**
+     * Update a user's last connection time
+     * @param {Function} updater - record update function
+     * @param {String} userId - user id
+     * @param {Function} callback
+     */
+    updateLastConnection: function(updater, userId) {
+        updater('user', { id: userId }, { lastConnection: new Date() }, function(err) {
+            return callback(err);
+        });
+    },
+
+    /**
      * Confirms an user account by updating the database record corresponding to the passed token
      * @param {Function} updater - record update function
      * @param {String} confirmationToken - confirmation token

@@ -44,6 +44,10 @@ module.exports = {
             required: true
         },
 
+        lastConnection: {
+            type: 'date'
+        },
+
         toJSON: function() {
             const obj = this.toObject();
             delete obj.password;
@@ -62,6 +66,8 @@ module.exports = {
         user.emailHash = crypto.createHash('md5').update(user.email).digest('hex');
 
         user.confirmationToken = crypto.randomBytes(16).toString('hex');
+
+        user.lastConnection = new Date();
 
         bcrypt.genSalt(10, function(err, salt) {
             if (err) {
