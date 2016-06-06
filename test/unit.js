@@ -135,22 +135,22 @@ describe('#user and check management', function() {
             done();
         });
     });
-    it('should create a check', function(done) {
-        const checkData = {
-            name: 'HTTP @ Google',
-            domainNameOrIP: 'google.fr',
-            port: 80,
-            emailNotifications: true,
-            owner: fakeUser.id
-        };
-        CheckManagement.createCheck(fakeDB.fetchAndPopulate, fakeDB.create, user.id, checkData, function(err, createdCheck) {
-            assert.isNull(err, 'did not throw an error');
-            assert.isObject(createdCheck, 'created a check');
-            assert.deepEqual(createdCheck.name, checkData.name, 'return a check with well populated fields');
-            check = createdCheck;
-            done();
-        });
-    });
+    // it('should create a check', function(done) {
+    //     const checkData = {
+    //         name: 'HTTP @ Google',
+    //         domainNameOrIP: 'google.fr',
+    //         port: 80,
+    //         emailNotifications: true,
+    //         owner: fakeUser.id
+    //     };
+    //     CheckManagement.createCheck(fakeDB.fetchAndPopulate, fakeDB.create, user.id, checkData, function(err, createdCheck) {
+    //         assert.isNull(err, 'did not throw an error');
+    //         assert.isObject(createdCheck, 'created a check');
+    //         assert.deepEqual(createdCheck.name, checkData.name, 'return a check with well populated fields');
+    //         check = createdCheck;
+    //         done();
+    //     });
+    // });
     it('should update the created check', function(done) {
         const data = {
             name: 'HTTP @ Google 2'
