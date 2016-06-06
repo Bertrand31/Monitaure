@@ -59,9 +59,17 @@ table {
     background-image:url('../images/trash.svg');
     background-size:20px 20px;
 }
-.settings-check {
+.is-editing {
+    background:red;
     width:20px;
     height:20px;
-    background-image:url('../images/settings.svg');
+    // background-image:url('../images/settings.svg');
+    background-size:20px 20px;
+}
+.is-not-editing {
+    background:green;
+    width:20px;
+    height:20px;
+    // background-image:url('../images/settings.svg');
     background-size:20px 20px;
 }

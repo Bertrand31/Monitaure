@@ -1,5 +1,5 @@
-require(['react', 'react-dom', './components/Popins.react', './components/ChecksTable.react', './components/OverlayForm.react'],
-    function(React, ReactDOM, Popins, ChecksTable, OverlayForm) {
+require(['react', 'react-dom', './components/Popins.react', './components/ChecksTable.react'],
+    function(React, ReactDOM, Popins, ChecksTable) {
 
         ReactDOM.render(
             <Popins />,
@@ -9,11 +9,6 @@ require(['react', 'react-dom', './components/Popins.react', './components/Checks
         ReactDOM.render(
             <ChecksTable />,
             document.getElementById('checks-table-wrapper')
-        );
-
-        ReactDOM.render(
-            <OverlayForm />,
-            document.getElementById('fullscreen-wrapper')
         );
     }
 );

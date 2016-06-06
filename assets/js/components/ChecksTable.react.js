@@ -1,5 +1,66 @@
-define(['react', '../actions/ChecksActions', '../actions/FormsActions', '../stores/ChecksStore'],
-    function(React, ChecksActions, FormsActions, ChecksStore) {
+define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
+    function(React, ChecksActions, ChecksStore) {
+
+        const CheckRow = React.createClass({
+            handleChange: function(e) {
+                let value = e.target.value;
+
+                // if (e.target.value.length >= 20)
+                //     value = value.slice(0, -1);
+
+                ChecksActions.updateWorkingCheck(this.props.row.id, e.target.name, value);
+            },
+            render: function() {
+                let lastPingDuration = '-',
+                    lastPingSpeed = '',
+                    checkState = 'up',
+                    row = this.props.row;
+
+                if (typeof row.history[0] !== 'undefined') {
+                    if (row.history[0] === null)
+                        checkState = 'down';
+                    else if (row.history[0] > 200) {
+                        lastPingDuration = `${row.history[0].duration} ms`;
+                        lastPingSpeed = 'slow';
+                    } else {
+                        lastPingDuration = `${row.history[0].duration} ms`;
+                        lastPingSpeed = 'fast';
+                    }
+                } else {
+                    checkState = 'waiting';
+                }
+
+                const isEditing = this.props.row.hasOwnProperty('isEditing');
+
+                return (
+                    <tr id={row.id}>
+                        <td data-health={checkState} className="status"></td>
+                        <td><input id="name" name="name" className="name" disabled={!isEditing} type="text" onChange={this.handleChange} value={row.name} /></td>
+                        <td>{row.domainNameOrIP}</td>
+                        <td>{row.port}</td>
+                        <td data-speed={lastPingSpeed} className="response-time">
+                            {lastPingDuration}
+                        </td>
+                        <td className={isEditing ? 'is-editing' : 'is-not-editing'}>
+                            <button onClick={this._onUpdateClick} className="settings-check">✓</button>
+                        </td>
+                        <td className="destroy">
+                            <button onClick={this._onDestroyClick} className="destroy-check"></button>
+                        </td>
+                    </tr>
+                );
+            },
+
+            _onUpdateClick: function() {
+                if (!this.props.row.hasOwnProperty('isEditing'))
+                    ChecksActions.setWorkingCheck(this.props.row.id);
+                else
+                    ChecksActions.saveWorkingCheck(this.props.row);
+            },
+            _onDestroyClick: function() {
+                ChecksActions.destroy(this.props.row.id);
+            }
+        });
 
         function getChecksState() {
             return {
@@ -45,54 +106,6 @@ define(['react', '../actions/ChecksActions', '../actions/FormsActions', '../stor
             },
             _onChange: function() {
                 this.setState(getChecksState());
-            }
-        });
-        const CheckRow = React.createClass({
-            render: function() {
-                let lastPingDuration = '-',
-                    lastPingSpeed = '',
-                    checkState = 'up',
-                    row = this.props.row;
-
-                if (typeof row.history[0] !== 'undefined') {
-                    if (row.history[0] === null)
-                        checkState = 'down';
-                    else if (row.history[0] > 200) {
-                        lastPingDuration = `${row.history[0].duration} ms`;
-                        lastPingSpeed = 'slow';
-                    } else {
-                        lastPingDuration = `${row.history[0].duration} ms`;
-                        lastPingSpeed = 'fast';
-                    }
-                } else {
-                    checkState = 'waiting';
-                }
-
-                return (
-                    <tr id={row.id}>
-                        <td data-health={checkState} className="status"></td>
-                        <td className="name">{row.name}</td>
-                        <td>{row.domainNameOrIP}</td>
-                        <td>{row.port}</td>
-                        <td data-speed={lastPingSpeed} className="response-time">
-                            {lastPingDuration}
-                        </td>
-                        <td className="settings">
-                            <button onClick={this._onUpdateClick} className="settings-check"></button>
-                        </td>
-                        <td className="destroy">
-                            <button onClick={this._onDestroyClick} className="destroy-check"></button>
-                        </td>
-                    </tr>
-                );
-            },
-
-            _onUpdateClick: function() {
-                ChecksActions.setWorkingCheck(this.props.row.id);
-                FormsActions.setForm('update');
-            },
-            _onDestroyClick: function() {
-                ChecksActions.destroy(this.props.row.id);
             }
         });
 

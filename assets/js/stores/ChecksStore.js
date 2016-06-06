@@ -1,6 +1,6 @@
-define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants', 'object-assign', '../serverIO/ajaxMethods', '../serverIO/dataHandling', '../actions/PopinsActions'],
+define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants', 'object-assign'],
 
-    function(AppDispatcher, events, ChecksConstants, assign, ajaxMethods, dataHandling, PopinsActions) {
+    function(AppDispatcher, events, ChecksConstants, assign) {
 
         const EventEmitter = events.EventEmitter;
 
@@ -13,15 +13,11 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
             _checks[id].history = history;
             _checks[id].stats = stats;
         }
-        function populateAll() {
-            dataHandling.getAllStats(ajaxMethods.GETer, function(err, data) {
-                if (err) return PopinsActions.create('alert', err.reponseText);
-                // TODO: améliorer la route pour ne retourner que les checks
-                data.userData.checks.map((check) => {
-                    _checks[check.id] = check;
-                    ChecksStore.emitChange();
-                });
+        function populateAll(allChecks) {
+            allChecks.map((check) => {
+                _checks[check.id] = check;
             });
+            ChecksStore.emitChange();
         }
 
         function create(id, name, domainNameOrIP, port, emailNotifications) {
@@ -33,36 +29,18 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
                 emailNotifications
             };
         }
-        function update(id, name, emailNotifications) {
-            _checks[id] = {
-                name,
-                emailNotifications
-            };
-        }
         function destroy(id) {
             delete _checks[id];
-            // AJAX CALL
-            dataHandling.destroyCheck(ajaxMethods.POSTer, id, function(err) {
-                if (err) return PopinsActions.create('alert', err.reponseText);
-            });
         }
 
         function setWorkingCheck(id = null) {
-            if (id !== null)
-                _workingCheck = _checks[id];
-            else
-                _workingCheck = null;
+            _checks[id].isEditing = true;
         }
-        function updateWorkingCheck(attrName, attrValue) {
-            _workingCheck[attrName] = attrValue;
-
+        function updateWorkingCheck(id, attrName, attrValue) {
+            _checks[id][attrName] = attrValue;
         }
-        function saveWorkingCheck() {
-            _checks[_workingCheck.id] = _workingCheck;
-            dataHandling.updateCheck(ajaxMethods.POSTer, _workingCheck, function(err, data) {
-                if (err) return PopinsActions.create('alert', err.reponseText);
-                console.log(data);
-            });
+        function saveWorkingCheck(id) {
+            delete _checks[id].isEditing;
         }
 
         const ChecksStore = assign({}, EventEmitter.prototype, {
@@ -91,6 +69,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
 
         ChecksStore.dispatchToken = AppDispatcher.register(function(action) {
 
+            const allChecks = action.allChecks;
             const history = action.history;
             const name = action.name,
                   domainNameOrIP = action.domainNameOrIP,
@@ -107,16 +86,11 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
                     break;
 
                 case ChecksConstants.CHECK_POPULATE_ALL:
-                    populateAll();
+                    populateAll(allChecks);
                     break;
 
                 case ChecksConstants.CHECK_CREATE:
                     create(id, name, domainNameOrIP, port, emailNotifications);
-                    ChecksStore.emitChange();
-                    break;
-
-                case ChecksConstants.CHECK_UPDATE:
-                    update(id, name, emailNotifications);
                     ChecksStore.emitChange();
                     break;
 
@@ -131,12 +105,12 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
                     break;
 
                 case ChecksConstants.UPDATE_WORKING_CHECK:
-                    updateWorkingCheck(attrName, attrValue);
+                    updateWorkingCheck(id, attrName, attrValue);
                     ChecksStore.emitChange();
                     break;
 
                 case ChecksConstants.SAVE_WORKING_CHECK:
-                    saveWorkingCheck();
+                    saveWorkingCheck(id);
                     ChecksStore.emitChange();
                     break;
 

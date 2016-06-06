@@ -61,6 +61,7 @@ input {
 		color:$lighter;
 		border:0;
 		border-bottom:1px solid $softwhite;
+        background:transparent;
 		&:disabled {
 			background:transparent url('/images/lock.svg') right center no-repeat;
 			background-size:15px;
