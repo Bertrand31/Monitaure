@@ -2,15 +2,18 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
     function(React, ChecksActions, ChecksStore) {
 
         const CheckRow = React.createClass({
-            handleChange: function(e) {
-                let value = e.target.value;
+            handleChange(e) {
+                const inputType = e.target.type;
+                const inputName = e.target.name;
+                let inputValue = e.target.value;
 
-                // if (e.target.value.length >= 20)
-                //     value = value.slice(0, -1);
+                if (inputType === 'checkbox') {
+                    inputValue = e.target.checked;
+                }
 
-                ChecksActions.updateWorkingCheck(this.props.row.id, e.target.name, value);
+                ChecksActions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
             },
-            render: function() {
+            render() {
                 let lastPingDuration = '-',
                     lastPingSpeed = '',
                     checkState = 'up',
@@ -40,6 +43,9 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                         <td>{row.port}</td>
                         <td data-speed={lastPingSpeed} className="response-time">
                             {lastPingDuration}
+                        </td>
+                        <td>
+                            <input id="emailNotifications" name="emailNotifications" type="checkbox" onChange={this.handleChange} checked={row.emailNotifications} />
                         </td>
                         <td className={isEditing ? 'is-editing' : 'is-not-editing'}>
                             <button onClick={this._onUpdateClick} className="settings-check">✓</button>
@@ -99,7 +105,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
 
                 return (
                     <table id="checks">
-                        <thead><tr><th>Status</th><th>Name</th><th>Domain name or IP</th><th>Port</th><th>Latency</th><th></th><th></th></tr></thead>
+                        <thead><tr><th>Status</th><th>Name</th><th>Domain name or IP</th><th>Port</th><th>Latency</th><th>Notifications</th><th></th><th></th></tr></thead>
                         <tbody>{checks}</tbody>
                     </table>
                 );
