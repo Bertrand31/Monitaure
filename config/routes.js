@@ -46,6 +46,9 @@ module.exports.routes = {
 
     '/logout': 'AuthController.logout',
 
+    'get /403': {
+        view: '403'
+    },
     'get /500': {
         view: '500'
     }
