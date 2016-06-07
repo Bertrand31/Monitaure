@@ -17,7 +17,6 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
             allChecks.map((check) => {
                 _checks[check.id] = check;
             });
-            ChecksStore.emitChange();
         }
 
         function create(id, name, domainNameOrIP, port, emailNotifications) {
@@ -87,6 +86,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
 
                 case ChecksConstants.CHECK_POPULATE_ALL:
                     populateAll(allChecks);
+                    ChecksStore.emitChange();
                     break;
 
                 case ChecksConstants.CHECK_CREATE:
