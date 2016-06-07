@@ -4,7 +4,9 @@ define(['jquery'], function($) {
             $.ajax({
                 url: url,
                 method: 'POST',
-                data: data,
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json',
                 beforeSend: function() {},
                 complete: function() {},
                 success: function(data) { return callback(null, data); },
@@ -15,7 +17,9 @@ define(['jquery'], function($) {
             $.ajax({
                 url: url,
                 method: 'GET',
-                data: data,
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json',
                 beforeSend: function() {},
                 complete: function() {},
                 success: function(data) { return callback(null, data); },
