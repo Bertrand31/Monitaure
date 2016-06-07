@@ -34,13 +34,14 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                 }
 
                 const isEditing = this.props.row.hasOwnProperty('isEditing');
+                const isNewCheck = this.props.row.id === 'tmpID';
 
                 return (
                     <tr id={row.id}>
                         <td data-health={checkState} className="status"></td>
-                        <td><input id="name" name="name" className="name" disabled={!isEditing} type="text" onChange={this.handleChange} value={row.name} /></td>
-                        <td>{row.domainNameOrIP}</td>
-                        <td>{row.port}</td>
+                        <td><input id="name" name="name" disabled={!isEditing} type="text" onChange={this.handleChange} value={row.name} /></td>
+                        <td><input id="domainNameOrIP" name="domainNameOrIP" disabled={!isEditing || !isNewCheck} type="text" onChange={this.handleChange} value={row.domainNameOrIP} /></td>
+                        <td><input id="port" name="port" disabled={!isEditing || !isNewCheck} type="number" onChange={this.handleChange} value={row.port} /></td>
                         <td data-speed={lastPingSpeed} className="response-time">
                             {lastPingDuration}
                         </td>

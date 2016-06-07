@@ -19,19 +19,21 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
             });
         }
 
-        function create(id, name, domainNameOrIP, port, emailNotifications) {
-            _checks[id] = {
-                id,
-                name,
-                domainNameOrIP,
-                port,
-                emailNotifications
-            };
-        }
         function destroy(id) {
             delete _checks[id];
         }
 
+        function createWorkingCheck() {
+            _checks['tmpID'] = {
+                id: 'tmpID',
+                name: '',
+                domainNameOrIP: '',
+                history: [],
+                port: null,
+                emailNotifications: false,
+                isEditing: true
+            };
+        }
         function setWorkingCheck(id = null) {
             _checks[id].isEditing = true;
         }
@@ -96,6 +98,11 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
 
                 case ChecksConstants.CHECK_DESTROY:
                     destroy(id);
+                    ChecksStore.emitChange();
+                    break;
+
+                case ChecksConstants.CREATE_WORKING_CHECK:
+                    createWorkingCheck();
                     ChecksStore.emitChange();
                     break;
 

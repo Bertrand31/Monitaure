@@ -3,7 +3,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
 
         const ChecksActions = {
 
-            populateAll: function() {
+            populateAll() {
                 dataHandling.getAllStats(ajaxMethods.GETer, function(err, data) {
                     if (err) return PopinsActions.create('alert', err.reponseText);
                     // TODO: améliorer la route pour ne retourner que les checks
@@ -14,18 +14,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
                 });
             },
 
-            create: function(id, name, domainNameOrIP, port, emailNotifications) {
-                AppDispatcher.dispatch({
-                    actionType: ChecksConstants.CHECK_CREATE,
-                    id,
-                    name,
-                    domainNameOrIP,
-                    port,
-                    emailNotifications
-                });
-            },
-
-            destroy: function(id) {
+            destroy(id) {
                 AppDispatcher.dispatch({
                     actionType: ChecksConstants.CHECK_DESTROY,
                     id: data.id
@@ -35,14 +24,20 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
                 });
             },
 
-            setWorkingCheck: function(id) {
+            createWorkingCheck() {
+                AppDispatcher.dispatch({
+                    actionType: ChecksConstants.CREATE_WORKING_CHECK,
+                });
+            },
+
+            setWorkingCheck(id) {
                 AppDispatcher.dispatch({
                     actionType: ChecksConstants.SET_WORKING_CHECK,
                     id: id
                 });
             },
 
-            updateWorkingCheck: function(id, attrName, attrValue) {
+            updateWorkingCheck(id, attrName, attrValue) {
                 AppDispatcher.dispatch({
                     actionType: ChecksConstants.UPDATE_WORKING_CHECK,
                     id: id,
@@ -51,7 +46,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
                 });
             },
 
-            saveWorkingCheck: function(data) {
+            saveWorkingCheck(data) {
                 AppDispatcher.dispatch({
                     actionType: ChecksConstants.SAVE_WORKING_CHECK,
                     id: data.id

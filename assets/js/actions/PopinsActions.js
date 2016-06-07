@@ -2,7 +2,8 @@ define(['../dispatcher/AppDispatcher', '../constants/PopinsConstants'],
     function(AppDispatcher, PopinsConstants) {
 
         const PopinsActions = {
-            create: function(type, text) {
+
+            create(type, text) {
                 AppDispatcher.dispatch({
                     actionType: PopinsConstants.POPIN_CREATE,
                     type: type,
@@ -10,7 +11,7 @@ define(['../dispatcher/AppDispatcher', '../constants/PopinsConstants'],
                 });
             },
 
-            destroy: function(id) {
+            destroy(id) {
                 AppDispatcher.dispatch({
                     actionType: PopinsConstants.POPIN_DESTROY,
                     id: id
