@@ -20,9 +20,9 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                     row = this.props.row;
 
                 if (typeof row.history[0] !== 'undefined') {
-                    if (row.history[0] === null)
+                    if (row.history[0].duration === null)
                         checkState = 'down';
-                    else if (row.history[0] > 200) {
+                    else if (row.history[0].duration > 200) {
                         lastPingDuration = `${row.history[0].duration} ms`;
                         lastPingSpeed = 'slow';
                     } else {

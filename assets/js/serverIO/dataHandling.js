@@ -8,9 +8,9 @@ define([], function() {
             });
         },
         // Checks management
-        createCheck: function(ajaxPost, form, callback) {
+        createCheck: function(ajaxPost, data, callback) {
             const url = window.location.origin + '/Check/create';
-            ajaxPost(url, form.serialize(), function(err, data) {
+            ajaxPost(url, data, function(err, data) {
                 return callback(err, data);
             });
         },

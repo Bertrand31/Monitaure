@@ -18,11 +18,13 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
             destroy(id) {
                 AppDispatcher.dispatch({
                     actionType: ChecksConstants.CHECK_DESTROY,
-                    id: data.id
+                    id
                 });
-                dataHandling.destroyCheck(ajaxMethods.POSTer, id, function(err) {
-                    if (err) return PopinsActions.create('alert', err.reponseText);
-                });
+                if (id !== 'tmpID') {
+                    dataHandling.destroyCheck(ajaxMethods.POSTer, id, function(err) {
+                        if (err) return PopinsActions.create('alert', err.reponseText);
+                    });
+                }
             },
 
             createWorkingCheck() {
@@ -34,14 +36,14 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
             setWorkingCheck(id) {
                 AppDispatcher.dispatch({
                     actionType: ChecksConstants.SET_WORKING_CHECK,
-                    id: id
+                    id
                 });
             },
 
             updateWorkingCheck(id, attrName, attrValue) {
                 AppDispatcher.dispatch({
                     actionType: ChecksConstants.UPDATE_WORKING_CHECK,
-                    id: id,
+                    id,
                     attrName,
                     attrValue
                 });
@@ -52,9 +54,17 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
                     actionType: ChecksConstants.SAVE_WORKING_CHECK,
                     id: data.id
                 });
-                dataHandling.updateCheck(ajaxMethods.POSTer, data, function(err, data) {
-                    if (err) return PopinsActions.create('alert', err.reponseText);
-                });
+                if (data.id === 'tmpID') {
+                    dataHandling.createCheck(ajaxMethods.POSTer, data, function(err, data) {
+                        if (err) return PopinsActions.create('alert', err.reponseText);
+                        //TODO swap checks, or someting
+                        // delete tmpID check & create a new one with ${data}
+                    });
+                } else {
+                    dataHandling.updateCheck(ajaxMethods.POSTer, data, function(err, data) {
+                        if (err) return PopinsActions.create('alert', err.reponseText);
+                    });
+                }
             }
         };
 
