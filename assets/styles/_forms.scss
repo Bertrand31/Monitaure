@@ -58,14 +58,14 @@ input {
 		width: 100%;
 		font-family: $roboto;
 		font-weight: 600;
-		color:$lighter;
+		color:$softwhite;
 		border:0;
 		border-bottom:1px solid $softwhite;
         background:transparent;
 		&:disabled {
-			background:transparent url('/images/lock.svg') right center no-repeat;
-			background-size:15px;
-			color:#ccc;
+            border:0;
+			// background:transparent url('/images/lock.svg') right center no-repeat;
+			// background-size:15px;
 		}
 	}
 	&[type="radio"] {
