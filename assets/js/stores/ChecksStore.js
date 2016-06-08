@@ -20,6 +20,9 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
             _globalStats = globalStats;
         }
 
+        function create(data) {
+            _checks[data.id] = data;
+        }
         function destroy(id) {
             delete _checks[id];
         }
@@ -70,6 +73,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
 
             const allChecks = action.allChecks,
                   globalStats = action.globalStats;
+            const data = action.data;
             const history = action.history;
             const name = action.name,
                   domainNameOrIP = action.domainNameOrIP,
@@ -91,7 +95,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
                     break;
 
                 case ChecksConstants.CHECK_CREATE:
-                    create(id, name, domainNameOrIP, port, emailNotifications);
+                    create(data);
                     ChecksStore.emitChange();
                     break;
 

@@ -50,17 +50,24 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
             },
 
             saveWorkingCheck(data) {
-                AppDispatcher.dispatch({
-                    actionType: ChecksConstants.SAVE_WORKING_CHECK,
-                    id: data.id
-                });
                 if (data.id === 'tmpID') {
-                    dataHandling.createCheck(ajaxMethods.POSTer, data, function(err, data) {
+                    dataHandling.createCheck(ajaxMethods.POSTer, data, function(err, newData) {
                         if (err) return PopinsActions.create('alert', err.reponseText);
-                        //TODO swap checks, or someting
-                        // delete tmpID check & create a new one with ${data}
+
+                        AppDispatcher.dispatch({
+                            actionType: ChecksConstants.CHECK_DESTROY,
+                            id: 'tmpID'
+                        });
+                        AppDispatcher.dispatch({
+                            actionType: ChecksConstants.CHECK_CREATE,
+                            data: newData
+                        });
                     });
                 } else {
+                    AppDispatcher.dispatch({
+                        actionType: ChecksConstants.SAVE_WORKING_CHECK,
+                        id: data.id
+                    });
                     dataHandling.updateCheck(ajaxMethods.POSTer, data, function(err, data) {
                         if (err) return PopinsActions.create('alert', err.reponseText);
                     });
