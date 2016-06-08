@@ -36,34 +36,7 @@ block body
             .content-wrapper
                 section.top-buttons
                     button.button#open-form Add a check
-                section.global-data
-                    .global-data-block.global-status
-                        .donut.checks-up-donut
-                        p.donut-content
-                            span#totalChecks.main-text
-                                | #{data.globalStats.checksUp}/#{data.globalStats.numberOfChecks}
-                                |  servers
-                                span.secondary-text are responding
-                            span.aside-text servers responding
-                    .global-data-block.availability
-                        .donut.availability-donut
-                        p.donut-content
-                            span#availabilitiesAvg.main-text
-                                if data.globalStats.availabilitiesAvg
-                                    span#availabilitiesAvg= data.globalStats.availabilitiesAvg
-                                else
-                                    span#availabilitiesAvg -
-                                span.secondary-text %
-                            span.aside-text average availability
-                    .global-data-block.last-error
-                        .donut.last-error-donut
-                        p.donut-content
-                            span.main-text
-                                span.last-error--check-name= data.globalStats.lastError.checkName
-                                span.secondary-text.last-error--time= data.globalStats.lastError.duration
-                                span.secondary-text.last-error--hour
-                                span.secondary-text.last-error--day
-                            span.aside-text Last outage
+                section#global-data
                 section#chart-container
                     .data
                         p.name
