@@ -37,7 +37,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                 const isNewCheck = this.props.row.id === 'tmpID';
 
                 return (
-                    <tr id={row.id}>
+                    <tr id={row.id} onClick={this._onOpenClick}>
                         <td data-health={checkState} className="status"></td>
                         <td><input id="name" name="name" disabled={!isEditing} type="text" onChange={this.handleChange} value={row.name} placeholder="e.g. HTTP @ Google" /></td>
                         <td><input id="domainNameOrIP" name="domainNameOrIP" disabled={!isEditing || !isNewCheck} type="text" onChange={this.handleChange} value={row.domainNameOrIP} placeholder="e.g. google.fr" /></td>
@@ -58,7 +58,10 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                 );
             },
 
-            _onUpdateClick: function() {
+            _onOpenClick() {
+                ChecksActions.openStats(this.props.row.id);
+            },
+            _onUpdateClick() {
                 if (!this.props.row.hasOwnProperty('isEditing'))
                     ChecksActions.setWorkingCheck(this.props.row.id);
                 else

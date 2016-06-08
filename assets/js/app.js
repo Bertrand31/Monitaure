@@ -1,5 +1,5 @@
-require(['react', 'react-dom', './components/Popins.react', './components/TopButton.react', './components/GlobalStats.react', './components/ChecksTable.react'],
-    function(React, ReactDOM, Popins, TopButton, GlobalStats, ChecksTable) {
+require(['react', 'react-dom', './components/Popins.react', './components/TopButton.react', './components/GlobalStats.react', './components/CheckStats.react', './components/ChecksTable.react'],
+    function(React, ReactDOM, Popins, TopButton, GlobalStats, CheckStats, ChecksTable) {
 
         ReactDOM.render(
             <Popins />,
@@ -9,6 +9,11 @@ require(['react', 'react-dom', './components/Popins.react', './components/TopBut
         ReactDOM.render(
             <TopButton />,
             document.getElementById('top-button')
+        );
+
+        ReactDOM.render(
+            <CheckStats />,
+            document.getElementById('chart-container')
         );
 
         ReactDOM.render(

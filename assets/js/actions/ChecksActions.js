@@ -27,6 +27,25 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
                 }
             },
 
+            openStats(id) {
+                if (id !== 'tmpID') {
+                    dataHandling.getCheckStats(ajaxMethods.GETer, id, function(err, data) {
+                        if (err) return PopinsActions.create('alert', err.reponseText);
+
+                        AppDispatcher.dispatch({
+                            actionType: ChecksConstants.OPEN_CHECK_STATS,
+                            id,
+                            data
+                        });
+                    });
+                }
+            },
+            closeStats() {
+                AppDispatcher.dispatch({
+                    actionType: ChecksConstants.CLOSE_CHECK_STATS
+                });
+            },
+
             createWorkingCheck() {
                 AppDispatcher.dispatch({
                     actionType: ChecksConstants.CREATE_WORKING_CHECK,
