@@ -39,9 +39,9 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                 return (
                     <tr id={row.id}>
                         <td data-health={checkState} className="status"></td>
-                        <td><input id="name" name="name" disabled={!isEditing} type="text" onChange={this.handleChange} value={row.name} /></td>
-                        <td><input id="domainNameOrIP" name="domainNameOrIP" disabled={!isEditing || !isNewCheck} type="text" onChange={this.handleChange} value={row.domainNameOrIP} /></td>
-                        <td><input id="port" name="port" disabled={!isEditing || !isNewCheck} type="number" onChange={this.handleChange} value={row.port} /></td>
+                        <td><input id="name" name="name" disabled={!isEditing} type="text" onChange={this.handleChange} value={row.name} placeholder="e.g. HTTP @ Google" /></td>
+                        <td><input id="domainNameOrIP" name="domainNameOrIP" disabled={!isEditing || !isNewCheck} type="text" onChange={this.handleChange} value={row.domainNameOrIP} placeholder="e.g. google.fr" /></td>
+                        <td><input id="port" name="port" disabled={!isEditing || !isNewCheck} type="number" onChange={this.handleChange} value={row.port} placeholder="e.g. 80" /></td>
                         <td data-speed={lastPingSpeed} className="response-time">
                             {lastPingDuration}
                         </td>
