@@ -1,4 +1,4 @@
-.global-data {
+.global-stats {
     .global-data-block {
         flex-grow:1;
         text-align:center;
@@ -26,14 +26,12 @@
         text-transform:uppercase;
         color:$lighter;
     }
-    .global-status {
-        .donut {
-            .primary-bar {
-                stroke:$lightgreen;
-            }
-            .secondary-bar {
-                stroke:$alert;
-            }
+    .donut {
+        .primary-bar {
+            stroke:$lightgreen;
+        }
+        .secondary-bar {
+            stroke:$alert;
         }
     }
     .availability {

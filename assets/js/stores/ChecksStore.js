@@ -7,31 +7,34 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
         const CHANGE_EVENT = 'change';
 
         const _checks = {};
-        let   _workingCheck = null;
+        let _globalStats = {};
 
         function populateSingle(id, history, stats) {
             _checks[id].history = history;
             _checks[id].stats = stats;
         }
-        function populateAll(allChecks) {
+        function populateAll(allChecks, globalStats) {
             allChecks.map((check) => {
                 _checks[check.id] = check;
             });
+            _globalStats = globalStats;
         }
 
-        function create(id, name, domainNameOrIP, port, emailNotifications) {
-            _checks[id] = {
-                id,
-                name,
-                domainNameOrIP,
-                port,
-                emailNotifications
-            };
-        }
         function destroy(id) {
             delete _checks[id];
         }
 
+        function createWorkingCheck() {
+            _checks['tmpID'] = {
+                id: 'tmpID',
+                name: '',
+                domainNameOrIP: '',
+                history: [],
+                port: null,
+                emailNotifications: false,
+                isEditing: true
+            };
+        }
         function setWorkingCheck(id = null) {
             _checks[id].isEditing = true;
         }
@@ -43,38 +46,36 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
         }
 
         const ChecksStore = assign({}, EventEmitter.prototype, {
-            getAll: function() {
+            getAll() {
                 return _checks;
             },
-            getSingle: function(id) {
+            getSingle(id) {
                 return _checks[id];
             },
-            setWorkingCheck: function(id) {
-                setWorkingCheck(id);
+            getGlobalStats() {
+                return _globalStats;
             },
-            getWorkingCheck: function() {
-                return _workingCheck;
-            },
-            emitChange: function() {
+            emitChange() {
                 this.emit(CHANGE_EVENT);
             },
-            addChangeListener: function(callback) {
+            addChangeListener(callback) {
                 this.on(CHANGE_EVENT, callback);
             },
-            removeChangeListener: function(callback) {
+            removeChangeListener(callback) {
                 this.removeListener(CHANGE_EVENT, callback);
             }
         });
 
         ChecksStore.dispatchToken = AppDispatcher.register(function(action) {
 
-            const allChecks = action.allChecks;
+            const allChecks = action.allChecks,
+                  globalStats = action.globalStats;
             const history = action.history;
             const name = action.name,
                   domainNameOrIP = action.domainNameOrIP,
                   port = action.port,
                   emailNotifications = action.emailNotifications,
-                  id   = action.id;
+                  id = action.id;
             const attrName = action.attrName,
                   attrValue = action.attrValue;
 
@@ -85,7 +86,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
                     break;
 
                 case ChecksConstants.CHECK_POPULATE_ALL:
-                    populateAll(allChecks);
+                    populateAll(allChecks, globalStats);
                     ChecksStore.emitChange();
                     break;
 
@@ -96,6 +97,11 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
 
                 case ChecksConstants.CHECK_DESTROY:
                     destroy(id);
+                    ChecksStore.emitChange();
+                    break;
+
+                case ChecksConstants.CREATE_WORKING_CHECK:
+                    createWorkingCheck();
                     ChecksStore.emitChange();
                     break;
 

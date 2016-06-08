@@ -20,7 +20,7 @@
     "Webpack"
   ],
   "dependencies": {
-    "async": "^2.0.0-rc.5",
+    "async": "^2.0.0-rc.6",
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
@@ -52,6 +52,7 @@
     "passport-local": "^1.0.0",
     "rc": "1.1.6",
     "react": "^15.1.0",
+    "react-chartist": "^0.10.2",
     "react-dom": "^15.1.0",
     "sails": "~0.12.3",
     "sails-disk": "~0.10.9",
