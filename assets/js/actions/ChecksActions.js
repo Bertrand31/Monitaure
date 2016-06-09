@@ -1,5 +1,5 @@
-define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serverIO/ajaxMethods', '../serverIO/dataHandling', '../actions/PopinsActions'],
-    function(AppDispatcher, ChecksConstants, ajaxMethods, dataHandling, PopinsActions) {
+define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../constants/UserInfoConstants', '../serverIO/ajaxMethods', '../serverIO/dataHandling', '../actions/PopinsActions'],
+    function(AppDispatcher, ChecksConstants, UserInfoConstants, ajaxMethods, dataHandling, PopinsActions) {
 
         const ChecksActions = {
 
@@ -11,6 +11,10 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
                         actionType: ChecksConstants.CHECK_POPULATE_ALL,
                         allChecks: data.userData.checks,
                         globalStats: data.globalStats
+                    });
+                    AppDispatcher.dispatch({
+                        actionType: UserInfoConstants.USER_INFO_POPULATE,
+                        user: data.userData
                     });
                 });
             },

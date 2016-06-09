@@ -27,11 +27,7 @@ block body
                     ul
                         li
                             a(href="/logout") Log out
-            .sidebar-bottom
-                .profile
-                    a(href="http://gravatar.com", target="_blank", title="Set or change your profile picture")
-                        img(src="https://gravatar.com/avatar/" + data.userData.userEmailMD5 + "?size=100" alt="Profile picture")
-                    span= data.userData.userName
+            .sidebar-bottom#profile
         main.main.dashboard
             .content-wrapper
                 section#top-button
@@ -48,5 +44,3 @@ block body
                 linearGradient#LightGreenGradient(x1="0%", y1="0%", x2="0%", y2="100%")
                     stop(offset="0%", stop-color="#5eed80")
                     stop(offset="100%", stop-color="#357e2e")
-    script.
-        var globalStats = !{JSON.stringify(data.globalStats)};
