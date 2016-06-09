@@ -34,7 +34,6 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../serve
 
                         AppDispatcher.dispatch({
                             actionType: ChecksConstants.OPEN_CHECK_STATS,
-                            id,
                             data
                         });
                     });

@@ -8,13 +8,10 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
 
         const _checks = {};
         let _globalStats = {};
-        let _openCheckID = '';
+        let _openCheck = {};
 
-        function populateSingle(id, data) {
-            _openCheckID = id;
-            _checks[id].history = data.history;
-            _checks[id].stats = data.stats;
-
+        function populateOpenCheck(data) {
+            _openCheck = data;
         }
         function populateAll(allChecks, globalStats) {
             allChecks.map((check) => {
@@ -55,11 +52,8 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
             getAll() {
                 return _checks;
             },
-            getOpenCheckID() {
-                return _openCheckID;
-            },
-            getSingle(id) {
-                return _checks[id];
+            getOpenCheck() {
+                return _openCheck;
             },
             getGlobalStats() {
                 return _globalStats;
@@ -107,7 +101,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
                     break;
 
                 case ChecksConstants.OPEN_CHECK_STATS:
-                    populateSingle(id, data);
+                    populateOpenCheck(data);
                     ChecksStore.emitChange();
                     break;
 

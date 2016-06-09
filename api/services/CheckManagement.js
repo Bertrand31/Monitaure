@@ -192,12 +192,12 @@ module.exports = {
                         checksUp++;
                     }
                     // We add current check's availability stats to the availabilities sum
-                    availabilitiesSum += checkStats.stats.availability;
+                    availabilitiesSum += checkStats.availability;
                     // If current check's last outage is more recent than the one
                     // stored in lastError, we update the lastError object
-                    if (checkStats.stats.lastOutage > lastError.duration) {
-                        lastError.duration = checkStats.stats.lastOutage;
-                        lastError.checkName = checkStats.stats.name;
+                    if (checkStats.lastOutage > lastError.duration) {
+                        lastError.duration = checkStats.lastOutage;
+                        lastError.checkName = checkStats.name;
                     }
                     // We replace current check's history with the trimmed version from 'checkStats'
                     user.checks[i].history = checkStats.history;
@@ -263,14 +263,14 @@ module.exports = {
             const historyShort = historyArray.slice(-historyLength);
 
             return {
-                history: historyShort,
-                stats: {
-                    min: min,
-                    max: max,
-                    avg: avg,
-                    availability: availability,
-                    lastOutage: lastOutage
-                }
+                id: check.id,
+                name: check.name,
+                min,
+                max,
+                avg,
+                availability,
+                lastOutage,
+                history: historyShort
             };
         } else {
             return null;

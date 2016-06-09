@@ -46,7 +46,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                             {lastPingDuration}
                         </td>
                         <td>
-                            <input id="emailNotifications" name="emailNotifications" type="checkbox" onChange={this.handleChange} checked={row.emailNotifications} />
+                            <input id="emailNotifications" name="emailNotifications" disabled={!isEditing} type="checkbox" onChange={this.handleChange} checked={row.emailNotifications} />
                         </td>
                         <td className={isEditing ? 'is-editing' : 'is-not-editing'}>
                             <button onClick={this._onUpdateClick} className="settings-check">✓</button>
@@ -61,13 +61,15 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
             _onOpenClick() {
                 ChecksActions.openStats(this.props.row.id);
             },
-            _onUpdateClick() {
+            _onUpdateClick(e) {
+                e.stopPropagation();
                 if (!this.props.row.hasOwnProperty('isEditing'))
                     ChecksActions.setWorkingCheck(this.props.row.id);
                 else
                     ChecksActions.saveWorkingCheck(this.props.row);
             },
-            _onDestroyClick: function() {
+            _onDestroyClick(e) {
+                e.stopPropagation();
                 ChecksActions.destroy(this.props.row.id);
             }
         });
