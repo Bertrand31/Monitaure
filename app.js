@@ -4,8 +4,7 @@ process.chdir(__dirname);
 
 // Ensure a "sails" can be located:
 (function() {
-    let newrelic = require('newrelic'),
-        sails;
+    let     sails;
     try {
         sails = require('sails');
 
