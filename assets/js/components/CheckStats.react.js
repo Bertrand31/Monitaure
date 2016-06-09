@@ -61,7 +61,7 @@ define(['react', 'react-chartist', 'chartist-plugin-tooltip', 'moment', '../stor
 
             const openCheck = this.state.openCheck;
 			const chartDataset = historyToChartData(openCheck.history);
-            const lastOutagePretty = moment(openCheck.lastOutage).format('D/MM/YY H:mm');
+            const lastOutagePretty = openCheck.lastOutage ? moment(openCheck.lastOutage).format('D/MM/YY H:mm') : '-';
             const lastPing = openCheck.history[openCheck.history.length - 1],
                   lastPingDuration = lastPing.duration,
                   lastPingDate = moment(lastPing.date).format('HH:mm:ss');
