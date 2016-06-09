@@ -7,12 +7,12 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
     }
 
     const Popin = React.createClass({
-        componentDidMount: function() {
+        componentDidMount() {
             setTimeout(() => {
                 PopinsActions.destroy(this.props.data.id);
             }, 3000);
         },
-        render: function() {
+        render() {
             return (
                 <div data-type={this.props.data.type} className="pop-in">
                     <p className="content">{this.props.data.text}</p>
@@ -26,17 +26,17 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
     });
 
     const Popins = React.createClass({
-        getInitialState: function() {
+        getInitialState() {
             return getPopinsState();
         },
-        componentDidMount: function() {
+        componentDidMount() {
             PopinsStore.addChangeListener(this._onChange);
         },
-        componentWillUnmount: function() {
+        componentWillUnmount() {
             PopinsStore.removeChangeListener(this._onChange);
         },
 
-        render: function() {
+        render() {
             if (Object.keys(this.state.allPopins).length < 1) {
                 return null;
             }
@@ -55,7 +55,7 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
             );
         },
 
-        _onChange: function() {
+        _onChange() {
             this.setState(getPopinsState());
         }
     });
