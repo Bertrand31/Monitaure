@@ -1,23 +1,7 @@
 module.exports = {
 
-    show: function (req, res) {
-        if (req.user) {
-            CheckManagement.getUserAndChecksData(DB.fetchAndPopulate, req.user.id, function(err, data) {
-                if (err) return res.serverError(err);
-
-                if (req.wantsJSON) {
-                    return res.json(data);
-                } else {
-                    return res.view({ data });
-                }
-            });
-        } else {
-            return res.view('homepage');
-        }
-    },
-
-    showsimple: function (req, res) {
-        CheckManagement.getCheckMinimalData(DB.fetchOne, req.user.id, req.param('id'), function(err, data) {
+    getcheckstats: function (req, res) {
+        CheckManagement.getData(DB.fetchOne, req.user.id, req.param('id'), function(err, data) {
             if (err) return res.serverError(err);
 
             return res.json(data);
