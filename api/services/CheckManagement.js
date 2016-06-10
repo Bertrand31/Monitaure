@@ -209,6 +209,7 @@ module.exports = {
      * Trims the check's history to only return a specified number of pings
      *  @param {Object} check - the raw db record of a check
      *  @param {Number} historyLength - the number of history entries to return
+     *  @returns {Objets}
      */
     checkStats: function(check, historyLength) {
         const historyArray = check.history;
@@ -216,7 +217,6 @@ module.exports = {
             let sum = 0,
                 min = historyArray[0].duration,
                 max = historyArray[0].duration,
-                avg = 0,
                 totalOutage = 0,
                 checkInterval = sails.config.checkInterval,
                 lastOutage = null;
@@ -231,22 +231,18 @@ module.exports = {
                     lastOutage = historyArray[i].date;
                 }
             }
-            avg = Math.round(sum / historyArray.length);
 
             const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
-            const availability = Utilities.customFloor(percent, 2);
-
-            const historyShort = historyArray.slice(-historyLength);
 
             return {
                 id: check.id,
                 name: check.name,
                 min,
                 max,
-                avg,
-                availability,
+                avg: Math.round(sum / historyArray.length),
+                availability: Utilities.customFloor(percent, 2),
                 lastOutage,
-                history: historyShort
+                history: historyArray.slice(-historyLength)
             };
         } else {
             return null;
