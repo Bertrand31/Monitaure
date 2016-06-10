@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                     //     presets: ['es2015']
                     // }
                 }]
-            },
+            }
             // plugins: [
             //     new webpack.optimize.UglifyJsPlugin({
             //         compress: {

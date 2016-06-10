@@ -71,16 +71,12 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
 
         ChecksStore.dispatchToken = AppDispatcher.register(function(action) {
 
-            const allChecks = action.allChecks,
-                  globalStats = action.globalStats;
+            const allChecks = action.allChecks;
+            const globalStats = action.globalStats;
             const data = action.data;
-            const name = action.name,
-                  domainNameOrIP = action.domainNameOrIP,
-                  port = action.port,
-                  emailNotifications = action.emailNotifications,
-                  id = action.id;
-            const attrName = action.attrName,
-                  attrValue = action.attrValue;
+            const id = action.id;
+            const attrName = action.attrName;
+            const attrValue = action.attrValue;
 
             switch(action.actionType) {
 

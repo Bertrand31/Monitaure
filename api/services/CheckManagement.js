@@ -2,6 +2,7 @@
  * Deletes history records older than a month
  * Accepts empty histories
  * @param {Array} historyArray - check.history
+ * @return {Array}
  */
 const cleanHistory = function(historyArray) {
     if (typeof historyArray[0] === 'undefined') return [];
@@ -103,7 +104,7 @@ module.exports = {
         fetcher('check', ping.checkId, function (err, check) {
             if (err) return callback(err);
 
-            let newHistoryArray = cleanHistory(check.history);
+            const newHistoryArray = cleanHistory(check.history);
 
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
@@ -151,13 +152,10 @@ module.exports = {
     getUserAndGlobalStats: function(fetcher, userId, callback) {
         fetcher('user', userId, 'checks', function(err, user) {
 
-            let lastError = {
-                    time: null,
-                    checkName: null
-                },
-                checksUp = 0,
-                numberOfChecks = user.checks.length,
-                availabilitiesSum = 0;
+            const lastError = { time: null, checkName: null };
+            let checksUp = 0;
+            const numberOfChecks = user.checks.length;
+            let availabilitiesSum = 0;
 
             for (let i = 0; i < user.checks.length; i++) {
 
