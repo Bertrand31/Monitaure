@@ -1,29 +1,36 @@
-define(['jquery'], function($) {
+define([], function() {
     return {
-        POSTer: function(url, data, callback) {
-            $.ajax({
-                url: url,
+        POSTer(url, data, callback) {
+            fetch(url, {
                 method: 'POST',
-                data: JSON.stringify(data),
-                dataType: 'json',
-                contentType: 'application/json',
-                beforeSend: function() {},
-                complete: function() {},
-                success: function(data) { return callback(null, data); },
-                error: function(err) { return callback(err, null); }
+                credentials: 'same-origin',
+                body: JSON.stringify(data),
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                })
+            }).then(function(res) {
+                return res.json();
+            }).then(function(data) {
+                callback(null, data);
+            }).catch(function(err) {
+                callback(err, null);
             });
         },
-        GETer: function(url, data, callback) {
-            $.ajax({
-                url: url,
+        GETer(url, data, callback) {
+            fetch(url, {
                 method: 'GET',
-                data: JSON.stringify(data),
-                dataType: 'json',
-                contentType: 'application/json',
-                beforeSend: function() {},
-                complete: function() {},
-                success: function(data) { return callback(null, data); },
-                error: function(err) { return callback(err, null); }
+                credentials: 'same-origin',
+                headers: new Headers({
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                })
+            }).then(function(res) {
+                return res.json();
+            }).then(function(data) {
+                callback(null, data);
+            }).catch(function(err) {
+                callback(err, null);
             });
         }
     };

@@ -25,12 +25,12 @@
     "async": "^2.0.0-rc.6",
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "bcrypt": "^0.8.6",
     "chai": "^3.5.0",
     "chartist": "^0.9.7",
-    "chartist-plugin-tooltip": "0.0.11",
     "connect-redis": "3.0.2",
     "crypto": "0.0.3",
     "flux": "^2.1.1",
@@ -43,7 +43,6 @@
     "grunt-webpack": "^1.0.11",
     "include-all": "~0.1.6",
     "jade": "^1.11.0",
-    "jquery": "^3.0.0",
     "keymirror": "^0.1.1",
     "moment": "^2.13.0",
     "nodemailer": "^2.4.1",
@@ -59,7 +58,8 @@
     "sails-disk": "~0.10.10",
     "sails-mongo": "^0.12.0",
     "supertest": "^1.2.0",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "whatwg-fetch": "^1.0.0"
   },
   "scripts": {
     "debug": "node debug app.js",

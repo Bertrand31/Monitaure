@@ -3,7 +3,7 @@ const webpack = require('webpack');
 module.exports = function(grunt) {
     grunt.config.set('webpack', {
         dev: {
-			entry: './assets/js/app.js',
+			entry: ['whatwg-fetch', 'babel-polyfill', './assets/js/app.js'],
 
             resolve: {
                 extensions: ['', '.js', '.jsx']
