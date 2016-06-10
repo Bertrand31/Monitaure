@@ -1,4 +1,4 @@
-define(['react', 'react-chartist', 'chartist-plugin-tooltip', 'moment', '../stores/ChecksStore'], function(React, ChartistGraph, chartistTooltip, moment, ChecksStore) {
+define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(React, ChartistGraph, moment, ChecksStore) {
 
 	const chartOptions = {
         fullWidth: false,
@@ -14,10 +14,7 @@ define(['react', 'react-chartist', 'chartist-plugin-tooltip', 'moment', '../stor
             labelInterpolationFnc: function(value) {
                 return value + 'ms';
             }
-        },
-        plugins: [
-            chartistTooltip()
-        ]
+        }
 	};
     function historyToChartData(history) {
 		const chartData = {

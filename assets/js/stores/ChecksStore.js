@@ -33,7 +33,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
                 name: '',
                 domainNameOrIP: '',
                 history: [],
-                port: null,
+                port: '',
                 emailNotifications: false,
                 isEditing: true
             };
@@ -74,7 +74,6 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
             const allChecks = action.allChecks,
                   globalStats = action.globalStats;
             const data = action.data;
-            const history = action.history;
             const name = action.name,
                   domainNameOrIP = action.domainNameOrIP,
                   port = action.port,

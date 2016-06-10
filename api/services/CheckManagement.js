@@ -33,6 +33,7 @@ module.exports = {
 
             // We test the number of checks this user has against the limit
             const checksNbLimit = (typeof sails !== 'undefined') ? sails.config.checkNbLimit : 10;
+
             if (user.checks.length >= checksNbLimit) {
                 return callback('You reached the limit of ten checks per user');
             } else if (!Utilities.isDomainNameOrIP(checkData.domainNameOrIP)) {
@@ -141,36 +142,13 @@ module.exports = {
     },
 
     /**
-     * Retrieves a check's minimal data (name, domainNameOrIP, port and notifications)
-     * @param {Function} fetcher - a function fetching a single record
-     * @param {String} userId - the id of the user requesting this action
-     * @param {String} checkId - the id of the check to retrieve data from
-     * @param {Function} callback
-     */
-    getCheckMinimalData: function(fetcher, userId, checkId, callback) {
-        fetcher('check', checkId, function (err, check) {
-            if (check.owner !== userId) {
-                return callback('You do not have access to this check');
-            } else {
-                return callback(err, {
-                    name: check.name,
-                    domainNameOrIP: check.domainNameOrIP,
-                    port: check.port,
-                    emailNotifications: check.emailNotifications
-                });
-            }
-
-       });
-    },
-
-    /**
      * Retrieve the user's data and its checks, and then trims
      * their histories to keep only the last ping
      * @param {Function} fetcher - record fetching and population function
      * @param {String} userId - the id of the user requesting this action
      * @param {Function} callback
      */
-    getUserAndChecksData: function(fetcher, userId, callback) {
+    getUserAndGlobalStats: function(fetcher, userId, callback) {
         fetcher('user', userId, 'checks', function(err, user) {
 
             let lastError = {

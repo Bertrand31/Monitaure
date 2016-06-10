@@ -44,7 +44,7 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
             const allPopins = this.state.allPopins;
             const popins = [];
 
-            for(let key in allPopins) {
+            for(const key in allPopins) {
                 if (allPopins.hasOwnProperty(key)) {
                     popins.push(<Popin data={allPopins[key]} key={allPopins[key].id} />);
                 }

@@ -26,15 +26,8 @@ define([], function() {
                 return callback(err, data);
             });
         },
-        // Check's data fetching
-        showCheckSimple: function(ajaxGet, checkId, callback) {
-            const url = window.location.origin + '/Check/showsimple/'+checkId;
-            ajaxGet(url, { checkId }, function(err, data) {
-                return callback(err, data);
-            });
-        },
-        getAllStats: function(ajaxGet, callback) {
-            const url = window.location.origin + '/Check/show/';
+        getUserAndGlobalStats: function(ajaxGet, callback) {
+            const url = window.location.origin + '/Check/getuserandglobalstats/';
             ajaxGet(url, null, function(err, data) {
                 return callback(err, data);
             });

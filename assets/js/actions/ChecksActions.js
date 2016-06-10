@@ -4,7 +4,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../const
         const ChecksActions = {
 
             populateAll() {
-                dataHandling.getAllStats(ajaxMethods.GETer, function(err, data) {
+                dataHandling.getUserAndGlobalStats(ajaxMethods.GETer, function(err, data) {
                     if (err) return PopinsActions.create('alert', err.reponseText);
 
                     AppDispatcher.dispatch({
@@ -51,7 +51,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../const
 
             createWorkingCheck() {
                 AppDispatcher.dispatch({
-                    actionType: ChecksConstants.CREATE_WORKING_CHECK,
+                    actionType: ChecksConstants.CREATE_WORKING_CHECK
                 });
             },
 
@@ -90,7 +90,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../const
                         actionType: ChecksConstants.SAVE_WORKING_CHECK,
                         id: data.id
                     });
-                    dataHandling.updateCheck(ajaxMethods.POSTer, data, function(err, data) {
+                    dataHandling.updateCheck(ajaxMethods.POSTer, data, function(err) {
                         if (err) return PopinsActions.create('alert', err.reponseText);
                     });
                 }

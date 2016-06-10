@@ -40,7 +40,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/PopinsConstants',
 
             const type = action.type,
                   text = action.text,
-                  id   = action.id;
+                  id = action.id;
 
             switch(action.actionType) {
                 case PopinsConstants.POPIN_CREATE:
