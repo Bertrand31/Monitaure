@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     grunt.config.set('sass', {
         dev: {
             options: {
-                style: 'compressed',
+                style: 'compressed'
             },
             files: [{
                 expand: true,

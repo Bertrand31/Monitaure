@@ -45,7 +45,8 @@ const fakeCheck = {
         { date: new Date('2016-05-12T20:20:55.454Z'), duration: 103 },
         { date: new Date('2016-05-12T20:21:55.464Z'), duration: 25 },
         { date: new Date('2016-05-12T20:22:55.521Z'), duration: 27 },
-        { date: new Date('2016-05-12T20:23:55.543Z'), duration: 25 } ],
+        { date: new Date('2016-05-12T20:23:55.543Z'), duration: 25 }
+    ],
     createdAt: '2016-05-12T19:56:17.519Z',
     updatedAt: '2016-05-12T20:23:55.572Z',
     id: '5734dfa3a55ad89e36d722f8'
