@@ -18,8 +18,9 @@ module.exports = {
     * @param {Object} criteria - the criteria items should match
     * @param {Function} callback
     */
-    fetch: function(itemsType, criteria, callback) {
-        if (typeof itemsType !== 'string' || typeof criteria !== 'object') throw new Error('Incorret input types');
+    fetch(itemsType, criteria, callback) {
+        if (typeof itemsType !== 'string' || typeof criteria !== 'object')
+            throw new Error('[Fetch] Incorret input types');
 
         findModel(itemsType).find(criteria).exec(function (err, items) {
             return callback(err, items);
@@ -32,8 +33,9 @@ module.exports = {
     * @param {String} itemId - the id of the item we want to fetch
     * @param {Function} callback
     */
-    fetchOne: function(itemType, itemId, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string') throw new Error('Incorrect input types');
+    fetchOne(itemType, itemId, callback) {
+        if (typeof itemType !== 'string' || typeof itemId !== 'string')
+            throw new Error('[FetchOne] Incorrect input types');
 
         findModel(itemType).findOne({ id: itemId }).exec(function (err, item) {
             return callback(err, item);
@@ -47,9 +49,9 @@ module.exports = {
     * @param {String} associationType - the model of the data set we want to populate our item  with
     * @param {Function} callback
     */
-    fetchAndPopulate: function(itemType, itemId, associationType, callback) {
+    fetchAndPopulate(itemType, itemId, associationType, callback) {
         if (typeof itemType !== 'string' || typeof itemId !== 'string' || typeof associationType !== 'string')
-            throw new Error('Incorrect input types');
+            throw new Error('[FetchAndPopulate] Incorrect input types');
 
         findModel(itemType).findOne({ id: itemId }).populate(associationType).exec(function (err, populatedItem) {
             return callback(err, populatedItem);
@@ -62,8 +64,9 @@ module.exports = {
     * @param {Object} data - the attributes of the item we want to create
     * @param {Function} callback
     */
-    create: function(itemType, data, callback) {
-        if (typeof itemType !== 'string' || typeof data !== 'object') throw new Error('Incorrect input types');
+    create(itemType, data, callback) {
+        if (typeof itemType !== 'string' || typeof data !== 'object')
+            throw new Error('[Create] Incorrect input types');
 
         findModel(itemType).create(data).exec(function (err, created) {
             return callback(err, created);
@@ -77,8 +80,9 @@ module.exports = {
     * @param {Object} data - the attributes to update and their new contents
     * @param {Function} callback
     */
-    update: function(itemType, filterCriteria, newData, callback) {
-        if (typeof itemType !== 'string' || typeof filterCriteria !== 'object' || typeof newData !== 'object') throw new Error('Incorrect input types');
+    update(itemType, filterCriteria, newData, callback) {
+        if (typeof itemType !== 'string' || typeof filterCriteria !== 'object' || typeof newData !== 'object')
+            throw new Error('[Update] Incorrect input types');
 
         findModel(itemType).update(filterCriteria, newData).exec(function (err, updated) {
             return callback(err, updated);
@@ -90,8 +94,9 @@ module.exports = {
     * @param {String} itemId - the id of the item we want to fetch
     * @param {Function} callback
     */
-    destroy: function(itemType, itemId, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string') throw new Error('Incorrect input types');
+    destroy(itemType, itemId, callback) {
+        if (typeof itemType !== 'string' || typeof itemId !== 'string')
+            throw new Error('[Destroy] Incorrect input types');
 
         findModel(itemType).destroy(itemId).exec(function (err, destroyed) {
             return callback(err, destroyed);

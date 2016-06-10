@@ -4,7 +4,7 @@ language: node_js
 
 node_js:
     - "stable"
-    - "6.2.0"
+    - "6.2.1"
 
 compiler: clang-3.6
 
@@ -18,7 +18,7 @@ before_install:
 addons:
     apt:
         sources:
-            - llvm-toolchain-precise-3.6
+            - llvm-toolchain-precise-3.8
             - ubuntu-toolchain-r-test
         packages:
             - clang-3.6
@@ -27,6 +27,3 @@ addons:
 services:
     - mongodb
     - redis-server
-
-after_success:
-    - bash <(curl -s https://codecov.io/bash)

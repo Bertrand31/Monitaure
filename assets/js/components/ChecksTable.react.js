@@ -14,10 +14,10 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                 ChecksActions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
             },
             render() {
+                const row = this.props.row;
                 let lastPingDuration = '-',
                     lastPingSpeed = '',
-                    checkState = 'up',
-                    row = this.props.row;
+                    checkState = 'up';
 
                 if (typeof row.history[0] !== 'undefined') {
                     if (row.history[0].duration === null)
@@ -49,7 +49,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                             <input id="emailNotifications" name="emailNotifications" disabled={!isEditing} type="checkbox" onChange={this.handleChange} checked={row.emailNotifications} />
                         </td>
                         <td className={isEditing ? 'is-editing' : 'is-not-editing'}>
-                            <button onClick={this._onUpdateClick} className="settings-check">✓</button>
+                            <button onClick={this._onEditClick} className="settings-check">✓</button>
                         </td>
                         <td className="destroy">
                             <button onClick={this._onDestroyClick} className="destroy-check"></button>
@@ -61,7 +61,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
             _onOpenClick() {
                 ChecksActions.openStats(this.props.row.id);
             },
-            _onUpdateClick(e) {
+            _onEditClick(e) {
                 e.stopPropagation();
                 if (!this.props.row.hasOwnProperty('isEditing'))
                     ChecksActions.setWorkingCheck(this.props.row.id);
