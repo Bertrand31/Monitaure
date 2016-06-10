@@ -1,9 +1,22 @@
-require(['react', 'react-dom', './components/Popins.react', './components/User.react', './components/TopButton.react', './components/GlobalStats.react', './components/CheckStats.react', './components/ChecksTable.react'],
-    function(React, ReactDOM, Popins, User, TopButton, GlobalStats, CheckStats, ChecksTable) {
+require(
+    ['react', 'react-dom',
+    './components/Popins.react',
+    './components/Navigation.react',
+    './components/User.react',
+    './components/TopButton.react',
+    './components/GlobalStats.react',
+    './components/CheckStats.react',
+    './components/ChecksTable.react'],
+    function(React, ReactDOM, Popins, Navigation, User, TopButton, GlobalStats, CheckStats, ChecksTable) {
 
         ReactDOM.render(
             <Popins />,
             document.getElementById('popins-container')
+        );
+
+        ReactDOM.render(
+            <Navigation />,
+            document.getElementById('sidebar__nav')
         );
 
         ReactDOM.render(

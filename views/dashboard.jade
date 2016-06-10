@@ -1,4 +1,4 @@
-extends ../layout
+extends ./layout
 
 block body
 
@@ -7,26 +7,7 @@ block body
             .sidebar-top
                 h1#logo
                     img(src="/images/logo.svg" alt="Monitaure - Monitoring for the masses")
-                nav.main-nav
-                    ul
-                        li.active
-                            a(href="/dashboard") Activity
-                        li.disabled
-                            a(href="#_") Reports
-                                span.info 14
-                        li.disabled
-                            a(href="#_") Messages
-                                span.info 123
-                nav.misc-nav
-                    ul
-                        li.disabled
-                            a(href="#_") Settings
-                        li
-                            a(href="https://github.com/Bertrand31/Monitaure/issues", target="_blank") Help
-                nav.auth-nav
-                    ul
-                        li
-                            a(href="/logout") Log out
+                #sidebar__nav
             .sidebar-bottom#profile
         main.main.dashboard
             .content-wrapper
