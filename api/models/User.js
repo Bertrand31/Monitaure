@@ -15,12 +15,15 @@ module.exports = {
     attributes: {
         username: {
             type: 'string',
+            minLength: 2,
+            maxLength: 40,
             required: true,
             unique: true
         },
 
         email: {
             type: 'email',
+            email: true,
             required: true,
             unique: true
         },
