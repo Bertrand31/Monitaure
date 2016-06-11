@@ -50,7 +50,7 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
                 }
             }
 
-            return(
+            return (
                 <div>{popins}</div>
             );
         },

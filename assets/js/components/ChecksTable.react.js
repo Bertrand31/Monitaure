@@ -103,7 +103,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                 const allChecks = this.state.allChecks;
                 const checks = [];
 
-                for(let singleCheck in allChecks) {
+                for (const singleCheck in allChecks) {
                     if (allChecks.hasOwnProperty(singleCheck)) {
                         checks.push(<CheckRow row={allChecks[singleCheck]} key={allChecks[singleCheck].id} />);
                     }

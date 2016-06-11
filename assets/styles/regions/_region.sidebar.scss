@@ -24,7 +24,7 @@
                     width:3px;
                     background:$info;
                     opacity:0;
-                    @include transition(all .4s ease-in-out);
+                    transition:all .4s ease-in-out;
                 }
                 padding:1em 0;
                 display:block;

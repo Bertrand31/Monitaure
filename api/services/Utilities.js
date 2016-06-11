@@ -3,12 +3,14 @@ module.exports = {
      * Rounding number to the passed number of decimals
      * @param {Number} number - number to round
      * @param {Number} places - number of decimals to keep
+     * @returns {Number}
      */
     customFloor: (number, places) => Math.floor(number * Math.pow(10, places)) / Math.pow(10, places),
 
     /**
     * Returns true if the input string is either a domain name or an IP adress
     * @param {String} domainNameOrIP
+    * @returns {Boolean}
     */
     isDomainNameOrIP: function(domainNameOrIP) {
         const domainNameRegex = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i,

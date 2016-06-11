@@ -1,9 +1,11 @@
 %button {
-	@include appearance(none);
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
 	border:0;
 	margin:1.5em 0;
 	padding:.8em 2.4em;
-	@include background(linear-gradient(left, $lightgreen, $darkgreen));
+	background:linear-gradient(left, $lightgreen, $darkgreen);
 	color:#fff;
 	display:inline-block;
 	font:normal 400 1em $montserrat;
@@ -52,7 +54,9 @@ label {
 }
 input {
 	&[type="text"], &[type="number"], &[type="email"], &[type="password"], &[type="search"] {
-        @include appearance(none);
+        appearance:none;
+        -moz-appearance:none;
+        -webkit-appearance:none;
 		font-size: 1em;
 		margin:.15em 0 1em 0 ;
 		width: 100%;

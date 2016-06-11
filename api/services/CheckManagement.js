@@ -2,6 +2,7 @@
  * Deletes history records older than a month
  * Accepts empty histories
  * @param {Array} historyArray - check.history
+ * @return {Array}
  */
 const cleanHistory = function(historyArray) {
     if (typeof historyArray[0] === 'undefined') return [];
@@ -103,7 +104,7 @@ module.exports = {
         fetcher('check', ping.checkId, function (err, check) {
             if (err) return callback(err);
 
-            let newHistoryArray = cleanHistory(check.history);
+            const newHistoryArray = cleanHistory(check.history);
 
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
@@ -151,13 +152,10 @@ module.exports = {
     getUserAndGlobalStats: function(fetcher, userId, callback) {
         fetcher('user', userId, 'checks', function(err, user) {
 
-            let lastError = {
-                    time: null,
-                    checkName: null
-                },
-                checksUp = 0,
-                numberOfChecks = user.checks.length,
-                availabilitiesSum = 0;
+            const lastError = { time: null, checkName: null };
+            let checksUp = 0;
+            const numberOfChecks = user.checks.length;
+            let availabilitiesSum = 0;
 
             for (let i = 0; i < user.checks.length; i++) {
 
@@ -211,6 +209,7 @@ module.exports = {
      * Trims the check's history to only return a specified number of pings
      *  @param {Object} check - the raw db record of a check
      *  @param {Number} historyLength - the number of history entries to return
+     *  @returns {Objets}
      */
     checkStats: function(check, historyLength) {
         const historyArray = check.history;
@@ -218,7 +217,6 @@ module.exports = {
             let sum = 0,
                 min = historyArray[0].duration,
                 max = historyArray[0].duration,
-                avg = 0,
                 totalOutage = 0,
                 checkInterval = sails.config.checkInterval,
                 lastOutage = null;
@@ -233,22 +231,18 @@ module.exports = {
                     lastOutage = historyArray[i].date;
                 }
             }
-            avg = Math.round(sum / historyArray.length);
 
             const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
-            const availability = Utilities.customFloor(percent, 2);
-
-            const historyShort = historyArray.slice(-historyLength);
 
             return {
                 id: check.id,
                 name: check.name,
                 min,
                 max,
-                avg,
-                availability,
+                avg: Math.round(sum / historyArray.length),
+                availability: Utilities.customFloor(percent, 2),
                 lastOutage,
-                history: historyShort
+                history: historyArray.slice(-historyLength)
             };
         } else {
             return null;
