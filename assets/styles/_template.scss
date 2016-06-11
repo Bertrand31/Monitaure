@@ -34,8 +34,8 @@
     width:100%;
     height:100%;
     background:rgba(0,0,0, .3);
-    @include align-items(center);
-    @include justify-content(center);
+    align-items:center;
+    justify-content:center;
     &.hidden {
         display:none;
     }
@@ -73,7 +73,4 @@
 }
 #main-container {
     transition:all .4s linear;
-}
-.blurred {
-    @include filter(blur(5px));
 }

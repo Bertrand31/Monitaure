@@ -27,7 +27,7 @@ table {
     tbody {
         .name { color:#fff; }
         tr {
-            @include transition(background .3s ease-in-out);
+            transition:background .3s ease-in-out;
             background:$middark;
             &:nth-child(odd) {
                 background:$light;
