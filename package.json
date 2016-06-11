@@ -28,7 +28,7 @@
     "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
-    "bcrypt": "^0.8.6",
+    "bcrypt": "^0.8.7",
     "chai": "^3.5.0",
     "chartist": "^0.9.7",
     "connect-redis": "3.0.2",
