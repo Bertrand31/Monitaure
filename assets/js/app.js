@@ -1,5 +1,6 @@
 require(
     ['react', 'react-dom',
+    './components/SignupForm.react',
     './components/Popins.react',
     './components/Navigation.react',
     './components/User.react',
@@ -7,7 +8,12 @@ require(
     './components/GlobalStats.react',
     './components/CheckStats.react',
     './components/ChecksTable.react'],
-    function(React, ReactDOM, Popins, Navigation, User, TopButton, GlobalStats, CheckStats, ChecksTable) {
+    function(React, ReactDOM, SignupForm, Popins, Navigation, User, TopButton, GlobalStats, CheckStats, ChecksTable) {
+
+        // ReactDOM.render(
+        //     <SignupForm />,
+        //     document.getElementById('signup-form')
+        // );
 
         ReactDOM.render(
             <Popins />,

@@ -7,21 +7,4 @@ block body
         main.main
             h1.logo
                 img(src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses")
-            .centered-box
-                .signup-block
-                    h2 Create an account
-                    form#signup(method="post", action="/signup")
-                        fieldset
-                            label Username
-                            input#username(name="username", type="text", placeholder="Your username", data-error="This username is already taken", required, autofocus)
-                            label Email
-                            input#email(name="email", type="email", placeholder="Your email", data-error="An account with this email address already exists", required)
-                            label Password
-                            input#password(name="password", type="password", placeholder="Your password", data-error="The password must be at least six characters long", required)
-                            label Password confirmation
-                            input#confirmPassword(name="confirmPassword", type="password", placeholder="Type your password again", data-error="The confirmation password does not match the password", required)
-                        input#submit(type="submit", value="Sign up")
-                    p Already have an account? 
-                        a(href="/login") Log in!
-                .confirmation-block
-                    p
+            #signup-form.centered-box

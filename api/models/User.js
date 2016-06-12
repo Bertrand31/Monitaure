@@ -16,7 +16,7 @@ module.exports = {
         username: {
             type: 'string',
             minLength: 2,
-            maxLength: 40,
+            maxLength: 20,
             required: true,
             unique: true
         },

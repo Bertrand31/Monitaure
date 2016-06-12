@@ -1,9 +1,9 @@
 define([], function() {
     return {
         // Users management
-        createUser: function(ajaxPost, form, callback) {
+        createUser: function(ajaxPost, data, callback) {
             const url = `${window.location.origin}/User/create/`;
-            ajaxPost(url, form.serialize(), function(err, resJSON) {
+            ajaxPost(url, data, function(err, resJSON) {
                 return callback(err, resJSON);
             });
         },

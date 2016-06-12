@@ -7,12 +7,10 @@ module.exports = {
      */
     create: function (req, res) {
         UserManagement.create(DB.create, req.body, function(err, createdUser) {
-            if (err) return res.json(err.status, err);
+            if (err) return res.badRequest(err);
 
-            if (createdUser) {
-                Messages.sendConfirmationEmail(Sendgrid.send, createdUser);
-                return res.json(200, createdUser);
-            }
+            Messages.sendConfirmationEmail(Sendgrid.send, createdUser);
+            return res.json(200, createdUser);
         });
     },
 
