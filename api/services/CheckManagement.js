@@ -171,8 +171,8 @@ module.exports = {
                     availabilitiesSum += checkStats.availability;
                     // If current check's last outage is more recent than the one
                     // stored in lastError, we update the lastError object
-                    if (checkStats.lastOutage > lastError.duration) {
-                        lastError.duration = checkStats.lastOutage;
+                    if (checkStats.lastOutage > lastError.time) {
+                        lastError.time = checkStats.lastOutage;
                         lastError.checkName = checkStats.name;
                     }
                     // We replace current check's history with the trimmed version from 'checkStats'

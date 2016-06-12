@@ -73,8 +73,8 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
 
             const allChecks = action.allChecks;
             const globalStats = action.globalStats;
-            const data = action.data;
             const id = action.id;
+            const data = action.data;
             const attrName = action.attrName;
             const attrValue = action.attrValue;
 
