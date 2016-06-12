@@ -28,17 +28,15 @@
 .top-buttons {
     text-align:right;
 }
-.global-stats {
+.l-grid {
     flex-direction:row;
-    .global-data-block {
-        margin:2em 0;
-    }
 }
-#chart-container {
-    .main-chart {
-        display:block;
-        position:relative;
-    }
+.l-grid__block {
+    margin:2em 0;
+}
+.c-check-stats__main-chart {
+    display:block;
+    position:relative;
 }
 table {
     th:first-child {

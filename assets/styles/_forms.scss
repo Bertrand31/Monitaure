@@ -1,11 +1,15 @@
 %button {
-    appearance:none;
-    -moz-appearance:none;
     -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
 	border:0;
 	margin:1.5em 0;
 	padding:.8em 2.4em;
-	background:linear-gradient(left, $lightgreen, $darkgreen);
+    background:$lightgreen;
+	background:-webkit-linear-gradient(left, $lightgreen, $darkgreen);
+	background:   -moz-linear-gradient(left, $lightgreen, $darkgreen);
+	background:     -o-linear-gradient(left, $lightgreen, $darkgreen);
+	background:        linear-gradient(left, $lightgreen, $darkgreen);
 	color:#fff;
 	display:inline-block;
 	font:normal 400 1em $montserrat;

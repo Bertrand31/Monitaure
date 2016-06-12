@@ -28,7 +28,8 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
             const lightDate = moment(history[i].date).format('H:mm');
             chartData.labels.push(lightDate);
             chartData.series[0].push({
-                meta: fancyDate,
+                // Tooltip
+                // meta: fancyDate,
                 value: history[i].duration
             });
         }
@@ -64,8 +65,8 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
                   lastPingDate = moment(lastPing.date).format('HH:mm:ss');
 
             return (
-                <div className="check-stats">
-                    <div className="data">
+                <div className="c-check-stats">
+                    <div className="c-check-stats__data">
                         <p className="name">{openCheck.name}</p>
                         <p>Avg latency: {openCheck.avg} ms</p>
                         <p>Min latency: {openCheck.min} ms</p>
@@ -73,15 +74,17 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
                         <p data-perfect={openCheck.availability === 100}>Availability: {openCheck.availability}%</p>
                         <p>Last outage: {lastOutagePretty}</p>
                     </div>
-                    <div className="top-data">
-                        <p className="latency-wrapper">
-                            <span className="latency-title">Latency</span>
-                            <br />
-                            <span className="latency"><span className="latency-value">{lastPingDuration} ms</span></span>
-                        </p>
-                        <p className="last-ping-date">{lastPingDate}</p>
-					</div>
-                    <ChartistGraph className={'ct-chart'} data={chartDataset} options={chartOptions} type="Line" />
+                    <div className="c-check-stats__main-chart">
+                        <div className="top-data">
+                            <p className="latency-wrapper">
+                                <span className="latency-title">Latency</span>
+                                <br />
+                                <span className="latency"><span className="latency-value">{lastPingDuration} ms</span></span>
+                            </p>
+                            <p className="last-ping-date">{lastPingDate}</p>
+                        </div>
+                        <ChartistGraph className={'ct-chart'} data={chartDataset} options={chartOptions} type="Line" />
+                    </div>
                 </div>
             );
         },

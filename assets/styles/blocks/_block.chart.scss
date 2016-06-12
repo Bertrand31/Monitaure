@@ -43,30 +43,30 @@
     stroke:rgba($lighter, 0.3);
     stroke-dasharray:0;
 }
-.ct-tooltip {
-    position:absolute;
-    display:inline-block;
-    min-width:5em;
-    padding:.5em .8em;
-    background:$light;
-    color:$softwhite;
-    font-size:.8em;
-    line-height:1.3em;
-    border-radius:7px;
-    text-align: center;
-    pointer-events: none;
-    z-index:1;
-    transition:opacity .2s linear;
-    &:before {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        margin-left: -8px;
-        border: 8px solid transparent;
-        border-top-color: $light;
-    }
-    &.hide { opacity:0; }
-}
+// .ct-tooltip {
+//     position:absolute;
+//     display:inline-block;
+//     min-width:5em;
+//     padding:.5em .8em;
+//     background:$light;
+//     color:$softwhite;
+//     font-size:.8em;
+//     line-height:1.3em;
+//     border-radius:7px;
+//     text-align: center;
+//     pointer-events: none;
+//     z-index:1;
+//     transition:opacity .2s linear;
+//     &:before {
+//         content: "";
+//         position: absolute;
+//         top: 100%;
+//         left: 50%;
+//         width: 0;
+//         height: 0;
+//         margin-left: -8px;
+//         border: 8px solid transparent;
+//         border-top-color: $light;
+//     }
+//     &.hide { opacity:0; }
+// }
