@@ -4,7 +4,7 @@
         margin:1em 0 4em;
     }
 }
-#main-container {
+.main-container {
     flex-direction:row;
 }
 .aside {
@@ -16,7 +16,7 @@
     justify-content:space-between;
 }
 .main {
-    &.dashboard {
+    &#pane-container {
         width:calc(100% - 265px);
         margin-left:auto;
     }
@@ -60,7 +60,7 @@ table {
     height:auto;
     transform:translateX(-50%) translateY(-50%);
 }
-.page-error#main-container {
+.page-error.main-container {
     .content {
         font-size:2em;
         z-index:1;

@@ -16,7 +16,7 @@ html,body {
 body {
     background:$light;
 }
-#main-container {
+.main-container {
     width:100%;
     display: flex;
     justify-content: center;
@@ -37,7 +37,7 @@ body {
     display:flex;
     flex-direction:column;
 }
-.content-wrapper {
+.pane-components-wrapper {
     width:92%;
     margin:0 auto;
     padding:2em 0;
