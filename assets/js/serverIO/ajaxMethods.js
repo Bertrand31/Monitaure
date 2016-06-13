@@ -1,10 +1,9 @@
 define([], function() {
     return {
-        POSTer(url, data, callback) {
+        GETer(url, callback) {
             fetch(url, {
-                method: 'POST',
+                method: 'GET',
                 credentials: 'same-origin',
-                body: JSON.stringify(data),
                 headers: new Headers({
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -17,10 +16,11 @@ define([], function() {
                 callback(err, null);
             });
         },
-        GETer(url, data, callback) {
+        POSTer(url, data, callback) {
             fetch(url, {
-                method: 'GET',
+                method: 'POST',
                 credentials: 'same-origin',
+                body: JSON.stringify(data),
                 headers: new Headers({
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'

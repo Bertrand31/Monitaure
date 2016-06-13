@@ -25,7 +25,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../const
                     id
                 });
                 if (id !== 'tmpID') {
-                    dataHandling.destroyCheck(ajaxMethods.POSTer, id, function(err) {
+                    dataHandling.destroyCheck(ajaxMethods.GETer, id, function(err) {
                         if (err) return PopinsActions.create('alert', err.reponseText);
                     });
                 }
