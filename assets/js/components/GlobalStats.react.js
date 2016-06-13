@@ -94,7 +94,7 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
                     </div>
                 </div>
             );
-        },
+        }
     });
 
     return GlobalStats;

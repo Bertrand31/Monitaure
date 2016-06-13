@@ -42,7 +42,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/PopinsConstants',
                   text = action.text,
                   id = action.id;
 
-            switch(action.actionType) {
+            switch (action.actionType) {
                 case PopinsConstants.POPIN_CREATE:
                     create(type, text);
                     PopinsStore.emitChange();

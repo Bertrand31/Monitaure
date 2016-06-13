@@ -24,7 +24,7 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
             ]
         };
         for (let i=0; i<history.length; i++) {
-            const fancyDate = moment(history[i].date).fromNow();
+            // const fancyDate = moment(history[i].date).fromNow();
             const lightDate = moment(history[i].date).format('H:mm');
             chartData.labels.push(lightDate);
             chartData.series[0].push({
@@ -72,10 +72,6 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
                     </div>
                 </div>
             );
-        },
-        _onChange() {
-            const openCheckID = getOpenCheckState();
-            this.setState(getOpenCheckState(openCheckID));
         }
     });
 

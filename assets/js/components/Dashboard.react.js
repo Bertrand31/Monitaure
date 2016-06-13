@@ -21,7 +21,7 @@ define(
             },
             componentDidMount() {
                 ChecksActions.populateAll();
-                setInterval(ChecksActions.populateAll, 2*60*1000);
+                setInterval(ChecksActions.populateAll, 2 * 60 * 1000);
                 ChecksStore.addChangeListener(this._onChange);
             },
             componentWillUnmount() {

@@ -14,7 +14,6 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/UserConstants', '
 
         function signup(user) {
             _user = user;
-            console.log(_user);
         }
 
         const UserStore = assign({}, EventEmitter.prototype, {
@@ -38,7 +37,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/UserConstants', '
             const AttrValue = action.AttrValue;
             const user = action.user;
 
-            switch(action.actionType) {
+            switch (action.actionType) {
                 case UserConstants.USER_UPDATE:
                     update(AttrName, AttrValue);
                     UserStore.emitChange();

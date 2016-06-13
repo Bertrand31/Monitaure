@@ -95,7 +95,7 @@ define(['react', '../actions/ChecksActions'],
                         <tbody>{checks}</tbody>
                     </table>
                 );
-            },
+            }
         });
 
         return ChecksTable;

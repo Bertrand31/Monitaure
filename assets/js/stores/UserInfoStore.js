@@ -32,7 +32,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/UserInfoConstants
 
             const user = action.user;
 
-            switch(action.actionType) {
+            switch (action.actionType) {
 
                 case UserInfoConstants.USER_INFO_POPULATE:
                     populate(user);

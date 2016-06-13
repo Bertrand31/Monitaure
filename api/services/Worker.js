@@ -41,7 +41,7 @@ const pingHandling = function(ping) {
         if (err) return sails.log.error(err);
     });
 
-    const lastCheckHistory = ping.checkHistory[ping.checkHistory.length -1] || null;
+    const lastCheckHistory = ping.checkHistory[ping.checkHistory.length - 1] || null;
     // If email notifications are activated for this check and
     // this isn't the first time we ping it
     if (ping.checkEmailNotifications && lastCheckHistory !== null) {

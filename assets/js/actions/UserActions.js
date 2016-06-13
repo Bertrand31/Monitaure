@@ -1,5 +1,5 @@
 define(['../dispatcher/AppDispatcher', '../constants/UserConstants', '../serverIO/ajaxMethods', '../serverIO/dataHandling', '../actions/PopinsActions'],
-    function(AppDispatcher, UserConstants, ajaxMethods, dataHandling) {
+    function(AppDispatcher, UserConstants, ajaxMethods, dataHandling, PopinsActions) {
 
         const UserActions = {
 
@@ -14,7 +14,6 @@ define(['../dispatcher/AppDispatcher', '../constants/UserConstants', '../serverI
             signup(data) {
                 dataHandling.createUser(ajaxMethods.POSTer, data, function(err, user) {
                     if (err) return PopinsActions.create('alert', err.reponseText);
-                    console.log(user);
 
                     AppDispatcher.dispatch({
                         actionType: UserConstants.USER_SIGNUP,
