@@ -74,33 +74,13 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
             }
         });
 
-        function getChecksState() {
-            return {
-                allChecks: ChecksStore.getAll()
-            };
-        }
-
         const ChecksTable = React.createClass({
-            getInitialState: function() {
-                return getChecksState();
-            },
-            componentWillMount: function() {
-                ChecksActions.populateAll();
-                setInterval(ChecksActions.populateAll, 60*1000);
-            },
-            componentDidMount: function() {
-                ChecksStore.addChangeListener(this._onChange);
-            },
-            componentWillUnmount: function() {
-                ChecksStore.removeChangeListener(this._onChange);
-            },
-
-            render: function() {
-                if (Object.keys(this.state.allChecks).length < 1) {
+            render() {
+                if (Object.keys(this.props.allChecks).length < 1) {
                     return null;
                 }
 
-                const allChecks = this.state.allChecks;
+                const allChecks = this.props.allChecks;
                 const checks = [];
 
                 for (const singleCheck in allChecks) {
@@ -116,7 +96,7 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                     </table>
                 );
             },
-            _onChange: function() {
+            _onChange() {
                 this.setState(getChecksState());
             }
         });

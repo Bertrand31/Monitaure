@@ -49,7 +49,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
         }
 
         const ChecksStore = assign({}, EventEmitter.prototype, {
-            getAll() {
+            getAllChecks() {
                 return _checks;
             },
             getOpenCheck() {
