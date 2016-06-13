@@ -1,4 +1,4 @@
-define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(React, ChartistGraph, moment, ChecksStore) {
+define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, moment) {
 
 	const donutOptions = {
 		width: '200px',
@@ -9,12 +9,6 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
 		total: 140,
 		showLabel: false
 	};
-
-    function getGlobalStatsState() {
-        return {
-            globalStats: ChecksStore.getGlobalStats()
-        };
-    }
 
     const GlobalStats = React.createClass({
         render() {

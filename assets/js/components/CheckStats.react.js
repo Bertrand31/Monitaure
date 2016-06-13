@@ -1,4 +1,4 @@
-define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(React, ChartistGraph, moment, ChecksStore) {
+define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, moment) {
 
 	const chartOptions = {
         fullWidth: false,

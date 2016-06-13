@@ -19,11 +19,9 @@ define(
             getInitialState() {
                 return getChecksState();
             },
-            componentWillMount() {
-                ChecksActions.populateAll();
-                setInterval(ChecksActions.populateAll, 60*1000);
-            },
             componentDidMount() {
+                ChecksActions.populateAll();
+                setInterval(ChecksActions.populateAll, 2*60*1000);
                 ChecksStore.addChangeListener(this._onChange);
             },
             componentWillUnmount() {

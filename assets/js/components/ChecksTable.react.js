@@ -1,5 +1,5 @@
-define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
-    function(React, ChecksActions, ChecksStore) {
+define(['react', '../actions/ChecksActions'],
+    function(React, ChecksActions) {
 
         const CheckRow = React.createClass({
             handleChange(e) {
