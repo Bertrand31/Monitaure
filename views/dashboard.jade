@@ -3,18 +3,8 @@ extends ./layout
 block body
 
     .main-container
-        aside.aside
-            .sidebar-top
-                h1#logo
-                    img(src="/images/logo.svg" alt="Monitaure - Monitoring for the masses")
-                #sidebar__nav
-            .sidebar-bottom#profile
+        aside.aside#sidebar
         main.main.dashboad#pane-container
-            .content-wrapper
-                section#top-button
-                section#global-data
-                section#chart-container
-            #checks-table-wrapper
 
     .svgs
         svg(xmlns="http://www.w3.org/2000/svg")
