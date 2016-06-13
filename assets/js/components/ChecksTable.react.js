@@ -96,9 +96,6 @@ define(['react', '../actions/ChecksActions', '../stores/ChecksStore'],
                     </table>
                 );
             },
-            _onChange() {
-                this.setState(getChecksState());
-            }
         });
 
         return ChecksTable;

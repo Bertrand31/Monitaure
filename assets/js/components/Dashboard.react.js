@@ -11,12 +11,12 @@ define(
         function getChecksState() {
             return {
                 allChecks: ChecksStore.getAllChecks(),
-                globalStats: ChecksStore.getGlobalStats()
+                globalStats: ChecksStore.getGlobalStats(),
+                openCheck: ChecksStore.getOpenCheck()
             };
         }
         const Dashboard = React.createClass({
             getInitialState() {
-                console.log(getChecksState());
                 return getChecksState();
             },
             componentWillMount() {
@@ -31,13 +31,14 @@ define(
             },
 
             render() {
-
                 return (
-                    <div className="dashboard">
-                        <TopButton />
-                        <GlobalStats />
-                        <CheckStats allChecks={this.state.allChecks} />
-                        <ChecksTable />
+                    <div>
+                        <div className="pane-components-wrapper">
+                            <TopButton />
+                            <GlobalStats globalStats={this.state.globalStats} />
+                            <CheckStats openCheck={this.state.openCheck} />
+                        </div>
+                        <ChecksTable allChecks={this.state.allChecks} />
                     </div>
                 );
             },

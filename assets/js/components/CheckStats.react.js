@@ -36,28 +36,13 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
 		return chartData;
     }
 
-    function getOpenCheckState() {
-        return {
-            openCheck: ChecksStore.getOpenCheck()
-        };
-    }
-
     const CheckStats = React.createClass({
-        getInitialState() {
-            return getOpenCheckState();
-        },
-        componentDidMount() {
-            ChecksStore.addChangeListener(this._onChange);
-        },
-        componentWillUnmount() {
-            ChecksStore.removeChangeListener(this._onChange);
-        },
         render() {
-            if (Object.keys(this.state.openCheck).length < 1) {
+            if (Object.keys(this.props.openCheck).length < 1) {
                 return null;
             }
 
-            const openCheck = this.state.openCheck;
+            const openCheck = this.props.openCheck;
 			const chartDataset = historyToChartData(openCheck.history);
             const lastOutagePretty = openCheck.lastOutage ? moment(openCheck.lastOutage).format('D/MM/YY H:mm') : '-';
             const lastPing = openCheck.history[openCheck.history.length - 1],

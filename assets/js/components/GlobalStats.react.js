@@ -17,21 +17,12 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
     }
 
     const GlobalStats = React.createClass({
-        getInitialState: function() {
-            return getGlobalStatsState();
-        },
-        componentDidMount: function() {
-            ChecksStore.addChangeListener(this._onChange);
-        },
-        componentWillUnmount: function() {
-            ChecksStore.removeChangeListener(this._onChange);
-        },
         render() {
-            if (Object.keys(this.state.globalStats).length < 1) {
+            if (Object.keys(this.props.globalStats).length < 1) {
                 return null;
             }
 
-			const percentageOfChecksUp = (this.state.globalStats.checksUp * 100) / this.state.globalStats.numberOfChecks;
+			const percentageOfChecksUp = (this.props.globalStats.checksUp * 100) / this.props.globalStats.numberOfChecks;
 			const checksUpDataset = {
                 series: [
                     {
@@ -47,11 +38,11 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
             const availabilityDataset = {
 				series: [
 					{
-						value: this.state.globalStats.availabilitiesAvg,
+						value: this.props.globalStats.availabilitiesAvg,
 						className: 'c-donut__primary-bar'
 					},
 					{
-						value: 100 - this.state.globalStats.availabilitiesAvg,
+						value: 100 - this.props.globalStats.availabilitiesAvg,
 						className: 'c-donut__secondary-bar'
 					}
 				]
@@ -64,9 +55,9 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
                     }
                 ]
             };
-            const lastErrorExists = !!this.state.globalStats.lastError.time;
-            const lastErrorHour = lastErrorExists ? moment(this.state.globalStats.lastError.time).format('HH:SS') : '-';
-            const lastErrorDay = lastErrorExists ? moment(this.state.globalStats.lastError.time).format('DD/MM') : '-';
+            const lastErrorExists = !!this.props.globalStats.lastError.time;
+            const lastErrorHour = lastErrorExists ? moment(this.props.globalStats.lastError.time).format('HH:SS') : '-';
+            const lastErrorDay = lastErrorExists ? moment(this.props.globalStats.lastError.time).format('DD/MM') : '-';
 
             return (
                 <div className="l-grid">
@@ -76,7 +67,7 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
                         </div>
                         <p className="c-donut-content">
                             <span className="c-donut-content__main-text">
-                                {this.state.globalStats.checksUp}/{this.state.globalStats.numberOfChecks} servers
+                                {this.props.globalStats.checksUp}/{this.props.globalStats.numberOfChecks} servers
                                 <span className="c-donut-content__secondary-text">are responding</span>
                             </span>
                             <span className="c-donut-content__aside-text">Status</span>
@@ -88,7 +79,7 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
 						</div>
                         <p className="c-donut-content">
                             <span className="c-donut-content__main-text">
-                                {this.state.globalStats.availabilitiesAvg}
+                                {this.props.globalStats.availabilitiesAvg}
                                 <span className="c-donut-content__secondary-text">%</span>
                             </span>
                             <span className="c-donut-content__aside-text">average availability</span>
@@ -100,7 +91,7 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
 						</div>
                         <p className="c-donut-content">
                             <span className="c-donut-content__main-text">
-                                <span className="c-donut-content__main-text--check-name">{this.state.globalStats.lastError.checkName}</span>
+                                <span className="c-donut-content__main-text--check-name">{this.props.globalStats.lastError.checkName}</span>
                                 <span className="c-donut-content__secondary-text c-donut-content__secondary-text--hour">{lastErrorHour} </span>
                                 <span className="c-donut-content__secondary-text c-donut-content__secondary-text--day"> {lastErrorDay}</span>
                             </span>
@@ -110,9 +101,6 @@ define(['react', 'react-chartist', 'moment', '../stores/ChecksStore'], function(
                 </div>
             );
         },
-        _onChange: function() {
-            this.setState(getGlobalStatsState());
-        }
     });
 
     return GlobalStats;
