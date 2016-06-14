@@ -3,57 +3,59 @@
     top:1.8em;
     right:2.3em;
 }
-.pop-in {
+.c-popin {
     @extend %box;
     color:$lighter;
     padding:1.5em 1.1em;
-    margin-bottom:1em;
+    margin:.8em;
+    text-align:left;
+    text-transform:none;
     font-family:$roboto;
     font-weight:700;
     cursor:default;
     position:relative;
-    .close-popin {
-        cursor:pointer;
-        position: absolute;
-        top:calc(50% - 6px);
-        right:1.2em;
-        &:before,&:after {
-            position: absolute;
-            top:-50%;
-            left:50%;
-            content:"";
-            height:12px;
-            width:2px;
-            background-color:#dbdbdb;
-
-        }
-        &:before { transform: rotate(45deg); }
-        &:after { transform: rotate(-45deg); }
-    }
-    p {
-        position:relative;
-        padding:0 3em 0 57px;
-        &:before {
-            content:"";
-            display:block;
-            position:absolute;
-            left:0;
-            top:calc(50% - 17px);
-            padding:2px;
-            height:34px;
-            width:34px;
-            box-sizing:border-box;
-            border-radius:17px;
-            background:transparent center center no-repeat;
-            background-size:26px;
-        }
-    }
-    &[data-type="info"] p:before {
-        border:2px solid $info;
-        background-image:url('/images/status-ok.svg');
-    }
-    &[data-type="alert"] p:before {
+}
+.c-popin--info .c-popin__body:before {
+    border:2px solid $info;
+    background-image:url('/images/status-ok.svg');
+}
+.c-popin--alert .c-popin__body:before {
         border:2px solid $alert;
         background-image:url('/images/status-error.svg');
+}
+.c-popin__body {
+    position:relative;
+    padding:0 3em 0 57px;
+    &:before {
+        content:"";
+        display:block;
+        position:absolute;
+        left:0;
+        top:calc(50% - 17px);
+        padding:2px;
+        height:34px;
+        width:34px;
+        box-sizing:border-box;
+        border-radius:17px;
+        background:transparent center center no-repeat;
+        background-size:26px;
     }
+}
+.c-popin__close {
+    cursor:pointer;
+    position: absolute;
+    top:calc(50% - 6px);
+    right:1.2em;
+    &:before,&:after {
+        position: absolute;
+        top:-50%;
+        left:50%;
+        content:"";
+        height:12px;
+        width:2px;
+        background-color:#dbdbdb;
+
+    }
+    &:before { transform: rotate(45deg); }
+    &:after { transform: rotate(-45deg); }
 }

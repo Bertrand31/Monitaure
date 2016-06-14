@@ -11,16 +11,17 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
             super(props);
         }
         componentDidMount() {
-            setTimeout(() => {
-                PopinsActions.destroy(this.props.data.id);
-            }, 3000);
+            // setTimeout(() => {
+            //     PopinsActions.destroy(this.props.data.id);
+            // }, 3000);
         }
 
         render() {
+            const popinClasses = `c-popin c-popin--${this.props.data.type}`;
             return (
-                <div data-type={this.props.data.type} className="pop-in">
-                    <p className="content">{this.props.data.text}</p>
-                    <div className="close-popin" onClick={this._onDestroyClick.bind(this)}></div>
+                <div className={popinClasses}>
+                    <p className="c-popin__body">{this.props.data.text}</p>
+                    <div className="c-popin__close" onClick={this._onDestroyClick.bind(this)}></div>
                 </div>
             );
         }

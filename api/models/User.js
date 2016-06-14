@@ -2,7 +2,6 @@
  * User.js
  *
  * @description :: User model
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 const bcrypt = require('bcrypt'),

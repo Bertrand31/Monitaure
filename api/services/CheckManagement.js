@@ -4,7 +4,7 @@
  * @param {Array} historyArray - check.history
  * @return {Array}
  */
-const cleanHistory = function(historyArray) {
+const historyGarbageCollection = function(historyArray) {
     if (typeof historyArray[0] === 'undefined') return [];
 
     const oneMonthAgo = new Date();
@@ -17,6 +17,51 @@ const cleanHistory = function(historyArray) {
     }
     return historyArray;
 };
+
+/**
+* Calculates a check's various stats by analyzing its history
+* Trims the check's history to only return a specified number of pings
+*  @param {Object} check - the raw db record of a check
+*  @param {Number} historyLength - the number of history entries to return
+*  @returns {Objets}
+*/
+function calcCheckStats(check, historyLength) {
+    const historyArray = check.history;
+    if (historyArray.length > 0) {
+        let sum = 0;
+        let min = historyArray[0].duration;
+        let max = historyArray[0].duration;
+        let totalOutage = 0;
+        let checkInterval = sails.config.checkInterval;
+        let lastOutage = null;
+
+        for (let i = 0; i < historyArray.length; i++) {
+            if (historyArray[i].duration !== null) {
+                sum += historyArray[i].duration;
+                min = historyArray[i].duration < min ? historyArray[i].duration : min;
+                max = historyArray[i].duration > max ? historyArray[i].duration : max;
+            } else {
+                totalOutage += checkInterval;
+                lastOutage = historyArray[i].date;
+            }
+        }
+
+        const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
+
+        return {
+            id: check.id,
+            name: check.name,
+            min,
+            max,
+            avg: Math.round(sum / historyArray.length),
+            availability: Utilities.customFloor(percent, 2),
+            lastOutage,
+            history: historyArray.slice(-historyLength)
+        };
+    } else {
+        return null;
+    }
+}
 
 module.exports = {
 
@@ -104,7 +149,7 @@ module.exports = {
         fetcher('check', ping.checkId, function (err, check) {
             if (err) return callback(err);
 
-            const newHistoryArray = cleanHistory(check.history);
+            const newHistoryArray = historyGarbageCollection(check.history);
 
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
@@ -132,7 +177,7 @@ module.exports = {
             } else if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                const checkStats = CheckManagement.checkStats(check, 20);
+                const checkStats = calcCheckStats(check, 20);
                 if (!checkStats) {
                     return callback('No data yet!');
                 } else {
@@ -159,9 +204,9 @@ module.exports = {
 
             for (let i = 0; i < user.checks.length; i++) {
 
-                const checkStats = CheckManagement.checkStats(user.checks[i], 1);
-                // If `err` the check's history array is empty: we have no data to process
-                if (checkStats) {
+                const checkStats = calcCheckStats(user.checks[i], 1);
+                // If `err` the check's history array is null: we have no data to process
+                if (checkStats !== null) {
                     // If current check is currently up, we add increment checksUp array
                     // We do that by looking up his last 'history' array value
                     if (checkStats.history[checkStats.history.length - 1].duration !== null) {
@@ -202,50 +247,5 @@ module.exports = {
                 globalStats
             });
         });
-    },
-
-    /**
-     * Calculates a check's various stats by analyzing its history
-     * Trims the check's history to only return a specified number of pings
-     *  @param {Object} check - the raw db record of a check
-     *  @param {Number} historyLength - the number of history entries to return
-     *  @returns {Objets}
-     */
-    checkStats: function(check, historyLength) {
-        const historyArray = check.history;
-        if (historyArray.length > 0) {
-            let sum = 0,
-                min = historyArray[0].duration,
-                max = historyArray[0].duration,
-                totalOutage = 0,
-                checkInterval = sails.config.checkInterval,
-                lastOutage = null;
-
-            for (let i = 0; i < historyArray.length; i++) {
-                if (historyArray[i].duration !== null) {
-                    sum += historyArray[i].duration;
-                    min = historyArray[i].duration < min ? historyArray[i].duration : min;
-                    max = historyArray[i].duration > max ? historyArray[i].duration : max;
-                } else {
-                    totalOutage += checkInterval;
-                    lastOutage = historyArray[i].date;
-                }
-            }
-
-            const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
-
-            return {
-                id: check.id,
-                name: check.name,
-                min,
-                max,
-                avg: Math.round(sum / historyArray.length),
-                availability: Utilities.customFloor(percent, 2),
-                lastOutage,
-                history: historyArray.slice(-historyLength)
-            };
-        } else {
-            return null;
-        }
     }
 };

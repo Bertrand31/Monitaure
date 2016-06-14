@@ -40,9 +40,9 @@ define(['react', '../actions/ChecksActions'],
                 const isNewCheck = this.props.row.id === 'tmpID';
 
                 return (
-                    <tr id={row.id} onClick={this._onOpenClick.bind(this)}>
-                        <td data-health={checkState} className="status"></td>
-                        <td>
+                    <tr className="c-checks__row" id={row.id} onClick={this._onOpenClick.bind(this)}>
+                        <td className="c-checks__status" data-health={checkState}></td>
+                        <td className="c-checks__name">
                             <input
                                 className="input__text input__text--dark"
                                 id="name"
@@ -54,7 +54,7 @@ define(['react', '../actions/ChecksActions'],
                                 placeholder="e.g. HTTP @ Google"
                             />
                         </td>
-                        <td>
+                        <td className="c-checks__domainNameOrIP">
                             <input
                                 className="input__text input__text--dark"
                                 id="domainNameOrIP"
@@ -66,7 +66,7 @@ define(['react', '../actions/ChecksActions'],
                                 placeholder="e.g. google.fr"
                             />
                         </td>
-                        <td>
+                        <td className="c-checks__port">
                             <input
                                 className="input__text input__text--number input__text--dark"
                                 id="port"
@@ -78,10 +78,10 @@ define(['react', '../actions/ChecksActions'],
                                 placeholder="e.g. 80"
                             />
                         </td>
-                        <td data-speed={lastPingSpeed} className="response-time">
+                        <td className="c-checks__latency" data-speed={lastPingSpeed} className="response-time">
                             {lastPingDuration}
                         </td>
-                        <td>
+                        <td className="c-checks__notifications">
                             <input
                                 className="input__checkbox"
                                 id="emailNotifications"
@@ -92,10 +92,10 @@ define(['react', '../actions/ChecksActions'],
                                 checked={row.emailNotifications}
                             />
                         </td>
-                        <td className={isEditing ? 'is-editing' : 'is-not-editing'}>
+                        <td className={isEditing ? 'c-checks__edit is-editing' : 'c-checks__edit is-not-editing'}>
                             <button onClick={this._onEditClick.bind(this)} className="settings-check">✓</button>
                         </td>
-                        <td className="destroy">
+                        <td className="c-checks__destroy">
                             <button onClick={this._onDestroyClick.bind(this)} className="destroy-check"></button>
                         </td>
                     </tr>
@@ -123,11 +123,12 @@ define(['react', '../actions/ChecksActions'],
                 super(props);
             }
             render() {
-                if (Object.keys(this.props.allChecks).length < 1) {
+                const allChecks = this.props.allChecks;
+
+                if (Object.keys(allChecks).length < 1) {
                     return null;
                 }
 
-                const allChecks = this.props.allChecks;
                 const checks = [];
 
                 for (const singleCheck in allChecks) {
@@ -137,9 +138,22 @@ define(['react', '../actions/ChecksActions'],
                 }
 
                 return (
-                    <table id="checks">
-                        <thead><tr><th>Status</th><th>Name</th><th>Domain name or IP</th><th>Port</th><th>Latency</th><th>Notifications</th><th></th><th></th></tr></thead>
-                        <tbody>{checks}</tbody>
+                    <table className="c-checks">
+                        <thead className="c-checks__head">
+                            <tr className="c-checks__row">
+                                <th className="c-checks__status">Status</th>
+                                <th className="c-checks__name">Name</th>
+                                <th className="c-checks__domainNameOrIP">Domain name or IP</th>
+                                <th className="c-checks__port">Port</th>
+                                <th className="c-checks__latency">Latency</th>
+                                <th className="c-checks__notifications">Notifications</th>
+                                <th className="c-checks__edit"></th>
+                                <th className="c-checks__destroy"></th>
+                            </tr>
+                        </thead>
+                        <tbody className="c-checks__body">
+                            {checks}
+                        </tbody>
                     </table>
                 );
             }

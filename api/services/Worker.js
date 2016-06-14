@@ -1,8 +1,7 @@
 const async = require('async');
 const net = require('net');
 
-const checkPort = function(check, callback) {
-    const dateStart = new Date();
+function checkPort(check, callback) {
     const timeStart = Date.now();
 
     const callbackObject = {
@@ -13,7 +12,7 @@ const checkPort = function(check, callback) {
         checkHistory: check.history,
         open: false,
         duration: null,
-        date: dateStart
+        date: new Date()
     };
 
     const connection = net.connect(check.port, check.domainNameOrIP, function() {
@@ -36,7 +35,7 @@ const checkPort = function(check, callback) {
     }, sails.config.checkTimeout);
 };
 
-const pingHandling = function(ping) {
+function pingHandling(ping) {
     CheckManagement.insertHistory(DB.fetchOne, DB.update, ping, function(err) {
         if (err) return sails.log.error(err);
     });

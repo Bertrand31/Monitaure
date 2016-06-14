@@ -5,7 +5,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../const
 
             populateAll() {
                 dataHandling.getUserAndGlobalStats(ajaxMethods.GETer, function(err, data) {
-                    if (err) return PopinsActions.create('alert', err.reponseText);
+                    if (err) return PopinsActions.create('alert', err.message);
 
                     AppDispatcher.dispatch({
                         actionType: ChecksConstants.CHECK_POPULATE_ALL,
@@ -26,7 +26,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../const
                 });
                 if (id !== 'tmpID') {
                     dataHandling.destroyCheck(ajaxMethods.GETer, id, function(err) {
-                        if (err) return PopinsActions.create('alert', err.reponseText);
+                        if (err) return PopinsActions.create('alert', err.message);
                     });
                 }
             },
@@ -34,7 +34,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../const
             openStats(id) {
                 if (id !== 'tmpID') {
                     dataHandling.getCheckStats(ajaxMethods.GETer, id, function(err, data) {
-                        if (err) return PopinsActions.create('alert', err.reponseText);
+                        if (err) return PopinsActions.create('alert', err.message);
 
                         AppDispatcher.dispatch({
                             actionType: ChecksConstants.OPEN_CHECK_STATS,
@@ -74,7 +74,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../const
             saveWorkingCheck(data) {
                 if (data.id === 'tmpID') {
                     dataHandling.createCheck(ajaxMethods.POSTer, data, function(err, newData) {
-                        if (err) return PopinsActions.create('alert', err.reponseText);
+                        if (err) return PopinsActions.create('alert', err.message);
 
                         AppDispatcher.dispatch({
                             actionType: ChecksConstants.CHECK_DESTROY,
@@ -91,7 +91,7 @@ define(['../dispatcher/AppDispatcher', '../constants/ChecksConstants', '../const
                         id: data.id
                     });
                     dataHandling.updateCheck(ajaxMethods.POSTer, data, function(err) {
-                        if (err) return PopinsActions.create('alert', err.reponseText);
+                        if (err) return PopinsActions.create('alert', err.message);
                     });
                 }
             }
