@@ -16,20 +16,19 @@ module.exports = {
 
     /**
      * HTTP route to confirm a newly created user account
-     * Is called like this: /account/verify/:confirmationToken
+     * Is called like this: /account/confirm/:confirmationToken
      * The confirmation token is passed as the 'id' paramter
      * @param {Object} req - HTTP request
      * @param {Object} res - Express' response object
      */
     confirm: function (req, res) {
-        UserManagement.confirm(DB.update, req.param('id'), function(err) {
-            if (err) {
-                //TODO
-                //Retourner page d'erreur: token invalide
-            } else {
-                //TODO
-                //Retourner page de succès avec lien pour se connecter
+        UserManagement.confirm(DB.update, req.param('id'), function(err, confirmed) {
+            if (err) return res.badRequest(err);
+
+            if (confirmed.length > 0) {
                 return res.render('confirmed');
+            } else {
+                return res.render('notconfirmed');
             }
         });
     }

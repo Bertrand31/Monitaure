@@ -38,8 +38,8 @@ module.exports = {
      * @param {Function} callback
      */
     confirm: function(updater, confirmationToken, callback) {
-        updater('user', { confirmationToken: confirmationToken }, { confirmedAccount: true }, function(err) {
-            return callback(err);
+        updater('user', { confirmationToken: confirmationToken }, { confirmedAccount: true }, function(err, updated) {
+            return callback(err, updated);
         });
     }
 };
