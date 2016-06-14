@@ -25,13 +25,15 @@ define([], function() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 })
-            }).then(function(res) {
+            })
+            .then(function(res) {
+				if (!res.ok) {
+					throw Error(res.statusText);
+				}
                 return res.json();
-            }).then(function(json) {
-                callback(null, json);
-            }).catch(function(err) {
-                callback(err, null);
-            });
+            })
+            .then(json => callback(null, json))
+            .catch(err => callback(err, null));
         }
     };
 });
