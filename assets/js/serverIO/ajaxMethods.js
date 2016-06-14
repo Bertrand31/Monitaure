@@ -1,4 +1,10 @@
 define([], function() {
+
+    function handleError(res) {
+        if (!res.ok) throw Error(res.statusText);
+        return res.json();
+    }
+
     return {
         GETer(url, callback) {
             fetch(url, {
@@ -8,13 +14,10 @@ define([], function() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 })
-            }).then(function(res) {
-                return res.json();
-            }).then(function(json) {
-                callback(null, json);
-            }).catch(function(err) {
-                callback(err, null);
-            });
+            })
+            .then(handleError)
+            .then(json => callback(null, json))
+            .catch(err => callback(err, null));
         },
         POSTer(url, data, callback) {
             fetch(url, {
@@ -26,12 +29,7 @@ define([], function() {
                     'Content-Type': 'application/json'
                 })
             })
-            .then(function(res) {
-				if (!res.ok) {
-					throw Error(res.statusText);
-				}
-                return res.json();
-            })
+            .then(handleError)
             .then(json => callback(null, json))
             .catch(err => callback(err, null));
         }
