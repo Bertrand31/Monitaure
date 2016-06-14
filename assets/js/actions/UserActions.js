@@ -13,7 +13,7 @@ define(['../dispatcher/AppDispatcher', '../constants/UserConstants', '../serverI
 
             signup(data) {
                 dataHandling.createUser(ajaxMethods.POSTer, data, function(err, user) {
-                    if (err) return PopinsActions.create('alert', err.reponseText);
+                    if (err) return PopinsActions.create('alert', err.message);
 
                     AppDispatcher.dispatch({
                         actionType: UserConstants.USER_SIGNUP,

@@ -6,6 +6,11 @@ require(
     './components/Dashboard.react'],
     function(React, ReactDOM, SignupForm, Popins, Sidebar, Dashboard) {
 
+        ReactDOM.render(
+            <Popins />,
+            document.getElementById('popins-container')
+        );
+
         // TODO: UGLY FIX
         if (document.getElementById('signup-form')) {
             ReactDOM.render(
@@ -13,11 +18,6 @@ require(
                 document.getElementById('signup-form')
             );
         } else {
-            ReactDOM.render(
-                <Popins />,
-                document.getElementById('popins-container')
-            );
-
             ReactDOM.render(
                 <Sidebar />,
                 document.getElementById('sidebar')
