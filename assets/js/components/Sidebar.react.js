@@ -6,16 +6,17 @@ define(['react', './Navigation.react', './UserInfo.react', '../stores/UserInfoSt
         };
     }
 
-    const Sidebar = React.createClass({
-        getInitialState() {
-            return getUserInfo();
-        },
+    class Sidebar extends React.Component {
+        constructor() {
+            super();
+            this.state = getUserInfo();
+        }
         componentDidMount() {
-            UserInfoStore.addChangeListener(this._onChange);
-        },
+            UserInfoStore.addChangeListener(this._onChange.bind(this));
+        }
         componentWillUnmount() {
-            UserInfoStore.removeChangeListener(this._onChange);
-        },
+            UserInfoStore.removeChangeListener(this._onChange.bind(this));
+        }
 
         render() {
             return (
@@ -29,12 +30,12 @@ define(['react', './Navigation.react', './UserInfo.react', '../stores/UserInfoSt
                     </div>
                 </div>
             );
-        },
+        }
 
         _onChange() {
             this.setState(getUserInfo());
         }
-    });
+    }
 
     return Sidebar;
 });

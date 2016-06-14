@@ -1,6 +1,6 @@
 define(['react'], function(React) {
 
-    const Navigation = React.createClass({
+    class Navigation extends React.Component {
 
         render() {
             return (
@@ -38,7 +38,7 @@ define(['react'], function(React) {
                 </div>
             );
         }
-    });
+    }
 
     return Navigation;
 });

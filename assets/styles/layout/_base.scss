@@ -25,7 +25,7 @@ body {
         height:100%;
     }
 }
-.aside {
+.sidebar {
     display:flex;
     flex-direction:column;
     box-sizing:border-box;
@@ -42,11 +42,11 @@ body {
     margin:0 auto;
     padding:2em 0;
 }
-.top-buttons {
+.c-pane-top {
     text-align:center;
-    button {
-        margin:0 1em 0 0;
-    }
+}
+.c-pane-top__button {
+    margin:0 1em 0 0;
 }
 .l-grid {
     display:flex;

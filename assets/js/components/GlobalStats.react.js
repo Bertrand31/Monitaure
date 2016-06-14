@@ -10,7 +10,7 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
 		showLabel: false
 	};
 
-    const GlobalStats = React.createClass({
+    class GlobalStats extends React.Component {
         render() {
             if (Object.keys(this.props.globalStats).length < 1) {
                 return null;
@@ -95,7 +95,7 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
                 </div>
             );
         }
-    });
+    }
 
     return GlobalStats;
 });

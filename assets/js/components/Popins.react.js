@@ -6,35 +6,41 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
         };
     }
 
-    const Popin = React.createClass({
+    class Popin extends React.Component {
+        constructor(props) {
+            super(props);
+        }
         componentDidMount() {
             setTimeout(() => {
                 PopinsActions.destroy(this.props.data.id);
             }, 3000);
-        },
+        }
+
         render() {
             return (
                 <div data-type={this.props.data.type} className="pop-in">
                     <p className="content">{this.props.data.text}</p>
-                    <div className="close-popin" onClick={this._onDestroyClick}></div>
+                    <div className="close-popin" onClick={this._onDestroyClick.bind(this)}></div>
                 </div>
             );
-        },
-        _onDestroyClick: function() {
+        }
+
+        _onDestroyClick() {
             PopinsActions.destroy(this.props.data.id);
         }
-    });
+    }
 
-    const Popins = React.createClass({
-        getInitialState() {
-            return getPopinsState();
-        },
+    class Popins extends React.Component {
+        constructor() {
+            super();
+            this.state = getPopinsState();
+        }
         componentDidMount() {
-            PopinsStore.addChangeListener(this._onChange);
-        },
+            PopinsStore.addChangeListener(this._onChange.bind(this));
+        }
         componentWillUnmount() {
-            PopinsStore.removeChangeListener(this._onChange);
-        },
+            PopinsStore.removeChangeListener(this._onChange.bind(this));
+        }
 
         render() {
             if (Object.keys(this.state.allPopins).length < 1) {
@@ -53,12 +59,12 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
             return (
                 <div>{popins}</div>
             );
-        },
+        }
 
         _onChange() {
             this.setState(getPopinsState());
         }
-    });
+    }
 
     return Popins;
 });

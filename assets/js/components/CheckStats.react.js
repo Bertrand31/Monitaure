@@ -24,19 +24,20 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
             ]
         };
         for (let i=0; i<history.length; i++) {
-            // const fancyDate = moment(history[i].date).fromNow();
             const lightDate = moment(history[i].date).format('H:mm');
             chartData.labels.push(lightDate);
             chartData.series[0].push({
-                // Tooltip
-                // meta: fancyDate,
                 value: history[i].duration
             });
         }
 		return chartData;
     }
 
-    const CheckStats = React.createClass({
+    class CheckStats extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+
         render() {
             if (Object.keys(this.props.openCheck).length < 1) {
                 return null;
@@ -45,9 +46,9 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
             const openCheck = this.props.openCheck;
 			const chartDataset = historyToChartData(openCheck.history);
             const lastOutagePretty = openCheck.lastOutage ? moment(openCheck.lastOutage).format('D/MM/YY H:mm') : '-';
-            const lastPing = openCheck.history[openCheck.history.length - 1],
-                  lastPingDuration = lastPing.duration,
-                  lastPingDate = moment(lastPing.date).format('HH:mm:ss');
+            const lastPing = openCheck.history[openCheck.history.length - 1];
+            const lastPingDuration = lastPing.duration ? `${lastPing.duration} ms` : `-`;
+            const lastPingDate = moment(lastPing.date).format('HH:mm:ss');
 
             return (
                 <div className="c-check-stats">
@@ -64,7 +65,7 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
                             <p className="latency-wrapper">
                                 <span className="latency-title">Latency</span>
                                 <br />
-                                <span className="latency"><span className="latency-value">{lastPingDuration} ms</span></span>
+                                <span className="latency"><span className="latency-value">{lastPingDuration}</span></span>
                             </p>
                             <p className="last-ping-date">{lastPingDate}</p>
                         </div>
@@ -73,7 +74,7 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
                 </div>
             );
         }
-    });
+    }
 
     return CheckStats;
 });

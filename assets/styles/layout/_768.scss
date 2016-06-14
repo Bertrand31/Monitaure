@@ -8,10 +8,13 @@
     flex-direction:row;
 }
 .aside {
-    width:265px;
-    height:100%;
     position:fixed;
     top:0;
+    height:100%;
+}
+.sidebar {
+    height:100%;
+    width:265px;
     padding:2em 2.5em 0 2em;
     justify-content:space-between;
 }
@@ -25,7 +28,7 @@
     background:#212121 url('/images/background.svg') no-repeat center center fixed;
     background-size: cover;
 }
-.top-buttons {
+.c-pane-top {
     text-align:right;
 }
 .l-grid {

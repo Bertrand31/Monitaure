@@ -15,18 +15,19 @@ define(
                 openCheck: ChecksStore.getOpenCheck()
             };
         }
-        const Dashboard = React.createClass({
-            getInitialState() {
-                return getChecksState();
-            },
+        class Dashboard extends React.Component {
+            constructor() {
+                super();
+                this.state = getChecksState();
+            }
             componentDidMount() {
                 ChecksActions.populateAll();
                 setInterval(ChecksActions.populateAll, 2 * 60 * 1000);
-                ChecksStore.addChangeListener(this._onChange);
-            },
+                ChecksStore.addChangeListener(this._onChange.bind(this));
+            }
             componentWillUnmount() {
-                ChecksStore.removeChangeListener(this._onChange);
-            },
+                ChecksStore.removeChangeListener(this._onChange.bind(this));
+            }
 
             render() {
                 return (
@@ -39,12 +40,12 @@ define(
                         <ChecksTable allChecks={this.state.allChecks} />
                     </div>
                 );
-            },
+            }
 
             _onChange() {
                 this.setState(getChecksState());
             }
-        });
+        }
 
         return Dashboard;
     }

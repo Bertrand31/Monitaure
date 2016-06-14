@@ -1,6 +1,10 @@
 define(['react'], function(React) {
 
-    const User = React.createClass({
+    class User extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+
         render() {
             if (Object.keys(this.props.user).length < 1) {
                 return null;
@@ -17,7 +21,7 @@ define(['react'], function(React) {
                 </div>
             );
         }
-    });
+    }
 
     return User;
 });

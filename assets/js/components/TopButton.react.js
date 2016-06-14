@@ -1,15 +1,20 @@
 define(['react', '../actions/ChecksActions'],
     function(React, ChecksActions) {
-        const TopButton = React.createClass({
+        class TopButton extends React.Component {
             render() {
                 return (
-                    <button className="button" onClick={this._onCreateClick}>Add a check</button>
+                    <section className="c-pane-top">
+                        <button className="c-pane-top__button button" onClick={this._onCreateClick.bind(this)}>
+                            Add a check
+                        </button>
+                    </section>
                 );
-            },
+            }
+
             _onCreateClick() {
                 ChecksActions.createWorkingCheck();
             }
-        });
+        }
 
         return TopButton;
     }

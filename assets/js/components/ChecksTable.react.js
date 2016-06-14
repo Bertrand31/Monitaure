@@ -1,7 +1,10 @@
 define(['react', '../actions/ChecksActions'],
     function(React, ChecksActions) {
 
-        const CheckRow = React.createClass({
+        class CheckRow extends React.Component {
+            constructor(props) {
+                super(props);
+            }
             handleChange(e) {
                 const inputType = e.target.type;
                 const inputName = e.target.name;
@@ -12,12 +15,12 @@ define(['react', '../actions/ChecksActions'],
                 }
 
                 ChecksActions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
-            },
+            }
             render() {
                 const row = this.props.row;
-                let lastPingDuration = '-',
-                    lastPingSpeed = '',
-                    checkState = 'up';
+                let lastPingDuration = '-';
+                let lastPingSpeed = '';
+                let checkState = 'up';
 
                 if (typeof row.history[0] !== 'undefined') {
                     if (row.history[0].duration === null)
@@ -37,44 +40,88 @@ define(['react', '../actions/ChecksActions'],
                 const isNewCheck = this.props.row.id === 'tmpID';
 
                 return (
-                    <tr id={row.id} onClick={this._onOpenClick}>
+                    <tr id={row.id} onClick={this._onOpenClick.bind(this)}>
                         <td data-health={checkState} className="status"></td>
-                        <td><input id="name" name="name" disabled={!isEditing} type="text" onChange={this.handleChange} value={row.name} placeholder="e.g. HTTP @ Google" /></td>
-                        <td><input id="domainNameOrIP" name="domainNameOrIP" disabled={!isEditing || !isNewCheck} type="text" onChange={this.handleChange} value={row.domainNameOrIP} placeholder="e.g. google.fr" /></td>
-                        <td><input id="port" name="port" disabled={!isEditing || !isNewCheck} type="number" onChange={this.handleChange} value={row.port} placeholder="e.g. 80" /></td>
+                        <td>
+                            <input
+                                className="input__text input__text--dark"
+                                id="name"
+                                name="name"
+                                disabled={!isEditing}
+                                type="text"
+                                onChange={this.handleChange.bind(this)}
+                                value={row.name}
+                                placeholder="e.g. HTTP @ Google"
+                            />
+                        </td>
+                        <td>
+                            <input
+                                className="input__text input__text--dark"
+                                id="domainNameOrIP"
+                                name="domainNameOrIP"
+                                disabled={!isEditing || !isNewCheck}
+                                type="text"
+                                onChange={this.handleChange.bind(this)}
+                                value={row.domainNameOrIP}
+                                placeholder="e.g. google.fr"
+                            />
+                        </td>
+                        <td>
+                            <input
+                                className="input__text input__text--number input__text--dark"
+                                id="port"
+                                name="port"
+                                disabled={!isEditing || !isNewCheck}
+                                type="number"
+                                onChange={this.handleChange.bind(this)}
+                                value={row.port}
+                                placeholder="e.g. 80"
+                            />
+                        </td>
                         <td data-speed={lastPingSpeed} className="response-time">
                             {lastPingDuration}
                         </td>
                         <td>
-                            <input id="emailNotifications" name="emailNotifications" disabled={!isEditing} type="checkbox" onChange={this.handleChange} checked={row.emailNotifications} />
+                            <input
+                                className="input__checkbox"
+                                id="emailNotifications"
+                                name="emailNotifications"
+                                disabled={!isEditing}
+                                type="checkbox"
+                                onChange={this.handleChange.bind(this)}
+                                checked={row.emailNotifications}
+                            />
                         </td>
                         <td className={isEditing ? 'is-editing' : 'is-not-editing'}>
-                            <button onClick={this._onEditClick} className="settings-check">✓</button>
+                            <button onClick={this._onEditClick.bind(this)} className="settings-check">✓</button>
                         </td>
                         <td className="destroy">
-                            <button onClick={this._onDestroyClick} className="destroy-check"></button>
+                            <button onClick={this._onDestroyClick.bind(this)} className="destroy-check"></button>
                         </td>
                     </tr>
                 );
-            },
+            }
 
             _onOpenClick() {
                 ChecksActions.openStats(this.props.row.id);
-            },
+            }
             _onEditClick(e) {
                 e.stopPropagation();
                 if (!this.props.row.hasOwnProperty('isEditing'))
                     ChecksActions.setWorkingCheck(this.props.row.id);
                 else
                     ChecksActions.saveWorkingCheck(this.props.row);
-            },
+            }
             _onDestroyClick(e) {
                 e.stopPropagation();
                 ChecksActions.destroy(this.props.row.id);
             }
-        });
+        }
 
-        const ChecksTable = React.createClass({
+        class ChecksTable extends React.Component {
+            constructor(props) {
+                super(props);
+            }
             render() {
                 if (Object.keys(this.props.allChecks).length < 1) {
                     return null;
@@ -96,7 +143,7 @@ define(['react', '../actions/ChecksActions'],
                     </table>
                 );
             }
-        });
+        }
 
         return ChecksTable;
     }
