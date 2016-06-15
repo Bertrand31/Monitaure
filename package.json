@@ -63,6 +63,7 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
+    "webpack": "webpack --watch --color --progress",
     "test": "mocha test/unit.js"
   },
   "main": "app.js",
