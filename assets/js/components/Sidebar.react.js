@@ -1,4 +1,4 @@
-define(['react', './Navigation.react', './UserInfo.react', '../stores/UserInfoStore'], function(React, Navigation, UserInfo, UserInfoStore) {
+define(['react', './Sidebar/Navigation.react', './Sidebar/UserInfo.react', '../stores/UserInfoStore'], function(React, Navigation, UserInfo, UserInfoStore) {
 
     function getUserInfo() {
         return {

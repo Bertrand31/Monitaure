@@ -8,20 +8,20 @@ define(['react'], function(React) {
                     <nav className="main-nav">
                         <ul>
                             <li className="active">
-                                <a href="/" id="dashboard-pane">Dashboard</a>
+                                <a onClick={this._onNavigation} href="/" id="dashboard-pane">Dashboard</a>
                             </li>
                             <li className="disabled">
-                                <a href="/reports" id="reports-pane">Reports<span className="info">14</span></a>
+                                <a onClick={this._onNavigation} href="/reports" id="reports-pane">Reports<span className="info">14</span></a>
                             </li>
                             <li className="disabled">
-                                <a href="/messages" id="messages-pane">Messages<span className="info">132</span></a>
+                                <a onClick={this._onNavigation} href="/messages" id="messages-pane">Messages<span className="info">132</span></a>
                             </li>
                         </ul>
                     </nav>
                     <nav className="misc-nav">
                         <ul>
                             <li className="disabled">
-                                <a href="/settings" id="settings-pane">Settings</a>
+                                <a onClick={this._onNavigation} href="/settings" id="settings-pane">Settings</a>
                             </li>
                             <li>
                                 <a href="https://github.com/Bertrand31/Monitaure/issues" target="_blank">Help</a>
@@ -37,6 +37,10 @@ define(['react'], function(React) {
                     </nav>
                 </div>
             );
+        }
+
+        _onNavigation(e) {
+            e.preventDefault();
         }
     }
 

@@ -1,9 +1,9 @@
 define(
     ['react', 'react-dom',
-    './TopButton.react',
-    './GlobalStats.react',
-    './CheckStats.react',
-    './ChecksTable.react',
+    './Dashboard/TopButton.react',
+    './Dashboard/GlobalStats.react',
+    './Dashboard/CheckStats.react',
+    './Dashboard/ChecksTable.react',
     '../actions/ChecksActions',
     '../stores/ChecksStore'],
     function(React, ReactDOM, TopButton, GlobalStats, CheckStats, ChecksTable, ChecksActions, ChecksStore) {

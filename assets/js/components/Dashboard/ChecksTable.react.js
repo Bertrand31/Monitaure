@@ -1,4 +1,4 @@
-define(['react', '../actions/ChecksActions'],
+define(['react', '../../actions/ChecksActions'],
     function(React, ChecksActions) {
 
         class CheckRow extends React.Component {
