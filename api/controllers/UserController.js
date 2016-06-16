@@ -6,7 +6,7 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {JSON} Either an error or the created user record
      */
-    create: function (req, res) {
+    create(req, res) {
         UserManagement.create(DB.create, req.body, function(err, createdUser) {
             if (err) return res.badRequest(err);
 
@@ -23,7 +23,7 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {HTML} Renders a page depending on the account confirmation success
      */
-    confirm: function (req, res) {
+    confirm(req, res) {
         UserManagement.confirm(DB.update, req.param('id'), function(err, confirmed) {
             if (err) return res.badRequest(err);
 

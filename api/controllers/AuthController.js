@@ -13,7 +13,7 @@ module.exports = {
      * @param {Object} req - HTTP request
      * @param {Object} res - Express' response object
      */
-    login: function(req, res) {
+    login(req, res) {
 
         passport.authenticate('local', function(err, user, info) {
             if (err || !user) {
@@ -37,7 +37,7 @@ module.exports = {
      * @param {Object} req - HTTP request
      * @param {Object} res - Express' response object
      */
-    logout: function(req, res) {
+    logout(req, res) {
         req.logout();
         res.redirect('/');
     }

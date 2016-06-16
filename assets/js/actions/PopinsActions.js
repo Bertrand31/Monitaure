@@ -6,15 +6,15 @@ define(['../dispatcher/AppDispatcher', '../constants/PopinsConstants'],
             create(type, text) {
                 AppDispatcher.dispatch({
                     actionType: PopinsConstants.POPIN_CREATE,
-                    type: type,
-                    text: text
+                    type,
+                    text
                 });
             },
 
             destroy(id) {
                 AppDispatcher.dispatch({
                     actionType: PopinsConstants.POPIN_DESTROY,
-                    id: id
+                    id
                 });
             }
         };

@@ -1,6 +1,6 @@
 module.exports = {
 
-    getcheckstats: function (req, res) {
+    getcheckstats(req, res) {
         CheckManagement.getData(DB.fetchOne, req.user.id, req.param('id'), function(err, data) {
             if (err) return res.serverError(err);
 
@@ -8,7 +8,7 @@ module.exports = {
         });
     },
 
-    getuserandglobalstats: function (req, res) {
+    getuserandglobalstats(req, res) {
         CheckManagement.getUserAndGlobalStats(DB.fetchAndPopulate, req.user.id, function(err, data) {
             if (err) return res.serverError(err);
 
@@ -16,7 +16,7 @@ module.exports = {
         });
     },
 
-    create: function (req, res) {
+    create(req, res) {
         const data = {
             name: String(req.param('name')),
             domainNameOrIP: String(req.param('domainNameOrIP')),
@@ -31,7 +31,7 @@ module.exports = {
         });
     },
 
-    update: function (req, res) {
+    update(req, res) {
         const data = {
             name: String(req.param('name')),
             emailNotifications: Boolean(req.param('emailNotifications'))
@@ -43,7 +43,7 @@ module.exports = {
         });
     },
 
-    destroy: function (req, res) {
+    destroy(req, res) {
         CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), function(err, destroyed) {
             if (err) return res.serverError(err);
 

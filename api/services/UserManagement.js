@@ -5,7 +5,7 @@ module.exports = {
      * @param {Object} userData - user data (name, email, etc.)
      * @param {Function} callback
      */
-    create: function(creator, userData, callback) {
+    create(creator, userData, callback) {
         if (userData.password !== userData.confirmPassword) {
             return callback('passwords-mismatch');
         }
@@ -25,7 +25,7 @@ module.exports = {
      * @param {Function} updater - record update function
      * @param {String} userId - user id
      */
-    updateLastConnection: function(updater, userId) {
+    updateLastConnection(updater, userId) {
         updater('user', { id: userId }, { lastConnection: new Date() }, function(err) {
             if (err) return sails.log.error(err);
         });
@@ -37,7 +37,7 @@ module.exports = {
      * @param {String} confirmationToken - confirmation token
      * @param {Function} callback
      */
-    confirm: function(updater, confirmationToken, callback) {
+    confirm(updater, confirmationToken, callback) {
         updater('user', { confirmationToken: confirmationToken }, { confirmedAccount: true }, function(err, updated) {
             return callback(err, updated);
         });

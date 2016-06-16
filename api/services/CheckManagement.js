@@ -73,7 +73,7 @@ module.exports = {
      * @param {Object} checkData - the attributes of the check to create
      * @param {Function} callback
      */
-    createCheck: function(fetcher, creator, userId, checkData, callback) {
+    createCheck(fetcher, creator, userId, checkData, callback) {
         fetcher('user', userId, 'checks', function(err, user) {
             if (err) return callback(err);
 
@@ -103,7 +103,7 @@ module.exports = {
      * @param {Object} data - the attributes to update and their new contents
      * @param {Function} callback
      */
-    updateCheck: function(fetcher, updater, userId, checkId, data, callback) {
+    updateCheck(fetcher, updater, userId, checkId, data, callback) {
         fetcher('check', checkId, function (err, check) {
             if (err) return callback(err);
 
@@ -125,7 +125,7 @@ module.exports = {
      * @param {String} checkId - the id of the check to destroy
      * @param {Function} callback
      */
-    destroyCheck: function(fetcher, destroyer, userId, checkId, callback) {
+    destroyCheck(fetcher, destroyer, userId, checkId, callback) {
         fetcher('check', checkId, function(err, check) {
             if (err) return callback(err);
 
@@ -145,7 +145,7 @@ module.exports = {
      * @param {Function} updater - a function updating a record
      * @param {Object} ping - the result of a connexion attempt to a check
      */
-    insertHistory: function(fetcher, updater, ping, callback) {
+    insertHistory(fetcher, updater, ping, callback) {
         fetcher('check', ping.checkId, function (err, check) {
             if (err) return callback(err);
 
@@ -170,7 +170,7 @@ module.exports = {
      * @param {String} checkId - the id of the check to retrieve data from
      * @param {Funtion} callback
      */
-    getData: function(fetcher, userId, checkId, callback) {
+    getData(fetcher, userId, checkId, callback) {
         fetcher('check', checkId, function (err, check) {
             if (err) {
                 return callback(err);
@@ -194,7 +194,7 @@ module.exports = {
      * @param {String} userId - the id of the user requesting this action
      * @param {Function} callback
      */
-    getUserAndGlobalStats: function(fetcher, userId, callback) {
+    getUserAndGlobalStats(fetcher, userId, callback) {
         fetcher('user', userId, 'checks', function(err, user) {
 
             const lastError = { time: null, checkName: null };

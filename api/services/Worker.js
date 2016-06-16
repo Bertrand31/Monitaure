@@ -33,7 +33,7 @@ function checkPort(check, callback) {
             return callback(callbackObject);
         }
     }, sails.config.checkTimeout);
-};
+}
 
 function pingHandling(ping) {
     CheckManagement.insertHistory(DB.fetchOne, DB.update, ping, function(err) {
