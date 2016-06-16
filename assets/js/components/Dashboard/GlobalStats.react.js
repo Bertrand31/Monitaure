@@ -1,4 +1,4 @@
-define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, moment) {
+define(['react', 'react-chartist', 'moment', '../../stores/ChecksStore'], function(React, ChartistGraph, moment, ChecksStore) {
 
 	const donutOptions = {
 		width: '200px',
@@ -10,7 +10,7 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
 		showLabel: false
 	};
 
-    class GlobalStats extends React.Component {
+    class GlobalStatsView extends React.Component {
         render() {
             if (Object.keys(this.props.globalStats).length < 1) {
                 return null;
@@ -97,5 +97,32 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
         }
     }
 
-    return GlobalStats;
+    function getGlobalStatsState() {
+        return {
+            globalStats: ChecksStore.getGlobalStats()
+        };
+    }
+
+    class GlobalStatsController extends React.Component {
+        constructor() {
+            super();
+            this.state = getGlobalStatsState();
+        }
+        componentDidMount() {
+            ChecksStore.addChangeListener(this._onChange.bind(this));
+        }
+        componentWillUnmount() {
+            ChecksStore.removeChangeListener(this._onChange.bind(this));
+        }
+
+        render() {
+            return (<GlobalStatsView globalStats={this.state.globalStats} />);
+        }
+
+        _onChange() {
+            this.setState(getGlobalStatsState());
+        }
+    }
+
+    return GlobalStatsController;
 });

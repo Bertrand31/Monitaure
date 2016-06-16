@@ -1,4 +1,4 @@
-define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, moment) {
+define(['react', 'react-chartist', 'moment', '../../stores/ChecksStore'], function(React, ChartistGraph, moment, ChecksStore) {
 
 	const chartOptions = {
         fullWidth: false,
@@ -33,7 +33,7 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
 		return chartData;
     }
 
-    class CheckStats extends React.Component {
+    class CheckStatsView extends React.Component {
         constructor(props) {
             super(props);
         }
@@ -76,5 +76,32 @@ define(['react', 'react-chartist', 'moment'], function(React, ChartistGraph, mom
         }
     }
 
-    return CheckStats;
+    function getOpenCheckState() {
+        return {
+            openCheck: ChecksStore.getOpenCheck()
+        };
+    }
+
+    class CheckStatsController extends React.Component {
+        constructor() {
+            super();
+            this.state = getOpenCheckState();
+        }
+        componentDidMount() {
+            ChecksStore.addChangeListener(this._onChange.bind(this));
+        }
+        componentWillUnmount() {
+            ChecksStore.removeChangeListener(this._onChange.bind(this));
+        }
+
+        render() {
+            return (<CheckStatsView openCheck={this.state.openCheck} />);
+        }
+
+        _onChange() {
+            this.setState(getOpenCheckState());
+        }
+    }
+
+    return CheckStatsController;
 });

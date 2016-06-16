@@ -10,11 +10,10 @@ define(
 
         function getChecksState() {
             return {
-                allChecks: ChecksStore.getAllChecks(),
-                globalStats: ChecksStore.getGlobalStats(),
-                openCheck: ChecksStore.getOpenCheck()
+                allChecks: ChecksStore.getAllChecks()
             };
         }
+        // TODO: do not pass props from here, but lower instead
         class Dashboard extends React.Component {
             constructor() {
                 super();
@@ -22,6 +21,7 @@ define(
             }
             componentDidMount() {
                 ChecksActions.populateAll();
+                // TODO: Check if not already running
                 setInterval(ChecksActions.populateAll, 2 * 60 * 1000);
                 ChecksStore.addChangeListener(this._onChange.bind(this));
             }
@@ -34,8 +34,8 @@ define(
                     <div>
                         <div className="pane-components-wrapper">
                             <TopButton />
-                            <GlobalStats globalStats={this.state.globalStats} />
-                            <CheckStats openCheck={this.state.openCheck} />
+                            <GlobalStats />
+                            <CheckStats />
                         </div>
                         <ChecksTable allChecks={this.state.allChecks} />
                     </div>
