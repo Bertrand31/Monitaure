@@ -78,7 +78,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
             const attrName = action.attrName;
             const attrValue = action.attrValue;
 
-            switch(action.actionType) {
+            switch (action.actionType) {
 
                 case ChecksConstants.CHECK_POPULATE_ALL:
                     populateAll(allChecks, globalStats);

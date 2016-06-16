@@ -1,4 +1,4 @@
-table {
+.c-checks {
     width:100%;
     margin:1em 0;
     border-spacing:0;
@@ -6,12 +6,6 @@ table {
     color:$softwhite;
     cursor:default;
     td, th {
-        &:first-child { padding-left:2em; }
-        &:last-child { padding-right:2em; }
-        &:first-child, &:last-child, &:nth-last-child(2) {
-            box-sizing:border-box;
-            max-width:60px;
-        }
     }
     th {
         padding:1.5em .5em;
@@ -19,25 +13,55 @@ table {
     td {
         padding:1em .5em;
     }
-    thead {
-        text-align:left;
+}
+.c-checks__head {
+    text-align:left;
+    background:$middark;
+    color:$softwhite;
+}
+.c-checks__body {
+    .c-checks__name { color:#fff; }
+    tr {
+        transition:background .3s ease-in-out;
         background:$middark;
-        color:$softwhite;
-    }
-    tbody {
-        .name { color:#fff; }
-        tr {
-            transition:background .3s ease-in-out;
-            background:$middark;
-            &:nth-child(odd) {
-                background:$light;
-            }
-            &:hover,&.active {
-                background:$lighter;
-            }
+        &:nth-child(odd) {
+            background:$light;
+        }
+        &:hover,&.active {
+            background:$lighter;
         }
     }
 }
+.c-checks__name {
+    padding-left:2em;
+}
+.c-checks__destroy {
+    padding-right:2em;
+}
+.c-checks__status,
+.c-checks__port,
+.c-checks__latency,
+.c-checks__notifications,
+.c-checks__edit,
+.c-checks__destroy {
+    box-sizing:border-box;
+    max-width:60px;
+}
+.c-checks__row-enter {
+    opacity: 0.01;
+}
+.c-checks__row-enter.c-checks__row-enter-active {
+    opacity: 1;
+    transition: all 500ms ease-in;
+}
+.c-checks__row-leave {
+    opacity: 1;
+}
+.c-checks__row-leave.c-checks__row-leave-active {
+    opacity: 0.01;
+    transition: all 300ms ease-in;
+}
+
 [data-health="up"], [data-health="down"], [data-health="waiting"] {
     background-size:26px 26px;
     background-position: center center;
