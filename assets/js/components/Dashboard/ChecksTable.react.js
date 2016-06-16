@@ -1,5 +1,5 @@
-define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActions'],
-    function(React, ReactCSSTransitionGroup, ChecksActions) {
+define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActions', '../../stores/ChecksStore'],
+    function(React, ReactCSSTransitionGroup, ChecksActions, ChecksStore) {
 
         class CheckRow extends React.Component {
             constructor(props) {
@@ -118,12 +118,26 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
             }
         }
 
-        class ChecksTable extends React.Component {
+        function getChecksState() {
+            return {
+                allChecks: ChecksStore.getAllChecks()
+            };
+        }
+
+        class ChecksTableController extends React.Component {
             constructor(props) {
-                super(props);
+                super();
+                this.state = getChecksState();
             }
+            componentDidMount() {
+                ChecksStore.addChangeListener(this._onChange.bind(this));
+            }
+            componentWillUnmount() {
+                ChecksStore.removeChangeListener(this._onChange.bind(this));
+            }
+
             render() {
-                const allChecks = this.props.allChecks;
+                const allChecks = this.state.allChecks;
 
                 if (Object.keys(allChecks).length < 1) {
                     return null;
@@ -137,6 +151,7 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
                     }
                 }
 
+                // TODO: move all JSX down to the view componenet
                 return (
                     <table className="c-checks">
                         <thead className="c-checks__head">
@@ -163,8 +178,12 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
                     </table>
                 );
             }
+
+            _onChange() {
+                this.setState(getChecksState());
+            }
         }
 
-        return ChecksTable;
+        return ChecksTableController;
     }
 );
