@@ -1,5 +1,5 @@
-define(['react', '../../actions/ChecksActions'],
-    function(React, ChecksActions) {
+define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActions'],
+    function(React, ReactCSSTransitionGroup, ChecksActions) {
 
         class CheckRow extends React.Component {
             constructor(props) {
@@ -151,9 +151,15 @@ define(['react', '../../actions/ChecksActions'],
                                 <th className="c-checks__destroy"></th>
                             </tr>
                         </thead>
-                        <tbody className="c-checks__body">
+                        <ReactCSSTransitionGroup
+                            component="tbody"
+                            className="c-checks__body"
+                            transitionName="c-checks__row"
+                            transitionEnterTimeout={500}
+                            transitionLeaveTimeout={300}
+                        >
                             {checks}
-                        </tbody>
+                        </ReactCSSTransitionGroup>
                     </table>
                 );
             }

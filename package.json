@@ -51,6 +51,7 @@
     "passport-local": "^1.0.0",
     "rc": "1.1.6",
     "react": "^15.1.0",
+    "react-addons-css-transition-group": "^15.1.0",
     "react-chartist": "^0.10.2",
     "react-dom": "^15.1.0",
     "sails": "~0.12.3",
