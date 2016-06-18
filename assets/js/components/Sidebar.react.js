@@ -1,23 +1,9 @@
-define(['react', './Sidebar/Navigation.react', './Sidebar/UserInfo.react', '../stores/UserInfoStore'], function(React, Navigation, UserInfo, UserInfoStore) {
-
-    function getUserInfo() {
-        return {
-            user: UserInfoStore.getUserInfo()
-        };
-    }
+define(['react', './Sidebar/Navigation.react', './Sidebar/UserInfo.react'], function(React, Navigation, UserInfo) {
 
     class Sidebar extends React.Component {
         constructor() {
             super();
-            this.state = getUserInfo();
         }
-        componentDidMount() {
-            UserInfoStore.addChangeListener(this._onChange.bind(this));
-        }
-        componentWillUnmount() {
-            UserInfoStore.removeChangeListener(this._onChange.bind(this));
-        }
-
         render() {
             return (
                 <div className="sidebar">
@@ -26,15 +12,12 @@ define(['react', './Sidebar/Navigation.react', './Sidebar/UserInfo.react', '../s
                         <Navigation />
                     </div>
                     <div className="sidebar-bottom" id="profile">
-                        <UserInfo user={this.state.user} />
+                        <UserInfo />
                     </div>
                 </div>
             );
         }
 
-        _onChange() {
-            this.setState(getUserInfo());
-        }
     }
 
     return Sidebar;

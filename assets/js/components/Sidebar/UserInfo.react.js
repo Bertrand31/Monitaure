@@ -1,15 +1,11 @@
-define(['react'], function(React) {
+define(['react', '../../stores/UserInfoStore'], function(React, UserInfoStore) {
 
-    class User extends React.Component {
+    class UserInfoView extends React.Component {
         constructor(props) {
             super(props);
         }
 
         render() {
-            if (Object.keys(this.props.user).length < 1) {
-                return null;
-            }
-
             const gravatarURL = `https://gravatar.com/avatar/${this.props.user.userEmailMD5}?size=100`;
 
             return (
@@ -23,5 +19,35 @@ define(['react'], function(React) {
         }
     }
 
-    return User;
+    function getUserInfo() {
+        return {
+            user: UserInfoStore.getUserInfo()
+        };
+    }
+    class UserInfoController extends React.Component {
+        constructor() {
+            super();
+            this.state = getUserInfo();
+        }
+        componentDidMount() {
+            UserInfoStore.addChangeListener(this._onChange.bind(this));
+        }
+        componentWillUnmount() {
+            UserInfoStore.removeChangeListener(this._onChange.bind(this));
+        }
+
+        render() {
+            if (Object.keys(this.state.user).length < 1) {
+                return null;
+            }
+
+            return (<UserInfoView user={this.state.user} />);
+        }
+
+        _onChange() {
+            this.setState(getUserInfo());
+        }
+    }
+
+    return UserInfoController;
 });
