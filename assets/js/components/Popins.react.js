@@ -6,14 +6,14 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
         };
     }
 
-    class Popin extends React.Component {
+    class PopinView extends React.Component {
         constructor(props) {
             super(props);
         }
         componentDidMount() {
-            // setTimeout(() => {
-            //     PopinsActions.destroy(this.props.data.id);
-            // }, 3000);
+            setTimeout(() => {
+                PopinsActions.destroy(this.props.data.id);
+            }, 3000);
         }
 
         render() {
@@ -31,7 +31,7 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
         }
     }
 
-    class Popins extends React.Component {
+    class PopinsController extends React.Component {
         constructor() {
             super();
             this.state = getPopinsState();
@@ -53,7 +53,7 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
 
             for (const key in allPopins) {
                 if (allPopins.hasOwnProperty(key)) {
-                    popins.push(<Popin data={allPopins[key]} key={allPopins[key].id} />);
+                    popins.push(<PopinView data={allPopins[key]} key={allPopins[key].id} />);
                 }
             }
 
@@ -67,5 +67,5 @@ define(['react', '../actions/PopinsActions', '../stores/PopinsStore'], function(
         }
     }
 
-    return Popins;
+    return PopinsController;
 });

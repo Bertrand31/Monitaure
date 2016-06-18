@@ -12,10 +12,6 @@ define(['react', 'react-chartist', 'moment', '../../stores/ChecksStore'], functi
 
     class GlobalStatsView extends React.Component {
         render() {
-            if (Object.keys(this.props.globalStats).length < 1) {
-                return null;
-            }
-
 			const percentageOfChecksUp = (this.props.globalStats.checksUp * 100) / this.props.globalStats.numberOfChecks;
 			const checksUpDataset = {
                 series: [
@@ -116,6 +112,10 @@ define(['react', 'react-chartist', 'moment', '../../stores/ChecksStore'], functi
         }
 
         render() {
+            if (Object.keys(this.state.globalStats).length < 1) {
+                return null;
+            }
+
             return (<GlobalStatsView globalStats={this.state.globalStats} />);
         }
 

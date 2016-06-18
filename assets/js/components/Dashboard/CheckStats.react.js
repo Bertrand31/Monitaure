@@ -39,10 +39,6 @@ define(['react', 'react-chartist', 'moment', '../../stores/ChecksStore'], functi
         }
 
         render() {
-            if (Object.keys(this.props.openCheck).length < 1) {
-                return null;
-            }
-
             const openCheck = this.props.openCheck;
 			const chartDataset = historyToChartData(openCheck.history);
             const lastOutagePretty = openCheck.lastOutage ? moment(openCheck.lastOutage).format('D/MM/YY H:mm') : '-';
@@ -95,6 +91,10 @@ define(['react', 'react-chartist', 'moment', '../../stores/ChecksStore'], functi
         }
 
         render() {
+            if (Object.keys(this.state.openCheck).length < 1) {
+                return null;
+            }
+
             return (<CheckStatsView openCheck={this.state.openCheck} />);
         }
 
