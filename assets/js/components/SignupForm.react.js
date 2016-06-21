@@ -13,6 +13,7 @@ define(['react', '../actions/UserActions', '../stores/UserStore'],
             }
             componentDidMount() {
                 UserStore.addChangeListener(this._onChange.bind(this));
+                this.refs.usernameInput.focus();
             }
             componentWillUnmount() {
                 UserStore.removeChangeListener(this._onChange.bind(this));
@@ -46,7 +47,8 @@ define(['react', '../actions/UserActions', '../stores/UserStore'],
                                     name="username"
                                     type="text"
                                     placeholder="Your username"
-                                    required autofocus minLength="2" maxLength="20"
+                                    ref="usernameInput"
+                                    required minLength="2" maxLength="20"
                                     onChange={this.handleChange.bind(this)}
                                 />
                                 <label>Email</label>

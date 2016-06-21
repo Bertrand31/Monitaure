@@ -5,6 +5,10 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
             constructor(props) {
                 super(props);
             }
+            componentDidMount() {
+                // We wait for the input to be initialized
+                setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
+            }
             handleChange(e) {
                 const inputType = e.target.type;
                 const inputName = e.target.name;
@@ -52,6 +56,7 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
                                 onChange={this.handleChange.bind(this)}
                                 value={row.name}
                                 placeholder="e.g. HTTP @ Google"
+                                ref="checknameInput"
                             />
                         </td>
                         <td className="c-checks__domainNameOrIP">
@@ -107,10 +112,13 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
             }
             _onEditClick(e) {
                 e.stopPropagation();
-                if (!this.props.row.hasOwnProperty('isEditing'))
+                if (!this.props.row.hasOwnProperty('isEditing')) {
                     ChecksActions.setWorkingCheck(this.props.row.id);
-                else
+                    // We wait for the input to be enabled
+                    setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
+                } else {
                     ChecksActions.saveWorkingCheck(this.props.row);
+                }
             }
             _onDestroyClick(e) {
                 e.stopPropagation();
