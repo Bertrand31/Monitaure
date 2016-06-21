@@ -11,6 +11,7 @@ module.exports = {
     output: {
         path: '.tmp/public/js/',
         filename: 'bundle.js',
+        chunkFilename: '[chunkhash].bundle.js',
         publicPath: '/js/'
     },
 
@@ -19,11 +20,8 @@ module.exports = {
             test: /\.jsx?$/,
             loader: 'babel',
             exclude: /node_modules/
-            // query: {
-            //     presets: ['es2015']
-            // }
         }]
-    }
+    },
     // plugins: [
     //     new webpack.optimize.UglifyJsPlugin({
     //         compress: {
