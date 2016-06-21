@@ -5,13 +5,13 @@
     border-collapse:collapse;
     color:$softwhite;
     cursor:default;
-    td, th {
-    }
+}
+.c-checks__row {
     th {
         padding:1.5em .5em;
     }
     td {
-        padding:1em .5em;
+        padding:1.2em .5em;
     }
 }
 .c-checks__head {
@@ -21,7 +21,7 @@
 }
 .c-checks__body {
     .c-checks__name { color:#fff; }
-    tr {
+    .c-checks__row {
         transition:background .3s ease-in-out;
         background:$middark;
         &:nth-child(odd) {
@@ -46,6 +46,21 @@
 .c-checks__destroy {
     box-sizing:border-box;
     max-width:60px;
+}
+
+.c-checks__row-enter {
+    opacity: 0.01;
+}
+.c-checks__row-enter.c-checks__row-enter-active {
+    opacity: 1;
+    transition: all 500ms ease-in;
+}
+.c-checks__row-leave {
+    opacity: 1;
+}
+.c-checks__row-leave.c-checks__row-leave-active {
+    opacity: 0.01;
+    transition: all 300ms ease-in;
 }
 
 [data-health="up"], [data-health="down"], [data-health="waiting"] {

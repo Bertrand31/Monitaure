@@ -65,7 +65,7 @@ label {
     width: 100%;
     font-family: $roboto;
     font-weight: 600;
-    color:$softwhite;
+    color:$lighter;
     border:0;
     border-bottom:1px solid $softwhite;
     background:transparent;
@@ -74,6 +74,10 @@ label {
         // background:transparent url('/images/lock.svg') right center no-repeat;
         // background-size:15px;
     }
+}
+.input__text--dark {
+    color:$softwhite;
+    margin:0; // Unrelated, but dark fields are inside the table. TODO: make clean selector
 }
 
 .rounded-checkbox {
