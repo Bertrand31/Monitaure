@@ -50,9 +50,8 @@ function pingHandling(ping) {
                 if (err) sails.log.error(err);
                 Messages.sendDownAlert(Sendgrid.send, user.email, ping.checkName);
             });
-        }
         // If the check is up and was down last time we checked
-        else if (ping.open && lastCheckHistory.duration === null) {
+        } else if (ping.open && lastCheckHistory.duration === null) {
             User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
                 if (err) sails.log.error(err);
 
@@ -68,7 +67,7 @@ function pingHandling(ping) {
             });
         }
     }
-};
+}
 
 module.exports = function (fetcher) {
     setInterval(function() {

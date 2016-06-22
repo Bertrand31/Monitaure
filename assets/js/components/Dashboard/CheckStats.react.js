@@ -11,8 +11,8 @@ define(['react', 'react-chartist', 'moment', '../../stores/ChecksStore'], functi
             offset: 50,
             showGrid: false,
             scaleMinSpace: 100,
-            labelInterpolationFnc: function(value) {
-                return value + 'ms';
+            labelInterpolationFnc(value) {
+                return `${value} ms`;
             }
         }
 	};

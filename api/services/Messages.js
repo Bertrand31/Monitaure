@@ -8,7 +8,7 @@ module.exports = {
      * @param {String} userEmail - address we send the email to
      * @param {String} checkName - name of the check that is down
      */
-    sendDownAlert: function(sender, userEmail, checkName) {
+    sendDownAlert(sender, userEmail, checkName) {
         const email = {
             from: appEmail,
             to: userEmail,
@@ -25,7 +25,7 @@ module.exports = {
      * @param {String} checkName - name of the check that is back up
      * @param {Number} outageDuration - number of minutes the check was down
      */
-    sendUpAlert: function(sender, recipient, checkName, outageDuration) {
+    sendUpAlert(sender, recipient, checkName, outageDuration) {
         const email = {
             from: appEmail,
             to: recipient,
@@ -40,7 +40,7 @@ module.exports = {
      * @param {Function} sender - a function taking care of sending the message
      * @param {Object} user - raw database record of the user we just created
      */
-    sendConfirmationEmail: function(sender, user) {
+    sendConfirmationEmail(sender, user) {
         const email = {
             from: appEmail,
             to: user.email,

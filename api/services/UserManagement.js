@@ -38,7 +38,7 @@ module.exports = {
      * @param {Function} callback
      */
     confirm(updater, confirmationToken, callback) {
-        updater('user', { confirmationToken: confirmationToken }, { confirmedAccount: true }, function(err, updated) {
+        updater('user', { confirmationToken }, { confirmedAccount: true }, function(err, updated) {
             return callback(err, updated);
         });
     }

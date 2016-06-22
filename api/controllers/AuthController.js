@@ -19,7 +19,7 @@ module.exports = {
             if (err || !user) {
                 return res.view('login', {
                     message: info.message,
-                    user: user
+                    user
                 });
             }
             req.logIn(user, function(err) {

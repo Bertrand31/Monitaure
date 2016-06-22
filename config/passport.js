@@ -6,8 +6,9 @@ passport.serializeUser(function(user, callback) {
     return callback(null, user.id);
 });
 
+// TODO : replace both model calls with DB.js functions
 passport.deserializeUser(function(id, callback) {
-    User.findOne({ id: id }, function (err, user) {
+    User.findOne({ id }, function (err, user) {
         if (err) return sails.log.error(err);
 
         if (!user) {
@@ -40,7 +41,7 @@ function(username, password, callback) {
                     message: 'Invalid Password'
                 });
             const returnUser = {
-                username: username,
+                username,
                 email: user.email,
                 createdAt: user.createdAt,
                 id: user.id

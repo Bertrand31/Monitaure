@@ -11,7 +11,7 @@ const sendgridOptions = {
 const emailClient = nodemailer.createTransport(sgTransport(sendgridOptions));
 
 module.exports = {
-    send: function(emailData) {
+    send(emailData) {
         emailClient.sendMail(emailData, function(err) {
             if (err) return sails.log.error(err);
         });

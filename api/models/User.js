@@ -50,7 +50,7 @@ module.exports = {
             type: 'date'
         },
 
-        toJSON: function() {
+        toJSON() {
             const obj = this.toObject();
             delete obj.password;
             return obj;
@@ -63,7 +63,7 @@ module.exports = {
 
     },
 
-    beforeCreate: function(user, callback) {
+    beforeCreate(user, callback) {
 
         user.emailHash = crypto.createHash('md5').update(user.email).digest('hex');
 
