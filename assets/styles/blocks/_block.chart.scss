@@ -47,6 +47,9 @@
     }
     &.ct-vertical {
         font-size:.8em;
+        width:49px!important;
+        position:relative;
+        left:-10px;
     }
 }
 .ct-grid {
