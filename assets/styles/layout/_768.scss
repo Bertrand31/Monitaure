@@ -30,13 +30,20 @@
     background-size: cover;
 }
 .c-pane-top {
-    text-align:right;
+    position:relative;
+    padding-top:.5em;
+}
+.c-pane-top__button {
+    position:absolute;
+    right:0;
+    top:0;
+    margin:0;
 }
 .l-grid {
     flex-direction:row;
 }
 .l-grid__block {
-    margin:2em 0;
+    margin:1.5em 0 .5em;
 }
 .c-check-stats__main-chart {
     display:block;

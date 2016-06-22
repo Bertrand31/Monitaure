@@ -11,9 +11,9 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/PopinsConstants',
         function create(type, text) {
             const id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
             _popins[id] = {
-                id: id,
-                type: type,
-                text: text
+                id,
+                type,
+                text
             };
         }
 
