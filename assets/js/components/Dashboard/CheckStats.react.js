@@ -47,14 +47,14 @@ define(['react', 'react-chartist', 'moment', '../../stores/ChecksStore'], functi
             const lastPingDate = moment(lastPing.date).format('HH:mm:ss');
 
             return (
-                <div className="c-check-stats">
+                <section className="c-check-stats">
                     <div className="c-check-stats__data">
-                        <p className="name">{openCheck.name}</p>
+                        <p className="c-check-stats__name">{openCheck.name}</p>
                         <p>Avg latency: {openCheck.avg} ms</p>
                         <p>Min latency: {openCheck.min} ms</p>
                         <p>Max latency: {openCheck.max} ms</p>
-                        <p data-perfect={openCheck.availability === 100}>Availability: {openCheck.availability}%</p>
-                        <p>Last outage: {lastOutagePretty}</p>
+                        <p>Availability: <span data-perfect={openCheck.availability === 100}>{openCheck.availability}%</span></p>
+                        <p>Last outage:<br />{lastOutagePretty}</p>
                     </div>
                     <div className="c-check-stats__main-chart">
                         <div className="top-data">
@@ -67,7 +67,7 @@ define(['react', 'react-chartist', 'moment', '../../stores/ChecksStore'], functi
                         </div>
                         <ChartistGraph className={'ct-chart'} data={chartDataset} options={chartOptions} type="Line" />
                     </div>
-                </div>
+                </section>
             );
         }
     }

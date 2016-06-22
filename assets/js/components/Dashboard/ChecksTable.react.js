@@ -44,7 +44,7 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
                 const isNewCheck = this.props.row.id === 'tmpID';
 
                 return (
-                    <tr className="c-checks__row" id={row.id} onClick={this._onOpenClick.bind(this)}>
+                    <tr className="c-checks__row" id={row.id} onClick={this._onCheckRowClick.bind(this)}>
                         <td className="c-checks__status" data-health={checkState}></td>
                         <td className="c-checks__name">
                             <input
@@ -107,8 +107,12 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
                 );
             }
 
-            _onOpenClick() {
-                ChecksActions.openStats(this.props.row.id);
+            _onCheckRowClick() {
+                if (this.props.row.id !== this.props.openCheckID) {
+                    ChecksActions.openStats(this.props.row.id);
+                } else {
+                    ChecksActions.closeStats();
+                }
             }
             _onEditClick(e) {
                 e.stopPropagation();
@@ -128,12 +132,13 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
 
         function getChecksState() {
             return {
-                allChecks: ChecksStore.getAllChecks()
+                allChecks: ChecksStore.getAllChecks(),
+                openCheck: ChecksStore.getOpenCheck()
             };
         }
 
         class ChecksTableController extends React.Component {
-            constructor(props) {
+            constructor() {
                 super();
                 this.state = getChecksState();
             }
@@ -155,7 +160,13 @@ define(['react', 'react-addons-css-transition-group', '../../actions/ChecksActio
 
                 for (const singleCheck in allChecks) {
                     if (allChecks.hasOwnProperty(singleCheck)) {
-                        checks.push(<CheckRow row={allChecks[singleCheck]} key={allChecks[singleCheck].id} />);
+                        checks.push(
+                            <CheckRow
+                                row={allChecks[singleCheck]}
+                                openCheckID={this.state.openCheck.id}
+                                key={allChecks[singleCheck].id}
+                            />
+                        );
                     }
                 }
 

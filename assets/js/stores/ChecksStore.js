@@ -13,6 +13,9 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
         function populateOpenCheck(data) {
             _openCheck = data;
         }
+        function clearOpenCheck() {
+            _openCheck = {};
+        }
         function populateAll(allChecks, globalStats) {
             allChecks.map((check) => {
                 _checks[check.id] = check;
@@ -101,6 +104,7 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/ChecksConstants',
                     break;
 
                 case ChecksConstants.CLOSE_CHECK_STATS:
+                    clearOpenCheck();
                     ChecksStore.emitChange();
                     break;
 
