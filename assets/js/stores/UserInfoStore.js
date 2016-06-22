@@ -11,6 +11,8 @@ define(['../dispatcher/AppDispatcher', 'events', '../constants/UserInfoConstants
         function populate(user) {
             delete user.checks;
             _userInfo = user;
+            // HEAP `identify` API
+            heap.identify(user.userName);
         }
 
         const UserInfoStore = assign({}, EventEmitter.prototype, {
