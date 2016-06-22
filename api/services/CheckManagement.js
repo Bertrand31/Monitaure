@@ -28,11 +28,11 @@ const historyGarbageCollection = function(historyArray) {
 function calcCheckStats(check, historyLength) {
     const historyArray = check.history;
     if (historyArray.length > 0) {
+        const checkInterval = sails.config.checkInterval;
         let sum = 0;
         let min = historyArray[0].duration;
         let max = historyArray[0].duration;
         let totalOutage = 0;
-        let checkInterval = sails.config.checkInterval;
         let lastOutage = null;
 
         for (let i = 0; i < historyArray.length; i++) {
