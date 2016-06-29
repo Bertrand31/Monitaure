@@ -1,33 +1,31 @@
-require(
-    ['react', 'react-dom',
-    './components/SignupForm.react',
-    './components/Popins.react',
-    './components/Sidebar.react',
-    './components/Dashboard.react'],
-    function(React, ReactDOM, SignupForm, Popins, Sidebar, Dashboard) {
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-        ReactDOM.render(
-            <Popins />,
-            document.getElementById('popins-container')
-        );
+import SignupForm from './components/SignupForm.react';
+import Popins from './components/Popins.react';
+import Sidebar from './components/Sidebar.react';
+import Dashboard from './components/Dashboard.react';
 
-        // TODO: UGLY FIX
-        if (document.getElementById('signup-form')) {
-            ReactDOM.render(
-                <SignupForm />,
-                document.getElementById('signup-form')
-            );
-        } else {
-            ReactDOM.render(
-                <Sidebar />,
-                document.getElementById('sidebar')
-            );
-
-            ReactDOM.render(
-                <Dashboard />,
-                document.getElementById('pane-container')
-            );
-
-        }
-    }
+ReactDOM.render(
+    <Popins />,
+    document.getElementById('popins-container')
 );
+
+// TODO: UGLY FIX
+if (document.getElementById('signup-form')) {
+    ReactDOM.render(
+        <SignupForm />,
+        document.getElementById('signup-form')
+    );
+} else {
+    ReactDOM.render(
+        <Sidebar />,
+        document.getElementById('sidebar')
+    );
+
+    ReactDOM.render(
+        <Dashboard />,
+        document.getElementById('pane-container')
+    );
+
+}
