@@ -45,8 +45,9 @@ module.exports = {
             from: appEmail,
             to: user.email,
             subject: `Monitaure account confirmation`,
-            html: `To confirm your email address and activate your Monitaure account, <a href="${baseUrl}/account/confirm/${user.confirmationToken}">click here</a>.<br/>If your did not try to create such account, please ignore this email.`
+            html: EmailTemplates.Confirmation(`${baseUrl}/account/confirm/${user.confirmationToken}`, user.name)
         };
+            // html: `To confirm your email address and activate your Monitaure account, <a href="${baseUrl}/account/confirm/${user.confirmationToken}">click here</a>.<br/>If your did not try to create such account, please ignore this email.`
         sender(email);
     }
 };
