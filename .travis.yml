@@ -5,7 +5,7 @@ language: node_js
 
 node_js:
     - "stable"
-    - "6.2.2"
+    - "6.3.0"
 
 compiler: clang-3.7
 
