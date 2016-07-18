@@ -10,21 +10,21 @@ module.exports = {
 			</head>
 
 			<style type="text/css">
-			body { font-size: 16px}
-			h1 {text-align:center; color:#52da6e; font-size: 1.5em; font-weight: 400; margin-bottom: 60px}
-			.button {padding: 20px 30px; background-color: #52da6e; color: white; text-transform: uppercase; text-decoration: none; display: inline-block; text-align: center; margin-bottom: 60px; -webkit-border-radius: 4px;
-			border-radius: 4px;}
-			#content {text-align: center}
-			#content p{text-align: justify; padding: 0 35px; color: #b2b2b2; margin-bottom: 60px; font-weight: 300; line-height: 1.5em}
-			#footer {margin-bottom:40px; -webkit-border-radius: 0 0 10px 10px; border-radius: 0 0 10px 10px;}
-			#footer td {text-align: center;}
-			#footer td > img {margin-bottom: 40px;}
-			#footer td > a {display: block; margin-bottom: 40px; text-decoration: none; color: #b2b2b2;}
-			#footer ul {margin:0 0 40px; padding: 0; list-style: none; text-align: center}
-			#footer ul li {margin:0; padding: 0; display: inline-block; padding: 0 5%}
-			strong {font-size: 1em}
-			#legal-bullshit{color:#cacaca; text-align: center; font-size: 0.8em; margin-bottom:40px}
-			#legal-bullshit a{color:#cacaca; text-decoration: none}
+                body { font-size: 16px}
+                h1 {text-align:center; color:#52da6e; font-size: 1.5em; font-weight: 400; margin-bottom: 60px}
+                .button {padding: 20px 30px; background-color: #52da6e; color: white; text-transform: uppercase; text-decoration: none; display: inline-block; text-align: center; margin-bottom: 60px; -webkit-border-radius: 4px;
+                border-radius: 4px;}
+                #content {text-align: center}
+                #content p{text-align: justify; padding: 0 35px; color: #b2b2b2; margin-bottom: 60px; font-weight: 300; line-height: 1.5em}
+                #footer {margin-bottom:40px; -webkit-border-radius: 0 0 10px 10px; border-radius: 0 0 10px 10px;}
+                #footer td {text-align: center;}
+                #footer td > img {margin-bottom: 40px;}
+                #footer td > a {display: block; margin-bottom: 40px; text-decoration: none; color: #b2b2b2;}
+                #footer ul {margin:0 0 40px; padding: 0; list-style: none; text-align: center}
+                #footer ul li {margin:0; padding: 0; display: inline-block; padding: 0 5%}
+                strong {font-size: 1em}
+                #legal-bullshit{color:#cacaca; text-align: center; font-size: 0.8em; margin-bottom:40px}
+                #legal-bullshit a{color:#cacaca; text-decoration: none}
 			</style>
 
 			<body bgcolor="#212121">

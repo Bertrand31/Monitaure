@@ -9,13 +9,13 @@ module.exports = {
      * @param {String} checkName - name of the check that is down
      */
     sendDownAlert(sender, userEmail, checkName) {
-        const email = {
+        const emailOptions = {
             from: appEmail,
             to: userEmail,
             subject: `🚨  Monitaure alert: ${checkName} is DOWN!`,
             text: `Alert: ${checkName} is DOWN`
         };
-        sender(email);
+        sender(emailOptions);
     },
 
     /**
@@ -26,13 +26,13 @@ module.exports = {
      * @param {Number} outageDuration - number of minutes the check was down
      */
     sendUpAlert(sender, recipient, checkName, outageDuration) {
-        const email = {
+        const emailOptions = {
             from: appEmail,
             to: recipient,
             subject: `✓ Monitaure alert: ${checkName} is back UP!`,
             text: `${checkName} is back up after ${outageDuration} minutes of downtime.`
         };
-        sender(email);
+        sender(emailOptions);
     },
 
     /**
@@ -41,13 +41,13 @@ module.exports = {
      * @param {Object} user - raw database record of the user we just created
      */
     sendConfirmationEmail(sender, user) {
-        const email = {
+        const emailOptions = {
             from: appEmail,
             to: user.email,
             subject: `Monitaure account confirmation`,
-            html: EmailTemplates.Confirmation(`${baseUrl}/account/confirm/${user.confirmationToken}`, user.name)
+            html: EmailTemplates.Confirmation(`${baseUrl}/account/confirm/${user.confirmationToken}`, user.username)
         };
             // html: `To confirm your email address and activate your Monitaure account, <a href="${baseUrl}/account/confirm/${user.confirmationToken}">click here</a>.<br/>If your did not try to create such account, please ignore this email.`
-        sender(email);
+        sender(emailOptions);
     }
 };
