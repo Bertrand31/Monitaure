@@ -18,7 +18,8 @@
     "Waterline",
     "Jade",
     "RequireJS",
-    "AMD",
+    "ES6",
+    "Babel",
     "Webpack"
   ],
   "dependencies": {
