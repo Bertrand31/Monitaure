@@ -1,4 +1,4 @@
-define(['flux'], function(flux) {
-    const Dispatcher = flux.Dispatcher;
-    return new Dispatcher();
-});
+import flux from 'flux';
+
+const Dispatcher = flux.Dispatcher;
+export default new Dispatcher();

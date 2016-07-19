@@ -1,24 +1,22 @@
-define(['../dispatcher/AppDispatcher', '../constants/PopinsConstants'],
-    function(AppDispatcher, PopinsConstants) {
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import PopinsConstants from '../constants/PopinsConstants';
 
-        const PopinsActions = {
+const PopinsActions = {
 
-            create(type, text) {
-                AppDispatcher.dispatch({
-                    actionType: PopinsConstants.POPIN_CREATE,
-                    type,
-                    text
-                });
-            },
+    create(type, text) {
+        AppDispatcher.dispatch({
+            actionType: PopinsConstants.POPIN_CREATE,
+            type,
+            text
+        });
+    },
 
-            destroy(id) {
-                AppDispatcher.dispatch({
-                    actionType: PopinsConstants.POPIN_DESTROY,
-                    id
-                });
-            }
-        };
-
-        return PopinsActions;
+    destroy(id) {
+        AppDispatcher.dispatch({
+            actionType: PopinsConstants.POPIN_DESTROY,
+            id
+        });
     }
-);
+};
+
+export default PopinsActions;

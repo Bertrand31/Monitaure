@@ -1,28 +1,29 @@
-define(['../dispatcher/AppDispatcher', '../constants/UserConstants', '../serverIO/ajaxMethods', '../serverIO/dataHandling', '../actions/PopinsActions'],
-    function(AppDispatcher, UserConstants, ajaxMethods, dataHandling, PopinsActions) {
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import UserConstants from '../constants/UserConstants';
+import ajaxMethods from '../serverIO/ajaxMethods';
+import dataHandling from '../serverIO/dataHandling';
+import PopinsActions from '../actions/PopinsActions';
 
-        const UserActions = {
+const UserActions = {
 
-            update(AttrName, AttrValue) {
-                AppDispatcher.dispatch({
-                    actionType: UserConstants.USER_UPDATE,
-                    AttrName,
-                    AttrValue
-                });
-            },
+    update(AttrName, AttrValue) {
+        AppDispatcher.dispatch({
+            actionType: UserConstants.USER_UPDATE,
+            AttrName,
+            AttrValue
+        });
+    },
 
-            signup(data) {
-                dataHandling.createUser(ajaxMethods.POSTer, data, function(err, user) {
-                    if (err) return PopinsActions.create('alert', err.message);
+    signup(data) {
+        dataHandling.createUser(ajaxMethods.POSTer, data, function(err, user) {
+            if (err) return PopinsActions.create('alert', err.message);
 
-                    AppDispatcher.dispatch({
-                        actionType: UserConstants.USER_SIGNUP,
-                        user
-                    });
-                });
-            }
-        };
-
-        return UserActions;
+            AppDispatcher.dispatch({
+                actionType: UserConstants.USER_SIGNUP,
+                user
+            });
+        });
     }
-);
+};
+
+export default UserActions;

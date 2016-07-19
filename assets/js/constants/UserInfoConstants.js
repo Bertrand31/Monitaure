@@ -1,6 +1,6 @@
-define(['keymirror'], function(keyMirror) {
-    return keyMirror({
-        USER_INFO_POPULATE: null
-    });
+import keyMirror from 'keymirror';
+
+export default keyMirror({
+    USER_INFO_POPULATE: null
 });
 
