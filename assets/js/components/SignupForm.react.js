@@ -47,6 +47,7 @@ class SignupForm extends React.Component {
                             className="input__text"
                             name="username"
                             type="text"
+                            autoComplete="username"
                             placeholder="Your username"
                             ref="usernameInput"
                             required minLength="2" maxLength="20"
@@ -57,6 +58,7 @@ class SignupForm extends React.Component {
                             className="input__text"
                             name="email"
                             type="email"
+                            autoComplete="email"
                             placeholder="Your email address"
                             required
                             onChange={this.handleChange.bind(this)}
@@ -66,6 +68,7 @@ class SignupForm extends React.Component {
                             className="input__text input__text--password"
                             name="password"
                             type="password"
+                            autoComplete="new-password"
                             placeholder="Your password"
                             required minLength="6"
                             onChange={this.handleChange.bind(this)}
@@ -75,6 +78,7 @@ class SignupForm extends React.Component {
                             className="input__text input__text--password"
                             name="confirmPassword"
                             type="password"
+                            autoComplete="new-password"
                             placeholder="Type your password again"
                             required minLength="6"
                             onChange={this.handleChange.bind(this)}

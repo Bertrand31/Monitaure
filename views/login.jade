@@ -14,9 +14,9 @@ block body
                         if message
                             p.error= locals.message
                         label Username
-                        input#username(class="input__text", name="username", type="text", placeholder="Your username", autofocus, required)
+                        input#username(class="input__text", name="username", type="text", autocomplete="username", placeholder="Your username", autofocus, required)
                         label Password
-                        input#password(class="input__text input__text--password", name="password", type="password", placeholder="Your password", required)
+                        input#password(class="input__text input__text--password", name="password", type="password", autocomplete="password", placeholder="Your password", required)
                     a(href="#_") Password forgotten?
                     input#submit(type="submit", value="Log in")
                 p Don't have an account? 
