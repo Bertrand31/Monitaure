@@ -73,7 +73,7 @@
 [data-health="waiting"] { background-image:url('../images/status-waiting.svg'); }
 
 [data-speed="slow"] { color:$warn; }
-[data-perfect=true] { color:$lightgreen; }
+[data-speed="fast"],[data-perfect=true] { color:$lightgreen; }
 .destroy-check,.settings-check {
     background-position:center center;
     background-repeat:no-repeat;
