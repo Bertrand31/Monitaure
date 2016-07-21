@@ -1,7 +1,5 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import events from 'events';
 import UserInfoConstants from '../constants/UserInfoConstants';
-import assign from 'object-assign';
 
 const EventEmitter = events.EventEmitter;
 

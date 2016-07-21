@@ -1,5 +1,4 @@
 import React from 'react';
-import UserInfoStore from '../../stores/UserInfoStore';
 
 class UserInfoView extends React.Component {
     constructor(props) {

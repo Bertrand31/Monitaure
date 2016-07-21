@@ -1,5 +1,6 @@
 import React from 'react';
-import ChecksActions from '../../actions/ChecksActions';
+import ChecksActions from '../Actions';
+
 class TopButton extends React.Component {
     render() {
         return (

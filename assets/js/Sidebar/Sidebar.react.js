@@ -1,6 +1,6 @@
 import React from 'react';
-import Navigation from './Sidebar/Navigation.react';
-import UserInfo from './Sidebar/UserInfo.react';
+import Navigation from './Navigation/Navigation.react';
+import UserInfo from './UserInfo/UserInfo.react';
 
 class Sidebar extends React.Component {
     constructor() {

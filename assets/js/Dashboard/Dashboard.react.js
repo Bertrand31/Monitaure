@@ -1,9 +1,9 @@
 import React from 'react';
-import TopBar from './Dashboard/TopBar.react';
-import GlobalStats from './Dashboard/GlobalStats.react';
-import CheckStats from './Dashboard/CheckStats.react';
-import ChecksTable from './Dashboard/ChecksTable.react';
-import ChecksActions from '../actions/ChecksActions';
+import TopBar from './Components/TopBar.react';
+import GlobalStats from './Components/GlobalStats.react';
+import CheckStats from './Components/CheckStats.react';
+import ChecksTable from './Components/ChecksTable.react';
+import ChecksActions from './Actions';
 
 class Dashboard extends React.Component {
     constructor() {
@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
     }
     componentDidMount() {
         ChecksActions.populateAll();
-        // TODO: Check if not already running
+        // TODO: Check if not already running?
         setInterval(ChecksActions.populateAll, 2 * 60 * 1000);
     }
 

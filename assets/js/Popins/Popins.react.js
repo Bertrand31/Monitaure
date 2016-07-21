@@ -1,12 +1,5 @@
 import React from 'react';
-import PopinsActions from '../actions/PopinsActions';
-import PopinsStore from '../stores/PopinsStore';
-
-function getPopinsState() {
-    return {
-        allPopins: PopinsStore.getAll()
-    };
-}
+import PopinsActions from './Actions';
 
 class PopinView extends React.Component {
     constructor(props) {
@@ -29,8 +22,14 @@ class PopinView extends React.Component {
     }
 
     _onDestroyClick() {
-        PopinsActions.destroy(this.props.data.id);
+        this.props.destroy(this.props.data.id);
     }
+}
+
+function getPopinsState() {
+    return {
+        allPopins: PopinsStore.getAll()
+    };
 }
 
 class PopinsController extends React.Component {
@@ -55,7 +54,7 @@ class PopinsController extends React.Component {
 
         for (const key in allPopins) {
             if (allPopins.hasOwnProperty(key)) {
-                popins.push(<PopinView data={allPopins[key]} key={allPopins[key].id} />);
+                popins.push(<PopinView data={allPopins[key]} key={allPopins[key].id} destroy={PopinsActions.destroy} />);
             }
         }
 

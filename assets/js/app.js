@@ -1,31 +1,56 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-import SignupForm from './components/SignupForm.react';
-import Popins from './components/Popins.react';
-import Sidebar from './components/Sidebar.react';
-import Dashboard from './components/Dashboard.react';
+import store from './Redux/Store';
 
-ReactDOM.render(
-    <Popins />,
-    document.getElementById('popins-container')
-);
+import Sidebar from './Sidebar/Sidebar.react';
+import Dashboard from './Dashboard/Dashboard.react';
+import SignupForm from './Signup/Signup.react';
+import Popins from './Popins/Popins.react';
 
-// TODO: UGLY FIX
+
+class App extends React.Component {
+    constructor() {
+        super();
+    }
+    render() {
+        return (
+            <div>
+                <Popins />
+                <Sidebar />
+                <Dashboard />
+            </div>
+        );
+    }
+}
+
+class Signup extends React.Component {
+    constructor() {
+        super();
+    }
+    render() {
+        <div>
+            <Popins />
+            <SignupForm />,
+        </div>
+    }
+}
+
+// TODO: REMOVE UGLY FIX (replace with React Router)
 if (document.getElementById('signup-form')) {
     ReactDOM.render(
-        <SignupForm />,
-        document.getElementById('signup-form')
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        document.getElementById('root')
     );
 } else {
     ReactDOM.render(
-        <Sidebar />,
-        document.getElementById('sidebar')
-    );
-
-    ReactDOM.render(
-        <Dashboard />,
-        document.getElementById('pane-container')
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        document.getElementById('root')
     );
 
 }

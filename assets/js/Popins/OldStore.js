@@ -1,7 +1,6 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import events from 'events';
 import PopinsConstants from '../constants/PopinsConstants';
-import assign from 'object-assign';
 
 const EventEmitter = events.EventEmitter;
 

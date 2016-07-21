@@ -1,7 +1,6 @@
 import React from 'react';
 import ChartistGraph from 'react-chartist';
 import moment from 'moment';
-import ChecksStore from '../../stores/ChecksStore';
 
 const donutOptions = {
     width: '200px',

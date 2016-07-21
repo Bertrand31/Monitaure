@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ChecksActions from '../../actions/ChecksActions';
-import ChecksStore from '../../stores/ChecksStore';
+import ChecksActions from '../Actions';
 
 class CheckRow extends React.Component {
     constructor(props) {

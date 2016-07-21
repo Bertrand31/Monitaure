@@ -1,6 +1,5 @@
 import React from 'react';
-import UserActions from '../actions/UserActions';
-import UserStore from '../stores/UserStore';
+import UserActions from './Actions';
 
 function getUser() {
     return {
