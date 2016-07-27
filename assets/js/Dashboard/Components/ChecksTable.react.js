@@ -18,7 +18,7 @@ class CheckRow extends React.Component {
             inputValue = e.target.checked;
         }
 
-        ChecksActions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
+        this.props.updateWorkingCheck(this.props.row.id, inputName, inputValue);
     }
     render() {
         const row = this.props.row;
@@ -113,29 +113,26 @@ class CheckRow extends React.Component {
     }
 
     _onCheckRowClick() {
-        if (this.props.row.id !== this.props.openCheckID) {
-            ChecksActions.openStats(this.props.row.id);
-        } else {
-            ChecksActions.closeStats();
-        }
+        // if (this.props.row.id !== this.props.openCheckID) {
+        //     this.props.openStats(this.props.row.id);
+        // } else {
+        //     this.props.closeStats();
+        // }
     }
     _onEditClick(e) {
         e.stopPropagation();
-        if (!this.props.row.hasOwnProperty('isEditing')) {
-            ChecksActions.setWorkingCheck(this.props.row.id);
+        if (!this.props.row.isEditing) {
+            this.props.setWorkingCheck(this.props.row.id);
             // We wait for the input to be enabled
             setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
         } else {
-            ChecksActions.saveWorkingCheck(this.props.row);
+            this.props.saveWorkingCheck(this.props.row);
         }
-    }
-    _onDestroyClick(e) {
-        e.stopPropagation();
-        ChecksActions.destroy(this.props.row.id);
     }
 }
 
-const ChecksTable = ({ checks = {}, destroy }) => {
+const ChecksTable = ({ checks = {}, destroy, updateWorkingCheck, saveWorkingCheck }) => {
+
 
     if (Object.keys(checks).length < 1) {
         return null;
@@ -151,6 +148,8 @@ const ChecksTable = ({ checks = {}, destroy }) => {
                     /*openCheckID={this.props.openCheck.id}*/
                     key={checks[singleCheck].id}
                     destroy={destroy}
+                    updateWorkingCheck={updateWorkingCheck}
+                    saveWorkingCheck={saveWorkingCheck}
                 />
             );
         }

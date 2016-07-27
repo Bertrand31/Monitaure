@@ -19,11 +19,16 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <div className="pane-components-wrapper">
-                    <TopBar />
+                    <TopBar createWorkingCheck={this.props.createWorkingCheck} />
                     <GlobalStats globalStats={this.props.globalStats} />
                     {/* <CheckStats /> */}
                 </div>
-                <ChecksTable checks={this.props.checks} destroy={this.props.destroy} />
+                <ChecksTable
+                    checks={this.props.checks}
+                    destroy={this.props.destroy}
+                    updateWorkingCheck={this.props.updateWorkingCheck}
+                    saveWorkingCheck={this.props.saveWorkingCheck}
+                />
             </div>
         );
     }

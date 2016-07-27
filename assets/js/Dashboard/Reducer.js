@@ -1,5 +1,49 @@
 import * as types from './Constants';
 
+const checkReducer = (state, action) => {
+    switch(action.type) {
+        case types.CREATE_WORKING_CHECK:
+            return {
+                'tmpID': {
+                    id: 'tmpID',
+                    name: '',
+                    domainNameOrIP: '',
+                    history: [],
+                    port: '',
+                    emailNotifications: false,
+                    isEditing: true
+                }
+            };
+
+        case types.SET_WORKING_CHECK:
+            return {
+                [action.id]: {
+                    isEditing: true
+                }
+            };
+
+        case types.UPDATE_WORKING_CHECK:
+            return {
+                [action.id]: {
+                    ...state[action.id],
+                    [action.attrName]: action.attrValue
+                }
+            };
+
+        case types.SAVE_WORKING_CHECK:
+            return {
+                [action.data.id]: {
+                    ...action.data,
+                    isEditing: false
+                }
+            };
+
+        default:
+            return state;
+
+    }
+};
+
 export const checksReducer = (state = {}, action) => {
     switch(action.type) {
         case types.CHECKS_POPULATE:
@@ -15,6 +59,30 @@ export const checksReducer = (state = {}, action) => {
             const copy = Object.assign({}, state);
             delete copy[action.id];
             return copy;
+
+        case types.CREATE_WORKING_CHECK:
+            return {
+                ...state,
+                ...checkReducer(state, action)
+            };
+
+        case types.SET_WORKING_CHECK:
+            return {
+                ...state,
+                ...checkReducer(state, action)
+            };
+
+        case types.UPDATE_WORKING_CHECK:
+            return {
+                ...state,
+                ...checkReducer(state, action)
+            };
+
+        case types.SAVE_WORKING_CHECK:
+            return {
+                ...state,
+                ...checkReducer(state, action)
+            };
 
         default:
             return state;
