@@ -1,8 +1,6 @@
 import { createStore } from 'redux';
 import rootReducer from './RootReducer';
 
-export default function ReduxStore(preloadedState) {
-    const store = createStore(rootReducer, preloadedState);
+const store = createStore(rootReducer, window.devToolsExtension && window.devToolsExtension());
 
-    return store;
-}
+export default store;

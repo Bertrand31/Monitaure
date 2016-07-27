@@ -30,7 +30,7 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * [IPV6-ready](http://ready.chair6.net/?url=https%3A%2F%2Fmonitaure.io).
 * Front-end
     * React to manage user interface ;
-    * Flux architecture to manage application state ;
+    * Redux to manage application state ;
     * JSX and some Jade for HTML ;
     * SASS for CSS ;
     * Babel to transpile ES6 to older Javascript ;

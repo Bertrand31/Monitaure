@@ -3,21 +3,17 @@ import ajaxMethods from '../serverIO/ajaxMethods';
 import dataHandling from '../serverIO/dataHandling';
 import PopinsActions from '../Popins/Actions';
 
-export function update(AttrName, AttrValue) {
+export function update(attrName, attrValue) {
     return {
         type: types.USER_UPDATE,
-        AttrName,
-        AttrValue
+        attrName,
+        attrValue
     };
 };
 
 export function signup(data) {
-    dataHandling.createUser(ajaxMethods.POSTer, data, function(err, user) {
-        if (err) return PopinsActions.create('alert', err.message);
-
-        return {
-            type: types.USER_SIGNUP,
-            user
-        };
-    });
+    return {
+        type: types.USER_SIGNUP,
+        user
+    };
 };

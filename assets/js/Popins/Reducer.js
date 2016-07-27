@@ -1,23 +1,38 @@
 import * as types from './Constants';
 
-export default function popinsReducer(state = {}, action) {
-    switch(action.type) {
-        case PopinsConstants.POPIN.CREATE:
+const popinReducer = (state, action) => {
+    switch (action.type) {
+        case types.POPIN_CREATE:
             const id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
             return {
                 [id]: {
                     id: id,
                     variant: action.variant,
                     text: action.text
-                },
-                ...state
+                }
             };
-
-        case PopinsConstants.POPIN_DESTROY:
-            const { [action.id]: null, ...rest } = state;
-            return rest;
 
         default:
             return state;
     }
 };
+
+const popinsReducer = (state = {}, action) => {
+    switch(action.type) {
+        case types.POPIN_CREATE:
+            return {
+                ...popinReducer(undefined, action),
+                ...state
+            };
+
+        case types.POPIN_DESTROY:
+            const copy = Object.assign({}, state);
+            delete copy[action.id];
+            return copy;
+
+        default:
+            return state;
+    }
+};
+
+export default popinsReducer;

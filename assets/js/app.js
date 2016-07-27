@@ -4,10 +4,10 @@ import { Provider } from 'react-redux';
 
 import store from './Redux/Store';
 
-import Sidebar from './Sidebar/Sidebar.react';
-import Dashboard from './Dashboard/Dashboard.react';
-import SignupForm from './Signup/Signup.react';
-import Popins from './Popins/Popins.react';
+// import Sidebar from './Sidebar/Sidebar.react';
+// import Dashboard from './Dashboard/Dashboard.react';
+import SignupForm from './Signup/Container';
+import Popins from './Popins/Container';
 
 
 class App extends React.Component {
@@ -18,30 +18,44 @@ class App extends React.Component {
         return (
             <div>
                 <Popins />
-                <Sidebar />
-                <Dashboard />
             </div>
         );
     }
 }
+// class App extends React.Component {
+//     constructor() {
+//         super();
+//     }
+//     render() {
+//         return (
+//             <div>
+//                 <Popins />
+//                 // <Sidebar />
+//                 // <Dashboard />
+//             </div>
+//         );
+//     }
+// }
 
 class Signup extends React.Component {
     constructor() {
         super();
     }
     render() {
-        <div>
-            <Popins />
-            <SignupForm />,
-        </div>
+        return (
+            <div className="main-container sign-in">
+                <SignupForm />
+                <Popins />
+            </div>
+        );
     }
 }
 
 // TODO: REMOVE UGLY FIX (replace with React Router)
-if (document.getElementById('signup-form')) {
+if (document.getElementsByClassName('signup')) {
     ReactDOM.render(
         <Provider store={store}>
-            <App />
+            <Signup />
         </Provider>,
         document.getElementById('root')
     );
@@ -52,5 +66,4 @@ if (document.getElementById('signup-form')) {
         </Provider>,
         document.getElementById('root')
     );
-
 }
