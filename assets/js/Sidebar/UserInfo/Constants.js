@@ -1,1 +1,0 @@
-export const USER_INFO_POPULATE = 'USER_INFO_POPULATE';

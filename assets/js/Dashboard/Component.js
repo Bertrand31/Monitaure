@@ -6,13 +6,13 @@ import ChecksTable from './Components/ChecksTable.react';
 import ChecksActions from './Actions';
 
 class Dashboard extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
     componentDidMount() {
-        ChecksActions.populateAll();
+        this.props.populateAll();
         // TODO: Check if not already running?
-        setInterval(ChecksActions.populateAll, 2 * 60 * 1000);
+        setInterval(this.props.populateAll, 2 * 60 * 1000);
     }
 
     render() {
@@ -20,10 +20,10 @@ class Dashboard extends React.Component {
             <div>
                 <div className="pane-components-wrapper">
                     <TopBar />
-                    <GlobalStats />
-                    <CheckStats />
+                    <GlobalStats globalStats={this.props.globalStats} />
+                    {/* <CheckStats /> */}
                 </div>
-                <ChecksTable />
+                <ChecksTable checks={this.props.checks} />
             </div>
         );
     }

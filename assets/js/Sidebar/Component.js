@@ -1,10 +1,11 @@
 import React from 'react';
-import Navigation from './Navigation/Navigation.react';
-import UserInfo from './UserInfo/UserInfo.react';
+
+import Navigation from '../Navigation/Component';
+import UserInfo from '../User/UserInfo/Component';
 
 class Sidebar extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
     render() {
         return (
@@ -14,7 +15,7 @@ class Sidebar extends React.Component {
                     <Navigation />
                 </div>
                 <div className="sidebar-bottom" id="profile">
-                    <UserInfo />
+                    <UserInfo user={this.props.user} />
                 </div>
             </div>
         );

@@ -1,7 +1,11 @@
-import * as types from './Constants.js';
-import ajaxMethods from '../serverIO/ajaxMethods';
-import dataHandling from '../serverIO/dataHandling';
-import PopinsActions from '../Popins/Actions';
+import * as types from './Constants';
+
+export function populateUserInfo(userData) {
+    return {
+        type: types.USER_INFO_POPULATE,
+        userData
+    };
+};
 
 export function update(attrName, attrValue) {
     return {

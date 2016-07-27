@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import ChecksActions from '../Actions';
 
 class CheckRow extends React.Component {
     constructor(props) {
@@ -139,33 +138,26 @@ function getChecksState() {
 }
 
 class ChecksTableController extends React.Component {
-    constructor() {
-        super();
-        this.state = getChecksState();
-    }
-    componentDidMount() {
-        ChecksStore.addChangeListener(this._onChange.bind(this));
-    }
-    componentWillUnmount() {
-        ChecksStore.removeChangeListener(this._onChange.bind(this));
+    constructor(props) {
+        super(props);
     }
 
     render() {
-        const allChecks = this.state.allChecks;
+        const checks = this.props.checks;
 
-        if (Object.keys(allChecks).length < 1) {
+        if (Object.keys(checks).length < 1) {
             return null;
         }
 
-        const checks = [];
+        const checksArray = [];
 
-        for (const singleCheck in allChecks) {
-            if (allChecks.hasOwnProperty(singleCheck)) {
-                checks.push(
+        for (const singleCheck in checks) {
+            if (checks.hasOwnProperty(singleCheck)) {
+                checksArray.push(
                     <CheckRow
-                        row={allChecks[singleCheck]}
-                        openCheckID={this.state.openCheck.id}
-                        key={allChecks[singleCheck].id}
+                        row={checks[singleCheck]}
+                        /*openCheckID={this.props.openCheck.id}*/
+                        key={checks[singleCheck].id}
                     />
                 );
             }
@@ -193,14 +185,10 @@ class ChecksTableController extends React.Component {
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}
                 >
-                    {checks}
+                    {checksArray}
                 </ReactCSSTransitionGroup>
             </table>
         );
-    }
-
-    _onChange() {
-        this.setState(getChecksState());
     }
 }
 

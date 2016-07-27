@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 
 import store from './Redux/Store';
 
-// import Sidebar from './Sidebar/Sidebar.react';
-// import Dashboard from './Dashboard/Dashboard.react';
-import SignupForm from './Signup/Container';
+import Sidebar from './Sidebar/Container';
+import Dashboard from './Dashboard/Container';
+import SignupForm from './User/Signup/Container';
 import Popins from './Popins/Container';
 
 
@@ -18,24 +18,12 @@ class App extends React.Component {
         return (
             <div>
                 <Popins />
+                <Sidebar />
+                <Dashboard />
             </div>
         );
     }
 }
-// class App extends React.Component {
-//     constructor() {
-//         super();
-//     }
-//     render() {
-//         return (
-//             <div>
-//                 <Popins />
-//                 // <Sidebar />
-//                 // <Dashboard />
-//             </div>
-//         );
-//     }
-// }
 
 class Signup extends React.Component {
     constructor() {
@@ -52,7 +40,7 @@ class Signup extends React.Component {
 }
 
 // TODO: REMOVE UGLY FIX (replace with React Router)
-if (document.getElementsByClassName('signup')) {
+if (document.getElementsByClassName('signup').length > 0) {
     ReactDOM.render(
         <Provider store={store}>
             <Signup />

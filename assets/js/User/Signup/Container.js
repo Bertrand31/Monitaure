@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import SignupForm from './Component';
-import { update, signup } from './Actions';
+import { update, signup } from '../Actions';
 
-import ajaxMethods from '../serverIO/ajaxMethods';
-import dataHandling from '../serverIO/dataHandling';
+import ajaxMethods from '../../serverIO/ajaxMethods';
+import dataHandling from '../../serverIO/dataHandling';
 
-import { create } from '../Popins/Actions';
+import { create } from '../../Popins/Actions';
 
 const mapStateToProps = (state) => {
     return {

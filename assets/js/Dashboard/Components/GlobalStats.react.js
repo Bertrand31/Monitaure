@@ -12,8 +12,16 @@ const donutOptions = {
     showLabel: false
 };
 
-class GlobalStatsView extends React.Component {
+class GlobalStats extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        if (Object.keys(this.props.globalStats).length < 1) {
+            return null;
+        }
+
         const percentageOfChecksUp = (this.props.globalStats.checksUp * 100) / this.props.globalStats.numberOfChecks;
         const checksUpDataset = {
             series: [
@@ -95,35 +103,4 @@ class GlobalStatsView extends React.Component {
     }
 }
 
-function getGlobalStatsState() {
-    return {
-        globalStats: ChecksStore.getGlobalStats()
-    };
-}
-
-class GlobalStatsController extends React.Component {
-    constructor() {
-        super();
-        this.state = getGlobalStatsState();
-    }
-    componentDidMount() {
-        ChecksStore.addChangeListener(this._onChange.bind(this));
-    }
-    componentWillUnmount() {
-        ChecksStore.removeChangeListener(this._onChange.bind(this));
-    }
-
-    render() {
-        if (Object.keys(this.state.globalStats).length < 1) {
-            return null;
-        }
-
-        return (<GlobalStatsView globalStats={this.state.globalStats} />);
-    }
-
-    _onChange() {
-        this.setState(getGlobalStatsState());
-    }
-}
-
-export default GlobalStatsController;
+export default GlobalStats;
