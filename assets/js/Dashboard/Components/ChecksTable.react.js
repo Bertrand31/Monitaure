@@ -101,7 +101,12 @@ class CheckRow extends React.Component {
                     <button onClick={this._onEditClick.bind(this)} className="settings-check">✓</button>
                 </td>
                 <td className="c-checks__destroy">
-                    <button onClick={this._onDestroyClick.bind(this)} className="destroy-check"></button>
+                    <button onClick={(e) => {
+                            e.stopPropagation();
+                            this.props.destroy(row.id);
+                        }}
+                        className="destroy-check"
+                    ></button>
                 </td>
             </tr>
         );
@@ -130,66 +135,53 @@ class CheckRow extends React.Component {
     }
 }
 
-function getChecksState() {
-    return {
-        allChecks: ChecksStore.getAllChecks(),
-        openCheck: ChecksStore.getOpenCheck()
-    };
-}
+const ChecksTable = ({ checks = {}, destroy }) => {
 
-class ChecksTableController extends React.Component {
-    constructor(props) {
-        super(props);
+    if (Object.keys(checks).length < 1) {
+        return null;
     }
 
-    render() {
-        const checks = this.props.checks;
+    const checksArray = [];
 
-        if (Object.keys(checks).length < 1) {
-            return null;
+    for (const singleCheck in checks) {
+        if (checks.hasOwnProperty(singleCheck)) {
+            checksArray.push(
+                <CheckRow
+                    row={checks[singleCheck]}
+                    /*openCheckID={this.props.openCheck.id}*/
+                    key={checks[singleCheck].id}
+                    destroy={destroy}
+                />
+            );
         }
-
-        const checksArray = [];
-
-        for (const singleCheck in checks) {
-            if (checks.hasOwnProperty(singleCheck)) {
-                checksArray.push(
-                    <CheckRow
-                        row={checks[singleCheck]}
-                        /*openCheckID={this.props.openCheck.id}*/
-                        key={checks[singleCheck].id}
-                    />
-                );
-            }
-        }
-
-        // TODO: move all JSX down to the view componenet
-        return (
-            <table className="c-checks">
-                <thead className="c-checks__head">
-                    <tr className="c-checks__row">
-                        <th className="c-checks__status">Status</th>
-                        <th className="c-checks__name">Name</th>
-                        <th className="c-checks__domainNameOrIP">Domain name or IP</th>
-                        <th className="c-checks__port">Port</th>
-                        <th className="c-checks__latency">Latency</th>
-                        <th className="c-checks__notifications">Notifications</th>
-                        <th className="c-checks__edit"></th>
-                        <th className="c-checks__destroy"></th>
-                    </tr>
-                </thead>
-                <ReactCSSTransitionGroup
-                    component="tbody"
-                    className="c-checks__body"
-                    transitionName="c-checks__row"
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={300}
-                >
-                    {checksArray}
-                </ReactCSSTransitionGroup>
-            </table>
-        );
     }
+
+    // TODO: move all JSX down to the view componenet
+    return (
+        <table className="c-checks">
+            <thead className="c-checks__head">
+                <tr className="c-checks__row">
+                    <th className="c-checks__status">Status</th>
+                    <th className="c-checks__name">Name</th>
+                    <th className="c-checks__domainNameOrIP">Domain name or IP</th>
+                    <th className="c-checks__port">Port</th>
+                    <th className="c-checks__latency">Latency</th>
+                    <th className="c-checks__notifications">Notifications</th>
+                    <th className="c-checks__edit"></th>
+                    <th className="c-checks__destroy"></th>
+                </tr>
+            </thead>
+            <ReactCSSTransitionGroup
+                component="tbody"
+                className="c-checks__body"
+                transitionName="c-checks__row"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+            >
+                {checksArray}
+            </ReactCSSTransitionGroup>
+        </table>
+    );
 }
 
-export default ChecksTableController;
+export default ChecksTable;

@@ -11,6 +11,11 @@ export const checksReducer = (state = {}, action) => {
                 ...newState
             };
 
+        case types.CHECK_DESTROY:
+            const copy = Object.assign({}, state);
+            delete copy[action.id];
+            return copy;
+
         default:
             return state;
     }

@@ -4,7 +4,7 @@ import ajaxMethods from '../serverIO/ajaxMethods';
 import dataHandling from '../serverIO/dataHandling';
 import { create } from '../Popins/Actions';
 
-import { populateChecks, populateGlobalStats } from './Actions';
+import { populateChecks, populateGlobalStats, destroyCheck } from './Actions';
 import { populateUserInfo } from '../User/Actions';
 import Dashboard from './Component';
 
@@ -30,6 +30,14 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(populateUserInfo(data.userData));
             });
         },
+        destroy(id) {
+            if (id !== 'tmpID') {
+                dispatch(destroyCheck(id));
+                dataHandling.destroyCheck(ajaxMethods.GETer, id, function(err) {
+                    if (err) return PopinsActions.create('alert', err.message);
+                });
+            }
+        }
     };
 };
 

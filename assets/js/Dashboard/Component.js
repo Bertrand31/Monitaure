@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
                     <GlobalStats globalStats={this.props.globalStats} />
                     {/* <CheckStats /> */}
                 </div>
-                <ChecksTable checks={this.props.checks} />
+                <ChecksTable checks={this.props.checks} destroy={this.props.destroy} />
             </div>
         );
     }

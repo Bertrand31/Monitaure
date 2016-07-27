@@ -1,5 +1,4 @@
 import * as checksTypes from './Constants';
-// import * as userInfoTypes from '../Sidebar/UserInfo/Constants';
 
 export function populateChecks(checks) {
     return {
@@ -14,17 +13,12 @@ export function populateGlobalStats(globalStats) {
     };
 };
 
-// export function destroy(id) {
-//     if (id !== 'tmpID') {
-//         dataHandling.destroyCheck(ajaxMethods.GETer, id, function(err) {
-//             if (err) return PopinsActions.create('alert', err.message);
-//         });
-//     }
-//     return {
-//         type: checksTypes.CHECK_DESTROY,
-//         id
-//     };
-// };
+export function destroyCheck(id) {
+    return {
+        type: checksTypes.CHECK_DESTROY,
+        id
+    };
+};
 
 // export function openStats(id) {
 //     if (id !== 'tmpID') {
