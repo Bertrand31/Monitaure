@@ -26,6 +26,7 @@ class Dashboard extends React.Component {
                 <ChecksTable
                     checks={this.props.checks}
                     destroy={this.props.destroy}
+                    setWorkingCheck={this.props.setWorkingCheck}
                     updateWorkingCheck={this.props.updateWorkingCheck}
                     saveWorkingCheck={this.props.saveWorkingCheck}
                 />

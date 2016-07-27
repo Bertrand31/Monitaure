@@ -18,6 +18,7 @@ const checkReducer = (state, action) => {
         case types.SET_WORKING_CHECK:
             return {
                 [action.id]: {
+                    ...state[action.id],
                     isEditing: true
                 }
             };

@@ -40,7 +40,7 @@ class CheckRow extends React.Component {
             checkState = 'waiting';
         }
 
-        const isEditing = this.props.row.hasOwnProperty('isEditing');
+        const isEditing = this.props.row.isEditing;
         const isNewCheck = this.props.row.id === 'tmpID';
 
         return (
@@ -98,7 +98,21 @@ class CheckRow extends React.Component {
                     />
                 </td>
                 <td className={isEditing ? 'c-checks__edit is-editing' : 'c-checks__edit is-not-editing'}>
-                    <button onClick={this._onEditClick.bind(this)} className="settings-check">✓</button>
+                    <button
+                        onClick={e => {
+                            e.stopPropagation();
+                            if (!row.isEditing) {
+                                this.props.setWorkingCheck(row.id);
+                                // We wait for the input to be enabled
+                                setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
+                            } else {
+                                this.props.saveWorkingCheck(row);
+                            }
+                        }}
+                        className="settings-check"
+                    >
+                        ✓
+                    </button>
                 </td>
                 <td className="c-checks__destroy">
                     <button onClick={(e) => {
@@ -131,7 +145,7 @@ class CheckRow extends React.Component {
     }
 }
 
-const ChecksTable = ({ checks = {}, destroy, updateWorkingCheck, saveWorkingCheck }) => {
+const ChecksTable = ({ checks = {}, destroy, setWorkingCheck, updateWorkingCheck, saveWorkingCheck }) => {
 
 
     if (Object.keys(checks).length < 1) {
@@ -148,6 +162,7 @@ const ChecksTable = ({ checks = {}, destroy, updateWorkingCheck, saveWorkingChec
                     /*openCheckID={this.props.openCheck.id}*/
                     key={checks[singleCheck].id}
                     destroy={destroy}
+                    setWorkingCheck={setWorkingCheck}
                     updateWorkingCheck={updateWorkingCheck}
                     saveWorkingCheck={saveWorkingCheck}
                 />
