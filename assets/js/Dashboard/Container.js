@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
     return {
         checks: state.checks,
         globalStats: state.globalStats,
-        // openCheck: state.openCheck,
+        openCheck: state.openCheck,
         user: state.user
     };
 };
@@ -30,14 +30,16 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(UserActions.populateUserInfo(data.userData));
             });
         },
+
         destroy(id) {
             dispatch(actions.destroyCheck(id));
             if (id !== 'tmpID') {
                 dataHandling.destroyCheck(ajaxMethods.GETer, id, function(err) {
-                    if (err) return PopinsActions.create('alert', err.message);
+                    if (err) return dispatch(create('alert', err.message));
                 });
             }
         },
+
         createWorkingCheck() {
             dispatch(actions.createWorkingCheck());
         },
@@ -60,9 +62,22 @@ const mapDispatchToProps = (dispatch) => {
                 dispatch(actions.saveWorkingCheck(data));
 
                 dataHandling.updateCheck(ajaxMethods.POSTer, data, function(err) {
-                    if (err) return PopinsActions.create('alert', err.message);
+                    if (err) return dispatch(create('alert', err.message));
                 });
             }
+        },
+
+        openCheckStats(id) {
+            if (id !== 'tmpID') {
+                dataHandling.getCheckStats(ajaxMethods.GETer, id, function(err, data) {
+                    if (err) return dispatch(create('alert', err.message));
+
+                    dispatch(actions.openStats(data));
+                });
+            }
+        },
+        closeCheckStats() {
+            dispatch(actions.closeStats());
         }
     };
 };

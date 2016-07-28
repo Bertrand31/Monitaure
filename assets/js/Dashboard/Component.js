@@ -21,14 +21,17 @@ class Dashboard extends React.Component {
                 <div className="pane-components-wrapper">
                     <TopBar createWorkingCheck={this.props.createWorkingCheck} />
                     <GlobalStats globalStats={this.props.globalStats} />
-                    {/* <CheckStats /> */}
+                    <CheckStats openCheck={this.props.openCheck} />
                 </div>
                 <ChecksTable
                     checks={this.props.checks}
+                    isCheckOpen={Object.keys(this.props.openCheck).length > 0}
                     destroy={this.props.destroy}
                     setWorkingCheck={this.props.setWorkingCheck}
                     updateWorkingCheck={this.props.updateWorkingCheck}
                     saveWorkingCheck={this.props.saveWorkingCheck}
+                    openCheckStats={this.props.openCheckStats}
+                    closeCheckStats={this.props.closeCheckStats}
                 />
             </div>
         );

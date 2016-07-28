@@ -74,35 +74,12 @@ class CheckStatsView extends React.Component {
     }
 }
 
-function getOpenCheckState() {
-    return {
-        openCheck: ChecksStore.getOpenCheck()
-    };
-}
-
-class CheckStatsController extends React.Component {
-    constructor() {
-        super();
-        this.state = getOpenCheckState();
-    }
-    componentDidMount() {
-        ChecksStore.addChangeListener(this._onChange.bind(this));
-    }
-    componentWillUnmount() {
-        ChecksStore.removeChangeListener(this._onChange.bind(this));
+const OpenCheckStats = ({ openCheck = {} }) => {
+    if (Object.keys(openCheck).length < 1) {
+        return null;
     }
 
-    render() {
-        if (Object.keys(this.state.openCheck).length < 1) {
-            return null;
-        }
+    return (<CheckStatsView openCheck={openCheck} />);
+};
 
-        return (<CheckStatsView openCheck={this.state.openCheck} />);
-    }
-
-    _onChange() {
-        this.setState(getOpenCheckState());
-    }
-}
-
-export default CheckStatsController;
+export default OpenCheckStats;

@@ -49,21 +49,15 @@ export function saveWorkingCheck(data) {
     };
 };
 
-// export function openStats(id) {
-//     if (id !== 'tmpID') {
-//         dataHandling.getCheckStats(ajaxMethods.GETer, id, function(err, data) {
-//             if (err) return PopinsActions.create('alert', err.message);
+export function openStats(data) {
+    return {
+        type: checksTypes.OPEN_CHECK_STATS,
+        data
+    };
+};
 
-//             return {
-//                 type: checksTypes.OPEN_CHECK_STATS,
-//                 data
-//             };
-//         });
-//     }
-// };
-// export function closeStats() {
-//     return {
-//         type: checksTypes.CLOSE_CHECK_STATS
-//     };
-// };
-
+export function closeStats() {
+    return {
+        type: checksTypes.CLOSE_CHECK_STATS
+    };
+};
