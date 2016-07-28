@@ -3,12 +3,14 @@
 * @param {String} modelName - the name of the model to return
 */
 const findModel = function(modelName) {
-    if (modelName === 'user')
-        return User;
-    else if (modelName === 'check')
-        return Check;
-    else
-        throw new Error('Model ${modelName} not found');
+    switch(modelName) {
+        case 'user':
+            return User;
+        case 'check':
+            return Check;
+        default:
+            throw new Error('Model ${modelName} not found');
+    }
 };
 
 module.exports = {

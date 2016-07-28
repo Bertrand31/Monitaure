@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         destroy: (id) => {
-            dispatch(destroy(id))
+            dispatch(destroy(id));
         }
     };
 };

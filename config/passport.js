@@ -13,9 +13,9 @@ passport.deserializeUser(function(id, callback) {
 
         if (!user) {
             return callback(null, false);
-        } else {
-            return callback(null, user);
         }
+
+        return callback(null, user);
     });
 });
 
@@ -24,7 +24,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
 },
 function(username, password, callback) {
-    User.findOne({ username: username }, function (err, user) {
+    User.findOne({ username }, function (err, user) {
         if (err) return callback(err);
 
         if (!user) {
