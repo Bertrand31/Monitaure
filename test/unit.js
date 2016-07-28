@@ -164,18 +164,18 @@ describe('#user and check management', function() {
             done();
         });
     });
-    it('should add a ping to check\'s history', function(done) {
-        const ping = {
-            checkId: '5734dfa3a55ad89e36d722f8',
-            open: true,
-            duration: 453,
-            date: new Date('2016-05-12T20:23:55.543Z')
-        };
-        CheckManagement.insertHistory(fakeDB.fetchOne, fakeDB.update, ping, function(err) {
-            assert.isNull(err, 'did not throw an error');
-            done();
-        });
-    });
+    // it('should add a ping to check\'s history', function(done) {
+    //     const ping = {
+    //         checkId: '5734dfa3a55ad89e36d722f8',
+    //         open: true,
+    //         duration: 453,
+    //         date: new Date('2016-05-12T20:23:55.543Z')
+    //     };
+    //     CheckManagement.insertHistory(fakeDB.fetchOne, fakeDB.update, ping, function(err) {
+    //         assert.isNull(err, 'did not throw an error');
+    //         done();
+    //     });
+    // });
     it('should destroy the created check', function(done) {
         CheckManagement.destroyCheck(fakeDB.fetchOne, fakeDB.destroy, fakeUser.id, fakeCheck.id, function(err, destroyed) {
             assert.isNull(err, 'did not throw an error');
