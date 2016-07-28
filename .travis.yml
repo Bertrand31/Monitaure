@@ -1,15 +1,12 @@
 sudo: required
 dist: trusty
-
 language: node_js
-
 node_js:
     - "stable"
     - "6.3.1"
-
+env:
+    - NODE_ENV=production
  before_install:
     - npm install -g mocha
-
-services:
-    - mongodb
-    - redis-server
+script:
+    - npm test
