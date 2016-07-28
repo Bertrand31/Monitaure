@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div>
+            <div id="pane-container" className="main dashboard">
                 <div className="pane-components-wrapper">
                     <TopBar createWorkingCheck={this.props.createWorkingCheck} />
                     <GlobalStats globalStats={this.props.globalStats} />

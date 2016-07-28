@@ -9,7 +9,7 @@ class Sidebar extends React.Component {
     }
     render() {
         return (
-            <div className="sidebar">
+            <div className="sidebar aside">
                 <div className="sidebar-top">
                     <h1 id="logo"><img src="/images/logo.svg" alt="Monitaure - Monitoring for the masses" /></h1>
                     <Navigation />
