@@ -2,13 +2,10 @@ const passport = require('passport'),
       LocalStrategy = require('passport-local').Strategy,
       bcrypt = require('bcrypt');
 
-passport.serializeUser(function(user, callback) {
-    return callback(null, user.id);
-});
+passport.serializeUser((user, callback) => callback(null, user.id));
 
-// TODO : replace both model calls with DB.js functions
-passport.deserializeUser(function(id, callback) {
-    User.findOne({ id }, function (err, user) {
+passport.deserializeUser((id, callback) => {
+    DB.fetchOne('user', id, function (err, user) {
         if (err) return sails.log.error(err);
 
         if (!user) {
@@ -19,38 +16,41 @@ passport.deserializeUser(function(id, callback) {
     });
 });
 
-passport.use(new LocalStrategy({
-    usernameField: 'username',
-    passwordField: 'password'
-},
-function(username, password, callback) {
-    User.findOne({ username }, function (err, user) {
-        if (err) return callback(err);
+passport.use(
+    new LocalStrategy({
+        usernameField: 'username',
+        passwordField: 'password'
+    },
+    (username, password, callback) => {
+        DB.fetch('user', { username }, function (err, data) {
+            if (err) return callback(err);
 
-        if (!user) {
-            return callback(null, false, { message: 'Incorrect username.' });
-        } else if (!user.confirmedAccount) {
-            return callback(null, false, { message: 'Account not confirmed yet. Check your emails.' });
-        }
+            const user = data[0];
 
-        bcrypt.compare(password, user.password, function (err, res) {
-            if (err) throw err;
+            if (!user) {
+                return callback(null, false, { message: 'Incorrect username.' });
+            } else if (!user.confirmedAccount) {
+                return callback(null, false, { message: 'Account not confirmed yet. Check your emails.' });
+            }
 
-            if (!res)
-                return callback(null, false, {
-                    message: 'Invalid Password'
+            bcrypt.compare(password, user.password, function (err, res) {
+                if (err) throw err;
+
+                if (!res)
+                    return callback(null, false, {
+                        message: 'Invalid Password'
+                    });
+                const returnUser = {
+                    username,
+                    email: user.email,
+                    createdAt: user.createdAt,
+                    id: user.id
+                };
+                return callback(null, returnUser, {
+                    message: 'Logged In Successfully'
                 });
-            const returnUser = {
-                username,
-                email: user.email,
-                createdAt: user.createdAt,
-                id: user.id
-            };
-            return callback(null, returnUser, {
-                message: 'Logged In Successfully'
             });
         });
-    });
-}
+    }
 ));
 
