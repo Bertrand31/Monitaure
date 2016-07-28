@@ -31,7 +31,7 @@ module.exports = {
                                                     <td style="text-align:center;">
                                                         <h1 style="text-align:center; color:#52da6e; font-size: 1.5em; font-weight: 400; margin-bottom: 60px">Thank you for signing up!</h1>
                                                         <a href="${url}" style="padding: 20px 30px; background-color: #52da6e; color: white; text-transform: uppercase; text-decoration: none; display: inline-block; text-align: center; margin-bottom: 50px; -webkit-border-radius: 4px; border-radius: 4px;">CONFIRM MY ACCOUNT</a>
-                                                        <p style="padding: 0 35px; color: #b2b2b2; margin-bottom: 60px; font-weight: 300; line-height: 1.5em">
+                                                        <p style="padding: 0 35px; color: #a6a6a6; margin-bottom: 60px; font-weight: 300; line-height: 1.5em">
                                                             Dear <strong style="font-size:1em;">${username}</strong>,<br><br>
                                                             Thanks for registering to Monitaure's alpha version. <br /><br />
                                                             We hope that you will love the app and that it will fit you needs perfectly.<br />
