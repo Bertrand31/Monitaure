@@ -10,9 +10,11 @@ class Dashboard extends React.Component {
         super(props);
     }
     componentDidMount() {
-        this.props.populateAll();
-        // TODO: Check if not already running?
-        setInterval(this.props.populateAll, 2 * 60 * 1000);
+        // We check whether an autoRefresh loop is already running
+        if (!!autoRefresh) {
+            this.props.populateAll();
+            const autoRefresh = setInterval(this.props.populateAll, 2 * 60 * 1000);
+        }
     }
 
     render() {

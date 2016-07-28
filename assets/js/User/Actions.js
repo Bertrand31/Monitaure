@@ -1,6 +1,8 @@
 import * as types from './Constants';
 
 export function populateUserInfo(userData) {
+    // HEAP `identify` API
+    heap.identify(userData.userName);
     return {
         type: types.USER_INFO_POPULATE,
         userData
