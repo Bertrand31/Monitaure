@@ -18,6 +18,6 @@ export function update(attrName, attrValue) {
 export function signup(data) {
     return {
         type: types.USER_SIGNUP,
-        user
+        user: data
     };
 };
