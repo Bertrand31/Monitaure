@@ -127,7 +127,7 @@ class CheckRow extends React.Component {
     }
 
     _onCheckRowClick() {
-        if (!this.props.isCheckOpen) {
+        if (this.props.row.id !== this.props.openCheckID) {
             this.props.openCheckStats(this.props.row.id);
         } else {
             this.props.closeCheckStats();
@@ -145,7 +145,7 @@ class CheckRow extends React.Component {
     }
 }
 
-const ChecksTable = ({ checks = {}, isCheckOpen, destroy, setWorkingCheck, updateWorkingCheck, saveWorkingCheck, openCheckStats, closeCheckStats }) => {
+const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updateWorkingCheck, saveWorkingCheck, openCheckStats, closeCheckStats }) => {
 
 
     if (Object.keys(checks).length < 1) {
@@ -160,7 +160,7 @@ const ChecksTable = ({ checks = {}, isCheckOpen, destroy, setWorkingCheck, updat
                 <CheckRow
                     row={checks[singleCheck]}
                     key={checks[singleCheck].id}
-                    isCheckOpen={isCheckOpen}
+                    openCheckID={openCheckID}
                     destroy={destroy}
                     setWorkingCheck={setWorkingCheck}
                     updateWorkingCheck={updateWorkingCheck}

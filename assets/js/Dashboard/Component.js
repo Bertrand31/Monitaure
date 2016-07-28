@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
                 </div>
                 <ChecksTable
                     checks={this.props.checks}
-                    isCheckOpen={Object.keys(this.props.openCheck).length > 0}
+                    openCheckID={this.props.openCheck.id || null}
                     destroy={this.props.destroy}
                     setWorkingCheck={this.props.setWorkingCheck}
                     updateWorkingCheck={this.props.updateWorkingCheck}
