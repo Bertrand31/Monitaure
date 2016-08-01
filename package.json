@@ -20,6 +20,7 @@
     "RequireJS",
     "ES6",
     "Babel",
+    "ESLint",
     "Webpack"
   ],
   "dependencies": {
@@ -58,14 +59,14 @@
     "sails": "~0.12.3",
     "sails-disk": "~0.10.10",
     "sails-mongo": "^0.12.1",
-    "supertest": "^1.2.0",
     "webpack": "^1.13.1",
     "whatwg-fetch": "^1.0.0"
   },
   "scripts": {
-    "debug": "node debug app.js",
     "start": "nodemon app.js --ignore assets/",
     "webpack": "webpack --watch --color --progress",
+    "lint:back": "./node_modules/eslint/bin/eslint.js . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback; exit 0",
+    "lint:front": "./node_modules/eslint/bin/eslint.js assets/js/ -c .eslintrcfront.js --ext .js --cache; exit 0",
     "test": "mocha test/unit.js"
   },
   "main": "app.js",
@@ -74,5 +75,12 @@
     "url": "git://github.com/cua/Monitaure.git"
   },
   "author": "Bertrand Junqua <bertrandjun@gmail.com> (http://awebsiteabout.me)",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "eslint": "^3.2.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^5.2.2"
+  }
 }

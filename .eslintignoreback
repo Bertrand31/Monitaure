@@ -1,0 +1,4 @@
+assets/
+.tmp/
+node_modules/
+app.js
