@@ -1,5 +1,4 @@
-import React from 'react';
-import ChecksActions from '../Actions';
+import React, { PropTypes } from 'react';
 
 const TopButton = ({ createWorkingCheck }) => (
     <section className="c-pane-top">
@@ -14,5 +13,9 @@ const TopButton = ({ createWorkingCheck }) => (
         </button>
     </section>
 );
+
+TopButton.propTypes = {
+    createWorkingCheck: PropTypes.func.isRequired,
+};
 
 export default TopButton;

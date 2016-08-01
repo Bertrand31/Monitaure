@@ -10,34 +10,20 @@ import SignupForm from './User/Signup/Container';
 import Popins from './Popins/Container';
 
 
-class App extends React.Component {
-    constructor() {
-        super();
-    }
-    render() {
-        return (
-            <div className="react-container">
-                <Popins />
-                <Sidebar />
-                <Dashboard />
-            </div>
-        );
-    }
-}
+const App = () => (
+    <div className="react-container">
+        <Popins />
+        <Sidebar />
+        <Dashboard />
+    </div>
+);
 
-class Signup extends React.Component {
-    constructor() {
-        super();
-    }
-    render() {
-        return (
-            <div className="main-container sign-in">
-                <SignupForm />
-                <Popins />
-            </div>
-        );
-    }
-}
+const Signup = () => (
+    <div className="main-container sign-in">
+        <SignupForm />
+        <Popins />
+    </div>
+);
 
 // TODO: REMOVE UGLY FIX (replace with React Router)
 if (document.getElementsByClassName('signup').length > 0) {

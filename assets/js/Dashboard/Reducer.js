@@ -1,42 +1,42 @@
 import * as types from './Constants';
 
 const checkReducer = (state, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case types.CREATE_WORKING_CHECK:
             return {
-                'tmpID': {
+                tmpID: {
                     id: 'tmpID',
                     name: '',
                     domainNameOrIP: '',
                     history: [],
                     port: '',
                     emailNotifications: false,
-                    isEditing: true
-                }
+                    isEditing: true,
+                },
             };
 
         case types.SET_WORKING_CHECK:
             return {
                 [action.id]: {
                     ...state[action.id],
-                    isEditing: true
-                }
+                    isEditing: true,
+                },
             };
 
         case types.UPDATE_WORKING_CHECK:
             return {
                 [action.id]: {
                     ...state[action.id],
-                    [action.attrName]: action.attrValue
-                }
+                    [action.attrName]: action.attrValue,
+                },
             };
 
         case types.SAVE_WORKING_CHECK:
             return {
                 [action.data.id]: {
                     ...action.data,
-                    isEditing: false
-                }
+                    isEditing: false,
+                },
             };
 
         default:
@@ -46,43 +46,43 @@ const checkReducer = (state, action) => {
 };
 
 export const checksReducer = (state = {}, action) => {
-    switch(action.type) {
-        case types.CHECKS_POPULATE:
+    switch (action.type) {
+        case types.CHECKS_POPULATE: {
             const newState = {};
-            action.checks.map(check => {
-                newState[check.id] = check;
-            });
+            action.checks.map(check => { newState[check.id] = check; });
             return {
-                ...newState
+                ...newState,
             };
+        }
 
-        case types.CHECK_DESTROY:
+        case types.CHECK_DESTROY: {
             const copy = Object.assign({}, state);
             delete copy[action.id];
             return copy;
+        }
 
         case types.CREATE_WORKING_CHECK:
             return {
                 ...state,
-                ...checkReducer(state, action)
+                ...checkReducer(state, action),
             };
 
         case types.SET_WORKING_CHECK:
             return {
                 ...state,
-                ...checkReducer(state, action)
+                ...checkReducer(state, action),
             };
 
         case types.UPDATE_WORKING_CHECK:
             return {
                 ...state,
-                ...checkReducer(state, action)
+                ...checkReducer(state, action),
             };
 
         case types.SAVE_WORKING_CHECK:
             return {
                 ...state,
-                ...checkReducer(state, action)
+                ...checkReducer(state, action),
             };
 
         default:
@@ -91,10 +91,10 @@ export const checksReducer = (state = {}, action) => {
 };
 
 export const globalStatsReducer = (state = {}, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case types.GLOBAL_STATS_POPULATE:
             return {
-                ...action.globalStats
+                ...action.globalStats,
             };
 
         default:
@@ -103,10 +103,10 @@ export const globalStatsReducer = (state = {}, action) => {
 };
 
 export const openCheckReducer = (state = {}, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case types.OPEN_CHECK_STATS:
             return {
-                ...action.data
+                ...action.data,
             };
 
         case types.CLOSE_CHECK_STATS:

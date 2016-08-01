@@ -9,9 +9,9 @@ export default {
             method: 'GET',
             credentials: 'same-origin',
             headers: new Headers({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            })
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }),
         })
         .then(handleError)
         .then(json => callback(null, json))
@@ -23,12 +23,12 @@ export default {
             credentials: 'same-origin',
             body: JSON.stringify(data),
             headers: new Headers({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            })
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }),
         })
         .then(handleError)
         .then(json => callback(null, json))
         .catch(err => callback(err, null));
-    }
+    },
 };

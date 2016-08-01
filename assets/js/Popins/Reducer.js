@@ -2,15 +2,16 @@ import * as types from './Constants';
 
 const popinReducer = (state, action) => {
     switch (action.type) {
-        case types.POPIN_CREATE:
+        case types.POPIN_CREATE: {
             const id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
             return {
                 [id]: {
-                    id: id,
+                    id,
                     variant: action.variant,
-                    text: action.text
-                }
+                    text: action.text,
+                },
             };
+        }
 
         default:
             return state;
@@ -18,17 +19,19 @@ const popinReducer = (state, action) => {
 };
 
 const popinsReducer = (state = {}, action) => {
-    switch(action.type) {
-        case types.POPIN_CREATE:
+    switch (action.type) {
+        case types.POPIN_CREATE: {
             return {
                 ...popinReducer(undefined, action),
-                ...state
+                ...state,
             };
+        }
 
-        case types.POPIN_DESTROY:
+        case types.POPIN_DESTROY: {
             const copy = Object.assign({}, state);
             delete copy[action.id];
             return copy;
+        }
 
         default:
             return state;

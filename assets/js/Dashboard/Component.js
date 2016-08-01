@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import TopBar from './Components/TopBar.react';
 import GlobalStats from './Components/GlobalStats.react';
 import CheckStats from './Components/CheckStats.react';
 import ChecksTable from './Components/ChecksTable.react';
-import ChecksActions from './Actions';
 
 class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         // We check whether an autoRefresh loop is already running
         if (typeof(autoRefresh) === 'undefined') {
@@ -39,5 +35,19 @@ class Dashboard extends React.Component {
         );
     }
 }
+
+Dashboard.propTypes = {
+    checks: PropTypes.object.isRequired,
+    globalStats: PropTypes.object.isRequired,
+    openCheck: PropTypes.object.isRequired,
+    populateAll: PropTypes.func.isRequired,
+    destroy: PropTypes.func.isRequired,
+    createWorkingCheck: PropTypes.func.isRequired,
+    setWorkingCheck: PropTypes.func.isRequired,
+    updateWorkingCheck: PropTypes.func.isRequired,
+    saveWorkingCheck: PropTypes.func.isRequired,
+    openCheckStats: PropTypes.func.isRequired,
+    closeCheckStats: PropTypes.func.isRequired,
+};
 
 export default Dashboard;

@@ -4,13 +4,13 @@ export function create(variant, text = 'An error occured') {
     return {
         type: types.POPIN_CREATE,
         variant,
-        text
+        text,
     };
-};
+}
 
 export function destroy(id) {
     return {
         type: types.POPIN_DESTROY,
-        id: id
+        id,
     };
-};
+}

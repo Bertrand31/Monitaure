@@ -1,9 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 class SignupFormComponent extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         this.refs.usernameInput.focus();
     }
@@ -19,10 +16,14 @@ class SignupFormComponent extends React.Component {
         return (
             <div className="signup-block">
                 <h2>Create an account</h2>
-                <form method="post" action="/signup" onSubmit={e => {
-                    e.preventDefault();
-                    this.props.signup(this.props.user);
-                }}>
+                <form
+                    method="post"
+                    action="/signup"
+                    onSubmit={e => {
+                        e.preventDefault();
+                        this.props.signup(this.props.user);
+                    }}
+                >
                     <fieldset>
                         <label>Username</label>
                         <input
@@ -72,15 +73,29 @@ class SignupFormComponent extends React.Component {
             </div>
         );
     }
+}
+
+SignupFormComponent.propTypes = {
+    user: PropTypes.object.isRequired,
+    update: PropTypes.func.isRequired,
+    signup: PropTypes.func.isRequired,
 };
 
 const SignupForm = ({ user = {}, update, signup }) => (
     <main className="main">
-        <h1 className="logo"><img src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses" /></h1>
+        <h1 className="logo">
+            <img src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses" />
+        </h1>
         <div className="centered-box">
             <SignupFormComponent user={user} update={update} signup={signup} />
         </div>
     </main>
 );
+
+SignupForm.propTypes = {
+    user: PropTypes.object,
+    update: PropTypes.func.isRequired,
+    signup: PropTypes.func.isRequired,
+};
 
 export default SignupForm;

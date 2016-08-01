@@ -9,5 +9,5 @@ export default combineReducers({
     user: userReducer,
     checks: checksReducer,
     openCheck: openCheckReducer,
-    globalStats: globalStatsReducer
+    globalStats: globalStatsReducer,
 });

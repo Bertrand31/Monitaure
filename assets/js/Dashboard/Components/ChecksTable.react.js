@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class CheckRow extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         // We wait for the input to be initialized
         setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
@@ -20,6 +17,24 @@ class CheckRow extends React.Component {
 
         this.props.functions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
     }
+    _onCheckRowClick() {
+        if (!this.props.isOpenCheck) {
+            this.props.functions.openCheckStats(this.props.row.id);
+        } else {
+            this.props.functions.closeCheckStats();
+        }
+    }
+    _onEditClick(e) {
+        e.stopPropagation();
+        if (!this.props.row.isEditing) {
+            this.props.functions.setWorkingCheck(this.props.row.id);
+            // We wait for the input to be enabled
+            setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
+        } else {
+            this.props.functions.saveWorkingCheck(this.props.row);
+        }
+    }
+
     render() {
         const row = this.props.row;
 
@@ -77,7 +92,7 @@ class CheckRow extends React.Component {
                         checked={row.emailNotifications}
                     />
                 </td>
-                <td className={row.isEditing ? 'c-checks__edit is-editing' : 'c-checks__edit is-not-editing'}>
+                <td className={`c-checks__edit ${row.isEditing ? 'is-editing' : 'is-not-editing'}`}>
                     <button
                         onClick={e => {
                             e.stopPropagation();
@@ -94,40 +109,24 @@ class CheckRow extends React.Component {
                         ✓
                     </button>
                 </td>
-                <td className="c-checks__destroy">
-                    <button onClick={(e) => {
+                <td
+                    className="c-checks__destroy"
+                >
+                    <button
+                        onClick={(e) => {
                             e.stopPropagation();
                             this.props.functions.destroy(row.id);
                         }}
                         className="destroy-check"
-                    ></button>
+                    >
+                    </button>
                 </td>
             </tr>
         );
     }
-
-    _onCheckRowClick() {
-        if (!this.props.isOpenCheck) {
-            this.props.functions.openCheckStats(this.props.row.id);
-        } else {
-            this.props.functions.closeCheckStats();
-        }
-    }
-    _onEditClick(e) {
-        e.stopPropagation();
-        if (!this.props.row.isEditing) {
-            this.props.functions.setWorkingCheck(this.props.row.id);
-            // We wait for the input to be enabled
-            setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
-        } else {
-            this.props.functions.saveWorkingCheck(this.props.row);
-        }
-    }
 }
 
 const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updateWorkingCheck, saveWorkingCheck, openCheckStats, closeCheckStats }) => {
-
-
     if (Object.keys(checks).length < 1) {
         return null;
     }
@@ -139,12 +138,11 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
         updateWorkingCheck,
         saveWorkingCheck,
         openCheckStats,
-        closeCheckStats
+        closeCheckStats,
     };
 
     for (const singleCheck in checks) {
         if (checks.hasOwnProperty(singleCheck)) {
-
             const isOpenCheck = Boolean(checks[singleCheck].id === openCheckID);
             const isNewCheck = Boolean(checks[singleCheck].id === 'tmpID');
 
@@ -153,9 +151,9 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
             let checkState = 'up';
 
             if (typeof checks[singleCheck].history[0] !== 'undefined') {
-                if (checks[singleCheck].history[0].duration === null)
+                if (checks[singleCheck].history[0].duration === null) {
                     checkState = 'down';
-                else if (checks[singleCheck].history[0].duration > 200) {
+                } else if (checks[singleCheck].history[0].duration > 200) {
                     lastPingDuration = `${checks[singleCheck].history[0].duration} ms`;
                     lastPingSpeed = 'slow';
                 } else {
@@ -207,6 +205,6 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
             </ReactCSSTransitionGroup>
         </table>
     );
-}
+};
 
 export default ChecksTable;

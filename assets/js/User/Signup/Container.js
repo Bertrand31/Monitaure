@@ -7,25 +7,20 @@ import dataHandling from '../../serverIO/dataHandling';
 
 import { create } from '../../Popins/Actions';
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    };
-};
+const mapStateToProps = (state) => ({ user: state.user });
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        update: (attrName, attrValue) => {
-            dispatch(update(attrName, attrValue));
-        },
-        signup: (user) => {
-            dataHandling.createUser(ajaxMethods.POSTer, user, function(err, user) {
-                if (err) return dispatch(create('alert', err.message));
-                dispatch(signup(user));
-            });
-        }
-    };
-};
+const mapDispatchToProps = (dispatch) => ({
+    update: (attrName, attrValue) => {
+        return dispatch(update(attrName, attrValue));
+    },
+    signup: (data) => {
+        dataHandling.createUser(ajaxMethods.POSTer, data, (err, user) => {
+            if (err) return dispatch(create('alert', err.message));
+
+            return dispatch(signup(user));
+        });
+    },
+});
 
 const SignupFormContainer = connect(
     mapStateToProps,

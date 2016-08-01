@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 class Popin extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // TODO: turn into pure function by moving this to the controller?
     componentDidMount() {
         setTimeout(() => {
             this.props.destroy(this.props.data.id);
@@ -14,11 +12,20 @@ class Popin extends React.Component {
         return (
             <div className={`c-popin c-popin--${this.props.data.variant}`}>
                 <p className="c-popin__body">{this.props.data.text}</p>
-                <div className="c-popin__close" onClick={() => this.props.destroy(this.props.data.id)}></div>
+                <div
+                    className="c-popin__close"
+                    onClick={() => this.props.destroy(this.props.data.id)}
+                >
+                </div>
             </div>
         );
     }
 }
+
+Popin.propTypes = {
+    data: PropTypes.object.isRequired,
+    destroy: PropTypes.func.isRequired,
+};
 
 const PopinsList = ({ popins = {}, destroy }) => (
     <div className="c-popins-container">
@@ -27,5 +34,10 @@ const PopinsList = ({ popins = {}, destroy }) => (
         )}
     </div>
 );
+
+PopinsList.propTypes = {
+    popins: PropTypes.object,
+    destroy: PropTypes.func.isRequired,
+};
 
 export default PopinsList;
