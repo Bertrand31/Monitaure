@@ -18,40 +18,20 @@ class CheckRow extends React.Component {
             inputValue = e.target.checked;
         }
 
-        this.props.updateWorkingCheck(this.props.row.id, inputName, inputValue);
+        this.props.functions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
     }
     render() {
         const row = this.props.row;
-        let lastPingDuration = '-';
-        let lastPingSpeed = '';
-        let checkState = 'up';
-
-        if (typeof row.history[0] !== 'undefined') {
-            if (row.history[0].duration === null)
-                checkState = 'down';
-            else if (row.history[0].duration > 200) {
-                lastPingDuration = `${row.history[0].duration} ms`;
-                lastPingSpeed = 'slow';
-            } else {
-                lastPingDuration = `${row.history[0].duration} ms`;
-                lastPingSpeed = 'fast';
-            }
-        } else {
-            checkState = 'waiting';
-        }
-
-        const isEditing = this.props.row.isEditing;
-        const isNewCheck = this.props.row.id === 'tmpID';
 
         return (
             <tr className="c-checks__row" id={row.id} onClick={this._onCheckRowClick.bind(this)}>
-                <td className="c-checks__status" data-health={checkState}></td>
+                <td className="c-checks__status" data-health={this.props.checkState}></td>
                 <td className="c-checks__name">
                     <input
                         className="input__text input__text--dark"
                         id="name"
                         name="name"
-                        disabled={!isEditing}
+                        disabled={!row.isEditing}
                         type="text"
                         onChange={this.handleChange.bind(this)}
                         value={row.name}
@@ -64,7 +44,7 @@ class CheckRow extends React.Component {
                         className="input__text input__text--dark"
                         id="domainNameOrIP"
                         name="domainNameOrIP"
-                        disabled={!isEditing || !isNewCheck}
+                        disabled={!row.isEditing || !this.props.isNewCheck}
                         type="text"
                         onChange={this.handleChange.bind(this)}
                         value={row.domainNameOrIP}
@@ -76,37 +56,37 @@ class CheckRow extends React.Component {
                         className="input__text input__text--number input__text--dark"
                         id="port"
                         name="port"
-                        disabled={!isEditing || !isNewCheck}
+                        disabled={!row.isEditing || !this.props.isNewCheck}
                         type="number"
                         onChange={this.handleChange.bind(this)}
                         value={row.port}
                         placeholder="e.g. 80"
                     />
                 </td>
-                <td className="c-checks__latency" data-speed={lastPingSpeed} className="response-time">
-                    {lastPingDuration}
+                <td className="c-checks__latency" data-speed={this.props.lastPingSpeed} className="response-time">
+                    {this.props.lastPingDuration}
                 </td>
                 <td className="c-checks__notifications">
                     <input
                         className="input__checkbox"
                         id="emailNotifications"
                         name="emailNotifications"
-                        disabled={!isEditing}
+                        disabled={!row.isEditing}
                         type="checkbox"
                         onChange={this.handleChange.bind(this)}
                         checked={row.emailNotifications}
                     />
                 </td>
-                <td className={isEditing ? 'c-checks__edit is-editing' : 'c-checks__edit is-not-editing'}>
+                <td className={row.isEditing ? 'c-checks__edit is-editing' : 'c-checks__edit is-not-editing'}>
                     <button
                         onClick={e => {
                             e.stopPropagation();
                             if (!row.isEditing) {
-                                this.props.setWorkingCheck(row.id);
+                                this.props.functions.setWorkingCheck(row.id);
                                 // We wait for the input to be enabled
                                 setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
                             } else {
-                                this.props.saveWorkingCheck(row);
+                                this.props.functions.saveWorkingCheck(row);
                             }
                         }}
                         className="settings-check"
@@ -117,7 +97,7 @@ class CheckRow extends React.Component {
                 <td className="c-checks__destroy">
                     <button onClick={(e) => {
                             e.stopPropagation();
-                            this.props.destroy(row.id);
+                            this.props.functions.destroy(row.id);
                         }}
                         className="destroy-check"
                     ></button>
@@ -127,20 +107,20 @@ class CheckRow extends React.Component {
     }
 
     _onCheckRowClick() {
-        if (this.props.row.id !== this.props.openCheckID) {
-            this.props.openCheckStats(this.props.row.id);
+        if (!this.props.isOpenCheck) {
+            this.props.functions.openCheckStats(this.props.row.id);
         } else {
-            this.props.closeCheckStats();
+            this.props.functions.closeCheckStats();
         }
     }
     _onEditClick(e) {
         e.stopPropagation();
         if (!this.props.row.isEditing) {
-            this.props.setWorkingCheck(this.props.row.id);
+            this.props.functions.setWorkingCheck(this.props.row.id);
             // We wait for the input to be enabled
             setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
         } else {
-            this.props.saveWorkingCheck(this.props.row);
+            this.props.functions.saveWorkingCheck(this.props.row);
         }
     }
 }
@@ -153,20 +133,49 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
     }
 
     const checksArray = [];
+    const functions = {
+        destroy,
+        setWorkingCheck,
+        updateWorkingCheck,
+        saveWorkingCheck,
+        openCheckStats,
+        closeCheckStats
+    };
 
     for (const singleCheck in checks) {
         if (checks.hasOwnProperty(singleCheck)) {
+
+            const isOpenCheck = Boolean(checks[singleCheck].id === openCheckID);
+            const isNewCheck = Boolean(checks[singleCheck].id === 'tmpID');
+
+            let lastPingDuration = '-';
+            let lastPingSpeed = '';
+            let checkState = 'up';
+
+            if (typeof checks[singleCheck].history[0] !== 'undefined') {
+                if (checks[singleCheck].history[0].duration === null)
+                    checkState = 'down';
+                else if (checks[singleCheck].history[0].duration > 200) {
+                    lastPingDuration = `${checks[singleCheck].history[0].duration} ms`;
+                    lastPingSpeed = 'slow';
+                } else {
+                    lastPingDuration = `${checks[singleCheck].history[0].duration} ms`;
+                    lastPingSpeed = 'fast';
+                }
+            } else {
+                checkState = 'waiting';
+            }
+
             checksArray.push(
                 <CheckRow
-                    row={checks[singleCheck]}
                     key={checks[singleCheck].id}
-                    openCheckID={openCheckID}
-                    destroy={destroy}
-                    setWorkingCheck={setWorkingCheck}
-                    updateWorkingCheck={updateWorkingCheck}
-                    saveWorkingCheck={saveWorkingCheck}
-                    openCheckStats={openCheckStats}
-                    closeCheckStats={closeCheckStats}
+                    row={checks[singleCheck]}
+                    isOpenCheck={isOpenCheck}
+                    isNewCheck={isNewCheck}
+                    lastPingDuration={lastPingDuration}
+                    lastPingSpeed={lastPingSpeed}
+                    checkState={checkState}
+                    functions={functions}
                 />
             );
         }
