@@ -55,8 +55,8 @@ function pingHandling(ping) {
             User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
                 if (err) sails.log.error(err);
 
-                let downtime = 0,
-                    i = ping.checkHistory.length - 1;
+                let downtime = 0;
+                let i = ping.checkHistory.length - 1;
 
                 while (ping.checkHistory[i].duration === null) {
                     downtime += sails.config.checkInterval / 60000;
