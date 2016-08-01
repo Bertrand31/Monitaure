@@ -184,7 +184,7 @@ module.exports = {
                     return callback(null, checkStats);
                 }
             }
-       });
+        });
     },
 
     /**

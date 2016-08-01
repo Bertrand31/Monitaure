@@ -4,8 +4,8 @@
  * @description :: User model
  */
 
-const bcrypt = require('bcrypt'),
-      crypto = require('crypto');
+const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 module.exports = {
 

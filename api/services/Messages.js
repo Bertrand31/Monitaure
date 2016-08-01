@@ -1,5 +1,5 @@
-const appEmail = (typeof sails !== 'undefined') ? sails.config.emailAddress : 'notifications@monitaure.io',
-      baseUrl = (typeof sails !== 'undefined') ? sails.config.baseUrl : 'https://monitaure.io';
+const appEmail = (typeof sails !== 'undefined') ? sails.config.emailAddress : 'notifications@monitaure.io';
+const baseUrl = (typeof sails !== 'undefined') ? sails.config.baseUrl : 'https://monitaure.io';
 
 module.exports = {
     /**

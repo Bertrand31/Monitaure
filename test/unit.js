@@ -1,6 +1,5 @@
 const assert = require('chai').assert;
-const expect = require('chai').expect;
-const request = require('supertest');
+// const expect = require('chai').expect;
 
 const CheckManagement = require('../api/services/CheckManagement.js');
 const UserManagement = require('../api/services/UserManagement.js');
@@ -112,8 +111,8 @@ const fakeDB = {
 };
 
 describe('#user and check management', function() {
-    let user,
-        check;
+    let user;
+    // let check;
 
     it('should create an user', function(done) {
         const userData = {

@@ -1,6 +1,6 @@
-const passport = require('passport'),
-      LocalStrategy = require('passport-local').Strategy,
-      bcrypt = require('bcrypt');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
 
 passport.serializeUser((user, callback) => callback(null, user.id));
 

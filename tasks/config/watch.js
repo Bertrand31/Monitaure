@@ -16,16 +16,16 @@
  */
 module.exports = function(grunt) {
 
-  grunt.config.set('watch', {
-    assets: {
+    grunt.config.set('watch', {
+        assets: {
 
-      // Assets to watch:
-      files: ['assets/**/*', '!**/node_modules/**'],
+            // Assets to watch:
+            files: ['assets/**/*', '!**/node_modules/**'],
 
-      // When assets are changed:
-      tasks: ['syncAssets']
-    }
-  });
+            // When assets are changed:
+            tasks: ['syncAssets']
+        }
+    });
 
-  grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 };
