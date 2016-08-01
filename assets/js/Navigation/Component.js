@@ -24,7 +24,7 @@ class Navigation extends React.Component {
                             <a onClick={this._onNavigation} href="/settings" id="settings-pane">Settings</a>
                         </li>
                         <li>
-                            <a href="https://github.com/Bertrand31/Monitaure/issues" target="_blank">Help</a>
+                            <a href="https://github.com/Bertrand31/Monitaure/issues" target="_blank" rel="noopener">Help</a>
                         </li>
                     </ul>
                 </nav>
