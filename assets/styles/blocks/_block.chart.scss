@@ -38,6 +38,16 @@
         fill:url(#GreenGradient);
     }
 }
+@-moz-document url-prefix() {
+    .ct-series-a {
+        .ct-line {
+            stroke:$lightgreen;
+        }
+        .ct-area {
+            fill:$darkgreen;
+        }
+    }
+}
 .ct-label {
 	color:$lighter;
     &.ct-horizontal {
