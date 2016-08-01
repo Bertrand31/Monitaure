@@ -6,6 +6,10 @@ class UserInfoComponent extends React.Component {
     }
 
     render() {
+        if (typeof this.props.user.userEmailMD5 === 'undefined') {
+            return null;
+        }
+
         const gravatarURL = `https://gravatar.com/avatar/${this.props.user.userEmailMD5}?size=100`;
 
         return (
