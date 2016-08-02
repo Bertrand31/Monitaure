@@ -49,6 +49,12 @@ export function saveWorkingCheck(data) {
     };
 }
 
+export function fetchStats() {
+    return {
+        type: checksTypes.FETCH_CHECK_STATS,
+    };
+}
+
 export function openStats(data) {
     return {
         type: checksTypes.OPEN_CHECK_STATS,

@@ -104,6 +104,11 @@ export const globalStatsReducer = (state = {}, action) => {
 
 export const openCheckReducer = (state = {}, action) => {
     switch (action.type) {
+        case types.FETCH_CHECK_STATS:
+            return {
+                pending: true,
+            };
+
         case types.OPEN_CHECK_STATS:
             return {
                 ...action.data,
