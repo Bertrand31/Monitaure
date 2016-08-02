@@ -31,9 +31,14 @@ switch (process.env.npm_lifecycle_event) {
     case 'build':
         config = merge(common, {
             plugins: [
+                new webpack.DefinePlugin({
+                    'process.env': {
+                        'NODE_ENV': JSON.stringify('production'),
+                    },
+                }),
                 new webpack.optimize.UglifyJsPlugin({
                     compress: {
-                        // warnings: false,
+                        warnings: false,
                     },
                     output: {
                         comments: false,
