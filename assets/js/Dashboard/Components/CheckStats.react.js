@@ -18,7 +18,7 @@ const chartOptions = {
         },
     },
 };
-function historyToChartData(history) {
+const historyToChartData = (history) => {
     const chartData = {
         labels: [],
         series: [
@@ -35,9 +35,16 @@ function historyToChartData(history) {
     return chartData;
 }
 
-const OpenCheckStats = ({ openCheck = {} }) => {
+const OpenCheckStats = ({ openCheck }) => {
     if (Object.keys(openCheck).length < 1) {
         return null;
+    }
+    if (openCheck.pending) {
+        return (
+            <section className="c-check-stats">
+                <img src="/images/loader.svg" alt="Fetching data..." />
+            </section>
+        );
     }
 
     const chartDataset = historyToChartData(openCheck.history);
@@ -50,13 +57,13 @@ const OpenCheckStats = ({ openCheck = {} }) => {
         <section className="c-check-stats">
             <div className="c-check-stats__data">
                 <p className="c-check-stats__name">{openCheck.name}</p>
-                <p>Avg latency: {openCheck.avg} ms</p>
-                <p>Min latency: {openCheck.min} ms</p>
-                <p>Max latency: {openCheck.max} ms</p>
+                <p>Avg latency: {openCheck.avg ? `${openCheck.avg} ms` : '-'}</p>
+                <p>Min latency: {openCheck.min ? `${openCheck.min} ms` : '-'}</p>
+                <p>Max latency: {openCheck.max ? `${openCheck.max} ms` : '-'}</p>
                 <p>
                     Availability:
                     <span data-perfect={openCheck.availability === 100}>
-                        {openCheck.availability}%
+                        {openCheck.availability ? ` ${openCheck.availability}%` : ' -'}
                     </span>
                 </p>
                 <p>Last outage:<br />{lastOutagePretty}</p>
