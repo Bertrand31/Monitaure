@@ -58,7 +58,12 @@ const GlobalStats = ({ globalStats }) => {
         <div className="l-grid">
             <div className="l-grid__block">
                 <div className="c-donut">
-                    <ChartistGraph className={'ct-pie'} data={checksUpDataset} options={donutOptions} type="Pie" />
+                    <ChartistGraph
+                        className={'ct-pie'}
+                        data={checksUpDataset}
+                        options={donutOptions}
+                        type="Pie"
+                    />
                 </div>
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">
@@ -70,7 +75,12 @@ const GlobalStats = ({ globalStats }) => {
             </div>
             <div className="l-grid__block availability">
                 <div className="c-donut">
-                    <ChartistGraph className={'ct-pie'} data={availabilityDataset} options={donutOptions} type="Pie" />
+                    <ChartistGraph
+                        className={'ct-pie'}
+                        data={availabilityDataset}
+                        options={donutOptions}
+                        type="Pie"
+                    />
                 </div>
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">
@@ -82,7 +92,12 @@ const GlobalStats = ({ globalStats }) => {
             </div>
             <div className="l-grid__block last-error">
                 <div className="c-donut">
-                    <ChartistGraph className={'ct-pie'} data={lastErrorDataset} options={donutOptions} type="Pie" />
+                    <ChartistGraph
+                        className={'ct-pie'}
+                        data={lastErrorDataset}
+                        options={donutOptions}
+                        type="Pie"
+                    />
                 </div>
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">

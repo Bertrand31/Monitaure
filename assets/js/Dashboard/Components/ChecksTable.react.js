@@ -6,6 +6,23 @@ class CheckRow extends React.Component {
         // We wait for the input to be initialized
         setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
     }
+    onCheckRowClick() {
+        if (!this.props.isOpenCheck) {
+            this.props.functions.openCheckStats(this.props.row.id);
+        } else {
+            this.props.functions.closeCheckStats();
+        }
+    }
+    onEditClick(e) {
+        e.stopPropagation();
+        if (!this.props.row.isEditing) {
+            this.props.functions.setWorkingCheck(this.props.row.id);
+            // We wait for the input to be enabled
+            setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
+        } else {
+            this.props.functions.saveWorkingCheck(this.props.row);
+        }
+    }
     handleChange(e) {
         const inputType = e.target.type;
         const inputName = e.target.name;
@@ -17,29 +34,12 @@ class CheckRow extends React.Component {
 
         this.props.functions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
     }
-    _onCheckRowClick() {
-        if (!this.props.isOpenCheck) {
-            this.props.functions.openCheckStats(this.props.row.id);
-        } else {
-            this.props.functions.closeCheckStats();
-        }
-    }
-    _onEditClick(e) {
-        e.stopPropagation();
-        if (!this.props.row.isEditing) {
-            this.props.functions.setWorkingCheck(this.props.row.id);
-            // We wait for the input to be enabled
-            setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
-        } else {
-            this.props.functions.saveWorkingCheck(this.props.row);
-        }
-    }
 
     render() {
         const row = this.props.row;
 
         return (
-            <tr className="c-checks__row" id={row.id} onClick={this._onCheckRowClick.bind(this)}>
+            <tr className="c-checks__row" id={row.id} onClick={this.onCheckRowClick.bind(this)}>
                 <td className="c-checks__status" data-health={this.props.checkState}></td>
                 <td className="c-checks__name">
                     <input
@@ -78,7 +78,7 @@ class CheckRow extends React.Component {
                         placeholder="e.g. 80"
                     />
                 </td>
-                <td className="c-checks__latency" data-speed={this.props.lastPingSpeed} className="response-time">
+                <td className="c-checks__latency" data-speed={this.props.lastPingSpeed}>
                     {this.props.lastPingDuration}
                 </td>
                 <td className="c-checks__notifications">
@@ -94,16 +94,7 @@ class CheckRow extends React.Component {
                 </td>
                 <td className={`c-checks__edit ${row.isEditing ? 'is-editing' : 'is-not-editing'}`}>
                     <button
-                        onClick={e => {
-                            e.stopPropagation();
-                            if (!row.isEditing) {
-                                this.props.functions.setWorkingCheck(row.id);
-                                // We wait for the input to be enabled
-                                setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
-                            } else {
-                                this.props.functions.saveWorkingCheck(row);
-                            }
-                        }}
+                        onClick={e => this.onEditClick(e)}
                         className="settings-check"
                     >
                         ✓
@@ -125,6 +116,39 @@ class CheckRow extends React.Component {
         );
     }
 }
+
+CheckRow.propTypes = {
+    row: PropTypes.shape({
+        createdAt: PropTypes.string,
+        domainNameOrIP: PropTypes.string.isRequired,
+        emailNotifications: PropTypes.bool,
+        history: PropTypes.array.isRequired,
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        owner: PropTypes.string,
+        port: PropTypes.number,
+        updatedAt: PropTypes.string,
+        isEditing: PropTypes.bool,
+    }),
+    isOpenCheck: PropTypes.bool.isRequired,
+    isNewCheck: PropTypes.bool.isRequired,
+    lastPingDuration: PropTypes.string.isRequired,
+    lastPingSpeed: PropTypes.string.isRequired,
+    checkState: PropTypes.string.isRequired,
+    functions: PropTypes.shape({
+        destroy: PropTypes.func.isRequired,
+        setWorkingCheck: PropTypes.func.isRequired,
+        updateWorkingCheck: PropTypes.func.isRequired,
+        saveWorkingCheck: PropTypes.func.isRequired,
+        openCheckStats: PropTypes.func.isRequired,
+        closeCheckStats: PropTypes.func.isRequired,
+    }),
+};
+CheckRow.defaultProps = {
+    row: {
+        port: '',
+    },
+};
 
 const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updateWorkingCheck, saveWorkingCheck, openCheckStats, closeCheckStats }) => {
     if (Object.keys(checks).length < 1) {
@@ -205,6 +229,17 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
             </ReactCSSTransitionGroup>
         </table>
     );
+};
+
+ChecksTable.propTypes = {
+    checks: PropTypes.object.isRequired,
+    openCheckID: PropTypes.string,
+    destroy: PropTypes.func.isRequired,
+    setWorkingCheck: PropTypes.func.isRequired,
+    updateWorkingCheck: PropTypes.func.isRequired,
+    saveWorkingCheck: PropTypes.func.isRequired,
+    openCheckStats: PropTypes.func.isRequired,
+    closeCheckStats: PropTypes.func.isRequired,
 };
 
 export default ChecksTable;

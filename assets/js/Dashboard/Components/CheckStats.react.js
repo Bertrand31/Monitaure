@@ -53,7 +53,12 @@ const OpenCheckStats = ({ openCheck = {} }) => {
                 <p>Avg latency: {openCheck.avg} ms</p>
                 <p>Min latency: {openCheck.min} ms</p>
                 <p>Max latency: {openCheck.max} ms</p>
-                <p>Availability: <span data-perfect={openCheck.availability === 100}>{openCheck.availability}%</span></p>
+                <p>
+                    Availability:
+                    <span data-perfect={openCheck.availability === 100}>
+                        {openCheck.availability}%
+                    </span>
+                </p>
                 <p>Last outage:<br />{lastOutagePretty}</p>
             </div>
             <div className="c-check-stats__main-chart">
@@ -61,11 +66,18 @@ const OpenCheckStats = ({ openCheck = {} }) => {
                     <p className="latency-wrapper">
                         <span className="latency-title">Latency</span>
                         <br />
-                        <span className="latency"><span className="latency-value">{lastPingDuration}</span></span>
+                        <span className="latency">
+                            <span className="latency-value">{lastPingDuration}</span>
+                        </span>
                     </p>
                     <p className="last-ping-date">{lastPingDate}</p>
                 </div>
-                <ChartistGraph className={'ct-chart'} data={chartDataset} options={chartOptions} type="Line" />
+                <ChartistGraph
+                    className={'ct-chart'}
+                    data={chartDataset}
+                    options={chartOptions}
+                    type="Line"
+                />
             </div>
         </section>
     );

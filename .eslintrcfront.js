@@ -3,14 +3,14 @@ module.exports = {
     'plugins': [
         'react'
     ],
-    'jsx-indent': [1, 4],
-    'jsx-indent-props': [1, 4],
 	'parserOptions':{
 		'ecmaFeatures': {
 			'experimentalObjectRestSpread': true
 		}
 	},
     'rules': {
+        'react/jsx-indent': [1, 4],
+        'react/jsx-indent-props': [1, 4],
         'indent': [
             'error',
             4,

@@ -9,7 +9,6 @@ const checkReducer = (state, action) => {
                     name: '',
                     domainNameOrIP: '',
                     history: [],
-                    port: '',
                     emailNotifications: false,
                     isEditing: true,
                 },
@@ -48,8 +47,9 @@ const checkReducer = (state, action) => {
 export const checksReducer = (state = {}, action) => {
     switch (action.type) {
         case types.CHECKS_POPULATE: {
+            // We turn an array into an object with checks ids as keys
             const newState = {};
-            action.checks.map(check => { newState[check.id] = check; });
+            action.checks.forEach(check => { newState[check.id] = check; });
             return {
                 ...newState,
             };

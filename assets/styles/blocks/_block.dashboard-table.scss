@@ -40,12 +40,15 @@
 }
 .c-checks__status,
 .c-checks__port,
-.c-checks__latency,
 .c-checks__notifications,
 .c-checks__edit,
 .c-checks__destroy {
     box-sizing:border-box;
     max-width:60px;
+}
+.c-checks__latency {
+    box-sizing:border-box;
+    max-width:80px;
 }
 
 .c-checks__row-enter {
