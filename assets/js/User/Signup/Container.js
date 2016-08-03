@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import SignupForm from './Component';
 import { update, signup } from '../Actions';
 
-import ajaxMethods from '../../serverIO/ajaxMethods';
-import dataHandling from '../../serverIO/dataHandling';
+import { POSTer } from '../../serverIO/ajaxMethods';
+import * as API from '../../serverIO/dataHandling';
 
 import { create } from '../../Popins/Actions';
 
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
     update: (attrName, attrValue) => dispatch(update(attrName, attrValue)),
 
     signup: (data) => {
-        dataHandling.createUser(ajaxMethods.POSTer, data, (err, user) => {
+        API.createUser(POSTer, data, (err, user) => {
             if (err) return dispatch(create('alert', err.message));
 
             return dispatch(signup(user));

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import ajaxMethods from '../serverIO/ajaxMethods';
-import dataHandling from '../serverIO/dataHandling';
+import { POSTer, GETer } from '../serverIO/ajaxMethods';
+import * as API from '../serverIO/dataHandling';
 import { create } from '../Popins/Actions';
 
 import * as actions from './Actions';
@@ -17,7 +17,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     populateAll() {
-        dataHandling.getUserAndGlobalStats(ajaxMethods.GETer, (err, data) => {
+        API.getUserAndGlobalStats(GETer, (err, data) => {
             if (err) return dispatch(create('alert', err.message));
 
             dispatch(actions.populateChecks(data.userData.checks));
@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
     destroy(id) {
         dispatch(actions.destroyCheck(id));
         if (id !== 'tmpID') {
-            dataHandling.destroyCheck(ajaxMethods.GETer, id, (err) => {
+            API.destroyCheck(GETer, id, (err) => {
                 if (err) return dispatch(create('alert', err.message));
             });
         }
@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch) => ({
     },
     saveWorkingCheck(data) {
         if (data.id === 'tmpID') {
-            dataHandling.createCheck(ajaxMethods.POSTer, data, (err, newData) => {
+            API.createCheck(POSTer, data, (err, newData) => {
                 if (err) return dispatch(create('alert', err.message));
 
                 dispatch(actions.destroyCheck('tmpID'));
@@ -58,7 +58,7 @@ const mapDispatchToProps = (dispatch) => ({
         } else {
             dispatch(actions.saveWorkingCheck(data));
 
-            dataHandling.updateCheck(ajaxMethods.POSTer, data, (err) => {
+            API.updateCheck(POSTer, data, (err) => {
                 if (err) return dispatch(create('alert', err.message));
             });
         }
@@ -67,7 +67,7 @@ const mapDispatchToProps = (dispatch) => ({
     openCheckStats(id) {
         if (id !== 'tmpID') {
             dispatch(actions.fetchStats());
-            dataHandling.getCheckStats(ajaxMethods.GETer, id, (err, data) => {
+            API.getCheckStats(GETer, id, (err, data) => {
                 if (err) {
                     dispatch(actions.closeStats());
                     return dispatch(create('alert', 'No data yet!'));

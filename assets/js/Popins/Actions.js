@@ -1,6 +1,6 @@
 import * as types from './Constants';
 
-export function create(variant, text = 'An error occured') {
+export function create(variant = 'alert', text = 'An error occured') {
     return {
         type: types.POPIN_CREATE,
         variant,
