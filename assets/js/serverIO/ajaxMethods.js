@@ -1,7 +1,7 @@
 const handleError = (res) => {
     if (!res.ok) throw Error(res.statusText);
     return res.json();
-}
+};
 
 export function GETer(url, callback) {
     fetch(url, {

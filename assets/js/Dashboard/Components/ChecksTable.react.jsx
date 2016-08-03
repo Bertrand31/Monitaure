@@ -34,12 +34,16 @@ class CheckRow extends React.Component {
 
         this.props.functions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
     }
+    handleKeyPress(e) {
+        if (e.keyCode === 13) {
+            this.props.functions.saveWorkingCheck(this.props.row);
+        }
+    }
 
     render() {
         const row = this.props.row;
-
         return (
-            <tr className="c-checks__row" id={row.id} onClick={this.onCheckRowClick.bind(this)}>
+            <tr className="c-checks__row" id={row.id} onClick={() => this.onCheckRowClick()}>
                 <td className="c-checks__status" data-health={this.props.checkState} />
                 <td className="c-checks__name">
                     <input
@@ -47,7 +51,8 @@ class CheckRow extends React.Component {
                         name="name"
                         disabled={!row.isEditing}
                         type="text"
-                        onChange={this.handleChange.bind(this)}
+                        onChange={(e) => this.handleChange(e)}
+                        onKeyDown={(e) => this.handleKeyPress(e)}
                         value={row.name}
                         placeholder="e.g. HTTP @ Google"
                         ref={ref => this.checknameInput = ref}
@@ -59,7 +64,8 @@ class CheckRow extends React.Component {
                         name="domainNameOrIP"
                         disabled={!row.isEditing || !this.props.isNewCheck}
                         type="text"
-                        onChange={this.handleChange.bind(this)}
+                        onChange={(e) => this.handleChange(e)}
+                        onKeyDown={(e) => this.handleKeyPress(e)}
                         value={row.domainNameOrIP}
                         placeholder="e.g. google.fr"
                     />
@@ -70,7 +76,8 @@ class CheckRow extends React.Component {
                         name="port"
                         disabled={!row.isEditing || !this.props.isNewCheck}
                         type="number"
-                        onChange={this.handleChange.bind(this)}
+                        onChange={(e) => this.handleChange(e)}
+                        onKeyDown={(e) => this.handleKeyPress(e)}
                         value={row.port}
                         placeholder="e.g. 80"
                     />
@@ -84,7 +91,7 @@ class CheckRow extends React.Component {
                         name="emailNotifications"
                         disabled={!row.isEditing}
                         type="checkbox"
-                        onChange={this.handleChange.bind(this)}
+                        onChange={(e) => this.handleChange(e)}
                         checked={row.emailNotifications}
                     />
                 </td>
