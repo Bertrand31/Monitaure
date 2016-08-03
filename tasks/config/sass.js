@@ -16,7 +16,7 @@
 module.exports = function(grunt) {
 
     grunt.config.set('sass', {
-        dev: {
+        min: {
             options: {
                 style: 'compressed'
             },
