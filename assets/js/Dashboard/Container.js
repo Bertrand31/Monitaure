@@ -68,7 +68,10 @@ const mapDispatchToProps = (dispatch) => ({
         if (id !== 'tmpID') {
             dispatch(actions.fetchStats());
             dataHandling.getCheckStats(ajaxMethods.GETer, id, (err, data) => {
-                if (err) return dispatch(create('alert', err.message));
+                if (err) {
+                    dispatch(actions.closeStats());
+                    return dispatch(create('alert', 'No data yet!'));
+                }
 
                 dispatch(actions.openStats(data));
             });
