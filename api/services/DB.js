@@ -2,8 +2,8 @@
 * Return a Waterline model
 * @param {String} modelName - the name of the model to return
 */
-const findModel = function(modelName) {
-    switch(modelName) {
+const findModel = (modelName) => {
+    switch (modelName) {
         case 'user':
             return User;
         case 'check':
@@ -21,12 +21,11 @@ module.exports = {
     * @param {Function} callback
     */
     fetch(itemsType, criteria, callback) {
-        if (typeof itemsType !== 'string' || typeof criteria !== 'object')
+        if (typeof itemsType !== 'string' || typeof criteria !== 'object') {
             throw new Error('[Fetch] Incorret input types');
+        }
 
-        findModel(itemsType).find(criteria).exec(function (err, items) {
-            return callback(err, items);
-        });
+        findModel(itemsType).find(criteria).exec((err, items) => callback(err, items));
     },
 
     /**
@@ -36,12 +35,11 @@ module.exports = {
     * @param {Function} callback
     */
     fetchOne(itemType, itemId, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string')
+        if (typeof itemType !== 'string' || typeof itemId !== 'string') {
             throw new Error('[FetchOne] Incorrect input types');
+        }
 
-        findModel(itemType).findOne({ id: itemId }).exec(function (err, item) {
-            return callback(err, item);
-        });
+        findModel(itemType).findOne({ id: itemId }).exec((err, item) => callback(err, item));
     },
 
     /**
@@ -52,12 +50,11 @@ module.exports = {
     * @param {Function} callback
     */
     fetchAndPopulate(itemType, itemId, associationType, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string' || typeof associationType !== 'string')
+        if (typeof itemType !== 'string' || typeof itemId !== 'string' || typeof associationType !== 'string') {
             throw new Error('[FetchAndPopulate] Incorrect input types');
+        }
 
-        findModel(itemType).findOne({ id: itemId }).populate(associationType).exec(function (err, populatedItem) {
-            return callback(err, populatedItem);
-        });
+        findModel(itemType).findOne({ id: itemId }).populate(associationType).exec((err, populatedItem) => callback(err, populatedItem));
     },
 
     /**
@@ -67,12 +64,11 @@ module.exports = {
     * @param {Function} callback
     */
     create(itemType, data, callback) {
-        if (typeof itemType !== 'string' || typeof data !== 'object')
+        if (typeof itemType !== 'string' || typeof data !== 'object') {
             throw new Error('[Create] Incorrect input types');
+        }
 
-        findModel(itemType).create(data).exec(function (err, created) {
-            return callback(err, created);
-        });
+        findModel(itemType).create(data).exec((err, created) => callback(err, created));
     },
 
     /**
@@ -83,12 +79,11 @@ module.exports = {
     * @param {Function} callback
     */
     update(itemType, filterCriteria, newData, callback) {
-        if (typeof itemType !== 'string' || typeof filterCriteria !== 'object' || typeof newData !== 'object')
+        if (typeof itemType !== 'string' || typeof filterCriteria !== 'object' || typeof newData !== 'object') {
             throw new Error('[Update] Incorrect input types');
+        }
 
-        findModel(itemType).update(filterCriteria, newData).exec(function (err, updated) {
-            return callback(err, updated);
-        });
+        findModel(itemType).update(filterCriteria, newData).exec((err, updated) => callback(err, updated));
     },
 
     /** Destroys a database object
@@ -97,11 +92,10 @@ module.exports = {
     * @param {Function} callback
     */
     destroy(itemType, itemId, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string')
+        if (typeof itemType !== 'string' || typeof itemId !== 'string') {
             throw new Error('[Destroy] Incorrect input types');
+        }
 
-        findModel(itemType).destroy(itemId).exec(function (err, destroyed) {
-            return callback(err, destroyed);
-        });
-    }
+        findModel(itemType).destroy(itemId).exec((err, destroyed) => callback(err, destroyed));
+    },
 };

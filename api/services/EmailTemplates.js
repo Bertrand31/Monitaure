@@ -72,7 +72,7 @@ module.exports = {
                                 <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="font-family: 'Roboto', Arial, Helvetica, sans-serif; color:#cacaca; text-align: center; font-size: 0.8em; margin-bottom:40px">
                                     <tr>
                                         <td>
-                                            <p style="color:#cacaca; text-decoration: none;">If you didn't try to create an account on <a href="https://monitaure.io/">monitaure.io</a>, please ignore this email.</p>
+                                            <p style="color:#cacaca; text-decoration: none;">If you didn't try to create an account on <a style="color:#52da6e;" href="https://monitaure.io/">monitaure.io</a>, please ignore this email.</p>
                                         </td>
                                     </tr>
                                 </table>

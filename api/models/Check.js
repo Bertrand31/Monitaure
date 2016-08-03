@@ -3,7 +3,6 @@
  *
  * @description :: Each check represents a port to be checked on a particular server, specified through an IP adress or a domain name
  */
-
 module.exports = {
 
     identity: 'Check',
@@ -12,33 +11,32 @@ module.exports = {
 
         name: {
             type: 'string',
-            required: true
+            required: true,
         },
 
         domainNameOrIP: {
             type: 'string',
-            required: true
+            required: true,
         },
 
         port: {
             type: 'integer',
-            required: true
+            required: true,
         },
 
         history: {
             type: 'array',
-            defaultsTo: []
+            defaultsTo: [],
         },
 
         emailNotifications: {
             type: 'boolean',
-            defaultsTo: false
+            defaultsTo: false,
         },
 
         owner: {
-            model: 'User'
-        }
-
-    }
+            model: 'User',
+        },
+    },
 };
 

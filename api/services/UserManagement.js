@@ -11,13 +11,7 @@ module.exports = {
         }
 
         delete userData.confirmPassword;
-        creator('user', userData, function(err, user) {
-            if (err) return callback(err);
-
-            if (user) {
-                return callback(null, user);
-            }
-        });
+        creator('user', userData, callback);
     },
 
     /**
@@ -26,7 +20,7 @@ module.exports = {
      * @param {String} userId - user id
      */
     updateLastConnection(updater, userId) {
-        updater('user', { id: userId }, { lastConnection: new Date() }, function(err) {
+        updater('user', { id: userId }, { lastConnection: new Date() }, (err) => {
             if (err) return sails.log.error(err);
         });
     },
@@ -38,8 +32,6 @@ module.exports = {
      * @param {Function} callback
      */
     confirm(updater, confirmationToken, callback) {
-        updater('user', { confirmationToken }, { confirmedAccount: true }, function(err, updated) {
-            return callback(err, updated);
-        });
-    }
+        updater('user', { confirmationToken }, { confirmedAccount: true }, callback);
+    },
 };

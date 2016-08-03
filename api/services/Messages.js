@@ -13,7 +13,7 @@ module.exports = {
             from: appEmail,
             to: userEmail,
             subject: `🚨  Monitaure alert: ${checkName} is DOWN!`,
-            text: `Alert: ${checkName} is DOWN`
+            text: `Alert: ${checkName} is DOWN`,
         };
         sender(emailOptions);
     },
@@ -30,7 +30,7 @@ module.exports = {
             from: appEmail,
             to: recipient,
             subject: `✓ Monitaure alert: ${checkName} is back UP!`,
-            text: `${checkName} is back up after ${outageDuration} minutes of downtime.`
+            text: `${checkName} is back up after ${outageDuration} minutes of downtime.`,
         };
         sender(emailOptions);
     },
@@ -44,10 +44,9 @@ module.exports = {
         const emailOptions = {
             from: appEmail,
             to: user.email,
-            subject: `Monitaure account confirmation`,
-            html: EmailTemplates.Confirmation(`${baseUrl}/account/confirm/${user.confirmationToken}`, user.username)
+            subject: 'Monitaure account confirmation',
+            html: EmailTemplates.Confirmation(`${baseUrl}/account/confirm/${user.confirmationToken}`, user.username),
         };
-            // html: `To confirm your email address and activate your Monitaure account, <a href="${baseUrl}/account/confirm/${user.confirmationToken}">click here</a>.<br/>If your did not try to create such account, please ignore this email.`
         sender(emailOptions);
-    }
+    },
 };

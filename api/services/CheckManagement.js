@@ -4,7 +4,7 @@
  * @param {Array} historyArray - check.history
  * @return {Array}
  */
-const historyGarbageCollection = function(historyArray) {
+const historyGarbageCollection = (historyArray) => {
     if (typeof historyArray[0] === 'undefined') return [];
 
     const oneMonthAgo = new Date();
@@ -25,43 +25,44 @@ const historyGarbageCollection = function(historyArray) {
 *  @param {Number} historyLength - the number of history entries to return
 *  @returns {Objets}
 */
-function calcCheckStats(check, historyLength) {
+const calcCheckStats = (check, historyLength) => {
     const historyArray = check.history;
-    if (historyArray.length > 0) {
-        const checkInterval = sails.config.checkInterval;
-        let sum = 0;
-        let min = historyArray[0].duration;
-        let max = historyArray[0].duration;
-        let totalOutage = 0;
-        let lastOutage = null;
 
-        for (let i = 0; i < historyArray.length; i++) {
-            if (historyArray[i].duration !== null) {
-                sum += historyArray[i].duration;
-                min = historyArray[i].duration < min ? historyArray[i].duration : min;
-                max = historyArray[i].duration > max ? historyArray[i].duration : max;
-            } else {
-                totalOutage += checkInterval;
-                lastOutage = historyArray[i].date;
-            }
-        }
-
-        const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
-
-        return {
-            id: check.id,
-            name: check.name,
-            min,
-            max,
-            avg: Math.round(sum / historyArray.length),
-            availability: Utilities.customFloor(percent, 2),
-            lastOutage,
-            history: historyArray.slice(-historyLength)
-        };
-    } else {
+    if (historyArray.length === 0) {
         return null;
     }
-}
+
+    const checkInterval = sails.config.checkInterval;
+    let sum = 0;
+    let min = historyArray[0].duration;
+    let max = historyArray[0].duration;
+    let totalOutage = 0;
+    let lastOutage = null;
+
+    for (let i = 0; i < historyArray.length; i++) {
+        if (historyArray[i].duration !== null) {
+            sum += historyArray[i].duration;
+            min = historyArray[i].duration < min ? historyArray[i].duration : min;
+            max = historyArray[i].duration > max ? historyArray[i].duration : max;
+        } else {
+            totalOutage += checkInterval;
+            lastOutage = historyArray[i].date;
+        }
+    }
+
+    const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
+
+    return {
+        id: check.id,
+        name: check.name,
+        min,
+        max,
+        avg: Math.round(sum / historyArray.length),
+        availability: Utilities.customFloor(percent, 2),
+        lastOutage,
+        history: historyArray.slice(-historyLength)
+    };
+};
 
 module.exports = {
 
@@ -87,9 +88,7 @@ module.exports = {
             } else if (!checkData.name || !checkData.port) {
                 return callback('Incorrect attributes');
             } else {
-                creator('check', checkData, function (err, created) {
-                    return callback(err, created);
-                });
+                creator('check', checkData, (err, created) => callback(err, created));
             }
         });
     },
@@ -110,9 +109,7 @@ module.exports = {
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                updater('check', { id: checkId }, data, function (err, updated) {
-                    return callback(err, updated);
-                });
+                updater('check', { id: checkId }, data, (err, updated) => callback(err, updated));
             }
         });
     },
@@ -132,9 +129,7 @@ module.exports = {
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
             } else {
-                destroyer('check', checkId, function (err, destroyed) {
-                    return callback(err, destroyed);
-                });
+                destroyer('check', checkId, (err, destroyed) => callback(err, destroyed));
             }
         });
     },
@@ -146,7 +141,7 @@ module.exports = {
      * @param {Object} ping - the result of a connexion attempt to a check
      */
     insertHistory(fetcher, updater, ping, callback) {
-        fetcher('check', ping.checkId, function (err, check) {
+        fetcher('check', ping.checkId, (err, check) => {
             if (err) return callback(err);
 
             const newHistoryArray = historyGarbageCollection(check.history);
@@ -154,7 +149,7 @@ module.exports = {
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
             // And update the DB record
-            updater('check', { id: check.id }, { history: newHistoryArray }, function(err) {
+            updater('check', { id: check.id }, { history: newHistoryArray }, (err) => {
                 if (err) return callback(err);
 
                 return callback(null);
@@ -171,7 +166,7 @@ module.exports = {
      * @param {Funtion} callback
      */
     getData(fetcher, userId, checkId, callback) {
-        fetcher('check', checkId, function (err, check) {
+        fetcher('check', checkId, (err, check) => {
             if (err) {
                 return callback(err);
             } else if (check.owner !== userId) {
@@ -195,7 +190,7 @@ module.exports = {
      * @param {Function} callback
      */
     getUserAndGlobalStats(fetcher, userId, callback) {
-        fetcher('user', userId, 'checks', function(err, user) {
+        fetcher('user', userId, 'checks', (err, user) => {
 
             const lastError = { time: null, checkName: null };
             let checksUp = 0;
@@ -232,20 +227,20 @@ module.exports = {
             const userData = {
                 userName: user.username,
                 userEmailMD5: user.emailHash,
-                checks: user.checks
+                checks: user.checks,
             };
             // Object containing all previously computed stats
             const globalStats = {
                 numberOfChecks,
                 checksUp,
                 availabilitiesAvg,
-                lastError
+                lastError,
             };
 
             return callback(err, {
                 userData,
-                globalStats
+                globalStats,
             });
         });
-    }
+    },
 };

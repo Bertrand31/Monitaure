@@ -12,22 +12,22 @@ function checkPort(check, callback) {
         checkHistory: check.history,
         open: false,
         duration: null,
-        date: new Date()
+        date: new Date(),
     };
 
-    const connection = net.connect(check.port, check.domainNameOrIP, function() {
+    const connection = net.connect(check.port, check.domainNameOrIP, () => {
         callbackObject.open = true;
         callbackObject.duration = Date.now() - timeStart;
         connection.destroy();
         return callback(callbackObject);
     });
 
-    connection.on('error', function() {
+    connection.on('error', () => {
         connection.destroy();
         return callback(callbackObject);
     });
 
-    setTimeout(function() {
+    setTimeout(() => {
         if (!connection.destroyed) {
             connection.destroy();
             return callback(callbackObject);
@@ -36,7 +36,7 @@ function checkPort(check, callback) {
 }
 
 function pingHandling(ping) {
-    CheckManagement.insertHistory(DB.fetchOne, DB.update, ping, function(err) {
+    CheckManagement.insertHistory(DB.fetchOne, DB.update, ping, (err) => {
         if (err) return sails.log.error(err);
     });
 
@@ -46,13 +46,13 @@ function pingHandling(ping) {
     if (ping.checkEmailNotifications && lastCheckHistory !== null) {
         // If the check is down and wasn't last time we checked
         if (!ping.open && lastCheckHistory.duration !== null) {
-            User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
+            User.findOne({ id: ping.checkOwner }).exec((err, user) => {
                 if (err) sails.log.error(err);
                 Messages.sendDownAlert(Sendgrid.send, user.email, ping.checkName);
             });
         // If the check is up and was down last time we checked
         } else if (ping.open && lastCheckHistory.duration === null) {
-            User.findOne({ id: ping.checkOwner }).exec(function(err, user) {
+            User.findOne({ id: ping.checkOwner }).exec((err, user) => {
                 if (err) sails.log.error(err);
 
                 let downtime = 0;
@@ -69,24 +69,24 @@ function pingHandling(ping) {
     }
 }
 
-module.exports = function (fetcher) {
-    setInterval(function() {
-        fetcher('check', {}, function(err, checks) {
+module.exports = (fetcher) => {
+    setInterval(() => {
+        fetcher('check', {}, (err, checks) => {
             if (err) throw err;
 
             const asyncChecks = [];
 
-            checks.forEach(function(check) {
-                asyncChecks.push(function(callback) {
-                    checkPort(check, function(result){
+            checks.forEach((check) => {
+                asyncChecks.push((callback) => {
+                    checkPort(check, (result) => {
                         callback(null, result);
                     });
                 });
             });
 
-            async.parallel(asyncChecks, function(err, pings) {
+            async.parallel(asyncChecks, (err, pings) => {
                 if (err) throw err;
-                pings.forEach(function(ping) {
+                pings.forEach((ping) => {
                     pingHandling(ping);
                 });
             });

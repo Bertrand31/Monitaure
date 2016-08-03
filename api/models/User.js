@@ -17,37 +17,37 @@ module.exports = {
             minLength: 2,
             maxLength: 20,
             required: true,
-            unique: true
+            unique: true,
         },
 
         email: {
             type: 'email',
             email: true,
             required: true,
-            unique: true
+            unique: true,
         },
 
         emailMD5: {
-            type: 'string'
+            type: 'string',
         },
 
         confirmationToken: {
-            type: 'string'
+            type: 'string',
         },
 
         confirmedAccount: {
             type: 'boolean',
-            defaultsTo: false
+            defaultsTo: false,
         },
 
         password: {
             type: 'string',
             minLength: 6,
-            required: true
+            required: true,
         },
 
         lastConnection: {
-            type: 'date'
+            type: 'date',
         },
 
         toJSON() {
@@ -58,11 +58,10 @@ module.exports = {
 
         checks: {
             collection: 'Check',
-            via: 'owner'
-        }
+            via: 'owner',
+        },
 
     },
-
     beforeCreate(user, callback) {
 
         user.emailHash = crypto.createHash('md5').update(user.email).digest('hex');
@@ -71,13 +70,13 @@ module.exports = {
 
         user.lastConnection = new Date();
 
-        bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.genSalt(10, (err, salt) => {
             if (err) {
                 sails.log.eror(err);
                 return callback(err);
             }
 
-            bcrypt.hash(user.password, salt, function(err, hash) {
+            bcrypt.hash(user.password, salt, (err, hash) => {
                 if (err) {
                     sails.log.error(err);
                     return callback(err);
@@ -87,5 +86,5 @@ module.exports = {
                 return callback();
             });
         });
-    }
+    },
 };

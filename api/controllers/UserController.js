@@ -7,7 +7,7 @@ module.exports = {
      * @returns {JSON} Either an error or the created user record
      */
     create(req, res) {
-        UserManagement.create(DB.create, req.body, function(err, createdUser) {
+        UserManagement.create(DB.create, req.body, (err, createdUser) => {
             if (err) return res.badRequest(err.details);
 
             Messages.sendConfirmationEmail(Sendgrid.send, createdUser);
@@ -24,7 +24,7 @@ module.exports = {
      * @returns {HTML} Renders a page depending on the account confirmation success
      */
     confirm(req, res) {
-        UserManagement.confirm(DB.update, req.param('id'), function(err, confirmed) {
+        UserManagement.confirm(DB.update, req.param('id'), (err, confirmed) => {
             if (err) return res.badRequest(err);
 
             if (confirmed.length > 0) {
@@ -33,5 +33,5 @@ module.exports = {
                 return res.render('notconfirmed');
             }
         });
-    }
+    },
 };
