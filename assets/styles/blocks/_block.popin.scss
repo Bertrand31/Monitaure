@@ -2,12 +2,13 @@
     position:absolute;
     top:1.8em;
     right:2.3em;
+    z-index:1;
 }
 .c-popin {
     @extend %box;
     color:$lighter;
     padding:1.5em 1.1em;
-    margin:.8em;
+    margin:0 0 1em;
     text-align:left;
     text-transform:none;
     font-family:$roboto;
