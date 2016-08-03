@@ -47,12 +47,19 @@ const checkReducer = (state, action) => {
 export const checksReducer = (state = {}, action) => {
     switch (action.type) {
         case types.CHECKS_POPULATE: {
-            // We turn an array into an object with checks ids as keys
-            const newState = {};
-            action.checks.forEach(check => { newState[check.id] = check; });
-            return {
-                ...newState,
-            };
+            // If the state was empty (typically when the app just loaded),
+            // we juste fill the state with formatted data
+            if (Object.keys(state).length === 0) {
+                const newState = {};
+                // We turn an array into an object with checks ids as keys
+                action.checks.forEach(check => { newState[check.id] = check; });
+                return { ...newState };
+            }
+            // Otherwise, we only update the history values
+			const newState = { ...state };
+            // We update the last ping of every check
+            action.checks.forEach(check => { newState[check.id].history = check.history; });
+			return { ...newState };
         }
 
         case types.CHECK_DESTROY: {
