@@ -9,7 +9,7 @@ const UserInfoComponent = ({ user }) => {
 
     return (
         <div className="profile">
-            <a href="http://gravatar.com" target="_blank" rel="noopener" title="Set or change your profile picture">
+            <a href="http://gravatar.com" target="_blank" rel="noopener noreferrer" title="Set or change your profile picture">
                 <img src={gravatarURL} alt="Profile" />
             </a>
             <span>{user.userName}</span>

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { destroy } from './Actions';
-import PopinsList from './Component.js';
+import PopinsList from './Component';
 
 const mapStateToProps = (state) => ({ popins: state.popins });
 

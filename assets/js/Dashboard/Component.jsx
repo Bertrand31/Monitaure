@@ -7,7 +7,7 @@ import ChecksTable from './Components/ChecksTable.react';
 class Dashboard extends React.Component {
     componentDidMount() {
         // We check whether an autoRefresh loop is already running
-        if (typeof(autoRefresh) === 'undefined') {
+        if (typeof autoRefresh === 'undefined') {
             this.props.populateAll();
             const autoRefresh = setInterval(this.props.populateAll, 2 * 60 * 1000);
         }

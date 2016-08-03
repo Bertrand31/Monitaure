@@ -32,7 +32,7 @@ const Navigation = () => (
                     </a>
                 </li>
                 <li>
-                    <a href="https://github.com/Bertrand31/Monitaure/issues" target="_blank" rel="noopener">
+                    <a href="https://github.com/Bertrand31/Monitaure/issues" target="_blank" rel="noopener noreferrer">
                         Help
                     </a>
                 </li>

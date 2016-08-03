@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class CheckRow extends React.Component {
     componentDidMount() {
         // We wait for the input to be initialized
-        setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
+        setTimeout(() => { this.checknameInput.focus(); }, 50);
     }
     onCheckRowClick() {
         if (!this.props.isOpenCheck) {
@@ -18,7 +18,7 @@ class CheckRow extends React.Component {
         if (!this.props.row.isEditing) {
             this.props.functions.setWorkingCheck(this.props.row.id);
             // We wait for the input to be enabled
-            setTimeout(() => { this.refs.checknameInput.focus(); }, 50);
+            setTimeout(() => { this.checknameInput.focus(); }, 50);
         } else {
             this.props.functions.saveWorkingCheck(this.props.row);
         }
@@ -40,24 +40,22 @@ class CheckRow extends React.Component {
 
         return (
             <tr className="c-checks__row" id={row.id} onClick={this.onCheckRowClick.bind(this)}>
-                <td className="c-checks__status" data-health={this.props.checkState}></td>
+                <td className="c-checks__status" data-health={this.props.checkState} />
                 <td className="c-checks__name">
                     <input
                         className="input__text input__text--dark"
-                        id="name"
                         name="name"
                         disabled={!row.isEditing}
                         type="text"
                         onChange={this.handleChange.bind(this)}
                         value={row.name}
                         placeholder="e.g. HTTP @ Google"
-                        ref="checknameInput"
+                        ref={ref => this.checknameInput = ref}
                     />
                 </td>
                 <td className="c-checks__domainNameOrIP">
                     <input
                         className="input__text input__text--dark"
-                        id="domainNameOrIP"
                         name="domainNameOrIP"
                         disabled={!row.isEditing || !this.props.isNewCheck}
                         type="text"
@@ -69,7 +67,6 @@ class CheckRow extends React.Component {
                 <td className="c-checks__port">
                     <input
                         className="input__text input__text--number input__text--dark"
-                        id="port"
                         name="port"
                         disabled={!row.isEditing || !this.props.isNewCheck}
                         type="number"
@@ -84,7 +81,6 @@ class CheckRow extends React.Component {
                 <td className="c-checks__notifications">
                     <input
                         className="input__checkbox"
-                        id="emailNotifications"
                         name="emailNotifications"
                         disabled={!row.isEditing}
                         type="checkbox"
@@ -109,8 +105,7 @@ class CheckRow extends React.Component {
                             this.props.functions.destroy(row.id);
                         }}
                         className="destroy-check"
-                    >
-                    </button>
+                    / >
                 </td>
             </tr>
         );
@@ -166,7 +161,7 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
     };
 
     for (const singleCheck in checks) {
-        if (checks.hasOwnProperty(singleCheck)) {
+        if (Object.prototype.hasOwnProperty.call(checks, singleCheck)) {
             const isOpenCheck = Boolean(checks[singleCheck].id === openCheckID);
             const isNewCheck = Boolean(checks[singleCheck].id === 'tmpID');
 
@@ -214,8 +209,8 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
                     <th className="c-checks__port">Port</th>
                     <th className="c-checks__latency">Latency</th>
                     <th className="c-checks__notifications">Notifications</th>
-                    <th className="c-checks__edit"></th>
-                    <th className="c-checks__destroy"></th>
+                    <th className="c-checks__edit" />
+                    <th className="c-checks__destroy" />
                 </tr>
             </thead>
             <ReactCSSTransitionGroup

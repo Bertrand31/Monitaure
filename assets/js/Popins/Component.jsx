@@ -15,8 +15,7 @@ class Popin extends React.Component {
                 <div
                     className="c-popin__close"
                     onClick={() => this.props.destroy(this.props.data.id)}
-                >
-                </div>
+                />
             </div>
         );
     }

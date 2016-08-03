@@ -33,7 +33,7 @@ const historyToChartData = (history) => {
         });
     }
     return chartData;
-}
+};
 
 const OpenCheckStats = ({ openCheck }) => {
     if (Object.keys(openCheck).length < 1) {
