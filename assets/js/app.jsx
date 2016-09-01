@@ -9,6 +9,7 @@ import Dashboard from './Dashboard/Container';
 import SignupForm from './User/Signup/Container';
 import Popins from './Popins/Container';
 
+require('../styles/importer.scss');
 
 const App = () => (
     <div className="react-container">
@@ -25,19 +26,21 @@ const Signup = () => (
     </div>
 );
 
-// TODO: REMOVE UGLY FIX (replace with React Router)
-if (document.getElementsByClassName('signup').length > 0) {
-    ReactDOM.render(
-        <Provider store={store}>
-            <Signup />
-        </Provider>,
-        document.getElementById('root')
-    );
-} else {
-    ReactDOM.render(
-        <Provider store={store}>
-            <App />
-        </Provider>,
-        document.getElementById('root')
-    );
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // TODO: REMOVE UGLY FIX (replace with React Router)
+    if (document.getElementsByClassName('signup').length > 0) {
+        ReactDOM.render(
+            <Provider store={store}>
+                <Signup />
+            </Provider>,
+            document.getElementById('root')
+        );
+    } else {
+        ReactDOM.render(
+            <Provider store={store}>
+                <App />
+            </Provider>,
+            document.getElementById('root')
+        );
+    }
+});

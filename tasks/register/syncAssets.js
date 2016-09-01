@@ -12,7 +12,6 @@
  */
 module.exports = (grunt) => {
     grunt.registerTask('syncAssets', [
-        'sass:min',
         'sync:dev',
     ]);
 };

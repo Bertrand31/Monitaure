@@ -6,7 +6,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
     meta(name="description", content="Monitaure is a free web application allowing you to monitor your online services")
 
-    link(href="/styles/importer.css" rel="stylesheet")
+    // link(href="/styles/importer.css" rel="stylesheet")
     link(href="https://fonts.googleapis.com/css?family=Roboto|Montserrat:400,700" rel="stylesheet")
 
     link(rel="apple-touch-icon", sizes="57x57", href="/images/apple-touch-icon-57x57.png")
@@ -43,11 +43,11 @@ html(lang="en")
     meta(name="twitter:creator", content="@Bertrand31")
     meta(name="twitter:image:alt", content="Monitaure, a simple monitoring dashboard")
 
+    script(src="/js/bundle.js")
+
     script(type="text/javascript").
         window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
         heap.load("316152980");
 
   body
     block body
-
-    script(src="/js/bundle.js")

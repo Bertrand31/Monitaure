@@ -17,11 +17,25 @@ const common = {
     },
 
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            loader: 'babel',
-            exclude: '/node_modules/',
-        }]
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                loader: 'babel',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.(svg|png|jpg)$/,
+                loader: 'url',
+            },
+            {
+                test: /\.scss/,
+                loaders: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
+        ],
     },
 };
 
