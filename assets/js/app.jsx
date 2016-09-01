@@ -9,8 +9,6 @@ import Dashboard from './Dashboard/Container';
 import SignupForm from './User/Signup/Container';
 import Popins from './Popins/Container';
 
-require('../styles/importer.scss');
-
 const App = () => (
     <div className="react-container">
         <Popins />

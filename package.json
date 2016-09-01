@@ -68,7 +68,8 @@
     "whatwg-fetch": "^1.0.0"
   },
   "scripts": {
-    "start": "nodemon app.js --ignore assets/",
+    "start:dev": "NODE_ENV=development; nodemon app.js --ignore assets/",
+    "start:prod": "NODE_ENV=production sails lift",
     "dev": "webpack --watch --color --progress",
     "build": "webpack --color --progress",
     "lint:back": "./node_modules/eslint/bin/eslint.js . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback; exit 0",

@@ -4,6 +4,9 @@ import GlobalStats from './Components/GlobalStats.react';
 import CheckStats from './Components/CheckStats.react';
 import ChecksTable from './Components/ChecksTable.react';
 
+import '../../styles/dashboard.scss';
+
+
 class Dashboard extends React.Component {
     componentDidMount() {
         // We check whether an autoRefresh loop is already running

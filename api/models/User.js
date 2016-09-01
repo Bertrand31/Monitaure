@@ -70,7 +70,7 @@ module.exports = {
         user.confirmationToken = crypto.randomBytes(16).toString('hex');
         // Initializes the 'last connection' property with current date
         user.lastConnection = new Date();
-        // Stores password's salted hash
+        // Stores password's salted hash (10 being the number of salt rounds)
         bcrypt.genSalt(10, (err, salt) => {
             if (err) {
                 sails.log.eror(err);
