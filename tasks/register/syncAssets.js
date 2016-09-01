@@ -10,9 +10,9 @@
  *   http://sailsjs.org/documentation/anatomy/my-app/tasks/register/sync-assets-js
  *
  */
-module.exports = function(grunt) {
+module.exports = (grunt) => {
     grunt.registerTask('syncAssets', [
         'sass:min',
-        'sync:dev'
+        'sync:dev',
     ]);
 };

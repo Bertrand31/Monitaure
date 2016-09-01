@@ -11,6 +11,6 @@
  *   http://sailsjs.org/documentation/anatomy/my-app/tasks/register/prod-js
  *
  */
-module.exports = function(grunt) {
+module.exports = (grunt) => {
     grunt.registerTask('prod', ['compileAssets']);
 };

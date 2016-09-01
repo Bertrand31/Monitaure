@@ -60,7 +60,7 @@ const calcCheckStats = (check, historyLength) => {
         avg: Math.round(sum / historyArray.length),
         availability: Utilities.customFloor(percent, 2),
         lastOutage,
-        history: historyArray.slice(-historyLength)
+        history: historyArray.slice(-historyLength),
     };
 };
 
@@ -75,7 +75,7 @@ module.exports = {
      * @param {Function} callback
      */
     createCheck(fetcher, creator, userId, checkData, callback) {
-        fetcher('user', userId, 'checks', function(err, user) {
+        fetcher('user', userId, 'checks', (err, user) => {
             if (err) return callback(err);
 
             // We test the number of checks this user has against the limit
@@ -87,9 +87,9 @@ module.exports = {
                 return callback('Incorrect domain name or IP address');
             } else if (!checkData.name || !checkData.port) {
                 return callback('Incorrect attributes');
-            } else {
-                creator('check', checkData, (err, created) => callback(err, created));
             }
+
+            return creator('check', checkData, (err, created) => callback(err, created));
         });
     },
 
@@ -103,14 +103,14 @@ module.exports = {
      * @param {Function} callback
      */
     updateCheck(fetcher, updater, userId, checkId, data, callback) {
-        fetcher('check', checkId, function (err, check) {
+        fetcher('check', checkId, (err, check) => {
             if (err) return callback(err);
 
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
-            } else {
-                updater('check', { id: checkId }, data, (err, updated) => callback(err, updated));
             }
+
+            return updater('check', { id: checkId }, data, (err, updated) => callback(err, updated));
         });
     },
 
@@ -123,14 +123,14 @@ module.exports = {
      * @param {Function} callback
      */
     destroyCheck(fetcher, destroyer, userId, checkId, callback) {
-        fetcher('check', checkId, function(err, check) {
+        fetcher('check', checkId, (err, check) => {
             if (err) return callback(err);
 
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
-            } else {
-                destroyer('check', checkId, (err, destroyed) => callback(err, destroyed));
             }
+
+            return destroyer('check', checkId, (err, destroyed) => callback(err, destroyed));
         });
     },
 
@@ -154,7 +154,6 @@ module.exports = {
 
                 return callback(null);
             });
-
         });
     },
 
@@ -175,9 +174,8 @@ module.exports = {
                 const checkStats = calcCheckStats(check, 20);
                 if (!checkStats) {
                     return callback('No data yet!');
-                } else {
-                    return callback(null, checkStats);
                 }
+                return callback(null, checkStats);
             }
         });
     },
@@ -191,14 +189,12 @@ module.exports = {
      */
     getUserAndGlobalStats(fetcher, userId, callback) {
         fetcher('user', userId, 'checks', (err, user) => {
-
             const lastError = { time: null, checkName: null };
             let checksUp = 0;
             const numberOfChecks = user.checks.length;
             let availabilitiesSum = 0;
 
             for (let i = 0; i < user.checks.length; i++) {
-
                 const checkStats = calcCheckStats(user.checks[i], 1);
                 // If `err` the check's history array is null: we have no data to process
                 if (checkStats !== null) {

@@ -8,16 +8,15 @@ module.exports.policies = {
      ***************************************************************************/
 
     '*': [
-        'isAuthenticated'
+        'isAuthenticated',
     ],
 
     'UserController': {
         'create': true,
-        'confirm': true
+        'confirm': true,
     },
 
     'AuthController': {
-        'login': true
-    }
-
+        'login': true,
+    },
 };

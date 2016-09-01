@@ -1,8 +1,3 @@
-/**
- * Check.js
- *
- * @description :: Each check represents a port to be checked on a particular server, specified through an IP adress or a domain name
- */
 module.exports = {
 
     identity: 'Check',

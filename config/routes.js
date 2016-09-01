@@ -12,19 +12,19 @@ module.exports.routes = {
 
     // '/': 'CheckController.show',
     'get /': [
-        { policy: 'homepageToggle' }
+        { policy: 'homepageToggle' },
     ],
 
     'get /signup': [
         { policy: 'forceDashboard' },
-        { view: 'signup' }
+        { view: 'signup' },
     ],
 
     'post /signup': 'UserController.create',
 
     'get /login': [
         { policy: 'forceDashboard' },
-        { view: 'login' }
+        { view: 'login' },
     ],
     'post /login': 'AuthController.login',
     'get /account/confirm/:id': 'UserController.confirm',
@@ -32,10 +32,10 @@ module.exports.routes = {
     '/logout': 'AuthController.logout',
 
     'get /403': {
-        view: '403'
+        view: '403',
     },
     'get /500': {
-        view: '500'
+        view: '500',
     }
 
 };

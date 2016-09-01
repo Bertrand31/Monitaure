@@ -1,8 +1,8 @@
 const assert = require('chai').assert;
 // const expect = require('chai').expect;
 
-const CheckManagement = require('../api/services/CheckManagement.js');
-const UserManagement = require('../api/services/UserManagement.js');
+const CheckManagement = require('../api/services/CheckManagement');
+const UserManagement = require('../api/services/UserManagement');
 
 const fakeUser = {
     username: 'Test User',
@@ -13,7 +13,7 @@ const fakeUser = {
     confirmationToken: '032c0de1efc370edaa416e69a2fad16a',
     createdAt: '2016-05-12T20:40:44.517Z',
     updatedAt: '2016-05-12T20:40:44.517Z',
-    id: '5734dfe1a55ad89e36d722f9'
+    id: '5734dfe1a55ad89e36d722f9',
 };
 
 const fakeCheck = {
@@ -44,24 +44,25 @@ const fakeCheck = {
         { date: new Date('2016-05-12T20:20:55.454Z'), duration: 103 },
         { date: new Date('2016-05-12T20:21:55.464Z'), duration: 25 },
         { date: new Date('2016-05-12T20:22:55.521Z'), duration: 27 },
-        { date: new Date('2016-05-12T20:23:55.543Z'), duration: 25 }
+        { date: new Date('2016-05-12T20:23:55.543Z'), duration: 25 },
     ],
     createdAt: '2016-05-12T19:56:17.519Z',
     updatedAt: '2016-05-12T20:23:55.572Z',
-    id: '5734dfa3a55ad89e36d722f8'
+    id: '5734dfa3a55ad89e36d722f8',
 };
 
 const fakeDB = {
-    create: function(itemType, data, callback) {
+    create(itemType, data, callback) {
         if (typeof itemType !== 'string' || typeof data !== 'object') throw new Error('Incorrect input types');
 
-        if (itemType === 'user')
+        if (itemType === 'user') {
             return callback(null, fakeUser);
-        else if (itemType === 'check')
+        } else if (itemType === 'check') {
             return callback(null, fakeCheck);
+        }
     },
 
-    update: function(itemType, filterCriteria, newData, callback) {
+    update(itemType, filterCriteria, newData, callback) {
         if (typeof itemType !== 'string' || typeof filterCriteria !== 'object' || typeof newData !== 'object') throw new Error('Incorrect input types');
 
         if (itemType === 'user') {
@@ -73,16 +74,17 @@ const fakeDB = {
         }
     },
 
-    destroy: function(itemType, itemId, callback) {
+    destroy(itemType, itemId, callback) {
         if (typeof itemType !== 'string' || typeof itemId !== 'string') throw new Error('Incorrect input types');
 
-        if (itemType === 'user')
+        if (itemType === 'user') {
             return callback(null, [fakeUser]);
-        else if (itemType === 'check')
+        } else if (itemType === 'check') {
             return callback(null, [fakeCheck]);
+        }
     },
 
-    fetch: function(itemsType, criteria, callback) {
+    fetch(itemsType, criteria, callback) {
         if (typeof itemsType !== 'string' || typeof criteria !== 'object') throw new Error('Incorret input types');
 
         if (itemsType === 'check')
@@ -91,7 +93,7 @@ const fakeDB = {
             return callback(null, [fakeUser]);
     },
 
-    fetchOne: function(itemType, itemId, callback) {
+    fetchOne(itemType, itemId, callback) {
         if (typeof itemType !== 'string' || typeof itemId !== 'string') throw new Error('Incorrect input types');
 
         if (itemType === 'check')
@@ -100,17 +102,17 @@ const fakeDB = {
             return callback(null, fakeUser);
     },
 
-    fetchAndPopulate: function(itemType, itemId, associationType, callback) {
+    fetchAndPopulate(itemType, itemId, associationType, callback) {
         if (typeof itemType !== 'string' || typeof itemId !== 'string' || typeof associationType !== 'string')
             throw new Error('Incorrect input types');
 
         const fakePopulatedUser = fakeUser;
         fakePopulatedUser.checks = [fakeCheck];
         return callback(null, fakePopulatedUser);
-    }
+    },
 };
 
-describe('#user and check management', function() {
+describe('#user and check management', () => {
     let user;
     // let check;
 
@@ -119,7 +121,7 @@ describe('#user and check management', function() {
             username: 'Test User',
             email: 'bertrandjun@gmail.com',
             password: 'testtest',
-            confirmPassword: 'testtest'
+            confirmPassword: 'testtest',
         };
         UserManagement.create(fakeDB.create, userData, function(err, createdUser) {
             assert.isNull(err, 'did not throw an error');
@@ -153,7 +155,7 @@ describe('#user and check management', function() {
     // });
     it('should update the created check', function(done) {
         const data = {
-            name: 'HTTP @ Google 2'
+            name: 'HTTP @ Google 2',
         };
         CheckManagement.updateCheck(fakeDB.fetchOne, fakeDB.update, fakeUser.id, fakeCheck.id, data, function(err, updatedChecks) {
             assert.isNull(err, 'did not throw an error');
@@ -176,7 +178,7 @@ describe('#user and check management', function() {
     //     });
     // });
     it('should destroy the created check', function(done) {
-        CheckManagement.destroyCheck(fakeDB.fetchOne, fakeDB.destroy, fakeUser.id, fakeCheck.id, function(err, destroyed) {
+        CheckManagement.destroyCheck (fakeDB.fetchOne, fakeDB.destroy, fakeUser.id, fakeCheck.id, (err, destroyed) => {
             assert.isNull(err, 'did not throw an error');
             assert.isArray(destroyed, 'returned an array');
             assert.isObject(destroyed[0], 'the array contains the deleted check');

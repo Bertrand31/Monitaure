@@ -14,18 +14,14 @@
  *   https://github.com/gruntjs/grunt-contrib-watch
  *
  */
-module.exports = function(grunt) {
-
+module.exports = (grunt) => {
     grunt.config.set('watch', {
         assets: {
-
             // Assets to watch:
             files: ['assets/**/*', '!**/node_modules/**'],
-
             // When assets are changed:
-            tasks: ['syncAssets']
-        }
+            tasks: ['syncAssets'],
+        },
     });
-
     grunt.loadNpmTasks('grunt-contrib-watch');
 };

@@ -6,21 +6,21 @@ const common = {
     entry: ['whatwg-fetch', 'babel-polyfill', './assets/js/app.jsx'],
 
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx'],
     },
 
     output: {
         path: '.tmp/public/js/',
         filename: 'bundle.js',
         chunkFilename: '[chunkhash].bundle.js',
-        publicPath: '/js/'
+        publicPath: '/js/',
     },
 
     module: {
         loaders: [{
             test: /\.jsx?$/,
             loader: 'babel',
-            exclude: /node_modules/
+            exclude: '/node_modules/',
         }]
     },
 };

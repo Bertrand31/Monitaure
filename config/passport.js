@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 passport.serializeUser((user, callback) => callback(null, user.id));
 
 passport.deserializeUser((id, callback) => {
-    DB.fetchOne('user', id, function (err, user) {
+    DB.fetchOne('user', id, (err, user) => {
         if (err) return sails.log.error(err);
 
         if (!user) {
@@ -19,10 +19,10 @@ passport.deserializeUser((id, callback) => {
 passport.use(
     new LocalStrategy({
         usernameField: 'username',
-        passwordField: 'password'
+        passwordField: 'password',
     },
     (username, password, callback) => {
-        DB.fetch('user', { username }, function (err, data) {
+        DB.fetch('user', { username }, (err, data) => {
             if (err) return callback(err);
 
             const user = data[0];
@@ -38,16 +38,16 @@ passport.use(
 
                 if (!res)
                     return callback(null, false, {
-                        message: 'Invalid Password'
+                        message: 'Invalid Password',
                     });
                 const returnUser = {
                     username,
                     email: user.email,
                     createdAt: user.createdAt,
-                    id: user.id
+                    id: user.id,
                 };
                 return callback(null, returnUser, {
-                    message: 'Logged In Successfully'
+                    message: 'Logged In Successfully',
                 });
             });
         });

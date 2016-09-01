@@ -13,21 +13,20 @@
  *   https://github.com/gruntjs/grunt-contrib-less
  *
  */
-module.exports = function(grunt) {
-
+module.exports = (grunt) => {
     grunt.config.set('sass', {
         min: {
             options: {
-                style: 'compressed'
+                style: 'compressed',
             },
             files: [{
                 expand: true,
                 cwd: 'assets/styles/',
                 src: ['importer.scss'],
                 dest: '.tmp/public/styles/',
-                ext: '.css'
+                ext: '.css',
             }]
-        }
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');

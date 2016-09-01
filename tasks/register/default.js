@@ -16,6 +16,6 @@
  *   http://sailsjs.org/documentation/anatomy/my-app/tasks/register/default-js
  *
  */
-module.exports = function (grunt) {
+module.exports = (grunt) => {
     grunt.registerTask('default', ['compileAssets', 'watch']);
 };

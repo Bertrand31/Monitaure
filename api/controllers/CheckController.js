@@ -1,7 +1,7 @@
 module.exports = {
 
     getcheckstats(req, res) {
-        CheckManagement.getData(DB.fetchOne, req.user.id, req.param('id'), function(err, data) {
+        CheckManagement.getData(DB.fetchOne, req.user.id, req.param('id'), (err, data) => {
             if (err) return res.serverError(err);
 
             return res.json(data);
@@ -9,7 +9,7 @@ module.exports = {
     },
 
     getuserandglobalstats(req, res) {
-        CheckManagement.getUserAndGlobalStats(DB.fetchAndPopulate, req.user.id, function(err, data) {
+        CheckManagement.getUserAndGlobalStats(DB.fetchAndPopulate, req.user.id, (err, data) => {
             if (err) return res.serverError(err);
 
             return res.json(data);
@@ -22,9 +22,9 @@ module.exports = {
             domainNameOrIP: String(req.param('domainNameOrIP')),
             port: Number(req.param('port')),
             emailNotifications: Boolean(req.param('emailNotifications')),
-            owner: req.user.id
+            owner: req.user.id,
         };
-        CheckManagement.createCheck(DB.fetchAndPopulate, DB.create, req.user.id, data, function (err, created) {
+        CheckManagement.createCheck(DB.fetchAndPopulate, DB.create, req.user.id, data, (err, created) => {
             if (err) return res.serverError(err);
 
             return res.json(created);
@@ -34,9 +34,9 @@ module.exports = {
     update(req, res) {
         const data = {
             name: String(req.param('name')),
-            emailNotifications: Boolean(req.param('emailNotifications'))
+            emailNotifications: Boolean(req.param('emailNotifications')),
         };
-        CheckManagement.updateCheck(DB.fetchOne, DB.update, req.user.id, req.param('id'), data, function(err, updated) {
+        CheckManagement.updateCheck(DB.fetchOne, DB.update, req.user.id, req.param('id'), data, (err, updated) => {
             if (err) return res.serverError(err);
 
             return res.json(updated[0]);
@@ -44,11 +44,11 @@ module.exports = {
     },
 
     destroy(req, res) {
-        CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), function(err, destroyed) {
+        CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), (err, destroyed) => {
             if (err) return res.serverError(err);
 
             return res.json(destroyed[0]);
         });
-    }
+    },
 };
 

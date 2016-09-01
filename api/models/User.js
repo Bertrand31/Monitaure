@@ -62,14 +62,15 @@ module.exports = {
         },
 
     },
+
     beforeCreate(user, callback) {
-
+        // Hash user's email (for Gravatar)
         user.emailHash = crypto.createHash('md5').update(user.email).digest('hex');
-
+        // Creates a token to send the user an account confirmation link
         user.confirmationToken = crypto.randomBytes(16).toString('hex');
-
+        // Initializes the 'last connection' property with current date
         user.lastConnection = new Date();
-
+        // Stores password's salted hash
         bcrypt.genSalt(10, (err, salt) => {
             if (err) {
                 sails.log.eror(err);
