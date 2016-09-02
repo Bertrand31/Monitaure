@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import store from './Redux/Store';
 
+import Homepage from './Homepage/Container';
 import Sidebar from './Sidebar/Container';
 import Dashboard from './Dashboard/Container';
 import SignupForm from './User/Signup/Container';
@@ -30,6 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ReactDOM.render(
             <Provider store={store}>
                 <Signup />
+            </Provider>,
+            document.getElementById('root')
+        );
+    } else if (document.getElementsByClassName('homepage').length > 0) {
+        ReactDOM.render(
+            <Provider store={store}>
+                <Homepage />
             </Provider>,
             document.getElementById('root')
         );

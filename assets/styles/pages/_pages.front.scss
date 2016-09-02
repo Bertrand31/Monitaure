@@ -34,7 +34,7 @@
     }
 }
 .desk-section {
-    height:100vh;
+    height:calc(100vh - 20px);
     background:url('/images/hp-desktop.jpg') center center no-repeat;
     background-size:cover;
     border-bottom:solid 20px $green;
