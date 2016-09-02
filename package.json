@@ -70,8 +70,8 @@
   "scripts": {
     "start:dev": "NODE_ENV=development; nodemon app.js --ignore assets/",
     "start:prod": "NODE_ENV=production sails lift",
-    "dev": "webpack --watch --color --progress",
-    "build": "webpack --color --progress",
+    "webpack:dev": "webpack --watch --color --progress",
+    "webpack:prod": "webpack --color --progress",
     "lint:back": "./node_modules/eslint/bin/eslint.js . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback; exit 0",
     "lint:front": "./node_modules/eslint/bin/eslint.js assets/js/ -c .eslintrcfront.js --ext .js --ext .jsx --cache; exit 0",
     "test": "mocha test/unit.js"

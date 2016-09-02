@@ -42,7 +42,7 @@ const common = {
 let config;
 
 switch (process.env.npm_lifecycle_event) {
-    case 'build':
+    case 'webpack:prod':
         config = merge(common, {
             plugins: [
                 new webpack.DefinePlugin({
