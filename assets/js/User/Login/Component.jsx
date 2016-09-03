@@ -16,7 +16,7 @@ class SignupFormComponent extends React.Component {
         }
 
         return (
-            <div className="centered-box">
+            <div onClick={(e) => {e.stopPropagation();}} className="centered-box">
                 {closeButton}
                 <h2>Log in</h2>
                 <form id="login" method="post" action="/login">

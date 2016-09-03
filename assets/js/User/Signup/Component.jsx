@@ -14,7 +14,7 @@ class SignupFormComponent extends React.Component {
         }
 
         return (
-            <div className="signup-block">
+            <div onClick={(e) => {e.stopPropagation();}} className="signup-block">
                 <h2>Create an account</h2>
                 <form
                     method="post"

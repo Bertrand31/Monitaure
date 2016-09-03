@@ -39,3 +39,12 @@ body {
 .main-container {
     transition:all .4s linear;
 }
+.c-popover-overlay {
+    display:flex;
+    justify-content:center;
+    position:absolute;
+    z-index:1;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.7);
+}

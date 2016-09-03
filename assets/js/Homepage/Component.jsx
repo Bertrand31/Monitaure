@@ -3,9 +3,9 @@ import React, { PropTypes } from 'react';
 import LoginForm from '../User/Login/Component';
 import SignupForm from '../User/Signup/Container';
 
-const HomepageComponent = ({ popin, open }) => (
+const HomepageComponent = ({ popover, open }) => (
     <div className="page front" id="page-container">
-        {popin}
+        {popover}
         <header className="header">
             <h1 className="logo">
                 <img src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses" />
@@ -45,20 +45,20 @@ const HomepageComponent = ({ popin, open }) => (
 );
 
 HomepageComponent.propTypes = {
-    popin: PropTypes.element,
+    popover: PropTypes.element,
     open: PropTypes.func.isRequired,
 };
 
 const HomepageController = ({ openPopover = {}, open, close }) => {
     console.log(openPopover);
-    let popin = null;
+    let popover = null;
     if (openPopover.isOpen === 'login') {
-        popin = <LoginForm close={close} />;
+        popover = <div onClick={close} className="c-popover-overlay"><LoginForm close={close} /></div>;
     } else if (openPopover.isOpen === 'signup') {
-        popin = <SignupForm close={close} />;
+        popover = <div onClick={close} className="c-popover-overlay"><SignupForm close={close} /></div>;
     }
 
-    return <HomepageComponent popin={popin} open={open} />;
+    return <HomepageComponent popover={popover} open={open} />;
 };
 
 HomepageController.propTypes = {
