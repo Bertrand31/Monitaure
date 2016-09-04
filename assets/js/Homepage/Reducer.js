@@ -1,6 +1,6 @@
 import * as types from './Constants';
 
-const popoverReducer = (state = { openPopover: null }, action) => {
+const popoverReducer = (state = { isOpen: null }, action) => {
     switch (action.type) {
         case types.POPOVER_OPEN:
             return {

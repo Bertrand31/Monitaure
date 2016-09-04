@@ -20,7 +20,12 @@ const App = () => (
 
 const Signup = () => (
     <div className="main-container sign-in">
-        <SignupForm />
+        <main className="main">
+            <h1 className="logo">
+                <img src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses" />
+            </h1>
+            <SignupForm />
+        </main>
         <Popins />
     </div>
 );

@@ -14,7 +14,7 @@ class SignupFormComponent extends React.Component {
         }
 
         return (
-            <div onClick={(e) => {e.stopPropagation();}} className="signup-block">
+            <div onClick={(e) => { e.stopPropagation(); }} className="centered-box signup-block">
                 <h2>Create an account</h2>
                 <form
                     method="post"
@@ -79,23 +79,18 @@ SignupFormComponent.propTypes = {
     user: PropTypes.object.isRequired,
     update: PropTypes.func.isRequired,
     signup: PropTypes.func.isRequired,
+    closePopin: PropTypes.func,
 };
 
-const SignupForm = ({ user = {}, update, signup }) => (
-    <main className="main">
-        <h1 className="logo">
-            <img src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses" />
-        </h1>
-        <div className="centered-box">
-            <SignupFormComponent user={user} update={update} signup={signup} />
-        </div>
-    </main>
+const SignupForm = ({ user = {}, update, signup, close }) => (
+    <SignupFormComponent user={user} update={update} signup={signup} closePopin={close} />
 );
 
 SignupForm.propTypes = {
     user: PropTypes.object,
     update: PropTypes.func.isRequired,
     signup: PropTypes.func.isRequired,
+    close: PropTypes.func,
 };
 
 export default SignupForm;

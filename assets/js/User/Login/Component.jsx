@@ -1,11 +1,6 @@
 import React, { PropTypes } from 'react';
 
-class SignupFormComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        console.log(props);
-    }
-
+class LoginFormComponent extends React.Component {
     componentDidMount() {
         this.usernameInput.focus();
     }
@@ -16,7 +11,7 @@ class SignupFormComponent extends React.Component {
         }
 
         return (
-            <div onClick={(e) => {e.stopPropagation();}} className="centered-box">
+            <div onClick={(e) => { e.stopPropagation(); }} className="centered-box">
                 {closeButton}
                 <h2>Log in</h2>
                 <form id="login" method="post" action="/login">
@@ -36,10 +31,9 @@ class SignupFormComponent extends React.Component {
                             className="input__text input__text--password"
                             name="password"
                             type="password"
-                            autoComplete="new-password"
+                            autoComplete="password"
                             placeholder="Your password"
                             required minLength="6"
-                            onChange={e => this.props.update(e.target.name, e.target.value)}
                         />
                     </fieldset>
                     <input type="submit" value="Log in" />
@@ -50,4 +44,16 @@ class SignupFormComponent extends React.Component {
     }
 }
 
-export default SignupFormComponent;
+LoginFormComponent.propTypes = {
+    closePopin: PropTypes.func,
+};
+
+const LoginForm = ({ close }) => (
+    <LoginFormComponent closePopin={close} />
+);
+
+LoginForm.propTypes = {
+    close: PropTypes.func,
+};
+
+export default LoginForm;

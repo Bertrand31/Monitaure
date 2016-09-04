@@ -49,13 +49,16 @@ HomepageComponent.propTypes = {
     open: PropTypes.func.isRequired,
 };
 
+// TODO: clean this up
 const HomepageController = ({ openPopover = {}, open, close }) => {
-    console.log(openPopover);
     let popover = null;
     if (openPopover.isOpen === 'login') {
-        popover = <div onClick={close} className="c-popover-overlay"><LoginForm close={close} /></div>;
+        popover = <LoginForm close={close} />;
     } else if (openPopover.isOpen === 'signup') {
-        popover = <div onClick={close} className="c-popover-overlay"><SignupForm close={close} /></div>;
+        popover = <SignupForm close={close} />;
+    }
+    if (openPopover.isOpen !== null) {
+        popover = <main className="main"><div onClick={close} className="c-popover-overlay">{popover}</div></main>;
     }
 
     return <HomepageComponent popover={popover} open={open} />;
