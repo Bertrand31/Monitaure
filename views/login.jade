@@ -7,7 +7,7 @@ block body
         main.main
             h1.logo
                 img(src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses")
-            .centered-box
+            .c-box
                 h2 Log in
                 form#login(method="post", action="/login")
                     fieldset.login
@@ -17,7 +17,7 @@ block body
                         input#username(class="input__text", name="username", type="text", autocomplete="username", placeholder="Your username", autofocus, required)
                         label Password
                         input#password(class="input__text input__text--password", name="password", type="password", autocomplete="password", placeholder="Your password", required)
-                    a(href="#_") Password forgotten?
+                    // a(href="#_") Password forgotten?
                     input#submit(type="submit", value="Log in")
-                p Don't have an account? 
+                p.c-box__text Don't have an account? 
                     a(href="/signup") Sign up!

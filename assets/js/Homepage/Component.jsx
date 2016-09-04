@@ -4,7 +4,7 @@ import LoginForm from '../User/Login/Component';
 import SignupForm from '../User/Signup/Container';
 
 const HomepageComponent = ({ popover, open }) => (
-    <div className="page front" id="page-container">
+    <div className="front" id="page-container">
         {popover}
         <header className="header">
             <h1 className="logo">
@@ -28,7 +28,7 @@ const HomepageComponent = ({ popover, open }) => (
                 </ul>
             </nav>
         </header>
-        <main className="main">
+        <main className={`main ${popover !== null ? 's-is-blurred' : ''}`}>
             <section className="hp-section desk-section">
                 <div className="wrapper">
                     <h2>Monitoring for the masses</h2>
@@ -52,13 +52,13 @@ HomepageComponent.propTypes = {
 // TODO: clean this up
 const HomepageController = ({ openPopover = {}, open, close }) => {
     let popover = null;
-    if (openPopover.isOpen === 'login') {
-        popover = <LoginForm close={close} />;
-    } else if (openPopover.isOpen === 'signup') {
-        popover = <SignupForm close={close} />;
-    }
     if (openPopover.isOpen !== null) {
-        popover = <main className="main"><div onClick={close} className="c-popover-overlay">{popover}</div></main>;
+        if (openPopover.isOpen === 'login') {
+            popover = <LoginForm close={close} />;
+        } else if (openPopover.isOpen === 'signup') {
+            popover = <SignupForm close={close} />;
+        }
+        popover = <div onClick={close} className="c-popover-overlay">{popover}</div>;
     }
 
     return <HomepageComponent popover={popover} open={open} />;

@@ -10,6 +10,13 @@ import Dashboard from './Dashboard/Container';
 import SignupForm from './User/Signup/Container';
 import Popins from './Popins/Container';
 
+const Home = () => (
+    <div className="react-container">
+        <Popins />
+        <Homepage />
+    </div>
+);
+
 const App = () => (
     <div className="react-container">
         <Popins />
@@ -42,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (document.getElementsByClassName('homepage').length > 0) {
         ReactDOM.render(
             <Provider store={store}>
-                <Homepage />
+                <Home />
             </Provider>,
             document.getElementById('root')
         );

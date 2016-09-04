@@ -6,12 +6,12 @@ class LoginFormComponent extends React.Component {
     }
     render() {
         let closeButton = null;
-        if (this.props.closePopin !== 'undefined') {
-            closeButton = <div onClick={() => this.props.closePopin()}>x</div>;
+        if (typeof this.props.close !== 'undefined') {
+            closeButton = <button className="c-box__close" onClick={() => this.props.close()}></button>;
         }
 
         return (
-            <div onClick={(e) => { e.stopPropagation(); }} className="centered-box">
+            <div onClick={(e) => { e.stopPropagation(); }} className="c-box">
                 {closeButton}
                 <h2>Log in</h2>
                 <form id="login" method="post" action="/login">
@@ -38,22 +38,14 @@ class LoginFormComponent extends React.Component {
                     </fieldset>
                     <input type="submit" value="Log in" />
                 </form>
-                <p>Don't have an account? <a href="/signup">Sign up!</a></p>
+                <p className="c-box__text">Don't have an account? <a href="/signup">Sign up!</a></p>
             </div>
         );
     }
 }
 
 LoginFormComponent.propTypes = {
-    closePopin: PropTypes.func,
-};
-
-const LoginForm = ({ close }) => (
-    <LoginFormComponent closePopin={close} />
-);
-
-LoginForm.propTypes = {
     close: PropTypes.func,
 };
 
-export default LoginForm;
+export default LoginFormComponent;

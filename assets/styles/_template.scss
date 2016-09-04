@@ -39,12 +39,62 @@ body {
 .main-container {
     transition:all .4s linear;
 }
+.main {
+    transition:all .15s ease-in-out;
+}
+.s-is-blurred {
+    filter:blur(8px);
+    -webkit-filter:blur(8px);
+}
 .c-popover-overlay {
+    opacity:1;
     display:flex;
     justify-content:center;
     position:absolute;
     z-index:1;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,.7);
+    background:rgba(0,0,0,.4);
+}
+.s-is-hidden {
+    opacity:0;
+    z-index:-1;
+    transition:all .4s ease-in-out;
+}
+.c-box {
+}
+.c-box__text {
+    font-family:$roboto;
+    color: $lighter;
+    text-align: center;
+    font-size: .75em;
+    a {
+        color: $lightgreen;
+    }
+}
+@mixin cross($color: #dbdbdb) {
+    position:absolute;
+    top:1.2em;
+    right:1.2em;
+    color:$light;
+    cursor:pointer;
+    height:12px;
+    width:12px;
+    &:before,&:after {
+        position: absolute;
+        left:50%;
+        content:"";
+        height:12px;
+        width:2px;
+        background-color:$color;
+
+    }
+    &:before { transform: rotate(45deg); }
+    &:after { transform: rotate(-45deg); }
+}
+.c-box__close {
+    @include cross($light);
+    top:.1em;
+    right:.6em;
+    padding:1em;
 }

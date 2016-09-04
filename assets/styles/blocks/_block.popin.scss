@@ -2,7 +2,7 @@
     position:absolute;
     top:1.8em;
     right:2.3em;
-    z-index:1;
+    z-index:2;
 }
 .c-popin {
     @extend %box;
@@ -43,20 +43,6 @@
     }
 }
 .c-popin__close {
-    cursor:pointer;
-    position: absolute;
+    @include cross();
     top:calc(50% - 6px);
-    right:1.2em;
-    &:before,&:after {
-        position: absolute;
-        top:-50%;
-        left:50%;
-        content:"";
-        height:12px;
-        width:2px;
-        background-color:#dbdbdb;
-
-    }
-    &:before { transform: rotate(45deg); }
-    &:after { transform: rotate(-45deg); }
 }

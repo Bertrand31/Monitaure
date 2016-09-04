@@ -7,14 +7,20 @@ class SignupFormComponent extends React.Component {
     render() {
         if (Object.prototype.hasOwnProperty.call(this.props.user, 'createdAt')) {
             return (
-                <div className="confirmation-block">
-                    <p>A confirmation email has just been sent to {this.props.user.email}</p>
+                <div className="c-box">
+                    <p className="c-box__text">A confirmation email has just been sent to {this.props.user.email}</p>
                 </div>
             );
         }
 
+        let closeButton = null;
+        if (typeof this.props.close !== 'undefined') {
+            closeButton = <button className="c-box__close" onClick={() => this.props.close()}></button>;
+        }
+
         return (
-            <div onClick={(e) => { e.stopPropagation(); }} className="centered-box signup-block">
+            <div onClick={(e) => { e.stopPropagation(); }} className="c-box signup-block">
+                {closeButton}
                 <h2>Create an account</h2>
                 <form
                     method="post"
@@ -69,7 +75,7 @@ class SignupFormComponent extends React.Component {
                     </fieldset>
                     <input type="submit" value="Sign up" />
                 </form>
-                <p>Already have an account? <a href="/login">Log in!</a></p>
+                <p className="c-box__text">Already have an account? <a href="/login">Log in!</a></p>
             </div>
         );
     }
@@ -79,18 +85,7 @@ SignupFormComponent.propTypes = {
     user: PropTypes.object.isRequired,
     update: PropTypes.func.isRequired,
     signup: PropTypes.func.isRequired,
-    closePopin: PropTypes.func,
-};
-
-const SignupForm = ({ user = {}, update, signup, close }) => (
-    <SignupFormComponent user={user} update={update} signup={signup} closePopin={close} />
-);
-
-SignupForm.propTypes = {
-    user: PropTypes.object,
-    update: PropTypes.func.isRequired,
-    signup: PropTypes.func.isRequired,
     close: PropTypes.func,
 };
 
-export default SignupForm;
+export default SignupFormComponent;
