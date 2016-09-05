@@ -33,13 +33,15 @@ passport.use(
                 return callback(null, false, { message: 'Account not confirmed yet. Check your emails.' });
             }
 
-            bcrypt.compare(password, user.password, function (err, res) {
+            bcrypt.compare(password, user.password, (err, res) => {
                 if (err) throw err;
 
-                if (!res)
+                if (!res) {
                     return callback(null, false, {
                         message: 'Invalid Password',
                     });
+                }
+
                 const returnUser = {
                     username,
                     email: user.email,

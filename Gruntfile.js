@@ -43,7 +43,7 @@ module.exports = (grunt) => {
     function loadTasks(relPath) {
         return includeAll({
             dirname: require('path').resolve(__dirname, relPath),
-            filter: /(.+)\.js$/
+            filter: /(.+)\.js$/,
         }) || {};
     }
 
@@ -52,7 +52,7 @@ module.exports = (grunt) => {
      * a single argument - the `grunt` object.
      */
     function invokeConfigFn(tasks) {
-        for (var taskName in tasks) {
+        for (let taskName in tasks) {
             if (tasks.hasOwnProperty(taskName)) {
                 tasks[taskName](grunt);
             }
@@ -71,5 +71,4 @@ module.exports = (grunt) => {
     // Run task functions to configure Grunt.
     invokeConfigFn(taskConfigurations);
     invokeConfigFn(registerDefinitions);
-
 };

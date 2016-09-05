@@ -87,19 +87,21 @@ const fakeDB = {
     fetch(itemsType, criteria, callback) {
         if (typeof itemsType !== 'string' || typeof criteria !== 'object') throw new Error('Incorret input types');
 
-        if (itemsType === 'check')
+        if (itemsType === 'check') {
             return callback(null, [fakeCheck]);
-        else if (itemsType === 'user')
+        } else if (itemsType === 'user') {
             return callback(null, [fakeUser]);
+        }
     },
 
     fetchOne(itemType, itemId, callback) {
         if (typeof itemType !== 'string' || typeof itemId !== 'string') throw new Error('Incorrect input types');
 
-        if (itemType === 'check')
+        if (itemType === 'check') {
             return callback(null, fakeCheck);
-        else if (itemType === 'user')
+        } else if (itemType === 'user') {
             return callback(null, fakeUser);
+        }
     },
 
     fetchAndPopulate(itemType, itemId, associationType, callback) {
@@ -116,14 +118,14 @@ describe('#user and check management', () => {
     let user;
     // let check;
 
-    it('should create an user', function(done) {
+    it('should create an user', (done) => {
         const userData = {
             username: 'Test User',
             email: 'bertrandjun@gmail.com',
             password: 'testtest',
             confirmPassword: 'testtest',
         };
-        UserManagement.create(fakeDB.create, userData, function(err, createdUser) {
+        UserManagement.create(fakeDB.create, userData, (err, createdUser) => {
             assert.isNull(err, 'did not throw an error');
             assert.isObject(createdUser, 'return an user');
             assert.deepEqual(createdUser.username, userData.username, 'return an user with well populated fields');
@@ -131,8 +133,8 @@ describe('#user and check management', () => {
             done();
         });
     });
-    it('should confirm the user', function(done) {
-        UserManagement.confirm(fakeDB.update, user.id, function(err) {
+    it('should confirm the user', (done) => {
+        UserManagement.confirm(fakeDB.update, user.id, (err) => {
             assert.isNull(err, 'did not throw an error');
             done();
         });
@@ -153,11 +155,11 @@ describe('#user and check management', () => {
     //         done();
     //     });
     // });
-    it('should update the created check', function(done) {
+    it('should update the created check', (done) => {
         const data = {
             name: 'HTTP @ Google 2',
         };
-        CheckManagement.updateCheck(fakeDB.fetchOne, fakeDB.update, fakeUser.id, fakeCheck.id, data, function(err, updatedChecks) {
+        CheckManagement.updateCheck(fakeDB.fetchOne, fakeDB.update, fakeUser.id, fakeCheck.id, data, (err, updatedChecks) => {
             assert.isNull(err, 'did not throw an error');
             assert.isArray(updatedChecks, 'returned an array');
             assert.deepEqual(updatedChecks[0].name, data.name, 'updated the check\'s data');
@@ -177,8 +179,8 @@ describe('#user and check management', () => {
     //         done();
     //     });
     // });
-    it('should destroy the created check', function(done) {
-        CheckManagement.destroyCheck (fakeDB.fetchOne, fakeDB.destroy, fakeUser.id, fakeCheck.id, (err, destroyed) => {
+    it('should destroy the created check', (done) => {
+        CheckManagement.destroyCheck(fakeDB.fetchOne, fakeDB.destroy, fakeUser.id, fakeCheck.id, (err, destroyed) => {
             assert.isNull(err, 'did not throw an error');
             assert.isArray(destroyed, 'returned an array');
             assert.isObject(destroyed[0], 'the array contains the deleted check');

@@ -7,7 +7,7 @@ class LoginFormComponent extends React.Component {
     render() {
         let closeButton = null;
         if (typeof this.props.close !== 'undefined') {
-            closeButton = <button className="c-box__close" onClick={() => this.props.close()}></button>;
+            closeButton = <button className="c-box__close" onClick={() => this.props.close()} />;
         }
 
         return (

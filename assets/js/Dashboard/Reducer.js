@@ -56,10 +56,10 @@ export const checksReducer = (state = {}, action) => {
                 return { ...newState };
             }
             // Otherwise, we only update the history values
-			const newState = { ...state };
+            const newState = { ...state };
             // We update the last ping of every check
             action.checks.forEach(check => { newState[check.id].history = check.history; });
-			return { ...newState };
+            return { ...newState };
         }
 
         case types.CHECK_DESTROY: {

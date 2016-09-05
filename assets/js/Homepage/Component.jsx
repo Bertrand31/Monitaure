@@ -20,7 +20,7 @@ const HomepageComponent = ({ popover, open }) => (
                     </li>
                     <li>
                         <a
-                            href="#_"
+                            href="/login"
                             className="button button-empty button-round"
                             onClick={(e) => { e.preventDefault(); open('login'); }}
                         >Log in</a>
@@ -35,7 +35,7 @@ const HomepageComponent = ({ popover, open }) => (
                     <h3>A simple and hassle-free server monitoring dashboard</h3>
                     <a
                         className="button button-round button-huge"
-                        href="#_"
+                        href="/signup"
                         onClick={(e) => { e.preventDefault(); open('signup'); }}
                     >Sign up</a>
                 </div>
@@ -65,8 +65,7 @@ const HomepageController = ({ openPopover = {}, open, close }) => {
 };
 
 HomepageController.propTypes = {
-    isOpen: PropTypes.object,
-    popin: PropTypes.element,
+    openPopover: PropTypes.object.isRequired,
     open: PropTypes.func.isRequired,
     close: PropTypes.func.isRequired,
 };
