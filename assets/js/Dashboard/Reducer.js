@@ -8,6 +8,7 @@ const checkReducer = (state, action) => {
                     id: 'tmpID',
                     name: '',
                     domainNameOrIP: '',
+                    port: 80,
                     history: [],
                     emailNotifications: false,
                     isEditing: true,

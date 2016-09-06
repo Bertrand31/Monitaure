@@ -30,6 +30,8 @@ class CheckRow extends React.Component {
 
         if (inputType === 'checkbox') {
             inputValue = e.target.checked;
+        } else if (inputType === 'number') {
+            inputValue = Number(inputValue);
         }
 
         this.props.functions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
@@ -79,6 +81,8 @@ class CheckRow extends React.Component {
                         onChange={(e) => this.handleChange(e)}
                         onKeyDown={(e) => this.handleKeyPress(e)}
                         value={row.port}
+                        min="1"
+                        max="65535"
                         placeholder="e.g. 80"
                     />
                 </td>
@@ -128,7 +132,7 @@ CheckRow.propTypes = {
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         owner: PropTypes.string,
-        port: PropTypes.number,
+        port: PropTypes.number.isRequired,
         updatedAt: PropTypes.string,
         isEditing: PropTypes.bool,
     }),
@@ -148,7 +152,7 @@ CheckRow.propTypes = {
 };
 CheckRow.defaultProps = {
     row: {
-        port: '',
+        port: 1,
     },
 };
 
