@@ -21,11 +21,11 @@ const GlobalStats = ({ globalStats }) => {
     const checksUpDataset = {
         series: [
             {
-                value: percentageOfChecksUp,
+                value: percentageOfChecksUp || 0,
                 className: 'c-donut__primary-bar',
             },
             {
-                value: 100 - percentageOfChecksUp,
+                value: 100 - (percentageOfChecksUp || 0),
                 classname: 'c-donut__secondary-bar',
             },
         ],
@@ -33,7 +33,7 @@ const GlobalStats = ({ globalStats }) => {
     const availabilityDataset = {
         series: [
             {
-                value: globalStats.availabilitiesAvg,
+                value: globalStats.availabilitiesAvg || 0,
                 className: 'c-donut__primary-bar',
             },
             {
@@ -50,6 +50,7 @@ const GlobalStats = ({ globalStats }) => {
             },
         ],
     };
+
     const lastErrorExists = !!globalStats.lastError.time;
     const lastErrorHour = lastErrorExists ? moment(globalStats.lastError.time).format('HH:SS') : '-';
     const lastErrorDay = lastErrorExists ? moment(globalStats.lastError.time).format('DD/MM') : '-';
@@ -84,7 +85,7 @@ const GlobalStats = ({ globalStats }) => {
                 </div>
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">
-                        {globalStats.availabilitiesAvg}
+                        {globalStats.availabilitiesAvg || 0}
                         <span className="c-donut-content__secondary-text">%</span>
                     </span>
                     <span className="c-donut-content__aside-text">average availability</span>
