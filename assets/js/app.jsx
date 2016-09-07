@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from './Redux/Store';
 
 import Homepage from './Homepage/Container';
+import Popover from './Popover/Container';
 import Sidebar from './Sidebar/Container';
 import Dashboard from './Dashboard/Container';
 import SignupForm from './User/Signup/Container';
@@ -13,6 +14,7 @@ import Popins from './Popins/Container';
 const Home = () => (
     <div className="react-container">
         <Popins />
+        <Popover />
         <Homepage />
     </div>
 );
