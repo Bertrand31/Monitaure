@@ -34,4 +34,7 @@
     background:url('/images/hp-desktop.jpg') center center no-repeat;
     background-size:cover;
     border-bottom:solid 20px $green;
+    .wrapper {
+        width:100%;
+    }
 }
