@@ -10,10 +10,10 @@ const common = {
     },
 
     output: {
-        path: '.tmp/public/js/',
+        path: 'public/bundles/',
         filename: 'bundle.js',
         chunkFilename: '[chunkhash].bundle.js',
-        publicPath: '/js/',
+        publicPath: '/bundles/',
     },
 
     module: {

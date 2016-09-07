@@ -71,9 +71,9 @@
     background-position: center center;
     background-repeat:no-repeat;
 }
-[data-health="up"] { background-image:url('../images/status-ok.svg'); }
-[data-health="down"] { background-image:url('../images/status-error.svg'); }
-[data-health="waiting"] { background-image:url('../images/status-waiting.svg'); }
+[data-health="up"] { background-image:url('../svg/status-ok.svg'); }
+[data-health="down"] { background-image:url('../svg/status-error.svg'); }
+[data-health="waiting"] { background-image:url('../svg/status-waiting.svg'); }
 
 [data-speed="slow"] { color:$warn; }
 [data-speed="fast"],[data-perfect=true] { color:$lightgreen; }
@@ -84,7 +84,7 @@
 .destroy-check {
     width:20px;
     height:20px;
-    background-image:url('../images/trash.svg');
+    background-image:url('../svg/trash.svg');
     background-size:20px 20px;
 }
 .is-editing {
