@@ -2,19 +2,19 @@ import React, { PropTypes } from 'react';
 
 const HomepageComponent = ({ isPopoverOpen, open }) => (
     <div className={`front ${isPopoverOpen ? 's-is-blurred' : ''}`} id="page-container">
-        <header className="header">
-            <h1 className="logo">
+        <header className="o-header">
+            <h1 className="o-header__logo">
                 <img src="/images/logo.svg" width="264" height="39" alt="Monitaure - Monitoring for the masses" />
             </h1>
-            <nav className="top-nav">
+            <nav className="o-header__menu">
                 <ul>
-                    <li>
+                    <li className="c-header__menu-item">
                         <a href="#_">About us</a>
                     </li>
-                    <li>
+                    <li className="c-header__menu-item">
                         <a href="#_">Contact</a>
                     </li>
-                    <li>
+                    <li className="c-header__menu-item">
                         <a
                             href="/login"
                             className="button button-empty button-round"
@@ -24,8 +24,8 @@ const HomepageComponent = ({ isPopoverOpen, open }) => (
                 </ul>
             </nav>
         </header>
-        <main className="main">
-            <section className="hp-section desk-section">
+        <main className="o-main">
+            <section className="desk-section">
                 <div className="wrapper">
                     <h2>Monitoring for the masses</h2>
                     <h3>A simple and hassle-free server monitoring dashboard</h3>
