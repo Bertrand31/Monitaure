@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class CheckRow extends React.Component {
     componentDidMount() {
         // We wait for the input to be initialized
-        setTimeout(() => { this.checknameInput.focus(); }, 50);
+        setTimeout(() => { this.checknameInput.focus(); }, 0);
     }
     onCheckRowClick() {
         if (!this.props.isOpenCheck) {
@@ -18,7 +18,7 @@ class CheckRow extends React.Component {
         if (!this.props.row.isEditing) {
             this.props.functions.setWorkingCheck(this.props.row.id);
             // We wait for the input to be enabled
-            setTimeout(() => { this.checknameInput.focus(); }, 50);
+            setTimeout(() => { this.checknameInput.focus(); }, 0);
         } else {
             this.props.functions.saveWorkingCheck(this.props.row);
         }
@@ -150,11 +150,6 @@ CheckRow.propTypes = {
         closeCheckStats: PropTypes.func.isRequired,
     }),
 };
-CheckRow.defaultProps = {
-    row: {
-        port: 1,
-    },
-};
 
 const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updateWorkingCheck, saveWorkingCheck, openCheckStats, closeCheckStats }) => {
     if (Object.keys(checks).length < 1) {
@@ -173,8 +168,8 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
 
     for (const singleCheck in checks) {
         if (Object.prototype.hasOwnProperty.call(checks, singleCheck)) {
-            const isOpenCheck = Boolean(checks[singleCheck].id === openCheckID);
-            const isNewCheck = Boolean(checks[singleCheck].id === 'tmpID');
+            const isOpenCheck = checks[singleCheck].id === openCheckID;
+            const isNewCheck = checks[singleCheck].id === 'tmpID';
 
             let lastPingDuration = '-';
             let lastPingSpeed = '';

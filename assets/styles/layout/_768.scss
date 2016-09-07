@@ -20,11 +20,9 @@
     padding:2em 2.5em 0 2em;
     justify-content:space-between;
 }
-.o-main {
-    &#pane-container {
-        width:calc(100% - 265px);
-        margin-left:auto;
-    }
+.o-pane-container {
+    width:calc(100% - 265px);
+    margin-left:auto;
 }
 .sign-in {
     background:#212121 url('/images/background.svg') no-repeat center center fixed;
