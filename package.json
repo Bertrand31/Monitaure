@@ -42,7 +42,7 @@
     "sails-mongo": "^0.12.1"
   },
   "scripts": {
-    "start:dev": "NODE_ENV=development; nodemon app.js --ignore assets/",
+    "start:dev": "NODE_ENV=development; nodemon app.js --ignore assets/ --ignore public/",
     "start:prod": "NODE_ENV=production sails lift",
     "webpack:dev": "webpack --watch --color --progress",
     "webpack:prod": "webpack --color --progress",
