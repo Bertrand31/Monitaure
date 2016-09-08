@@ -1,24 +1,15 @@
 import React, { PropTypes } from 'react';
+import { browserHistory } from 'react-router';
 
-import LoginForm from './LoginForm/Container';
-import SignupForm from './SignupForm/Container';
-
-const PopoverComponent = ({ openPopover, close }) => {
-    let popover = null;
-    if (openPopover.isOpen !== null) {
-        if (openPopover.isOpen === 'login') {
-            popover = <LoginForm close={close} />;
-        } else if (openPopover.isOpen === 'signup') {
-            popover = <SignupForm close={close} />;
-        }
-        popover = <div onClick={close} className="c-popover-overlay">{popover}</div>;
+const PopoverComponent = ({ form }) => {
+    if (form === null) {
+        return null;
     }
-    return popover;
+    return <div onClick={() => browserHistory.push('/')} className="c-popover-overlay">{form}</div>;
 };
 
 PopoverComponent.propTypes = {
-    openPopover: PropTypes.object.isRequired,
-    close: PropTypes.func.isRequired,
+    form: PropTypes.element,
 };
 
 export default PopoverComponent;

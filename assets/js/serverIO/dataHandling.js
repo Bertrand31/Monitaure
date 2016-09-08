@@ -11,6 +11,7 @@ export function logout(ajaxPost, callback) {
     const url = `${window.location.origin}/logout/`;
     ajaxPost(url, {}, (err, resJSON) => callback(err, resJSON));
 }
+
 // Checks management
 export function createCheck(ajaxPost, data, callback) {
     const url = `${window.location.origin}/Check/create`;

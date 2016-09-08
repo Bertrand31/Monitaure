@@ -29,5 +29,11 @@ module.exports.routes = {
     'get /app': {
         view: 'homepage',
     },
+    'get /login': {
+        view: 'homepage',
+    },
+    'get /signup': {
+        view: 'homepage',
+    },
 
 };

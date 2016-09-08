@@ -10,16 +10,18 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import store from './Redux/Store';
 
-import Homepage from './Homepage/Container';
+import Homepage from './Homepage/Component';
 import Dashboard from './Dashboard/Component';
 
-import Popover from './Homepage/Popover/Container';
+import Popover from './Homepage/Popover/Component';
+import LoginForm from './Homepage/Popover/LoginForm/Container';
+import SignupForm from './Homepage/Popover/SignupForm/Container';
 import Popins from './Popins/Container';
 
-const Home = () => (
+const Home = ({ children }) => (
     <div className="react-container">
         <Popins />
-        <Popover />
+        <Popover form={children} />
         <Homepage />
     </div>
 );
@@ -38,7 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <Provider store={store}>
             <Router history={history}>
-                <Route path='/' component={Home} />
+                <Route path='/' component={Home}>
+                    <Route path='login' component={LoginForm} />
+                    <Route path='signup' component={SignupForm} />
+                </Route>
                 <Route path='/app' component={App}>
                     <IndexRoute component={Dashboard} />
                 </Route>

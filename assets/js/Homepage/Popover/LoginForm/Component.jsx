@@ -1,18 +1,14 @@
 import React, { PropTypes } from 'react';
+import { Link, browserHistory } from 'react-router';
 
 class LoginFormComponent extends React.Component {
     componentDidMount() {
         this.usernameInput.focus();
     }
     render() {
-        let closeButton = null;
-        if (typeof this.props.close !== 'undefined') {
-            closeButton = <button className="c-box__close" onClick={() => this.props.close()} />;
-        }
-
         return (
             <div onClick={(e) => { e.stopPropagation(); }} className="c-box">
-                {closeButton}
+                <button className="c-box__close" onClick={() => browserHistory.push('/')} />
                 <h2>Log in</h2>
                 <form
                     id="login"
@@ -45,7 +41,7 @@ class LoginFormComponent extends React.Component {
                     </fieldset>
                     <input type="submit" value="Log in" />
                 </form>
-                <p className="c-box__text">Don't have an account? <a href="/signup">Sign up!</a></p>
+                <p className="c-box__text">Don't have an account? <Link to="/signup">Sign up!</Link></p>
             </div>
         );
     }

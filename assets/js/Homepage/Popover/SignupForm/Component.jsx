@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link, browserHistory } from 'react-router';
 
 class SignupFormComponent extends React.Component {
     componentDidMount() {
@@ -13,14 +14,9 @@ class SignupFormComponent extends React.Component {
             );
         }
 
-        let closeButton = null;
-        if (typeof this.props.close !== 'undefined') {
-            closeButton = <button className="c-box__close" onClick={() => this.props.close()} />;
-        }
-
         return (
             <div onClick={(e) => { e.stopPropagation(); }} className="c-box signup-block">
-                {closeButton}
+                <button className="c-box__close" onClick={() => browserHistory.push('/')} />
                 <h2>Create an account</h2>
                 <form
                     method="post"
@@ -75,7 +71,7 @@ class SignupFormComponent extends React.Component {
                     </fieldset>
                     <input type="submit" value="Sign up" />
                 </form>
-                <p className="c-box__text">Already have an account? <a href="/login">Log in!</a></p>
+                <p className="c-box__text">Already have an account? <Link to="/login">Log in!</Link></p>
             </div>
         );
     }
@@ -85,7 +81,6 @@ SignupFormComponent.propTypes = {
     user: PropTypes.object.isRequired,
     update: PropTypes.func.isRequired,
     signup: PropTypes.func.isRequired,
-    close: PropTypes.func,
 };
 
 export default SignupFormComponent;

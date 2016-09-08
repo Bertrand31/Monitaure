@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import SignupForm from './Component';
-import { login, update } from '../../../User/Actions';
 
 import { POSTer } from '../../../serverIO/ajaxMethods';
 import * as API from '../../../serverIO/dataHandling';
 
 import { create as popinCreate } from '../../../Popins/Actions';
+import { signup, update } from '../../../User/Actions';
+import SignupForm from './Component';
 
 const mapStateToProps = (state) => ({ user: state.user });
 
