@@ -3,17 +3,20 @@ const merge = require('webpack-merge');
 
 const common = {
     context: __dirname,
-    entry: ['./assets/js/app.jsx'],
+    entry: {
+        app: './assets/js/app.jsx',
+        sw: './assets/js/sw.js',
+    },
 
     resolve: {
         extensions: ['', '.js', '.jsx'],
     },
 
     output: {
-        path: 'public/bundles/',
-        filename: 'bundle.js',
-        chunkFilename: '[chunkhash].bundle.js',
-        publicPath: '/bundles/',
+        path: 'public/',
+        filename: '[name].js',
+        chunkFilename: '[chunkhash].app.js',
+        publicPath: '/',
     },
 
     module: {
