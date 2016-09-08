@@ -28,9 +28,9 @@ passport.use(
             const user = data[0];
 
             if (!user) {
-                return callback(null, false, { message: 'Incorrect username.' });
+                return callback(null, false, { message: 'Incorrect username' });
             } else if (!user.confirmedAccount) {
-                return callback(null, false, { message: 'Account not confirmed yet. Check your emails.' });
+                return callback(null, false, { message: 'Account not confirmed yet. Please check your emails.' });
             }
 
             bcrypt.compare(password, user.password, (err, res) => {
@@ -38,18 +38,19 @@ passport.use(
 
                 if (!res) {
                     return callback(null, false, {
-                        message: 'Invalid Password',
+                        message: 'Invalid password',
                     });
                 }
 
                 const returnUser = {
                     username,
                     email: user.email,
+                    emailHash: user.emailHash,
                     createdAt: user.createdAt,
                     id: user.id,
                 };
                 return callback(null, returnUser, {
-                    message: 'Logged In Successfully',
+                    message: 'Logged in successfully',
                 });
             });
         });

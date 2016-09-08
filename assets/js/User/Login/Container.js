@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
     login: (data) => {
         API.login(POSTer, data, (err, res) => {
             if (err) return dispatch(popinCreate('alert', err.message));
+            if (!res.user) return dispatch(popinCreate('alert', res.message));
 
             dispatch(popinCreate('info', res.message));
 

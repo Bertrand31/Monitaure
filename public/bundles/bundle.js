@@ -33498,6 +33498,7 @@
 	        login: function login(data) {
 	            API.login(_ajaxMethods.POSTer, data, function (err, res) {
 	                if (err) return dispatch((0, _Actions2.create)('alert', err.message));
+	                if (!res.user) return dispatch((0, _Actions2.create)('alert', res.message));
 
 	                dispatch((0, _Actions2.create)('info', res.message));
 
