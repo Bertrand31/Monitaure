@@ -10,11 +10,6 @@ module.exports.routes = {
      *                                                                          *
     ***************************************************************************/
 
-    // '/': 'CheckController.show',
-    'get /': [
-        { policy: 'homepageToggle' },
-    ],
-
     'post /signup': 'UserController.create',
     'post /login': 'AuthController.login',
     'post /logout': 'AuthController.logout',
@@ -26,6 +21,13 @@ module.exports.routes = {
     },
     'get /500': {
         view: '500',
-    }
+    },
+
+    'get /': {
+        view: 'homepage',
+    },
+    'get /app': {
+        view: 'homepage',
+    },
 
 };

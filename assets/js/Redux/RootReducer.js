@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 
 import popinsReducer from '../Popins/Reducer';
 import userReducer from '../User/Reducer';
@@ -12,4 +13,5 @@ export default combineReducers({
     openCheck: openCheckReducer,
     globalStats: globalStatsReducer,
     openPopover: popoverReducer,
+    routing: routerReducer,
 });

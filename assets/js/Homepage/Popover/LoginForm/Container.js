@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+
 import LoginForm from './Component';
 import { login, update } from '../../../User/Actions';
 
@@ -18,8 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
             if (err) return dispatch(popinCreate('alert', err.message));
             if (!res.user) return dispatch(popinCreate('alert', res.message));
 
-            dispatch(popinCreate('info', res.message));
-
+            browserHistory.push('/app');
             return dispatch(login(res.user));
         });
     },

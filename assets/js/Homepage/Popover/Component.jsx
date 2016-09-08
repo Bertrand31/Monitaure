@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
-import LoginForm from '../User/Login/Container';
-import SignupForm from '../User/Signup/Container';
+import LoginForm from './LoginForm/Container';
+import SignupForm from './SignupForm/Container';
 
 const PopoverComponent = ({ openPopover, close }) => {
     let popover = null;
