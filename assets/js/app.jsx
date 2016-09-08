@@ -1,3 +1,7 @@
+import 'babel-polyfill';
+import 'isomorphic-fetch';
+import 'fastclick';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

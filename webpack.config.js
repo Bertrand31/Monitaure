@@ -3,7 +3,7 @@ const merge = require('webpack-merge');
 
 const common = {
     context: __dirname,
-    entry: ['whatwg-fetch', 'babel-polyfill', './assets/js/app.jsx'],
+    entry: ['./assets/js/app.jsx'],
 
     resolve: {
         extensions: ['', '.js', '.jsx'],
