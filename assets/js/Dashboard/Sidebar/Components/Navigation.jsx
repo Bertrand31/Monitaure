@@ -1,24 +1,19 @@
 import React from 'react';
 
-const onNavigation = (e) => {
-    e.preventDefault();
-    return;
-};
-
-const Navigation = () => (
+const Navigation = ({ logout }) => (
     <div className="sidebar__nav--wrapper">
         <nav className="main-nav">
             <ul>
                 <li className="active">
-                    <a onClick={onNavigation} href="/" id="dashboard-pane">Dashboard</a>
+                    <a href="#_" id="dashboard-pane">Dashboard</a>
                 </li>
                 <li className="disabled">
-                    <a onClick={onNavigation} href="/reports" id="reports-pane">
+                    <a href="#_">
                         Reports<span className="info">14</span>
                     </a>
                 </li>
                 <li className="disabled">
-                    <a onClick={onNavigation} href="/messages" id="messages-pane">
+                    <a href="#_">
                         Messages<span className="info">132</span>
                     </a>
                 </li>
@@ -27,7 +22,7 @@ const Navigation = () => (
         <nav className="misc-nav">
             <ul>
                 <li className="disabled">
-                    <a onClick={onNavigation} href="/settings" id="settings-pane">
+                    <a href="#_" id="settings-pane">
                         Settings
                     </a>
                 </li>
@@ -41,7 +36,10 @@ const Navigation = () => (
         <nav className="auth-nav">
             <ul>
                 <li>
-                    <a href="/logout">
+                    <a
+                        href="/logout"
+                        onClick={e => { e.preventDefault(); logout() }}
+                    >
                         Log out
                     </a>
                 </li>

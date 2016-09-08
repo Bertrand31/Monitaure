@@ -30,3 +30,9 @@ export function login(data) {
         user: data,
     };
 }
+
+export function logout() {
+    return {
+        type: types.USER_LOGOUT,
+    };
+}

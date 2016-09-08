@@ -7,6 +7,10 @@ export function login(ajaxPost, data, callback) {
     const url = `${window.location.origin}/login/`;
     ajaxPost(url, data, (err, resJSON) => callback(err, resJSON));
 }
+export function logout(ajaxPost, callback) {
+    const url = `${window.location.origin}/logout/`;
+    ajaxPost(url, {}, (err, resJSON) => callback(err, resJSON));
+}
 // Checks management
 export function createCheck(ajaxPost, data, callback) {
     const url = `${window.location.origin}/Check/create`;

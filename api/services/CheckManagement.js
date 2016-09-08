@@ -221,8 +221,8 @@ module.exports = {
 
             // Object containing the user information and its checks
             const userData = {
-                userName: user.username,
-                userEmailMD5: user.emailHash,
+                username: user.username,
+                emailHash: user.emailHash,
                 checks: user.checks,
             };
             // Object containing all previously computed stats

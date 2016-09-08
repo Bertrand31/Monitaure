@@ -1,34 +1,31 @@
 import { connect } from 'react-redux';
-import LoginForm from './Component';
-import { login, update } from '../Actions';
+
+import Sidebar from './Component';
 
 import { POSTer } from '../../serverIO/ajaxMethods';
 import * as API from '../../serverIO/dataHandling';
-
 import { create as popinCreate } from '../../Popins/Actions';
+import * as UserActions from '../../User/Actions';
+
 
 const mapStateToProps = (state) => ({ user: state.user });
 
 const mapDispatchToProps = (dispatch) => ({
-
-    update: (attrName, attrValue) => dispatch(update(attrName, attrValue)),
-
-    login: (data) => {
-        API.login(POSTer, data, (err, res) => {
+    logout() {
+        API.logout(POSTer, (err, res) => {
             if (err) return dispatch(popinCreate('alert', err.message));
-            if (!res.user) return dispatch(popinCreate('alert', res.message));
 
             dispatch(popinCreate('info', res.message));
 
-            return dispatch(login(res.user));
+            dispatch(UserActions.logout());
         });
     },
-
 });
 
-const LoginFormContainer = connect(
+const SidebarContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(LoginForm);
+)(Sidebar);
 
-export default LoginFormContainer;
+export default SidebarContainer;
+

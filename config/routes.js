@@ -15,21 +15,11 @@ module.exports.routes = {
         { policy: 'homepageToggle' },
     ],
 
-    'get /signup': [
-        { policy: 'forceDashboard' },
-        { view: 'signup' },
-    ],
-
     'post /signup': 'UserController.create',
-
-    'get /login': [
-        { policy: 'forceDashboard' },
-        { view: 'login' },
-    ],
     'post /login': 'AuthController.login',
-    'get /account/confirm/:id': 'UserController.confirm',
+    'post /logout': 'AuthController.logout',
 
-    '/logout': 'AuthController.logout',
+    'get /account/confirm/:id': 'UserController.confirm',
 
     'get /403': {
         view: '403',

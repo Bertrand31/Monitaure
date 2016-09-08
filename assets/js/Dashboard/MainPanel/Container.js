@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
-import { POSTer, GETer } from '../serverIO/ajaxMethods';
-import * as API from '../serverIO/dataHandling';
-import { create } from '../Popins/Actions';
+import { POSTer, GETer } from '../../serverIO/ajaxMethods';
+import * as API from '../../serverIO/dataHandling';
+import { create as popinCreate } from '../../Popins/Actions';
 
 import * as actions from './Actions';
-import * as UserActions from '../User/Actions';
-import Dashboard from './Component';
+import * as UserActions from '../../User/Actions';
+import MainPanel from './Component';
 
 const mapStateToProps = (state) => ({
     checks: state.checks,
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     populateAll() {
         API.getUserAndGlobalStats(GETer, (err, data) => {
-            if (err) return dispatch(create('alert', err.message));
+            if (err) return dispatch(popinCreate('alert', err.message));
 
             dispatch(actions.populateChecks(data.userData.checks));
 
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(actions.destroyCheck(id));
         if (id !== 'tmpID') {
             API.destroyCheck(GETer, id, (err) => {
-                if (err) return dispatch(create('alert', err.message));
+                if (err) return dispatch(popinCreate('alert', err.message));
             });
         }
     },
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
     saveWorkingCheck(data) {
         if (data.id === 'tmpID') {
             API.createCheck(POSTer, data, (err, newData) => {
-                if (err) return dispatch(create('alert', err.message));
+                if (err) return dispatch(popinCreate('alert', err.message));
 
                 dispatch(actions.destroyCheck('tmpID'));
 
@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
             dispatch(actions.saveWorkingCheck(data));
 
             API.updateCheck(POSTer, data, (err) => {
-                if (err) return dispatch(create('alert', err.message));
+                if (err) return dispatch(popinCreate('alert', err.message));
             });
         }
     },
@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch) => ({
             API.getCheckStats(GETer, id, (err, data) => {
                 if (err) {
                     dispatch(actions.closeStats());
-                    return dispatch(create('alert', 'No data yet!'));
+                    return dispatch(popinCreate('alert', 'No data yet!'));
                 }
 
                 dispatch(actions.openStats(data));
@@ -80,11 +80,20 @@ const mapDispatchToProps = (dispatch) => ({
     closeCheckStats() {
         dispatch(actions.closeStats());
     },
+    logout() {
+        API.logout(POSTer, (err, res) => {
+            if (err) return dispatch(popinCreate('alert', err.message));
+
+            dispatch(popinCreate('info', res.message));
+
+            dispatch(UserActions.logout());
+        });
+    },
 });
 
-const DashboardContainer = connect(
+const MainPanelContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Dashboard);
+)(MainPanel);
 
-export default DashboardContainer;
+export default MainPanelContainer;
