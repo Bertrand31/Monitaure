@@ -9,15 +9,6 @@ The application does not need any client-side installation or configuration.
 
 [![Monitaure main dashboard](https://monitaure.io/images/hp-dashboard-preview.png)](https://monitaure.io)
 
-## Project purpose
-
-While it is a useful service anyone can use, it is also meant -as a team project- to showcase our skills.
-
-The team is composed of the following people:
-* [Bertrand Junqua](https://awebsiteabout.me) for both the front-end and back-end developments, and server administration ;
-* [Guillaume Parra](https://whyyouwillhire.me) who takes care of the UI & UX ;
-* [Quentin Bucciarelli](https://www.behance.net/qbucciarelli) who laid a hand for writing some of the CSS and the email templates.
-
 ## Why it's awesome
 
 From a technical standpoint, here are some of the key aspects of Monitaure:
@@ -31,6 +22,7 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
 * Front-end
     * React to manage user interface ;
     * Redux to manage application state ;
+    * React-Router to handle front-end routing ;
     * JSX and some Jade for HTML ;
     * SASS for CSS ;
     * Babel to transpile ES6 to older Javascript ;
@@ -42,6 +34,15 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * Heap Analytics for retroactive interaction statistics.
 
 Concerning the graphical aspect of the application, you can find all the goodies [here on Dribble](https://dribbble.com/guillaumeparra/tags/monitaure).
+
+## Project purpose
+
+While it is a useful service anyone can use, it is also meant -as a team project- to showcase our skills.
+
+The team is composed of the following people:
+* [Bertrand Junqua](https://awebsiteabout.me) for both the front-end and back-end developments, and server administration ;
+* [Guillaume Parra](https://whyyouwillhire.me) who takes care of the UI & UX ;
+* [Quentin Bucciarelli](https://www.behance.net/qbucciarelli) who laid a hand for writing some of the CSS and the email templates.
 
 ## Bonus: Error pages
 
