@@ -19,6 +19,11 @@ const userReducer = (state = {}, action) => {
                 ...action.user,
             };
 
+        case types.USER_LOGIN:
+            return {
+                ...action.user,
+            };
+
         default:
             return state;
     }

@@ -5,7 +5,7 @@ import { update, signup } from '../Actions';
 import { POSTer } from '../../serverIO/ajaxMethods';
 import * as API from '../../serverIO/dataHandling';
 
-import { create } from '../../Popins/Actions';
+import { create as popinCreate } from '../../Popins/Actions';
 
 const mapStateToProps = (state) => ({ user: state.user });
 
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
 
     signup: (data) => {
         API.createUser(POSTer, data, (err, user) => {
-            if (err) return dispatch(create('alert', err.message));
+            if (err) return dispatch(popinCreate('alert', err.message));
 
             return dispatch(signup(user));
         });

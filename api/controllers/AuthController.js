@@ -14,7 +14,7 @@ module.exports = {
     login(req, res) {
         passport.authenticate('local', (err, user, info) => {
             if (err || !user) {
-                return res.view('login', {
+                return res.send({
                     message: info.message,
                     user,
                 });
@@ -23,7 +23,11 @@ module.exports = {
                 if (err) res.send(err);
 
                 UserManagement.updateLastConnection(DB.update, user.id);
-                return res.redirect('/');
+
+                return res.send({
+                    message: info.message,
+                    user,
+                });
             });
         })(req, res);
     },

@@ -18,11 +18,11 @@
 }
 .c-popin--info .c-popin__body:before {
     border:2px solid $info;
-    background-image:url('/images/status-ok.svg');
+    background-image:url('../svg/status-ok.svg');
 }
 .c-popin--alert .c-popin__body:before {
         border:2px solid $alert;
-        background-image:url('/images/status-error.svg');
+        background-image:url('../svg/status-error.svg');
 }
 .c-popin__body {
     position:relative;

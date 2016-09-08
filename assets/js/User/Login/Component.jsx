@@ -14,7 +14,12 @@ class LoginFormComponent extends React.Component {
             <div onClick={(e) => { e.stopPropagation(); }} className="c-box">
                 {closeButton}
                 <h2>Log in</h2>
-                <form id="login" method="post" action="/login">
+                <form
+                    id="login"
+                    method="post"
+                    action="/login"
+                    onSubmit={e => { e.preventDefault(); this.props.login(this.props.user); }}
+                >
                     <fieldset className="login">
                         <label htmlFor="username">Username</label>
                         <input
@@ -25,6 +30,7 @@ class LoginFormComponent extends React.Component {
                             placeholder="Your username"
                             ref={ref => this.usernameInput = ref}
                             required minLength="2" maxLength="20"
+                            onChange={e => this.props.update(e.target.name, e.target.value)}
                         />
                         <label htmlFor="password">Password</label>
                         <input
@@ -34,6 +40,7 @@ class LoginFormComponent extends React.Component {
                             autoComplete="password"
                             placeholder="Your password"
                             required minLength="6"
+                            onChange={e => this.props.update(e.target.name, e.target.value)}
                         />
                     </fieldset>
                     <input type="submit" value="Log in" />
@@ -45,6 +52,9 @@ class LoginFormComponent extends React.Component {
 }
 
 LoginFormComponent.propTypes = {
+    user: PropTypes.object.isRequired,
+    update: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
     close: PropTypes.func,
 };
 

@@ -23,3 +23,10 @@ export function signup(data) {
         user: data,
     };
 }
+
+export function login(data) {
+    return {
+        type: types.USER_LOGIN,
+        user: data,
+    };
+}
