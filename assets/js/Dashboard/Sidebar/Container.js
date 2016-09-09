@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({ user: state.user });
 
 const mapDispatchToProps = (dispatch) => ({
     logout() {
-        API.logout(POSTer, (err, res) => {
+        API.logout(POSTer, (err) => {
             if (err) return dispatch(popinCreate('alert', err.message));
 
             browserHistory.push('/');

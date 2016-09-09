@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import Sidebar from './Sidebar/Container';
 import MainPanel from './MainPanel/Container';

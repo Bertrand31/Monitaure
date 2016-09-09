@@ -145,7 +145,7 @@
 	// Service Worker
 	if ('serviceWorker' in navigator) {
 	    navigator.serviceWorker.register('/sw.js', { scope: '/' });
-	};
+	}
 
 /***/ },
 /* 1 */
@@ -38823,7 +38823,7 @@
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	    return {
 	        logout: function logout() {
-	            API.logout(_ajaxMethods.POSTer, function (err, res) {
+	            API.logout(_ajaxMethods.POSTer, function (err) {
 	                if (err) return dispatch((0, _Actions.create)('alert', err.message));
 
 	                _reactRouter.browserHistory.push('/');
@@ -39007,6 +39007,10 @@
 	            )
 	        )
 	    );
+	};
+
+	Navigation.propTypes = {
+	    logout: _react.PropTypes.func.isRequired
 	};
 
 	exports.default = Navigation;

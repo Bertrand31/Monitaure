@@ -5,7 +5,7 @@ import 'fastclick';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { browserHistory, Router, Route, IndexRoute, Link, withRouter } from 'react-router';
+import { browserHistory, Router, Route, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import store from './Redux/Store';
@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <Provider store={store}>
             <Router history={history}>
-                <Route path='/' component={Home}>
-                    <Route path='login' component={LoginForm} />
-                    <Route path='signup' component={SignupForm} />
+                <Route path="/" component={Home}>
+                    <Route path="login" component={LoginForm} />
+                    <Route path="signup" component={SignupForm} />
                 </Route>
-                <Route path='/app' component={App}>
+                <Route path="/app" component={App}>
                     <IndexRoute component={Dashboard} />
                 </Route>
                 <App />
@@ -57,6 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Service Worker
 if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('/sw.js', { scope: '/' });
-};
+    navigator.serviceWorker.register('/sw.js', { scope: '/' });
+}
 

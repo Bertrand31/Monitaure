@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const Navigation = ({ logout }) => (
     <div className="sidebar__nav--wrapper">
@@ -38,7 +38,7 @@ const Navigation = ({ logout }) => (
                 <li>
                     <a
                         href="/logout"
-                        onClick={e => { e.preventDefault(); logout() }}
+                        onClick={e => { e.preventDefault(); logout(); }}
                     >
                         Log out
                     </a>
@@ -47,5 +47,9 @@ const Navigation = ({ logout }) => (
         </nav>
     </div>
 );
+
+Navigation.propTypes = {
+    logout: PropTypes.func.isRequired,
+};
 
 export default Navigation;
