@@ -1,10 +1,10 @@
 import * as types from './Constants';
 
-const userReducer = (state = {}, action) => {
+const userReducer = (state = { isLoggedIn: window.isLoggedIn }, action) => {
     switch (action.type) {
-        // TODO: enlever d'ici et de l'API
         case types.USER_INFO_POPULATE:
             return {
+                ...state,
                 username: action.userData.username,
                 emailHash: action.userData.emailHash,
             };
@@ -23,12 +23,12 @@ const userReducer = (state = {}, action) => {
         case types.USER_LOGIN:
             return {
                 ...action.user,
-                loggedIn: true,
+                isLoggedIn: true,
             };
 
         case types.USER_LOGOUT:
             return {
-                loggedIn: false,
+                isLoggedIn: false,
             };
 
         default:

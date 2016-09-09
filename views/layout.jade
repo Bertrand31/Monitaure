@@ -43,6 +43,9 @@ html(lang="en")
     meta(name="twitter:creator", content="@Bertrand31")
     meta(name="twitter:image:alt", content="Monitaure, a simple monitoring dashboard")
 
+    script.
+        window.isLoggedIn = #{isLoggedIn};
+
     script(src="/app.js")
 
     script(type="text/javascript").

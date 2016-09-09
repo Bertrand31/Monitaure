@@ -96,8 +96,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Home = function Home(_ref) {
+	var Root = function Root(_ref) {
+	    var isLoggedIn = _ref.isLoggedIn;
 	    var children = _ref.children;
+
+	    if (isLoggedIn) {
+	        return _react2.default.createElement(
+	            'div',
+	            { className: 'react-container' },
+	            _react2.default.createElement(_Container6.default, null),
+	            _react2.default.createElement(_Component4.default, null)
+	        );
+	    }
+
 	    return _react2.default.createElement(
 	        'div',
 	        { className: 'react-container' },
@@ -107,15 +118,10 @@
 	    );
 	};
 
-	var App = function App(_ref2) {
-	    var children = _ref2.children;
-	    return _react2.default.createElement(
-	        'div',
-	        { className: 'react-container' },
-	        _react2.default.createElement(_Container6.default, null),
-	        children
-	    );
+	var mapStateToProps = function mapStateToProps(state) {
+	    return { isLoggedIn: state.user.isLoggedIn };
 	};
+	var App = (0, _reactRedux.connect)(mapStateToProps)(Root);
 
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, _Store2.default);
 
@@ -128,16 +134,10 @@
 	            { history: history },
 	            _react2.default.createElement(
 	                _reactRouter.Route,
-	                { path: '/', component: Home },
+	                { path: '/', component: App },
 	                _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _Container2.default }),
 	                _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _Container4.default })
-	            ),
-	            _react2.default.createElement(
-	                _reactRouter.Route,
-	                { path: '/app', component: App },
-	                _react2.default.createElement(_reactRouter.IndexRoute, { component: _Component4.default })
-	            ),
-	            _react2.default.createElement(App, null)
+	            )
 	        )
 	    ), document.getElementById('root'));
 	});
@@ -38412,16 +38412,15 @@
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	var userReducer = function userReducer() {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? { isLoggedIn: window.isLoggedIn } : arguments[0];
 	    var action = arguments[1];
 
 	    switch (action.type) {
-	        // TODO: enlever d'ici et de l'API
 	        case types.USER_INFO_POPULATE:
-	            return {
+	            return _extends({}, state, {
 	                username: action.userData.username,
 	                emailHash: action.userData.emailHash
-	            };
+	            });
 
 	        case types.USER_UPDATE:
 	            return _extends({}, state, _defineProperty({}, action.attrName, action.attrValue));
@@ -38431,12 +38430,12 @@
 
 	        case types.USER_LOGIN:
 	            return _extends({}, action.user, {
-	                loggedIn: true
+	                isLoggedIn: true
 	            });
 
 	        case types.USER_LOGOUT:
 	            return {
-	                loggedIn: false
+	                isLoggedIn: false
 	            };
 
 	        default:
@@ -60192,7 +60191,7 @@
 	                if (err) return dispatch((0, _Actions2.create)('alert', err.message));
 	                if (!res.user) return dispatch((0, _Actions2.create)('alert', res.message));
 
-	                _reactRouter.browserHistory.push('/app');
+	                _reactRouter.browserHistory.push('/');
 	                return dispatch((0, _Actions.login)(res.user));
 	            });
 	        }

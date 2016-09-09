@@ -24,16 +24,13 @@ module.exports.routes = {
     },
 
     'get /': {
-        view: 'homepage',
-    },
-    'get /app': {
-        view: 'homepage',
+        policy: 'homepageToggle',
     },
     'get /login': {
-        view: 'homepage',
+        policy: 'homepageToggle',
     },
     'get /signup': {
-        view: 'homepage',
+        policy: 'homepageToggle',
     },
 
 };

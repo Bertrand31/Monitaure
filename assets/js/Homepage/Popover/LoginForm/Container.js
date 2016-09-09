@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
             if (err) return dispatch(popinCreate('alert', err.message));
             if (!res.user) return dispatch(popinCreate('alert', res.message));
 
-            browserHistory.push('/app');
+            browserHistory.push('/');
             return dispatch(login(res.user));
         });
     },

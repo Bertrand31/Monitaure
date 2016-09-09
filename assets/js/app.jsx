@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 
 import { browserHistory, Router, Route, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import store from './Redux/Store';
 
 import Homepage from './Homepage/Component';
@@ -18,20 +18,27 @@ import LoginForm from './Homepage/Popover/LoginForm/Container';
 import SignupForm from './Homepage/Popover/SignupForm/Container';
 import Popins from './Popins/Container';
 
-const Home = ({ children }) => (
-    <div className="react-container">
-        <Popins />
-        <Popover form={children} />
-        <Homepage />
-    </div>
-);
+const Root = ({ isLoggedIn, children }) => {
+    if (isLoggedIn) {
+        return (
+            <div className="react-container">
+                <Popins />
+                <Dashboard />
+            </div>
+        );
+    }
 
-const App = ({ children }) => (
-    <div className="react-container">
-        <Popins />
-        {children}
-    </div>
-);
+    return (
+        <div className="react-container">
+            <Popins />
+            <Popover form={children} />
+            <Homepage />
+        </div>
+    );
+};
+
+const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn });
+const App = connect(mapStateToProps)(Root);
 
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -40,14 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <Provider store={store}>
             <Router history={history}>
-                <Route path="/" component={Home}>
+                <Route path="/" component={App}>
                     <Route path="login" component={LoginForm} />
                     <Route path="signup" component={SignupForm} />
                 </Route>
-                <Route path="/app" component={App}>
-                    <IndexRoute component={Dashboard} />
-                </Route>
-                <App />
             </Router>
         </Provider>,
 
