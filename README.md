@@ -23,6 +23,7 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * React to manage user interface ;
     * Redux to manage application state ;
     * React-Router to handle front-end routing ;
+    * A Service Worker to allow the app to be installed on phones and to work offline ;
     * JSX and some Jade for HTML ;
     * SASS for CSS ;
     * Babel to transpile ES6 to older Javascript ;
