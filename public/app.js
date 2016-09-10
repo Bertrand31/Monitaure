@@ -101,6 +101,10 @@
 	    var children = _ref.children;
 
 	    if (isLoggedIn) {
+	        // Resetting to HP when refrshing the app
+	        if ('serviceWorker' in navigator) {
+	            navigator.serviceWorker.register('/sw.js', { scope: '/' });
+	        }
 	        return _react2.default.createElement(
 	            'div',
 	            { className: 'react-container' },
@@ -116,6 +120,11 @@
 	        _react2.default.createElement(_Component6.default, { form: children }),
 	        _react2.default.createElement(_Component2.default, null)
 	    );
+	};
+
+	Root.propTypes = {
+	    isLoggedIn: _react.PropTypes.bool.isRequired,
+	    children: _react.PropTypes.element.isRequired
 	};
 
 	var mapStateToProps = function mapStateToProps(state) {
@@ -141,11 +150,6 @@
 	        )
 	    ), document.getElementById('root'));
 	});
-
-	// Service Worker
-	if ('serviceWorker' in navigator) {
-	    navigator.serviceWorker.register('/sw.js', { scope: '/' });
-	}
 
 /***/ },
 /* 1 */
@@ -33646,7 +33650,7 @@
 	          if (error) {
 	            listener(error);
 	          } else if (redirectLocation) {
-	            history.transitionTo(redirectLocation);
+	            history.replace(redirectLocation);
 	          } else if (nextState) {
 	            listener(null, nextState);
 	          } else {
@@ -34814,7 +34818,7 @@
 	  },
 
 	  propTypes: {
-	    to: oneOfType([string, object]).isRequired,
+	    to: oneOfType([string, object]),
 	    query: object,
 	    hash: string,
 	    state: object,
@@ -34875,6 +34879,11 @@
 
 
 	    if (router) {
+	      // If user does not specify a `to` prop, return an empty anchor tag.
+	      if (to == null) {
+	        return _react2.default.createElement('a', props);
+	      }
+
 	      var location = createLocationDescriptor(to, { query: query, hash: hash, state: state });
 	      props.href = router.createHref(location);
 
@@ -38822,11 +38831,11 @@
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	    return {
 	        logout: function logout() {
-	            API.logout(_ajaxMethods.POSTer, function (err) {
-	                if (err) return dispatch((0, _Actions.create)('alert', err.message));
+	            _reactRouter.browserHistory.push('/');
+	            dispatch((0, _Actions2.logout)());
 
-	                _reactRouter.browserHistory.push('/');
-	                return dispatch((0, _Actions2.logout)());
+	            return API.logout(_ajaxMethods.POSTer, function (err) {
+	                if (err) return dispatch((0, _Actions.create)('alert', err.message));
 	            });
 	        }
 	    };

@@ -56,7 +56,9 @@
 	    global.toolbox.options.debug = true;
 	    global.toolbox.router.default = global.toolbox.fastest;
 
-	    var filesToCache = ['/app', '/app.js', '/images/logo.svg'];
+	    var filesToCache = [
+	    // '/',
+	    '/app.js', '/images/logo.svg'];
 
 	    // LOCAL GET
 	    global.toolbox.precache(filesToCache);
