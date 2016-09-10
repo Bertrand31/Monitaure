@@ -8,7 +8,7 @@ import 'isomorphic-fetch';
     global.toolbox.router.default = global.toolbox.fastest;
 
     const filesToCache = [
-        '/app',
+        // '/',
         '/app.js',
         '/images/logo.svg',
     ];
