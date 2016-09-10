@@ -20,6 +20,10 @@ import Popins from './Popins/Container';
 
 const Root = ({ isLoggedIn, children }) => {
     if (isLoggedIn) {
+        // Resetting to HP when refrshing the app
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js', { scope: '/' });
+        }
         return (
             <div className="react-container">
                 <Popins />
@@ -57,9 +61,3 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('root')
     );
 });
-
-// Service Worker
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' });
-}
-
