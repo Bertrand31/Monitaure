@@ -13,11 +13,11 @@ const mapStateToProps = (state) => ({ user: state.user });
 
 const mapDispatchToProps = (dispatch) => ({
     logout() {
-        API.logout(POSTer, (err) => {
-            if (err) return dispatch(popinCreate('alert', err.message));
+        browserHistory.push('/');
+        dispatch(logout());
 
-            browserHistory.push('/');
-            return dispatch(logout());
+        return API.logout(POSTer, (err) => {
+            if (err) return dispatch(popinCreate('alert', err.message));
         });
     },
 });
