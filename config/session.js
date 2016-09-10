@@ -28,8 +28,7 @@ module.exports.session = {
      ***************************************************************************/
 
     cookie: {
-        secure: true,
-        maxAge: 24 * 60 * 60 * 1000
+        maxAge: 24 * 60 * 60 * 1000,
     },
 
     /***************************************************************************
@@ -37,7 +36,7 @@ module.exports.session = {
      * session store that can be shared across multiple Sails.js servers        *
      ***************************************************************************/
 
-    adapter: 'redis'
+    adapter: 'redis',
 
     /***************************************************************************
      * The following values are optional, if no options are set a redis         *

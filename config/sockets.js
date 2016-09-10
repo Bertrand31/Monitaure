@@ -50,7 +50,6 @@ module.exports.sockets = {
   // pass: '<redis auth password>',
 
 
-
  /***************************************************************************
   *                                                                          *
   * Whether to expose a 'get /__getcookie' route with CORS support that sets *
@@ -65,7 +64,6 @@ module.exports.sockets = {
   ***************************************************************************/
 
   // grant3rdPartyCookie: true,
-
 
 
   /***************************************************************************

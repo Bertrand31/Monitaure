@@ -2,10 +2,10 @@ import 'babel-polyfill';
 import 'isomorphic-fetch';
 import 'fastclick';
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 
-import { browserHistory, Router, Route, IndexRoute } from 'react-router';
+import { browserHistory, Router, Route } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider, connect } from 'react-redux';
 import store from './Redux/Store';
@@ -39,6 +39,11 @@ const Root = ({ isLoggedIn, children }) => {
             <Homepage />
         </div>
     );
+};
+
+Root.propTypes = {
+    isLoggedIn: PropTypes.bool.isRequired,
+    children: PropTypes.element.isRequired,
 };
 
 const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn });
