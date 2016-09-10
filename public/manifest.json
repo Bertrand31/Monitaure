@@ -39,7 +39,7 @@
             "density": 4
         }
     ],
-    "start_url": "/app/",
+    "start_url": "/",
     "display": "standalone",
     "orientation": "portrait",
     "background_color": "#212121",
