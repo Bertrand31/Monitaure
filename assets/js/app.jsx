@@ -43,7 +43,7 @@ const Root = ({ isLoggedIn, children }) => {
 
 Root.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.element,
 };
 
 const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn });
