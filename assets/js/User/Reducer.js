@@ -2,14 +2,6 @@ import * as types from './Constants';
 
 const userReducer = (state = {}, action) => {
     switch (action.type) {
-        // TODO: Fusionner USER_INFO_POPULATE & USER_HYDRATE ?
-        case types.USER_INFO_POPULATE:
-            return {
-                ...state,
-                username: action.userData.username,
-                emailHash: action.userData.emailHash,
-            };
-
         case types.USER_UPDATE:
             return {
                 ...state,

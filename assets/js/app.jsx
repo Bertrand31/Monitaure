@@ -26,9 +26,7 @@ import Popins from './Popins/Container';
 // Call isLoggedIn API
 class Root extends React.Component {
     componentWillMount() {
-        // if (typeof this.props.isLoggedIn === 'undefined') {
-            this.props.checkAuth();
-        // }
+        this.props.checkAuth();
     }
     render() {
         if (this.props.isLoggedIn) {
@@ -60,6 +58,7 @@ Root.propTypes = {
 };
 
 const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn });
+
 const mapDispatchToProps = (dispatch) => ({
     checkAuth: () => {
         return API.isLoggedIn(GETer, (err, { isLoggedIn }) => {

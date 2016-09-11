@@ -223,7 +223,6 @@ module.exports = {
             const userData = {
                 username: user.username,
                 emailHash: user.emailHash,
-                checks: user.checks,
             };
             // Object containing all previously computed stats
             const globalStats = {
@@ -234,7 +233,8 @@ module.exports = {
             };
 
             return callback(err, {
-                userData,
+                user: userData,
+                checks: user.checks,
                 globalStats,
             });
         });

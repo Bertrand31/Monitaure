@@ -17,15 +17,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     populateAll() {
-        API.getUserAndGlobalStats(GETer, (err, data) => {
+        API.getUserAndGlobalStats(GETer, (err, { user, checks, globalStats }) => {
             if (err) return dispatch(popinCreate('alert', err.message));
 
-            dispatch(actions.populateChecks(data.userData.checks));
+            heap.identify(user.userName);
 
-            dispatch(actions.populateGlobalStats(data.globalStats));
-
-            console.log(data.userData);
-            dispatch(UserActions.populateUserInfo(data.userData));
+            dispatch(UserActions.hydrate(user));
+            dispatch(actions.populateChecks(checks));
+            dispatch(actions.populateGlobalStats(globalStats));
         });
     },
 
