@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
 
             dispatch(actions.populateGlobalStats(data.globalStats));
 
+            console.log(data.userData);
             dispatch(UserActions.populateUserInfo(data.userData));
         });
     },
@@ -85,8 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
             if (err) return dispatch(popinCreate('alert', err.message));
 
             dispatch(popinCreate('info', res.message));
-
-            dispatch(UserActions.logout());
+            dispatch(UserActions.changeAuthenticationState(false));
         });
     },
 });

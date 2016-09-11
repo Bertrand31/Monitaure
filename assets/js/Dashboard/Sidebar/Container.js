@@ -6,7 +6,7 @@ import Sidebar from './Component';
 import { POSTer } from '../../serverIO/ajaxMethods';
 import * as API from '../../serverIO/dataHandling';
 import { create as popinCreate } from '../../Popins/Actions';
-import { logout } from '../../User/Actions';
+import * as UserActions from '../../User/Actions';
 
 
 const mapStateToProps = (state) => ({ user: state.user });
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({ user: state.user });
 const mapDispatchToProps = (dispatch) => ({
     logout() {
         browserHistory.push('/');
-        dispatch(logout());
+        dispatch(UserActions.changeAuthenticationState(false));
 
         return API.logout(POSTer, (err) => {
             if (err) return dispatch(popinCreate('alert', err.message));

@@ -11,6 +11,10 @@ export function logout(ajaxPost, callback) {
     const url = `${window.location.origin}/logout/`;
     ajaxPost(url, {}, (err, resJSON) => callback(err, resJSON));
 }
+export function isLoggedIn(ajaxGet, callback) {
+    const url = `${window.location.origin}/isLoggedIn/`;
+    ajaxGet(url, (err, resJSON) => callback(err, resJSON));
+}
 
 // Checks management
 export function createCheck(ajaxPost, data, callback) {

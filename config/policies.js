@@ -18,5 +18,6 @@ module.exports.policies = {
 
     'AuthController': {
         'login': true,
+        'isLoggedIn': true,
     },
 };

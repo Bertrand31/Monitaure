@@ -42,4 +42,21 @@ module.exports = {
             message: 'Logged out successfuly',
         });
     },
+    /**
+     * HTTP route for checking whether the user's session
+     * is connected and if his session is still valid
+     * @param {Object} req - HTTP request
+     * @param {Object} res - Express' response object
+     */
+    isLoggedIn(req, res) {
+        if (req.isAuthenticated()) {
+            return res.send({
+                isLoggedIn: true,
+            });
+        }
+
+        return res.send({
+            isLoggedIn: false,
+        });
+    },
 };

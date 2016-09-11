@@ -13,6 +13,7 @@ module.exports.routes = {
     'post /signup': 'UserController.create',
     'post /login': 'AuthController.login',
     'post /logout': 'AuthController.logout',
+    'get /isLoggedIn': 'AuthController.isLoggedIn',
 
     'get /account/confirm/:id': 'UserController.confirm',
 
@@ -24,13 +25,13 @@ module.exports.routes = {
     },
 
     'get /': {
-        policy: 'homepageToggle',
+        view: 'homepage',
     },
     'get /login': {
-        policy: 'homepageToggle',
+        view: 'homepage',
     },
     'get /signup': {
-        policy: 'homepageToggle',
+        view: 'homepage',
     },
 
 };

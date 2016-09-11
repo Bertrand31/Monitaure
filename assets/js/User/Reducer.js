@@ -1,7 +1,8 @@
 import * as types from './Constants';
 
-const userReducer = (state = { isLoggedIn: window.isLoggedIn }, action) => {
+const userReducer = (state = {}, action) => {
     switch (action.type) {
+        // TODO: Fusionner USER_INFO_POPULATE & USER_HYDRATE ?
         case types.USER_INFO_POPULATE:
             return {
                 ...state,
@@ -15,20 +16,15 @@ const userReducer = (state = { isLoggedIn: window.isLoggedIn }, action) => {
                 [action.attrName]: action.attrValue,
             };
 
-        case types.USER_SIGNUP:
+        case types.USER_HYDRATE:
             return {
+                ...state,
                 ...action.user,
             };
-
-        case types.USER_LOGIN:
+        case types.USER_CHANGE_AUTH:
             return {
-                ...action.user,
-                isLoggedIn: true,
-            };
-
-        case types.USER_LOGOUT:
-            return {
-                isLoggedIn: false,
+                ...state,
+                isLoggedIn: action.isLoggedIn,
             };
 
         default:

@@ -17,22 +17,16 @@ export function update(attrName, attrValue) {
     };
 }
 
-export function signup(data) {
+export function hydrate(data) {
     return {
-        type: types.USER_SIGNUP,
+        type: types.USER_HYDRATE,
         user: data,
     };
 }
 
-export function login(data) {
+export function changeAuthenticationState(isLoggedIn) {
     return {
-        type: types.USER_LOGIN,
-        user: data,
-    };
-}
-
-export function logout() {
-    return {
-        type: types.USER_LOGOUT,
+        type: types.USER_CHANGE_AUTH,
+        isLoggedIn,
     };
 }

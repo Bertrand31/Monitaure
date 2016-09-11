@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import LoginForm from './Component';
-import { login, update } from '../../../User/Actions';
+import * as UserActions from '../../../User/Actions';
 
 import { POSTer } from '../../../serverIO/ajaxMethods';
 import * as API from '../../../serverIO/dataHandling';
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({ user: state.user });
 
 const mapDispatchToProps = (dispatch) => ({
 
-    update: (attrName, attrValue) => dispatch(update(attrName, attrValue)),
+    update: (attrName, attrValue) => dispatch(UserActions.update(attrName, attrValue)),
 
     login: (data) => {
         API.login(POSTer, data, (err, res) => {
@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch) => ({
             if (!res.user) return dispatch(popinCreate('alert', res.message));
 
             browserHistory.push('/');
-            return dispatch(login(res.user));
+            dispatch(UserActions.changeAuthenticationState(true));
+            dispatch(UserActions.hydrate(res.user));
         });
     },
 

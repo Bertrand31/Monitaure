@@ -10,6 +10,11 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider, connect } from 'react-redux';
 import store from './Redux/Store';
 
+import { POSTer, GETer } from './serverIO/ajaxMethods';
+import * as API from './serverIO/dataHandling';
+
+import * as UserActions from './User/Actions';
+
 import Homepage from './Homepage/Component';
 import Dashboard from './Dashboard/Component';
 
@@ -18,36 +23,55 @@ import LoginForm from './Homepage/Popover/LoginForm/Container';
 import SignupForm from './Homepage/Popover/SignupForm/Container';
 import Popins from './Popins/Container';
 
-const Root = ({ isLoggedIn, children }) => {
-    if (isLoggedIn) {
-        // Resetting to HP when refrshing the app
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js', { scope: '/' });
+// Call isLoggedIn API
+class Root extends React.Component {
+    componentWillMount() {
+        // if (typeof this.props.isLoggedIn === 'undefined') {
+            this.props.checkAuth();
+        // }
+    }
+    render() {
+        if (this.props.isLoggedIn) {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' });
+            }
+            return (
+                <div className="react-container">
+                    <Popins />
+                    <Dashboard />
+                </div>
+            );
         }
+
         return (
             <div className="react-container">
                 <Popins />
-                <Dashboard />
+                <Popover form={this.props.children} />
+                <Homepage />
             </div>
         );
     }
-
-    return (
-        <div className="react-container">
-            <Popins />
-            <Popover form={children} />
-            <Homepage />
-        </div>
-    );
-};
+}
 
 Root.propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
+    checkAuth: PropTypes.func.isRequired,
     children: PropTypes.element,
+    isLoggedIn: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn });
-const App = connect(mapStateToProps)(Root);
+const mapDispatchToProps = (dispatch) => ({
+    checkAuth: () => {
+        return API.isLoggedIn(GETer, (err, { isLoggedIn }) => {
+            return dispatch(UserActions.changeAuthenticationState(isLoggedIn));
+        });
+    },
+});
+
+const App = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Root);
 
 const history = syncHistoryWithStore(browserHistory, store);
 
