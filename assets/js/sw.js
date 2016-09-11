@@ -8,7 +8,7 @@ import 'isomorphic-fetch';
     global.toolbox.router.default = global.toolbox.fastest;
 
     const filesToCache = [
-        // '/',
+        '/',
         '/app.js',
         '/images/logo.svg',
     ];
@@ -26,6 +26,13 @@ import 'isomorphic-fetch';
             name: 'dynamic-checksdata-cache-v1',
             maxEntries: 10,
             maxAgeSeconds: 600,
+        },
+    });
+    global.toolbox.router.get('/isLoggedIn/', global.toolbox.fastest, {
+        cache: {
+            name: 'isLoggedIn-v1',
+            maxEntries: 1,
+            maxAgeSeconds: 4 * 24 * 60 * 60,
         },
     });
     // END LOCAL GET
