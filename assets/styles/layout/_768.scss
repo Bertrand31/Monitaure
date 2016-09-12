@@ -36,6 +36,47 @@
 .l-grid__block {
     margin:1.5em 0 .5em;
 }
+.top-data {
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:flex-end;
+    width:100%;
+    padding:0 3.1em;
+    .latency-wrapper {
+        .latency {
+            .latency-value {
+                font-size:3.8em;
+            }
+        }
+    }
+}
+.c-check-stats__data {
+    width:200px;
+    position:static;
+    text-align:left;
+    p {
+        padding:.4em 0;
+    }
+}
+.c-check-stats__name {
+    margin-bottom:.8em;
+}
+.c-check-stats__lastdate {
+    display:block;
+    font-size:2em;
+}
+.c-check-stats__min,
+.c-check-stats__max,
+.c-check-stats__outage {
+    display:block;
+}
+.c-check-stats__main-chart {
+    .ct-chart {
+        margin-top:0;
+    }
+}
 .c-checks {
     th:first-child {
         text-indent:0;

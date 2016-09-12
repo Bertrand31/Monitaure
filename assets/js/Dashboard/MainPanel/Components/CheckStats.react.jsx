@@ -6,7 +6,7 @@ const chartOptions = {
     fullWidth: false,
     showArea: true,
     low: 0,
-    height: 250,
+    height: 180,
     onlyInteger: true,
     axisY: {
         // showLabel: false,
@@ -25,6 +25,7 @@ const chartOptions = {
 };
 const responsiveChartOptions = [
     ['screen and (min-width:768px)', {
+        height: 250,
         axisX: {
             labelInterpolationFnc(value, index) {
                 return index % 2 === 0 ? value : null;
@@ -79,16 +80,16 @@ const OpenCheckStats = ({ openCheck }) => {
         <section className="c-check-stats">
             <div className="c-check-stats__data">
                 <p className="c-check-stats__name">{openCheck.name}</p>
-                <p>Avg latency: {openCheck.avg ? `${openCheck.avg} ms` : '-'}</p>
-                <p>Min latency: {openCheck.min ? `${openCheck.min} ms` : '-'}</p>
-                <p>Max latency: {openCheck.max ? `${openCheck.max} ms` : '-'}</p>
-                <p>
+                <p className="c-check-stats__avg">Avg latency: {openCheck.avg ? `${openCheck.avg} ms` : '-'}</p>
+                <p className="c-check-stats__min">Min latency: {openCheck.min ? `${openCheck.min} ms` : '-'}</p>
+                <p className="c-check-stats__max">Max latency: {openCheck.max ? `${openCheck.max} ms` : '-'}</p>
+                <p className="c-check-stats__availability">
                     Availability:
                     <span data-perfect={openCheck.availability === 100}>
                         {openCheck.availability ? ` ${openCheck.availability}%` : ' -'}
                     </span>
                 </p>
-                <p>Last outage:<br />{lastOutagePretty}</p>
+                <p className="c-check-stats__outage">Last outage:<br />{lastOutagePretty}</p>
             </div>
             <div className="c-check-stats__main-chart">
                 <div className="top-data">
@@ -99,7 +100,7 @@ const OpenCheckStats = ({ openCheck }) => {
                             <span className="latency-value">{lastPingDuration}</span>
                         </span>
                     </p>
-                    <p className="last-ping-date">{lastPingDate}</p>
+                    <p className="c-check-stats__lastdate">{lastPingDate}</p>
                 </div>
                 <ChartistGraph
                     className={'ct-chart'}
