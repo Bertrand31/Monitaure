@@ -17,7 +17,29 @@ const chartOptions = {
             return `${value} ms`;
         },
     },
+    axisX: {
+        labelInterpolationFnc(value, index) {
+            return index % 4 === 0 ? value : null;
+        },
+    },
 };
+const responsiveChartOptions = [
+    ['screen and (min-width:768px)', {
+        axisX: {
+            labelInterpolationFnc(value, index) {
+                return index % 2 === 0 ? value : null;
+            },
+        },
+    }],
+    ['screen and (min-width:1240px)', {
+        axisX: {
+            labelInterpolationFnc(value) {
+                return value;
+            },
+        },
+    }],
+];
+
 const historyToChartData = (history) => {
     const chartData = {
         labels: [],
@@ -83,6 +105,7 @@ const OpenCheckStats = ({ openCheck }) => {
                     className={'ct-chart'}
                     data={chartDataset}
                     options={chartOptions}
+                    responsiveOptions={responsiveChartOptions}
                     type="Line"
                 />
             </div>
