@@ -1,52 +1,63 @@
 #logo {
     max-width:165px;
 }
-.aside {
+.l-sidebar {
     background:$light;
     box-shadow:0 0 60px 0 rgba(0,0,0,.4);
-    nav {
-        padding:1em 0;
-        font: 1.2em $roboto;
-        border-bottom:1px solid $dark;
-        &:last-of-type {
-            border:0;
-        }
-        li {
-            a {
-                position:relative;
-                &:before {
-                    content:"";
-                    display:block;
-                    position:absolute;
-                    top:calc(50% - .7em);
-                    left:calc(-2em + 7px);
-                    height:1.4em;
-                    width:3px;
-                    background:$info;
-                    opacity:0;
-                    transition:all .4s ease-in-out;
-                }
-                padding:1em 0;
-                display:block;
-            }
-            &.active a, a:hover {
-                &:before {
-                    opacity:1;
-                }
-            }
+}
+.c-nav {
+    padding:1em 0;
+    font: 1.2em $roboto;
+    border-bottom:1px solid $dark;
+    &:last-of-type {
+        border:0;
+    }
+}
+.c-nav__item {
+    &.active .c-nav__link, .c-nav__link:hover {
+        &:before {
+            opacity:1;
         }
     }
 }
-.profile {
+.c-nav__link {
+    position:relative;
+    &:before {
+        content:"";
+        display:block;
+        position:absolute;
+        top:calc(50% - .7em);
+        left:calc(-2em + 7px);
+        height:1.4em;
+        width:3px;
+        background:$info;
+        opacity:0;
+        transition:all .4s ease-in-out;
+    }
+    padding:1em 0;
+    display:block;
+}
+.disabled {
+    text-decoration:line-through;
+}
+.info {
+    background:$info;
+    border-radius:1em;
+    color:$dark;
+    padding:.3em .5em;
+    font:700 .75em $montserrat;
+    float:right;
+}
+.c-userinfo {
     margin-bottom:1.5em;
-    img,span {
-        display:inline-block;
-        vertical-align:middle;
-    }
-    img {
-        width:50px;
-        height:50px;
-        border-radius:50%;
-        margin-right:1.1em;
-    }
+}
+.c-userinfo__image, .c-userinfo__text {
+    display:inline-block;
+    vertical-align:middle;
+}
+.c-userinfo__image {
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    margin-right:1.1em;
 }

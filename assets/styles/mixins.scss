@@ -1,0 +1,20 @@
+@mixin cross($color: #dbdbdb) {
+    position:absolute;
+    top:1.2em;
+    right:1.2em;
+    color:$light;
+    cursor:pointer;
+    height:12px;
+    width:12px;
+    &:before,&:after {
+        position: absolute;
+        left:50%;
+        content:"";
+        height:12px;
+        width:2px;
+        background-color:$color;
+
+    }
+    &:before { transform: rotate(45deg); }
+    &:after { transform: rotate(-45deg); }
+}

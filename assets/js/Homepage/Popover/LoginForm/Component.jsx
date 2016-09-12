@@ -9,15 +9,15 @@ class LoginFormComponent extends React.Component {
         return (
             <div onClick={(e) => { e.stopPropagation(); }} className="c-box">
                 <button className="c-box__close" onClick={() => browserHistory.push('/')} />
-                <h2>Log in</h2>
+                <h2 className="c-box__title">Log in</h2>
                 <form
-                    id="login"
+                    className="c-form"
                     method="post"
                     action="/login"
                     onSubmit={e => { e.preventDefault(); this.props.login(this.props.user); }}
                 >
-                    <fieldset className="login">
-                        <label htmlFor="username">Username</label>
+                    <fieldset className="c-form__group">
+                        <label className="c-form__label" htmlFor="username">Username</label>
                         <input
                             className="input__text"
                             name="username"
@@ -28,7 +28,7 @@ class LoginFormComponent extends React.Component {
                             required minLength="2" maxLength="20"
                             onChange={e => this.props.update(e.target.name, e.target.value)}
                         />
-                        <label htmlFor="password">Password</label>
+                        <label className="c-form__label" htmlFor="password">Password</label>
                         <input
                             className="input__text input__text--password"
                             name="password"

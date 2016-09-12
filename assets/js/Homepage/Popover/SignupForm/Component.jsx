@@ -17,8 +17,9 @@ class SignupFormComponent extends React.Component {
         return (
             <div onClick={(e) => { e.stopPropagation(); }} className="c-box signup-block">
                 <button className="c-box__close" onClick={() => browserHistory.push('/')} />
-                <h2>Create an account</h2>
+                <h2 className="c-box__title">Create an account</h2>
                 <form
+                    className="c-form"
                     method="post"
                     action="/signup"
                     onSubmit={e => {
@@ -26,8 +27,8 @@ class SignupFormComponent extends React.Component {
                         this.props.signup(this.props.user);
                     }}
                 >
-                    <fieldset>
-                        <label htmlFor="username">Username</label>
+                    <fieldset className="c-form__group">
+                        <label className="c-form__label" htmlFor="username">Username</label>
                         <input
                             className="input__text"
                             name="username"
@@ -38,7 +39,7 @@ class SignupFormComponent extends React.Component {
                             required minLength="2" maxLength="20"
                             onChange={e => this.props.update(e.target.name, e.target.value)}
                         />
-                        <label htmlFor="email">Email</label>
+                        <label className="c-form__label" htmlFor="email">Email</label>
                         <input
                             className="input__text"
                             name="email"
@@ -48,7 +49,7 @@ class SignupFormComponent extends React.Component {
                             required
                             onChange={e => this.props.update(e.target.name, e.target.value)}
                         />
-                        <label htmlFor="password">Password</label>
+                        <label className="c-form__label" htmlFor="password">Password</label>
                         <input
                             className="input__text input__text--password"
                             name="password"
@@ -58,7 +59,7 @@ class SignupFormComponent extends React.Component {
                             required minLength="6"
                             onChange={e => this.props.update(e.target.name, e.target.value)}
                         />
-                        <label htmlFor="confirmPassword">Password confirmation</label>
+                        <label className="c-form__label" htmlFor="confirmPassword">Password confirmation</label>
                         <input
                             className="input__text input__text--password"
                             name="confirmPassword"

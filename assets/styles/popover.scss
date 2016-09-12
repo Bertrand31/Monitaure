@@ -1,0 +1,56 @@
+@import 'variables';
+@import 'mixins';
+@import 'forms';
+
+.c-popover-overlay {
+    opacity:1;
+    display:flex;
+    justify-content:center;
+    position:absolute;
+    top:0;
+    z-index:1;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.4);
+}
+.c-box {
+    background:#fff;
+    color:$lighter;
+    padding:1.5em 1.1em;
+    margin:0 0 1em;
+    text-align:center;
+    text-transform:uppercase;
+    font-family:$roboto;
+    font-weight:700;
+    cursor:default;
+    position:relative;
+    border-radius:5px;
+    box-shadow:0 0 15px 0 rgba(#000, .5);
+}
+.c-box__title {
+    font-family:$montserrat;
+    color:$dark;
+    font-weight:200;
+    margin:1em 0 1.5em;
+    line-height:1.2em;
+}
+.c-box__text {
+    font-family:$roboto;
+    color: $lighter;
+    text-align: center;
+    font-size: .75em;
+    a {
+        color: $lightgreen;
+    }
+}
+.c-box__close {
+    @include cross($light);
+    top:.1em;
+    right:.6em;
+    padding:1em;
+}
+@media screen and (min-width:768px) {
+    .c-box {
+        padding:1em 4em;
+    }
+}

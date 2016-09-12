@@ -23,6 +23,8 @@ import LoginForm from './Homepage/Popover/LoginForm/Container';
 import SignupForm from './Homepage/Popover/SignupForm/Container';
 import Popins from './Popins/Container';
 
+import '../styles/base.scss';
+
 // Call isLoggedIn API
 class Root extends React.Component {
     componentWillMount() {

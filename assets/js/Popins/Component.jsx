@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 
+import '../../styles/popins.scss';
+
 class Popin extends React.Component {
-    // TODO: turn into pure function by moving this to the controller?
     componentDidMount() {
         setTimeout(() => {
             this.props.destroy(this.props.data.id);

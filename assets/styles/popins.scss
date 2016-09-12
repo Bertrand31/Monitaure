@@ -1,3 +1,6 @@
+@import 'mixins';
+@import 'variables';
+
 .c-popins-container {
     position:absolute;
     top:1.8em;
@@ -5,7 +8,7 @@
     z-index:2;
 }
 .c-popin {
-    @extend %box;
+    background:#fff;
     color:$lighter;
     padding:1.5em 1.1em;
     margin:0 0 1em;
@@ -15,6 +18,13 @@
     font-weight:700;
     cursor:default;
     position:relative;
+    border-radius:5px;
+    box-shadow:0 0 15px 0 rgba(#000, .5);
+	text: {
+		align:center;
+		transform: uppercase;
+	}
+	font-weight: 600;
 }
 .c-popin--info .c-popin__body:before {
     border:2px solid $info;
@@ -46,3 +56,4 @@
     @include cross();
     top:calc(50% - 6px);
 }
+

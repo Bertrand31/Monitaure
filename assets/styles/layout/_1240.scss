@@ -1,9 +1,7 @@
-#chart-container {
-    .main-chart {
-        .ct-label.ct-horizontal.ct-end {
-            transform: rotate(0deg);
-            position:static;
-            top:0;
-        }
+.c-check-stats__main-chart {
+    .ct-label.ct-horizontal.ct-end {
+        transform: rotate(0deg);
+        position:static;
+        top:0;
     }
 }

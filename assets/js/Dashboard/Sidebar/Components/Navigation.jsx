@@ -2,41 +2,42 @@ import React, { PropTypes } from 'react';
 
 const Navigation = ({ logout }) => (
     <div className="sidebar__nav--wrapper">
-        <nav className="main-nav">
+        <nav className="c-nav main-nav">
             <ul>
-                <li className="active">
-                    <a href="#_" id="dashboard-pane">Dashboard</a>
+                <li className="c-nav__item active">
+                    <a className="c-nav__link" href="#_" id="dashboard-pane">Dashboard</a>
                 </li>
-                <li className="disabled">
-                    <a href="#_">
+                <li className="c-nav__item disabled">
+                    <a className="c-nav__link" href="#_">
                         Reports<span className="info">14</span>
                     </a>
                 </li>
-                <li className="disabled">
-                    <a href="#_">
+                <li className="c-nav__item disabled">
+                    <a className="c-nav__link" href="#_">
                         Messages<span className="info">132</span>
                     </a>
                 </li>
             </ul>
         </nav>
-        <nav className="misc-nav">
+        <nav className="c-nav misc-nav">
             <ul>
-                <li className="disabled">
-                    <a href="#_" id="settings-pane">
+                <li className="c-nav__item disabled">
+                    <a className="c-nav__link" href="#_" id="settings-pane">
                         Settings
                     </a>
                 </li>
-                <li>
-                    <a href="https://github.com/Bertrand31/Monitaure/issues" target="_blank" rel="noopener noreferrer">
+                <li className="c-nav__item ">
+                    <a className="c-nav__link" href="https://github.com/Bertrand31/Monitaure/issues" target="_blank" rel="noopener noreferrer">
                         Help
                     </a>
                 </li>
             </ul>
         </nav>
-        <nav className="auth-nav">
+        <nav className="c-nav auth-nav">
             <ul>
-                <li>
+                <li className="c-nav__item ">
                     <a
+                        className="c-nav__link"
                         href="/logout"
                         onClick={e => { e.preventDefault(); logout(); }}
                     >

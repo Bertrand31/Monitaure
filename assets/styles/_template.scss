@@ -1,19 +1,3 @@
-%box {
-    background:#fff;
-    border-radius:5px;
-    box-shadow:0 0 15px 0 rgba(#000, .5);
-	text: {
-		align:center;
-		transform: uppercase;
-	}
-	font-weight: 600;
-    h2 {
-        color:$dark;
-        font-weight:200;
-        margin:1em 0 1.5em;
-        line-height:1.2em;
-    }
-}
 body {
     background:$dark;
 }
@@ -24,77 +8,10 @@ body {
     text-align:center;
     margin:.8em 0;
 }
-.info {
-    background:$info;
-    border-radius:1em;
-    color:$dark;
-    padding:.3em .5em;
-    font:700 .75em $montserrat;
-    float:right;
-}
 .svgs {
     overflow:hidden;
     height:0;
 }
 .main-container {
     transition:all .4s linear;
-}
-.front {
-    transition:all .15s ease-in-out;
-}
-.s-is-blurred {
-    filter:blur(8px);
-    -webkit-filter:blur(8px);
-}
-.c-popover-overlay {
-    opacity:1;
-    display:flex;
-    justify-content:center;
-    position:absolute;
-    z-index:1;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.4);
-}
-.s-is-hidden {
-    opacity:0;
-    z-index:-1;
-    transition:all .4s ease-in-out;
-}
-.c-box {
-}
-.c-box__text {
-    font-family:$roboto;
-    color: $lighter;
-    text-align: center;
-    font-size: .75em;
-    a {
-        color: $lightgreen;
-    }
-}
-@mixin cross($color: #dbdbdb) {
-    position:absolute;
-    top:1.2em;
-    right:1.2em;
-    color:$light;
-    cursor:pointer;
-    height:12px;
-    width:12px;
-    &:before,&:after {
-        position: absolute;
-        left:50%;
-        content:"";
-        height:12px;
-        width:2px;
-        background-color:$color;
-
-    }
-    &:before { transform: rotate(45deg); }
-    &:after { transform: rotate(-45deg); }
-}
-.c-box__close {
-    @include cross($light);
-    top:.1em;
-    right:.6em;
-    padding:1em;
 }

@@ -1,26 +1,20 @@
 // Includes
-@import 'includes/foundation';
 @import 'includes/chartist/chartist';
 
 // Base
 @import 'variables';
 @import 'typography';
 @import 'template';
-@import 'forms';
 
 //Blocks
 @import 'blocks/block.dashboard-table';
 @import 'blocks/block.chart';
 @import 'blocks/block.global-data';
-@import 'blocks/block.popin';
 
 //Regions
 @import 'regions/region.sidebar';
-@import 'regions/region.dashboard';
 
 //Pages
-@import 'pages/pages.front';
-@import 'pages/pages.log-in';
 @import 'pages/pages.errors';
 
 // Layout

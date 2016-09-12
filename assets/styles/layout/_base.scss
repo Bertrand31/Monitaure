@@ -22,7 +22,7 @@ html,body {
         height:100%;
     }
 }
-.sidebar {
+.l-sidebar {
     display:flex;
     flex-direction:column;
     box-sizing:border-box;
@@ -49,9 +49,6 @@ html,body {
     font-size:.7em;
     line-height:2em;
     color:$aside;
-}
-.c-pane-top__button {
-//    margin:0 1em 0 0;
 }
 .l-grid {
     display:flex;
@@ -116,6 +113,6 @@ html,body {
         }
     }
 }
-.background-video {
+.o-background-video {
     display:none;
 }

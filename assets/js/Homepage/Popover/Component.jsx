@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 
+import '../../../styles/popover.scss';
+
 const PopoverComponent = ({ form }) => {
     if (form === null) {
         return null;
