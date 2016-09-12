@@ -70,7 +70,7 @@ class SignupFormComponent extends React.Component {
                             onChange={e => this.props.update(e.target.name, e.target.value)}
                         />
                     </fieldset>
-                    <input type="submit" value="Sign up" />
+                    <input className="c-button c-button--padded" type="submit" value="Sign up" />
                 </form>
                 <p className="c-box__text">Already have an account? <Link to="/login">Log in!</Link></p>
             </div>

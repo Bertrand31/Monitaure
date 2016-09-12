@@ -36,20 +36,17 @@
 .l-grid__block {
     margin:1.5em 0 .5em;
 }
-.c-check-stats__main-chart {
-    display:block;
-    position:relative;
-}
 .c-checks {
     th:first-child {
         text-indent:0;
     }
-    th,td {
-        &:nth-child(3),
-        &:nth-child(4) {
-            display:table-cell;
-        }
-    }
+}
+.c-checks__domainNameOrIP,
+.c-checks__port,
+.c-checks__notifications,
+.c-checks__edit,
+.c-checks__destroy {
+    display:table-cell;
 }
 .o-background-video {
     display:block;

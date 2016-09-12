@@ -1,4 +1,4 @@
-%button {
+.c-button {
     -webkit-appearance:none;
        -moz-appearance:none;
             appearance:none;
@@ -21,6 +21,10 @@
 		box-shadow:0 0 .4em 0 rgba($lightgreen, .7);
 	}
 }
+.c-button--padded {
+    margin: 3em 0 1.5em;
+}
+
 .c-form {
 	font-family:$roboto;
 	a {
@@ -78,8 +82,4 @@
 .input__text--dark {
     color:$softwhite;
     margin:0; // Unrelated, but dark fields are inside the table
-}
-
-input[type="submit"], .button {
-	@extend %button;
 }

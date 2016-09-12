@@ -1,9 +1,13 @@
 @import 'includes/foundation';
 @import 'variables';
+@import 'forms';
 
 body {
     font:normal 400 16px/20px $montserrat;
     color:#fff;
+}
+.react-container {
+    width:100%;
 }
 h1,h2,h3,h4 {
     margin:1em 0 .8em;

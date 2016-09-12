@@ -1,17 +1,5 @@
-.c-box {
-    @extend %box;
-    box-sizing:border-box;
-    padding:1em;
-    max-width:95%;
-	position:relative;
-	width:460px;
-	align-self: center;
-}
 html,body {
     height:100%;
-}
-.react-container {
-    width:100%;
 }
 .main-container {
     width:100%;
@@ -94,25 +82,26 @@ html,body {
     width:200px;
 }
 .c-check-stats__main-chart {
-    display:none;
     flex-grow:1;
+    position:relative;
     .ct-label.ct-horizontal.ct-end {
         transform: rotate(-35deg);
         position: relative;
         top: 5px;
     }
 }
-.c-checks {
-    th:first-child {
+.c-checks__head {
+    .c-checks__status {
         text-indent:-9999px;
     }
-    th,td {
-        &:nth-child(3),
-        &:nth-child(4) {
-            display:none;
-        }
-    }
 }
+.c-checks__domainNameOrIP,
+.c-checks__port,
+.c-checks__notifications,
+.c-checks__edit,
+.c-checks__destroy {
+    display:none;
+    }
 .o-background-video {
     display:none;
 }

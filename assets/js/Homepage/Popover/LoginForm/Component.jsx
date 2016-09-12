@@ -39,7 +39,7 @@ class LoginFormComponent extends React.Component {
                             onChange={e => this.props.update(e.target.name, e.target.value)}
                         />
                     </fieldset>
-                    <input type="submit" value="Log in" />
+                    <input className="c-button c-button--padedd" type="submit" value="Log in" />
                 </form>
                 <p className="c-box__text">Don't have an account? <Link to="/signup">Sign up!</Link></p>
             </div>

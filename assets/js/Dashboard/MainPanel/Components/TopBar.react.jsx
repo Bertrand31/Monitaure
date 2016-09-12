@@ -8,7 +8,7 @@ const TopButton = ({ createWorkingCheck }) => (
                 OF THE LAST 30 DAYS
             </span>
         </p>
-        <button className="c-pane-top__button button" onClick={createWorkingCheck}>
+        <button className="c-pane-top__button c-button" onClick={createWorkingCheck}>
             Add a check
         </button>
     </section>

@@ -1,6 +1,5 @@
 @import 'variables';
 @import 'mixins';
-@import 'forms';
 
 .c-popover-overlay {
     opacity:1;
@@ -14,6 +13,11 @@
     background:rgba(0,0,0,.4);
 }
 .c-box {
+    box-sizing:border-box;
+    max-width:95%;
+	position:relative;
+	width:460px;
+	align-self: center;
     background:#fff;
     color:$lighter;
     padding:1.5em 1.1em;
@@ -52,5 +56,8 @@
 @media screen and (min-width:768px) {
     .c-box {
         padding:1em 4em;
+    }
+    .c-box__title {
+        margin: 1em 0 4em;
     }
 }
