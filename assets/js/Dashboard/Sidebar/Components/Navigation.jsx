@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
-const Navigation = ({ logout }) => (
-    <div className="sidebar__nav--wrapper">
+const Navigation = ({ menuIsOpen, logout }) => (
+    <div className={`sidebar__nav--wrapper ${menuIsOpen ? '' : 's-is-hidden'}`}>
         <nav className="c-nav main-nav">
             <ul>
                 <li className="c-nav__item active">

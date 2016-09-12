@@ -16,11 +16,62 @@ html,body {
     box-sizing:border-box;
     padding:2em 2.5em 0 2em;
 }
+.c-mobile-topbar {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    justify-content:space-between;
+    display:flex;
+    flex-direction:row;
+    background:$middark;
+    .c-dummy {
+        width:62px; //Same with as the hamburger button
+    }
+}
+.c-logo {
+    max-width:135px;
+    margin:.7em 0;
+}
+.c-userinfo {
+    position:fixed;
+    top:.75em;
+    right:1em;
+    z-index:2;
+}
+.c-userinfo__image {
+    border-radius:50%;
+    width:40px;
+    height:40px;
+}
+.c-userinfo__text {
+    display:none;
+}
+.sidebar__nav--wrapper {
+    position:fixed;
+    z-index:1;
+    padding:0em 2.5em 0 2em;
+    box-sizing:border-box;
+    background:$light;
+    box-shadow:0 0 60px 0 rgba(0,0,0,.4);
+    width:265px;
+    height:calc(100% - 60px);
+    transition:all .3s ease-in-out;
+    top:60px;
+    left:0;
+    &.s-is-hidden {
+        left:-265px;
+    }
+}
 .o-main {
     box-sizing:border-box;
     width:100%;
     display:flex;
     flex-direction:column;
+}
+.o-pane-container {
+    margin-top:30px;
 }
 .pane-components-wrapper {
     width:92%;
@@ -29,6 +80,9 @@ html,body {
 }
 .c-pane-top {
     text-align:center;
+    .c-pane-top__button {
+        display:none;
+    }
 }
 .c-pane-top__title {
     font-size:1.2em;
@@ -102,6 +156,7 @@ html,body {
 }
 .c-checks__head {
     .c-checks__status {
+        width:60px;
         text-indent:-9999px;
     }
 }
@@ -111,7 +166,55 @@ html,body {
 .c-checks__edit,
 .c-checks__destroy {
     display:none;
-    }
+}
 .o-background-video {
     display:none;
 }
+
+
+.hamburger {
+	padding:.7em 1em 0;
+    transition:filter .4s ease-in-out;
+}
+.hamburger-box {
+	width:30px;
+	height: 24px;
+	display: inline-block;
+	position: relative;
+}
+
+.hamburger-inner {
+	display: block;
+	top: 50%;
+	margin-top: -2px;
+	&,
+	&::before,
+	&::after {
+		width:27px;
+		height:2px;
+		background-color: $lightwhite;
+		border-radius: 2px;
+		position: absolute;
+		transition-property: transform;
+		transition-duration: 0.15s;
+		transition-timing-function: ease;
+	}
+	&::before,
+	&::after {
+		content: "";
+		display: block;
+	}
+	&::before { top: -7px; }
+	&::after { bottom: -7px; }
+}
+.hamburger--arrow.is-active {
+    .hamburger-inner {
+        &::before {
+            transform: translate3d(-8px, 1px, 0) rotate(-45deg) scale(0.7, 1);
+        }
+        &::after {
+            transform: translate3d(-8px, -1px, 0) rotate(45deg) scale(0.7, 1);
+        }
+    }
+}
+

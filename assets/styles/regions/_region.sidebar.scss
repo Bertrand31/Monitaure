@@ -1,10 +1,6 @@
 #logo {
     max-width:165px;
 }
-.l-sidebar {
-    background:$light;
-    box-shadow:0 0 60px 0 rgba(0,0,0,.4);
-}
 .c-nav {
     padding:1em 0;
     font: 1.2em $roboto;
@@ -47,17 +43,4 @@
     padding:.3em .5em;
     font:700 .75em $montserrat;
     float:right;
-}
-.c-userinfo {
-    margin-bottom:1.5em;
-}
-.c-userinfo__image, .c-userinfo__text {
-    display:inline-block;
-    vertical-align:middle;
-}
-.c-userinfo__image {
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    margin-right:1.1em;
 }

@@ -7,11 +7,18 @@ import { POSTer } from '../../serverIO/ajaxMethods';
 import * as API from '../../serverIO/dataHandling';
 import { create as popinCreate } from '../../Popins/Actions';
 import * as UserActions from '../../User/Actions';
+import * as MenuActions from './Actions';
 
 
-const mapStateToProps = (state) => ({ user: state.user });
+const mapStateToProps = (state) => ({
+    menuIsOpen: state.menuIsOpen,
+    user: state.user
+});
 
 const mapDispatchToProps = (dispatch) => ({
+    toggleMenu() {
+        return dispatch(MenuActions.toggle());
+    },
     logout() {
         browserHistory.push('/');
         dispatch(UserActions.changeAuthenticationState(false));

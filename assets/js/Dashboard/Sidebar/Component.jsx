@@ -3,16 +3,27 @@ import React, { PropTypes } from 'react';
 import Navigation from './Components/Navigation';
 import UserInfo from './Components/UserInfo';
 
-const Sidebar = ({ user, logout }) => (
+const Sidebar = ({ menuIsOpen, user, toggleMenu, logout }) => (
     <aside className="l-sidebar">
         <div className="sidebar-top">
             <div className="c-mobile-topbar">
-            {/*<button className="sidebar__toggle" />*/}
-                <h1 id="logo">
-                    <img src="/images/logo.svg" alt="Monitaure - Monitoring for the masses" />
+
+                <button
+                    onClick={() => toggleMenu()}
+                    className={`hamburger hamburger--arrow ${menuIsOpen ? 'is-active' : ''}`}
+                    type="button"
+                >
+                    <span className="hamburger-box">
+                        <span className="hamburger-inner" />
+                    </span>
+                </button>
+
+                <h1 className="c-logo">
+                    <img width="165" src="/images/logo.svg" alt="Monitaure - Monitoring for the masses" />
                 </h1>
+                <div className="c-dummy" />
             </div>
-            <Navigation logout={logout} />
+            <Navigation menuIsOpen={menuIsOpen} toggleMenu={toggleMenu} logout={logout} />
         </div>
         <div className="sidebar-bottom" id="profile">
             <UserInfo username={user.username} emailHash={user.emailHash} />
@@ -21,6 +32,8 @@ const Sidebar = ({ user, logout }) => (
 );
 
 Sidebar.propTypes = {
+    menuIsOpen: PropTypes.bool.isRequired,
+    toggleMenu: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
 };

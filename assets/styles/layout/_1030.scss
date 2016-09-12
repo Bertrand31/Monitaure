@@ -1,0 +1,16 @@
+.hamburger {
+    display:none;
+}
+.c-userinfo {
+    margin-bottom:1.5em;
+    position:static;
+}
+.c-userinfo__image, .c-userinfo__text {
+    display:inline-block;
+    vertical-align:middle;
+}
+.c-userinfo__image {
+    width:50px;
+    height:50px;
+    margin-right:1.1em;
+}

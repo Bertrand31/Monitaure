@@ -18,13 +18,18 @@
 }
 .o-pane-container {
     width:calc(100% - 265px);
+    margin-top:0;
     margin-left:auto;
 }
 .c-pane-top {
     position:relative;
     padding-top:.5em;
+    .c-pane-top__button {
+        display:block;
+    }
 }
 .c-pane-top__button {
+    display:inline-block;
     position:absolute;
     right:0;
     top:0;
