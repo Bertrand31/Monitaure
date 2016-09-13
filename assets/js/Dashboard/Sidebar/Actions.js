@@ -5,3 +5,9 @@ export function toggle() {
         type: types.MENU_TOGGLE,
     };
 }
+
+export function close() {
+    return {
+        type: types.MENU_CLOSE,
+    };
+}

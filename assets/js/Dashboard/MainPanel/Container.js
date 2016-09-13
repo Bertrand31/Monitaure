@@ -6,6 +6,7 @@ import { create as popinCreate } from '../../Popins/Actions';
 
 import * as actions from './Actions';
 import * as UserActions from '../../User/Actions';
+import * as MenuActions from '../Sidebar/Actions';
 import MainPanel from './Component';
 
 const mapStateToProps = (state) => ({
@@ -13,6 +14,7 @@ const mapStateToProps = (state) => ({
     globalStats: state.globalStats,
     openCheck: state.openCheck,
     user: state.user,
+    menuIsOpen: state.menuIsOpen,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -87,6 +89,9 @@ const mapDispatchToProps = (dispatch) => ({
             dispatch(popinCreate('info', res.message));
             dispatch(UserActions.changeAuthenticationState(false));
         });
+    },
+    closeMenu() {
+        dispatch(MenuActions.close());
     },
 });
 

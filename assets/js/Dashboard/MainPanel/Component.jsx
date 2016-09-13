@@ -21,7 +21,10 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className="o-main o-pane-container dashboard">
+            <div
+                className={`o-main o-pane-container dashboard ${this.props.menuIsOpen ? 's-is-covered' : ''}`}
+                onClick={() => this.props.closeMenu()}
+            >
                 <div className="pane-components-wrapper">
                     <TopBar createWorkingCheck={this.props.createWorkingCheck} />
                     <GlobalStats globalStats={this.props.globalStats} />
@@ -45,6 +48,7 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
     checks: PropTypes.object.isRequired,
     globalStats: PropTypes.object.isRequired,
+    menuIsOpen: PropTypes.bool.isRequired,
     openCheck: PropTypes.object.isRequired,
     populateAll: PropTypes.func.isRequired,
     destroy: PropTypes.func.isRequired,
@@ -54,6 +58,7 @@ Dashboard.propTypes = {
     saveWorkingCheck: PropTypes.func.isRequired,
     openCheckStats: PropTypes.func.isRequired,
     closeCheckStats: PropTypes.func.isRequired,
+    closeMenu: PropTypes.func.isRequired,
 };
 
 export default Dashboard;

@@ -2,6 +2,10 @@
     width:calc(100% - 265px);
     margin-top:0;
     margin-left:auto;
+    &.s-is-covered {
+        left:0;
+        -webkit-filter:none;
+    }
 }
 .l-sidebar {
     position:fixed;
