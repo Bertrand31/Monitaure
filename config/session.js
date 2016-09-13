@@ -28,7 +28,7 @@ module.exports.session = {
      ***************************************************************************/
 
     cookie: {
-        secure: false,
+        secure: true,
         maxAge: 24 * 60 * 60 * 1000,
     },
 
