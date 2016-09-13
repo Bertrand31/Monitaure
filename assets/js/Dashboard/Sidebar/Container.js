@@ -20,11 +20,12 @@ const mapDispatchToProps = (dispatch) => ({
         return dispatch(MenuActions.toggle());
     },
     logout() {
-        browserHistory.push('/');
-        dispatch(UserActions.changeAuthenticationState(false));
-
         return API.logout(POSTer, (err) => {
             if (err) return dispatch(popinCreate('alert', err.message));
+
+            browserHistory.push('/');
+            dispatch(MenuActions.close());
+            dispatch(UserActions.changeAuthenticationState(false));
         });
     },
 });

@@ -82,14 +82,6 @@ const mapDispatchToProps = (dispatch) => ({
     closeCheckStats() {
         dispatch(actions.closeStats());
     },
-    logout() {
-        API.logout(POSTer, (err, res) => {
-            if (err) return dispatch(popinCreate('alert', err.message));
-
-            dispatch(popinCreate('info', res.message));
-            dispatch(UserActions.changeAuthenticationState(false));
-        });
-    },
     closeMenu() {
         dispatch(MenuActions.close());
     },
