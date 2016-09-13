@@ -17,7 +17,6 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * NodeJS application using MongoDB for storage and Redis for sessions handling ;
     * Hosted on a dedicated server running Archlinux ;
     * Sitting behind an NGINX reverse-proxy with smart caching mechanisms and many performance & security tweaks ;
-    * Served over HTTP/2 and HTTPS ([with meticulous attention to SSL security](https://www.ssllabs.com/ssltest/analyze.html?d=monitaure.io&s=2001%3a41d0%3ae%3a59a%3a0%3a0%3a0%3a1&hideResults=on)) ;
     * [IPV6-ready](http://ready.chair6.net/?url=https%3A%2F%2Fmonitaure.io).
 * Front-end
     * React to manage user interface ;
@@ -28,6 +27,11 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * SASS for CSS ;
     * Babel to transpile ES6 to older Javascript ;
     * Webpack to bundle everything up.
+* Security
+    * Served over HTTP/2 and HTTPS ([with rock-solid SSL security](https://www.ssllabs.com/ssltest/analyze.html?d=monitaure.io&s=2001%3a41d0%3ae%3a59a%3a0%3a0%3a0%3a1&hideResults=on)) ;
+    * CSRF tokens ;
+    * HttpOnly, encrypted session cookies ;
+    * Content-Security-Policy, Strict-Transport-Security, X-Frame-Options, X-XSS-Protection, X-Content-Type-Options headers.
 * Misc
     * Sendgrid to send transactionnal emails (account confirmation, alerts, etc.) ;
     * Travis CI for build testing ;

@@ -1,3 +1,9 @@
+// Security
+export function csrfToken(ajaxGet, callback) {
+    const url = `${window.location.origin}/csrfToken/`;
+    ajaxGet(url, (err, resJSON) => callback(err, resJSON));
+}
+
 // Users management
 export function createUser(ajaxPost, data, callback) {
     const url = `${window.location.origin}/User/create/`;

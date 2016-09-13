@@ -28,6 +28,7 @@ import '../styles/base.scss';
 // Call isLoggedIn API
 class Root extends React.Component {
     componentWillMount() {
+        this.props.getCSRFToken();
         this.props.checkAuth();
     }
     render() {
@@ -62,11 +63,12 @@ Root.propTypes = {
 const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn });
 
 const mapDispatchToProps = (dispatch) => ({
-    checkAuth: () => {
-        return API.isLoggedIn(GETer, (err, { isLoggedIn }) => {
-            return dispatch(UserActions.changeAuthenticationState(isLoggedIn));
-        });
-    },
+    checkAuth: () => API.isLoggedIn(GETer, (err, { isLoggedIn }) => {
+        return dispatch(UserActions.changeAuthenticationState(isLoggedIn));
+    }),
+    getCSRFToken: () => API.csrfToken(GETer, (err, { _csrf }) => {
+        sessionStorage.setItem('csrfToken', _csrf);
+    }),
 });
 
 const App = connect(

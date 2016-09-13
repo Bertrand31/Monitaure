@@ -8,7 +8,7 @@ export function GETer(url, callback) {
         method: 'GET',
         credentials: 'same-origin',
         headers: new Headers({
-            Accept: 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
         }),
     })
@@ -22,8 +22,9 @@ export function POSTer(url, data, callback) {
         credentials: 'same-origin',
         body: JSON.stringify(data),
         headers: new Headers({
-            Accept: 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'X-CSRF-Token': sessionStorage.getItem('csrfToken'),
         }),
     })
     .then(handleError)
