@@ -51,7 +51,6 @@ LoginFormComponent.propTypes = {
     user: PropTypes.object.isRequired,
     update: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
-    close: PropTypes.func,
 };
 
 export default LoginFormComponent;

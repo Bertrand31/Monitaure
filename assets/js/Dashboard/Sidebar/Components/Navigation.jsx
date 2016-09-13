@@ -50,6 +50,7 @@ const Navigation = ({ menuIsOpen, logout }) => (
 );
 
 Navigation.propTypes = {
+    menuIsOpen: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
 };
 

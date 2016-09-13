@@ -11,6 +11,8 @@ html,body {
     }
 }
 .l-sidebar {
+    position:relative;
+    z-index:1;
     display:flex;
     flex-direction:column;
     box-sizing:border-box;
@@ -50,14 +52,13 @@ html,body {
 }
 .sidebar__nav--wrapper {
     position:fixed;
-    z-index:1;
     padding:0em 2.5em 0 2em;
     box-sizing:border-box;
     background:$light;
     box-shadow:0 0 60px 0 rgba(0,0,0,.4);
     width:265px;
     height:calc(100% - 60px);
-    transition:all .3s ease-in-out;
+    transition:left .3s ease-in-out;
     top:60px;
     left:0;
     &.s-is-hidden {
@@ -94,11 +95,99 @@ html,body {
 }
 .l-grid {
     display:flex;
-    flex-direction:column;
-    align-items:center;
+    flex-direction:row;
+    align-items:flex-start;
 }
 .l-grid__block {
-    margin:1em 0;
+    flex-grow:1;
+    margin:1.5em 0 .5em;
+    text-align:center;
+    position:relative;
+}
+.c-donut-content {
+    text-transform:uppercase;
+}
+.c-donut-content__main-text {
+    font-size:1em;
+    line-height:1em;
+    position:absolute;
+    top:2.3rem;
+    left:0;
+    right:0;
+    .secondary-text {
+        display:block;
+        color:$lighter;
+        font-size:.9rem;
+        line-height:1.6rem;
+    }
+}
+.c-donut-content__secondary-text {
+    display:block;
+    color:$lighter;
+    font-size:.9rem;
+    line-height:1.2rem;
+
+}
+.c-donut-content__aside-text {
+    display:block;
+    text-transform:uppercase;
+    color:$lighter;
+    font-size:.9em;
+}
+.c-donut {
+    .c-donut__primary-bar {
+        stroke:$lightgreen;
+    }
+    .c-donut__secondary-bar {
+        stroke:$middark;
+    }
+}
+.status {
+    .c-donut-content__servers {
+        display:none;
+    }
+    .c-donut-content__secondary-text {
+        display:none;
+    }
+}
+.availability {
+    max-width:230px;
+    .c-donut {
+        .c-donut__primary-bar {
+            stroke:$lightgreen;
+        }
+        .c-donut__secondary-bar {
+            stroke:$alert;
+        }
+    }
+    .c-donut-content__main-text {
+        font-size:1em;
+        top:1.9rem;
+    }
+    .c-donut-content__secondary-text {
+        font-size:1.2rem;
+    }
+}
+.last-error {
+    .c-donut {
+        .c-donut__primary-bar--ok {
+            stroke:$lightgreen;
+        }
+        .c-donut__primary-bar--nok {
+            stroke:$alert;
+        }
+    }
+    .c-donut-content__main-text {
+        top:1.5em;
+    }
+    .c-donut-content__main-text--check-name {
+        display:none;
+    }
+    .c-donut-content__secondary-text--hour,
+    .c-donut-content__secondary-text--day {
+        color:#fff;
+        padding:0 .3em;
+    }
 }
 .top-data {
     .latency-wrapper {

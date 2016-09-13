@@ -12,7 +12,7 @@ import * as MenuActions from './Actions';
 
 const mapStateToProps = (state) => ({
     menuIsOpen: state.menuIsOpen,
-    user: state.user
+    user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -7,39 +7,65 @@
 .main-container {
     flex-direction:row;
 }
-.l-sidebar {
-    position:fixed;
-    top:0;
-    left:0;
-    height:100%;
-    width:265px;
-    padding:2em 2.5em 0 2em;
-    justify-content:space-between;
-}
 .o-pane-container {
-    width:calc(100% - 265px);
-    margin-top:0;
-    margin-left:auto;
+    width:auto;
 }
 .c-pane-top {
     position:relative;
     padding-top:.5em;
     .c-pane-top__button {
+        position:absolute;
+        right:0;
+        top:0;
         display:block;
+        margin:0;
     }
-}
-.c-pane-top__button {
-    display:inline-block;
-    position:absolute;
-    right:0;
-    top:0;
-    margin:0;
 }
 .l-grid {
     flex-direction:row;
 }
 .l-grid__block {
     margin:1.5em 0 .5em;
+}
+.c-donut-content__main-text {
+    font-size:1.4em;
+    top:4.8rem;
+}
+.c-donut-content__secondary-text {
+    line-height:1.6rem;
+
+}
+.status {
+    .c-donut-content__servers {
+        display:inline;
+    }
+    .c-donut-content__secondary-text {
+        display:block;
+    }
+}
+.availability {
+    .c-donut-content__main-text {
+        font-size:3.3em;
+        top:4.1rem;
+    }
+    .c-donut-content__secondary-text {
+        font-size:1.2rem;
+    }
+}
+.last-error {
+    .c-donut-content__main-text {
+        top:4.35rem;
+    }
+    .c-donut-content__main-text--check-name {
+        display:block;
+        max-width:167px;
+        margin:0 auto;
+    }
+    .c-donut-content__secondary-text--hour,
+    .c-donut-content__secondary-text--day {
+        color:$lighter;
+        display:inline;
+    }
 }
 .top-data {
     box-sizing:border-box;

@@ -3,14 +3,20 @@ import ChartistGraph from 'react-chartist';
 import moment from 'moment';
 
 const donutOptions = {
-    width: '200px',
-    height: '200px',
+    width: '90px',
+    height: '90px',
     donut: true,
     donutWidth: 5,
     startAngle: 230,
     total: 140,
     showLabel: false,
 };
+const responsiveDonutOptions = [
+    ['screen and (min-width:768px)', {
+        width: '200px',
+        height: '200px',
+    }],
+];
 
 const GlobalStats = ({ globalStats }) => {
     if (Object.keys(globalStats).length < 1) {
@@ -57,18 +63,19 @@ const GlobalStats = ({ globalStats }) => {
 
     return (
         <div className="l-grid">
-            <div className="l-grid__block">
+            <div className="l-grid__block status">
                 <div className="c-donut">
                     <ChartistGraph
                         className={'ct-pie'}
                         data={checksUpDataset}
                         options={donutOptions}
+                        responsiveOptions={responsiveDonutOptions}
                         type="Pie"
                     />
                 </div>
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">
-                        {globalStats.checksUp}/{globalStats.numberOfChecks} servers
+                        {globalStats.checksUp}/{globalStats.numberOfChecks} <span className="c-donut-content__servers">servers</span>
                         <span className="c-donut-content__secondary-text">are responding</span>
                     </span>
                     <span className="c-donut-content__aside-text">Status</span>
@@ -80,6 +87,7 @@ const GlobalStats = ({ globalStats }) => {
                         className={'ct-pie'}
                         data={availabilityDataset}
                         options={donutOptions}
+                        responsiveOptions={responsiveDonutOptions}
                         type="Pie"
                     />
                 </div>
@@ -97,6 +105,7 @@ const GlobalStats = ({ globalStats }) => {
                         className={'ct-pie'}
                         data={lastErrorDataset}
                         options={donutOptions}
+                        responsiveOptions={responsiveDonutOptions}
                         type="Pie"
                     />
                 </div>

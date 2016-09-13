@@ -10,7 +10,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider, connect } from 'react-redux';
 import store from './Redux/Store';
 
-import { POSTer, GETer } from './serverIO/ajaxMethods';
+import { GETer } from './serverIO/ajaxMethods';
 import * as API from './serverIO/dataHandling';
 
 import * as UserActions from './User/Actions';

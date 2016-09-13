@@ -19,7 +19,7 @@ module.exports.session = {
      * Replace at your own risk in production-- you will invalidate the cookies *
      * of your users, forcing them to log in again.                             *
      ***************************************************************************/
-    secret: sails.config.sessionsSecret,
+    secret: '8dd150afe9d9005ea93e837f5debbde5',
 
 
     /***************************************************************************
@@ -28,7 +28,7 @@ module.exports.session = {
      ***************************************************************************/
 
     cookie: {
-        secure: sails.config.secureCookies,
+        secure: false,
         maxAge: 24 * 60 * 60 * 1000,
     },
 

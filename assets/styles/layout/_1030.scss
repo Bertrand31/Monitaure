@@ -1,3 +1,40 @@
+.o-pane-container {
+    width:calc(100% - 265px);
+    margin-top:0;
+    margin-left:auto;
+}
+.l-sidebar {
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:265px;
+    padding:2em 2.5em 0 2em;
+    justify-content:space-between;
+    background:$light;
+    box-shadow:0 0 60px 0 rgba(0,0,0,.4);
+}
+.c-mobile-topbar {
+    position:static;
+    width:auto;
+    display:block;
+    background:transparent;
+    .c-dummy {
+        display:none;
+    }
+}
+.sidebar__nav--wrapper {
+    padding:0;
+    position:static;
+    top:0;
+    background:transparent;
+    width:auto;
+    height:auto;
+    box-shadow:none;
+    &.s-is-hidden {
+        left:0;
+    }
+}
 .hamburger {
     display:none;
 }
