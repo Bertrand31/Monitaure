@@ -35,7 +35,7 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
 * Misc
     * Sendgrid to send transactionnal emails (account confirmation, alerts, etc.) ;
     * Travis CI for build testing ;
-    * Codacy for code style and quality review ;
+    * ESLint and Codacy for code style and quality review ;
     * Heap Analytics for retroactive interaction statistics.
 
 Concerning the graphical aspect of the application, you can find all the goodies [here on Dribble](https://dribbble.com/guillaumeparra/tags/monitaure).
