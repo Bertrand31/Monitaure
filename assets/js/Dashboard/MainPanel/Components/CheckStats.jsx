@@ -9,7 +9,6 @@ const chartOptions = {
     height: 180,
     onlyInteger: true,
     axisY: {
-        // showLabel: false,
         offset: 50,
         showGrid: false,
         scaleMinSpace: 100,

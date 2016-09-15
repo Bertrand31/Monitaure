@@ -53,13 +53,13 @@ export const checksReducer = (state = {}, action) => {
             if (Object.keys(state).length === 0) {
                 const newState = {};
                 // We turn an array into an object with checks ids as keys
-                action.checks.forEach(check => { newState[check.id] = check; });
+                action.checks.forEach(check => newState[check.id] = check);
                 return { ...newState };
             }
             // Otherwise, we only update the history values
             const newState = { ...state };
             // We update the last ping of every check
-            action.checks.forEach(check => { newState[check.id].history = check.history; });
+            action.checks.forEach(check => newState[check.id].history = check.history);
             return { ...newState };
         }
 

@@ -111,9 +111,15 @@ const GlobalStats = ({ globalStats }) => {
                 </div>
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">
-                        <span className="c-donut-content__main-text--check-name">{globalStats.lastError.checkName}</span>
-                        <span className="c-donut-content__secondary-text c-donut-content__secondary-text--hour">{lastErrorHour} </span>
-                        <span className="c-donut-content__secondary-text c-donut-content__secondary-text--day"> {lastErrorDay}</span>
+                        <span className="c-donut-content__main-text--check-name">
+                            {globalStats.lastError.checkName}
+                        </span>
+                        <span className="c-donut-content__secondary-text c-donut-content__secondary-text--hour">
+                            {lastErrorHour}
+                        </span>
+                        <span className="c-donut-content__secondary-text c-donut-content__secondary-text--day">
+                            {lastErrorDay}
+                        </span>
                     </span>
                     <span className="c-donut-content__aside-text">Last outage</span>
                 </p>

@@ -2,7 +2,7 @@ module.exports = {
     /**
      * HTTP route to create a user account
      * req.body contains the user data (name, email, etc.)
-     * @param {Object} req - HTTP request
+     * @param {Object} req - HTTP request (must be POST)
      * @param {Object} res - Express' response object
      * @returns {JSON} Either an error or the created user record
      */
@@ -19,7 +19,7 @@ module.exports = {
      * HTTP route to confirm a newly created user account
      * Is called like this: /account/confirm/:confirmationToken
      * The confirmation token is passed as the 'id' paramter
-     * @param {Object} req - HTTP request
+     * @param {Object} req - HTTP request (must be GET)
      * @param {Object} res - Express' response object
      * @returns {HTML} Renders a page depending on the account confirmation success
      */

@@ -43,19 +43,22 @@ class CheckRow extends React.Component {
     }
 
     render() {
-        const row = this.props.row;
         return (
-            <tr className="c-checks__row" id={row.id} onClick={() => this.onCheckRowClick()}>
+            <tr
+                className="c-checks__row"
+                id={this.props.row.id}
+                onClick={() => this.onCheckRowClick()}
+            >
                 <td className="c-checks__status" data-health={this.props.checkState} />
                 <td className="c-checks__name">
                     <input
                         className="input__text input__text--dark"
                         name="name"
-                        disabled={!row.isEditing}
+                        disabled={!this.props.row.isEditing}
                         type="text"
-                        onChange={(e) => this.handleChange(e)}
-                        onKeyDown={(e) => this.handleKeyPress(e)}
-                        value={row.name}
+                        onChange={e => this.handleChange(e)}
+                        onKeyDown={e => this.handleKeyPress(e)}
+                        value={this.props.row.name}
                         placeholder="e.g. HTTP @ Google"
                         ref={ref => this.checknameInput = ref}
                     />
@@ -64,11 +67,11 @@ class CheckRow extends React.Component {
                     <input
                         className="input__text input__text--dark"
                         name="domainNameOrIP"
-                        disabled={!row.isEditing || !this.props.isNewCheck}
+                        disabled={!this.props.row.isEditing || !this.props.isNewCheck}
                         type="text"
-                        onChange={(e) => this.handleChange(e)}
-                        onKeyDown={(e) => this.handleKeyPress(e)}
-                        value={row.domainNameOrIP}
+                        onChange={e => this.handleChange(e)}
+                        onKeyDown={e => this.handleKeyPress(e)}
+                        value={this.props.row.domainNameOrIP}
                         placeholder="e.g. google.fr"
                     />
                 </td>
@@ -76,11 +79,11 @@ class CheckRow extends React.Component {
                     <input
                         className="input__text input__text--number input__text--dark"
                         name="port"
-                        disabled={!row.isEditing || !this.props.isNewCheck}
+                        disabled={!this.props.row.isEditing || !this.props.isNewCheck}
                         type="number"
-                        onChange={(e) => this.handleChange(e)}
-                        onKeyDown={(e) => this.handleKeyPress(e)}
-                        value={row.port}
+                        onChange={e => this.handleChange(e)}
+                        onKeyDown={e => this.handleKeyPress(e)}
+                        value={this.props.row.port}
                         min="1"
                         max="65535"
                         placeholder="e.g. 80"
@@ -93,13 +96,13 @@ class CheckRow extends React.Component {
                     <input
                         className="input__checkbox"
                         name="emailNotifications"
-                        disabled={!row.isEditing}
+                        disabled={!this.props.row.isEditing}
                         type="checkbox"
-                        onChange={(e) => this.handleChange(e)}
-                        checked={row.emailNotifications}
+                        onChange={e => this.handleChange(e)}
+                        checked={this.props.row.emailNotifications}
                     />
                 </td>
-                <td className={`c-checks__edit ${row.isEditing ? 'is-editing' : 'is-not-editing'}`}>
+                <td className={`c-checks__edit ${this.props.row.isEditing ? 'is-editing' : 'is-not-editing'}`}>
                     <button
                         onClick={e => this.onEditClick(e)}
                         className="settings-check"
@@ -111,9 +114,9 @@ class CheckRow extends React.Component {
                     className="c-checks__destroy"
                 >
                     <button
-                        onClick={(e) => {
+                        onClick={e => {
                             e.stopPropagation();
-                            this.props.functions.destroy(row.id);
+                            this.props.functions.destroy(this.props.row.id);
                         }}
                         className="destroy-check"
                     / >
@@ -125,15 +128,11 @@ class CheckRow extends React.Component {
 
 CheckRow.propTypes = {
     row: PropTypes.shape({
-        createdAt: PropTypes.string,
         domainNameOrIP: PropTypes.string.isRequired,
         emailNotifications: PropTypes.bool,
-        history: PropTypes.array.isRequired,
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        owner: PropTypes.string,
         port: PropTypes.number.isRequired,
-        updatedAt: PropTypes.string,
         isEditing: PropTypes.bool,
     }),
     isOpenCheck: PropTypes.bool.isRequired,

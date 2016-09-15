@@ -41,7 +41,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jade": "^1.11.0",
     "moment": "^2.15.0",
-    "node-sass": "^3.9.3",
+    "node-sass": "^3.10.0",
     "nodemailer": "^2.6.0",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "passport": "^0.3.2",

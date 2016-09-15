@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+// import 'babel-polyfill';
 import 'isomorphic-fetch';
 import 'fastclick';
 
@@ -25,7 +25,6 @@ import Popins from './Popins/Container';
 
 import '../styles/base.scss';
 
-// Call isLoggedIn API
 class Root extends React.Component {
     componentWillMount() {
         this.props.getCSRFToken();
@@ -55,6 +54,7 @@ class Root extends React.Component {
 }
 
 Root.propTypes = {
+    getCSRFToken: PropTypes.func.isRequired,
     checkAuth: PropTypes.func.isRequired,
     children: PropTypes.element,
     isLoggedIn: PropTypes.bool,
@@ -62,13 +62,13 @@ Root.propTypes = {
 
 const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn });
 
-const mapDispatchToProps = (dispatch) => ({
-    checkAuth: () => API.isLoggedIn(GETer, (err, { isLoggedIn }) => {
-        return dispatch(UserActions.changeAuthenticationState(isLoggedIn));
-    }),
-    getCSRFToken: () => API.csrfToken(GETer, (err, { _csrf }) => {
-        sessionStorage.setItem('csrfToken', _csrf);
-    }),
+const mapDispatchToProps = dispatch => ({
+    checkAuth: () => API.isLoggedIn(GETer, (err, { isLoggedIn }) =>
+        dispatch(UserActions.changeAuthenticationState(isLoggedIn))
+    ),
+    getCSRFToken: () => API.csrfToken(GETer, (err, { _csrf }) =>
+        sessionStorage.setItem('csrfToken', _csrf)
+    ),
 });
 
 const App = connect(
@@ -80,7 +80,6 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
-
         <Provider store={store}>
             <Router history={history}>
                 <Route path="/" component={App}>
@@ -89,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </Route>
             </Router>
         </Provider>,
-
         document.getElementById('root')
     );
 });

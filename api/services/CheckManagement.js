@@ -23,7 +23,7 @@ const historyGarbageCollection = (historyArray) => {
 * Trims the check's history to only return a specified number of pings
 *  @param {Object} check - the raw db record of a check
 *  @param {Number} historyLength - the number of history entries to return
-*  @returns {Objets}
+*  @returns {Object}
 */
 const calcCheckStats = (check, historyLength) => {
     const historyArray = check.history;
@@ -145,7 +145,6 @@ module.exports = {
             if (err) return callback(err);
 
             const newHistoryArray = historyGarbageCollection(check.history);
-
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
             // And update the DB record
@@ -196,9 +195,9 @@ module.exports = {
 
             for (let i = 0; i < user.checks.length; i++) {
                 const checkStats = calcCheckStats(user.checks[i], 1);
-                // If `err` the check's history array is null: we have no data to process
+                // If (checkStats == null) the check's history array is null: we have no data to process
                 if (checkStats !== null) {
-                    // If current check is currently up, we add increment checksUp array
+                    // If current check is currently up, we increment checksUp array
                     // We do that by looking up his last 'history' array value
                     if (checkStats.history[checkStats.history.length - 1].duration !== null) {
                         checksUp++;
@@ -219,23 +218,18 @@ module.exports = {
             // Calculate the average of all the checks availabilities
             const availabilitiesAvg = Utilities.customFloor(availabilitiesSum / numberOfChecks, 2);
 
-            // Object containing the user information and its checks
-            const userData = {
-                username: user.username,
-                emailHash: user.emailHash,
-            };
-            // Object containing all previously computed stats
-            const globalStats = {
-                numberOfChecks,
-                checksUp,
-                availabilitiesAvg,
-                lastError,
-            };
-
             return callback(err, {
-                user: userData,
+                user: {
+                    username: user.username,
+                    emailHash: user.emailHash,
+                },
                 checks: user.checks,
-                globalStats,
+                globalStats: {
+                    numberOfChecks,
+                    checksUp,
+                    availabilitiesAvg,
+                    lastError,
+                },
             });
         });
     },

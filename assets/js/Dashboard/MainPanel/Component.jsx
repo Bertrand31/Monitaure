@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
-import TopBar from './Components/TopBar.react';
-import GlobalStats from './Components/GlobalStats.react';
-import CheckStats from './Components/CheckStats.react';
-import ChecksTable from './Components/ChecksTable.react';
+import TopBar from './Components/TopBar';
+import GlobalStats from './Components/GlobalStats';
+import CheckStats from './Components/CheckStats';
+import ChecksTable from './Components/ChecksTable';
 
 
 class Dashboard extends React.Component {

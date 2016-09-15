@@ -19,7 +19,11 @@ const Sidebar = ({ menuIsOpen, user, toggleMenu, logout }) => (
                 </button>
 
                 <h1 className="c-logo">
-                    <img width="165" src="/images/logo.svg" alt="Monitaure - Monitoring for the masses" />
+                    <img
+                        width="165"
+                        src="/images/logo.svg"
+                        alt="Monitaure - Monitoring for the masses"
+                    />
                 </h1>
                 <div className="c-dummy" />
             </div>

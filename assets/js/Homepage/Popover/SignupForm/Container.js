@@ -7,19 +7,17 @@ import { create as popinCreate } from '../../../Popins/Actions';
 import { signup, update } from '../../../User/Actions';
 import SignupForm from './Component';
 
-const mapStateToProps = (state) => ({ user: state.user });
+const mapStateToProps = state => ({ user: state.user });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
 
     update: (attrName, attrValue) => dispatch(update(attrName, attrValue)),
 
-    signup: (data) => {
-        API.createUser(POSTer, data, (err, user) => {
-            if (err) return dispatch(popinCreate('alert', err.message));
+    signup: data => API.createUser(POSTer, data, (err, user) => {
+        if (err) return dispatch(popinCreate('alert', err.message));
 
-            return dispatch(signup(user));
-        });
-    },
+        return dispatch(signup(user));
+    }),
 });
 
 const SignupFormContainer = connect(

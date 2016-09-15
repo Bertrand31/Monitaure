@@ -9,22 +9,20 @@ import * as API from '../../../serverIO/dataHandling';
 
 import { create as popinCreate } from '../../../Popins/Actions';
 
-const mapStateToProps = (state) => ({ user: state.user });
+const mapStateToProps = state => ({ user: state.user });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
 
     update: (attrName, attrValue) => dispatch(UserActions.update(attrName, attrValue)),
 
-    login: (data) => {
-        API.login(POSTer, data, (err, res) => {
-            if (err) return dispatch(popinCreate('alert', err.message));
-            if (!res.user) return dispatch(popinCreate('alert', res.message));
+    login: data => API.login(POSTer, data, (err, res) => {
+        if (err) return dispatch(popinCreate('alert', err.message));
+        if (!res.user) return dispatch(popinCreate('alert', res.message));
 
-            browserHistory.push('/');
-            dispatch(UserActions.changeAuthenticationState(true));
-            dispatch(UserActions.hydrate(res.user));
-        });
-    },
+        browserHistory.push('/');
+        dispatch(UserActions.changeAuthenticationState(true));
+        dispatch(UserActions.hydrate(res.user));
+    }),
 
 });
 

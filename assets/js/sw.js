@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import 'isomorphic-fetch';
 
 (global => {
@@ -30,7 +29,7 @@ import 'isomorphic-fetch';
     });
     global.toolbox.router.get('/isLoggedIn/', global.toolbox.fastest, {
         cache: {
-            name: 'isLoggedIn-v1',
+            name: 'auth-cache-v1',
             maxEntries: 1,
             maxAgeSeconds: 4 * 24 * 60 * 60,
         },

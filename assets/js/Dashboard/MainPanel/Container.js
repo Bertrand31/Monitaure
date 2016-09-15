@@ -9,7 +9,7 @@ import * as UserActions from '../../User/Actions';
 import * as MenuActions from '../Sidebar/Actions';
 import MainPanel from './Component';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     checks: state.checks,
     globalStats: state.globalStats,
     openCheck: state.openCheck,
@@ -17,7 +17,7 @@ const mapStateToProps = (state) => ({
     menuIsOpen: state.menuIsOpen,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     populateAll() {
         API.getUserAndGlobalStats(GETer, (err, { user, checks, globalStats }) => {
             if (err) return dispatch(popinCreate('alert', err.message));
@@ -40,13 +40,13 @@ const mapDispatchToProps = (dispatch) => ({
     },
 
     createWorkingCheck() {
-        dispatch(actions.createWorkingCheck());
+        return dispatch(actions.createWorkingCheck());
     },
     setWorkingCheck(id) {
-        dispatch(actions.setWorkingCheck(id));
+        return dispatch(actions.setWorkingCheck(id));
     },
     updateWorkingCheck(id, attrName, attrValue) {
-        dispatch(actions.updateWorkingCheck(id, attrName, attrValue));
+        return dispatch(actions.updateWorkingCheck(id, attrName, attrValue));
     },
     saveWorkingCheck(data) {
         if (data.id === 'tmpID') {
@@ -80,10 +80,10 @@ const mapDispatchToProps = (dispatch) => ({
         }
     },
     closeCheckStats() {
-        dispatch(actions.closeStats());
+        return dispatch(actions.closeStats());
     },
     closeMenu() {
-        dispatch(MenuActions.close());
+        return dispatch(MenuActions.close());
     },
 });
 
