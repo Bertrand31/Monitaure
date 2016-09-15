@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import '../../styles/popins.scss';
+import '../../styles/Popins/index.scss';
 
 class Popin extends React.Component {
     componentDidMount() {

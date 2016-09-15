@@ -3,7 +3,7 @@ import React from 'react';
 import Sidebar from './Sidebar/Container';
 import MainPanel from './MainPanel/Container';
 
-import '../../styles/dashboard.scss';
+import '../../styles/Dashboard/index.scss';
 
 const Dashboard = () => (
     <div>

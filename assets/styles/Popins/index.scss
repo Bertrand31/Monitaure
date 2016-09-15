@@ -1,5 +1,5 @@
-@import 'mixins';
-@import 'variables';
+@import '../includes/mixins';
+@import '../includes/variables';
 
 .c-popins-container {
     position:absolute;
@@ -28,11 +28,11 @@
 }
 .c-popin--info .c-popin__body:before {
     border:2px solid $info;
-    background-image:url('../svg/status-ok.svg');
+    background-image:url('../../svg/status-ok.svg');
 }
 .c-popin--alert .c-popin__body:before {
     border:2px solid $alert;
-    background-image:url('../svg/status-error.svg');
+    background-image:url('../../svg/status-error.svg');
 }
 .c-popin__body {
     position:relative;

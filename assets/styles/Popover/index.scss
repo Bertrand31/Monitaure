@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@import '../includes/variables';
+@import '../includes/mixins';
 
 .c-popover-overlay {
     opacity:1;
