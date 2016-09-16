@@ -69,16 +69,16 @@ const pingHandling = ping => {
     }
 };
 
-module.exports = (fetcher) => {
+module.exports = fetcher => {
     setInterval(() => {
         fetcher('check', {}, (err, checks) => {
             if (err) throw err;
 
             const asyncChecks = [];
 
-            checks.forEach((check) => {
-                asyncChecks.push((callback) => {
-                    checkPort(check, (result) => {
+            checks.forEach(check => {
+                asyncChecks.push(callback => {
+                    checkPort(check, result => {
                         callback(null, result);
                     });
                 });
@@ -86,7 +86,7 @@ module.exports = (fetcher) => {
 
             async.parallel(asyncChecks, (err, pings) => {
                 if (err) throw err;
-                pings.forEach((ping) => {
+                pings.forEach(ping => {
                     pingHandling(ping);
                 });
             });

@@ -27,6 +27,7 @@ const historyGarbageCollection = (historyArray) => {
 */
 const calcCheckStats = (check, historyLength) => {
     const historyArray = check.history;
+    const historyArrayLength = historyArray.length;
 
     if (historyArray.length === 0) {
         return null;
@@ -39,25 +40,25 @@ const calcCheckStats = (check, historyLength) => {
     let totalOutage = 0;
     let lastOutage = null;
 
-    for (let i = 0; i < historyArray.length; i++) {
-        if (historyArray[i].duration !== null) {
-            sum += historyArray[i].duration;
-            min = historyArray[i].duration < min ? historyArray[i].duration : min;
-            max = historyArray[i].duration > max ? historyArray[i].duration : max;
+    for (let ping of historyArray) {
+        if (ping.duration !== null) {
+            sum += ping.duration;
+            min = ping.duration < min ? ping.duration : min;
+            max = ping.duration > max ? ping.duration : max;
         } else {
             totalOutage += checkInterval;
-            lastOutage = historyArray[i].date;
+            lastOutage = ping.date;
         }
     }
 
-    const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
+    const percent = 100 - (totalOutage * 100) / (historyArrayLength * checkInterval);
 
     return {
         id: check.id,
         name: check.name,
         min,
         max,
-        avg: Math.round(sum / historyArray.length),
+        avg: Math.round(sum / historyArrayLength),
         availability: Utilities.customFloor(percent, 2),
         lastOutage,
         history: historyArray.slice(-historyLength),
@@ -193,8 +194,8 @@ module.exports = {
             const numberOfChecks = user.checks.length;
             let availabilitiesSum = 0;
 
-            for (let i = 0; i < user.checks.length; i++) {
-                const checkStats = calcCheckStats(user.checks[i], 1);
+            for (let check of user.checks) {
+                const checkStats = calcCheckStats(check, 1);
                 // If (checkStats == null) the check's history array is null: we have no data to process
                 if (checkStats !== null) {
                     // If current check is currently up, we increment checksUp array
@@ -211,7 +212,7 @@ module.exports = {
                         lastError.checkName = checkStats.name;
                     }
                     // We replace current check's history with the trimmed version from 'checkStats'
-                    user.checks[i].history = checkStats.history;
+                    check.history = checkStats.history;
                 }
             }
 
