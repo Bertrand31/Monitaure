@@ -7,7 +7,7 @@
 Monitaure is an online service aiming to provide SysAdmins with a clean, lightweight and quick to configure monitoring dashboard.
 The application does not need any client-side installation or configuration.
 
-[![Monitaure main dashboard](https://monitaure.io/images/hp-dashboard-preview.png)](https://monitaure.io)
+[![Monitaure main dashboard](https://monitaure.io/images/dashboard-sample.png)](https://monitaure.io)
 
 ## Why it's awesome
 
