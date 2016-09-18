@@ -6,7 +6,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://github.com/Bertrand31/Monitaure/blob/master/LICENSE)
 
-[Open Source Love](http://forthebadge.com/images/featured/featured-gluten-free.svg)
+[![Certified 100% gluten-free](http://forthebadge.com/images/featured/featured-gluten-free.svg)]
 
 
 Monitaure is an online service aiming to provide SysAdmins with a clean, lightweight and quick to configure monitoring dashboard.
