@@ -3,6 +3,11 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/f3d8e262de834aa9a6e3a5bb36aa54b2)](https://www.codacy.com/app/bertrandjun/Monitaure)
 [![Dependency Status](https://david-dm.org/Bertrand31/Monitaure/status.svg)](https://david-dm.org/Bertrand31/Monitaure/)
 [![Travis build status](https://travis-ci.org/Bertrand31/Monitaure.svg)](https://travis-ci.org/Bertrand31/Monitaure/)
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)
+[![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://github.com/Bertrand31/Monitaure/blob/master/LICENSE)
+
+[Open Source Love](http://forthebadge.com/images/featured/featured-gluten-free.svg)
+
 
 Monitaure is an online service aiming to provide SysAdmins with a clean, lightweight and quick to configure monitoring dashboard.
 The application does not need any client-side installation or configuration.
