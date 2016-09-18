@@ -1,6 +1,6 @@
 // import 'babel-polyfill';
 import 'isomorphic-fetch';
-import 'fastclick';
+import 'react-fastclick';
 
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
