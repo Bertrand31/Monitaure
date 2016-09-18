@@ -57,4 +57,9 @@ The team is composed of the following people:
 * [404](https://monitaure.io/404)
 * [500](https://monitaure.io/500)
 
-<img align="center" src="http://forthebadge.com/images/featured/featured-gluten-free.svg" alt="Gluten-free certification" />
+## Certifications
+
+<p align="center">
+    <img align="center" src="http://forthebadge.com/images/featured/featured-gluten-free.svg" alt="Gluten-free certification" />
+    <img align="center" src="http://forthebadge.com/images/badges/built-by-hipsters.svg" />
+</p>
