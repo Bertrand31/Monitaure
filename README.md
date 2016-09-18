@@ -59,7 +59,6 @@ The team is composed of the following people:
 
 ## Certifications
 
-<p align="center">
-    <img align="center" src="http://forthebadge.com/images/featured/featured-gluten-free.svg" alt="Gluten-free certification" />
-    <img align="center" src="http://forthebadge.com/images/badges/built-by-hipsters.svg" />
-</p>
+<img src="http://forthebadge.com/images/featured/featured-gluten-free.svg" alt="Gluten-free certification" />
+
+<img src="http://forthebadge.com/images/badges/built-by-hipsters.svg" alt="Built by hipsters" />
