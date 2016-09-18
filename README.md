@@ -6,9 +6,6 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://github.com/Bertrand31/Monitaure/blob/master/LICENSE)
 
-[![Certified 100% gluten-free](http://forthebadge.com/images/featured/featured-gluten-free.svg)]
-
-
 Monitaure is an online service aiming to provide SysAdmins with a clean, lightweight and quick to configure monitoring dashboard.
 The application does not need any client-side installation or configuration.
 
@@ -59,3 +56,5 @@ The team is composed of the following people:
 * [403](https://monitaure.io/403)
 * [404](https://monitaure.io/404)
 * [500](https://monitaure.io/500)
+
+<img align="center" src="http://forthebadge.com/images/featured/featured-gluten-free.svg" alt="Gluten-free certification" />
