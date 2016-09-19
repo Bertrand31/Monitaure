@@ -1,3 +1,25 @@
+.l-pane-grid {
+    display:flex;
+    max-width:1400px;
+    margin:0 auto;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    align-content:center;
+}
+.l-pane-grid__item:first-child {
+    margin-left:3%;
+}
+.c-topnav {
+    max-width:1400px;
+    box-sizing:border-box;
+    position:fixed;
+    top:15px;
+    left:0;
+    right:0;
+    z-index:2;
+    margin:0 auto;
+}
 .c-pane {
     position:relative;
     display:flex;
@@ -6,4 +28,76 @@
 }
 .c-pane--big {
     height:100vh;
+}
+.c-pane--first {
+    .c-pane--first__wrapper {
+        padding-top:67px;
+        box-sizing:border-box;
+        display:flex;
+        justify-content:center;
+    }
+    .l-pane-grid__item {
+        align-self:flex-start;
+        &.l-pane-grid__item--image {
+            align-self:center;
+            flex-grow:1;
+            width:689px;
+        }
+    }
+}
+.c-pane--first__wrapper {
+    .c-content {
+        width:100%;
+        align-self:center;
+    }
+}
+.c-stripeback {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:100%;
+}
+.c-bar {
+    position:absolute;
+    top:0;
+    padding:0 1.5%;
+    box-sizing:content-box;
+}
+@for $i from 1 through 11 {
+    .c-bar-#{$i} {
+        left: percentage($i * (1/12)) - 1.5%;
+    }
+}
+.c-bar__line {
+    height:calc(100vh - 20px);
+    opacity:.26;
+    background:#fff;
+    width:1px;
+}
+$dot-size: 5px;
+.c-bar__dot {
+    position:absolute;
+    left:calc(50% - 2px);
+    background:#fff;
+    height:$dot-size;
+    width:$dot-size;
+    top:-#{$dot-size};
+    border-radius:100%;
+    animation-duration:1s;
+    animation-iteration-count:1;
+    // animation-timing-function:cubic-bezier(0.33, 0, 0.51, 1.3);
+    animation-timing-function:ease-out;
+    animation-fill-mode:forwards;
+}
+$positions: 60% 70% 76% 77% 72% 60% 50% 42% 38% 33% 30%;
+@for $i from 1 through length($positions) {
+    .c-bar-#{$i} .c-bar__dot {
+        animation-name:arrive-#{$i};
+        animation-delay:$i / 4 + 2s;
+    }
+    @keyframes arrive-#{$i} {
+        0% { top:-#{$dot-size}; }
+        100% { top:nth($positions, $i); }
+    }
 }

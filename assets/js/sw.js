@@ -16,20 +16,20 @@ import 'isomorphic-fetch';
     global.toolbox.precache(filesToCache);
     global.toolbox.router.get('/images/*', global.toolbox.cacheFirst, {
         cache: {
-            name: 'asset-cache-v1',
+            name: 'asset-cache-v1.1',
             maxEntries: 20,
         },
     });
     global.toolbox.router.get('/Check/*', global.toolbox.networkFirst, {
         cache: {
-            name: 'dynamic-checksdata-cache-v1',
+            name: 'dynamic-checksdata-cache-v1.1',
             maxEntries: 10,
             maxAgeSeconds: 600,
         },
     });
     global.toolbox.router.get('/isLoggedIn/', global.toolbox.fastest, {
         cache: {
-            name: 'auth-cache-v1',
+            name: 'auth-cache-v1.1',
             maxEntries: 1,
             maxAgeSeconds: 4 * 24 * 60 * 60,
         },
@@ -51,21 +51,21 @@ import 'isomorphic-fetch';
     global.toolbox.router.get('/avatar/*', global.toolbox.cacheFirst, {
         origin: /gravatar\.com/,
         cache: {
-            name: 'static-vendor-cache-v1',
+            name: 'static-vendor-cache-v1.1',
             maxEntries: 1,
         },
     });
     global.toolbox.router.get('/(.*)', global.toolbox.cacheFirst, {
         origin: /fonts\.gstatic\.com/,
         cache: {
-            name: 'static-vendor-cache-v1',
+            name: 'static-vendor-cache-v1.1',
             maxEntries: 10,
         },
     });
     global.toolbox.router.get('/css', global.toolbox.fastest, {
         origin: /fonts\.googleapis\.com/,
         cache: {
-            name: 'dynamic-vendor-cache-v1',
+            name: 'dynamic-vendor-cache-v1.1',
             maxEntries: 5,
         },
     });

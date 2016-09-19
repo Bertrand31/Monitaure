@@ -1,30 +1,10 @@
 @import '../includes/foundation';
 @import '../includes/variables';
+@import '../includes/typography';
 @import '../includes/forms';
 
-body {
-    font:normal 400 16px/20px $montserrat;
-    color:#fff;
-}
 .react-container {
     width:100%;
-}
-h1,h2,h3,h4 {
-    margin:1em 0 .8em;
-}
-h1 {
-    font-size:1.8em;
-}
-h2, .h2 {
-    font-size:1.4em;
-    line-height:1em;
-    text-transform:uppercase;
-}
-h3 {
-    font-size:2.5em;
-    line-height:1.3em;
-    font-weight:400;
-    margin:1.7em 0;
 }
 // Hide firefox's arrows
 input[type=number] {

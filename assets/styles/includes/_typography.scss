@@ -3,19 +3,26 @@ body {
     color:#fff;
 }
 h1,h2,h3,h4 {
+    font-family:$roboto;
+    font-weight:300;
     margin:1em 0 .8em;
 }
 h1 {
     font-size:1.8em;
 }
-h2 {
+h2, .h2 {
     font-size:1.4em;
     line-height:1em;
-    text-transform:uppercase;
+}
+.c-h2--big {
+    font-weight:200;
+    font-size:4em;
+    line-height:1.4;
+    letter-spacing:1px;
 }
 h3 {
-    font-size:2.5em;
-    line-height:1.3em;
+    font-size:1.5em;
+    line-height:1.6;
     font-weight:400;
     margin:1.7em 0;
 }

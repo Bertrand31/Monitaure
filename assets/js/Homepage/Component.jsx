@@ -25,36 +25,38 @@ const HomepageComponent = () => (
         </nav>
 
         <section className="c-pane c-pane--big c-pane--first c-pane--green">
-            <div className="c-stripeback" aria-hidden="true">
-                <div className="c-bar c-bar-1"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-2"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-3"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-4"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-5"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-6"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-7"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-8"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-9"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-10"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                <div className="c-bar c-bar-11"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-            </div>
-            <div className="c-content">
-                <div className="l-pane-grid">
-                    <div className="l-pane-grid__item">
-                        <h2 className="c-h2--big">Monitoring<br />for the masses</h2>
-                        <h3 className="c-h3--small">A simple and hassle-free server monitoring dashboard</h3>
-                        <Link to="/tour" className="c-button c-button--goto">How it works</Link>
-                    </div>
-                    <div className="l-pane-grid__item l-pane-grid__item--image">
-                        <div className="c-image-circle">
-                            <img src="/images/iphone.png" alt="Monitaure app on an iPhone" />
+            <div className="c-pane--first__wrapper">
+                <div className="c-stripeback" aria-hidden="true">
+                    <div className="c-bar c-bar-1"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-2"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-3"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-4"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-5"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-6"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-7"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-8"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-9"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-10"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                    <div className="c-bar c-bar-11"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
+                </div>
+                <div className="c-content">
+                    <div className="l-pane-grid">
+                        <div className="l-pane-grid__item">
+                            <h2 className="c-h2--big">Monitoring<br />for the masses</h2>
+                            <h3 className="c-h3--small">A simple and hassle-free server<br />monitoring dashboard</h3>
+                            <Link to="/tour" className="c-button--goto">How it works</Link>
+                        </div>
+                        <div className="l-pane-grid__item l-pane-grid__item--image">
+                            <div className="c-image-circle">
+                                <img src="/images/iphone.png" alt="Monitaure app on an iPhone" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section className="c-pane c-pane--big c-pane--second">
+        {/*<section className="c-pane c-pane--big c-pane--second">
             <h2 className="c-h2">Why it's awesome</h2>
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
@@ -130,7 +132,7 @@ const HomepageComponent = () => (
         <section className="c-pane c-pane--big c-pane--about">
             <h2 className="c-h2--big">About us</h2>
             <p className="c-pane__body">We're two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
-            {/* TODODODODO TODO TDOo */}
+            <div id="TODO" />
         </section>
 
         <section className="c-pane c-pane--small c-pane--green c-pane--try">
@@ -168,7 +170,7 @@ const HomepageComponent = () => (
                     </p>
                 </div>
             </div>
-        </footer>
+        </footer>*/}
 
     </div>
 

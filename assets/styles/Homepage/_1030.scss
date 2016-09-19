@@ -1,1 +1,19 @@
-.tmp{}
+.c-image-circle {
+    position:relative;
+    display:flex;
+    justify-content:center;
+    &:before {
+        display:block;
+        position:absolute;
+        align-self:center;
+        content:"";
+        width:490px;
+        height:490px;
+        border:20px solid #fff;
+        border-radius:100%;
+    }
+    img {
+        z-index:1;
+        align-self:center;
+    }
+}
