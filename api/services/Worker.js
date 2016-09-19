@@ -72,7 +72,7 @@ const pingHandling = ping => {
 module.exports = fetcher => {
     setInterval(() => {
         fetcher('check', {}, (err, checks) => {
-            if (err) throw err;
+            if (err) sails.log.error(err);
 
             const asyncChecks = [];
 

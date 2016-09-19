@@ -4,7 +4,7 @@
  * @param {Array} historyArray - check.history
  * @return {Array}
  */
-const historyGarbageCollection = (historyArray) => {
+const historyGarbageCollection = historyArray => {
     if (typeof historyArray[0] === 'undefined') return [];
 
     const oneMonthAgo = new Date();
@@ -40,7 +40,7 @@ const calcCheckStats = (check, historyLength) => {
     let totalOutage = 0;
     let lastOutage = null;
 
-    for (let ping of historyArray) {
+    for (const ping of historyArray) {
         if (ping.duration !== null) {
             sum += ping.duration;
             min = ping.duration < min ? ping.duration : min;
