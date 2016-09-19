@@ -95,11 +95,16 @@ class CheckRow extends React.Component {
                 <td className="c-checks__notifications">
                     <input
                         className="input__checkbox"
+                        id={`emailNotifications-${this.props.row.id}`}
                         name="emailNotifications"
                         disabled={!this.props.row.isEditing}
                         type="checkbox"
                         onChange={e => this.handleChange(e)}
                         checked={this.props.row.emailNotifications}
+                    />
+                    <label
+                        htmlFor={`emailNotifications-${this.props.row.id}`}
+                        onClick={e => e.stopPropagation()}
                     />
                 </td>
                 <td className={`c-checks__edit ${this.props.row.isEditing ? 'is-editing' : 'is-not-editing'}`}>
@@ -213,7 +218,7 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
                     <th className="c-checks__domainNameOrIP">Domain name or IP</th>
                     <th className="c-checks__port">Port</th>
                     <th className="c-checks__latency">Latency</th>
-                    <th className="c-checks__notifications">Notifications</th>
+                    <th className="c-checks__notifications">Alerts</th>
                     <th className="c-checks__edit" />
                     <th className="c-checks__destroy" />
                 </tr>

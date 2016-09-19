@@ -73,6 +73,47 @@
     background-position:center center;
     background-repeat:no-repeat;
 }
+.c-checks__notifications {
+    width: 20px;
+    position: relative;
+    margin: 20px auto;
+    label {
+        display:block;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        background: linear-gradient(top, $dark 0%, $light 100%);
+        background: -webkit-linear-gradient(top, $dark 0%, $light 100%);
+        border-radius: 4px;
+        box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.2);
+        &:after {
+            content: '';
+            display:block;
+            width: 9px;
+            height: 5px;
+            position:relative;
+            top: 4px;
+            left: 4px;
+            border: 3px solid #fcfff4;
+            border-top: none;
+            border-right: none;
+            background: transparent;
+            opacity: 0;
+            transform: rotate(-45deg);
+            transition:opacity .3s ease;
+        }
+    }
+    .input__checkbox {
+        visibility: hidden;
+        position:absolute;
+        &:checked + label:after {
+            opacity: 1;
+        }
+        &[disabled]:checked + label:after {
+            opacity:.4;
+        }
+    }
+}
 .destroy-check {
     width:20px;
     height:20px;
