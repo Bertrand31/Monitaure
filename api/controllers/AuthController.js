@@ -12,6 +12,9 @@ module.exports = {
      * @param {Object} res - Express' response object
      */
     login(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
         passport.authenticate('local', (err, user, info) => {
             if (err || !user) {
                 return res.send({
@@ -37,6 +40,9 @@ module.exports = {
      * @param {Object} res - Express' response object
      */
     logout(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
         req.logout();
         res.send({
             message: 'Logged out successfuly',
@@ -49,6 +55,10 @@ module.exports = {
      * @param {Object} res - Express' response object
      */
     isLoggedIn(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
+
         if (req.isAuthenticated()) {
             return res.send({
                 isLoggedIn: true,

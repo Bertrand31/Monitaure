@@ -8,6 +8,9 @@ module.exports = {
      * @returns {JSON} Either an error or the check's statistics
      */
     getcheckstats(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
         CheckManagement.getData(DB.fetchOne, req.user.id, req.param('id'), (err, data) => {
             if (err) return res.serverError(err);
 
@@ -23,6 +26,9 @@ module.exports = {
      * @returns {JSON} Either an error or the user's and his checks' data
      */
     getuserandglobalstats(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
         CheckManagement.getUserAndGlobalStats(DB.fetchAndPopulate, req.user.id, (err, data) => {
             if (err) return res.serverError(err);
 
@@ -37,6 +43,9 @@ module.exports = {
      * @returns {JSON} Either an error or the created check
      */
     create(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
         const data = {
             name: String(req.param('name')),
             domainNameOrIP: String(req.param('domainNameOrIP')),
@@ -58,6 +67,9 @@ module.exports = {
      * @returns {JSON} Either an error or the updated check
      */
     update(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
         const data = {
             name: String(req.param('name')),
             emailNotifications: Boolean(req.param('emailNotifications')),
@@ -76,6 +88,9 @@ module.exports = {
      * @returns {JSON} Either an error or the destroyed check
      */
     destroy(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
         CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), (err, destroyed) => {
             if (err) return res.serverError(err);
 

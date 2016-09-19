@@ -7,6 +7,9 @@ module.exports = {
      * @returns {JSON} Either an error or the created user record
      */
     create(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
         UserManagement.create(DB.create, req.body, (err, createdUser) => {
             if (err) return res.badRequest(err.details);
 
