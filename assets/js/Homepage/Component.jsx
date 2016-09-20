@@ -56,37 +56,39 @@ const HomepageComponent = () => (
             </div>
         </section>
 
-        {/*<section className="c-pane c-pane--big c-pane--second">
-            <h2 className="c-h2">Why it's awesome</h2>
-            <div className="l-pane-grid">
-                <div className="l-pane-grid__item">
-                    <div className="c-imgtxt c-imgtxt--browser">
-                        <h3 className="c-imgtxt__title">No download</h3>
-                        <p className="c-imgtxt__body">
-                            Use Monitaure directly from your browser and mobile phone
-                        </p>
+        <section className="c-pane c-pane--big c-pane--second">
+            <div className="c-flex-wrapper">
+                <h2 className="c-h2">Why it's awesome</h2>
+                <div className="l-pane-grid">
+                    <div className="l-pane-grid__item">
+                        <div className="c-imgtxt c-imgtxt--browser">
+                            <h3 className="c-imgtxt__title">No download</h3>
+                            <p className="c-imgtxt__body">
+                                Use Monitaure directly from your computer, tablet and/or mobile phone
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className="l-pane-grid__item">
-                    <div className="c-imgtxt c-imgtxt--tech">
-                        <h3 className="c-imgtxt__title">Top-tier underlying tech</h3>
-                        <p className="c-imgtxt__body">
-                            React, Redux, NodeJS, MongoDB, Redis, HTTP/2 and many other state-of-the art technologies are ensuring you the best reliability.
-                        </p>
+                    <div className="l-pane-grid__item">
+                        <div className="c-imgtxt c-imgtxt--tech">
+                            <h3 className="c-imgtxt__title">Top-tier tech</h3>
+                            <p className="c-imgtxt__body">
+                                React, Redux, NodeJS, MongoDB, Redis, HTTP/2 and many other state-of-the art technologies are ensuring you the best reliability.
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className="l-pane-grid__item">
-                    <div className="c-imgtxt c-imgtxt--free">
-                        <h3 className="c-imgtxt__title">Completely free</h3>
-                        <p className="c-imgtxt__body">
-                            Enjoy a free and ad-free experience!
-                        </p>
+                    <div className="l-pane-grid__item">
+                        <div className="c-imgtxt c-imgtxt--free">
+                            <h3 className="c-imgtxt__title">Completely free</h3>
+                            <p className="c-imgtxt__body">
+                                "It's free,<br />and always will be".<br />Oh, and ad-free too.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section className="c-pane c-pane--small c-pane--realtime">
+        {/*<section className="c-pane c-pane--small c-pane--realtime">
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
                     <span className="c-pane--small__number">1</span>

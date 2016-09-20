@@ -7,13 +7,10 @@
     align-items:center;
     align-content:center;
 }
-.l-pane-grid__item:first-child {
-    margin-left:3%;
-}
 .c-topnav {
     max-width:1400px;
     box-sizing:border-box;
-    position:fixed;
+    position:absolute;
     top:15px;
     left:0;
     right:0;
@@ -21,10 +18,14 @@
     margin:0 auto;
 }
 .c-pane {
+    padding:0;
     position:relative;
     display:flex;
     align-items:center;
     justify-content:center;
+    .c-h2 {
+        margin-bottom:3.7em;
+    }
 }
 .c-pane--big {
     height:100vh;
@@ -38,6 +39,9 @@
     }
     .l-pane-grid__item {
         align-self:flex-start;
+        &:first-child {
+            margin-left:3%;
+        }
         &.l-pane-grid__item--image {
             align-self:center;
             flex-grow:1;
@@ -86,7 +90,6 @@ $dot-size: 5px;
     border-radius:100%;
     animation-duration:1s;
     animation-iteration-count:1;
-    // animation-timing-function:cubic-bezier(0.33, 0, 0.51, 1.3);
     animation-timing-function:ease-out;
     animation-fill-mode:forwards;
 }
