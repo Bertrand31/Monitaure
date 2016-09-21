@@ -72,7 +72,7 @@ const HomepageComponent = () => (
                         <div className="c-imgtxt c-imgtxt--tech">
                             <h3 className="c-imgtxt__title">Top-tier tech</h3>
                             <p className="c-imgtxt__body">
-                                React, Redux, NodeJS, MongoDB, Redis, HTTP/2 and many other state-of-the art technologies are ensuring you the best reliability.
+                                Monitaure is backed by the industry's fastest and most robust technologies, ensuring you the best reliability.
                             </p>
                         </div>
                     </div>
