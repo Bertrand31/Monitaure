@@ -1,4 +1,4 @@
-import 'isomorphic-fetch';
+// import 'isomorphic-fetch';
 
 (global => {
     importScripts('/sw-toolbox.js');
@@ -70,7 +70,6 @@ import 'isomorphic-fetch';
         },
     });
     // END VENDOR GET
-
 
     // Boilerplate to ensure our service worker takes control of the page as soon
     // as possible.

@@ -5,7 +5,7 @@ const common = {
     context: __dirname,
     entry: {
         app: './assets/js/app.jsx',
-        sw: './assets/js/sw.js',
+        sw: './assets/js/ServiceWorker/sw.js',
     },
 
     resolve: {

@@ -142,3 +142,11 @@ input[type="submit"] {
         padding:1.2em .5em;
     }
 }
+.react-container.is-offline {
+    .c-pane-top__button,
+    .c-checks__notifications,
+    .c-checks__edit,
+    .c-checks__destroy {
+        display:none;
+    }
+}

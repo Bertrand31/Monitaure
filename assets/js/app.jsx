@@ -13,7 +13,9 @@ import store from './Redux/Store';
 import { GETer } from './serverIO/ajaxMethods';
 import * as API from './serverIO/dataHandling';
 
+import { create as popinCreate } from './Popins/Actions';
 import * as UserActions from './User/Actions';
+import * as SWActions from './ServiceWorker/Actions';
 
 import Homepage from './Homepage/Component';
 import Dashboard from './Dashboard/Component';
@@ -33,10 +35,11 @@ class Root extends React.Component {
     render() {
         if (this.props.isLoggedIn) {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js', { scope: '/' });
-            }
+                this.props.activateSW(navigator, window, document);
+			}
+
             return (
-                <div className="react-container">
+                <div className={`react-container ${this.props.isOffline ? 'is-offline' : ''}`}>
                     <Popins />
                     <Dashboard />
                 </div>
@@ -54,18 +57,37 @@ class Root extends React.Component {
 }
 
 Root.propTypes = {
-    getCSRFToken: PropTypes.func.isRequired,
     checkAuth: PropTypes.func.isRequired,
+    activateSW: PropTypes.func.isRequired,
+    getCSRFToken: PropTypes.func.isRequired,
     children: PropTypes.element,
     isLoggedIn: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn });
+const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn, isOffline: state.isOffline });
 
 const mapDispatchToProps = dispatch => ({
     checkAuth: () => API.isLoggedIn(GETer, (err, { isLoggedIn }) =>
         dispatch(UserActions.changeAuthenticationState(isLoggedIn))
     ),
+    activateSW: (nav, win, doc) => {
+        // Register Service Worker
+        nav.serviceWorker.register('/sw.js', { scope: '/' });
+        // Listens for 'online' and 'offline' events and updates Redux's state accordingly
+        win.addEventListener('load', () => {
+            const updateOnlineStatus = e => {
+                if (e.type === 'offline') {
+                    dispatch(popinCreate('info', 'Now working offline'));
+                    dispatch(SWActions.setConnectivityState('offline'));
+                } else {
+                    dispatch(SWActions.setConnectivityState('online'));
+                }
+            };
+
+            win.addEventListener('online',  updateOnlineStatus);
+            win.addEventListener('offline', updateOnlineStatus);
+        });
+    },
     getCSRFToken: () => API.csrfToken(GETer, (err, { _csrf }) =>
         sessionStorage.setItem('csrfToken', _csrf)
     ),
