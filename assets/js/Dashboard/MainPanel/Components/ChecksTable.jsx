@@ -92,27 +92,36 @@ class CheckRow extends React.Component {
                 <td className="c-checks__latency" data-speed={this.props.lastPingSpeed}>
                     {this.props.lastPingDuration}
                 </td>
-                <td className="c-checks__notifications">
-                    <input
-                        className="input__checkbox"
-                        id={`emailNotifications-${this.props.row.id}`}
-                        name="emailNotifications"
-                        disabled={!this.props.row.isEditing}
-                        type="checkbox"
-                        onChange={e => this.handleChange(e)}
-                        checked={this.props.row.emailNotifications}
-                    />
-                    <label
-                        htmlFor={`emailNotifications-${this.props.row.id}`}
-                        onClick={e => e.stopPropagation()}
-                    />
+                <td
+                    className="c-checks__notifications"
+                    onClick={e => e.stopPropagation()}
+                >
+					<div className={`
+                        c-checkbox
+                        ${this.props.row.emailNotifications ? 'is-checked' : ''}
+                        ${this.props.row.isEditing ? '' : 'is-disabled'}
+                    `}>
+						<input
+							className="input__checkbox"
+							id={`emailNotifications-${this.props.row.id}`}
+							name="emailNotifications"
+							disabled={!this.props.row.isEditing}
+							type="checkbox"
+							onChange={e => this.handleChange(e)}
+							checked={this.props.row.emailNotifications}
+						/>
+						<label
+							htmlFor={`emailNotifications-${this.props.row.id}`}
+							className="c-checkbox__label"
+						/>
+					</div>
                 </td>
-                <td className={`c-checks__edit ${this.props.row.isEditing ? 'is-editing' : 'is-not-editing'}`}>
+                <td className="c-checks__edit">
                     <button
                         onClick={e => this.onEditClick(e)}
-                        className="settings-check"
+                        className={`c-settings-check ${this.props.row.isEditing ? 'is-editing' : 'is-not-editing'}`}
                     >
-                        ✓
+                        {this.props.row.isEditing ? 'OK' : ''}
                     </button>
                 </td>
                 <td

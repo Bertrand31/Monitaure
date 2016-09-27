@@ -73,45 +73,38 @@
     background-position:center center;
     background-repeat:no-repeat;
 }
-.c-checks__notifications {
-    width: 20px;
-    position: relative;
-    margin: 20px auto;
-    label {
-        display:block;
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-        background: linear-gradient(top, $dark 0%, $light 100%);
-        background: -webkit-linear-gradient(top, $dark 0%, $light 100%);
-        border-radius: 4px;
-        box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.2);
-        &:after {
-            content: '';
-            display:block;
-            width: 9px;
-            height: 5px;
-            position:relative;
-            top: 4px;
-            left: 4px;
-            border: 3px solid #fcfff4;
-            border-top: none;
-            border-right: none;
-            background: transparent;
-            opacity: 0;
-            transform: rotate(-45deg);
-            transition:opacity .3s ease;
+.c-checkbox {
+    width:30px;
+	height:12px;
+	background:#1C1C1C;
+	position: relative;
+	border-radius: 50px;
+    .c-checkbox__label {
+		display: block;
+		width:18px;
+		height:18px;
+		position: absolute;
+		top:-3px;
+		left:-3px;
+		cursor:pointer;
+		background:$dark;
+		border-radius:50px;
+		transition:all 0.4s ease-in-out;
+    }
+	&.is-checked {
+        background:#40D89F;
+        .c-checkbox__label {
+            background:#35C891;
         }
     }
+    &.is-disabled .c-checkbox__label {
+        cursor:default;
+    }
     .input__checkbox {
-        visibility: hidden;
-        position:absolute;
-        &:checked + label:after {
-            opacity: 1;
-        }
-        &[disabled]:checked + label:after {
-            opacity:.4;
-        }
+		visibility: hidden;
+		&:checked + .c-checkbox__label {
+			left: 17px;
+		}
     }
 }
 .destroy-check {
@@ -120,17 +113,17 @@
     background-image:url('../../svg/trash.svg');
     background-size:20px 20px;
 }
-.is-editing {
-    background:red;
-    width:20px;
-    height:20px;
-    // background-image:url('../images/settings.svg');
-    background-size:20px 20px;
-}
-.is-not-editing {
-    background:green;
-    width:20px;
-    height:20px;
-    // background-image:url('../images/settings.svg');
-    background-size:20px 20px;
+.c-settings-check {
+    display:block;
+    padding:0;
+    width:24px;
+    height:24px;
+	transition:none;
+    &.is-editing {
+        color:#35C891;
+    }
+    &.is-not-editing {
+        background:transparent url('../../svg/settings.svg') center center no-repeat;
+        background-size:17px 17px;
+    }
 }
