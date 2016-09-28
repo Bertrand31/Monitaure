@@ -24,7 +24,7 @@
         cache: {
             name: 'dynamic-checksdata-cache-v1.2',
             maxEntries: 10,
-            maxAgeSeconds: 600,
+            maxAgeSeconds: 10 * 60,
         },
     });
     global.toolbox.router.get('/isLoggedIn/', global.toolbox.fastest, {

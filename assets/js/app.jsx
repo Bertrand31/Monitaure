@@ -31,7 +31,7 @@ class Root extends React.Component {
     componentWillMount() {
         this.props.getCSRFToken();
         this.props.checkAuth();
-        this.props.watchConnectivityState(window);
+        this.props.watchConnectivityState(navigator, window);
     }
     render() {
         if (this.props.isLoggedIn) {
@@ -75,7 +75,8 @@ const mapDispatchToProps = dispatch => ({
         // Register Service Worker
         nav.serviceWorker.register('/sw.js', { scope: '/' });
     },
-    watchConnectivityState: (win) => {
+    watchConnectivityState: (nav, win) => {
+        dispatch(SWActions.setConnectivityState(nav.onLine ? 'online' : 'offline'));
         win.addEventListener('load', () => {
             const updateOnlineStatus = e => {
                 if (e.type === 'offline') {
