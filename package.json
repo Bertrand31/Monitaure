@@ -41,6 +41,7 @@
     "css-loader": "^0.25.0",
     "isomorphic-fetch": "^2.2.1",
     "jade": "^1.11.0",
+    "lodash": "^4.16.2",
     "moment": "^2.15.1",
     "node-sass": "^3.10.0",
     "nodemailer": "^2.6.4",
