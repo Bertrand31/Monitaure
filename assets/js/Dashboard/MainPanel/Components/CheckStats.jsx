@@ -59,7 +59,8 @@ const historyToChartData = (history) => {
 
 const OpenCheckStats = ({ openCheck }) => {
     if (Object.keys(openCheck).length < 1) {
-        return null;
+        return <section className="c-check-stats s-is-hidden" />;
+
     }
     if (openCheck.pending) {
         return (

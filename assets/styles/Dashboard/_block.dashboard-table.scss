@@ -19,7 +19,7 @@
         &:nth-child(odd) {
             background:$light;
         }
-        &:hover,&.active {
+        &:hover,&.s-is-open {
             background:$lighter;
         }
     }

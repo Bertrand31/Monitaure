@@ -18,7 +18,7 @@ const responsiveDonutOptions = [
     }],
 ];
 
-const GlobalStats = ({ globalStats }) => {
+const GlobalStats = ({ globalStats, isACheckOpen }) => {
     if (Object.keys(globalStats).length < 1) {
         return null;
     }
@@ -62,7 +62,7 @@ const GlobalStats = ({ globalStats }) => {
     const lastErrorDay = lastErrorExists ? moment(globalStats.lastError.time).format('DD/MM') : '-';
 
     return (
-        <div className="l-grid">
+        <div className={`c-globalstats l-grid ${isACheckOpen ? 's-is-hidden' : ''}`}>
             <div className="l-grid__block status">
                 <div className="c-donut">
                     <ChartistGraph

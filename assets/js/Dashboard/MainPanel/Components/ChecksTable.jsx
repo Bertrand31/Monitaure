@@ -45,7 +45,7 @@ class CheckRow extends React.Component {
     render() {
         return (
             <tr
-                className="c-checks__row"
+                className={`c-checks__row ${this.props.isOpenCheck ? 's-is-open' : ''}`}
                 id={this.props.row.id}
                 onClick={() => this.onCheckRowClick()}
             >
