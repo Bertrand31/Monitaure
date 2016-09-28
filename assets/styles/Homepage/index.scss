@@ -4,6 +4,9 @@
 @media screen and (min-width:768px) { @import './768'; };
 @media screen and (min-width:1030px) { @import './1030'; };
 
+.o-page {
+    font-family:$roboto;
+}
 .c-button--round, .c-button--empty, .c-button--goto {
     font-family:$roboto;
 }
@@ -27,6 +30,7 @@
     }
 }
 .c-button--goto {
+    font-size:1.1em;
     background:rgba(#fff, .25);
     border-radius:22px;
     padding:.6em 2em;
@@ -46,7 +50,6 @@
 }
 .c-topnav__el {
     margin:0 1em;
-    font-family:$roboto;
 }
 .c-topnav__el--central {
     flex-grow:1;

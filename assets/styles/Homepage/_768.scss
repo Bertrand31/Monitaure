@@ -30,6 +30,9 @@
 .c-pane--big {
     height:100vh;
 }
+.c-pane--small {
+    height:50vh;
+}
 .c-pane--first {
     .c-pane--first__wrapper {
         padding-top:67px;
@@ -102,5 +105,12 @@ $positions: 60% 70% 76% 77% 72% 60% 50% 42% 38% 33% 30%;
     @keyframes arrive-#{$i} {
         0% { top:-#{$dot-size}; }
         100% { top:nth($positions, $i); }
+    }
+}
+.c-pane--second {
+    .l-pane-grid {
+        align-items:flex-start;
+        background:#fff url('../../svg/dot-line.svg') center 45px repeat-x;
+        background-size:15px 15px;
     }
 }

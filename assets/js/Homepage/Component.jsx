@@ -88,7 +88,7 @@ const HomepageComponent = () => (
             </div>
         </section>
 
-        {/*<section className="c-pane c-pane--small c-pane--realtime">
+        <section className="c-pane c-pane--small c-pane--realtime">
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
                     <span className="c-pane--small__number">1</span>
@@ -98,11 +98,11 @@ const HomepageComponent = () => (
                     </p>
                 </div>
                 <div className="l-pane-grid__item">
-                    <img src="/images/dashboard.jpg" className="c-pane--small__image" alt="Real-time updates" />
+                    <img src="/images/macbook.png" className="c-pane--small__image" alt="Real-time updates" />
                 </div>
             </div>
         </section>
-        <section className="c-pane c-pane--small c-pane--green c-pane--notifications">
+        {/*<section className="c-pane c-pane--small c-pane--green c-pane--notifications">
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
                     <span className="c-pane--small__number">2</span>
