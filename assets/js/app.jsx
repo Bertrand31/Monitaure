@@ -31,12 +31,13 @@ class Root extends React.Component {
     componentWillMount() {
         this.props.getCSRFToken();
         this.props.checkAuth();
+        this.props.watchConnectivityState(window);
     }
     render() {
         if (this.props.isLoggedIn) {
             if ('serviceWorker' in navigator) {
-                this.props.activateSW(navigator, window, document);
-			}
+                this.props.activateSW(navigator);
+            }
 
             return (
                 <div className={`react-container ${this.props.isOffline ? 'is-offline' : ''}`}>
@@ -70,14 +71,15 @@ const mapDispatchToProps = dispatch => ({
     checkAuth: () => API.isLoggedIn(GETer, (err, { isLoggedIn }) =>
         dispatch(UserActions.changeAuthenticationState(isLoggedIn))
     ),
-    activateSW: (nav, win, doc) => {
+    activateSW: (nav) => {
         // Register Service Worker
         nav.serviceWorker.register('/sw.js', { scope: '/' });
-        // Listens for 'online' and 'offline' events and updates Redux's state accordingly
+    },
+    watchConnectivityState: (win) => {
         win.addEventListener('load', () => {
             const updateOnlineStatus = e => {
                 if (e.type === 'offline') {
-                    dispatch(popinCreate('info', 'Now working offline'));
+                    dispatch(popinCreate('info', 'Now working offline, with limited functionality'));
                     dispatch(SWActions.setConnectivityState('offline'));
                 } else {
                     dispatch(SWActions.setConnectivityState('online'));
