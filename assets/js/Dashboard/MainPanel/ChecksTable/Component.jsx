@@ -171,88 +171,103 @@ CheckRow.propTypes = {
     }),
 };
 
-const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, unsetWorkingCheck, updateWorkingCheck, saveWorkingCheck, openCheckStats, closeCheckStats }) => {
-    if (Object.keys(checks).length < 1) {
-        return null;
-    }
-
-    const checksArray = [];
-    const functions = {
-        destroy,
-        setWorkingCheck,
-        unsetWorkingCheck,
-        updateWorkingCheck,
-        saveWorkingCheck,
-        openCheckStats,
-        closeCheckStats,
-    };
-
-    for (const checkId in checks) {
-        if (Object.prototype.hasOwnProperty.call(checks, checkId)) {
-            const isOpenCheck = checks[checkId].id === openCheckID;
-            const isNewCheck = checkId === 'tmpID';
-            const historyLength = checks[checkId].history.length - 1;
-
-            let lastPingDuration = '-';
-            let lastPingSpeed = '';
-            let checkState = 'up';
-
-            if (typeof checks[checkId].history[historyLength] !== 'undefined') {
-                if (checks[checkId].history[historyLength].duration === null) {
-                    checkState = 'down';
-                } else if (checks[checkId].history[historyLength].duration > 200) {
-                    lastPingDuration = `${checks[checkId].history[historyLength].duration} ms`;
-                    lastPingSpeed = 'slow';
-                } else {
-                    lastPingDuration = `${checks[checkId].history[historyLength].duration} ms`;
-                    lastPingSpeed = 'fast';
-                }
-            } else {
-                checkState = 'waiting';
-            }
-
-            checksArray.push(
-                <CheckRow
-                    key={checkId}
-                    row={checks[checkId]}
-                    isOpenCheck={isOpenCheck}
-                    isNewCheck={isNewCheck}
-                    lastPingDuration={lastPingDuration}
-                    lastPingSpeed={lastPingSpeed}
-                    checkState={checkState}
-                    functions={functions}
-                />
-            );
+class ChecksTable extends React.Component {
+    componentDidMount() {
+        // We check whether an autoRefresh loop is already running
+        if (typeof this.autoRefresh === 'undefined' || !this.autoRefresh) {
+            this.props.populateAll();
+            this.autoRefresh = setInterval(this.props.populateAll, 2 * 60 * 1000);
         }
     }
+    componentWillUnmount() {
+        clearInterval(this.autoRefresh);
+        this.autoRefresh = false;
+    }
 
-    // TODO: move all JSX down to the view componenet
-    return (
-        <table className="c-checks">
-            <thead className="c-checks__head">
-                <tr className="c-checks__row">
-                    <th className="c-checks__status">Status</th>
-                    <th className="c-checks__name">Name</th>
-                    <th className="c-checks__domainNameOrIP">Domain name or IP</th>
-                    <th className="c-checks__port">Port</th>
-                    <th className="c-checks__latency">Latency</th>
-                    <th className="c-checks__notifications">Alerts</th>
-                    <th className="c-checks__edit" />
-                    <th className="c-checks__destroy" />
-                </tr>
-            </thead>
-            <ReactCSSTransitionGroup
-                component="tbody"
-                className="c-checks__body"
-                transitionName="c-checks__row"
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={300}
-            >
-                {checksArray}
-            </ReactCSSTransitionGroup>
-        </table>
-    );
-};
+    render() {
+        if (Object.keys(this.props.checks).length < 1) {
+            return null;
+        }
+
+        const checksArray = [];
+        const functions = {
+            destroy: this.props.destroy,
+            setWorkingCheck: this.props.setWorkingCheck,
+            unsetWorkingCheck: this.props.unsetWorkingCheck,
+            updateWorkingCheck: this.props.updateWorkingCheck,
+            saveWorkingCheck: this.props.saveWorkingCheck,
+            openCheckStats: this.props.openCheckStats,
+            closeCheckStats: this.props.closeCheckStats,
+        };
+
+        const checks = this.props.checks;
+        for (const checkId in checks) {
+            if (Object.prototype.hasOwnProperty.call(checks, checkId)) {
+                const isOpenCheck = checks[checkId].id === this.props.openCheckID;
+                const isNewCheck = checkId === 'tmpID';
+                const historyLength = checks[checkId].history.length - 1;
+
+                let lastPingDuration = '-';
+                let lastPingSpeed = '';
+                let checkState = 'up';
+
+                if (typeof checks[checkId].history[historyLength] !== 'undefined') {
+                    if (checks[checkId].history[historyLength].duration === null) {
+                        checkState = 'down';
+                    } else if (checks[checkId].history[historyLength].duration > 200) {
+                        lastPingDuration = `${checks[checkId].history[historyLength].duration} ms`;
+                        lastPingSpeed = 'slow';
+                    } else {
+                        lastPingDuration = `${checks[checkId].history[historyLength].duration} ms`;
+                        lastPingSpeed = 'fast';
+                    }
+                } else {
+                    checkState = 'waiting';
+                }
+
+                checksArray.push(
+                    <CheckRow
+                        key={checkId}
+                        row={checks[checkId]}
+                        isOpenCheck={isOpenCheck}
+                        isNewCheck={isNewCheck}
+                        lastPingDuration={lastPingDuration}
+                        lastPingSpeed={lastPingSpeed}
+                        checkState={checkState}
+                        functions={functions}
+                    />
+                );
+            }
+        }
+
+        // TODO: move all JSX down to the view componenet
+        return (
+            <table className="c-checks">
+                <thead className="c-checks__head">
+                    <tr className="c-checks__row">
+                        <th className="c-checks__status">Status</th>
+                        <th className="c-checks__name">Name</th>
+                        <th className="c-checks__domainNameOrIP">Domain name or IP</th>
+                        <th className="c-checks__port">Port</th>
+                        <th className="c-checks__latency">Latency</th>
+                        <th className="c-checks__notifications">Alerts</th>
+                        <th className="c-checks__edit" />
+                        <th className="c-checks__destroy" />
+                    </tr>
+                </thead>
+                <ReactCSSTransitionGroup
+                    component="tbody"
+                    className="c-checks__body"
+                    transitionName="c-checks__row"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
+                >
+                    {checksArray}
+                </ReactCSSTransitionGroup>
+            </table>
+        );
+    }
+}
 
 ChecksTable.propTypes = {
     checks: PropTypes.object.isRequired,

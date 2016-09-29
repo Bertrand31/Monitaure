@@ -49,16 +49,3 @@ export function saveWorkingCheck(data) {
         data,
     };
 }
-
-export function openStats(data) {
-    return {
-        type: checksTypes.OPEN_CHECK_STATS,
-        data,
-    };
-}
-
-export function closeStats() {
-    return {
-        type: checksTypes.CLOSE_CHECK_STATS,
-    };
-}

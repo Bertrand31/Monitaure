@@ -1,0 +1,2 @@
+export const OPEN_CHECK_STATS = 'OPEN_CHECK_STATS';
+export const CLOSE_CHECK_STATS = 'CLOSE_CHECK_STATS';

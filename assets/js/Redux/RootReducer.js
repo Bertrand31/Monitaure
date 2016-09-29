@@ -5,7 +5,8 @@ import popinsReducer from '../Popins/Reducer';
 import serviceWorkerReducer from '../ServiceWorker/Reducer';
 import menuReducer from '../Dashboard/Sidebar/Reducer';
 import userReducer from '../User/Reducer';
-import { checksReducer, openCheckReducer } from '../Dashboard/MainPanel/Reducer';
+import checksReducer from '../Dashboard/MainPanel/ChecksTable/Reducer';
+import openCheckReducer from '../Dashboard/MainPanel/CheckStats/Reducer';
 
 export default combineReducers({
     popins: popinsReducer,

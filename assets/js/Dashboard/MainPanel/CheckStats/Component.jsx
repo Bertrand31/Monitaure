@@ -57,7 +57,7 @@ const historyToChartData = (history) => {
     return chartData;
 };
 
-const OpenCheckStats = ({ openCheck }) => {
+const checkStats = ({ openCheck }) => {
     if (Object.keys(openCheck).length < 1) {
         return <section className="c-check-stats s-is-hidden" />;
 
@@ -107,7 +107,7 @@ const OpenCheckStats = ({ openCheck }) => {
     );
 };
 
-OpenCheckStats.propTypes = {
+checkStats.propTypes = {
     openCheck: PropTypes.shape({
         availability: PropTypes.number,
         avg: PropTypes.number,
@@ -120,4 +120,4 @@ OpenCheckStats.propTypes = {
     }),
 };
 
-export default OpenCheckStats;
+export default checkStats;
