@@ -10,6 +10,7 @@
         '/',
         '/app.js',
         '/images/logo.svg',
+        '/images/loader.svg',
     ];
 
     // LOCAL GET
