@@ -45,6 +45,9 @@ const mapDispatchToProps = dispatch => ({
     setWorkingCheck(id) {
         return dispatch(actions.setWorkingCheck(id));
     },
+    unsetWorkingCheck(id) {
+        return dispatch(actions.unsetWorkingCheck(id));
+    },
     updateWorkingCheck(id, attrName, attrValue) {
         return dispatch(actions.updateWorkingCheck(id, attrName, attrValue));
     },

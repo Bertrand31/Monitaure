@@ -39,6 +39,12 @@ class CheckRow extends React.Component {
     handleKeyPress(e) {
         if (e.keyCode === 13) {
             this.props.functions.saveWorkingCheck(this.props.row);
+        } else if (e.keyCode === 27) {
+            if (this.props.row.id === 'tmpID') {
+                this.props.functions.destroy('tmpID');
+            } else {
+                this.props.functions.unsetWorkingCheck(this.props.row.id);
+            }
         }
     }
 
@@ -56,6 +62,7 @@ class CheckRow extends React.Component {
                         name="name"
                         disabled={!this.props.row.isEditing}
                         type="text"
+                        onClick={e => e.stopPropagation()}
                         onChange={e => this.handleChange(e)}
                         onKeyDown={e => this.handleKeyPress(e)}
                         value={this.props.row.name}
@@ -94,13 +101,13 @@ class CheckRow extends React.Component {
                 </td>
                 <td
                     className="c-checks__notifications"
-                    onClick={e => e.stopPropagation()}
                 >
-					<div className={`
-                        c-checkbox
+                    <div
+                        onClick={e => e.stopPropagation()}
+                        className={`c-checkbox
                         ${this.props.row.emailNotifications ? 'is-checked' : ''}
-                        ${this.props.row.isEditing ? '' : 'is-disabled'}
-                    `}>
+                        ${this.props.row.isEditing ? '' : 'is-disabled'}`}
+                    >
 						<input
 							className="input__checkbox"
 							id={`emailNotifications-${this.props.row.id}`}
@@ -164,7 +171,7 @@ CheckRow.propTypes = {
     }),
 };
 
-const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updateWorkingCheck, saveWorkingCheck, openCheckStats, closeCheckStats }) => {
+const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, unsetWorkingCheck, updateWorkingCheck, saveWorkingCheck, openCheckStats, closeCheckStats }) => {
     if (Object.keys(checks).length < 1) {
         return null;
     }
@@ -173,6 +180,7 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, updat
     const functions = {
         destroy,
         setWorkingCheck,
+        unsetWorkingCheck,
         updateWorkingCheck,
         saveWorkingCheck,
         openCheckStats,

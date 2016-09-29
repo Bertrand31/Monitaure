@@ -35,6 +35,7 @@ class Dashboard extends React.Component {
                     openCheckID={this.props.openCheck.id || null}
                     destroy={this.props.destroy}
                     setWorkingCheck={this.props.setWorkingCheck}
+                    unsetWorkingCheck={this.props.unsetWorkingCheck}
                     updateWorkingCheck={this.props.updateWorkingCheck}
                     saveWorkingCheck={this.props.saveWorkingCheck}
                     openCheckStats={this.props.openCheckStats}

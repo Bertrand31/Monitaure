@@ -33,6 +33,13 @@ export function setWorkingCheck(id) {
     };
 }
 
+export function unsetWorkingCheck(id) {
+    return {
+        type: checksTypes.UNSET_WORKING_CHECK,
+        id,
+    };
+}
+
 export function updateWorkingCheck(id, attrName, attrValue) {
     return {
         type: checksTypes.UPDATE_WORKING_CHECK,

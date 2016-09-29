@@ -18,8 +18,19 @@ const checkReducer = (state, action) => {
         case types.SET_WORKING_CHECK:
             return {
                 [action.id]: {
+                    oldState: {
+                        ...state[action.id],
+                    },
                     ...state[action.id],
                     isEditing: true,
+                },
+            };
+
+        case types.UNSET_WORKING_CHECK:
+            return {
+                [action.id]: {
+                    ...state[action.id].oldState,
+                    isEditing: false,
                 },
             };
 
@@ -70,23 +81,9 @@ export const checksReducer = (state = {}, action) => {
         }
 
         case types.CREATE_WORKING_CHECK:
-            return {
-                ...state,
-                ...checkReducer(state, action),
-            };
-
         case types.SET_WORKING_CHECK:
-            return {
-                ...state,
-                ...checkReducer(state, action),
-            };
-
+        case types.UNSET_WORKING_CHECK:
         case types.UPDATE_WORKING_CHECK:
-            return {
-                ...state,
-                ...checkReducer(state, action),
-            };
-
         case types.SAVE_WORKING_CHECK:
             return {
                 ...state,
