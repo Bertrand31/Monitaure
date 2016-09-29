@@ -19,14 +19,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     populateAll() {
-        API.getUserAndGlobalStats(GETer, (err, { user, checks, globalStats }) => {
+        API.getUserAndChecks(GETer, (err, { user, checks }) => {
             if (err) return dispatch(popinCreate('alert', err.message));
 
             heap.identify(user.userName);
 
             dispatch(UserActions.hydrate(user));
             dispatch(actions.populateChecks(checks));
-            dispatch(actions.populateGlobalStats(globalStats));
         });
     },
 
@@ -69,17 +68,9 @@ const mapDispatchToProps = dispatch => ({
         }
     },
 
-    openCheckStats(id) {
-        if (id !== 'tmpID') {
-            dispatch(actions.fetchStats());
-            API.getCheckStats(GETer, id, (err, data) => {
-                if (err) {
-                    dispatch(actions.closeStats());
-                    return dispatch(popinCreate('alert', 'No data yet!'));
-                }
-
-                dispatch(actions.openStats(data));
-            });
+    openCheckStats(check) {
+        if (check.id !== 'tmpID') {
+            dispatch(actions.openStats(check));
         }
     },
     closeCheckStats() {

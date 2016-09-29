@@ -18,20 +18,57 @@ const responsiveDonutOptions = [
     }],
 ];
 
-const GlobalStats = ({ globalStats, isACheckOpen }) => {
-    if (Object.keys(globalStats).length < 1) {
-        return null;
+const calcGlobalStats = (checks) => {
+    let checksUp = 0;
+    let totalPopulatedChecks = 0;
+    let availabilitiesSum = 0;
+    let historyLength = 0;
+    const lastError = { time: null, checkName: null };
+
+    for (const checkId in checks) {
+        if (checks.hasOwnProperty(checkId)) {
+            if (checkId !== 'tmpID') {
+                historyLength = checks[checkId].history.length - 1;
+                if (historyLength > 0) {
+                    totalPopulatedChecks++;
+                    if (checks[checkId].history[historyLength].duration !== null) {
+                        checksUp++;
+                    }
+                    availabilitiesSum += checks[checkId].availability;
+                    const lastOutage = new Date(checks[checkId].lastOutage);
+                    if (lastOutage > lastError.time) {
+                        lastError.time = lastOutage;
+                        lastError.checkName = checks[checkId].name;
+                    }
+                }
+            }
+        }
     }
 
-    const percentageOfChecksUp = (globalStats.checksUp * 100) / globalStats.numberOfChecks;
+    return {
+        checksUp,
+        totalPopulatedChecks,
+        percentageOfChecksUp: (checksUp * 100) / totalPopulatedChecks,
+        availabilitiesAvg: Math.floor((availabilitiesSum / totalPopulatedChecks) * 100) / 100,
+        lastError,
+    };
+};
+
+const GlobalStats = ({ checks, isACheckOpen }) => {
+    if (Object.keys(checks).length < 1) {
+        return <div className="c-globalstats s-is-hidden" />;
+    }
+
+    const globalStats = calcGlobalStats(checks);
+
     const checksUpDataset = {
         series: [
             {
-                value: percentageOfChecksUp || 0,
+                value: globalStats.percentageOfChecksUp || 0,
                 className: 'c-donut__primary-bar',
             },
             {
-                value: 100 - (percentageOfChecksUp || 0),
+                value: 100 - (globalStats.percentageOfChecksUp || 0),
                 classname: 'c-donut__secondary-bar',
             },
         ],
@@ -75,7 +112,7 @@ const GlobalStats = ({ globalStats, isACheckOpen }) => {
                 </div>
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">
-                        {globalStats.checksUp}/{globalStats.numberOfChecks} <span className="c-donut-content__servers">servers</span>
+                        {globalStats.checksUp}/{globalStats.totalPopulatedChecks} <span className="c-donut-content__servers">servers</span>
                         <span className="c-donut-content__secondary-text">are responding</span>
                     </span>
                     <span className="c-donut-content__aside-text">Status</span>
@@ -129,12 +166,7 @@ const GlobalStats = ({ globalStats, isACheckOpen }) => {
 };
 
 GlobalStats.propTypes = {
-    globalStats: PropTypes.shape({
-        lastError: PropTypes.object,
-        availabilitiesAvg: PropTypes.number,
-        numberOfChecks: PropTypes.number,
-        checksUp: PropTypes.number,
-    }),
+    checks: PropTypes.object,
 };
 
 export default GlobalStats;

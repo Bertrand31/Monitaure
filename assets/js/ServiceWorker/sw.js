@@ -10,7 +10,6 @@
         '/',
         '/app.js',
         '/images/logo.svg',
-        '/images/loader.svg',
     ];
 
     // LOCAL GET
@@ -21,14 +20,7 @@
             maxEntries: 30,
         },
     });
-    global.toolbox.router.get('/Check/getcheckstats/*', global.toolbox.networkFirst, {
-        cache: {
-            name: 'dynamic-checksdata-cache-v1.3',
-            maxEntries: 10,
-            maxAgeSeconds: 10 * 60,
-        },
-    });
-    global.toolbox.router.get('/Check/getuserandgobalstats/', global.toolbox.networkOnly);
+    global.toolbox.router.get('/Check/getuserandchecks/', global.toolbox.networkOnly);
     global.toolbox.router.get('/isLoggedIn/', global.toolbox.networkOnly);
     // END LOCAL GET
 

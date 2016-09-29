@@ -8,7 +8,7 @@ class CheckRow extends React.Component {
     }
     onCheckRowClick() {
         if (!this.props.isOpenCheck) {
-            this.props.functions.openCheckStats(this.props.row.id);
+            this.props.functions.openCheckStats(this.props.row);
         } else {
             this.props.functions.closeCheckStats();
         }
@@ -187,23 +187,24 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, unset
         closeCheckStats,
     };
 
-    for (const singleCheck in checks) {
-        if (Object.prototype.hasOwnProperty.call(checks, singleCheck)) {
-            const isOpenCheck = checks[singleCheck].id === openCheckID;
-            const isNewCheck = checks[singleCheck].id === 'tmpID';
+    for (const checkId in checks) {
+        if (Object.prototype.hasOwnProperty.call(checks, checkId)) {
+            const isOpenCheck = checks[checkId].id === openCheckID;
+            const isNewCheck = checkId === 'tmpID';
+            const historyLength = checks[checkId].history.length - 1;
 
             let lastPingDuration = '-';
             let lastPingSpeed = '';
             let checkState = 'up';
 
-            if (typeof checks[singleCheck].history[0] !== 'undefined') {
-                if (checks[singleCheck].history[0].duration === null) {
+            if (typeof checks[checkId].history[historyLength] !== 'undefined') {
+                if (checks[checkId].history[historyLength].duration === null) {
                     checkState = 'down';
-                } else if (checks[singleCheck].history[0].duration > 200) {
-                    lastPingDuration = `${checks[singleCheck].history[0].duration} ms`;
+                } else if (checks[checkId].history[historyLength].duration > 200) {
+                    lastPingDuration = `${checks[checkId].history[historyLength].duration} ms`;
                     lastPingSpeed = 'slow';
                 } else {
-                    lastPingDuration = `${checks[singleCheck].history[0].duration} ms`;
+                    lastPingDuration = `${checks[checkId].history[historyLength].duration} ms`;
                     lastPingSpeed = 'fast';
                 }
             } else {
@@ -212,8 +213,8 @@ const ChecksTable = ({ checks = {}, openCheckID, destroy, setWorkingCheck, unset
 
             checksArray.push(
                 <CheckRow
-                    key={checks[singleCheck].id}
-                    row={checks[singleCheck]}
+                    key={checkId}
+                    row={checks[checkId]}
                     isOpenCheck={isOpenCheck}
                     isNewCheck={isNewCheck}
                     lastPingDuration={lastPingDuration}

@@ -54,8 +54,6 @@ const calcCheckStats = (check, historyLength) => {
     const percent = 100 - (totalOutage * 100) / (historyArrayLength * checkInterval);
 
     return {
-        id: check.id,
-        name: check.name,
         min,
         max,
         avg: Math.round(sum / historyArrayLength),
@@ -158,79 +156,27 @@ module.exports = {
     },
 
     /**
-     * Retrieves a check's data, including its last 20 pings
-     * @param {Function} fetcher - a function fetching a single record
-     * @param {String} userId - the id of the user requesting this action
-     * @param {String} checkId - the id of the check to retrieve data from
-     * @param {Funtion} callback
-     */
-    getData(fetcher, userId, checkId, callback) {
-        fetcher('check', checkId, (err, check) => {
-            if (err) {
-                return callback(err);
-            } else if (check.owner !== userId) {
-                return callback('You do not have access to this check');
-            } else {
-                const checkStats = calcCheckStats(check, 20);
-                if (!checkStats) {
-                    return callback('No data yet!');
-                }
-                return callback(null, checkStats);
-            }
-        });
-    },
-
-    /**
      * Retrieve the user's data and its checks, and then trims
      * their histories to keep only the last ping
      * @param {Function} fetcher - record fetching and population function
      * @param {String} userId - the id of the user requesting this action
      * @param {Function} callback
      */
-    getUserAndGlobalStats(fetcher, userId, callback) {
+    getUserAndChecks(fetcher, userId, callback) {
         fetcher('user', userId, 'checks', (err, user) => {
-            const lastError = { time: null, checkName: null };
-            let checksUp = 0;
-            const numberOfChecks = user.checks.length;
-            let availabilitiesSum = 0;
 
-            for (let check of user.checks) {
-                const checkStats = calcCheckStats(check, 1);
-                // If (checkStats == null) the check's history array is null: we have no data to process
-                if (checkStats !== null) {
-                    // If current check is currently up, we increment checksUp array
-                    // We do that by looking up his last 'history' array value
-                    if (checkStats.history[checkStats.history.length - 1].duration !== null) {
-                        checksUp++;
-                    }
-                    // We add current check's availability stats to the availabilities sum
-                    availabilitiesSum += checkStats.availability;
-                    // If current check's last outage is more recent than the one
-                    // stored in lastError, we update the lastError object
-                    if (checkStats.lastOutage > lastError.time) {
-                        lastError.time = checkStats.lastOutage;
-                        lastError.checkName = checkStats.name;
-                    }
-                    // We replace current check's history with the trimmed version from 'checkStats'
-                    check.history = checkStats.history;
-                }
-            }
+            const checks = {};
 
-            // Calculate the average of all the checks availabilities
-            const availabilitiesAvg = Utilities.customFloor(availabilitiesSum / numberOfChecks, 2);
+            user.checks.forEach((check) => {
+                checks[check.id] = Object.assign(check, calcCheckStats(check, 20));
+            });
 
             return callback(err, {
                 user: {
                     username: user.username,
                     emailHash: user.emailHash,
                 },
-                checks: user.checks,
-                globalStats: {
-                    numberOfChecks,
-                    checksUp,
-                    availabilitiesAvg,
-                    lastError,
-                },
+                checks
             });
         });
     },

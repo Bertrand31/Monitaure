@@ -35,11 +35,7 @@ export function destroyCheck(ajaxGet, checkId, callback) {
     const url = `${window.location.origin}/Check/destroy/${checkId}`;
     ajaxGet(url, (err, resJSON) => callback(err, resJSON));
 }
-export function getUserAndGlobalStats(ajaxGet, callback) {
-    const url = `${window.location.origin}/Check/getuserandglobalstats/`;
-    ajaxGet(url, (err, resJSON) => callback(err, resJSON));
-}
-export function getCheckStats(ajaxGet, checkId, callback) {
-    const url = `${window.location.origin}/Check/getcheckstats/${checkId}`;
+export function getUserAndChecks(ajaxGet, callback) {
+    const url = `${window.location.origin}/Check/getuserandchecks/`;
     ajaxGet(url, (err, resJSON) => callback(err, resJSON));
 }

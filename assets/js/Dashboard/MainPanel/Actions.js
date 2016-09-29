@@ -6,12 +6,6 @@ export function populateChecks(checks) {
         checks,
     };
 }
-export function populateGlobalStats(globalStats) {
-    return {
-        type: checksTypes.GLOBAL_STATS_POPULATE,
-        globalStats,
-    };
-}
 
 export function destroyCheck(id) {
     return {
@@ -53,12 +47,6 @@ export function saveWorkingCheck(data) {
     return {
         type: checksTypes.SAVE_WORKING_CHECK,
         data,
-    };
-}
-
-export function fetchStats() {
-    return {
-        type: checksTypes.FETCH_CHECK_STATS,
     };
 }
 

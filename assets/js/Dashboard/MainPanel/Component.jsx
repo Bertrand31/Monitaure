@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
             >
                 <div className="pane-components-wrapper">
                     <TopBar createWorkingCheck={this.props.createWorkingCheck} />
-                    <GlobalStats globalStats={this.props.globalStats} isACheckOpen={Object.keys(this.props.openCheck).length > 0} />
+                    <GlobalStats checks={this.props.checks} isACheckOpen={Object.keys(this.props.openCheck).length > 0} />
                     <CheckStats openCheck={this.props.openCheck} />
                 </div>
                 <ChecksTable
@@ -48,7 +48,6 @@ class Dashboard extends React.Component {
 
 Dashboard.propTypes = {
     checks: PropTypes.object.isRequired,
-    globalStats: PropTypes.object.isRequired,
     menuIsOpen: PropTypes.bool.isRequired,
     openCheck: PropTypes.object.isRequired,
     populateAll: PropTypes.func.isRequired,

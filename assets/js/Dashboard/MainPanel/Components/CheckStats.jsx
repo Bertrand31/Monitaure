@@ -62,13 +62,6 @@ const OpenCheckStats = ({ openCheck }) => {
         return <section className="c-check-stats s-is-hidden" />;
 
     }
-    if (openCheck.pending) {
-        return (
-            <section className="c-check-stats">
-                <img src="/images/loader.svg" alt="Fetching data..." />
-            </section>
-        );
-    }
 
     const chartDataset = historyToChartData(openCheck.history);
     const lastOutagePretty = openCheck.lastOutage ? moment(openCheck.lastOutage).format('D/MM/YY H:mm') : '-';
