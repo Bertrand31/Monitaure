@@ -9,7 +9,11 @@ const persistedState = loadState();
 const store = createStore(rootReducer, persistedState, window.devToolsExtension && window.devToolsExtension());
 
 store.subscribe(throttle(() => {
-    saveState(store.getState());
+    saveState({
+        user: store.getState().user,
+        checks: store.getState().checks,
+        globalStats: store.getState().globalStats,
+    });
 }, 1000));
 
 export default store;
