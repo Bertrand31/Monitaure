@@ -91,11 +91,13 @@ const HomepageComponent = () => (
         <section className="c-pane c-pane--small c-pane--realtime">
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
-                    <span className="c-pane--small__number">1</span>
-                    <h3 className="c-pane--small__title">Real-time data</h3>
-                    <p className="c-pane__body">
-                        Real-time data allowing you to react quickly in case on of your servers goes belly-up.
-                    </p>
+                    <div className="c-pane--small__number">1</div>
+                    <div className="c-pane--small__text">
+                        <h3 className="c-pane--small__title">Real-time data</h3>
+                        <p className="c-pane__body">
+                            Real-time data allowing you to react quickly in case on of your servers goes belly-up.
+                        </p>
+                    </div>
                 </div>
                 <div className="l-pane-grid__item">
                     <img src="/images/macbook.png" className="c-pane--small__image" alt="Real-time updates" />

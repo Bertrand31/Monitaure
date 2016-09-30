@@ -9,7 +9,7 @@ const Sidebar = ({ menuIsOpen, user, toggleMenu, logout }) => (
             <div className="c-mobile-topbar">
 
                 <button
-                    onClick={() => toggleMenu()}
+                    onClick={toggleMenu}
                     className={`hamburger hamburger--arrow ${menuIsOpen ? 'is-active' : ''}`}
                     type="button"
                 >
