@@ -4,6 +4,13 @@ html,body {
 .react-container {
     overflow-x:hidden;
 }
+.l-sidebar, .o-pane-container {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
 .o-pane-container {
     position:relative;
     left:0;
