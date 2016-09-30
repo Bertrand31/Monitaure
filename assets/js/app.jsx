@@ -27,16 +27,19 @@ import Popins from './Popins/Container';
 
 import '../styles/Base/index.scss';
 
+navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+const vibrateIsSupported = !!navigator.vibrate;
+
 class Root extends React.Component {
     componentWillMount() {
         this.props.getCSRFToken();
         this.props.checkAuth();
-        this.props.watchConnectivityState(navigator, window);
+        this.props.watchConnectivityState();
     }
     render() {
         if (this.props.isLoggedIn) {
             if ('serviceWorker' in navigator) {
-                this.props.activateSW(navigator);
+                this.props.activateSW();
             }
 
             return (
@@ -71,24 +74,25 @@ const mapDispatchToProps = dispatch => ({
     checkAuth: () => API.isLoggedIn(GETer, (err, { isLoggedIn }) =>
         dispatch(UserActions.changeAuthenticationState(isLoggedIn))
     ),
-    activateSW: (nav) => {
-        // Register Service Worker
-        nav.serviceWorker.register('/sw.js', { scope: '/' });
+    activateSW: () => {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' });
     },
-    watchConnectivityState: (nav, win) => {
-        dispatch(SWActions.setConnectivityState(nav.onLine ? 'online' : 'offline'));
-        win.addEventListener('load', () => {
+    watchConnectivityState: () => {
+        dispatch(SWActions.setConnectivityState(navigator.onLine ? 'online' : 'offline'));
+        window.addEventListener('load', () => {
             const updateOnlineStatus = e => {
+                if (vibrateIsSupported) navigator.vibrate(100);
                 if (e.type === 'offline') {
-                    dispatch(popinCreate('info', 'Now working offline, with limited functionality'));
+                    dispatch(popinCreate('info', 'Now working offline'));
                     dispatch(SWActions.setConnectivityState('offline'));
                 } else {
+                    dispatch(popinCreate('info', 'We are back online!'));
                     dispatch(SWActions.setConnectivityState('online'));
                 }
             };
 
-            win.addEventListener('online',  updateOnlineStatus);
-            win.addEventListener('offline', updateOnlineStatus);
+            window.addEventListener('online',  updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
         });
     },
     getCSRFToken: () => API.csrfToken(GETer, (err, { _csrf }) =>
