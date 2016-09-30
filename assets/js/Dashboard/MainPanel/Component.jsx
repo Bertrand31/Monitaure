@@ -6,8 +6,8 @@ import CheckStats from './CheckStats/Container';
 import ChecksTable from './ChecksTable/Container';
 
 
-const DashboardComponent = () => (
-    <div className="o-main o-pane-container dashboard">
+const DashboardComponent = ({ closeMenu }) => (
+    <div className="o-main o-pane-container dashboard" onClick={closeMenu}>
         <div className="pane-components-wrapper">
             <TopBar />
             <GlobalStats />
