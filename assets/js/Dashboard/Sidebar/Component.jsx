@@ -4,7 +4,7 @@ import Navigation from './Components/Navigation';
 import UserInfo from './Components/UserInfo';
 
 const Sidebar = ({ menuIsOpen, user, toggleMenu, logout }) => (
-    <aside className="l-sidebar">
+    <aside className={`l-sidebar ${menuIsOpen ? 's-menu-is-open' : ''}`}>
         <div className="sidebar-top">
             <div className="c-mobile-topbar">
 

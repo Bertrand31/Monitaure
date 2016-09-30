@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Sidebar from './Sidebar/Container';
-import MainPanel from './MainPanel/Container';
+import MainPanel from './MainPanel/Component';
 
 import '../../styles/Dashboard/index.scss';
 

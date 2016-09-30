@@ -9,7 +9,7 @@ html,body {
     left:0;
     margin-top:30px;
     transition:all .3s ease-in-out;
-    &.s-is-covered {
+    .s-menu-is-open + & {
         left:132px;
         -webkit-filter: blur(1px) grayscale(100%);
         filter: blur(1px) grayscale(100%);
