@@ -104,21 +104,23 @@ const HomepageComponent = () => (
                 </div>
             </div>
         </section>
-        {/*<section className="c-pane c-pane--small c-pane--green c-pane--notifications">
+        <section className="c-pane c-pane--small c-pane--green c-pane--notifications">
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
-                    <span className="c-pane--small__number">2</span>
-                    <h3 className="c-pane--small__title">Notifications</h3>
-                    <p className="c-pane__body">
-                        Whenever something happens, you will immediatly be notified by email and on your phone.
-                    </p>
+                    <img src="/images/notifications.svg" className="c-pane--small__image" alt="Email and mobile notifications" />
                 </div>
                 <div className="l-pane-grid__item">
-                    <img src="/images/notifications.png" className="c-pane--small__image" alt="Email and mobile notifications" />
+                    <div className="c-pane--small__number">2</div>
+                    <div className="c-pane--small__text">
+						<h3 className="c-pane--small__title">Notifications</h3>
+						<p className="c-pane__body">
+							Whenever something happens, you will immediatly be notified by email and on your phone.
+						</p>
+					</div>
                 </div>
             </div>
         </section>
-        <section className="c-pane c-pane--small c-pane--hybrid">
+        {/*<section className="c-pane c-pane--small c-pane--hybrid">
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
                     <span className="c-pane--small__number">3</span>

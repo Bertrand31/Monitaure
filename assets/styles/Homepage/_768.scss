@@ -114,3 +114,20 @@ $positions: 60% 70% 76% 77% 72% 60% 50% 42% 38% 33% 30%;
         background-size:15px 15px;
     }
 }
+
+.c-pane--small {
+    text-align:left;
+}
+.c-pane--small .l-pane-grid__item {
+    flex-direction:row;
+    &:first-of-type {
+        width:40%;
+    }
+    &:nth-of-type(2) {
+        flex-grow:1;
+    }
+}
+.c-pane--small__number {
+    margin:0 1.5em 0;
+    line-height:.6;
+}
