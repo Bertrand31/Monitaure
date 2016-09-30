@@ -9,6 +9,6 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-const TopBarContainer = connect(() => ({}), mapDispatchToProps)(TopBarComponent);
+const TopBarContainer = connect(null, mapDispatchToProps)(TopBarComponent);
 
 export default TopBarContainer;
