@@ -50,6 +50,11 @@ module.exports = {
             type: 'date',
         },
 
+        gcmToken: {
+            type: 'string',
+            defaultsTo: null,
+        },
+
         toJSON() {
             const obj = this.toObject();
             delete obj.password;

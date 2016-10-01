@@ -59,6 +59,25 @@
     });
     // END VENDOR GET
 
+    // GCM PUSH
+	global.addEventListener('push', function(event) {
+		console.log('Received a push message', event);
+
+		const title = 'Yay a message.';
+		const body = 'We have received a push message.';
+		const icon = '/images/android-chrome-96x96.png';
+		const tag = 'simple-push-demo-notification-tag';
+
+		event.waitUntil(
+			global.registration.showNotification(title, {
+				body: body,
+				icon: icon,
+				tag: tag
+			})
+		);
+	});
+    // END GCM PUSH
+
     // Boilerplate to ensure our service worker takes control of the page ASAP
     global.addEventListener('install',
         event => event.waitUntil(global.skipWaiting()));

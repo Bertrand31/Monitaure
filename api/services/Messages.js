@@ -1,5 +1,5 @@
-const appEmail = (typeof sails !== 'undefined') ? sails.config.emailAddress : 'notifications@monitaure.io';
-const baseUrl = (typeof sails !== 'undefined') ? sails.config.baseUrl : 'https://monitaure.io';
+const appEmail = sails.config.emailAddress;
+const baseUrl = sails.config.baseUrl;
 
 module.exports = {
     /**
@@ -8,14 +8,19 @@ module.exports = {
      * @param {String} userEmail - address we send the email to
      * @param {String} checkName - name of the check that is down
      */
-    sendDownAlert(sender, userEmail, checkName) {
+    sendDownAlert(user, checkName) {
+        const alertText = `Alert: ${checkName} is DOWN`;
+
         const emailOptions = {
             from: appEmail,
-            to: userEmail,
+            to: user.email,
             subject: `🚨  Monitaure alert: ${checkName} is DOWN!`,
-            text: `Alert: ${checkName} is DOWN`,
+            text: alertText,
         };
-        sender(emailOptions);
+
+        Sendgrid.send(emailOptions);
+
+        GCM.send(alertText, user.gcmToken);
     },
 
     /**
@@ -25,14 +30,18 @@ module.exports = {
      * @param {String} checkName - name of the check that is back up
      * @param {Number} outageDuration - number of minutes the check was down
      */
-    sendUpAlert(sender, recipient, checkName, outageDuration) {
+    sendUpAlert(user, checkName, outageDuration) {
+        const alertText = `${checkName} is back up after ${outageDuration} minutes of downtime.`;
         const emailOptions = {
             from: appEmail,
-            to: recipient,
+            to: user.email,
             subject: `✓ Monitaure alert: ${checkName} is back UP!`,
-            text: `${checkName} is back up after ${outageDuration} minutes of downtime.`,
+            text: alertText,
         };
-        sender(emailOptions);
+
+        Sendgrid.send(emailOptions);
+
+        GCM.send(alertText, user.gcmToken);
     },
 
     /**

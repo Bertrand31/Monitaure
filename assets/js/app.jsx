@@ -25,6 +25,8 @@ import LoginForm from './Homepage/Popover/LoginForm/Container';
 import SignupForm from './Homepage/Popover/SignupForm/Container';
 import Popins from './Popins/Container';
 
+import { subscribe } from './ServiceWorker/pushAPI';
+
 import '../styles/Base/index.scss';
 
 navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
@@ -76,6 +78,7 @@ const mapDispatchToProps = dispatch => ({
     ),
     activateSW: () => {
         navigator.serviceWorker.register('/sw.js', { scope: '/' });
+        subscribe();
     },
     watchConnectivityState: () => {
         dispatch(SWActions.setConnectivityState(navigator.onLine ? 'online' : 'offline'));
