@@ -39,12 +39,12 @@ module.exports = {
     },
 
     /**
-     * HTTP route to set user's GCM Push Notifications API endpoint
+     * HTTP route to set user's GCM credentials
      * The confirmation token is passed as the 'id' paramter
      * @param {Object} req - HTTP request (must be GET)
      * @param {Object} res - Express' response object
      */
-    setgcmtoken(req, res) {
-        UserManagement.setGCMToken(DB.update, req.user.id, req.param('gcmToken'));
+    setgcmcredentials(req, res) {
+        UserManagement.setGCMCredentials(DB.update, req.user.id, req.param('subscription'));
     },
 };

@@ -16,7 +16,7 @@
     global.toolbox.precache(filesToCache);
     global.toolbox.router.get('/images/*', global.toolbox.cacheFirst, {
         cache: {
-            name: 'asset-cache-v1.3',
+            name: 'asset-cache-v1.4',
             maxEntries: 30,
         },
     });
@@ -39,21 +39,21 @@
     global.toolbox.router.get('/avatar/*', global.toolbox.cacheFirst, {
         origin: /gravatar\.com/,
         cache: {
-            name: 'static-vendor-cache-v1.3',
+            name: 'static-vendor-cache-v1.4',
             maxEntries: 1,
         },
     });
     global.toolbox.router.get('/(.*)', global.toolbox.cacheFirst, {
         origin: /fonts\.gstatic\.com/,
         cache: {
-            name: 'static-vendor-cache-v1.3',
+            name: 'static-vendor-cache-v1.4',
             maxEntries: 10,
         },
     });
     global.toolbox.router.get('/css', global.toolbox.fastest, {
         origin: /fonts\.googleapis\.com/,
         cache: {
-            name: 'dynamic-vendor-cache-v1.3',
+            name: 'dynamic-vendor-cache-v1.4',
             maxEntries: 5,
         },
     });
@@ -62,17 +62,18 @@
     // GCM PUSH
 	global.addEventListener('push', function(event) {
 		console.log('Received a push message', event);
+        console.log(event.data.text());
 
-		const title = 'Yay a message.';
-		const body = 'We have received a push message.';
+		const title = 'Monitaure alert:';
+		const body = event.data.text();
 		const icon = '/images/android-chrome-96x96.png';
 		const tag = 'simple-push-demo-notification-tag';
 
 		event.waitUntil(
 			global.registration.showNotification(title, {
-				body: body,
-				icon: icon,
-				tag: tag
+				body,
+				icon,
+				tag,
 			})
 		);
 	});

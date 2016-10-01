@@ -79,7 +79,7 @@ export const checksReducer = (state = {}, action) => {
                             name: state[checkId].name,
                             emailNotifications: state[checkId].emailNotifications,
                         };
-                    else {
+                    } else {
                         newState[checkId] = { ...action.checks[checkId] };
                     }
                 }

@@ -26,13 +26,16 @@ module.exports = {
     },
 
     /**
-     * Update a user's GCM Token
+     * Update a user's GCM credentials
      * @param {Function} updater - record update function
      * @param {String} userId - user id
      * @param {String} gcmToken - the user's Google Cloud Messaging ID
      */
-    setGCMToken(updater, userId, gcmToken) {
-        updater('user', { id: userId }, { gcmToken }, (err, user) => {
+    setGCMCredentials(updater, userId, subscription) {
+        // const subscriptionObj = JSON.parse(subscription);
+        // const gcmToken = subscriptionObj.endpoint.split('/').reverse()[0];
+        // const { p256dh, auth } = subscriptionObj.keys;
+        updater('user', { id: userId }, { gcmSubscription: JSON.parse(subscription) }, (err, user) => {
             if (err) return sails.log.error(err);
         });
     },

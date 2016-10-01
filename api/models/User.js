@@ -50,8 +50,8 @@ module.exports = {
             type: 'date',
         },
 
-        gcmToken: {
-            type: 'string',
+        gcmSubscription: {
+            type: 'object',
             defaultsTo: null,
         },
 

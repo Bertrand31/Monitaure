@@ -19,8 +19,7 @@ module.exports = {
         };
 
         Sendgrid.send(emailOptions);
-
-        GCM.send(alertText, user.gcmToken);
+        GCM.send(user.gcmSubscription, alertText);
     },
 
     /**
@@ -32,6 +31,7 @@ module.exports = {
      */
     sendUpAlert(user, checkName, outageDuration) {
         const alertText = `${checkName} is back up after ${outageDuration} minutes of downtime.`;
+
         const emailOptions = {
             from: appEmail,
             to: user.email,
@@ -40,8 +40,7 @@ module.exports = {
         };
 
         Sendgrid.send(emailOptions);
-
-        GCM.send(alertText, user.gcmToken);
+        GCM.send(user.gcmSubscription, alertText);
     },
 
     /**

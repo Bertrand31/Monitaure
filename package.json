@@ -65,6 +65,7 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
+    "web-push": "^3.0.0",
     "webpack": "^1.13.2",
     "webpack-merge": "^0.14.1"
   },

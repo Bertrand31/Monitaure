@@ -1,10 +1,9 @@
 import { POSTer } from '../serverIO/ajaxMethods';
-import { setGCMToken } from '../serverIO/dataHandling';
+import { setGCMCredentials } from '../serverIO/dataHandling';
 
 const sendSubscriptionToServer = (subscription) => {
-	const subscriptionEndpoint = subscription.endpoint.split('/');
-    const gcmToken = subscriptionEndpoint[subscriptionEndpoint.length - 1];
-    setGCMToken(POSTer, { gcmToken }, (err) => {
+
+    setGCMCredentials(POSTer, { subscription: JSON.stringify(subscription) }, (err) => {
         //TMP
         console.warn(err);
     });
@@ -13,7 +12,6 @@ const sendSubscriptionToServer = (subscription) => {
 export const subscribe = () => {
 	navigator.serviceWorker.ready
 		.then((serviceWorkerRegistration) => {
-            alert('SW ready!');
 			serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
 				.then(function(subscription) {
 					// The subscription was successful

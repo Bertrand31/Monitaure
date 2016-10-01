@@ -9,8 +9,8 @@ export function createUser(ajaxPost, data, callback) {
     const url = `${window.location.origin}/User/create/`;
     ajaxPost(url, data, (err, resJSON) => callback(err, resJSON));
 }
-export function setGCMToken(ajaxPost, data, callback) {
-    const url = `${window.location.origin}/User/setgcmtoken/`;
+export function setGCMCredentials(ajaxPost, data, callback) {
+    const url = `${window.location.origin}/User/setgcmcredentials/`;
     ajaxPost(url, data, (err, resJSON) => callback(err, resJSON));
 }
 export function login(ajaxPost, data, callback) {
