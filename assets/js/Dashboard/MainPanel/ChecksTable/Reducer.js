@@ -59,20 +59,29 @@ const checkReducer = (state, action) => {
 export const checksReducer = (state = {}, action) => {
     switch (action.type) {
         case types.CHECKS_POPULATE: {
-            // If the state was empty (typically when the app just loaded),
+            // If the state was empty (typically when the app loaded for the first time),
             // we juste fill the state with formatted data
             if (Object.keys(state).length === 0) {
                 return { ...action.checks };
             }
-            // Otherwise, we only update the history values
+            // Otherwise, we loop over the new data and:
+            // 1. if the check is being edited, we update its properties
+            // except for the ones that the user might be changing
+            // 2. otherwrise, we overwrite the check's data with the new data
+            // All of this complex logic is to avoid discarding the changes the user
+            // might be making be overwriting them with obsolete data from the server
             const newState = { ...state };
             for (const checkId in action.checks) {
                 if (action.checks.hasOwnProperty(checkId)) {
-                    newState[checkId] = {
-                        ...action.checks[checkId],
-                        name: state[checkId].name,
-                        emailNotifications: state[checkId].emailNotifications,
-                    };
+                    if (typeof state[checkId] !== 'undefined' && state[checkId].isEditing) {
+                        newState[checkId] = {
+                            ...action.checks[checkId],
+                            name: state[checkId].name,
+                            emailNotifications: state[checkId].emailNotifications,
+                        };
+                    else {
+                        newState[checkId] = { ...action.checks[checkId] };
+                    }
                 }
             }
             return { ...newState };
