@@ -156,15 +156,14 @@ module.exports = {
     },
 
     /**
-     * Retrieve the user's data and its checks, and then trims
-     * their histories to keep only the last ping
+     * Retrieve the user's data and its checks, calcs each check's statistics
+     * and adds it to each check properties
      * @param {Function} fetcher - record fetching and population function
      * @param {String} userId - the id of the user requesting this action
      * @param {Function} callback
      */
     getUserAndChecks(fetcher, userId, callback) {
         fetcher('user', userId, 'checks', (err, user) => {
-
             const checks = {};
 
             user.checks.forEach((check) => {
@@ -176,7 +175,7 @@ module.exports = {
                     username: user.username,
                     emailHash: user.emailHash,
                 },
-                checks
+                checks,
             });
         });
     },

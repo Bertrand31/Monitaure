@@ -39,7 +39,7 @@ const Navigation = ({ menuIsOpen, logout }) => (
                     <a
                         className="c-nav__link"
                         href="/logout"
-                        onClick={e => { e.preventDefault(); logout(); }}
+                        onClick={(e) => { e.preventDefault(); logout(); }}
                     >
                         Log out
                     </a>

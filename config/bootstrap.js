@@ -9,7 +9,7 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-module.exports.bootstrap = callback => {
+module.exports.bootstrap = (callback) => {
     sails.on('lifted', () => {
         Worker(DB.fetch);
     });

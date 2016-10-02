@@ -26,7 +26,7 @@ const calcGlobalStats = (checks) => {
     const lastError = { time: null, checkName: null };
 
     for (const checkId in checks) {
-        if (checks.hasOwnProperty(checkId)) {
+        if (Object.prototype.hasOwnProperty.call(checks, checkId)) {
             if (checkId !== 'tmpID') {
                 historyLength = checks[checkId].history.length - 1;
                 if (historyLength > 0) {
@@ -167,6 +167,7 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
 
 GlobalStats.propTypes = {
     checks: PropTypes.object,
+    isACheckOpen: PropTypes.bool.isRequired,
 };
 
 export default GlobalStats;

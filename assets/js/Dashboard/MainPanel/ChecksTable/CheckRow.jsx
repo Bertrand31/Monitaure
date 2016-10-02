@@ -107,19 +107,19 @@ class CheckRow extends React.Component {
                         ${this.props.row.emailNotifications ? 'is-checked' : ''}
                         ${this.props.row.isEditing ? '' : 'is-disabled'}`}
                     >
-						<input
-							className="input__checkbox"
-							id={`emailNotifications-${this.props.row.id}`}
-							name="emailNotifications"
-							disabled={!this.props.row.isEditing}
-							type="checkbox"
-							onChange={e => this.handleChange(e)}
-							checked={this.props.row.emailNotifications}
-						/>
-						<label
-							htmlFor={`emailNotifications-${this.props.row.id}`}
-							className="c-checkbox__label"
-						/>
+                        <input
+                            className="input__checkbox"
+                            id={`emailNotifications-${this.props.row.id}`}
+                            name="emailNotifications"
+                            disabled={!this.props.row.isEditing}
+                            type="checkbox"
+                            onChange={e => this.handleChange(e)}
+                            checked={this.props.row.emailNotifications}
+                        />
+                        <label
+                            htmlFor={`emailNotifications-${this.props.row.id}`}
+                            className="c-checkbox__label"
+                        />
 					</div>
                 </td>
                 <td className="c-checks__edit">
@@ -134,7 +134,7 @@ class CheckRow extends React.Component {
                     className="c-checks__destroy"
                 >
                     <button
-                        onClick={e => {
+                        onClick={(e) => {
                             e.stopPropagation();
                             this.props.functions.destroy(this.props.row.id);
                         }}
@@ -163,6 +163,7 @@ CheckRow.propTypes = {
     functions: PropTypes.shape({
         destroy: PropTypes.func.isRequired,
         setWorkingCheck: PropTypes.func.isRequired,
+        unsetWorkingCheck: PropTypes.func.isRequired,
         updateWorkingCheck: PropTypes.func.isRequired,
         saveWorkingCheck: PropTypes.func.isRequired,
         openCheckStats: PropTypes.func.isRequired,

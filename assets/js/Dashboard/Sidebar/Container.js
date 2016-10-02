@@ -10,12 +10,12 @@ import * as UserActions from '../../User/Actions';
 import * as MenuActions from './Actions';
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     menuIsOpen: state.menuIsOpen,
     user: state.user,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     toggleMenu() {
         return dispatch(MenuActions.toggle());
     },

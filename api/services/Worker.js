@@ -35,7 +35,7 @@ const checkPort = (check, callback) => {
     }, sails.config.checkTimeout);
 };
 
-const pingHandling = ping => {
+const pingHandling = (ping) => {
     CheckManagement.insertHistory(DB.fetchOne, DB.update, ping, (err) => {
         if (err) return sails.log.error(err);
     });
@@ -69,16 +69,16 @@ const pingHandling = ping => {
     }
 };
 
-module.exports = fetcher => {
+module.exports = (fetcher) => {
     setInterval(() => {
         fetcher('check', {}, (err, checks) => {
             if (err) sails.log.error(err);
 
             const asyncChecks = [];
 
-            checks.forEach(check => {
-                asyncChecks.push(callback => {
-                    checkPort(check, result => {
+            checks.forEach((check) => {
+                asyncChecks.push((callback) => {
+                    checkPort(check, (result) => {
                         callback(null, result);
                     });
                 });
@@ -86,9 +86,7 @@ module.exports = fetcher => {
 
             async.parallel(asyncChecks, (err, pings) => {
                 if (err) throw err;
-                pings.forEach(ping => {
-                    pingHandling(ping);
-                });
+                pings.forEach(ping => pingHandling(ping));
             });
         });
     }, sails.config.checkInterval);

@@ -7,9 +7,9 @@ module.exports = {
                 <meta http-equiv="Content-Type" content="text/html" charset="ISO-8859-1" />
                 <title>Monitaure account confirmation</title>
                 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,400italic,500italic' rel='stylesheet' type='text/css'>
-			</head>
+            </head>
 
-			<body bgcolor="#212121" style="font-size:16px">
+            <body bgcolor="#212121" style="font-size:16px">
                 <center>
                     <table width="800" border="0" cellpadding="0" cellspacing="0" style="font-family: 'Roboto', Arial, Helvetica, sans-serif">
                         <tr>
@@ -82,6 +82,6 @@ module.exports = {
                 </center>
             </body>
             </html>
-		`;
+        `;
     },
 };

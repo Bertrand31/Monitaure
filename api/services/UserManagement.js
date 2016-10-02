@@ -35,7 +35,7 @@ module.exports = {
         // const subscriptionObj = JSON.parse(subscription);
         // const gcmToken = subscriptionObj.endpoint.split('/').reverse()[0];
         // const { p256dh, auth } = subscriptionObj.keys;
-        updater('user', { id: userId }, { gcmSubscription: JSON.parse(subscription) }, (err, user) => {
+        updater('user', { id: userId }, { gcmSubscription: JSON.parse(subscription) }, (err) => {
             if (err) return sails.log.error(err);
         });
     },

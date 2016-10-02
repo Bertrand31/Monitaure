@@ -9,7 +9,7 @@ const findModel = (modelName) => {
         case 'check':
             return Check;
         default:
-            throw new Error('Model ${modelName} not found');
+            throw new Error(`Model ${modelName} not found`);
     }
 };
 

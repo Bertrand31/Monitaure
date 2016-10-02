@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import TopBar from './TopBar/Container';
 import GlobalStats from './GlobalStats/Container';
@@ -16,5 +16,9 @@ const DashboardComponent = ({ closeMenu }) => (
         <ChecksTable />
     </div>
 );
+
+DashboardComponent.propTypes = {
+    closeMenu: PropTypes.func.isRequired,
+};
 
 export default DashboardComponent;

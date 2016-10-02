@@ -104,8 +104,10 @@ class ChecksTable extends React.Component {
 ChecksTable.propTypes = {
     checks: PropTypes.object.isRequired,
     openCheckID: PropTypes.string,
+    populateAll: PropTypes.func.isRequired,
     destroy: PropTypes.func.isRequired,
     setWorkingCheck: PropTypes.func.isRequired,
+    unsetWorkingCheck: PropTypes.func.isRequired,
     updateWorkingCheck: PropTypes.func.isRequired,
     saveWorkingCheck: PropTypes.func.isRequired,
     openCheckStats: PropTypes.func.isRequired,

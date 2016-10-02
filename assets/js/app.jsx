@@ -41,6 +41,7 @@ class Root extends React.Component {
         if (this.props.isLoggedIn) {
             if ('serviceWorker' in navigator) {
                 this.props.activateSW();
+                this.props.subscribeToPush();
             }
 
             return (
@@ -66,25 +67,30 @@ Root.propTypes = {
     checkAuth: PropTypes.func.isRequired,
     watchConnectivityState: PropTypes.func.isRequired,
     activateSW: PropTypes.func.isRequired,
+    subscribeToPush: PropTypes.func.isRequired,
     children: PropTypes.element,
     isLoggedIn: PropTypes.bool.isRequired,
     isOffline: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn, isOffline: state.isOffline });
+const mapStateToProps = state => ({
+    isLoggedIn: state.user.isLoggedIn,
+    isOffline: state.isOffline,
+});
 
 const mapDispatchToProps = dispatch => ({
     checkAuth: () => API.isLoggedIn(GETer, (err, { isLoggedIn }) =>
         dispatch(UserActions.changeAuthenticationState(isLoggedIn))
     ),
-    activateSW: () => {
-        navigator.serviceWorker.register('/sw.js', { scope: '/' });
-        subscribe();
-    },
+
+    activateSW: () => navigator.serviceWorker.register('/sw.js', { scope: '/' }),
+
+    subscribeToPush: () => subscribe(),
+
     watchConnectivityState: () => {
         dispatch(SWActions.setConnectivityState(navigator.onLine ? 'online' : 'offline'));
         window.addEventListener('load', () => {
-            const updateOnlineStatus = e => {
+            const updateOnlineStatus = (e) => {
                 if (vibrateIsSupported) navigator.vibrate(100);
                 if (e.type === 'offline') {
                     dispatch(popinCreate('info', 'Now working offline'));
@@ -95,7 +101,7 @@ const mapDispatchToProps = dispatch => ({
                 }
             };
 
-            window.addEventListener('online',  updateOnlineStatus);
+            window.addEventListener('online', updateOnlineStatus);
             window.addEventListener('offline', updateOnlineStatus);
         });
     },
