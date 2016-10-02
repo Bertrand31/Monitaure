@@ -72,7 +72,7 @@ export const checksReducer = (state = {}, action) => {
             // might be making be overwriting them with obsolete data from the server
             const newState = { ...state };
             for (const checkId in action.checks) {
-                if (Object.prototype.hasOwnPropType.call(action.checks, checkId)) {
+                if (Object.prototype.hasOwnProperty.call(action.checks, checkId)) {
                     if (typeof state[checkId] !== 'undefined' && state[checkId].isEditing) {
                         newState[checkId] = {
                             ...action.checks[checkId],
