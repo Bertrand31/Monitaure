@@ -1,5 +1,3 @@
-// import 'isomorphic-fetch';
-
 ((global) => {
     importScripts('/sw-toolbox.js');
 

@@ -1,5 +1,3 @@
-// import 'babel-polyfill';
-import 'isomorphic-fetch';
 import 'react-fastclick';
 
 import React, { PropTypes } from 'react';
