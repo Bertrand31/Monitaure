@@ -41,7 +41,7 @@ class LoginFormComponent extends React.Component {
                     </fieldset>
                     <input className="c-button c-button--padedd" type="submit" value="Log in" />
                 </form>
-                <p className="c-box__text">Don't have an account? <Link to="/signup">Sign up!</Link></p>
+                <p className="c-box__text">Don&apos;t have an account? <Link to="/signup">Sign up!</Link></p>
             </div>
         );
     }

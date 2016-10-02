@@ -29,7 +29,8 @@ import { subscribe } from './ServiceWorker/pushAPI';
 
 import '../styles/Base/index.scss';
 
-navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+navigator.vibrate = navigator.vibrate || navigator.webkitVibrate ||
+                    navigator.mozVibrate || navigator.msVibrate;
 const vibrateIsSupported = !!navigator.vibrate;
 
 class Root extends React.Component {
@@ -63,11 +64,13 @@ class Root extends React.Component {
 }
 
 Root.propTypes = {
-    checkAuth: PropTypes.func.isRequired,
-    activateSW: PropTypes.func.isRequired,
     getCSRFToken: PropTypes.func.isRequired,
+    checkAuth: PropTypes.func.isRequired,
+    watchConnectivityState: PropTypes.func.isRequired,
+    activateSW: PropTypes.func.isRequired,
     children: PropTypes.element,
-    isLoggedIn: PropTypes.bool,
+    isLoggedIn: PropTypes.bool.isRequired,
+    isOffline: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({ isLoggedIn: state.user.isLoggedIn, isOffline: state.isOffline });

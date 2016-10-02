@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { destroy } from './Actions';
 import PopinsList from './Component';
 
-const mapStateToProps = (state) => ({ popins: state.popins });
+const mapStateToProps = state => ({ popins: state.popins });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     destroy: (id) => {
         dispatch(destroy(id));
     },

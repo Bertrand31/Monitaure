@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - 6.5
+  - 6.7
 env:
   - NODE_ENV=production
 before_install:

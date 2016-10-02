@@ -60,7 +60,6 @@ const historyToChartData = (history) => {
 const checkStats = ({ openCheck }) => {
     if (Object.keys(openCheck).length < 1) {
         return <section className="c-check-stats s-is-hidden" />;
-
     }
 
     const chartDataset = historyToChartData(openCheck.history);
