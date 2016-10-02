@@ -10,6 +10,24 @@ const sendSubscriptionToServer = (subscription) => {
 };
 
 export const subscribe = () => {
+
+    // First, we check whether the browser supports the notifications
+	if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
+		return;
+	}
+
+	// Check the current Notification permission.
+	// If its denied, it's a permanent block until the
+	// user changes the permission
+	// if (Notification.permission === 'denied') {
+	// 	return;
+	// }
+
+	// Check if push messaging is supported
+	if (!('PushManager' in window)) {
+		return;
+	}
+
 	navigator.serviceWorker.ready
 		.then((serviceWorkerRegistration) => {
 			serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
