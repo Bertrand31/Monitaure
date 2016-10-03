@@ -29,7 +29,7 @@
         width:100%;
     }
     .l-pane-grid__item {
-        flex-grow:1;
+        width:33.333%;
     }
 }
 .c-imgtxt {
@@ -90,9 +90,6 @@
     font-size:4em;
     font-weight:100;
 }
-.c-pane--small__image {
-    margin-left:auto;
-}
 .c-pane--small__title {
     font-size:2.35em;
     font-weight:300;
@@ -106,4 +103,14 @@
 }
 .c-pane--realtime {
     background:#f9f9f9;
+}
+.c-pane--green {
+    background: -moz-linear-gradient(150deg, #40d89f 0%, #6cf388 100%);
+    background: -webkit-linear-gradient(150deg, #40d89f 0%,#6cf388 100%);
+    background: linear-gradient(-30deg, #40d89f 0%,#6cf388 100%);
+    .c-pane--small__number,
+    .c-pane--small__title,
+    .c-pane__body {
+        color:#fff;
+    }
 }

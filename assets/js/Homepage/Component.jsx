@@ -104,7 +104,12 @@ const HomepageComponent = () => (
                 </div>
             </div>
         </section>
-        <section className="c-pane c-pane--small c-pane--green c-pane--notifications">
+        <section className="c-pane c-pane--small c-pane--green c-pane--bubbles c-pane--notifications">
+            <div className="c-pane--bubbles__bubbles-container" aria-hidden="true">
+                <div className="c-pane--bubbles__bubble" />
+                <div className="c-pane--bubbles__bubble" />
+                <div className="c-pane--bubbles__bubble" />
+            </div>
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
                     <img src="/images/notifications.svg" className="c-pane--small__image" alt="Email and mobile notifications" />
@@ -120,22 +125,24 @@ const HomepageComponent = () => (
                 </div>
             </div>
         </section>
-        {/*<section className="c-pane c-pane--small c-pane--hybrid">
+        <section className="c-pane c-pane--small c-pane--hybrid">
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
                     <span className="c-pane--small__number">3</span>
-                    <h3 className="c-pane--small__title">Hybrid Mobile App</h3>
-                    <p className="c-pane__body">
-                        You can install the mobile version of Monitaure as if it were a native app, an then receive push notifications.
-                    </p>
+                    <div className="c-pane--small__text">
+                        <h3 className="c-pane--small__title">Hybrid Mobile App</h3>
+						<p className="c-pane__body">
+                        You can install the Monitaure app on your phone, use it offline and receive push notifications.
+						</p>
+					</div>
                 </div>
                 <div className="l-pane-grid__item">
-                    <img src="/images/notifications.png" className="c-pane--small__image" alt="Email and mobile notifications" />
+                    <img src="/images/hybrid.svg" className="c-pane--small__image" alt="Hybird app" />
                 </div>
             </div>
         </section>
 
-        <section className="c-pane c-pane--big c-pane--about">
+        {/*<section className="c-pane c-pane--big c-pane--about">
             <h2 className="c-h2--big">About us</h2>
             <p className="c-pane__body">We're two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
             <div id="TODO" />
