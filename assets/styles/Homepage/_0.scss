@@ -118,6 +118,7 @@
     padding:3% 0;
     height:155px;
     background:#fff url('/images/separator.svg') center center no-repeat;
+    background-size:100%;
 }
 .c-pane--try {
     background:$bluegreen;
@@ -132,4 +133,17 @@
         padding:.8em 2.3em;
         border-radius:30px;
     }
+}
+.c-footer {
+    padding:5%;
+    background:#fff;
+    font-size:1.25em;
+    line-height:1.6;
+    color:#c7c7c7;
+    .l-pane-grid {
+        align-items:flex-start;
+    }
+}
+.c-footernav__el {
+    padding:0 0 1.5em;
 }

@@ -163,28 +163,21 @@ const HomepageComponent = () => (
             </div>
         </section>
 
-    {/*<footer className="c-footer">
+        <footer className="c-footer">
             <div className="l-pane-grid">
-                <div className="l-pane-grid__item">
-                    <div className="l-pane-grid">
-                        <div className="l-pane-grid__item">
-                            <img src="/images/logo-white.svg" alt="Logo Monitaure" />
-                            <p>Monitaure.io ©2016</p>
-                        </div>
-                    </div>
-                    <div className="l-pane-grid">
-                        <nav>
-                            <ul>
-                                <li><Link to="/tour" className="c-topnav__el">Tour</Link></li>
-                                <li><Link to="/about" className="c-topnav__el">About us</Link></li>
-                                <li><Link to="/login" className="c-button c-button--empty c-button--round">Log in</Link></li>
-                                <li><Link to="/signup" className="c-button c-button--round">Sign up</Link></li>
-                                <li><Link to="/contact" className="c-topnav__el">Contact</Link></li>
-                            </ul>
-                        </nav>
-                    </div>
+                <div className="l-pane-grid__item c-footer__logo">
+                    <img src="/images/logo-gray.svg" alt="Logo Monitaure" />
+                    <p>Monitaure.io ©2016</p>
                 </div>
-                <div className="l-pane-grid__item">
+                <nav className="l-pane-grid__item c-footer__nav">
+                    <ul className="c-footernav">
+                        <li className="c-footernav__el"><Link to="/tour" className="">Tour</Link></li>
+                        <li className="c-footernav__el"><Link to="/login" className="">Log in</Link></li>
+                        <li className="c-footernav__el"><Link to="/signup" className="">Sign up</Link></li>
+                        <li className="c-footernav__el"><Link to="/contact" className="">Contact</Link></li>
+                    </ul>
+                </nav>
+                <div className="l-pane-grid__item c-footer__text">
                     <p>
                         Monitaure is a free server monitoring online application aiming to help SysAdmins.
                         If you encounter any problem or want to get in touch with us,
@@ -192,7 +185,7 @@ const HomepageComponent = () => (
                     </p>
                 </div>
             </div>
-        </footer>*/}
+        </footer>
 
     </div>
 

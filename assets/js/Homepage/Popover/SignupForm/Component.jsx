@@ -2,14 +2,20 @@ import React, { PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 
 class SignupFormComponent extends React.Component {
+    constructor() {
+        super();
+    }
+    componentWillMount() {
+        this.setState({ emailSent: false });
+    }
     componentDidMount() {
         this.usernameInput.focus();
     }
     render() {
-        if (Object.prototype.hasOwnProperty.call(this.props.user, 'createdAt')) {
+        if (this.state.emailSent) {
             return (
                 <div className="c-box">
-                    <p className="c-box__text">A confirmation email has just been sent to {this.props.user.email}</p>
+                    <p className="c-box__text">A confirmation email has been sent to {this.props.user.email}</p>
                 </div>
             );
         }
@@ -22,8 +28,9 @@ class SignupFormComponent extends React.Component {
                     className="c-form"
                     method="post"
                     action="/signup"
-                    onSubmit={e => {
+                    onSubmit={(e) => {
                         e.preventDefault();
+                        this.setState({ emailSent: true });
                         this.props.signup(this.props.user);
                     }}
                 >
