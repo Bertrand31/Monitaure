@@ -28,9 +28,9 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    .c-h2 {
-        margin-bottom:3.7em;
-    }
+}
+.c-h2 {
+    margin-bottom:3.7em;
 }
 .c-pane--big {
     height:100vh;
@@ -162,6 +162,7 @@ $positions: 60% 70% 76% 77% 72% 60% 50% 42% 38% 33% 30%;
     position:absolute;
     left:0;right:0;
     top:0;
+    z-index:0;
     height:100%;
 }
 .c-pane--bubbles__bubble {
@@ -202,5 +203,23 @@ $positions: 60% 70% 76% 77% 72% 60% 50% 42% 38% 33% 30%;
     }
     &:nth-of-type(2) {
         flex-grow:1;
+    }
+}
+.c-pane--try {
+    position:relative;
+    height:388px;
+    &:before {
+        content:'';
+        display:block;
+        position:absolute;
+        left:2%;
+        bottom:0;
+        z-index:1;
+        width:126px;
+        height:504px;
+        background:transparent url('/images/iphone-sideview.png') center center no-repeat;
+    }
+    .l-pane-grid {
+        flex-direction:column;
     }
 }

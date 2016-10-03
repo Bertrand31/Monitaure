@@ -148,15 +148,22 @@ const HomepageComponent = () => (
             <h2 className="c-h2--big">About us</h2>
             <p className="c-pane__body">We're two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
             <div id="TODO" />
+        </section>*/}
+
+        <section className="c-pane c-pane--small c-pane--green c-pane--bubbles c-pane--try">
+            <div className="c-pane--bubbles__bubbles-container" aria-hidden="true">
+                <div className="c-pane--bubbles__bubble" />
+                <div className="c-pane--bubbles__bubble" />
+                <div className="c-pane--bubbles__bubble" />
+            </div>
+            <div className="l-pane-grid">
+                <h2 className="c-h2">Give it a try!</h2>
+                <p className="c-pane__body">You're just one step away from Monitaure's dashboard</p>
+                <Link to="/signup" className="c-button--round">Sign up</Link>
+            </div>
         </section>
 
-        <section className="c-pane c-pane--small c-pane--green c-pane--try">
-            <h2 className="c-h2">Give it a try!</h2>
-            <p className="c-pane__body">You're just one step away from Monitaure's dashboard</p>
-            <Link to="/signup" className="c-button c-button-round">Sign up</Link>
-        </section>
-
-        <footer className="c-footer">
+    {/*<footer className="c-footer">
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
                     <div className="l-pane-grid">

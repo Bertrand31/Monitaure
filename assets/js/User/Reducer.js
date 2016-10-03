@@ -1,6 +1,6 @@
 import * as types from './Constants';
 
-const userReducer = (state = {}, action) => {
+const userReducer = (state = { isLoggedIn: false }, action) => {
     switch (action.type) {
         case types.USER_UPDATE:
             return {

@@ -119,3 +119,17 @@
     height:155px;
     background:#fff url('/images/separator.svg') center center no-repeat;
 }
+.c-pane--try {
+    background:$bluegreen;
+    .c-h2 {
+        margin-bottom:1.2em;
+    }
+    .c-pane__body {
+        margin-bottom:2em;
+    }
+    .c-button--round {
+        font-size:1.2em;
+        padding:.8em 2.3em;
+        border-radius:30px;
+    }
+}
