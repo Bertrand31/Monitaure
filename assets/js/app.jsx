@@ -16,7 +16,7 @@ import * as UserActions from './User/Actions';
 import * as SWActions from './ServiceWorker/Actions';
 
 import Homepage from './Homepage/Component';
-import Dashboard from './Dashboard/Component';
+import Dashboard from './Dashboard/Container';
 
 import Popover from './Homepage/Popover/Component';
 import LoginForm from './Homepage/Popover/LoginForm/Container';

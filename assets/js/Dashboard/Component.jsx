@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import Swipeable from 'react-swipeable';
 
 import Sidebar from './Sidebar/Container';
-import MainPanel from './MainPanel/Container';
+import MainPanel from './MainPanel/Component';
 
 import '../../styles/Dashboard/index.scss';
 
-const Dashboard = () => (
-    <div>
+const DashboardComponent = ({ openMenu, closeMenu }) => (
+    <Swipeable
+        onSwipingRight={() => openMenu()}
+        onSwipingLeft={() => closeMenu()}
+    >
         <Sidebar />
         <MainPanel />
-    </div>
+    </Swipeable>
 );
 
-export default Dashboard;
+DashboardComponent.propTypes = {
+    openMenu: PropTypes.func.isRequired,
+    closeMenu: PropTypes.func.isRequired,
+};
+
+export default DashboardComponent;

@@ -6,8 +6,8 @@ import CheckStats from './CheckStats/Container';
 import ChecksTable from './ChecksTable/Container';
 
 
-const DashboardComponent = ({ closeMenu }) => (
-    <div className="o-main o-pane-container dashboard" onClick={closeMenu}>
+const DashboardComponent = () => (
+    <div className="o-main o-pane-container dashboard">
         <div className="pane-components-wrapper">
             <TopBar />
             <GlobalStats />
@@ -16,9 +16,5 @@ const DashboardComponent = ({ closeMenu }) => (
         <ChecksTable />
     </div>
 );
-
-DashboardComponent.propTypes = {
-    closeMenu: PropTypes.func.isRequired,
-};
 
 export default DashboardComponent;

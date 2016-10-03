@@ -1,13 +1,12 @@
 import { connect } from 'react-redux';
 
-import * as MenuActions from '../Sidebar/Actions';
+import * as MenuActions from './Sidebar/Actions';
 
 import DashboardComponent from './Component';
 
 const mapDispatchToProps = dispatch => ({
-    closeMenu() {
-        return dispatch(MenuActions.close());
-    },
+    openMenu: () => dispatch(MenuActions.open()),
+    closeMenu: () => dispatch(MenuActions.close()),
 });
 
 const DashboardContainer = connect(null, mapDispatchToProps)(DashboardComponent);

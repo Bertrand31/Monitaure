@@ -5,6 +5,9 @@ const menuReducer = (state = false, action) => {
         case types.MENU_TOGGLE:
             return !state;
 
+        case types.MENU_OPEN:
+            return true;
+
         case types.MENU_CLOSE:
             return false;
 

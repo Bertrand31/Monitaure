@@ -6,6 +6,12 @@ export function toggle() {
     };
 }
 
+export function open() {
+    return {
+        type: types.MENU_OPEN,
+    };
+}
+
 export function close() {
     return {
         type: types.MENU_CLOSE,
