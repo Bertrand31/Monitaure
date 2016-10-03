@@ -130,7 +130,7 @@ const HomepageComponent = () => (
                 <div className="l-pane-grid__item">
                     <span className="c-pane--small__number">3</span>
                     <div className="c-pane--small__text">
-                        <h3 className="c-pane--small__title">Hybrid Mobile App</h3>
+                        <h3 className="c-pane--small__title">Mobile App</h3>
 						<p className="c-pane__body">
                         You can install the Monitaure app on your phone, use it offline and receive push notifications.
 						</p>
@@ -141,6 +141,8 @@ const HomepageComponent = () => (
                 </div>
             </div>
         </section>
+
+        <section className="c-separator" role="presentation" />
 
         {/*<section className="c-pane c-pane--big c-pane--about">
             <h2 className="c-h2--big">About us</h2>
