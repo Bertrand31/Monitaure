@@ -41,6 +41,20 @@
 .c-pane--small {
     height:50vh;
 }
+@keyframes wobble {
+    0% {
+        bottom:10px;
+    }
+    10% {
+        bottom:-5px;
+    }
+    20% {
+        bottom:10px;
+    }
+    100% {
+        bottom:10px;
+    }
+}
 .c-pane--first {
     &:after {
         position:absolute;
@@ -51,6 +65,7 @@
         height:86px;
         padding-left:1.4em;
         background:url('/images/stripe-dot.svg') left bottom no-repeat;
+        animation:wobble 5s ease-in-out 6s infinite normal;
     }
     .c-pane--first__wrapper {
         padding-top:67px;
