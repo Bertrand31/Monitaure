@@ -32,15 +32,8 @@ export const subscribe = () => {
                 .then(subscription => sendSubscriptionToServer(subscription))
                 .catch((err) => {
                     if (Notification.permission === 'denied') {
-                        // The user denied the notification permission which
-                        // means we failed to subscribe and the user will need
-                        // to manually change the notification permission to
-                        // subscribe to push messages
                         console.log('Permission for Notifications was denied');
                     } else {
-                        // A problem occurred with the subscription, this can
-                        // often be down to an issue or lack of the gcm_sender_id
-                        // and / or gcm_user_visible_only
                         console.log('Unable to subscribe to push.', err);
                     }
                 })

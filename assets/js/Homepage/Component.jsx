@@ -231,8 +231,7 @@ const HomepageComponent = () => (
                 <div className="l-pane-grid__item c-footer__text">
                     <p>
                         Monitaure is a free server monitoring online application aiming to help SysAdmins.
-                        If you encounter any problem or want to get in touch with us,
-                        &nbsp;<a href="https://github.com/Bertrand31/Monitaure/issues" target="_blank" rel="noopener noreferrer">please do</a>.
+                        If you encounter any problem or want to get in touch with us, please do so through the links in the "Abous us" section.
                     </p>
                 </div>
             </div>

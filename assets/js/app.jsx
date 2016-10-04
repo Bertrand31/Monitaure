@@ -40,8 +40,8 @@ class Root extends React.Component {
     render() {
         if (this.props.isLoggedIn) {
             if ('serviceWorker' in navigator) {
-                this.props.activateSW();
                 this.props.subscribeToPush();
+                this.props.activateSW();
             }
 
             return (
