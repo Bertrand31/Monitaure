@@ -7,14 +7,14 @@ class LoginFormComponent extends React.Component {
     }
     render() {
         return (
-            <div onClick={e => { e.stopPropagation(); }} className="c-box">
+            <div onClick={(e) => { e.stopPropagation(); }} className="c-box">
                 <button className="c-box__close" onClick={() => browserHistory.push('/')} />
                 <h2 className="c-box__title">Log in</h2>
                 <form
                     className="c-form"
                     method="post"
                     action="/login"
-                    onSubmit={e => { e.preventDefault(); this.props.login(this.props.user); }}
+                    onSubmit={(e) => { e.preventDefault(); this.props.login(this.props.user); }}
                 >
                     <fieldset className="c-form__group">
                         <label className="c-form__label" htmlFor="username">Username</label>

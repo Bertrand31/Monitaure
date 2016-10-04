@@ -21,7 +21,7 @@ class SignupFormComponent extends React.Component {
         }
 
         return (
-            <div onClick={e => { e.stopPropagation(); }} className="c-box signup-block">
+            <div onClick={(e) => { e.stopPropagation(); }} className="c-box signup-block">
                 <button className="c-box__close" onClick={() => browserHistory.push('/')} />
                 <h2 className="c-box__title">Create an account</h2>
                 <form

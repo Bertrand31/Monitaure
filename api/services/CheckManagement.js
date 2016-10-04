@@ -4,7 +4,7 @@
  * @param {Array} historyArray - check.history
  * @return {Array}
  */
-const historyGarbageCollection = historyArray => {
+const historyGarbageCollection = (historyArray) => {
     if (typeof historyArray[0] === 'undefined') return [];
 
     const oneMonthAgo = new Date();
