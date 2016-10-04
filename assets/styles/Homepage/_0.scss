@@ -120,6 +120,50 @@
     background:#fff url('/images/separator.svg') center center no-repeat;
     background-size:100%;
 }
+.c-pane--about {
+    text-align:center;
+}
+.c-pane--about__wrapper {
+    width:100%;
+    .l-pane-grid__item {
+        flex-grow:1;
+        justify-content:center;
+    }
+}
+.c-person {
+    margin:2em 0;
+    padding:3.2em 0 0;
+    font-size:1.9em;
+    background:transparent center top no-repeat;
+    &.c-person--bertrand {
+        background-image:url('/images/icon-tag.svg');
+    }
+    &.c-person--guillaume {
+        background-image:url('/images/icon-typo.svg');
+    }
+}
+.c-person__occupation {
+    color:#979797;
+}
+.c-person__separator {
+    display:block;
+    background:$lighter;
+    height:1px;
+    width:70px;
+    margin:1em auto;
+}
+.c-person__name {
+    font-weight:700;
+    color:$lighter;
+}
+.c-person__social {
+    display:flex;
+    justify-content:center;
+    margin-top:1.6em;
+}
+.c-person__social-el {
+    padding:0 .42em;
+}
 .c-pane--try {
     background:$bluegreen;
     .c-h2 {

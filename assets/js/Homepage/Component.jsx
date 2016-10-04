@@ -144,11 +144,62 @@ const HomepageComponent = () => (
 
         <section className="c-separator" role="presentation" />
 
-        {/*<section className="c-pane c-pane--big c-pane--about">
-            <h2 className="c-h2--big">About us</h2>
-            <p className="c-pane__body">We're two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
-            <div id="TODO" />
-        </section>*/}
+        <section className="c-pane c-pane--big c-pane--about">
+            <div className="c-pane--about__wrapper">
+                <h2 className="c-h3--big">About us</h2>
+                <p className="c-pane__body">We're two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
+                <div className="l-pane-grid">
+                    <div className="l-pane-grid__item">
+                        <div className="c-pane--about__person c-person c-person--bertrand">
+                            <div className="c-person__occupation">For the Code</div>
+                            <div className="c-person__separator" />
+                            <div className="c-person__name">Bertrand Junqua</div>
+                            <ul className="c-person__social">
+                                <li className="c-person__social-el">
+                                    <a className="c-icon-web" href="https://awebsiteabout.me">
+                                        <img alt="Bertrand's website" src="/images/social-world.svg" />
+                                    </a>
+                                </li>
+                                <li className="c-person__social-el">
+                                    <a className="c-icon-github" href="https://github.com/Bertrand31/">
+                                        <img alt="Bertrand's Github profile" src="/images/social-github.svg" />
+                                    </a>
+                                </li>
+                                <li className="c-person__social-el">
+                                    <a className="c-icon-twitter" href="https://twitter.com/Bertrand31/">
+                                        <img alt="Bertrand's Twitter profile" src="/images/social-twitter.svg" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="l-pane-grid__item">
+                        <div className="c-pane--about__person c-person c-person--guillaume">
+                            <div className="c-person__occupation">For the Design</div>
+                            <div className="c-person__separator" />
+                            <div className="c-person__name">Guillaume Parra</div>
+                            <ul className="c-person__social">
+                                <li className="c-person__social-el">
+                                    <a className="c-icon-web" href="https://whyyouwillhire.me/">
+                                        <img alt="Guillaume's website" src="/images/social-world.svg" />
+                                    </a>
+                                </li>
+                                <li className="c-person__social-el">
+                                    <a className="c-icon-drrible" href="https://dribbble.com/guillaumeparra">
+                                        <img alt="Guillaume's Dribble profile" src="/images/social-dribble.svg" />
+                                    </a>
+                                </li>
+                                <li className="c-person__social-el">
+                                    <a className="c-icon-twitter" href="https://twitter.com/Guillaume_Parra/">
+                                        <img alt="Guillaume's Twitter profile" src="/images/social-twitter.svg" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section className="c-pane c-pane--small c-pane--green c-pane--bubbles c-pane--try">
             <div className="c-pane--bubbles__bubbles-container" aria-hidden="true">
