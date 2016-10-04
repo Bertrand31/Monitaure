@@ -42,6 +42,16 @@
     height:50vh;
 }
 .c-pane--first {
+    &:after {
+        position:absolute;
+        bottom:10px;
+        left:8%;
+        display:block;
+        content:"Scroll down";
+        height:86px;
+        padding-left:1.4em;
+        background:url('/images/stripe-dot.svg') left bottom no-repeat;
+    }
     .c-pane--first__wrapper {
         padding-top:67px;
         box-sizing:border-box;

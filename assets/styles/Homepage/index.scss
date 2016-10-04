@@ -30,15 +30,27 @@
     }
 }
 .c-button--goto {
+    position:relative;
     font-size:1.1em;
     background:rgba(#fff, .25);
     border-radius:22px;
-    padding:.6em 2em;
+    padding:.7em 4.5em .7em 2em;
     color:#fff;
     transition:all .3s ease-in-out;
     &:hover {
         background:#fff;
         color:#40d89f;
+    }
+    &:after {
+        content:'';
+        display:block;
+        position:absolute;
+        right:1.7em;
+        bottom:.27em;
+        width:12px;
+        height:35px;
+        transform:rotate(90deg);
+        background:url('/images/stripe-dot.svg') center top no-repeat;
     }
 }
 .c-content {
