@@ -25,6 +25,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu }) => (
                 <li className="c-topnav__el"><Link to="/tour" className="c-topnav__link">Tour</Link></li>
                 <li className="c-topnav__el"><Link to="/about" className="c-topnav__link">About us</Link></li>
                 <li className="c-topnav__el"><Link to="/contact" className="c-topnav__link">Contact</Link></li>
+                <li className="c-topnav__el--dummy" aria-hidden="true" />
                 <li className="c-topnav__el c-topnav__el--btn"><Link to="/login" className="c-button--empty">Log in</Link></li>
                 <li className="c-topnav__el c-topnav__el--btn"><Link to="/signup" className="c-button--round">Sign up</Link></li>
             </ul>
@@ -70,7 +71,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu }) => (
                         <div className="c-imgtxt c-imgtxt--browser">
                             <h3 className="c-imgtxt__title">No download</h3>
                             <p className="c-imgtxt__body">
-                                Use Monitaure directly from your computer, tablet and/or mobile phone
+                                Use Monitaure directly from your computer, tablet and/or mobile phone.
                             </p>
                         </div>
                     </div>
@@ -78,7 +79,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu }) => (
                         <div className="c-imgtxt c-imgtxt--tech">
                             <h3 className="c-imgtxt__title">Top-tier tech</h3>
                             <p className="c-imgtxt__body">
-                                Monitaure is backed by the industry's fastest and most robust technologies, ensuring you the best reliability.
+                                Monitaure is backed by the industry's most robust technologies, ensuring you the best reliability in town.
                             </p>
                         </div>
                     </div>
@@ -152,7 +153,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu }) => (
 
         <section className="c-pane c-pane--big c-pane--about">
             <div className="c-pane--about__wrapper">
-                <h2 className="c-h3--big">About us</h2>
+                <h2 className="c-h2">About us</h2>
                 <p className="c-pane__body">We're two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
                 <div className="l-pane-grid">
                     <div className="l-pane-grid__item">

@@ -1,19 +1,34 @@
+.c-h2 {
+    font-size:2.3em;
+}
 .o-header__logo {
     max-width:none;
+    top:1em;
 }
 .c-topnav {
+    position:absolute;
     .hamburger {
         display:none;
     }
 }
 .c-topnav__menu {
+    position:absolute;
     left:0;
     background:transparent;
     flex-direction:row;
     width:auto;height:auto;
+    font-size:1em;
+    font-weight:400;
+    padding:0 3%;
     .c-topnav__el:first-of-type {
         display:none;
     }
+    .c-button--round, .c-button--empty {
+        font-size:1em;
+    }
+}
+.c-topnav__el--dummy {
+    flex-grow:1;
 }
 .l-pane-grid {
     display:flex;
@@ -111,6 +126,9 @@
         flex-basis:33%;
     }
 }
+.c-imgtxt__body {
+    font-size:1.2em;
+}
 
 .c-pane--small {
     text-align:left;
@@ -131,12 +149,18 @@
         margin-left:auto;
     }
 }
+.c-pane__body {
+    font-size:1.25em;
+}
 .c-pane--small__image {
     margin:0 auto;
 }
 .c-pane--small__number {
     margin:0 1.5em 0;
     line-height:.6;
+}
+.c-pane--small__title {
+    font-size:2.35em;
 }
 .c-pane--notifications .l-pane-grid__item {
     &:first-of-type {
@@ -199,11 +223,13 @@
     }
 }
 .c-pane--about {
-    .c-h3--big {
+    .c-h2 {
         margin-top:0;
+        margin-bottom:1.35em;
     }
 }
 .c-person {
+    font-size:1.9em;
     margin-top:5em;
 }
 .c-pane--about__wrapper {
@@ -240,9 +266,13 @@
     .l-pane-grid {
         flex-direction:column;
     }
+    .c-button--round {
+        font-size:1.2em;
+        padding:.8em 2.3em; }
 }
 .c-footer {
     text-align:left;
+    font-size:1.25em;
 }
 .c-footer__logo {
     min-width:200px;
