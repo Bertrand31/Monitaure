@@ -7,7 +7,7 @@ import { POSTer } from '../../serverIO/ajaxMethods';
 import * as API from '../../serverIO/dataHandling';
 import { create as popinCreate } from '../../Popins/Actions';
 import * as UserActions from '../../User/Actions';
-import * as MenuActions from './Actions';
+import * as MenuActions from '../../Menu/Actions';
 
 
 const mapStateToProps = state => ({
@@ -16,18 +16,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    toggleMenu() {
-        return dispatch(MenuActions.toggle());
-    },
-    logout() {
-        return API.logout(POSTer, (err) => {
-            if (err) return dispatch(popinCreate('alert', err.message));
+    toggleMenu: () => dispatch(MenuActions.toggle()),
 
-            browserHistory.push('/');
-            dispatch(MenuActions.close());
-            dispatch(UserActions.changeAuthenticationState(false));
-        });
-    },
+    logout: () => API.logout(POSTer, (err) => {
+        if (err) return dispatch(popinCreate('alert', err.message));
+
+        browserHistory.push('/');
+        dispatch(MenuActions.close());
+        dispatch(UserActions.changeAuthenticationState(false));
+    }),
 });
 
 const SidebarContainer = connect(

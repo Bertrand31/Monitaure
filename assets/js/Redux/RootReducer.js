@@ -3,7 +3,7 @@ import { routerReducer } from 'react-router-redux';
 
 import popinsReducer from '../Popins/Reducer';
 import serviceWorkerReducer from '../ServiceWorker/Reducer';
-import menuReducer from '../Dashboard/Sidebar/Reducer';
+import menuReducer from '../Menu/Reducer';
 import userReducer from '../User/Reducer';
 import checksReducer from '../Dashboard/MainPanel/ChecksTable/Reducer';
 import openCheckReducer from '../Dashboard/MainPanel/CheckStats/Reducer';

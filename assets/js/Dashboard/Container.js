@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import * as MenuActions from './Sidebar/Actions';
+import * as MenuActions from '../Menu/Actions';
 
 import DashboardComponent from './Component';
 
