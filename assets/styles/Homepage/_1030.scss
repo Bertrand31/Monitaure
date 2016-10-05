@@ -1,19 +1,5 @@
-.c-image-circle {
-    position:relative;
-    display:flex;
-    justify-content:center;
-    &:before {
-        display:block;
-        position:absolute;
-        align-self:center;
-        content:"";
-        border-radius:100%;
-        animation:.7s cubic-bezier(0.07, 0.24, 0.18, 1.38) 1s 1 normal forwards bubble;
-    }
-    img {
-        z-index:1;
-        align-self:center;
-    }
+.c-bar__line {
+    opacity:.26;
 }
 @keyframes bubble {
     from {

@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import '../../styles/Homepage/index.scss';
 
-const HomepageComponent = () => (
-
+const HomepageComponent = ({ menuIsOpen, toggleMenu }) => (
     <div className="o-front o-page">
-
         <nav className="c-topnav">
-            <ul className="c-topnav__menu">
+			<button
+				onClick={toggleMenu}
+				className={`hamburger hamburger--squeeze ${menuIsOpen ? 'is-active' : ''}`}
+				type="button"
+			>
+				<span className="hamburger-box">
+					<span className="hamburger-inner" />
+				</span>
+			</button>
+			<Link to="/" className="o-header__logo">
+				<h1 className="c-h1">
+					<img src="/images/logo-white.svg" width="187" alt="Monitaure - Monitoring for the masses" />
+				</h1>
+			</Link>
+            <ul className={`c-topnav__menu ${menuIsOpen ? 's-menu-is-open' : ''}`}>
+                <li className="c-topnav__el"><Link to="/" className="c-topnav__link">Home</Link></li>
                 <li className="c-topnav__el"><Link to="/tour" className="c-topnav__link">Tour</Link></li>
                 <li className="c-topnav__el"><Link to="/about" className="c-topnav__link">About us</Link></li>
                 <li className="c-topnav__el"><Link to="/contact" className="c-topnav__link">Contact</Link></li>
-                <li className="c-topnav__el c-topnav__el--central">
-                    <Link to="/" className="button-empty button-round">
-                        <h1 className="o-header__logo">
-                            <img src="/images/logo-white.svg" width="187" alt="Monitaure - Monitoring for the masses" />
-                        </h1>
-                    </Link>
-                </li>
-                <li className="c-topnav__el"><Link to="/login" className="c-button--empty">Log in</Link></li>
-                <li className="c-topnav__el"><Link to="/signup" className="c-button--round">Sign up</Link></li>
+                <li className="c-topnav__el c-topnav__el--btn"><Link to="/login" className="c-button--empty">Log in</Link></li>
+                <li className="c-topnav__el c-topnav__el--btn"><Link to="/signup" className="c-button--round">Sign up</Link></li>
             </ul>
         </nav>
 
@@ -112,9 +118,6 @@ const HomepageComponent = () => (
             </div>
             <div className="l-pane-grid">
                 <div className="l-pane-grid__item">
-                    <img src="/images/notifications.svg" className="c-pane--small__image" alt="Email and mobile notifications" />
-                </div>
-                <div className="l-pane-grid__item">
                     <div className="c-pane--small__number">2</div>
                     <div className="c-pane--small__text">
 						<h3 className="c-pane--small__title">Notifications</h3>
@@ -122,6 +125,9 @@ const HomepageComponent = () => (
 							Whenever something happens, you will immediatly be notified by email and on your phone.
 						</p>
 					</div>
+                </div>
+                <div className="l-pane-grid__item">
+                    <img src="/images/notifications.svg" className="c-pane--small__image" alt="Email and mobile notifications" />
                 </div>
             </div>
         </section>
@@ -151,7 +157,7 @@ const HomepageComponent = () => (
                 <div className="l-pane-grid">
                     <div className="l-pane-grid__item">
                         <div className="c-pane--about__person c-person c-person--bertrand">
-                            <div className="c-person__occupation">For the Code</div>
+                            <div className="c-person__occupation">Front & Back code</div>
                             <div className="c-person__separator" />
                             <div className="c-person__name">Bertrand Junqua</div>
                             <ul className="c-person__social">
@@ -175,7 +181,7 @@ const HomepageComponent = () => (
                     </div>
                     <div className="l-pane-grid__item">
                         <div className="c-pane--about__person c-person c-person--guillaume">
-                            <div className="c-person__occupation">For the Design</div>
+                            <div className="c-person__occupation">UX & UI Design</div>
                             <div className="c-person__separator" />
                             <div className="c-person__name">Guillaume Parra</div>
                             <ul className="c-person__social">
@@ -240,5 +246,10 @@ const HomepageComponent = () => (
     </div>
 
 );
+
+HomepageComponent.propTypes = {
+    menuIsOpen: PropTypes.bool.isRequired,
+    toggleMenu: PropTypes.func.isRequired,
+};
 
 export default HomepageComponent;

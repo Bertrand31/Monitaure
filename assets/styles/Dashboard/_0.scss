@@ -292,51 +292,6 @@ html,body {
 }
 
 
-.hamburger {
-	padding:.7em 1em 0;
-    transition:filter .4s ease-in-out;
-}
-.hamburger-box {
-	width:30px;
-	height: 24px;
-	display: inline-block;
-	position: relative;
-}
-
-.hamburger-inner {
-	display: block;
-	top: 50%;
-	margin-top: -2px;
-	&,
-	&::before,
-	&::after {
-		width:27px;
-		height:2px;
-		background-color: $lightwhite;
-		border-radius: 2px;
-		position: absolute;
-		transition-property: transform;
-		transition-duration: 0.15s;
-		transition-timing-function: ease;
-	}
-	&::before,
-	&::after {
-		content: "";
-		display: block;
-	}
-	&::before { top: -7px; }
-	&::after { bottom: -7px; }
-}
-.hamburger--arrow.is-active {
-    .hamburger-inner {
-        &::before {
-            transform: translate3d(-8px, 1px, 0) rotate(-45deg) scale(0.7, 1);
-        }
-        &::after {
-            transform: translate3d(-8px, -1px, 0) rotate(45deg) scale(0.7, 1);
-        }
-    }
-}
 .c-checks__row {
     th {
         padding:1.1em .3em;

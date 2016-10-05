@@ -9,11 +9,12 @@
 }
 .c-button--round, .c-button--empty, .c-button--goto {
     font-family:$roboto;
+    font-weight:400;
 }
 .c-button--round, .c-button--empty {
     display:block;
     padding:.6em 2em;
-    border-radius:22px;
+    border-radius:2em;
     text-transform:none;
 }
 .c-button--round {
@@ -31,40 +32,20 @@
 }
 .c-button--goto {
     position:relative;
-    font-size:1.1em;
+    font-size:.9em;
     background:rgba(#fff, .25);
     border-radius:22px;
     padding:.7em 4.5em .7em 2em;
     color:#fff;
-    transition:all .3s ease-in-out;
-    &:hover {
-        background:#fff;
-        color:#40d89f;
-    }
     &:after {
         content:'';
         display:block;
         position:absolute;
         right:1.7em;
-        bottom:.27em;
+        bottom:.15em;
         width:12px;
         height:35px;
         transform:rotate(90deg);
         background:url('/images/stripe-dot.svg') center top no-repeat;
     }
-}
-.c-content {
-    z-index:1;
-}
-.c-topnav__menu {
-    display:flex;
-    align-items:center;
-}
-.c-topnav__el {
-    margin:0 1em;
-}
-.c-topnav__el--central {
-    flex-grow:1;
-    display:flex;
-    justify-content:center;
 }

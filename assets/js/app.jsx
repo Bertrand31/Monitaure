@@ -15,7 +15,7 @@ import { create as popinCreate } from './Popins/Actions';
 import * as UserActions from './User/Actions';
 import * as SWActions from './ServiceWorker/Actions';
 
-import Homepage from './Homepage/Component';
+import Homepage from './Homepage/Container';
 import Dashboard from './Dashboard/Container';
 
 import Popover from './Homepage/Popover/Component';

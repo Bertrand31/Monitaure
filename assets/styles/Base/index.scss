@@ -11,3 +11,113 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
+.hamburger {
+	padding:.7em 1em 0;
+    transition:filter .4s ease-in-out;
+}
+.hamburger-box {
+	display: inline-block;
+	position: relative;
+}
+.hamburger-inner {
+	display: block;
+	top: 50%;
+	margin-top: -2px;
+	&,
+	&::before,
+	&::after {
+		height:2px;
+		background-color: $lightwhite;
+		border-radius: 2px;
+		position: absolute;
+		transition-property: transform;
+		transition-duration: 0.15s;
+		transition-timing-function: ease;
+	}
+	&::before,
+	&::after {
+		content: "";
+		display: block;
+	}
+}
+
+.hamburger--arrow.is-active {
+    .hamburger-inner {
+        &::before {
+            transform: translate3d(-8px, 1px, 0) rotate(-45deg) scale(0.7, 1);
+        }
+        &::after {
+            transform: translate3d(-8px, -1px, 0) rotate(45deg) scale(0.7, 1);
+        }
+    }
+}
+.hamburger--arrow {
+    .hamburger-box {
+        width:30px;
+        height: 24px;
+    }
+    .hamburger-inner {
+        &,
+        &::before,
+        &::after {
+            width:27px;
+        }
+        &::before { top: -7px; }
+        &::after { bottom: -7px; }
+    }
+}
+.hamburger--squeeze {
+    .hamburger-box {
+        width:23px;
+        height:18px;
+    }
+    .hamburger-inner {
+        &,
+        &::before,
+        &::after {
+            width:20px;
+        }
+        &::before { top:-5px; }
+        &::after { bottom:-5px; }
+    }
+}
+
+.hamburger--squeeze {
+	.hamburger-inner {
+		transition-duration: 0.1s;
+		transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+		&::before {
+			transition: top 0.1s 0.14s ease,
+			opacity 0.1s ease;
+		}
+
+		&::after {
+			transition: bottom 0.1s 0.14s ease,
+			transform 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+		}
+	}
+
+	&.is-active {
+		.hamburger-inner {
+			transform: rotate(45deg);
+			transition-delay: 0.14s;
+			transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+			&::before {
+				top: 0;
+				opacity: 0;
+				transition: top 0.1s ease,
+				opacity 0.1s 0.14s ease;
+			}
+
+			&::after {
+				bottom: 0;
+				transform: rotate(-90deg);
+				transition: bottom 0.1s ease,
+				transform 0.1s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
+			}
+		}
+	}
+}
+
