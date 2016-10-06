@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
+import Swipeable from 'react-swipeable';
 import { Link } from 'react-router';
 
 import '../../styles/Homepage/index.scss';
 
-const HomepageComponent = ({ menuIsOpen, toggleMenu }) => (
-    <div className="o-front o-page">
+const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
+    <Swipeable onSwipingRight={openMenu} onSwipingLeft={closeMenu} className="o-front o-page">
         <nav className="c-topnav">
 			<button
 				onClick={toggleMenu}
-				className={`hamburger hamburger--squeeze ${menuIsOpen ? 'is-active' : ''}`}
+				className={`hamburger hamburger--arrow ${menuIsOpen ? 'is-active' : ''}`}
 				type="button"
 			>
 				<span className="hamburger-box">
@@ -243,14 +244,14 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu }) => (
                 </div>
             </div>
         </footer>
-
-    </div>
-
+    </Swipeable>
 );
 
 HomepageComponent.propTypes = {
     menuIsOpen: PropTypes.bool.isRequired,
     toggleMenu: PropTypes.func.isRequired,
+    openMenu: PropTypes.func.isRequired,
+    closeMenu: PropTypes.func.isRequired,
 };
 
 export default HomepageComponent;

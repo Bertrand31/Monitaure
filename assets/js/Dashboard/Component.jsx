@@ -7,10 +7,7 @@ import MainPanel from './MainPanel/Component';
 import '../../styles/Dashboard/index.scss';
 
 const DashboardComponent = ({ openMenu, closeMenu }) => (
-    <Swipeable
-        onSwipingRight={() => openMenu()}
-        onSwipingLeft={() => closeMenu()}
-    >
+    <Swipeable onSwipingRight={openMenu} onSwipingLeft={closeMenu}>
         <Sidebar />
         <MainPanel />
     </Swipeable>

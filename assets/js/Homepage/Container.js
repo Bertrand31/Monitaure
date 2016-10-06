@@ -9,6 +9,8 @@ const mapStateToProps = state => ({ menuIsOpen: state.menuIsOpen });
 
 const mapDispatchToProps = dispatch => ({
     toggleMenu: () => dispatch(MenuActions.toggle()),
+    openMenu: () => dispatch(MenuActions.open()),
+    closeMenu: () => dispatch(MenuActions.close()),
 });
 
 const HomepageContainer = connect(
