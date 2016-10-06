@@ -9,7 +9,7 @@ const persistedState = loadState();
 const store = createStore(
     rootReducer,
     persistedState,
-    window.devToolsExtension && window.devToolsExtension()
+    // window.devToolsExtension && window.devToolsExtension()
 );
 
 store.subscribe(throttle(() => {

@@ -1,7 +1,7 @@
 ((global) => {
     importScripts('/sw-toolbox.js');
 
-    global.toolbox.options.debug = true;
+    // global.toolbox.options.debug = true;
     global.toolbox.router.default = global.toolbox.fastest;
 
     const filesToCache = [
