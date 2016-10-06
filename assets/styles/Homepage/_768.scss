@@ -3,7 +3,8 @@
 }
 .o-header__logo {
     max-width:none;
-    top:1em;
+    top:1.8em;
+    z-index:0;
 }
 .c-topnav {
     position:absolute;
@@ -25,6 +26,10 @@
     }
     .c-button--round, .c-button--empty {
         font-size:1em;
+    }
+    .c-topnav__el,
+    .c-topnav__el--btn {
+        padding:1.5em 0 0;
     }
 }
 .c-topnav__el--dummy {
@@ -63,12 +68,13 @@
     letter-spacing:1px;
 }
 .c-pane--big {
-    height:100vh;
+    height:90vh;
 }
 .c-pane--small {
     height:50vh;
 }
 .c-pane--first {
+    height:100vh;
     &:after {
         content:"Scroll down";
         height:86px;
@@ -156,7 +162,7 @@
     margin:0 auto;
 }
 .c-pane--small__number {
-    margin:0 1.5em 0;
+    margin:0 3.8vw 0;
     line-height:.6;
 }
 .c-pane--small__title {
@@ -165,7 +171,7 @@
 .c-pane--notifications .l-pane-grid__item {
     &:first-of-type {
         order:2;
-        width:40%;
+        max-width:40%;
     }
 }
 .c-pane--bubbles {
@@ -229,7 +235,7 @@
     }
 }
 .c-person {
-    font-size:1.9em;
+    font-size:1.8em;
     margin-top:5em;
 }
 .c-pane--about__wrapper {
@@ -256,7 +262,7 @@
         content:'';
         display:block;
         position:absolute;
-        left:7%;
+        left:5vw;
         bottom:0;
         z-index:1;
         width:126px;

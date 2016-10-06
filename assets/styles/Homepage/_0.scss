@@ -10,7 +10,7 @@
     box-sizing:border-box;
     position:absolute;
     max-width:1400px;
-    top:15px;
+    top:13px;
     left:0;
     right:0;
     z-index:2;
@@ -56,7 +56,7 @@
     }
 }
 .c-topnav__el {
-    padding:.8em 0;
+    padding:4.5vh 0;
     margin:0 1em;
     &.c-topnav__el--btn {
         padding:.8em 0 .5em;

@@ -14,6 +14,9 @@ input[type=number] {
 .hamburger {
 	padding:.7em 1em 0;
     transition:filter .4s ease-in-out;
+    &.hamburger--squeeze {
+        padding:.7em 0 0 1.5em;
+    }
 }
 .hamburger-box {
 	display: inline-block;
