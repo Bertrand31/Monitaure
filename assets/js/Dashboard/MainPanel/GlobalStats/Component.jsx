@@ -95,7 +95,7 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
     };
 
     const lastErrorExists = !!globalStats.lastError.time;
-    const lastErrorHour = lastErrorExists ? moment(globalStats.lastError.time).format('HH:SS') : '-';
+    const lastErrorHour = lastErrorExists ? moment(globalStats.lastError.time).format('HH:mm') : '-';
     const lastErrorDay = lastErrorExists ? moment(globalStats.lastError.time).format('DD/MM') : '-';
 
     return (
