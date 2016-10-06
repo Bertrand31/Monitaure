@@ -58,7 +58,7 @@
     "react-router-redux": "^4.0.6",
     "react-swipeable": "^3.6.0",
     "redux": "^3.6.0",
-    "sails": "^0.12.6",
+    "sails": "^0.12.7",
     "sails-disk": "~0.10.10",
     "sails-mongo": "^0.12.1",
     "sass-loader": "^4.0.2",
