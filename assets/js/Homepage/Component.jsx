@@ -7,20 +7,20 @@ import '../../styles/Homepage/index.scss';
 const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
     <Swipeable onSwipingRight={openMenu} onSwipingLeft={closeMenu} className="o-front o-page">
         <nav className="c-topnav">
-			<button
-				onClick={toggleMenu}
-				className={`hamburger hamburger--arrow ${menuIsOpen ? 'is-active' : ''}`}
-				type="button"
-			>
-				<span className="hamburger-box">
-					<span className="hamburger-inner" />
-				</span>
-			</button>
-			<Link to="/" className="o-header__logo">
-				<h1 className="c-h1">
-					<img src="/images/logo-white.svg" width="187" alt="Monitaure - Monitoring for the masses" />
-				</h1>
-			</Link>
+            <button
+                onClick={toggleMenu}
+                className={`hamburger hamburger--arrow ${menuIsOpen ? 'is-active' : ''}`}
+                type="button"
+            >
+                <span className="hamburger-box">
+                    <span className="hamburger-inner" />
+                </span>
+            </button>
+            <Link to="/" className="o-header__logo">
+                <h1 className="c-h1">
+                    <img src="/images/logo-white.svg" width="187" alt="Monitaure - Monitoring for the masses" />
+                </h1>
+            </Link>
             <ul className={`c-topnav__menu ${menuIsOpen ? 's-menu-is-open' : ''}`}>
                 <li className="c-topnav__el"><Link to="/" className="c-topnav__link">Home</Link></li>
                 <li className="c-topnav__el"><Link to="/tour" className="c-topnav__link">Tour</Link></li>
@@ -66,7 +66,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
 
         <section className="c-pane c-pane--big c-pane--second">
             <div className="c-flex-wrapper">
-                <h2 className="c-h2">Why it's awesome</h2>
+                <h2 className="c-h2">Why it&apos;s awesome</h2>
                 <div className="l-pane-grid">
                     <div className="l-pane-grid__item">
                         <div className="c-imgtxt c-imgtxt--browser">
@@ -80,7 +80,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                         <div className="c-imgtxt c-imgtxt--tech">
                             <h3 className="c-imgtxt__title">Top-tier tech</h3>
                             <p className="c-imgtxt__body">
-                                Monitaure is backed by the industry's most robust technologies, ensuring you the best reliability in town.
+                                Monitaure is backed by the industry&apos;s most robust technologies, ensuring you the best reliability in town.
                             </p>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                         <div className="c-imgtxt c-imgtxt--free">
                             <h3 className="c-imgtxt__title">Completely free</h3>
                             <p className="c-imgtxt__body">
-                                "It's free,<br />and always will be".<br />Oh, and ad-free too.
+                                &ldquo;It&apos;s free,<br />and always will be&rdquo;.<br />Oh, and ad-free too.
                             </p>
                         </div>
                     </div>
@@ -122,11 +122,11 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                 <div className="l-pane-grid__item">
                     <div className="c-pane--small__number">2</div>
                     <div className="c-pane--small__text">
-						<h3 className="c-pane--small__title">Notifications</h3>
-						<p className="c-pane__body">
-							Whenever something happens, you will immediatly be notified by email and on your phone.
-						</p>
-					</div>
+                        <h3 className="c-pane--small__title">Notifications</h3>
+                        <p className="c-pane__body">
+                            Whenever something happens, you will immediatly be notified by email and on your phone.
+                        </p>
+                    </div>
                 </div>
                 <div className="l-pane-grid__item">
                     <img src="/images/notifications.svg" className="c-pane--small__image" alt="Email and mobile notifications" />
@@ -139,10 +139,10 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                     <span className="c-pane--small__number">3</span>
                     <div className="c-pane--small__text">
                         <h3 className="c-pane--small__title">Mobile App</h3>
-						<p className="c-pane__body">
-                        You can install the Monitaure app on your phone, use it offline and receive push notifications.
-						</p>
-					</div>
+                        <p className="c-pane__body">
+                            You can install the Monitaure app on your phone, use it offline and receive push notifications.
+                        </p>
+                    </div>
                 </div>
                 <div className="l-pane-grid__item">
                     <img src="/images/hybrid.svg" className="c-pane--small__image" alt="Hybird app" />
@@ -155,7 +155,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
         <section className="c-pane c-pane--big c-pane--about">
             <div className="c-pane--about__wrapper">
                 <h2 className="c-h2">About us</h2>
-                <p className="c-pane__body">We're two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
+                <p className="c-pane__body">We&apos;re two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
                 <div className="l-pane-grid">
                     <div className="l-pane-grid__item">
                         <div className="c-pane--about__person c-person c-person--bertrand">
@@ -165,17 +165,17 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                             <ul className="c-person__social">
                                 <li className="c-person__social-el">
                                     <a className="c-icon-web" href="https://awebsiteabout.me">
-                                        <img alt="Bertrand's website" src="/images/social-world.svg" />
+                                        <img alt="Bertrand&apos;s website" src="/images/social-world.svg" />
                                     </a>
                                 </li>
                                 <li className="c-person__social-el">
                                     <a className="c-icon-github" href="https://github.com/Bertrand31/">
-                                        <img alt="Bertrand's Github profile" src="/images/social-github.svg" />
+                                        <img alt="Bertrand&apos;s Github profile" src="/images/social-github.svg" />
                                     </a>
                                 </li>
                                 <li className="c-person__social-el">
                                     <a className="c-icon-twitter" href="https://twitter.com/Bertrand31/">
-                                        <img alt="Bertrand's Twitter profile" src="/images/social-twitter.svg" />
+                                        <img alt="Bertrand&apos;s Twitter profile" src="/images/social-twitter.svg" />
                                     </a>
                                 </li>
                             </ul>
@@ -189,17 +189,17 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                             <ul className="c-person__social">
                                 <li className="c-person__social-el">
                                     <a className="c-icon-web" href="https://whyyouwillhire.me/">
-                                        <img alt="Guillaume's website" src="/images/social-world.svg" />
+                                        <img alt="Guillaume&apos;s website" src="/images/social-world.svg" />
                                     </a>
                                 </li>
                                 <li className="c-person__social-el">
                                     <a className="c-icon-drrible" href="https://dribbble.com/guillaumeparra">
-                                        <img alt="Guillaume's Dribble profile" src="/images/social-dribble.svg" />
+                                        <img alt="Guillaume&apos;s Dribble profile" src="/images/social-dribble.svg" />
                                     </a>
                                 </li>
                                 <li className="c-person__social-el">
                                     <a className="c-icon-twitter" href="https://twitter.com/Guillaume_Parra/">
-                                        <img alt="Guillaume's Twitter profile" src="/images/social-twitter.svg" />
+                                        <img alt="Guillaume&apos;s Twitter profile" src="/images/social-twitter.svg" />
                                     </a>
                                 </li>
                             </ul>
@@ -217,7 +217,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
             </div>
             <div className="l-pane-grid">
                 <h2 className="c-h2">Give it a try!</h2>
-                <p className="c-pane__body">You're just one step away from Monitaure's dashboard</p>
+                <p className="c-pane__body">You&apos;re just one step away from Monitaure&apos;s dashboard</p>
                 <Link to="/signup" className="c-button--round">Sign up</Link>
             </div>
         </section>
@@ -239,7 +239,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                 <div className="l-pane-grid__item c-footer__text">
                     <p>
                         Monitaure is a free server monitoring online application aiming to help SysAdmins.
-                        If you encounter any problem or want to get in touch with us, please do so through the links in the "Abous us" section.
+                        If you encounter any problem or want to get in touch with us, please do so through the links in the &ldquo;Abous us&rdquo; section.
                     </p>
                 </div>
             </div>

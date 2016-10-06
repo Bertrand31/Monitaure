@@ -2,9 +2,6 @@ import React, { PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 
 class SignupFormComponent extends React.Component {
-    constructor() {
-        super();
-    }
     componentWillMount() {
         this.setState({ emailSent: false });
     }

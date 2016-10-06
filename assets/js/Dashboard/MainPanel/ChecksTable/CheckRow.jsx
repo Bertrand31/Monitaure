@@ -120,7 +120,7 @@ class CheckRow extends React.Component {
                             htmlFor={`emailNotifications-${this.props.row.id}`}
                             className="c-checkbox__label"
                         />
-					</div>
+                    </div>
                 </td>
                 <td className="c-checks__edit">
                     <button

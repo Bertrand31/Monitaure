@@ -59,15 +59,10 @@
 
     // GCM PUSH
     global.addEventListener('push', (event) => {
-        // console.log('Received a push message', event);
-        // console.log(event.data.text());
-
         const title = 'Monitaure notification';
         const body = event.data.text();
         const icon = '/images/android-chrome-96x96.png';
         const tag = `monitaure-alert-${Date.now()}`;
-
-        console.log(tag);
 
         event.waitUntil(
             global.registration.showNotification(title, {
