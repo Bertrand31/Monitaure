@@ -18,14 +18,12 @@ import '../styles/Base/index.scss';
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-// Each time the route changes, we close the menus
-browserHistory.listen(location => store.dispatch(closeMenu()));
-
 document.addEventListener('DOMContentLoaded', () => {
     render(
         <Provider store={store}>
             <Router history={history}>
-                <Route path="/" component={App}>
+                // Each time the route changes, we close the menus
+                <Route onChange={() => store.dispatch(closeMenu())} path="/" component={App}>
                     <Route path="login" component={LoginForm} />
                     <Route path="signup" component={SignupForm} />
                 </Route>
