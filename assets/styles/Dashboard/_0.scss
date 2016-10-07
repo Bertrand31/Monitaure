@@ -274,10 +274,12 @@ html,body {
         left:-10px;
     }
 }
+.c-checks {
+    font-size:.92em;
+}
 .c-checks__head {
     .c-checks__status {
         width:60px;
-        text-indent:-9999px;
     }
 }
 .c-checks__domainNameOrIP,

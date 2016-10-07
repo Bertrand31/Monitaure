@@ -72,12 +72,11 @@ class ChecksTable extends React.Component {
             }
         }
 
-        // TODO: move all JSX down to the view componenet
         return (
             <table className="c-checks">
                 <thead className="c-checks__head">
                     <tr className="c-checks__row">
-                        <th className="c-checks__status">Status</th>
+                        <th className="c-checks__status"></th>
                         <th className="c-checks__name">Name</th>
                         <th className="c-checks__domainNameOrIP">Domain name or IP</th>
                         <th className="c-checks__port">Port</th>
