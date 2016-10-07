@@ -8,6 +8,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider, connect } from 'react-redux';
 import store from './Redux/Store';
 
+import { close as closeMenu } from './Menu/Actions';
+
 import App from './App/Container';
 import LoginForm from './Homepage/Popover/LoginForm/Container';
 import SignupForm from './Homepage/Popover/SignupForm/Container';
@@ -16,7 +18,8 @@ import '../styles/Base/index.scss';
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-browserHistory.listen(location => console.log(location));
+// Each time the route changes, we close the menus
+browserHistory.listen(location => store.dispatch(closeMenu()));
 
 document.addEventListener('DOMContentLoaded', () => {
     render(
