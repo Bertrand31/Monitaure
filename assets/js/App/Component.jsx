@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Popover from '../Homepage/Popover/Component';
 import Popins from '../Popins/Container';
