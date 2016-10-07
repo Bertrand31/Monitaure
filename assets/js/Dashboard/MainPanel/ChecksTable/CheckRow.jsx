@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 
-class CheckRow extends React.Component {
+class CheckRow extends Component {
     componentDidMount() {
         // We wait for the input to be initialized
         setTimeout(() => { this.checknameInput.focus(); }, 0);

@@ -1,11 +1,11 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 
 import Popover from '../Homepage/Popover/Component';
 import Popins from '../Popins/Container';
 import Homepage from '../Homepage/Container';
 import Dashboard from '../Dashboard/Container';
 
-class AppComponent extends React.Component {
+class AppComponent extends Component {
     componentWillMount() {
         this.props.getCSRFToken();
         this.props.checkAuth();

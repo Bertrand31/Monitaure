@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import CheckRow from './CheckRow';
 
-class ChecksTable extends React.Component {
+class ChecksTable extends Component {
     componentDidMount() {
         // We check whether an autoRefresh loop is already running
         if (typeof this.autoRefresh === 'undefined' || !this.autoRefresh) {

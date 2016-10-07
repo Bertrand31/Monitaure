@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 
 import '../../styles/Popins/index.scss';
 
-class Popin extends React.Component {
+class Popin extends Component {
     componentDidMount() {
         setTimeout(() => {
             this.props.destroy(this.props.data.id);

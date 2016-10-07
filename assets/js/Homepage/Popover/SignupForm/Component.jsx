@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 
-class SignupFormComponent extends React.Component {
+class SignupFormComponent extends Component {
     componentWillMount() {
         this.setState({ emailSent: false });
     }

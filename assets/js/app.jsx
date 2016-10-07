@@ -14,7 +14,7 @@ import SignupForm from './Homepage/Popover/SignupForm/Container';
 
 import '../styles/Base/index.scss';
 
-// const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store);
 
 browserHistory.listen(location => console.log(location));
 

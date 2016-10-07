@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 
-class LoginFormComponent extends React.Component {
+class LoginFormComponent extends Component {
     componentDidMount() {
         this.usernameInput.focus();
     }

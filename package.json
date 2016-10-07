@@ -40,7 +40,7 @@
     "crypto": "0.0.3",
     "css-loader": "^0.25.0",
     "jade": "^1.11.0",
-    "lodash": "^4.16.3",
+    "lodash": "^4.16.4",
     "moment": "^2.15.1",
     "node-sass": "^3.10.0",
     "nodemailer": "^2.6.4",
