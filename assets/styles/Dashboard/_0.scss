@@ -18,8 +18,8 @@ html,body {
     transition:all .3s ease-in-out;
     .s-menu-is-open + & {
         left:132px;
-        -webkit-filter: blur(1px) grayscale(100%);
-        filter: blur(1px) grayscale(100%);
+        -webkit-filter: blur(1px) grayscale(50%);
+        filter: blur(1px) grayscale(50%);
     }
 }
 .main-container {

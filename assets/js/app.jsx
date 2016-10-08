@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     render(
         <Provider store={store}>
             <Router history={history}>
-                // Each time the route changes, we close the menus
                 <Route onChange={() => store.dispatch(closeMenu())} path="/" component={App}>
                     <Route path="login" component={LoginForm} />
                     <Route path="signup" component={SignupForm} />
