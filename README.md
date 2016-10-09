@@ -11,16 +11,13 @@ The application does not need any client-side installation or configuration.
 
 [![Monitaure main dashboard](https://monitaure.io/images/dashboard-sample.png)](https://monitaure.io)
 
+[Getting started guide](https://github.com/Bertrand31/Monitaure/wiki/Monitaure-tour---%5BTEMPORARY-PAGE%5D).
+
 ## Why it's awesome
 
 From a technical standpoint, here are some of the key aspects of Monitaure:
 
-* Server-side
-    * NodeJS application using MongoDB for storage and Redis for sessions handling ;
-    * Hosted on a dedicated server running Archlinux ;
-    * Sitting behind an NGINX reverse-proxy with smart caching mechanisms and many performance & security tweaks ;
-    * [IPV6-ready](http://ready.chair6.net/?url=https%3A%2F%2Fmonitaure.io).
-* Front-end
+* Front-end:
     * React to manage user interface ;
     * Redux to manage application state ;
     * LocalStorage to persist the state between two visits ;
@@ -30,14 +27,28 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * Push notifications, on both mobile devices and desktop computers ;
     * JSX and some Jade for HTML ;
     * SASS for CSS ;
-    * Babel to transpile ES6 to older Javascript ;
+    * Babel to transpile ES6 to older (ES5) Javascript ;
     * Webpack to bundle everything up.
-* Security
-    * Served over HTTP/2 and HTTPS ([with rock-solid SSL security](https://www.ssllabs.com/ssltest/analyze.html?d=monitaure.io&s=2001%3a41d0%3ae%3a59a%3a0%3a0%3a0%3a1&hideResults=on)) ;
+* Back-end:
+    * NodeJS application built on Sails.js framework ;
+    * MongoDB database for data storage ;
+    * Redis database for storing user sessions.
+* Security:
+    * Served over HTTPS, [with rock-solid SSL security](https://www.ssllabs.com/ssltest/analyze.html?d=monitaure.io&s=2001%3a41d0%3ae%3a59a%3a0%3a0%3a0%3a1&hideResults=on)(TLS 1.2, OCSP stapling, HSTS, HSTS preloading, Forward secrecy, etc.) ;
     * CSRF tokens ;
     * HttpOnly, encrypted session cookies ;
     * Content-Security-Policy, Strict-Transport-Security, X-Frame-Options, X-XSS-Protection, X-Content-Type-Options headers.
-* Misc
+* Perforance:
+    * Served over HTTP/2 ;
+    * Sitting behind an NGINX reverse-proxy ;
+    * Caching server-side (NGINX) as well as client-side (Service Worker for requests and assets, LocalStorage for state) ;
+    * Hosted on a dedicated server running Archlinux ;
+    * Gzip compression ;
+    * PNGQuant & SVGO images optimization ;
+    * CSS bundling and uglification ;
+    * JS tree-shaking, minification, uglification, dead code elimination.
+* Misc:
+    * [IPV6-ready](http://ready.chair6.net/?url=https%3A%2F%2Fmonitaure.io) ;
     * Sendgrid to send transactionnal emails (account confirmation, alerts, etc.) ;
     * Travis CI for build testing ;
     * ESLint and Codacy for code style and quality review ;
