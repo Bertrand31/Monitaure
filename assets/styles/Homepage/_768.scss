@@ -41,7 +41,6 @@
     flex-direction:row;
     justify-content:center;
     align-items:center;
-    align-content:center;
     .c-pane--small & {
         max-width:1400px;
     }
@@ -71,7 +70,7 @@
     height:90vh;
 }
 .c-pane--small {
-    height:50vh;
+    min-height:50vh;
 }
 .c-pane--first {
     height:100vh;
@@ -138,6 +137,9 @@
 
 .c-pane--small {
     text-align:left;
+    &.c-pane--realtime {
+        padding:3% 2em;
+    }
 }
 .c-pane--small .l-pane-grid__item {
     flex-direction:row;
