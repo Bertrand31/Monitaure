@@ -10,7 +10,7 @@ export function update(attrName, attrValue) {
 
 export function emailSent() {
     return {
-        type: types.USER_HYDRATE,
+        type: types.USER_EMAIL_SENT,
     };
 }
 
