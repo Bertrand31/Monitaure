@@ -141,6 +141,7 @@
         animation:.7s cubic-bezier(0.07, 0.24, 0.18, 1.38) 1s 1 normal forwards bubble;
     }
     img {
+        max-height:90vh;
         z-index:1;
         align-self:center;
     }
