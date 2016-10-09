@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
 
         browserHistory.push('/');
         dispatch(MenuActions.close());
-        dispatch(UserActions.changeAuthenticationState(false));
+        dispatch(UserActions.logout());
     }),
 });
 

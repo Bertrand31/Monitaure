@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 
 import { browserHistory, Router, Route } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './Redux/Store';
 
 import { close as closeMenu } from './Menu/Actions';

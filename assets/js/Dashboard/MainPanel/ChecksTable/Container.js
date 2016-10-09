@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
 
             heap.identify(data.user.userName);
 
-            dispatch(UserActions.hydrate(data.user));
+            dispatch(UserActions.login(data.user));
             dispatch(actions.populateChecks(data.checks));
         });
     },

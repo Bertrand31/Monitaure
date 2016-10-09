@@ -8,16 +8,21 @@ export function update(attrName, attrValue) {
     };
 }
 
-export function hydrate(data) {
+export function emailSent() {
     return {
         type: types.USER_HYDRATE,
+    };
+}
+
+export function login(data) {
+    return {
+        type: types.USER_LOGIN,
         user: data,
     };
 }
 
-export function changeAuthenticationState(isLoggedIn) {
+export function logout() {
     return {
-        type: types.USER_CHANGE_AUTH,
-        isLoggedIn,
+        type: types.USER_LOGOUT,
     };
 }

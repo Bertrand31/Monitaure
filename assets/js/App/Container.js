@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     checkAuth: () => API.isLoggedIn(GETer, (err, { isLoggedIn }) =>
-        dispatch(UserActions.changeAuthenticationState(isLoggedIn))
+        dispatch(isLoggedIn ? UserActions.login() : UserActions.logout())
     ),
 
     activateSW: () => navigator.serviceWorker.register('/sw.js', { scope: '/' }),

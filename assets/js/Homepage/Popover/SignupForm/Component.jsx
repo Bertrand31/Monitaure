@@ -2,14 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 
 class SignupFormComponent extends Component {
-    componentWillMount() {
-        this.setState({ emailSent: false });
-    }
     componentDidMount() {
-        this.usernameInput.focus();
+        this.usernameInput && this.usernameInput.focus();
     }
     render() {
-        if (this.state.emailSent) {
+        if (this.props.user.emailSent) {
             return (
                 <div className="c-box">
                     <p className="c-box__text">A confirmation email has been sent to {this.props.user.email}</p>
@@ -27,7 +24,6 @@ class SignupFormComponent extends Component {
                     action="/signup"
                     onSubmit={(e) => {
                         e.preventDefault();
-                        this.setState({ emailSent: true });
                         this.props.signup(this.props.user);
                     }}
                 >
