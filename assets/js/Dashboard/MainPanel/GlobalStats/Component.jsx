@@ -48,8 +48,8 @@ const calcGlobalStats = (checks) => {
     return {
         checksUp,
         totalPopulatedChecks,
-        percentageOfChecksUp: (checksUp * 100) / totalPopulatedChecks,
-        availabilitiesAvg: Math.floor((availabilitiesSum / totalPopulatedChecks) * 100) / 100,
+        percentageOfChecksUp: totalPopulatedChecks !== 0 ? (checksUp * 100) / totalPopulatedChecks : 0,
+        availabilitiesAvg: availabilitiesSum !== 0 ? Math.floor((availabilitiesSum / totalPopulatedChecks) * 100) / 100 : 0,
         lastError,
     };
 };
@@ -59,16 +59,16 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
         return <div className="c-globalstats s-is-hidden" />;
     }
 
-    const globalStats = calcGlobalStats(checks);
+    const { percentageOfChecksUp, availabilitiesAvg, lastError, checksUp, totalPopulatedChecks } = calcGlobalStats(checks);
 
     const checksUpDataset = {
         series: [
             {
-                value: globalStats.percentageOfChecksUp || 0,
+                value: percentageOfChecksUp,
                 className: 'c-donut__primary-bar',
             },
             {
-                value: 100 - (globalStats.percentageOfChecksUp || 0),
+                value: 100 - (percentageOfChecksUp),
                 classname: 'c-donut__secondary-bar',
             },
         ],
@@ -76,11 +76,11 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
     const availabilityDataset = {
         series: [
             {
-                value: globalStats.availabilitiesAvg || 0,
+                value: availabilitiesAvg,
                 className: 'c-donut__primary-bar',
             },
             {
-                value: 100 - globalStats.availabilitiesAvg,
+                value: 100 - availabilitiesAvg,
                 className: 'c-donut__secondary-bar',
             },
         ],
@@ -94,9 +94,9 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
         ],
     };
 
-    const lastErrorExists = !!globalStats.lastError.time;
-    const lastErrorHour = lastErrorExists ? moment(globalStats.lastError.time).format('HH:mm') : '-';
-    const lastErrorDay = lastErrorExists ? moment(globalStats.lastError.time).format('DD/MM') : '-';
+    const lastErrorExists = !!lastError.time;
+    const lastErrorHour = lastErrorExists ? moment(lastError.time).format('HH:mm') : '-';
+    const lastErrorDay = lastErrorExists ? moment(lastError.time).format('DD/MM') : '-';
 
     return (
         <div className={`c-globalstats l-grid ${isACheckOpen ? 's-is-hidden' : ''}`}>
@@ -112,7 +112,7 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
                 </div>
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">
-                        {globalStats.checksUp}/{globalStats.totalPopulatedChecks} <span className="c-donut-content__servers">servers</span>
+                        {checksUp}/{totalPopulatedChecks} <span className="c-donut-content__servers">servers</span>
                         <span className="c-donut-content__secondary-text">are responding</span>
                     </span>
                     <span className="c-donut-content__aside-text">Status</span>
@@ -130,7 +130,7 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
                 </div>
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">
-                        {globalStats.availabilitiesAvg || 0}
+                        {availabilitiesAvg}
                         <span className="c-donut-content__secondary-text">%</span>
                     </span>
                     <span className="c-donut-content__aside-text">average availability</span>
@@ -149,7 +149,7 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
                 <p className="c-donut-content">
                     <span className="c-donut-content__main-text">
                         <span className="c-donut-content__main-text--check-name">
-                            {globalStats.lastError.checkName}
+                            {lastError.checkName}
                         </span>
                         <span className="c-donut-content__secondary-text c-donut-content__secondary-text--hour">
                             {lastErrorHour}
