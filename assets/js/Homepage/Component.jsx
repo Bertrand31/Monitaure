@@ -23,7 +23,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
             </Link>
             <ul className={`c-topnav__menu ${menuIsOpen ? 's-menu-is-open' : ''}`}>
                 <li className="c-topnav__el"><Link to="/" className="c-topnav__link">Home</Link></li>
-                <li className="c-topnav__el"><Link to="/tour" className="c-topnav__link">Tour</Link></li>
+                <li className="c-topnav__el"><a href="https://github.com/Bertrand31/Monitaure/wiki/Monitaure-tour---%5BTEMPORARY-PAGE%5D" className="c-topnav__link">Tour</a></li>
                 <li className="c-topnav__el"><Link to="/about" className="c-topnav__link">About us</Link></li>
                 <li className="c-topnav__el"><Link to="/contact" className="c-topnav__link">Contact</Link></li>
                 <li className="c-topnav__el--dummy" aria-hidden="true" />
@@ -52,7 +52,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                         <div className="l-pane-grid__item">
                             <h2 className="c-h2--big">Monitoring<br />for the masses</h2>
                             <h3 className="c-h3--small">A simple and hassle-free server<br />monitoring dashboard</h3>
-                            <Link to="/tour" className="c-button--goto">How it works</Link>
+                            <a href="https://github.com/Bertrand31/Monitaure/wiki/Monitaure-tour---%5BTEMPORARY-PAGE%5D" className="c-button--goto">How it works</a>
                         </div>
                         <div className="l-pane-grid__item l-pane-grid__item--image">
                             <div className="c-image-circle">
@@ -230,10 +230,10 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                 </div>
                 <nav className="l-pane-grid__item c-footer__nav">
                     <ul className="c-footernav">
-                        <li className="c-footernav__el"><Link to="/tour" className="">Tour</Link></li>
-                        <li className="c-footernav__el"><Link to="/login" className="">Log in</Link></li>
-                        <li className="c-footernav__el"><Link to="/signup" className="">Sign up</Link></li>
-                        <li className="c-footernav__el"><Link to="/contact" className="">Contact</Link></li>
+                        <li className="c-footernav__el"><Link to="/tour">Tour</Link></li>
+                        <li className="c-footernav__el"><a href="https://github.com/Bertrand31/Monitaure/wiki/Monitaure-tour---%5BTEMPORARY-PAGE%5D">Log in</a></li>
+                        <li className="c-footernav__el"><Link to="/signup">Sign up</Link></li>
+                        <li className="c-footernav__el"><Link to="/contact">Contact</Link></li>
                     </ul>
                 </nav>
                 <div className="l-pane-grid__item c-footer__text">
