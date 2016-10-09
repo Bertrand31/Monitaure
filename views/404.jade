@@ -3,9 +3,9 @@ extends ./layout
 
 block body
 
-    .main-container.page-404.page-error
-        audio.background-sound(src="/sounds/err404.mp3", autoplay, loop)
-        .content
-            h1 404
-            p You're lost kid…
+    .main-container.o-error.o-error--404
+        audio.o-error__backsound(src="/sounds/err404.mp3", autoplay, loop)
+        .o-error__content
+            h1.o-error__title 404
+            p.o-error__body You're lost kid…
             a.c-button(href="/") Go home

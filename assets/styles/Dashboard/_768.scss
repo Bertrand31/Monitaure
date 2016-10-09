@@ -126,17 +126,17 @@
 .c-checks__destroy {
     display:table-cell;
 }
-.o-background-video {
+
+.o-error__backvid {
     display:block;
 }
-.page-error.main-container {
-    .content {
-        font-size:2em;
-        z-index:1;
-        margin-left:auto;
-        margin-right:15%;
-    }
+.o-error__content {
+    font-size:2em;
+    z-index:1;
+    margin-left:auto;
+    margin-right:15%;
 }
+
 input[type="submit"] {
     margin:3em 0 1.5em;
 }

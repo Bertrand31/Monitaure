@@ -3,11 +3,11 @@ extends ./layout
 
 block body
 
-    .main-container.page-403.page-error
-        video.o-background-video(autoplay, loop)
+    .main-container.page-403.o-error
+        video.o-error__backvid(autoplay, loop)
             source(src="/videos/err403.mp4", type="video/mp4")
             source(src="/videos/err403.webm", type="video/webm")
-        .content
-            h1 403
-            p How dare you?
+        .o-error__content
+            h1.o-error__title 403
+            p.o-error__body How dare you?
             a.c-button(href="/") Go home

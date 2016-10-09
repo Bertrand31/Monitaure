@@ -1,28 +1,26 @@
-.page-error.main-container {
+.o-error {
     display:flex;
     align-items:center;
     height:100%;
     background:transparent center bottom no-repeat;
     background-size:cover;
     overflow-x:hidden;
-    &.page-404 {
-        background-image:url('/images/404.svg');
-    }
-    .content {
-        font-size:1.2em;
-        text-align:center;
-        color:$lightwhite;
-        h1 {
-            font-size:5em;
-            line-height:1em;
-            margin:.2em 0;
-        }
-        .button {
-            margin-top:1.5em;
-        }
-    }
 }
-.o-background-video {
+.o-error--404 {
+    background-image:url('/images/404.svg');
+}
+.o-error__content {
+    font-size:1.2em;
+    text-align:center;
+    color:$lightwhite;
+}
+.o-error__title {
+    font-family:$montserrat;
+    font-size:5em;
+    line-height:1em;
+    margin:.2em 0;
+}
+.o-error__backvid {
     position:fixed;
     top:50%;
     left:50%;
