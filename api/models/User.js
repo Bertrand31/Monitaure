@@ -50,9 +50,9 @@ module.exports = {
             type: 'date',
         },
 
-        gcmSubscription: {
-            type: 'object',
-            defaultsTo: null,
+        gcmSubscriptions: {
+            type: 'array',
+            defaultsTo: [],
         },
 
         toJSON() {

@@ -45,6 +45,6 @@ module.exports = {
      * @param {Object} res - Express' response object
      */
     setgcmcredentials(req, res) {
-        UserManagement.setGCMCredentials(DB.update, req.user.id, req.param('subscription'));
+        UserManagement.setGCMCredentials(DB.fetchOne, DB.update, req.user.id, req.param('subscription'));
     },
 };

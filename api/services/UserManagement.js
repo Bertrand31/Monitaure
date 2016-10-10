@@ -27,16 +27,29 @@ module.exports = {
 
     /**
      * Update a user's GCM credentials
+     * @param {Function} fetcher - DB fetching function
      * @param {Function} updater - record update function
      * @param {String} userId - user id
-     * @param {String} gcmToken - the user's Google Cloud Messaging ID
+     * @param {String} subscription - the user's Google Cloud Messaging subscription
      */
-    setGCMCredentials(updater, userId, subscription) {
-        // const subscriptionObj = JSON.parse(subscription);
-        // const gcmToken = subscriptionObj.endpoint.split('/').reverse()[0];
-        // const { p256dh, auth } = subscriptionObj.keys;
-        updater('user', { id: userId }, { gcmSubscription: JSON.parse(subscription) }, (err) => {
+    setGCMCredentials(fetcher, updater, userId, subscription) {
+        fetcher('user', userId, (err, user) => {
             if (err) return sails.log.error(err);
+
+            // Is this Service Worker already registered? If so, we exit
+            const swIsAlreadyRegistered = user.gcmSubscriptions.some((existingSubscription) => JSON.stringify(existingSubscription) === subscription);
+            if (swIsAlreadyRegistered) return;
+
+            const gcmSubscriptions = user.gcmSubscriptions.concat();
+            // Never more than 3 subscriptions total, so we first trim the array
+            while (gcmSubscriptions.length > 2) {
+                gcmSubscriptions.shift();
+            }
+            gcmSubscriptions.push(JSON.parse(subscription));
+
+            updater('user', { id: userId }, { gcmSubscriptions }, (err) => {
+                if (err) return sails.log.error(err);
+            });
         });
     },
 

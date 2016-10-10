@@ -19,7 +19,7 @@ module.exports = {
         };
 
         Sendgrid.send(emailOptions);
-        GCM.send(user.gcmSubscription, alertText);
+        GCM.send(user.gcmSubscriptions, alertText);
     },
 
     /**
@@ -40,7 +40,7 @@ module.exports = {
         };
 
         Sendgrid.send(emailOptions);
-        GCM.send(user.gcmSubscription, alertText);
+        GCM.send(user.gcmSubscriptions, alertText);
     },
 
     /**
