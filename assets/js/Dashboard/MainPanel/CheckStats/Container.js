@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import CheckStatsComponent from './Component';
 
 const mapStateToProps = state => ({
-    openCheckID: state.openCheckID,
-    checks: state.checks
+    openCheck: state.openCheckID ? state.checks[state.openCheckID] : null,
 });
 
 const CheckStatsContainer = connect(mapStateToProps)(CheckStatsComponent);

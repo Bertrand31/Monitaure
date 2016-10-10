@@ -57,12 +57,10 @@ const historyToChartData = (history) => {
     return chartData;
 };
 
-const checkStats = ({ openCheckID, checks }) => {
-    if (openCheckID == null) {
+const checkStats = ({ openCheck }) => {
+    if (openCheck === null) {
         return <section className="c-check-stats s-is-hidden" />;
     }
-
-    const openCheck = checks[openCheckID];
 
     const chartDataset = historyToChartData(openCheck.history);
     const lastOutagePretty = openCheck.lastOutage ? moment(openCheck.lastOutage).format('D/MM/YY H:mm') : '-';
