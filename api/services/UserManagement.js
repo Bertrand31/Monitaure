@@ -10,8 +10,13 @@ module.exports = {
             return callback('passwords-mismatch');
         }
 
-        delete userData.confirmPassword;
-        creator('user', userData, callback);
+        const user = {
+            username: userData.username,
+            email: userData.email,
+            password: userData.password,
+        };
+
+        creator('user', user, callback);
     },
 
     /**
