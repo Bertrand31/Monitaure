@@ -12,7 +12,7 @@ module.exports = {
         const alertText = `Alert: ${checkName} is DOWN`;
 
         const emailOptions = {
-            from: appEmail,
+            from: `"Monitaure" <${appEmail}>`,
             to: user.email,
             subject: `🚨  Monitaure alert: ${checkName} is DOWN!`,
             text: alertText,
@@ -49,7 +49,7 @@ module.exports = {
      */
     sendConfirmationEmail(user) {
         const emailOptions = {
-            from: appEmail,
+            from: `"Monitaure" <${appEmail}>`,
             to: user.email,
             subject: 'Monitaure account confirmation',
             html: EmailTemplates.Confirmation(`${baseUrl}/account/confirm/${user.confirmationToken}`, user.username),
