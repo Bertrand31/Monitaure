@@ -61,30 +61,21 @@ export const checksReducer = (state = {}, action) => {
         case types.CHECKS_POPULATE: {
             // If the state was empty (typically when the app loaded for the first time),
             // we juste fill the state with formatted data
-            if (Object.keys(state).length === 0) {
-                return { ...action.checks };
-            }
-            // Otherwise, we loop over the new data and:
-            // 1. if the check is being edited, we update its properties
-            // except for the ones that the user might be changing
-            // 2. otherwrise, we overwrite the check's data with the new data
-            // All of this complex logic is to avoid discarding the changes the user
-            // might be making be overwriting them with obsolete data from the server
-            const newState = { ...state };
-            for (const checkId in action.checks) {
-                if (Object.prototype.hasOwnProperty.call(action.checks, checkId)) {
-                    if (typeof state[checkId] !== 'undefined' && state[checkId].isEditing) {
-                        newState[checkId] = {
-                            ...action.checks[checkId],
-                            name: state[checkId].name,
-                            emailNotifications: state[checkId].emailNotifications,
-                        };
-                    } else {
-                        newState[checkId] = { ...action.checks[checkId] };
-                    }
+            // if (Object.keys(state).length === 0) {
+            //     return { ...action.checks };
+            // }
+            // We loop over the new data and, if the check is being edited, we keep
+            // the old version of the properties the user might be changing
+            const newState = { ...action.checks };
+            Object.keys(newState).forEach((checkId) => {
+                if (typeof state[checkId] !== 'undefined' && state[checkId].isEditing) {
+                    newState[checkId] = {
+                        name: state[checkId].name,
+                        emailNotifications: state[checkId].emailNotifications,
+                    };
                 }
-            }
-            return { ...newState };
+            });
+            return newState;
         }
 
         case types.CHECK_DESTROY: {
