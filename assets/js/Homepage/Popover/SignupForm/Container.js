@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
 
     update: (attrName, attrValue) => dispatch(UserActions.update(attrName, attrValue)),
 
-    signup: data => API.createUser(POSTer, data, (err, user) => {
+    signup: data => API.createUser(POSTer, data, (err) => {
         if (err) return dispatch(popinCreate('alert', err.message));
 
         return dispatch(UserActions.emailSent());

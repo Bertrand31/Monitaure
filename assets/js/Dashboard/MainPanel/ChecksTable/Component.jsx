@@ -74,7 +74,7 @@ class ChecksTable extends Component {
             <table className="c-checks">
                 <thead className="c-checks__head">
                     <tr className="c-checks__row">
-                        <th className="c-checks__status"></th>
+                        <th className="c-checks__status" />
                         <th className="c-checks__name">Name</th>
                         <th className="c-checks__domainNameOrIP">Domain name or IP</th>
                         <th className="c-checks__port">Port</th>
