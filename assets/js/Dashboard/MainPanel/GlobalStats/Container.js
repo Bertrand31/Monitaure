@@ -4,7 +4,7 @@ import GlobalStatsComponent from './Component';
 
 const mapStateToProps = state => ({
     checks: state.checks,
-    isACheckOpen: Object.keys(state.openCheck).length > 0,
+    isACheckOpen: state.openCheckID !== null,
 });
 
 const GlobalStatsContainer = connect(mapStateToProps)(GlobalStatsComponent);

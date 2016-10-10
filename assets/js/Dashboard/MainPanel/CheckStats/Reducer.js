@@ -1,14 +1,12 @@
 import * as types from './Constants';
 
-const openCheckReducer = (state = {}, action) => {
+const openCheckReducer = (state = null, action) => {
     switch (action.type) {
         case types.OPEN_CHECK_STATS:
-            return {
-                ...action.data,
-            };
+            return action.id;
 
         case types.CLOSE_CHECK_STATS:
-            return {};
+            return null;
 
         default:
             return state;

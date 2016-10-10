@@ -12,7 +12,7 @@ import ChecksTableComponent from './Component';
 
 const mapStateToProps = state => ({
     checks: state.checks,
-    openCheckID: state.openCheck.id || null,
+    openCheckID: state.openCheckID,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -65,7 +65,10 @@ const mapDispatchToProps = dispatch => ({
 
     openCheckStats(check) {
         if (check.id !== 'tmpID') {
-            dispatch(CheckStatsActions.openStats(check));
+            if (check.history.length < 1) {
+                return dispatch(popinCreate('alert', 'No data yet!'));
+            }
+            return dispatch(CheckStatsActions.openStats(check.id));
         }
     },
     closeCheckStats() {

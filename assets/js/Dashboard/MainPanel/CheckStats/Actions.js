@@ -1,9 +1,9 @@
 import * as checksTypes from './Constants';
 
-export function openStats(data) {
+export function openStats(id) {
     return {
         type: checksTypes.OPEN_CHECK_STATS,
-        data,
+        id,
     };
 }
 

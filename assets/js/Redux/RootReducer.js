@@ -12,7 +12,7 @@ export default combineReducers({
     popins: popinsReducer,
     user: userReducer,
     checks: checksReducer,
-    openCheck: openCheckReducer,
+    openCheckID: openCheckReducer,
     menuIsOpen: menuReducer,
     isOffline: serviceWorkerReducer,
     routing: routerReducer,
