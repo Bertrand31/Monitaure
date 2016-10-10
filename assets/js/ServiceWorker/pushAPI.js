@@ -3,8 +3,7 @@ import { setGCMCredentials } from '../serverIO/dataHandling';
 
 const sendSubscriptionToServer = (subscription) => {
     setGCMCredentials(POSTer, { subscription: JSON.stringify(subscription) }, (err) => {
-        // TMP
-        console.warn(err);
+        // console.warn(err);
     });
 };
 

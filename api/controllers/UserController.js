@@ -27,7 +27,7 @@ module.exports = {
      * @returns {HTML} Renders a page depending on the account confirmation success
      */
     confirm(req, res) {
-        UserManagement.confirm(DB.update, req.param('id'), (err, confirmed) => {
+        UserManagement.confirm(req.param('id'), (err, confirmed) => {
             if (err) return res.badRequest(err);
 
             if (confirmed.length > 0) {

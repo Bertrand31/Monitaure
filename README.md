@@ -38,7 +38,7 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * CSRF tokens ;
     * HttpOnly, encrypted session cookies ;
     * Content-Security-Policy, Strict-Transport-Security, X-Frame-Options, X-XSS-Protection, X-Content-Type-Options headers.
-* Perforance:
+* Performance:
     * Served over HTTP/2 ;
     * Sitting behind an NGINX reverse-proxy ;
     * Caching server-side (NGINX) as well as client-side (Service Worker for requests and assets, LocalStorage for state) ;
