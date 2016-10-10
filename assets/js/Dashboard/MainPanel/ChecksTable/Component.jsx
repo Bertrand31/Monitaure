@@ -33,44 +33,42 @@ class ChecksTable extends Component {
         };
 
         const checks = this.props.checks;
-        for (const checkId in checks) {
-            if (Object.prototype.hasOwnProperty.call(checks, checkId)) {
-                const isOpenCheck = checks[checkId].id === this.props.openCheckID;
-                const isNewCheck = checkId === 'tmpID';
-                const historyLength = checks[checkId].history.length - 1;
+        Object.values(checks).forEach((check) => {
+            const isOpenCheck = check.id === this.props.openCheckID;
+            const isNewCheck = check.id === 'tmpID';
+            const historyLength = check.history.length - 1;
 
-                let lastPingDuration = '-';
-                let lastPingSpeed = '';
-                let checkState = 'up';
+            let lastPingDuration = '-';
+            let lastPingSpeed = '';
+            let checkState = 'up';
 
-                if (typeof checks[checkId].history[historyLength] !== 'undefined') {
-                    if (checks[checkId].history[historyLength].duration === null) {
-                        checkState = 'down';
-                    } else if (checks[checkId].history[historyLength].duration > 200) {
-                        lastPingDuration = `${checks[checkId].history[historyLength].duration} ms`;
-                        lastPingSpeed = 'slow';
-                    } else {
-                        lastPingDuration = `${checks[checkId].history[historyLength].duration} ms`;
-                        lastPingSpeed = 'fast';
-                    }
+            if (typeof check.history[historyLength] !== 'undefined') {
+                if (check.history[historyLength].duration === null) {
+                    checkState = 'down';
+                } else if (check.history[historyLength].duration > 200) {
+                    lastPingDuration = `${check.history[historyLength].duration} ms`;
+                    lastPingSpeed = 'slow';
                 } else {
-                    checkState = 'waiting';
+                    lastPingDuration = `${check.history[historyLength].duration} ms`;
+                    lastPingSpeed = 'fast';
                 }
-
-                checksArray.push(
-                    <CheckRow
-                        key={checkId}
-                        row={checks[checkId]}
-                        isOpenCheck={isOpenCheck}
-                        isNewCheck={isNewCheck}
-                        lastPingDuration={lastPingDuration}
-                        lastPingSpeed={lastPingSpeed}
-                        checkState={checkState}
-                        functions={functions}
-                    />
-                );
+            } else {
+                checkState = 'waiting';
             }
-        }
+
+            checksArray.push(
+                <CheckRow
+                    key={check.id}
+                    row={check}
+                    isOpenCheck={isOpenCheck}
+                    isNewCheck={isNewCheck}
+                    lastPingDuration={lastPingDuration}
+                    lastPingSpeed={lastPingSpeed}
+                    checkState={checkState}
+                    functions={functions}
+                />
+            );
+        });
 
         return (
             <table className="c-checks">

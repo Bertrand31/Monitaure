@@ -47,13 +47,13 @@ const historyToChartData = (history) => {
             [],
         ],
     };
-    for (let i = 0; i < history.length; i++) {
-        const lightDate = moment(history[i].date).format('H:mm');
+    history.forEach((item) => {
+        const lightDate = moment(item.date).format('H:mm');
         chartData.labels.push(lightDate);
         chartData.series[0].push({
-            value: history[i].duration,
+            value: item.duration,
         });
-    }
+    });
     return chartData;
 };
 

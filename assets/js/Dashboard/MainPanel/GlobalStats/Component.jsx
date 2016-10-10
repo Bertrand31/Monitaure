@@ -25,25 +25,23 @@ const calcGlobalStats = (checks) => {
     let historyLength = 0;
     const lastError = { time: null, checkName: null };
 
-    for (const checkId in checks) {
-        if (Object.prototype.hasOwnProperty.call(checks, checkId)) {
-            if (checkId !== 'tmpID') {
-                historyLength = checks[checkId].history.length - 1;
-                if (historyLength > 0) {
-                    totalPopulatedChecks++;
-                    if (checks[checkId].history[historyLength].duration !== null) {
-                        checksUp++;
-                    }
-                    availabilitiesSum += checks[checkId].availability;
-                    const lastOutage = new Date(checks[checkId].lastOutage);
-                    if (lastOutage > lastError.time) {
-                        lastError.time = lastOutage;
-                        lastError.checkName = checks[checkId].name;
-                    }
+    Object.values(checks).forEach((check) => {
+        if (check.id !== 'tmpID') {
+            historyLength = check.history.length - 1;
+            if (historyLength > 0) {
+                totalPopulatedChecks++;
+                if (check.history[historyLength].duration !== null) {
+                    checksUp++;
+                }
+                availabilitiesSum += check.availability;
+                const lastOutage = new Date(check.lastOutage);
+                if (lastOutage > lastError.time) {
+                    lastError.time = lastOutage;
+                    lastError.checkName = check.name;
                 }
             }
         }
-    }
+    });
 
     return {
         checksUp,

@@ -59,11 +59,6 @@ const checkReducer = (state, action) => {
 export const checksReducer = (state = {}, action) => {
     switch (action.type) {
         case types.CHECKS_POPULATE: {
-            // If the state was empty (typically when the app loaded for the first time),
-            // we juste fill the state with formatted data
-            // if (Object.keys(state).length === 0) {
-            //     return { ...action.checks };
-            // }
             // We loop over the new data and, if the check is being edited, we keep
             // the old version of the properties the user might be changing
             const newState = { ...action.checks };
