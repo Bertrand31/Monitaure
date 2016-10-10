@@ -172,14 +172,14 @@ html,body {
     color:$lighter;
     font-size:.9em;
 }
-.c-donut {
-    .c-donut__primary-bar {
-        stroke:$lightgreen;
+    .c-donut {
+        .c-donut__primary-bar {
+            stroke:$lightgreen;
+        }
+        .c-donut__secondary-bar {
+            stroke:$alert;
+        }
     }
-    .c-donut__secondary-bar {
-        stroke:$middark;
-    }
-}
 .status {
     .c-donut-content__servers {
         display:none;
@@ -190,14 +190,6 @@ html,body {
 }
 .availability {
     max-width:230px;
-    .c-donut {
-        .c-donut__primary-bar {
-            stroke:$lightgreen;
-        }
-        .c-donut__secondary-bar {
-            stroke:$alert;
-        }
-    }
     .c-donut-content__main-text {
         font-size:1em;
         top:1.9rem;
@@ -207,14 +199,6 @@ html,body {
     }
 }
 .last-error {
-    .c-donut {
-        .c-donut__primary-bar--ok {
-            stroke:$lightgreen;
-        }
-        .c-donut__primary-bar--nok {
-            stroke:$alert;
-        }
-    }
     .c-donut-content__main-text {
         top:1.5em;
     }

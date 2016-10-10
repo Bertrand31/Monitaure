@@ -67,7 +67,7 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
             },
             {
                 value: 100 - (percentageOfChecksUp),
-                classname: 'c-donut__secondary-bar',
+                className: 'c-donut__secondary-bar',
             },
         ],
     };
@@ -87,7 +87,7 @@ const GlobalStats = ({ checks, isACheckOpen }) => {
         series: [
             {
                 value: 100,
-                className: 'c-donut__primary-bar--nok',
+                className: 'c-donut__secondary-bar',
             },
         ],
     };
