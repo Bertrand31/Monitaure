@@ -46,20 +46,23 @@ module.exports = {
                                             <table bgcolor="white" width="403" align="center" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:40px; -webkit-border-radius: 0 0 10px 10px; border-radius: 0 0 10px 10px;">
                                                 <tr>
                                                     <td style="text-align:center;">
-                                                        <img alt="Monitaure - Logo" src="https://monitaure.io/images/email/icon-monitaure.png" style="margin:0 auto 40px; display:block;">
+                                                        <img alt="Monitaure - Logo" src="https://monitaure.io/images/email/logo.png" style="margin:0 auto 40px; display:block;">
                                                         <a href="https://monitaure.io/" target="_blank" style="display: block; margin-bottom: 40px; text-decoration: none; color: #b2b2b2;">monitaure.io</a>
                                                         <ul style="margin:0 0 40px; padding: 0; list-style: none; text-align: center;">
                                                             <li style="margin:0; padding: 0; display: inline-block; padding: 0 5%">
-                                                                <a href="https://monitaure.io/"><img alt="Monitaure" src="https://monitaure.io/images/email/icon-monitaure.png" target="_blank" style="display:block;"></a>
+                                                                <a href="https://monitaure.io/">
+                                                                    <img alt="Monitaure" src="https://monitaure.io/images/email/icon-monitaure.jpg" target="_blank" style="display:block;">
+                                                                </a>
                                                             </li>
                                                             <li style="margin:0; padding: 0; display: inline-block; padding: 0 5%">
-                                                                <a href="https://github.com/Bertrand31/Monitaure"><img alt="Github" src="https://monitaure.io/images/email/icon-github.png" target="_blank" style="display:block;"></a>
+                                                                <a href="https://github.com/Bertrand31/Monitaure">
+                                                                    <img alt="Github" src="https://monitaure.io/images/email/icon-github.jpg" target="_blank" style="display:block;">
+                                                                </a>
                                                             </li>
                                                             <li style="margin:0; padding: 0; display: inline-block; padding: 0 5%">
-                                                                <a href="#_"><img alt="Twitter" src="https://monitaure.io/images/email/icon-twitter.png" target="_blank" style="display:block;"></a>
-                                                            </li>
-                                                            <li style="margin:0; padding: 0; display: inline-block; padding: 0 5%">
-                                                                <a href="https://dribbble.com/guillaumeparra/tags/monitaure"><img alt="Dribbble" src="https://monitaure.io/images/email/icon-dribbble.png" target="_blank" style="display:block;"></a>
+                                                                <a href="https://dribbble.com/guillaumeparra/tags/monitaure">
+                                                                    <img alt="Dribbble" src="https://monitaure.io/images/email/icon-dribbble.jpg" target="_blank" style="display:block;">
+                                                                </a>
                                                             </li>
                                                         </ul>
                                                     </td>
