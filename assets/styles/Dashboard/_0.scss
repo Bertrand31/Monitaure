@@ -27,8 +27,16 @@ html,body {
     display: flex;
     justify-content: center;
     flex-direction:column;
-    &.sign-in {
-        height:100%;
+}
+.o-blockpage {
+    height:100%;
+    background:$light url('/images/background.svg') center center no-repeat;
+    background-size:cover;
+    .o-main {
+        justify-content:center;
+    }
+    .c-box {
+        text-transform:none;
     }
 }
 .l-sidebar {
