@@ -61,7 +61,7 @@ module.exports = {
                                                             </li>
                                                             <li style="margin:0; padding: 0; display: inline-block; padding: 0 5%">
                                                                 <a href="https://dribbble.com/guillaumeparra/tags/monitaure">
-                                                                    <img alt="Dribbble" src="https://monitaure.io/images/email/icon-dribbble.jpg" target="_blank" style="display:block;">
+                                                                    <img alt="Dribble" src="https://monitaure.io/images/email/icon-dribble.jpg" target="_blank" style="display:block;">
                                                                 </a>
                                                             </li>
                                                         </ul>

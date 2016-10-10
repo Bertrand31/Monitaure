@@ -34,14 +34,14 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * MongoDB database for data storage ;
     * Redis database for storing user sessions.
 * Security:
-    * Served over HTTPS, [with rock-solid SSL security](https://www.ssllabs.com/ssltest/analyze.html?d=monitaure.io&s=2001%3a41d0%3ae%3a59a%3a0%3a0%3a0%3a1&hideResults=on)(TLS 1.2, OCSP stapling, HSTS, HSTS preloading, Forward secrecy, etc.) ;
+    * Served over HTTPS, [with rock-solid SSL security](https://www.ssllabs.com/ssltest/analyze.html?d=monitaure.io&s=2001%3a41d0%3ae%3a59a%3a0%3a0%3a0%3a1&hideResults=on) (TLS 1.2, OCSP stapling, HSTS, HSTS preloading, Forward secrecy, etc.) ;
     * CSRF tokens ;
     * HttpOnly, encrypted session cookies ;
     * Content-Security-Policy, Strict-Transport-Security, X-Frame-Options, X-XSS-Protection, X-Content-Type-Options headers.
 * Performance:
     * Served over HTTP/2 ;
     * Sitting behind an NGINX reverse-proxy ;
-    * Caching server-side (NGINX) as well as client-side (Service Worker for requests and assets, LocalStorage for state) ;
+    * Caching server-side (NGINX) as well as client-side (Service Worker for requests & assets, LocalStorage for state) ;
     * Hosted on a dedicated server running Archlinux ;
     * Gzip compression ;
     * PNGQuant & SVGO images optimization ;
