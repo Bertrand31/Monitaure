@@ -1,5 +1,5 @@
 {
-    "presets": ["stage-2", "es2015", "react"],
+    "presets": ["latest", "react", "stage-2"],
     "env": {
         "production": {
             "plugins": ["transform-react-remove-prop-types", "transform-react-inline-elements", "transform-react-constant-elements"]

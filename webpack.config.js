@@ -24,6 +24,7 @@ const common = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel',
+                presets: ['latest', 'react', 'stage-2'],
                 exclude: /node_modules/,
             },
             {
