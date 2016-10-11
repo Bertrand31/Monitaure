@@ -83,12 +83,11 @@
         event.waitUntil(clients.matchAll({
             type: 'window',
         }).then((clientList) => {
-            for (let i = 0; i < clientList.length; i++) {
-                const client = clientList[i];
+            clientList.forEach((client) => {
                 if (client.url === '/' && 'focus' in client) {
                     return client.focus();
                 }
-            }
+            });
             if (clients.openWindow) {
                 return clients.openWindow('/');
             }
