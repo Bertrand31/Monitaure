@@ -24,8 +24,8 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
             <ul className={`c-topnav__menu ${menuIsOpen ? 's-menu-is-open' : ''}`}>
                 <li className="c-topnav__el"><Link to="/" className="c-topnav__link">Home</Link></li>
                 <li className="c-topnav__el"><a href="https://github.com/Bertrand31/Monitaure/wiki/Monitaure-tour---%5BTEMPORARY-PAGE%5D" className="c-topnav__link">Tour</a></li>
-                <li className="c-topnav__el"><Link to="/about" className="c-topnav__link">About us</Link></li>
-                <li className="c-topnav__el"><Link to="/contact" className="c-topnav__link">Contact</Link></li>
+                <li className="c-topnav__el"><a href="/#a-aboutus" className="c-topnav__link">About us</a></li>
+                <li className="c-topnav__el"><a href="/#a-aboutus" className="c-topnav__link">Contact</a></li>
                 <li className="c-topnav__el--dummy" aria-hidden="true" />
                 <li className="c-topnav__el c-topnav__el--btn"><Link to="/login" className="c-button--empty">Log in</Link></li>
                 <li className="c-topnav__el c-topnav__el--btn"><Link to="/signup" className="c-button--round">Sign up</Link></li>
@@ -152,7 +152,7 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
 
         <section className="c-separator" role="presentation" />
 
-        <section className="c-pane c-pane--big c-pane--about">
+        <section className="c-pane c-pane--big c-pane--about" id="a-aboutus">
             <div className="c-pane--about__wrapper">
                 <h2 className="c-h2">About us</h2>
                 <p className="c-pane__body">We&apos;re two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
@@ -230,10 +230,10 @@ const HomepageComponent = ({ menuIsOpen, toggleMenu, openMenu, closeMenu }) => (
                 </div>
                 <nav className="l-pane-grid__item c-footer__nav">
                     <ul className="c-footernav">
-                        <li className="c-footernav__el"><Link to="/tour">Tour</Link></li>
-                        <li className="c-footernav__el"><a href="https://github.com/Bertrand31/Monitaure/wiki/Monitaure-tour---%5BTEMPORARY-PAGE%5D">Log in</a></li>
+                        <li className="c-footernav__el"><Link to="https://github.com/Bertrand31/Monitaure/wiki/Monitaure-tour---%5BTEMPORARY-PAGE%5D">Tour</Link></li>
+                        <li className="c-footernav__el"><a href="/login">Log in</a></li>
                         <li className="c-footernav__el"><Link to="/signup">Sign up</Link></li>
-                        <li className="c-footernav__el"><Link to="/contact">Contact</Link></li>
+                        <li className="c-footernav__el"><a href="/#a-aboutus">Contact</a></li>
                     </ul>
                 </nav>
                 <div className="l-pane-grid__item c-footer__text">
