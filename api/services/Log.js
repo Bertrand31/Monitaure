@@ -1,6 +1,9 @@
 const uuid = require('uuid');
 
 module.exports = {
+    getLogs(fetcher, userId, callback) {
+        fetcher('user', userId, (err, user) => callback(err, user.log));
+    },
     /**
      * Adds a log entry to the user
      * @param {Function} updater - update a DB record
