@@ -61,6 +61,11 @@ module.exports = {
             return obj;
         },
 
+        log: {
+            type: 'array',
+            defaultsTo: [],
+        },
+
         checks: {
             collection: 'Check',
             via: 'owner',

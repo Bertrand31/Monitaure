@@ -13,7 +13,7 @@ module.exports = {
         UserManagement.create(DB.create, req.body, (err, createdUser) => {
             if (err) return res.badRequest(err.details);
 
-            Messages.sendConfirmationEmail(createdUser);
+            Notifications.sendConfirmationEmail(createdUser);
             return res.json(200, createdUser);
         });
     },
