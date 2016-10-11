@@ -42,7 +42,7 @@ module.exports = {
             if (err) return sails.log.error(err);
 
             // Is this Service Worker already registered? If so, we exit
-            const swIsAlreadyRegistered = user.gcmSubscriptions.some((existingSubscription) => JSON.stringify(existingSubscription) === subscription);
+            const swIsAlreadyRegistered = user.gcmSubscriptions.some(existingSubscription => JSON.stringify(existingSubscription) === subscription);
             if (swIsAlreadyRegistered) return;
 
             const gcmSubscriptions = user.gcmSubscriptions.concat();
