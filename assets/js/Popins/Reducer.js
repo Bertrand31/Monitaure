@@ -3,10 +3,9 @@ import * as types from './Constants';
 const popinReducer = (state, action) => {
     switch (action.type) {
         case types.POPIN_CREATE: {
-            const id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
             return {
-                [id]: {
-                    id,
+                [action.id]: {
+                    id: action.id,
                     variant: action.variant,
                     text: action.text,
                 },
