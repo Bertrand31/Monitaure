@@ -260,6 +260,7 @@
 .c-pane--try {
     position:relative;
     height:388px;
+    min-height:0;
     &:before {
         content:'';
         display:block;
