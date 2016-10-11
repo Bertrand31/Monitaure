@@ -1,7 +1,7 @@
 {
   "name": "Monitaure",
-  "version": "0.3.0",
-  "description": "A monitoring tool for SysAdmins",
+  "version": "0.1.0",
+  "description": "A monitoring web app for SysAdmins",
   "keywords": [
     "System Administration",
     "Monitoring",
@@ -20,7 +20,9 @@
     "ES6",
     "Babel",
     "ESLint",
-    "Webpack"
+    "Webpack",
+    "Service Workers",
+    "Google Cloud Messaging"
   ],
   "dependencies": {
     "async": "^2.0.1",
@@ -90,7 +92,7 @@
   "devDependencies": {
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "12.0.0",
-    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1"
   }
