@@ -1,8 +1,8 @@
 import * as checksTypes from './Constants';
 
-export function populateChecks(checks) {
+export function hydrateChecks(checks) {
     return {
-        type: checksTypes.CHECKS_POPULATE,
+        type: checksTypes.CHECKS_HYDRATE,
         checks,
     };
 }

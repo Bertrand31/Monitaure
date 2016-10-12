@@ -58,7 +58,7 @@ const checkReducer = (state, action) => {
 
 export const checksReducer = (state = {}, action) => {
     switch (action.type) {
-        case types.CHECKS_POPULATE: {
+        case types.CHECKS_HYDRATE: {
             // We loop over the new data and, if the check is being edited, we keep
             // the old version of the properties the user might be changing
             const newState = { ...action.checks };

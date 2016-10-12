@@ -1,5 +1,21 @@
 module.exports = {
     /**
+     * HTTP route to fetch a user's data
+     * @param {Object} req - HTTP request (must be POST)
+     * @param {Object} res - Express' response object
+     * @returns {JSON} Either an error or the corresponding user record
+     */
+    getdata(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
+        UserManagement.getData(DB.fetchOne, req.user.id, (err, user) => {
+            if (err) return res.badRequest(err.details);
+
+            return res.json(user);
+        });
+    },
+    /**
      * HTTP route to create a user account
      * req.body contains the user data (name, email, etc.)
      * @param {Object} req - HTTP request (must be POST)

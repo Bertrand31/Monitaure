@@ -7,8 +7,8 @@ class ChecksTable extends Component {
     componentDidMount() {
         // We check whether an autoRefresh loop is already running
         if (typeof this.autoRefresh === 'undefined' || !this.autoRefresh) {
-            this.props.populateAll();
-            this.autoRefresh = setInterval(this.props.populateAll, 2 * 60 * 1000);
+            this.props.hydrateChecks();
+            this.autoRefresh = setInterval(this.props.hydrateChecks, 2 * 60 * 1000);
         }
     }
     componentWillUnmount() {
@@ -101,7 +101,7 @@ class ChecksTable extends Component {
 ChecksTable.propTypes = {
     checks: PropTypes.object.isRequired,
     openCheckID: PropTypes.string,
-    populateAll: PropTypes.func.isRequired,
+    hydrateChecks: PropTypes.func.isRequired,
     destroy: PropTypes.func.isRequired,
     setWorkingCheck: PropTypes.func.isRequired,
     unsetWorkingCheck: PropTypes.func.isRequired,

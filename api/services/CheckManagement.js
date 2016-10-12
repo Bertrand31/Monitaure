@@ -64,6 +64,24 @@ const calcCheckStats = (check, historyLength) => {
 };
 
 module.exports = {
+    /**
+     * Retrieve a user's checks, calcs each check's statistics
+     * and adds it to each check properties
+     * @param {Function} fetcher - record fetching and population function
+     * @param {String} userId - the id of the user requesting this action
+     * @param {Function} callback
+     */
+    getChecks(fetcher, userId, callback) {
+        fetcher('check', { owner: userId }, (err, checksArray) => {
+            const checksObject = {};
+
+            checksArray.forEach((check) => {
+                checksObject[check.id] = Object.assign(check, calcCheckStats(check, 20));
+            });
+
+            return callback(err, checksObject);
+        });
+    },
 
     /**
      * Creates a check in the database and returns it
@@ -151,31 +169,6 @@ module.exports = {
                 if (err) return callback(err);
 
                 return callback(null);
-            });
-        });
-    },
-
-    /**
-     * Retrieve the user's data and its checks, calcs each check's statistics
-     * and adds it to each check properties
-     * @param {Function} fetcher - record fetching and population function
-     * @param {String} userId - the id of the user requesting this action
-     * @param {Function} callback
-     */
-    getUserAndChecks(fetcher, userId, callback) {
-        fetcher('user', userId, 'checks', (err, user) => {
-            const checks = {};
-
-            user.checks.forEach((check) => {
-                checks[check.id] = Object.assign(check, calcCheckStats(check, 20));
-            });
-
-            return callback(err, {
-                user: {
-                    username: user.username,
-                    emailHash: user.emailHash,
-                },
-                checks,
             });
         });
     },

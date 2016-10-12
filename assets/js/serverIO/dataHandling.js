@@ -5,6 +5,10 @@ export function csrfToken(ajaxGet, callback) {
 }
 
 // Users management
+export function getUserData(ajaxGet, callback) {
+    const url = `${window.location.origin}/User/getdata/`;
+    ajaxGet(url, (err, resJSON) => callback(err, resJSON));
+}
 export function createUser(ajaxPost, data, callback) {
     const url = `${window.location.origin}/User/create/`;
     ajaxPost(url, data, (err, resJSON) => callback(err, resJSON));
@@ -39,7 +43,7 @@ export function destroyCheck(ajaxGet, checkId, callback) {
     const url = `${window.location.origin}/Check/destroy/${checkId}`;
     ajaxGet(url, (err, resJSON) => callback(err, resJSON));
 }
-export function getUserAndChecks(ajaxGet, callback) {
-    const url = `${window.location.origin}/Check/getuserandchecks/`;
+export function getChecks(ajaxGet, callback) {
+    const url = `${window.location.origin}/Check/getchecks/`;
     ajaxGet(url, (err, resJSON) => callback(err, resJSON));
 }

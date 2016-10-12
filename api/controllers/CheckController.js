@@ -7,11 +7,11 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {JSON} Either an error or the user's and his checks' data
      */
-    getuserandchecks(req, res) {
+    getchecks(req, res) {
         if (!req.wantsJSON) {
             return res.forbidden();
         }
-        CheckManagement.getUserAndChecks(DB.fetchAndPopulate, req.user.id, (err, data) => {
+        CheckManagement.getChecks(DB.fetch, req.user.id, (err, data) => {
             if (err) return res.serverError(err);
 
             return res.json(data);

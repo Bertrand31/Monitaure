@@ -1,5 +1,21 @@
 module.exports = {
     /**
+     * Gets a user's basic data
+     * @param {Function} fetcher - record fetching function
+     * @param {Object} user - user data (name, emailHash)
+     * @param {Function} callback
+     */
+    getData(fetcher, userId, callback) {
+        fetcher('user', userId, (err, user) => {
+            const simpleUser = {
+                username: user.username,
+                emailHash: user.emailHash,
+            };
+
+            return callback(err, simpleUser);
+        });
+    },
+    /**
      * Create an user
      * @param {Function} creator - record creation function
      * @param {Object} userData - user data (name, email, etc.)

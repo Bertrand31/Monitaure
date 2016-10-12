@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 import Sidebar from './Component';
 
-import { POSTer } from '../../serverIO/ajaxMethods';
+import { GETer, POSTer } from '../../serverIO/ajaxMethods';
 import * as API from '../../serverIO/dataHandling';
 import { create as popinCreate } from '../../Popins/Actions';
 import * as UserActions from '../../User/Actions';
@@ -16,6 +16,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    hydrateUser: () => API.getUserData(GETer, (err, user) => {
+        if (err) return dispatch(popinCreate('alert', err.message));
+
+        heap.identify(user.username);
+
+        return dispatch(UserActions.login(user));
+    }),
+
     toggleMenu: () => dispatch(MenuActions.toggle()),
 
     logout: () => API.logout(POSTer, (err) => {
