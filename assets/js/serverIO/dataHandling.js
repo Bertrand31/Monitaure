@@ -47,3 +47,9 @@ export function getChecks(ajaxGet, callback) {
     const url = `${window.location.origin}/Check/getchecks/`;
     ajaxGet(url, (err, resJSON) => callback(err, resJSON));
 }
+
+// Log management
+export function getLog(ajaxGet, callback) {
+    const url = `${window.location.origin}/Log/getall/`;
+    ajaxGet(url, (err, resJSON) => callback(err, resJSON));
+}

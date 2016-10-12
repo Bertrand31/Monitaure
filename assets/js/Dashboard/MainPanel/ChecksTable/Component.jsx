@@ -71,9 +71,9 @@ class ChecksTable extends Component {
         });
 
         return (
-            <table className="c-checks">
-                <thead className="c-checks__head">
-                    <tr className="c-checks__row">
+            <table className="c-table c-checks">
+                <thead className="c-table__head">
+                    <tr className="c-table__row">
                         <th className="c-checks__status" />
                         <th className="c-checks__name">Name</th>
                         <th className="c-checks__domainNameOrIP">Domain name or IP</th>
@@ -86,8 +86,8 @@ class ChecksTable extends Component {
                 </thead>
                 <ReactCSSTransitionGroup
                     component="tbody"
-                    className="c-checks__body"
-                    transitionName="c-checks__row"
+                    className="c-table__body"
+                    transitionName="c-table__row"
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}
                 >

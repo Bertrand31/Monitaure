@@ -266,10 +266,10 @@ html,body {
         left:-10px;
     }
 }
-.c-checks {
+.c-table {
     font-size:.92em;
 }
-.c-checks__head {
+.c-table__head {
     .c-checks__status {
         width:60px;
     }
@@ -286,7 +286,7 @@ html,body {
 }
 
 
-.c-checks__row {
+.c-table__row {
     th {
         padding:1.1em .3em;
     }

@@ -12,7 +12,7 @@ module.exports = {
 
         Sendgrid.send(user.email, alertTitle, alertText);
         GCM.send(user.gcmSubscriptions, alertText);
-        Log.addLogEntry(DB.update, user, 'downAlert', alertText);
+        Log.addLogEntry(DB.update, user, checkName, 'downAlert', alertText);
     },
 
     /**
@@ -27,7 +27,7 @@ module.exports = {
 
         Sendgrid.send(user.email, alertTitle, alertText);
         GCM.send(user.gcmSubscriptions, alertText);
-        Log.addLogEntry(DB.update, user, 'upAlert', alertText);
+        Log.addLogEntry(DB.update, user, checkName, 'upAlert', alertText);
     },
 
     /**

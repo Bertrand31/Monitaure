@@ -1,4 +1,4 @@
-.c-checks {
+.c-table {
     width:100%;
     margin:1em 0;
     border-spacing:0;
@@ -6,14 +6,14 @@
     color:$softwhite;
     cursor:default;
 }
-.c-checks__head {
+.c-table__head {
     text-align:left;
     background:$middark;
     color:$softwhite;
 }
-.c-checks__body {
+.c-table__body {
     .c-checks__name { color:#fff; }
-    .c-checks__row {
+    .c-table__row {
         transition:background .3s ease-in-out;
         background:$middark;
         &:nth-child(odd) {
@@ -43,17 +43,17 @@
     max-width:80px;
 }
 
-.c-checks__row-enter {
+.c-table__row-enter {
     opacity: 0.01;
 }
-.c-checks__row-enter.c-checks__row-enter-active {
+.c-table__row-enter.c-table__row-enter-active {
     opacity: 1;
     transition: all 500ms ease-in;
 }
-.c-checks__row-leave {
+.c-table__row-leave {
     opacity: 1;
 }
-.c-checks__row-leave.c-checks__row-leave-active {
+.c-table__row-leave.c-table__row-leave-active {
     opacity: 0.01;
     transition: all 300ms ease-in;
 }

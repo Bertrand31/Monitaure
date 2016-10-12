@@ -14,7 +14,7 @@ const Navigation = ({ menuIsOpen, logout }) => (
                 </li>
                 <li className="c-nav__item disabled">
                     <a className="c-nav__link" href="#_">
-                        Messages<span className="info">132</span>
+                        Log<span className="info">132</span>
                     </a>
                 </li>
             </ul>

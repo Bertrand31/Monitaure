@@ -6,7 +6,7 @@ import CheckStats from './CheckStats/Container';
 import ChecksTable from './ChecksTable/Container';
 
 
-const DashboardComponent = () => (
+const MainPanelComponent = () => (
     <div className="o-main o-pane-container dashboard">
         <div className="pane-components-wrapper">
             <TopBar />
@@ -17,4 +17,4 @@ const DashboardComponent = () => (
     </div>
 );
 
-export default DashboardComponent;
+export default MainPanelComponent;

@@ -50,7 +50,7 @@ class CheckRow extends Component {
     render() {
         return (
             <tr
-                className={`c-checks__row ${this.props.isOpenCheck ? 's-is-open' : ''}`}
+                className={`c-table__row ${this.props.isOpenCheck ? 's-is-open' : ''}`}
                 id={this.props.row.id}
                 onClick={() => this.onCheckRowClick()}
             >

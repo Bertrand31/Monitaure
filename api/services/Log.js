@@ -11,19 +11,20 @@ module.exports = {
      * @param {String} logType - the log entry type
      * @param {String} logType - the log entry message
      */
-    addLogEntry(updater, user, logType, logMessage) {
+    addLogEntry(updater, user, logType, checkName, logMessage) {
         const newLogEntry = {
             id: uuid.v1(),
             date: new Date(),
+            checkName,
             type: logType,
             message: logMessage,
         };
 
-        // Temporary: migrating new users
+        // TMP: migrating new users
         if (typeof user.log === 'undefined') {
             user.log = [];
         }
-        // End of temporary
+        // End of TMP
         const log = user.log.slice();
         log.push(newLogEntry);
 
