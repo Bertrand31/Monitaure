@@ -13,7 +13,6 @@ import { close as closeMenu } from './Menu/Actions';
 
 import App from './App/Container';
 
-import Page from './Pages/Container';
 import Homepage from './Pages/Homepage.jsx';
 import Tour from './Pages/Tour.jsx';
 
@@ -35,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     render(
         <Provider store={store}>
             <Router history={history}>
-                <Route onChange={() => store.dispatch(closeMenu())} path="/" component={App}>
-                    <IndexRoute component={Page} />
+                <Route path="/" component={App} onChange={() => store.dispatch(closeMenu())}>
+                    <IndexRoute component={Homepage} />
                     <Route path="tour" component={Tour} />
                     <Route path="app" component={Dashboard} onEnter={requireAuth}>
                         <IndexRoute component={MainPanel} />

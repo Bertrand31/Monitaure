@@ -1,9 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import Popover from '../Homepage/Popover/Component';
 import Popins from '../Popins/Container';
-import Homepage from '../Homepage/Container';
-import Dashboard from '../Dashboard/Container';
 
 class AppComponent extends Component {
     componentWillMount() {
@@ -20,7 +17,6 @@ class AppComponent extends Component {
         return (
             <div className={`react-container ${this.props.isOffline ? 'is-offline' : ''}`}>
                 <Popins />
-                {/*<Popover form={this.props.children} />*/}
                 {this.props.children}
             </div>
         );

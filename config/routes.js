@@ -27,6 +27,9 @@ module.exports.routes = {
     'get /': {
         view: 'homepage',
     },
+    'get /tour': {
+        view: 'homepage',
+    },
     'get /app': {
         view: 'homepage',
     },
