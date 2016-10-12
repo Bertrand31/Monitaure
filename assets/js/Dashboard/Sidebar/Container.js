@@ -13,6 +13,7 @@ import * as MenuActions from '../../Menu/Actions';
 const mapStateToProps = state => ({
     menuIsOpen: state.menuIsOpen,
     user: state.user,
+    currentRoute: state.routing.locationBeforeTransitions.pathname,
 });
 
 const mapDispatchToProps = dispatch => ({

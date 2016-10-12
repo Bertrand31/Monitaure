@@ -1,5 +1,3 @@
-const uuid = require('uuid');
-
 module.exports = {
     getLogs(fetcher, userId, callback) {
         fetcher('user', userId, (err, user) => callback(err, user.log));
@@ -13,7 +11,6 @@ module.exports = {
      */
     addLogEntry(updater, user, logType, checkName, logMessage) {
         const newLogEntry = {
-            id: uuid.v1(),
             date: new Date(),
             checkName,
             type: logType,

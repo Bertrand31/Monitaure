@@ -6,14 +6,15 @@ import MainPanel from './MainPanel/Component';
 
 import '../../styles/Dashboard/index.scss';
 
-const DashboardComponent = ({ openMenu, closeMenu }) => (
+const DashboardComponent = ({ children, openMenu, closeMenu }) => (
     <Swipeable onSwipingRight={openMenu} onSwipingLeft={closeMenu}>
         <Sidebar />
-        <MainPanel />
+        {children}
     </Swipeable>
 );
 
 DashboardComponent.propTypes = {
+    children: PropTypes.element.isRequired,
     openMenu: PropTypes.func.isRequired,
     closeMenu: PropTypes.func.isRequired,
 };

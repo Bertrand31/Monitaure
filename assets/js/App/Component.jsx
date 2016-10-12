@@ -12,25 +12,16 @@ class AppComponent extends Component {
         this.props.watchConnectivityState();
     }
     render() {
-        if (this.props.isLoggedIn) {
-            if ('serviceWorker' in navigator) {
-                this.props.subscribeToPush();
-                this.props.activateSW();
-            }
-
-            return (
-                <div className={`react-container ${this.props.isOffline ? 'is-offline' : ''}`}>
-                    <Popins />
-                    <Dashboard />
-                </div>
-            );
+        if (this.props.isLoggedIn && 'serviceWorker' in navigator) {
+            this.props.subscribeToPush();
+            this.props.activateSW();
         }
 
         return (
-            <div className="react-container">
+            <div className={`react-container ${this.props.isOffline ? 'is-offline' : ''}`}>
                 <Popins />
-                <Popover form={this.props.children} />
-                <Homepage />
+                {/*<Popover form={this.props.children} />*/}
+                {this.props.children}
             </div>
         );
     }

@@ -27,10 +27,10 @@ module.exports.routes = {
     'get /': {
         view: 'homepage',
     },
-    'get /login': {
+    'get /app': {
         view: 'homepage',
     },
-    'get /signup': {
+    'get /app/*': {
         view: 'homepage',
     },
 

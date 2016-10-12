@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import moment from 'moment';
 
 
 class LogComponent extends Component {
@@ -35,10 +36,10 @@ class LogComponent extends Component {
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}
                 >
-                    {this.props.log.map(logEntry => (
-                        <tr key={logEntry.id}>
+                    {this.props.log.map((logEntry, i) => (
+                        <tr className="c-table__row" key={i}>
                             <td>{logEntry.type}</td>
-                            <td>{logEntry.date}</td>
+                            <td>{moment(logEntry.date).format('MMMM Do, h:mm a')}</td>
                             <td>{logEntry.message}</td>
                         </tr>
                     ))}

@@ -4,7 +4,7 @@ import 'react-fastclick';
 import React from 'react';
 import { render } from 'react-dom';
 
-import { browserHistory, Router, Route } from 'react-router';
+import { browserHistory, Router, Route, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import store from './Redux/Store';
@@ -12,20 +12,36 @@ import store from './Redux/Store';
 import { close as closeMenu } from './Menu/Actions';
 
 import App from './App/Container';
-import LoginForm from './Homepage/Popover/LoginForm/Container';
-import SignupForm from './Homepage/Popover/SignupForm/Container';
+
+import Page from './Pages/Container';
+import Homepage from './Pages/Homepage.jsx';
+import Tour from './Pages/Tour.jsx';
+
+import Dashboard from './Dashboard/Container';
+import MainPanel from './Dashboard/MainPanel/Component';
+import LogPanel from './Dashboard/LogPanel/Component';
 
 import '../styles/Base/index.scss';
 
 const history = syncHistoryWithStore(browserHistory, store);
+
+const requireAuth = (nextState, replace) => {
+    if (!store.getState().user.isLoggedIn) {
+        replace('/');
+    }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     render(
         <Provider store={store}>
             <Router history={history}>
                 <Route onChange={() => store.dispatch(closeMenu())} path="/" component={App}>
-                    <Route path="login" component={LoginForm} />
-                    <Route path="signup" component={SignupForm} />
+                    <IndexRoute component={Page} />
+                    <Route path="tour" component={Tour} />
+                    <Route path="app" component={Dashboard} onEnter={requireAuth}>
+                        <IndexRoute component={MainPanel} />
+                        <Route path="log" component={LogPanel} />
+                    </Route>
                 </Route>
             </Router>
         </Provider>,
