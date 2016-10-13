@@ -16,13 +16,13 @@ class AppComponent extends Component {
     componentWillMount() {
         this.props.getCSRFToken();
         this.props.watchConnectivityState();
-    }
-    render() {
+
         if (this.props.isLoggedIn && 'serviceWorker' in navigator) {
             this.props.subscribeToPush();
             this.props.activateSW();
         }
-
+    }
+    render() {
         return (
             <div className={`react-container ${this.props.isOffline ? 'is-offline' : ''}`}>
                 <Popins />
