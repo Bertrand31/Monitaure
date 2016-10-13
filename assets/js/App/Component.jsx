@@ -5,7 +5,6 @@ import Popins from '../Popins/Container';
 class AppComponent extends Component {
     componentWillMount() {
         this.props.getCSRFToken();
-        this.props.checkAuth();
         this.props.watchConnectivityState();
     }
     render() {
@@ -25,7 +24,6 @@ class AppComponent extends Component {
 
 AppComponent.propTypes = {
     getCSRFToken: PropTypes.func.isRequired,
-    checkAuth: PropTypes.func.isRequired,
     watchConnectivityState: PropTypes.func.isRequired,
     activateSW: PropTypes.func.isRequired,
     subscribeToPush: PropTypes.func.isRequired,

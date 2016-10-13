@@ -4,7 +4,6 @@ import { GETer } from '../serverIO/ajaxMethods';
 import * as API from '../serverIO/dataHandling';
 
 import { create as popinCreate } from '../Popins/Actions';
-import * as UserActions from '../User/Actions';
 import * as SWActions from '../ServiceWorker/Actions';
 
 import { subscribe as subscribeToPush } from '../ServiceWorker/pushAPI';
@@ -20,10 +19,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    checkAuth: () => API.isLoggedIn(GETer, (err, { isLoggedIn }) =>
-        dispatch(isLoggedIn ? UserActions.login() : UserActions.logout())
-    ),
-
     activateSW: () => navigator.serviceWorker.register('/sw.js', { scope: '/' }),
 
     subscribeToPush,

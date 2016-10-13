@@ -9,6 +9,10 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import store from './Redux/Store';
 
+import { GETer } from './serverIO/ajaxMethods';
+import * as API from './serverIO/dataHandling';
+
+import * as UserActions from './User/Actions';
 import { close as closeMenu } from './Menu/Actions';
 import { close as closePopover } from './Pages/Popover/Actions';
 
@@ -25,22 +29,31 @@ import '../styles/Base/index.scss';
 
 const history = syncHistoryWithStore(browserHistory, store);
 
+const handleRouteChange = () => {
+    store.dispatch(closeMenu());
+    store.dispatch(closePopover());
+};
+
+const checkAuth = (nextState, replace, callback) => {
+    API.isLoggedIn(GETer, (err, { isLoggedIn }) => {
+        if (err) callback();
+
+        store.dispatch(isLoggedIn ? UserActions.login() : UserActions.logout());
+        callback();
+    });
+};
+
 const requireAuth = (nextState, replace) => {
     if (!store.getState().user.isLoggedIn) {
         replace('/');
     }
 };
 
-const handleRouteChange = () => {
-    store.dispatch(closeMenu());
-    store.dispatch(closePopover());
-};
-
 document.addEventListener('DOMContentLoaded', () => {
     render(
         <Provider store={store}>
             <Router history={history}>
-                <Route path="/" component={App} onChange={handleRouteChange}>
+                <Route path="/" component={App} onEnter={checkAuth} onChange={handleRouteChange}>
                     <IndexRoute component={Homepage} />
                     <Route path="tour" component={Tour} />
                     <Route path="app" component={Dashboard} onEnter={requireAuth}>

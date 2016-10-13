@@ -20,8 +20,6 @@ const mapDispatchToProps = dispatch => ({
     login: data => API.login(POSTer, data, (err, res) => {
         if (err) return dispatch(popinCreate('alert', err.message));
         if (!res.user) return dispatch(popinCreate('alert', res.message));
-        console.log(err);
-        console.log(res);
 
         dispatch(UserActions.login(res.user));
         browserHistory.push('/app');
