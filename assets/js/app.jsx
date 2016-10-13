@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import store from './Redux/Store';
 
 import { close as closeMenu } from './Menu/Actions';
+import { close as closePopover } from './Pages/Popover/Actions';
 
 import App from './App/Container';
 
@@ -30,11 +31,16 @@ const requireAuth = (nextState, replace) => {
     }
 };
 
+const handleRouteChange = () => {
+    store.dispatch(closeMenu());
+    store.dispatch(closePopover());
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     render(
         <Provider store={store}>
             <Router history={history}>
-                <Route path="/" component={App} onChange={() => store.dispatch(closeMenu())}>
+                <Route path="/" component={App} onChange={handleRouteChange}>
                     <IndexRoute component={Homepage} />
                     <Route path="tour" component={Tour} />
                     <Route path="app" component={Dashboard} onEnter={requireAuth}>
