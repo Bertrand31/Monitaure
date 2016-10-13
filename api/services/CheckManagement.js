@@ -20,7 +20,7 @@ const calcCheckStats = (check, historyLength) => {
     let totalOutage = 0;
     let lastOutage = null;
 
-    for (const ping of historyArray) {
+    historyArray.forEach((ping) => {
         if (ping.duration !== null) {
             sum += ping.duration;
             min = ping.duration < min ? ping.duration : min;
@@ -29,7 +29,7 @@ const calcCheckStats = (check, historyLength) => {
             totalOutage += checkInterval;
             lastOutage = ping.date;
         }
-    }
+    });
 
     const percent = 100 - (totalOutage * 100) / (historyArrayLength * checkInterval);
 

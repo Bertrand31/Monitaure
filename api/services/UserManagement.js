@@ -61,11 +61,8 @@ module.exports = {
             const swIsAlreadyRegistered = user.gcmSubscriptions.some(existingSubscription => JSON.stringify(existingSubscription) === subscription);
             if (swIsAlreadyRegistered) return;
 
-            const gcmSubscriptions = user.gcmSubscriptions.concat();
             // Never more than 3 subscriptions total, so we first trim the array
-            while (gcmSubscriptions.length > 2) {
-                gcmSubscriptions.shift();
-            }
+            const gcmSubscriptions = user.gcmSubscriptions.slice(0, 2);
             gcmSubscriptions.push(JSON.parse(subscription));
 
             updater('user', { id: userId }, { gcmSubscriptions }, (err) => {
