@@ -1,13 +1,8 @@
 module.exports = (req, res, next) => {
-    // if (req.session.authenticated) {
-    if (req.isAuthenticated()) {
+    if (!req.wantsJSON || req.isAuthenticated()) {
         return next();
     }
 
-    if (req.wantsJSON) {
-        return res.forbidden();
-    }
-
-    return res.redirect('/login');
+    return res.forbidden();
 };
 

@@ -22,14 +22,18 @@ module.exports = {
                     user,
                 });
             }
-            req.logIn(user, (err) => {
+
+            req.login(user, (err) => {
                 if (err) res.send(err);
 
                 UserManagement.updateLastConnection(DB.update, user.id);
 
                 return res.send({
                     message: info.message,
-                    user,
+                    user: {
+                        username: user.username,
+                        emailHash: user.emailHash,
+                    },
                 });
             });
         })(req, res);
