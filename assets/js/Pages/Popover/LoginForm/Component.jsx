@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Link, browserHistory } from 'react-router';
 
 import { close } from '../Actions';
 

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { browserHistory } from 'react-router';
 
 import Login from './LoginForm/Container';
 import Signup from './SignupForm/Container';
