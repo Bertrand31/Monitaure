@@ -44,12 +44,12 @@ const mapDispatchToProps = dispatch => ({
     },
     saveWorkingCheck(data) {
         if (data.id === 'tmpID') {
-            API.createCheck(POSTer, data, (err, newData) => {
-                if (err) return dispatch(popinCreate('alert', err.message));
+            API.createCheck(POSTer, data, (err, res) => {
+                if (res.err) return dispatch(popinCreate('alert', res.err));
 
                 dispatch(actions.destroyCheck('tmpID'));
 
-                dispatch(actions.saveWorkingCheck(newData));
+                dispatch(actions.saveWorkingCheck(res.created));
             });
         } else {
             dispatch(actions.saveWorkingCheck(data));

@@ -36,9 +36,10 @@ module.exports = {
             owner: req.user.id,
         };
         CheckManagement.createCheck(DB.fetchAndPopulate, DB.create, req.user.id, data, (err, created) => {
-            if (err) return res.serverError(err);
-
-            return res.json(created);
+            return res.json({
+                err,
+                created,
+            });
         });
     },
 
