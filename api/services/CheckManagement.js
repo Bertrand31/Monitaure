@@ -127,7 +127,7 @@ module.exports = {
                 return callback('You do not have access to this check');
             }
 
-            return destroyer('check', checkId, (err, destroyed) => callback(err, destroyed));
+            return destroyer('check', checkId, (err, destroyed) => callback(err));
         });
     },
 
