@@ -22,7 +22,7 @@ module.exports = {
             user.log = [];
         }
         // End of TMP
-        const log = user.log.slice();
+        const log = Utilities.garbageCollection(user.log);
         log.push(newLogEntry);
 
         updater('user', { id: user.id }, { log }, (err) => {

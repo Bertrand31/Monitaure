@@ -1,24 +1,4 @@
 /**
- * Deletes history records older than a month
- * Accepts empty histories
- * @param {Array} historyArray - check.history
- * @return {Array}
- */
-const historyGarbageCollection = (historyArray) => {
-    if (typeof historyArray[0] === 'undefined') return [];
-
-    const oneMonthAgo = new Date();
-    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-
-    // If the first value of the array is older than a month, we remove it
-    // We keep doing that until the oldest value is younger than a month
-    while (historyArray[0].date.getTime() < oneMonthAgo.getTime()) {
-        historyArray.shift();
-    }
-    return historyArray;
-};
-
-/**
 * Calculates a check's various stats by analyzing its history
 * Trims the check's history to only return a specified number of pings
 *  @param {Object} check - the raw db record of a check
@@ -161,7 +141,7 @@ module.exports = {
         fetcher('check', ping.checkId, (err, check) => {
             if (err) return callback(err);
 
-            const newHistoryArray = historyGarbageCollection(check.history);
+            const newHistoryArray = Utilities.garbageCollection(check.history);
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
             // And update the DB record
