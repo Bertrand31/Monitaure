@@ -4,8 +4,10 @@ import { POSTer } from '../../../serverIO/ajaxMethods';
 import * as API from '../../../serverIO/dataHandling';
 
 import { create as popinCreate } from '../../../Popins/Actions';
+import { open } from '../Actions';
 import * as UserActions from '../../../User/Actions';
-import SignupForm from './Component';
+
+import SignupFormComponent from './Component';
 
 const mapStateToProps = state => ({ user: state.user });
 
@@ -18,11 +20,13 @@ const mapDispatchToProps = dispatch => ({
 
         return dispatch(UserActions.emailSent());
     }),
+
+    replacePopover: (popoverType) => dispatch(open(popoverType)),
 });
 
 const SignupFormContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(SignupForm);
+)(SignupFormComponent);
 
 export default SignupFormContainer;

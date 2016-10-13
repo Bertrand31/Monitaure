@@ -8,6 +8,7 @@ import { POSTer } from '../../../serverIO/ajaxMethods';
 import * as API from '../../../serverIO/dataHandling';
 
 import { create as popinCreate } from '../../../Popins/Actions';
+import { open } from '../Actions';
 
 const mapStateToProps = state => ({ user: state.user });
 
@@ -22,6 +23,8 @@ const mapDispatchToProps = dispatch => ({
         browserHistory.push('/');
         dispatch(UserActions.login(res.user));
     }),
+
+    replacePopover: (popoverType) => dispatch(open(popoverType)),
 
 });
 

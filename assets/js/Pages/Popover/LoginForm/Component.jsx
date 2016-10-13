@@ -43,7 +43,7 @@ class LoginFormComponent extends Component {
                     </fieldset>
                     <input className="c-button c-button--padedd" type="submit" value="Log in" />
                 </form>
-                <p className="c-box__text">Don&apos;t have an account? <Link to="/signup">Sign up!</Link></p>
+                <p className="c-box__text">Don&apos;t have an account? <a href="#_" onClick={() => this.props.replacePopover('signup')} >Sign up!</a></p>
             </div>
         );
     }
@@ -53,6 +53,7 @@ LoginFormComponent.propTypes = {
     user: PropTypes.object.isRequired,
     update: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
+    replacePopover: PropTypes.func.isRequired,
 };
 
 export default LoginFormComponent;
