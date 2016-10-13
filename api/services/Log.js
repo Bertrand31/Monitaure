@@ -9,9 +9,10 @@ module.exports = {
      * @param {String} logType - the log entry type
      * @param {String} logType - the log entry message
      */
-    addLogEntry(updater, user, logType, checkName, logMessage) {
+    addLogEntry(updater, user, checkId, checkName, logType, logMessage) {
         const newLogEntry = {
             date: new Date(),
+            checkId,
             checkName,
             type: logType,
             message: logMessage,

@@ -6,13 +6,13 @@ module.exports = {
      * @param {Object} user - a user object from the database
      * @param {String} checkName - name of the check that is down
      */
-    sendDownAlert(user, checkName) {
+    sendDownAlert(user, checkId, checkName) {
         const alertTitle = `🚨  Monitaure alert: ${checkName} is DOWN!`;
         const alertText = `Alert: ${checkName} is DOWN`;
 
         Sendgrid.send(user.email, alertTitle, alertText);
         GCM.send(user.gcmSubscriptions, alertText);
-        Log.addLogEntry(DB.update, user, checkName, 'downAlert', alertText);
+        Log.addLogEntry(DB.update, user, checkId, checkName, 'downAlert', alertText);
     },
 
     /**
@@ -21,13 +21,13 @@ module.exports = {
      * @param {String} checkName - name of the check that is back up
      * @param {Number} outageDuration - number of minutes the check was down
      */
-    sendUpAlert(user, checkName, outageDuration) {
+    sendUpAlert(user, checkId, checkName, outageDuration) {
         const alertTitle = `✓ Monitaure alert: ${checkName} is back UP!`;
         const alertText = `${checkName} is back up after ${outageDuration} minutes of downtime.`;
 
         Sendgrid.send(user.email, alertTitle, alertText);
         GCM.send(user.gcmSubscriptions, alertText);
-        Log.addLogEntry(DB.update, user, checkName, 'upAlert', alertText);
+        Log.addLogEntry(DB.update, user, checkId, checkName, 'upAlert', alertText);
     },
 
     /**
