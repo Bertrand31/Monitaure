@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 
+import { close } from '../Actions';
+
 class LoginFormComponent extends Component {
     componentDidMount() {
         this.usernameInput.focus();
@@ -8,7 +10,7 @@ class LoginFormComponent extends Component {
     render() {
         return (
             <div onClick={(e) => { e.stopPropagation(); }} className="c-box">
-                <button className="c-box__close" onClick={() => browserHistory.push('/')} />
+                <button className="c-box__close" onClick={this.props.close} />
                 <h2 className="c-box__title">Log in</h2>
                 <form
                     className="c-form"

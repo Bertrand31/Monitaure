@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 
+import { close } from '../Actions';
+
 class SignupFormComponent extends Component {
     componentDidMount() {
         this.usernameInput && this.usernameInput.focus();
@@ -16,7 +18,7 @@ class SignupFormComponent extends Component {
 
         return (
             <div onClick={(e) => { e.stopPropagation(); }} className="c-box signup-block">
-                <button className="c-box__close" onClick={() => browserHistory.push('/')} />
+                <button className="c-box__close" onClick={this.props.close} />
                 <h2 className="c-box__title">Create an account</h2>
                 <form
                     className="c-form"
