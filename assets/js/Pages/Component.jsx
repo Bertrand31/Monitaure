@@ -31,8 +31,8 @@ const PageComponent = ({ children, menuIsOpen, openPopover, toggleMenu, openMenu
                     <li className="c-topnav__el"><a href="/#a-aboutus" className="c-topnav__link">About us</a></li>
                     <li className="c-topnav__el"><a href="/#a-aboutus" className="c-topnav__link">Contact</a></li>
                     <li className="c-topnav__el--dummy" aria-hidden="true" />
-                    <li className="c-topnav__el c-topnav__el--btn"><a href="#_" onClick={() => openPopover('login')} className="c-button--empty">Log in</a></li>
-                    <li className="c-topnav__el c-topnav__el--btn"><a href="#_" onClick={() => openPopover('signup')} className="c-button--round">Sign up</a></li>
+                    <li className="c-topnav__el c-topnav__el--btn"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('login'); }} className="c-button--empty">Log in</a></li>
+                    <li className="c-topnav__el c-topnav__el--btn"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('signup'); }} className="c-button--round">Sign up</a></li>
                 </ul>
             </nav>
 
@@ -47,7 +47,7 @@ const PageComponent = ({ children, menuIsOpen, openPopover, toggleMenu, openMenu
                 <div className="l-pane-grid">
                     <h2 className="c-h2">Give it a try!</h2>
                     <p className="c-pane__body">You&apos;re just one step away from Monitaure&apos;s dashboard</p>
-                    <Link to="/signup" className="c-button--round">Sign up</Link>
+                    <a href="#_" className="c-button--round" onClick={(e) => { e.preventDefault(); openPopover('signup'); }}>Sign up</a>
                 </div>
             </section>
 
@@ -59,9 +59,9 @@ const PageComponent = ({ children, menuIsOpen, openPopover, toggleMenu, openMenu
                     </div>
                     <nav className="l-pane-grid__item c-footer__nav">
                         <ul className="c-footernav">
-                            <li className="c-footernav__el"><Link to="https://github.com/Bertrand31/Monitaure/wiki/Monitaure-tour---%5BTEMPORARY-PAGE%5D">Tour</Link></li>
-                            <li className="c-footernav__el"><a href="/login">Log in</a></li>
-                            <li className="c-footernav__el"><Link to="/signup">Sign up</Link></li>
+                            <li className="c-footernav__el"><Link to="/tour">Tour</Link></li>
+                            <li className="c-footernav__el"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('login'); }}>Log in</a></li>
+                            <li className="c-footernav__el"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('signup'); }}>Sign up</a></li>
                             <li className="c-footernav__el"><a href="/#a-aboutus">Contact</a></li>
                         </ul>
                     </nav>
