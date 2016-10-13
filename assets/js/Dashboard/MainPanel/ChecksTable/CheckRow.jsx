@@ -1,6 +1,31 @@
 import React, { Component, PropTypes } from 'react';
 
 class CheckRow extends Component {
+    static propTypes = {
+        row: PropTypes.shape({
+            domainNameOrIP: PropTypes.string.isRequired,
+            emailNotifications: PropTypes.bool,
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            port: PropTypes.number.isRequired,
+            isEditing: PropTypes.bool,
+        }),
+        isOpenCheck: PropTypes.bool.isRequired,
+        isNewCheck: PropTypes.bool.isRequired,
+        lastPingDuration: PropTypes.string.isRequired,
+        lastPingSpeed: PropTypes.string.isRequired,
+        checkState: PropTypes.string.isRequired,
+        functions: PropTypes.shape({
+            destroy: PropTypes.func.isRequired,
+            setWorkingCheck: PropTypes.func.isRequired,
+            unsetWorkingCheck: PropTypes.func.isRequired,
+            updateWorkingCheck: PropTypes.func.isRequired,
+            saveWorkingCheck: PropTypes.func.isRequired,
+            openCheckStats: PropTypes.func.isRequired,
+            closeCheckStats: PropTypes.func.isRequired,
+        }),
+    }
+
     componentDidMount() {
         // We wait for the input to be initialized
         setTimeout(() => { this.checknameInput.focus(); }, 0);
@@ -145,30 +170,5 @@ class CheckRow extends Component {
         );
     }
 }
-
-CheckRow.propTypes = {
-    row: PropTypes.shape({
-        domainNameOrIP: PropTypes.string.isRequired,
-        emailNotifications: PropTypes.bool,
-        id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        port: PropTypes.number.isRequired,
-        isEditing: PropTypes.bool,
-    }),
-    isOpenCheck: PropTypes.bool.isRequired,
-    isNewCheck: PropTypes.bool.isRequired,
-    lastPingDuration: PropTypes.string.isRequired,
-    lastPingSpeed: PropTypes.string.isRequired,
-    checkState: PropTypes.string.isRequired,
-    functions: PropTypes.shape({
-        destroy: PropTypes.func.isRequired,
-        setWorkingCheck: PropTypes.func.isRequired,
-        unsetWorkingCheck: PropTypes.func.isRequired,
-        updateWorkingCheck: PropTypes.func.isRequired,
-        saveWorkingCheck: PropTypes.func.isRequired,
-        openCheckStats: PropTypes.func.isRequired,
-        closeCheckStats: PropTypes.func.isRequired,
-    }),
-};
 
 export default CheckRow;

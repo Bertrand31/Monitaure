@@ -3,6 +3,13 @@ import React, { Component, PropTypes } from 'react';
 import { close } from '../Actions';
 
 class LoginFormComponent extends Component {
+    static propTypes = {
+        user: PropTypes.object.isRequired,
+        update: PropTypes.func.isRequired,
+        login: PropTypes.func.isRequired,
+        replacePopover: PropTypes.func.isRequired,
+    }
+
     componentDidMount() {
         this.usernameInput.focus();
     }
@@ -47,12 +54,5 @@ class LoginFormComponent extends Component {
         );
     }
 }
-
-LoginFormComponent.propTypes = {
-    user: PropTypes.object.isRequired,
-    update: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired,
-    replacePopover: PropTypes.func.isRequired,
-};
 
 export default LoginFormComponent;

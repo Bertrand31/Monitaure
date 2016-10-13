@@ -4,6 +4,19 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import CheckRow from './CheckRow';
 
 class ChecksTable extends Component {
+    static propTypes = {
+        checks: PropTypes.object.isRequired,
+        openCheckID: PropTypes.string,
+        hydrateChecks: PropTypes.func.isRequired,
+        destroy: PropTypes.func.isRequired,
+        setWorkingCheck: PropTypes.func.isRequired,
+        unsetWorkingCheck: PropTypes.func.isRequired,
+        updateWorkingCheck: PropTypes.func.isRequired,
+        saveWorkingCheck: PropTypes.func.isRequired,
+        openCheckStats: PropTypes.func.isRequired,
+        closeCheckStats: PropTypes.func.isRequired,
+    }
+
     componentDidMount() {
         // We check whether an autoRefresh loop is already running
         if (typeof this.autoRefresh === 'undefined' || !this.autoRefresh) {
@@ -97,18 +110,5 @@ class ChecksTable extends Component {
         );
     }
 }
-
-ChecksTable.propTypes = {
-    checks: PropTypes.object.isRequired,
-    openCheckID: PropTypes.string,
-    hydrateChecks: PropTypes.func.isRequired,
-    destroy: PropTypes.func.isRequired,
-    setWorkingCheck: PropTypes.func.isRequired,
-    unsetWorkingCheck: PropTypes.func.isRequired,
-    updateWorkingCheck: PropTypes.func.isRequired,
-    saveWorkingCheck: PropTypes.func.isRequired,
-    openCheckStats: PropTypes.func.isRequired,
-    closeCheckStats: PropTypes.func.isRequired,
-};
 
 export default ChecksTable;

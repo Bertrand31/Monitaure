@@ -4,6 +4,11 @@ import moment from 'moment';
 
 
 class LogComponent extends Component {
+    static propTypes = {
+        log: PropTypes.array.isRequired,
+        hydrateLog: PropTypes.func.isRequired,
+    }
+
     componentDidMount() {
         // We check whether an autoRefresh loop is already running
         if (typeof this.autoRefresh === 'undefined' || !this.autoRefresh) {
@@ -48,10 +53,5 @@ class LogComponent extends Component {
         );
     }
 }
-
-LogComponent.propTypes = {
-    log: PropTypes.array.isRequired,
-    hydrateLog: PropTypes.func.isRequired,
-};
 
 export default LogComponent;

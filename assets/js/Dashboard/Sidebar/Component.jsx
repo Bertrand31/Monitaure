@@ -4,6 +4,14 @@ import Navigation from './Components/Navigation';
 import UserInfo from './Components/UserInfo';
 
 class Sidebar extends Component {
+    static propTypes = {
+        currentRoute: PropTypes.string.isRequired,
+        menuIsOpen: PropTypes.bool.isRequired,
+        toggleMenu: PropTypes.func.isRequired,
+        user: PropTypes.object.isRequired,
+        logout: PropTypes.func.isRequired,
+    }
+
     componentDidMount() {
         this.props.hydrateUser();
     }
@@ -41,13 +49,5 @@ class Sidebar extends Component {
         );
     }
 }
-
-Sidebar.propTypes = {
-    currentRoute: PropTypes.string.isRequired,
-    menuIsOpen: PropTypes.bool.isRequired,
-    toggleMenu: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
-    logout: PropTypes.func.isRequired,
-};
 
 export default Sidebar;

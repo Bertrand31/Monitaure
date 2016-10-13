@@ -3,6 +3,11 @@ import React, { Component, PropTypes } from 'react';
 import '../../styles/Popins/index.scss';
 
 class Popin extends Component {
+    static propTypes = {
+        data: PropTypes.object.isRequired,
+        destroy: PropTypes.func.isRequired,
+    }
+
     componentDidMount() {
         setTimeout(() => {
             this.props.destroy(this.props.data.id);
@@ -21,11 +26,6 @@ class Popin extends Component {
         );
     }
 }
-
-Popin.propTypes = {
-    data: PropTypes.object.isRequired,
-    destroy: PropTypes.func.isRequired,
-};
 
 const PopinsList = ({ popins = {}, destroy }) => (
     <div className="c-popins-container">

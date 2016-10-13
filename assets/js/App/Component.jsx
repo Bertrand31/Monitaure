@@ -3,6 +3,16 @@ import React, { Component, PropTypes } from 'react';
 import Popins from '../Popins/Container';
 
 class AppComponent extends Component {
+    static propTypes = {
+        getCSRFToken: PropTypes.func.isRequired,
+        watchConnectivityState: PropTypes.func.isRequired,
+        activateSW: PropTypes.func.isRequired,
+        subscribeToPush: PropTypes.func.isRequired,
+        children: PropTypes.element,
+        isLoggedIn: PropTypes.bool.isRequired,
+        isOffline: PropTypes.bool.isRequired,
+    }
+
     componentWillMount() {
         this.props.getCSRFToken();
         this.props.watchConnectivityState();
@@ -21,15 +31,5 @@ class AppComponent extends Component {
         );
     }
 }
-
-AppComponent.propTypes = {
-    getCSRFToken: PropTypes.func.isRequired,
-    watchConnectivityState: PropTypes.func.isRequired,
-    activateSW: PropTypes.func.isRequired,
-    subscribeToPush: PropTypes.func.isRequired,
-    children: PropTypes.element,
-    isLoggedIn: PropTypes.bool.isRequired,
-    isOffline: PropTypes.bool.isRequired,
-};
 
 export default AppComponent;
