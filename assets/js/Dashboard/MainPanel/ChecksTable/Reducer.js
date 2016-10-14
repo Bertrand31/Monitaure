@@ -61,7 +61,9 @@ export const checksReducer = (state = {}, action) => {
         case types.CHECKS_HYDRATE: {
             // We loop over the new data and, if the check is being edited, we keep
             // the old version of the properties the user might be changing
-            const newState = { ...action.checks };
+            let newState = {
+                ...action.checks,
+            };
             Object.keys(newState).forEach((checkId) => {
                 if (typeof state[checkId] !== 'undefined' && state[checkId].isEditing) {
                     newState[checkId] = {
@@ -70,6 +72,13 @@ export const checksReducer = (state = {}, action) => {
                     };
                 }
             });
+            // If a check was being created, we keep it
+            if (typeof state['tmpID'] !== 'undefined') {
+                newState = {
+                    ...newState,
+                    'tmpID': state['tmpID'],
+                };
+            }
             return newState;
         }
 
