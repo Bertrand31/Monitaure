@@ -10,12 +10,12 @@ const Navigation = ({ currentRoute, menuIsOpen, logout }) => (
                 </li>
                 <li className="c-nav__item disabled">
                     <a className="c-nav__link" href="#_">
-                        Reports<span className="info">14</span>
+                        Reports<span className="info">0</span>
                     </a>
                 </li>
                 <li className={`c-nav__item ${currentRoute.match(/^\/app\/log\/?$/) ? 'active' : ''}`}>
                     <Link className="c-nav__link" to="/app/log">
-                        Log<span className="info">132</span>
+                        Log
                     </Link>
                 </li>
             </ul>
