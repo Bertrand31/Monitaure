@@ -28,12 +28,9 @@ class LogComponent extends Component {
             return <p>Nothing to show yet!</p>;
         }
 
-        let filteredLog;
-        if (!!logFilters.checkId) {
-            filteredLog = log.filter(logEntry => logEntry.checkId === logFilters.checkId);
-        } else {
-            filteredLog = [ ...log ];
-        }
+        let filteredLog = log.filter(logEntry =>
+                (logFilters.checkId === logEntry.checkId || !logFilters.checkId) &&
+                !logFilters.hiddenTypes.includes(logEntry.type));
 
         return (
             <table className="c-table c-log">

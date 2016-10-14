@@ -2,15 +2,18 @@ import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import moment from 'moment';
 
-const LogComponent = ({ log, updateFilter }) => {
+const LogComponent = ({ log, updateFilter, toggleType }) => {
     if (log.length < 1) {
         return null;
     }
 
     const checksList = {};
+    const typesList = {};
     log.forEach((logEntry) => {
         checksList[logEntry.checkId] = logEntry.checkName;
+        typesList[logEntry.type] = logEntry.type;
     });
+
 
     return (
         <form>
@@ -18,6 +21,12 @@ const LogComponent = ({ log, updateFilter }) => {
                 <option value="">Show all checks</option>
                 {Object.keys(checksList).map(checkId => (<option key={checkId} value={checkId}>{checksList[checkId]}</option>))}
             </select>
+            {Object.keys(typesList).map((type, i) => (
+                <label key={i} htmlFor={type}>
+                    Show {type}?
+                    <input type="checkbox" defaultChecked name={type} id={type} onChange={toggleType} />
+                </label>
+            ))}
         </form>
     );
 };
@@ -25,6 +34,7 @@ const LogComponent = ({ log, updateFilter }) => {
 LogComponent.propTypes = {
     log: PropTypes.array.isRequired,
     updateFilter: PropTypes.func.isRequired,
+    toggleType: PropTypes.func.isRequired,
 };
 
 export default LogComponent;
