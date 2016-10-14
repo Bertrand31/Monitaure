@@ -22,7 +22,7 @@ class LogComponent extends Component {
     }
 	render() {
         if (this.props.log.length < 1) {
-            return null;
+            return <p>Nothing to show yet!</p>;
         }
 
         return (
@@ -41,7 +41,7 @@ class LogComponent extends Component {
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}
                 >
-                    {this.props.log.map((logEntry, i) => (
+                    {this.props.log.reverse().map((logEntry, i) => (
                         <tr className="c-table__row" key={i}>
                             <td>{logEntry.type}</td>
                             <td>{moment(logEntry.date).format('MMMM Do, h:mm a')}</td>
