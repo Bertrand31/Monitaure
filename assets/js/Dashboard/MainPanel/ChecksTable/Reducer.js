@@ -10,7 +10,7 @@ const checkReducer = (state, action) => {
                     domainNameOrIP: '',
                     port: 80,
                     history: [],
-                    emailNotifications: false,
+                    emailNotifications: true,
                     isEditing: true,
                 },
             };
