@@ -8,8 +8,9 @@ import * as actions from './Actions';
 
 import LogTableComponent from './Component';
 
-const mapStateToProps = state => ({
-    log: state.log,
+const mapStateToProps = ({ log, logFilters }) => ({
+    log,
+    logFilters,
 });
 
 const mapDispatchToProps = dispatch => ({

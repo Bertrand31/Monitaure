@@ -6,6 +6,7 @@ import moment from 'moment';
 class LogComponent extends Component {
     static propTypes = {
         log: PropTypes.array.isRequired,
+        logFilters: PropTypes.object.isRequired,
         hydrateLog: PropTypes.func.isRequired,
     }
 
@@ -21,8 +22,17 @@ class LogComponent extends Component {
         this.autoRefresh = false;
     }
 	render() {
-        if (this.props.log.length < 1) {
+        const { log, logFilters } = this.props;
+
+        if (log.length < 1) {
             return <p>Nothing to show yet!</p>;
+        }
+
+        let filteredLog;
+        if (!!logFilters.checkId) {
+            filteredLog = log.filter(logEntry => logEntry.checkId === logFilters.checkId);
+        } else {
+            filteredLog = [ ...log ];
         }
 
         return (
@@ -41,7 +51,7 @@ class LogComponent extends Component {
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}
                 >
-                    {this.props.log.reverse().map((logEntry, i) => (
+                    {filteredLog.reverse().map((logEntry, i) => (
                         <tr className="c-table__row" key={i}>
                             <td>{logEntry.type}</td>
                             <td>{moment(logEntry.date).format('MMMM Do, h:mm a')}</td>

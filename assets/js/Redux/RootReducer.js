@@ -9,6 +9,7 @@ import userReducer from '../User/Reducer';
 import checksReducer from '../Dashboard/MainPanel/ChecksTable/Reducer';
 import openCheckReducer from '../Dashboard/MainPanel/CheckStats/Reducer';
 import logReducer from '../Dashboard/LogPanel/LogTable/Reducer';
+import logFiltersReducer from '../Dashboard/LogPanel/Filters/Reducer';
 
 export default combineReducers({
     popins: popinsReducer,
@@ -17,6 +18,7 @@ export default combineReducers({
     checks: checksReducer,
     openCheckID: openCheckReducer,
     log: logReducer,
+    logFilters: logFiltersReducer,
     menuIsOpen: menuReducer,
     isOffline: serviceWorkerReducer,
     routing: routerReducer,
