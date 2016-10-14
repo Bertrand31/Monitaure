@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
     hydrateUser: () => API.getUserData(GETer, (err, user) => {
         if (err) return dispatch(popinCreate('alert', err.message));
 
-        heap.identify(user.username);
+        typeof heap !== 'undefined' && heap.identify(user.username);
 
         return dispatch(UserActions.login(user));
     }),
