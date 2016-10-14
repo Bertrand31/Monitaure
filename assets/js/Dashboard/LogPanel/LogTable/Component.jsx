@@ -29,7 +29,7 @@ class LogComponent extends Component {
         }
 
         let filteredLog = log.filter(logEntry =>
-                (logFilters.checkId === logEntry.checkId || !logFilters.checkId) &&
+                (logFilters.checkId === logEntry.checkId || logFilters.checkId === null) &&
                 !logFilters.hiddenTypes.includes(logEntry.type));
 
         return (

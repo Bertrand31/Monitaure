@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateFilter: e => dispatch(updateFilter(e.target.name, e.target.value)),
+    updateFilter: e => dispatch(updateFilter(e.target.name, e.target.value || null)),
 
     toggleType: e => e.target.checked ? dispatch(showType(e.target.name)) : dispatch(hideType(e.target.name)),
 
