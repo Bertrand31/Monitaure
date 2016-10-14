@@ -89,7 +89,7 @@ class CheckRow extends Component {
                         onClick={e => e.stopPropagation()}
                         onChange={e => this.handleChange(e)}
                         onKeyDown={e => this.handleKeyPress(e)}
-                        value={this.props.row.name}
+                        defaultValue={this.props.row.name}
                         placeholder="e.g. HTTP @ Google"
                         ref={ref => this.checknameInput = ref}
                     />
@@ -102,7 +102,7 @@ class CheckRow extends Component {
                         type="text"
                         onChange={e => this.handleChange(e)}
                         onKeyDown={e => this.handleKeyPress(e)}
-                        value={this.props.row.domainNameOrIP}
+                        defaultValue={this.props.row.domainNameOrIP}
                         placeholder="e.g. google.fr"
                     />
                 </td>
@@ -114,10 +114,9 @@ class CheckRow extends Component {
                         type="number"
                         onChange={e => this.handleChange(e)}
                         onKeyDown={e => this.handleKeyPress(e)}
-                        value={this.props.row.port}
+                        defaultValue={this.props.row.port}
                         min="1"
                         max="65535"
-                        placeholder="e.g. 80"
                     />
                 </td>
                 <td className="c-checks__latency" data-speed={this.props.lastPingSpeed}>
@@ -139,7 +138,7 @@ class CheckRow extends Component {
                             disabled={!this.props.row.isEditing}
                             type="checkbox"
                             onChange={e => this.handleChange(e)}
-                            checked={this.props.row.emailNotifications}
+                            defaultChecked={this.props.row.emailNotifications}
                         />
                         <label
                             htmlFor={`emailNotifications-${this.props.row.id}`}
