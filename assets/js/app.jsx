@@ -35,11 +35,11 @@ const handleRouteChange = () => {
 };
 
 const checkAuth = (nextState, replace, callback) => {
-    API.isLoggedIn(GETer, (err, { isLoggedIn }) => {
-        if (err) callback();
+    API.isLoggedIn(GETer, (err, res) => {
+        if (err || !res) return callback();
 
-        store.dispatch(isLoggedIn ? UserActions.login() : UserActions.logout());
-        callback();
+        store.dispatch(res.isLoggedIn ? UserActions.login() : UserActions.logout());
+        return callback();
     });
 };
 
