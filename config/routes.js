@@ -10,11 +10,6 @@ module.exports.routes = {
      *                                                                          *
     ***************************************************************************/
 
-    'post /signup': 'UserController.create',
-    'post /login': 'AuthController.login',
-    'post /logout': 'AuthController.logout',
-    'get /isLoggedIn': 'AuthController.isLoggedIn',
-
     'get /account/confirm/:id': 'UserController.confirm',
 
     'get /403': {

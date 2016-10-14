@@ -18,15 +18,15 @@ export function setGCMCredentials(ajaxPost, data, callback) {
     ajaxPost(url, data, (err, resJSON) => callback(err, resJSON));
 }
 export function login(ajaxPost, data, callback) {
-    const url = `${window.location.origin}/login/`;
+    const url = `${window.location.origin}/Auth/login/`;
     ajaxPost(url, data, (err, resJSON) => callback(err, resJSON));
 }
 export function logout(ajaxPost, callback) {
-    const url = `${window.location.origin}/logout/`;
+    const url = `${window.location.origin}/Auth/logout/`;
     ajaxPost(url, {}, (err, resJSON) => callback(err, resJSON));
 }
 export function isLoggedIn(ajaxGet, callback) {
-    const url = `${window.location.origin}/isLoggedIn/`;
+    const url = `${window.location.origin}/Auth/isLoggedIn/`;
     ajaxGet(url, (err, resJSON) => callback(err, resJSON));
 }
 

@@ -1,11 +1,6 @@
 const passport = require('passport');
 
 module.exports = {
-    _config: {
-        actions: false,
-        shortcuts: false,
-        rest: false,
-    },
     /**
      * HTTP route for login requests
      * @param {Object} req - HTTP request
