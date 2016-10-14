@@ -50,7 +50,7 @@ class LogComponent extends Component {
                 >
                     {filteredLog.reverse().map((logEntry, i) => (
                         <tr className="c-table__row" key={i}>
-                            <td>{logEntry.type}</td>
+                            <td className={`c-cell--pictogram c-cell-${logEntry.type}`} />
                             <td>{moment(logEntry.date).format('MMMM Do, h:mm a')}</td>
                             <td>{logEntry.message}</td>
                         </tr>

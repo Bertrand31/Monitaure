@@ -58,13 +58,14 @@
     transition: all 300ms ease-in;
 }
 
-[data-health="up"], [data-health="down"], [data-health="waiting"] {
+[data-health="up"], [data-health="down"], [data-health="waiting"], .c-cell--pictogram {
+    min-width:26px;
     background-size:26px 26px;
     background-position: center center;
     background-repeat:no-repeat;
 }
-[data-health="up"] { background-image:url('../../svg/status-ok.svg'); }
-[data-health="down"] { background-image:url('../../svg/status-error.svg'); }
+[data-health="up"], .c-cell-upAlert { background-image:url('../../svg/status-ok.svg'); }
+[data-health="down"], .c-cell-downAlert { background-image:url('../../svg/status-error.svg'); }
 [data-health="waiting"] { background-image:url('../../svg/status-waiting.svg'); }
 
 [data-speed="slow"] { color:$warn; }
