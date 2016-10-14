@@ -77,7 +77,7 @@ module.exports = {
         CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), (err, destroyed) => {
             if (err) return res.serverError(err);
 
-            return res.ok();
+            return res.json({});
         });
     },
 };
