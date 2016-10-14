@@ -75,10 +75,7 @@ module.exports = {
         fetcher('user', userId, 'checks', (err, user) => {
             if (err) return callback(err);
 
-            // We test the number of checks this user has against the limit
-            const checksNbLimit = (typeof sails !== 'undefined') ? sails.config.checkNbLimit : 10;
-
-            if (user.checks.length >= checksNbLimit) {
+            if (user.checks.length >= sails.config.checkNbLimit) {
                 return callback('You reached the limit of ten checks per user');
             } else if (!Utilities.isDomainNameOrIP(checkData.domainNameOrIP)) {
                 return callback('Incorrect domain name or IP address');

@@ -23,7 +23,7 @@ module.exports = {
      */
     sendUpAlert(user, checkId, checkName, outageDuration) {
         const alertTitle = `✓ Monitaure alert: ${checkName} is back UP!`;
-        const alertText = `${checkName} is back up after ${outageDuration} minutes of downtime.`;
+        const alertText = `${checkName} is back up after ${outageDuration} minutes of downtime`;
 
         Sendgrid.send(user.email, alertTitle, alertText);
         GCM.send(user.gcmSubscriptions, alertText);
