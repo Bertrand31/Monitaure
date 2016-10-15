@@ -78,9 +78,7 @@ module.exports = (fetcher) => {
 
             checks.forEach((check) => {
                 asyncChecks.push((callback) => {
-                    checkPort(check, (result) => {
-                        callback(null, result);
-                    });
+                    checkPort(check, result => callback(null, result));
                 });
             });
 

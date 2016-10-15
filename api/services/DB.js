@@ -25,7 +25,7 @@ module.exports = {
             throw new Error('[Fetch] Incorret input types');
         }
 
-        findModel(itemsType).find(criteria).exec((err, items) => callback(err, items));
+        findModel(itemsType).find(criteria).exec(callback);
     },
 
     /**
@@ -39,7 +39,7 @@ module.exports = {
             throw new Error('[FetchOne] Incorrect input types');
         }
 
-        findModel(itemType).findOne({ id: itemId }).exec((err, item) => callback(err, item));
+        findModel(itemType).findOne({ id: itemId }).exec(callback);
     },
 
     /**
@@ -54,7 +54,7 @@ module.exports = {
             throw new Error('[FetchAndPopulate] Incorrect input types');
         }
 
-        findModel(itemType).findOne({ id: itemId }).populate(associationType).exec((err, populatedItem) => callback(err, populatedItem));
+        findModel(itemType).findOne({ id: itemId }).populate(associationType).exec(callback);
     },
 
     /**
@@ -68,7 +68,7 @@ module.exports = {
             throw new Error('[Create] Incorrect input types');
         }
 
-        findModel(itemType).create(data).exec((err, created) => callback(err, created));
+        findModel(itemType).create(data).exec(callback);
     },
 
     /**
@@ -83,7 +83,7 @@ module.exports = {
             throw new Error('[Update] Incorrect input types');
         }
 
-        findModel(itemType).update(filterCriteria, newData).exec((err, updated) => callback(err, updated));
+        findModel(itemType).update(filterCriteria, newData).exec(callback);
     },
 
     /** Destroys a database object
@@ -96,6 +96,6 @@ module.exports = {
             throw new Error('[Destroy] Incorrect input types');
         }
 
-        findModel(itemType).destroy(itemId).exec((err, destroyed) => callback(err, destroyed));
+        findModel(itemType).destroy(itemId).exec(callback);
     },
 };

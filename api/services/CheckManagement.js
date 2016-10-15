@@ -83,7 +83,7 @@ module.exports = {
                 return callback('Incorrect attributes');
             }
 
-            return creator('check', checkData, (err, created) => callback(err, created));
+            return creator('check', checkData, callback);
         });
     },
 
@@ -104,7 +104,7 @@ module.exports = {
                 return callback('You do not have access to this check');
             }
 
-            return updater('check', { id: checkId }, data, (err, updated) => callback(err, updated));
+            return updater('check', { id: checkId }, data, callback);
         });
     },
 
@@ -124,7 +124,7 @@ module.exports = {
                 return callback('You do not have access to this check');
             }
 
-            return destroyer('check', checkId, (err, destroyed) => callback(err));
+            return destroyer('check', checkId, callback);
         });
     },
 
