@@ -953,8 +953,8 @@ babel-types@^6.13.0, babel-types@^6.14.0, babel-types@^6.15.0, babel-types@^6.16
     to-fast-properties "^1.0.1"
 
 babylon@^6.11.0:
-  version "6.11.6"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.11.6.tgz#56dc52e624882841c7fe095257fbcb4a5bb61ae1"
+  version "6.12.0"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.12.0.tgz#953e6202e58062f7f5041fc8037e4bd4e17140a9"
 
 backo2@1.0.2:
   version "1.0.2"
@@ -1248,8 +1248,8 @@ camelcase@^3.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-3.0.0.tgz#32fc4b9fcdaf845fcdf7e73bb97cac2261f0ab0a"
 
 caniuse-db@^1.0.30000539, caniuse-db@^1.0.30000554:
-  version "1.0.30000555"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000555.tgz#12572c4e0111781c49b01e1fdcc455e7456b8ed4"
+  version "1.0.30000557"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000557.tgz#4a36c82f81b06fdd78461bfb1d3dc35afaa6deae"
 
 captains-log@~0.11.5:
   version "0.11.11"
@@ -1324,8 +1324,8 @@ chartist@^0.9.4, chartist@^0.9.8:
   resolved "https://registry.yarnpkg.com/chartist/-/chartist-0.9.8.tgz#08040365c27843811343f008b0bbe9933c780677"
 
 chokidar@^1.0.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.6.0.tgz#90c32ad4802901d7713de532dc284e96a63ad058"
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.6.1.tgz#2f4447ab5e96e50fb3d789fd90d4c72e0e4c70c2"
   dependencies:
     anymatch "^1.3.0"
     async-each "^1.0.0"
@@ -1971,8 +1971,8 @@ detect-indent@^3.0.1:
     repeating "^1.1.0"
 
 doctrine@^1.2.2:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.4.0.tgz#e2db32defa752407b935b381e89f3740e469e599"
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa"
   dependencies:
     esutils "^2.0.2"
     isarray "^1.0.0"
@@ -2244,8 +2244,8 @@ eslint-plugin-react@^6.4.1:
     jsx-ast-utils "^1.3.1"
 
 eslint@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.7.1.tgz#7faa84599e0fea422f04bc32db49054051a3f11a"
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.8.0.tgz#4fbbf6833d66654860c23a099c47a0f086de34b7"
   dependencies:
     chalk "^1.1.3"
     concat-stream "^1.4.6"
@@ -2269,7 +2269,7 @@ eslint@^3.7.1:
     lodash "^4.0.0"
     mkdirp "^0.5.0"
     natural-compare "^1.4.0"
-    optionator "^0.8.1"
+    optionator "^0.8.2"
     path-is-inside "^1.0.1"
     pluralize "^1.2.1"
     progress "^1.1.8"
@@ -3069,7 +3069,7 @@ html-comment-regex@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
 
-http_ece@^0.5.1:
+http_ece@^0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/http_ece/-/http_ece-0.5.2.tgz#5654d7ec9d996b749ce00a276e18d54b6d8f905f"
   dependencies:
@@ -4605,7 +4605,7 @@ optimist@~0.3.5:
   dependencies:
     wordwrap "~0.0.2"
 
-optionator@^0.8.1:
+optionator@^0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.2.tgz#364c5e409d3f4d6301d6c0b4c05bba50180aeb64"
   dependencies:
@@ -6344,8 +6344,8 @@ switchback@2.0.0:
     lodash "~2.4.1"
 
 symbol-observable@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.3.tgz#0fdb005e84f346a899d492beba23068b32d1525a"
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
 
 table@^3.7.8:
   version "3.8.0"
@@ -6792,11 +6792,11 @@ waterline@~0.11.0:
     waterline-schema "0.2.0"
 
 web-push@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.0.0.tgz#e865f33db1d19fbd01f83007cf7353533bb0838b"
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/web-push/-/web-push-3.1.0.tgz#f3aa31ea5c3de085ff9df751cab96e933fcb4735"
   dependencies:
     asn1.js "^4.8.1"
-    http_ece "^0.5.1"
+    http_ece "^0.5.2"
     jws "^3.1.3"
     minimist "^1.2.0"
     urlsafe-base64 "^1.0.0"
