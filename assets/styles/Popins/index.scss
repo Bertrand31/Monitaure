@@ -2,7 +2,7 @@
 @import '../includes/variables';
 
 .c-popins-container {
-    position:absolute;
+    position:fixed;
     top:1.8em;
     right:2.3em;
     z-index:4;
