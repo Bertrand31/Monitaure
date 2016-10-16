@@ -65,17 +65,17 @@ module.exports = {
 
     /**
      * Creates a check in the database and returns it
-     * @param {Function} fetcher - record fetching and population function
+     * @param {Function} fetcher - record fetching function
      * @param {Function} creator - create a record with provided data
      * @param {String} userId - the id of the user requesting this action
      * @param {Object} checkData - the attributes of the check to create
      * @param {Function} callback
      */
     createCheck(fetcher, creator, userId, checkData, callback) {
-        fetcher('user', userId, 'checks', (err, user) => {
+        fetcher('check', { owner: userId }, (err, checks) => {
             if (err) return callback(err);
 
-            if (user.checks.length >= sails.config.checkNbLimit) {
+            if (checks.length >= sails.config.checkNbLimit) {
                 return callback('You reached the limit of ten checks per user');
             } else if (!Utilities.isDomainNameOrIP(checkData.domainNameOrIP)) {
                 return callback('Incorrect domain name or IP address');
