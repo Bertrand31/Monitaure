@@ -15,7 +15,7 @@ module.exports = {
     * @param {String} domainNameOrIP
     * @returns {Boolean}
     */
-    isDomainNameOrIP: (domainNameOrIP) =>
+    isDomainNameOrIP: domainNameOrIP =>
         domainNameRegex.test(domainNameOrIP) || ipAddressRegex.test(domainNameOrIP),
 
     /**

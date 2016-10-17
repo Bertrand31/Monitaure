@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import Swipeable from 'react-swipeable';
 
 import Sidebar from './Sidebar/Container';
-import MainPanel from './MainPanel/Component';
 
 import '../../styles/Dashboard/index.scss';
 
