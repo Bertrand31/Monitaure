@@ -35,7 +35,7 @@ module.exports = {
      * @param {Object} user - raw database record of the user we just created
      */
     sendConfirmationEmail(user) {
-        const emailSubject = 'Monitaure account confirmation';
+        const emailSubject = '🙋 Monitaure account confirmation';
         const emailBody = EmailTemplates.Confirmation(`${baseUrl}/account/confirm/${user.confirmationToken}`, user.username);
 
         Sendgrid.send(user.email, emailSubject, emailBody);
