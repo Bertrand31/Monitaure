@@ -10,7 +10,7 @@
         '/images/logo.svg',
     ];
 
-    // LOCAL GET
+    // APP GETs
     global.toolbox.precache(filesToCache);
     global.toolbox.router.get('/images/*', global.toolbox.cacheFirst, {
         cache: {
@@ -18,23 +18,21 @@
             maxEntries: 30,
         },
     });
-    global.toolbox.router.get('/Check/getuserandchecks/', global.toolbox.networkOnly);
-    global.toolbox.router.get('/isLoggedIn/', global.toolbox.networkOnly);
-    // END LOCAL GET
+    global.toolbox.router.get('/User/getdata/', global.toolbox.fastest);
+    global.toolbox.router.get('/User/getchecks/', global.toolbox.networkOnly);
+    global.toolbox.router.get('/Auth/*', global.toolbox.networkOnly);
+    // END APP GETs
 
 
-    // LOCAL POST
+    // APP POSTs
     global.toolbox.router.post('/Check/*', global.toolbox.networkOnly);
-    global.toolbox.router.post([
-        '/User/*',
-        '/login/',
-        '/logout/',
-    ], global.toolbox.networkOnly);
-    // END LOCAL POST
+    global.toolbox.router.post('/User/*'. global.toolbox.networkOnly);
+    global.toolbox.router.post('/Auth/*'. global.toolbox.networkOnly);
+    // END APP POSTs
 
 
     // VENDOR GET
-    global.toolbox.router.get('/avatar/*', global.toolbox.cacheFirst, {
+    global.toolbox.router.get('/avatar/*', global.toolbox.fastest, {
         origin: /gravatar\.com/,
         cache: {
             name: 'static-vendor-cache-v1.8',
