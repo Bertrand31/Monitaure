@@ -64,8 +64,8 @@
     background-position: center center;
     background-repeat:no-repeat;
 }
-[data-health="up"], .c-cell-upAlert { background-image:url('../../svg/status-ok.svg'); }
-[data-health="down"], .c-cell-downAlert { background-image:url('../../svg/status-error.svg'); }
+[data-health="up"], .c-cell-up { background-image:url('../../svg/status-ok.svg'); }
+[data-health="down"], .c-cell-down { background-image:url('../../svg/status-error.svg'); }
 [data-health="waiting"] { background-image:url('../../svg/status-waiting.svg'); }
 
 [data-speed="slow"] { color:$warn; }
