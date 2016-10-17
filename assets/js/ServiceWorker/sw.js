@@ -5,7 +5,7 @@
     global.toolbox.router.default = global.toolbox.fastest;
 
     const filesToCache = [
-        '/',
+        '/app',
         '/app.js',
         '/images/logo.svg',
     ];
@@ -75,21 +75,20 @@
     global.addEventListener('notificationclick', (event) => {
         // console.log('On notification click: ', event.notification.tag);
         // Android doesn’t close the notification when you click on it
-        // See: http://crbug.com/463146
         event.notification.close();
 
-        // This looks to see if the current is already open and
-        // focuses if it is
+        // If the app is already open, we put focus on it
+        // Otherwise, we open in
         event.waitUntil(clients.matchAll({
             type: 'window',
         }).then((clientList) => {
             clientList.forEach((client) => {
-                if (client.url === '/' && 'focus' in client) {
+                if (client.url === '/app' && 'focus' in client) {
                     return client.focus();
                 }
             });
             if (clients.openWindow) {
-                return clients.openWindow('/');
+                return clients.openWindow('/app');
             }
         }));
     });
