@@ -78,6 +78,7 @@ const PageComponent = ({ children, menuIsOpen, openPopover, toggleMenu, openMenu
 );
 
 PageComponent.propTypes = {
+    children: PropTypes.element.isRequired,
     menuIsOpen: PropTypes.bool.isRequired,
     openPopover: PropTypes.func.isRequired,
     toggleMenu: PropTypes.func.isRequired,

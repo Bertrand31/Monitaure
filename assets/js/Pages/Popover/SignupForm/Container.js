@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
         return dispatch(UserActions.emailSent());
     }),
 
-    replacePopover: (popoverType) => dispatch(open(popoverType)),
+    replacePopover: popoverType => dispatch(open(popoverType)),
 });
 
 const SignupFormContainer = connect(

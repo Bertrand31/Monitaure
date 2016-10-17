@@ -35,12 +35,12 @@ module.exports = {
             emailNotifications: Boolean(req.param('emailNotifications')),
             owner: req.user.id,
         };
-        CheckManagement.createCheck(DB.fetch, DB.create, req.user.id, data, (err, created) => {
-            return res.json({
+        CheckManagement.createCheck(DB.fetch, DB.create, req.user.id, data, (err, created) =>
+            res.json({
                 err,
                 created,
-            });
-        });
+            })
+        );
     },
 
     /**
@@ -74,7 +74,7 @@ module.exports = {
         if (!req.wantsJSON) {
             return res.forbidden();
         }
-        CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), (err, destroyed) => {
+        CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), (err) => {
             if (err) return res.serverError(err);
 
             return res.json({});

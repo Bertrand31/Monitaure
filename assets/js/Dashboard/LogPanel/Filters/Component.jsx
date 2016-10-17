@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import moment from 'moment';
 
 const LogComponent = ({ log, updateFilter, toggleType }) => {
     if (log.length < 1) {
@@ -19,7 +17,9 @@ const LogComponent = ({ log, updateFilter, toggleType }) => {
         <form>
             <select name="checkId" onChange={updateFilter}>
                 <option value="">Show all checks</option>
-                {Object.keys(checksList).map(checkId => (<option key={checkId} value={checkId}>{checksList[checkId]}</option>))}
+                {Object.keys(checksList).map(checkId => (
+                    <option key={checkId} value={checkId}>{checksList[checkId]}</option>
+                ))}
             </select>
             {Object.keys(typesList).map((type, i) => (
                 <label key={i} htmlFor={type}>

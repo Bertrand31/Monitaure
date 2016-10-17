@@ -43,21 +43,6 @@ module.exports = {
     },
 
     /**
-    * Fetches and populate an object from the database
-    * @param {String} itemType - the model of the item we want to fetch
-    * @param {String} itemId - the id of the item we want to fetch
-    * @param {String} associationType - the model of the data set we want to populate our item  with
-    * @param {Function} callback
-    */
-    fetchAndPopulate(itemType, itemId, associationType, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string' || typeof associationType !== 'string') {
-            throw new Error('[FetchAndPopulate] Incorrect input types');
-        }
-
-        findModel(itemType).findOne({ id: itemId }).populate(associationType).exec(callback);
-    },
-
-    /**
     * Creates a database object
     * @param {String} itemType - the model of the item we want to create
     * @param {Object} data - the attributes of the item we want to create
@@ -88,7 +73,7 @@ module.exports = {
 
     /** Destroys a database object
     * @param {String} itemType - the model of the item we want to fetch
-    * @param {String} itemId - the id of the item we want to fetch
+    * @param {String} itemId - the id of the item we want to destroy
     * @param {Function} callback
     */
     destroy(itemType, itemId, callback) {

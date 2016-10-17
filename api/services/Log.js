@@ -1,4 +1,9 @@
 module.exports = {
+    /**
+     * Fetch all of the user's log entries from the DB
+     * @param {Function} fetcher - a function fetching a single record
+     * @param {Object} userId - the ID of the user
+     */
     getLogs(fetcher, userId, callback) {
         fetcher('user', userId, (err, user) => callback(err, user.log));
     },

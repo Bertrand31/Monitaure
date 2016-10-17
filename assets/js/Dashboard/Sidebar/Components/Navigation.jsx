@@ -51,6 +51,7 @@ const Navigation = ({ currentRoute, menuIsOpen, logout }) => (
 );
 
 Navigation.propTypes = {
+    currentRoute: PropTypes.string.isRequired,
     menuIsOpen: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
 };
