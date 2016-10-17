@@ -39,7 +39,6 @@
     "chai": "^3.5.0",
     "chartist": "^0.9.8",
     "connect-redis": "3.1.0",
-    "crypto": "0.0.3",
     "css-loader": "^0.25.0",
     "jade": "^1.11.0",
     "lodash": "^4.16.4",
