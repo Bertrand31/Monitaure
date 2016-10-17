@@ -6,181 +6,70 @@ import Page from './Container';
 const TourComponent = () => {
     const tourContent = (
         <div className="c-page-content">
-            <section className="c-pane c-pane--big c-pane--first c-pane--green">
-                <div className="c-pane--first__wrapper">
-                    <div className="c-stripeback" aria-hidden="true">
-                        <div className="c-bar c-bar-1"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-2"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-3"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-4"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-5"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-6"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-7"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-8"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-9"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-10"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                        <div className="c-bar c-bar-11"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
-                    </div>
-                    <div className="c-content">
-                        <div className="l-pane-grid">
-                            <div className="l-pane-grid__item">
-                                <h2 className="c-h2--big">Monitoring<br />for the masses</h2>
-                                <h3 className="c-h3--small">A simple and hassle-free server<br />monitoring dashboard</h3>
-                                <Link to="/tour" className="c-button--goto">How it works</Link>
-                            </div>
-                            <div className="l-pane-grid__item l-pane-grid__item--image">
-                                <div className="c-image-circle">
-                                    <img src="/images/iphone.png" alt="Monitaure app on an iPhone" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <section className="c-pane">
+                <div className="c-content">
+                    <h2 className="c-chapter__title" className="c-h2--big">How to use Monitaure</h2>
+                    <h3 className="c-h3--small">This page will teach you the basics of the app</h3>
                 </div>
             </section>
-
-            <section className="c-pane c-pane--big c-pane--second">
-                <div className="c-flex-wrapper">
-                    <h2 className="c-h2">Why it&apos;s awesome</h2>
-                    <div className="l-pane-grid">
-                        <div className="l-pane-grid__item">
-                            <div className="c-imgtxt c-imgtxt--browser">
-                                <h3 className="c-imgtxt__title">No download</h3>
-                                <p className="c-imgtxt__body">
-                                    Use Monitaure directly from your computer, tablet and/or mobile phone.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="l-pane-grid__item">
-                            <div className="c-imgtxt c-imgtxt--tech">
-                                <h3 className="c-imgtxt__title">Top-tier tech</h3>
-                                <p className="c-imgtxt__body">
-                                    Monitaure is backed by the industry&apos;s most robust technologies, ensuring you the best reliability in town.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="l-pane-grid__item">
-                            <div className="c-imgtxt c-imgtxt--free">
-                                <h3 className="c-imgtxt__title">Completely free</h3>
-                                <p className="c-imgtxt__body">
-                                    &ldquo;It&apos;s free,<br />and always will be&rdquo;.<br />Oh, and ad-free too.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <nav className="c-pane c-pane--chapters">
+                <ul className="c-chapters">
+                    <li className="c-chapters__el">
+                        <a className="c-chapters__link c-chapters__link--start" href="#gettingstarted">Getting started</a>
+                    </li>
+                    <li className="c-chapters__el">
+                        <a className="c-chapters__link c-chapters__link--first" href="#firstcheck">Your first check</a>
+                    </li>
+                    <li className="c-chapters__el">
+                        <a className="c-chapters__link c-chapters__link--install" href="#install">Install the app</a>
+                    </li>
+                    <li className="c-chapters__el">
+                        <a className="c-chapters__link c-chapters__link--notifs" href="#notifications">Receive notifications</a>
+                    </li>
+                </ul>
+            </nav>
+            <section className="c-pane c-chapter c-chapter--start">
+                <h2 className="c-chapter__title">Getting started</h2>
+                <p className="c-chapter__body">
+                    First, you have to signup here. You will receive a welcome email, containing a link to activate your account.
+                    Once this is done, you can log into the app and meet Monitaure alpha version dashboard. Of course, it is empty (for now).
+                </p>
             </section>
-
-            <section className="c-pane c-pane--small c-pane--realtime">
-                <div className="l-pane-grid">
-                    <div className="l-pane-grid__item">
-                        <div className="c-pane--small__number">1</div>
-                        <div className="c-pane--small__text">
-                            <h3 className="c-pane--small__title">Real-time data</h3>
-                            <p className="c-pane__body">
-                                Real-time data allowing you to react quickly in case on of your servers goes belly-up.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="l-pane-grid__item">
-                        <img src="/images/macbook.png" className="c-pane--small__image" alt="Real-time updates" />
-                    </div>
-                </div>
+            <section className="c-pane c-chapter c-chapter--first">
+                <h2 className="c-chapter__title">Getting started</h2>
+                <p className="c-chapter__body">
+                    To create your first check, click the "Add a check" button. In the table line that just appeared, fill the fields like so:
+                </p>
+                <ul>
+                    <li>Name: The name of your check. It isuseful only to you, so you can quickly identify which check does what ;</li>
+                    <li>Domain Name or IP: The domain name or IP address of the server you want to monitor. Do NOT enter an URL, or you won't be able to save the check ;</li>
+                    <li>Port: The port of the service you want to monitor ;</li>
+                    <li>Alerts: Use this slider to activate the notifications. More on this later.</li>
+                </ul>
+                <p className="c-chapter__body">
+                    When you're done, click the "OK" button to save the check.<br />
+                    You now have to wait for this check to start getting populated with data.<br /><br />
+                    Once your check is populated, the "waiting" pictogram is replaced with an "OK" pictogram. You can notice that the global statistics are now populated, and you can click on the newly created check's line to open its detailed statistics.<br /><br />
+                    You can now add more checks to monitor all your servers.
+                </p>
             </section>
-            <section className="c-pane c-pane--small c-pane--green c-pane--bubbles c-pane--notifications">
-                <div className="c-pane--bubbles__bubbles-container" aria-hidden="true">
-                    <div className="c-pane--bubbles__bubble" />
-                    <div className="c-pane--bubbles__bubble" />
-                    <div className="c-pane--bubbles__bubble" />
-                </div>
-                <div className="l-pane-grid">
-                    <div className="l-pane-grid__item">
-                        <div className="c-pane--small__number">2</div>
-                        <div className="c-pane--small__text">
-                            <h3 className="c-pane--small__title">Notifications</h3>
-                            <p className="c-pane__body">
-                                Whenever something happens, you will immediatly be notified by email and on your phone.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="l-pane-grid__item">
-                        <img src="/images/notifications.svg" className="c-pane--small__image" alt="Email and mobile notifications" />
-                    </div>
-                </div>
+            <section className="c-pane c-chapter c-chapter--install">
+                <h2 className="c-chapter__title">Installing the app on your phone</h2>
+                <p className="c-chapter__body">
+                    Since Monitaure is a progressive web app, it is able to work offline or in poor network conditions.<br /><br />
+                    You can also install it on your phone. After two visits, your browser will prompt you like so:<br />
+                    After accepting to install the application, you should notice a new icon on your homescreen.<br /><br />
+                    You can now start the app, even when you're offline or on a bad network:<br />
+                </p>
             </section>
-            <section className="c-pane c-pane--small c-pane--hybrid">
-                <div className="l-pane-grid">
-                    <div className="l-pane-grid__item">
-                        <span className="c-pane--small__number">3</span>
-                        <div className="c-pane--small__text">
-                            <h3 className="c-pane--small__title">Mobile App</h3>
-                            <p className="c-pane__body">
-                                You can install the Monitaure app on your phone, use it offline and receive push notifications.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="l-pane-grid__item">
-                        <img src="/images/hybrid.svg" className="c-pane--small__image" alt="Hybird app" />
-                    </div>
-                </div>
-            </section>
-
-            <section className="c-separator" role="presentation" />
-
-            <section className="c-pane c-pane--big c-pane--about" id="a-aboutus">
-                <div className="c-pane--about__wrapper">
-                    <h2 className="c-h2">About us</h2>
-                    <p className="c-pane__body">We&apos;re two french tech-lovers, currently based in France.<br />Feel free to get in touch!</p>
-                    <div className="l-pane-grid">
-                        <div className="l-pane-grid__item">
-                            <div className="c-pane--about__person c-person c-person--bertrand">
-                                <div className="c-person__occupation">Front & Back code</div>
-                                <div className="c-person__separator" />
-                                <div className="c-person__name">Bertrand Junqua</div>
-                                <ul className="c-person__social">
-                                    <li className="c-person__social-el">
-                                        <a className="c-icon-web" href="https://awebsiteabout.me">
-                                            <img alt="Bertrand&apos;s website" src="/images/social-world.svg" />
-                                        </a>
-                                    </li>
-                                    <li className="c-person__social-el">
-                                        <a className="c-icon-github" href="https://github.com/Bertrand31/">
-                                            <img alt="Bertrand&apos;s Github profile" src="/images/social-github.svg" />
-                                        </a>
-                                    </li>
-                                    <li className="c-person__social-el">
-                                        <a className="c-icon-twitter" href="https://twitter.com/Bertrand31/">
-                                            <img alt="Bertrand&apos;s Twitter profile" src="/images/social-twitter.svg" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="l-pane-grid__item">
-                            <div className="c-pane--about__person c-person c-person--guillaume">
-                                <div className="c-person__occupation">UX & UI Design</div>
-                                <div className="c-person__separator" />
-                                <div className="c-person__name">Guillaume Parra</div>
-                                <ul className="c-person__social">
-                                    <li className="c-person__social-el">
-                                        <a className="c-icon-web" href="https://whyyouwillhire.me/">
-                                            <img alt="Guillaume&apos;s website" src="/images/social-world.svg" />
-                                        </a>
-                                    </li>
-                                    <li className="c-person__social-el">
-                                        <a className="c-icon-drrible" href="https://dribbble.com/guillaumeparra">
-                                            <img alt="Guillaume&apos;s Dribble profile" src="/images/social-dribble.svg" />
-                                        </a>
-                                    </li>
-                                    <li className="c-person__social-el">
-                                        <a className="c-icon-twitter" href="https://twitter.com/Guillaume_Parra/">
-                                            <img alt="Guillaume&apos;s Twitter profile" src="/images/social-twitter.svg" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <section className="c-pane c-chapter c-chapter--notifs">
+                <h2 className="c-chapter__title">Receiving notifications</h2>
+                <p className="c-chapter__body">
+                    If, in Monitaure's dashboard, you chose to receive notifications for when one of your services goes down, you will receive push notifications and emails from Monitaure.<br /><br />
+                    For emails, no configuration is needed.<br /><br  />
+                    For push notifications, if you installed the app on you phone, you automatically opted in:<br /><br />
+                    For you desktop browser, if it is Chrome or Firefox, you will need to allow Monitaure to send you notifications. Then, you will be able to receive notifications like so:<br /><br />
+                </p>
             </section>
         </div>
     );
