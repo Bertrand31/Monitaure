@@ -26,8 +26,8 @@
 
     // APP POSTs
     global.toolbox.router.post('/Check/*', global.toolbox.networkOnly);
-    global.toolbox.router.post('/User/*'. global.toolbox.networkOnly);
-    global.toolbox.router.post('/Auth/*'. global.toolbox.networkOnly);
+    global.toolbox.router.post('/User/*', global.toolbox.networkOnly);
+    global.toolbox.router.post('/Auth/*', global.toolbox.networkOnly);
     // END APP POSTs
 
 
