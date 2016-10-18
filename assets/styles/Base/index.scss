@@ -92,7 +92,7 @@ input[type=number] {
 }
 .c-child-change-enter.c-child-change-enter-active {
     opacity: 1;
-    transition: all 500ms ease-in;
+    transition: all .25s ease-in;
 }
 .c-child-change-leave {
     opacity: 1;
