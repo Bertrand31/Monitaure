@@ -6,8 +6,8 @@ import Sidebar from './Component';
 import { GETer, POSTer } from '../../serverIO/ajaxMethods';
 import * as API from '../../serverIO/dataHandling';
 import { create as popinCreate } from '../../Popins/Actions';
-import * as UserActions from '../../User/Actions';
-import * as MenuActions from '../../Menu/Actions';
+import { login, logout } from '../../User/Actions';
+import { toggle as toggleMenu } from '../../Menu/Actions';
 
 
 const mapStateToProps = state => ({
@@ -18,22 +18,16 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     hydrateUser: () => API.getUserData(GETer, (err, user) => {
-        if (err) return dispatch(popinCreate('alert', err.message));
-
         typeof heap !== 'undefined' && heap.identify(user.username);
-
-        return dispatch(UserActions.login(user));
+        return dispatch(login(user));
     }),
 
-    toggleMenu: () => dispatch(MenuActions.toggle()),
+    toggleMenu: () => dispatch(toggleMenu()),
 
-    logout: () => API.logout(POSTer, (err) => {
-        if (err) return dispatch(popinCreate('alert', err.message));
-
+    logout: () => {
         browserHistory.push('/');
-        dispatch(MenuActions.close());
-        dispatch(UserActions.logout());
-    }),
+        API.logout(POSTer, () => dispatch(logout()));
+    },
 });
 
 const SidebarContainer = connect(
