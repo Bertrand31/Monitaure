@@ -16,3 +16,13 @@ h3 {
     font-weight:400;
     margin:1.7em 0;
 }
+h1,h2,h3,h4,p {
+    font-smooth:always;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    font-feature-settings: "liga1" 1, "dlig" 1, "kern" 1;
+    hyphens:auto;
+    -webkit-hyphenate-before: 2;
+    -webkit-hyphenate-after: 3;
+    hyphenate-lines: 3;
+}
