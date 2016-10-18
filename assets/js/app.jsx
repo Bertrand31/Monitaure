@@ -39,8 +39,14 @@ const checkAuth = (nextState, replace, callback) => {
         if (err || !res) return callback();
 
         store.dispatch(res.isLoggedIn ? UserActions.login() : UserActions.logout());
+        clearTimeout(requestTimeout);
         return callback();
     });
+    // If the server fails to answer within 2 seconds, we render
+    // the app anyway, using the state from localStorage
+    const requestTimeout = setTimeout(() => {
+        callback();
+    }, 2000);
 };
 
 const requireAuth = (nextState, replace) => {
