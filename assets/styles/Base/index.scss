@@ -99,5 +99,20 @@ input[type=number] {
 }
 .c-child-change-leave.c-child-change-leave-active {
     opacity: 0.01;
-    transition: all 300ms ease-in;
+    transition: all .25s ease-in;
+}
+
+.c-popover-change-enter {
+    opacity: 0.01;
+}
+.c-popover-change-enter.c-popover-change-enter-active {
+    opacity: 1;
+    transition: all .2s ease-in;
+}
+.c-popover-change-leave {
+    opacity: 1;
+}
+.c-popover-change-leave.c-popover-change-leave-active {
+    opacity: 0.01;
+    transition: all .2s ease-in;
 }
