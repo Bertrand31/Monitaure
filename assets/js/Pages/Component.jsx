@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 import Popover from './Popover/Container';
 
-import '../../styles/Homepage/index.scss';
+import '../../styles/Pages/index.scss';
 
 const PageComponent = ({ children, menuIsOpen, openPopover, toggleMenu, openMenu, closeMenu }) => (
     <div>

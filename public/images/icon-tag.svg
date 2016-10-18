@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="97px" height="57px" viewBox="0 0 97 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
-    <title>Dev</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Monitaure_desktop-Copy-2" transform="translate(-386.000000, -4458.000000)" fill="#40D89F">
-            <path d="M390.686716,4486.97266 L415.155466,4497.51953 L415.155466,4501.94922 L386.081247,4488.625 L386.081247,4485.21484 L415.155466,4471.92578 L415.155466,4476.35547 L390.686716,4486.97266 Z M425.069528,4514.39453 L421.237497,4514.39453 L442.612497,4458.8125 L446.409372,4458.8125 L425.069528,4514.39453 Z M478.12031,4486.83203 L453.124216,4476.17969 L453.124216,4471.85547 L482.831247,4485.14453 L482.831247,4488.55469 L453.124216,4501.87891 L453.124216,4497.51953 L478.12031,4486.83203 Z" id="Dev"></path>
-        </g>
-    </g>
-</svg>
+<svg width="97" height="57" viewBox="0 0 97 57" xmlns="http://www.w3.org/2000/svg"><title>Dev</title><path d="M4.687 28.973L29.155 39.52v4.43L.081 30.624v-3.41l29.074-13.29v4.43L4.687 28.973zM39.07 56.395h-3.833L56.612.812h3.797L39.07 56.395zm53.05-27.563L67.124 18.18v-4.325l29.707 13.29v3.41L67.124 43.879v-4.36L92.12 28.833z" fill="#40D89F" fill-rule="evenodd"/></svg>

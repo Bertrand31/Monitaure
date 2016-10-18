@@ -7,7 +7,7 @@ const HomepageComponent = () => {
     const homepageContent = (
         <div className="c-page-content">
             <section className="c-pane c-pane--big c-pane--first c-pane--green">
-                <div className="c-pane--first__wrapper">
+                <div className="c-pane--big__wrapper c-pane--first__wrapper">
                     <div className="c-stripeback" aria-hidden="true">
                         <div className="c-bar c-bar-1"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>
                         <div className="c-bar c-bar-2"><div className="c-bar__line" /> <div className="c-bar__dot" /></div>

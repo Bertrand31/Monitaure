@@ -4,10 +4,12 @@
 .o-header__logo {
     max-width:none;
     top:1.8em;
-    z-index:0;
+    z-index:1;
+    cursor:pointer;
 }
 .c-topnav {
     position:absolute;
+    text-align:center;
     .hamburger {
         display:none;
     }
@@ -72,7 +74,7 @@
 .c-pane--small {
     min-height:50vh;
 }
-.c-pane--first {
+.c-pane--big {
     height:100vh;
     &:after {
         content:"Scroll down";
@@ -80,12 +82,14 @@
         width:auto;
         padding-left:1.4em;
     }
-    .c-pane--first__wrapper {
+    .c-pane--big__wrapper {
         padding:67px 0 0;
         display:flex;
         justify-content:center;
         border:10px solid #fff;
     }
+}
+.c-pane--first {
     .l-pane-grid__item {
         align-self:flex-start;
         &:first-child {
@@ -256,6 +260,9 @@
         background:transparent url('../../svg/dot-line.svg') center center repeat-x;
         background-size:15px 15px;
     }
+}
+.c-pane--tour {
+    background-image:url('/images/insitu-dashboard.jpg');
 }
 .c-pane--try {
     position:relative;
