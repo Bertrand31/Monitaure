@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Popins from '../Popins/Container';
 
@@ -26,7 +27,17 @@ class AppComponent extends Component {
         return (
             <div className={`react-container ${this.props.isOffline ? 'is-offline' : ''}`}>
                 <Popins />
-                {this.props.children}
+                <ReactCSSTransitionGroup
+                    component="div"
+                    className="c-child-route"
+                    transitionName="c-child-change"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
+                >
+                    {React.cloneElement(this.props.children, {
+                        key: location.pathname
+                    })}
+                </ReactCSSTransitionGroup>
             </div>
         );
     }
