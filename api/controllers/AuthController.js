@@ -43,9 +43,7 @@ module.exports = {
             return res.forbidden();
         }
         req.logout();
-        res.send({
-            message: 'Logged out successfuly',
-        });
+        res.send({});
     },
     /**
      * HTTP route for checking whether the user's session
