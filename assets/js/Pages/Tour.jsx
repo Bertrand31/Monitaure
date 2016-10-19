@@ -40,20 +40,22 @@ const TourComponent = () => {
             </nav>
             <section className="c-pane c-chapter c-chapter--start">
                 <div className="c-chapter__wrapper">
-                    <h2 className="c-chapter__title">Getting started</h2>
+                    <h2 className="c-chapter__title c-chapter__title--start">Getting started</h2>
                     <p className="c-chapter__body">
                         First, you have to signup here. You will receive a welcome email, containing a link to activate your account.
+                    </p>
+                    <p className="c-chapter__body">
                         Once this is done, you can log into the app and meet Monitaure alpha version dashboard. Of course, it is empty (for now).
                     </p>
                 </div>
             </section>
             <section className="c-pane c-chapter c-chapter--first">
                 <div className="c-chapter__wrapper">
-                    <h2 className="c-chapter__title">Creating your first check</h2>
+                    <h2 className="c-chapter__title c-chapter__title--first">Creating your first check</h2>
                     <p className="c-chapter__body">
                         To create your first check, click the "Add a check" button. In the table line that just appeared, fill the fields like so:
-                        <img src="/images/dashboard-sample-shadow.png" alt="Monitoring dashboard" />
                     </p>
+                    <img src="/images/dashboard-sample-shadow.png" alt="Monitoring dashboard" />
                     <ul>
                         <li>Name: The name of your check. It isuseful only to you, so you can quickly identify which check does what ;</li>
                         <li>Domain Name or IP: The domain name or IP address of the server you want to monitor. Do NOT enter an URL, or you won't be able to save the check ;</li>
@@ -62,35 +64,49 @@ const TourComponent = () => {
                     </ul>
                     <p className="c-chapter__body">
                         When you're done, click the "OK" button to save the check.<br />
-                        You now have to wait for this check to start getting populated with data.<br /><br />
+                        You now have to wait for this check to start getting populated with data.
+                    </p>
+                    <p className="c-chapter__body">
                         Once your check is populated, the "waiting" pictogram is replaced with a "✔️" pictogram. You can notice that the global statistics are now populated, and you can click on the newly created check's line to open its detailed statistics.<br /><br />
                         You can now add more checks to monitor all your servers.
                     </p>
                 </div>
             </section>
-            <section className="c-pane c-chapter c-chapter--install">
+            <section className="c-pane c-chapter c-chapter--app">
                 <div className="c-chapter__wrapper">
-                    <h2 className="c-chapter__title">Installing the app on your phone</h2>
+                    <h2 className="c-chapter__title c-chapter__title--app">Installing the app on your phone</h2>
                     <p className="c-chapter__body">
-                        Since Monitaure is a progressive web app, it is able to work offline or in poor network conditions.<br /><br />
-                        You can also install it on your phone. After two visits, your browser will prompt you like so:<br />
-                        <img src="/images/add-to-homescreen.svg" alt="Service worker prompt" /><br />
-                        After accepting to install the application, you should notice a new icon on your homescreen.<br /><br />
-                        You can now start the app, even when you're offline or on a bad network:<br />
+                        Since Monitaure is a progressive web app, it is able to work offline or in poor network conditions.
                     </p>
+                    <p className="c-chapter__body">
+                        You can also install it on your phone. After two visits, your browser will prompt you like so:<br />
+                        <img src="/images/add-to-homescreen.svg" alt="Service worker prompt" />
+                        After accepting to install the application, you should notice a new icon on your homescreen.
+                    </p>
+                    <p className="c-chapter__body">
+                        You can now start the app, even when you're offline or on a bad network:<br/><br/><br/><br/>
+                    </p>
+                    <div className="l-pane-grid">
+                        <div className="l-pane-grid__item">
+                            <img src="/images/app-offline-1.png" alt="Offline application" />
+                        </div>
+                        <div className="l-pane-grid__item">
+                            <img src="/images/app-offline-2.png" alt="Offline application" />
+                        </div>
+                    </div>
                 </div>
             </section>
             <section className="c-pane c-chapter c-chapter--notifs">
                 <div className="c-chapter__wrapper">
-                    <h2 className="c-chapter__title">Receiving notifications</h2>
+                    <h2 className="c-chapter__title c-chapter__title--notifs">Receiving notifications</h2>
                     <p className="c-chapter__body">
                         If, in Monitaure's dashboard, you chose to receive notifications for when one of your services goes down, you will receive push notifications and emails from Monitaure.<br /><br />
                         For emails, no configuration is needed.<br /><br  />
                         For push notifications, if you installed the app on you phone, you automatically opted in:<br /><br />
-                        <img src="/images/mobile-push-1.svg" alt="Mobile push notification" /><br />
-                        <img src="/images/mobile-push-2.svg" alt="Mobile push notification" /><br />
+                        <img src="/images/mobile-push-1.svg" alt="Mobile push notification" />
+                        <img src="/images/mobile-push-2.svg" alt="Mobile push notification" />
                         For you desktop browser, if it is Chrome or Firefox, you will need to allow Monitaure to send you notifications. Then, you will be able to receive notifications like so:<br /><br />
-                        <img src="/images/chrome-push.svg" alt="Desktop push notification" /><br />
+                        <img src="/images/chrome-push.svg" alt="Desktop push notification" />
                     </p>
                 </div>
             </section>

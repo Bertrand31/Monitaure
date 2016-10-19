@@ -364,29 +364,99 @@ $positions: 60% 70% 76% 77% 72% 60% 50% 42% 38% 33% 30%;
     }
 }
 .c-chapter__wrapper {
-    max-width:1400px;
-    padding:2%;
+    max-width:750px;
+    padding:2% 0 3em;
     text-align:center;
+    position:relative;
     &:after {
         content:"";
         display:block;
+        position:absolute;
+        bottom:0;
         width:100%;
         height:1px;
         background:$softwhite;
     }
 }
-.c-chapter__title {
-    font-size:2.2em;
+.c-chapter--app {
+    .c-chapter__wrapper {
+        padding-bottom:0;
+    }
+    .l-pane-grid {
+        justify-content:space-around;
+    }
+    .l-pane-grid__item {
+        line-height:0;
+    }
+}
+.c-chapters {
+    display:flex;
+    align-items:baseline;
+    width:100%;
+    max-width:900px;
+    justify-content:space-around;
+    font-size:.85em;
+    font-weight:600;
+    margin-top:1.2em;
 }
 .c-chapters__el {
     text-align:center;
-    svg * {
-        stroke:#C0C0C0;
-        fill:#fff;
-        display:block;
+}
+.c-chapters__link {
+    display:flex;
+    flex-direction:column;
+    text-transform:uppercase;
+    padding-top:4em;
+    padding-bottom:1.2em;
+    color:#C7C7C7;
+    border-bottom:1px solid #fff;
+    transition:border .3s ease;
+    background:transparent center top no-repeat;
+    &:hover {
+        color:$bluegreen;
+        border-bottom:1.5px solid $bluegreen;
     }
-    &:hover svg * {
-        stroke:$lightgreen;
+}
+.c-chapters__link--start {
+    background-image:url('/images/chapter-start.svg');
+}
+.c-chapters__link--first {
+    background-image:url('/images/chapter-check.svg');
+}
+.c-chapters__link--install {
+    background-image:url('/images/chapter-app.svg');
+}
+.c-chapters__link--notifs {
+    background-image:url('/images/chapter-notif.svg');
+}
+.c-chapter__title {
+    font-size:2.2em;
+    background:transparent center top no-repeat;
+    background-size:58px;
+    padding-top:2.8em;
+    margin-bottom:2.8em;
+}
+.c-chapter__title--start {
+    background-image:url('/images/chapter-start.svg');
+}
+.c-chapter__title--first {
+    background-image:url('/images/chapter-check.svg');
+}
+.c-chapter__title--app {
+    background-image:url('/images/chapter-app.svg');
+}
+.c-chapter__title--notifs {
+    background-image:url('/images/chapter-notif.svg');
+}
+.c-chapter__body {
+    padding:1em 0;
+    text-align:left;
+    color:$lighter;
+    font-size:1.25em;
+    line-height:1.6;
+    img {
+        display:block;
+        margin:1.5em auto;
     }
 }
 .c-pane--try {
