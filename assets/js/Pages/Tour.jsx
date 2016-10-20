@@ -44,13 +44,20 @@ class TourComponent extends Component {
                 </nav>
                 <section className="c-pane c-chapter c-chapter--start">
                     <div className="c-chapter__wrapper">
-                        <h2 className="c-chapter__title c-chapter__title--start">Getting started</h2>
-                        <p className="c-chapter__body">
-                            First, you have to signup here. You will receive a welcome email, containing a link to activate your account.
-                        </p>
-                        <p className="c-chapter__body">
-                            Once this is done, you can log into the app and meet Monitaure alpha version dashboard. Of course, it is empty (for now).
-                        </p>
+                        <div className="l-pane-grid">
+                            <div className="l-pane-grid__item">
+                                <h2 className="c-chapter__title c-chapter__title--start">Getting started</h2>
+                                <p className="c-chapter__body">
+                                    First, you have to signup. You will receive a welcome email, containing a link to activate your account.
+                                </p>
+                                <p className="c-chapter__body">
+                                    Once this is done, you can log into the app and meet Monitaure's dashboard. Of course, it is empty (for now).
+                                </p>
+                            </div>
+                            <div className="l-pane-grid__item">
+                                <img src="/images/start-icon.svg" alt="Getting started with Monitaure" />
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <section className="c-pane c-chapter c-chapter--first">

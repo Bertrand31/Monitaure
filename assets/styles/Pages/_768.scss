@@ -264,6 +264,18 @@
 .c-pane--tour {
     background-image:url('/images/insitu-dashboard.jpg');
 }
+.c-chapter--start {
+    .l-pane-grid__item {
+        width:50%;
+    }
+    .c-chapter__title {
+        position:relative;
+        left:-2.5em;
+        padding:.5em 0 .5em 2.5em;
+        text-align:left;
+        background-position:left center;
+    }
+}
 .c-dashboard-tuto {
     position:relative;
 }
