@@ -23,11 +23,6 @@ module.exports = {
             message: logMessage,
         };
 
-        // TMP: migrating new users
-        if (typeof user.log === 'undefined') {
-            user.log = [];
-        }
-        // End of TMP
         const log = Utilities.garbageCollection(user.log);
         log.push(newLogEntry);
 
