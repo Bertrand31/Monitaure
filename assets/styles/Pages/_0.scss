@@ -364,7 +364,6 @@ $positions: 60% 70% 76% 77% 72% 60% 50% 42% 38% 33% 30%;
     }
 }
 .c-chapter__wrapper {
-    max-width:750px;
     padding:2% 0 3em;
     text-align:center;
     position:relative;
@@ -448,7 +447,12 @@ $positions: 60% 70% 76% 77% 72% 60% 50% 42% 38% 33% 30%;
 .c-chapter__title--notifs {
     background-image:url('/images/chapter-notif.svg');
 }
-.c-chapter__body {
+.c-dashboard-tuto__captions {
+    display:none;
+}
+.c-chapter__body, .creation-step {
+    max-width:750px;
+    margin:0 auto;
     padding:1em 0;
     text-align:left;
     color:$lighter;
@@ -456,7 +460,13 @@ $positions: 60% 70% 76% 77% 72% 60% 50% 42% 38% 33% 30%;
     line-height:1.6;
     img {
         display:block;
-        margin:1.5em auto;
+        margin:1.7em auto;
+    }
+}
+.creation-step__title {
+    font-weight:700;
+    &:after {
+        content:": ";
     }
 }
 .c-pane--try {

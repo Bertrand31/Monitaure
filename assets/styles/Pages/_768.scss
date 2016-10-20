@@ -264,6 +264,82 @@
 .c-pane--tour {
     background-image:url('/images/insitu-dashboard.jpg');
 }
+.c-dashboard-tuto {
+    position:relative;
+}
+.c-dashboard-tuto__captions {
+    display:block;
+    position:absolute;
+    bottom:1.9em;
+    left:0;
+    right:0;
+}
+.creation-number, .creation-step:before {
+    display:inline-flex;
+    cursor:pointer;
+    justify-content:center;
+    align-items:center;
+    width:2.2em;height:2.2em;
+    border-radius:100%;
+    background:transparent;
+    border:$light solid 3px;
+    box-shadow:0 0 0 1.5px $bluegreen;
+    transition:all .2s ease-in-out;
+}
+.creation-number.s-is-active, .creation-step.s-is-active:before{
+    color:#fff;
+    background:$bluegreen;
+}
+.creation-number {
+    font-size:.8em;
+    color:$bluegreen;
+    border-width:2px;
+    box-shadow:0 0 0 1px $bluegreen;
+    position:absolute;
+    bottom:0;
+}
+.creation-number-1 {
+    left:30.7%;
+}
+.creation-number-2 {
+    left:51.3%;
+}
+.creation-number-3 {
+    left:72.5%;
+}
+.creation-number-4 {
+    left:88.3%;
+}
+.creation-step {
+    display:none;
+    text-align:center;
+    &:before {
+        content:attr(data-step);
+        font-size:1.15em;
+        border-color:#fff;
+    }
+    &:after {
+        content:'';
+        display:block;
+        width:100%;
+        height:1px;
+        margin:4em 0;
+        background:$softwhite;
+    }
+    &.s-is-active {
+        display:block;
+    }
+}
+.creation-step__title {
+    font-size:1.32em;
+    font-weight:400;
+    display:block;
+    text-align:center;
+    margin:1em 0;
+    &:after {
+        content:none;
+    }
+}
 .c-pane--try {
     position:relative;
     height:388px;
