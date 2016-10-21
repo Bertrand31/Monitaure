@@ -25,12 +25,10 @@ module.exports = {
     * @param {Array} array
     * @return {Array}
     */
-    garbageCollection: (array) => {
+    garbageCollection: (array, date = new Date()) => {
         if (!Array.isArray(array) || array.length < 1) return [];
 
-        const oneMonthAgo = new Date();
-        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-        const oneMonthAgoTimestamp = oneMonthAgo.getTime();
+        const oneMonthAgoTimestamp = date.setMonth(date.getMonth() - 1);
 
         // We return an array with only the values younger than a month
         return array.filter(el => el.date.getTime() > oneMonthAgoTimestamp);

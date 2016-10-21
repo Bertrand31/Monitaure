@@ -1,190 +1,54 @@
-const assert = require('chai').assert;
-// const expect = require('chai').expect;
+// const assert = require('chai').assert;
+const expect = require('chai').expect;
 
-const CheckManagement = require('../api/services/CheckManagement');
-const UserManagement = require('../api/services/UserManagement');
+const { customFloor, isDomainNameOrIP, garbageCollection } = require('../api/services/Utilities');
 
-const fakeUser = {
-    username: 'Test User',
-    email: 'bertrandjun@gmail.com',
-    password: '$2a$10$4M/ShIlen3bSud80/131du99FCn76yMtdU6otysutV2yAfBbfizKm',
-    confirmedAccount: false,
-    emailHash: '$2a$10$kuSsGa6PjZtDRWPnFq846OmbHoShQ.GRhCAqt4SCczyJehMPbSFIm',
-    confirmationToken: '032c0de1efc370edaa416e69a2fad16a',
-    createdAt: '2016-05-12T20:40:44.517Z',
-    updatedAt: '2016-05-12T20:40:44.517Z',
-    id: '5734dfe1a55ad89e36d722f9',
-};
-
-const fakeCheck = {
-    owner: '5734dfe1a55ad89e36d722f9',
-    name: 'HTTP @ Google',
-    domainNameOrIP: 80,
-    emailNotifications: true,
-    history: [
-        { date: new Date('2016-05-12T20:01:31.809Z'), duration: 34 },
-        { date: new Date('2016-05-12T20:02:55.067Z'), duration: 35 },
-        { date: new Date('2016-05-12T20:03:55.117Z'), duration: 26 },
-        { date: new Date('2016-05-12T20:04:55.101Z'), duration: 29 },
-        { date: new Date('2016-05-12T20:05:55.135Z'), duration: 32 },
-        { date: new Date('2016-05-12T20:06:55.158Z'), duration: 27 },
-        { date: new Date('2016-05-12T20:07:55.167Z'), duration: 27 },
-        { date: new Date('2016-05-12T20:08:55.201Z'), duration: 32 },
-        { date: new Date('2016-05-12T20:09:55.227Z'), duration: 27 },
-        { date: new Date('2016-05-12T20:10:55.257Z'), duration: 27 },
-        { date: new Date('2016-05-12T20:11:55.267Z'), duration: 27 },
-        { date: new Date('2016-05-12T20:12:55.291Z'), duration: 27 },
-        { date: new Date('2016-05-12T20:13:55.319Z'), duration: 26 },
-        { date: new Date('2016-05-12T20:14:55.335Z'), duration: 28 },
-        { date: new Date('2016-05-12T20:15:55.348Z'), duration: 28 },
-        { date: new Date('2016-05-12T20:16:55.361Z'), duration: 35 },
-        { date: new Date('2016-05-12T20:17:55.391Z'), duration: 94 },
-        { date: new Date('2016-05-12T20:18:55.397Z'), duration: 28 },
-        { date: new Date('2016-05-12T20:19:55.426Z'), duration: 240 },
-        { date: new Date('2016-05-12T20:20:55.454Z'), duration: 103 },
-        { date: new Date('2016-05-12T20:21:55.464Z'), duration: 25 },
-        { date: new Date('2016-05-12T20:22:55.521Z'), duration: 27 },
-        { date: new Date('2016-05-12T20:23:55.543Z'), duration: 25 },
-    ],
-    createdAt: '2016-05-12T19:56:17.519Z',
-    updatedAt: '2016-05-12T20:23:55.572Z',
-    id: '5734dfa3a55ad89e36d722f8',
-};
-
-const fakeDB = {
-    create(itemType, data, callback) {
-        if (typeof itemType !== 'string' || typeof data !== 'object') throw new Error('Incorrect input types');
-
-        if (itemType === 'user') {
-            return callback(null, fakeUser);
-        } else if (itemType === 'check') {
-            return callback(null, fakeCheck);
-        }
-    },
-
-    update(itemType, filterCriteria, newData, callback) {
-        if (typeof itemType !== 'string' || typeof filterCriteria !== 'object' || typeof newData !== 'object') throw new Error('Incorrect input types');
-
-        if (itemType === 'user') {
-            fakeUser.username = 'Test User 2';
-            return callback(null, [fakeUser]);
-        } else if (itemType === 'check') {
-            fakeCheck.name = 'HTTP @ Google 2';
-            return callback(null, [fakeCheck]);
-        }
-    },
-
-    destroy(itemType, itemId, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string') throw new Error('Incorrect input types');
-
-        if (itemType === 'user') {
-            return callback(null, [fakeUser]);
-        } else if (itemType === 'check') {
-            return callback(null, [fakeCheck]);
-        }
-    },
-
-    fetch(itemsType, criteria, callback) {
-        if (typeof itemsType !== 'string' || typeof criteria !== 'object') throw new Error('Incorret input types');
-
-        if (itemsType === 'check') {
-            return callback(null, [fakeCheck]);
-        } else if (itemsType === 'user') {
-            return callback(null, [fakeUser]);
-        }
-    },
-
-    fetchOne(itemType, itemId, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string') throw new Error('Incorrect input types');
-
-        if (itemType === 'check') {
-            return callback(null, fakeCheck);
-        } else if (itemType === 'user') {
-            return callback(null, fakeUser);
-        }
-    },
-
-    fetchAndPopulate(itemType, itemId, associationType, callback) {
-        if (typeof itemType !== 'string' || typeof itemId !== 'string' || typeof associationType !== 'string')
-            throw new Error('Incorrect input types');
-
-        const fakePopulatedUser = fakeUser;
-        fakePopulatedUser.checks = [fakeCheck];
-        return callback(null, fakePopulatedUser);
-    },
-};
-
-describe('#user and check management', () => {
-    let user;
-    // let check;
-
-    it('should create an user', (done) => {
-        const userData = {
-            username: 'Test User',
-            email: 'bertrandjun@gmail.com',
-            password: 'testtest',
-            confirmPassword: 'testtest',
-        };
-        UserManagement.create(fakeDB.create, userData, (err, createdUser) => {
-            assert.isNull(err, 'did not throw an error');
-            assert.isObject(createdUser, 'return an user');
-            assert.deepEqual(createdUser.username, userData.username, 'return an user with well populated fields');
-            user = createdUser;
-            done();
+describe('#utilitiy functions', () => {
+    describe('customFloor function', () => {
+        it('should round to second place', () => {
+            expect(customFloor(1/3, 2)).to.be.equal(0.33);
         });
     });
-    it('should confirm the user', (done) => {
-        UserManagement.confirm(fakeDB.update, user.id, (err) => {
-            assert.isNull(err, 'did not throw an error');
-            done();
+    describe('isDomainNameOrIP function', () => {
+        it('should return true', () => {
+            expect(isDomainNameOrIP('1.1.1.1')).to.be.true;
+            expect(isDomainNameOrIP('monitaure.io')).to.be.true;
+            expect(isDomainNameOrIP('sendgrid.monitaure.io')).to.be.true;
+        });
+        it('should return false', () => {
+            expect(isDomainNameOrIP('256.1.1.1')).to.be.false;
+            expect(isDomainNameOrIP('https://monitaure.io')).to.be.false;
+            expect(isDomainNameOrIP('monitaure.io/tour')).to.be.false;
+            expect(isDomainNameOrIP([])).to.be.false;
         });
     });
-    // it('should create a check', function(done) {
-    //     const checkData = {
-    //         name: 'HTTP @ Google',
-    //         domainNameOrIP: 'google.fr',
-    //         port: 80,
-    //         emailNotifications: true,
-    //         owner: fakeUser.id
-    //     };
-    //     CheckManagement.createCheck(fakeDB.fetchAndPopulate, fakeDB.create, user.id, checkData, function(err, createdCheck) {
-    //         assert.isNull(err, 'did not throw an error');
-    //         assert.isObject(createdCheck, 'created a check');
-    //         assert.deepEqual(createdCheck.name, checkData.name, 'return a check with well populated fields');
-    //         check = createdCheck;
-    //         done();
-    //     });
-    // });
-    it('should update the created check', (done) => {
-        const data = {
-            name: 'HTTP @ Google 2',
-        };
-        CheckManagement.updateCheck(fakeDB.fetchOne, fakeDB.update, fakeUser.id, fakeCheck.id, data, (err, updatedChecks) => {
-            assert.isNull(err, 'did not throw an error');
-            assert.isArray(updatedChecks, 'returned an array');
-            assert.deepEqual(updatedChecks[0].name, data.name, 'updated the check\'s data');
-            check = updatedChecks[0];
-            done();
+    describe('garbageCollection function', () => {
+        it('should return an empty array and not throw', () => {
+            expect(garbageCollection({}, new Date())).to.be.an('array');
+            expect(garbageCollection({})).to.be.an('array');
+            expect(garbageCollection({})).to.be.empty;
+		});
+        const fakeArray = [
+            { id: 1, date: new Date("2016-09-20T17:16:47.327Z") },
+            { id: 2, date: new Date("2016-10-13T17:19:47.472Z") },
+            { id: 3, date: new Date("2016-10-13T18:35:31.797Z") },
+        ];
+        it('should trim the first item', () => {
+            const fakeDate = new Date("2016-10-21");
+            const result = garbageCollection(fakeArray, fakeDate);
+            expect(result).to.have.lengthOf(2);
+            expect(result[0]['id']).to.equal(2);
         });
-    });
-    // it('should add a ping to check\'s history', function(done) {
-    //     const ping = {
-    //         checkId: '5734dfa3a55ad89e36d722f8',
-    //         open: true,
-    //         duration: 453,
-    //         date: new Date('2016-05-12T20:23:55.543Z')
-    //     };
-    //     CheckManagement.insertHistory(fakeDB.fetchOne, fakeDB.update, ping, function(err) {
-    //         assert.isNull(err, 'did not throw an error');
-    //         done();
-    //     });
-    // });
-    it('should destroy the created check', (done) => {
-        CheckManagement.destroyCheck(fakeDB.fetchOne, fakeDB.destroy, fakeUser.id, fakeCheck.id, (err, destroyed) => {
-            assert.isNull(err, 'did not throw an error');
-            assert.isArray(destroyed, 'returned an array');
-            assert.isObject(destroyed[0], 'the array contains the deleted check');
-            done();
+        it('should trim the whole array an return an empty array', () => {
+            const fakeDate = new Date("2016-11-14");
+            const result = garbageCollection(fakeArray, fakeDate);
+            expect(result).to.be.empty;
+        });
+        it('should return the array untouched', () => {
+            const fakeDate = new Date("2016-10-20");
+            const result = garbageCollection(fakeArray, fakeDate);
+            expect(result).to.have.lengthOf(3);
+            expect(result[0]['id']).to.equal(1);
         });
     });
 });

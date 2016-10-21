@@ -138,7 +138,7 @@ module.exports = {
         fetcher('check', ping.checkId, (err, check) => {
             if (err) return callback(err);
 
-            const newHistoryArray = Utilities.garbageCollection(check.history);
+            const newHistoryArray = Utilities.garbageCollection(check.history, new Date());
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
             // And update the DB record

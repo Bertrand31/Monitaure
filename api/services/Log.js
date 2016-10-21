@@ -23,7 +23,7 @@ module.exports = {
             message: logMessage,
         };
 
-        const log = Utilities.garbageCollection(user.log);
+        const log = Utilities.garbageCollection(user.log, new Date());
         log.push(newLogEntry);
 
         updater('user', { id: user.id }, { log }, (err) => {
