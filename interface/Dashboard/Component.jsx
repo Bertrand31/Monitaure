@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Sidebar from './Sidebar/Container';
 
-import '../../styles/Dashboard/index.scss';
+import './styles/index.scss';
 
 const DashboardComponent = ({ children, openMenu, closeMenu }) => (
     <Swipeable onSwipingRight={openMenu} onSwipingLeft={closeMenu}>

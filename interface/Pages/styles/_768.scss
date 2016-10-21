@@ -128,7 +128,7 @@
     .l-pane-grid {
         align-items:flex-start;
         justify-content:space-around;
-        background:#fff url('../../svg/dot-line.svg') center 45px repeat-x;
+        background:#fff url('../svgs/dot-line.svg') center 45px repeat-x;
         background-size:15px 15px;
     }
     .l-pane-grid__item {
@@ -257,7 +257,7 @@
         top:47%;
         width:200px;
         height:15px;
-        background:transparent url('../../svg/dot-line.svg') center center repeat-x;
+        background:transparent url('../svgs/dot-line.svg') center center repeat-x;
         background-size:15px 15px;
     }
 }

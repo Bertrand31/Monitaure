@@ -64,9 +64,9 @@
     background-position: center center;
     background-repeat:no-repeat;
 }
-[data-health="up"], .c-cell-up { background-image:url('../../svg/status-ok.svg'); }
-[data-health="down"], .c-cell-down { background-image:url('../../svg/status-error.svg'); }
-[data-health="waiting"] { background-image:url('../../svg/status-waiting.svg'); }
+[data-health="up"], .c-cell-up { background-image:url('../../svgs/status-ok.svg'); }
+[data-health="down"], .c-cell-down { background-image:url('../../svgs/status-error.svg'); }
+[data-health="waiting"] { background-image:url('../../svgs/status-waiting.svg'); }
 
 [data-speed="slow"] { color:$warn; }
 [data-speed="fast"],[data-perfect=true] { color:$lightgreen; }
@@ -111,7 +111,7 @@
 .destroy-check {
     width:20px;
     height:20px;
-    background-image:url('../../svg/trash.svg');
+    background-image:url('../svgs/trash.svg');
     background-size:20px 20px;
 }
 .c-settings-check {
@@ -124,7 +124,7 @@
         color:#35C891;
     }
     &.is-not-editing {
-        background:transparent url('../../svg/settings.svg') center center no-repeat;
+        background:transparent url('../svgs/settings.svg') center center no-repeat;
         background-size:17px 17px;
     }
 }

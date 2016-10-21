@@ -3,6 +3,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Popins from '../Popins/Container';
 
+import './styles/index.scss';
+
 class AppComponent extends Component {
     static propTypes = {
         getCSRFToken: PropTypes.func.isRequired,

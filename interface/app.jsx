@@ -25,8 +25,6 @@ import Dashboard from './Dashboard/Container';
 import MainPanel from './Dashboard/MainPanel/Component';
 import LogPanel from './Dashboard/LogPanel/Component';
 
-import '../styles/Base/index.scss';
-
 const history = syncHistoryWithStore(browserHistory, store);
 
 const handleRouteChange = () => {

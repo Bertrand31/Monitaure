@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Login from './LoginForm/Container';
 import Signup from './SignupForm/Container';
 
-import '../../../styles/Popover/index.scss';
+import './styles/index.scss';
 
 const PopoverComponent = ({ openPopover, closePopover }) => {
     let form;

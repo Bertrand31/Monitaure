@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import '../../styles/Popins/index.scss';
+import './styles/index.scss';
 
 class Popin extends Component {
     static propTypes = {
