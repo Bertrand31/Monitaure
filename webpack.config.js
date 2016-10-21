@@ -9,7 +9,7 @@ const common = {
     },
 
     resolve: {
-        extensions: ['', '.js', '.jsx'],
+        extensions: ['.js', '.jsx'],
     },
 
     output: {
@@ -20,20 +20,19 @@ const common = {
     },
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel',
-                presets: ['latest', 'react', 'stage-2'],
+                use: 'babel',
                 exclude: /node_modules/,
             },
             {
                 test: /\.(svg|png|jpg)$/,
-                loader: 'url',
+                use: 'url',
             },
             {
                 test: /\.scss/,
-                loaders: [
+                use: [
                     'style-loader',
                     'css-loader',
                     'sass-loader',
@@ -61,6 +60,11 @@ switch (process.env.npm_lifecycle_event) {
                     output: {
                         comments: false,
                     },
+                    sourceMap: false,
+                }),
+                new webpack.LoaderOptionsPlugin({
+                    minimize: true,
+                    debug: false
                 }),
             ],
         });
