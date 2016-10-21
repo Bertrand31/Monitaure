@@ -9,7 +9,7 @@ class AppComponent extends Component {
         watchConnectivityState: PropTypes.func.isRequired,
         activateSW: PropTypes.func.isRequired,
         subscribeToPush: PropTypes.func.isRequired,
-        children: PropTypes.element,
+        children: PropTypes.element.isRequired,
         isLoggedIn: PropTypes.bool.isRequired,
         isOffline: PropTypes.bool.isRequired,
     }

@@ -5,7 +5,6 @@ import Sidebar from './Component';
 
 import { GETer, POSTer } from '../../serverIO/ajaxMethods';
 import * as API from '../../serverIO/dataHandling';
-import { create as popinCreate } from '../../Popins/Actions';
 import { login, logout } from '../../User/Actions';
 import { toggle as toggleMenu } from '../../Menu/Actions';
 
@@ -18,7 +17,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     hydrateUser: () => API.getUserData(GETer, (err, user) => {
-        typeof heap !== 'undefined' && heap.identify(user.username);
+        if (typeof heap !== 'undefined') heap.identify(user.username);
         return dispatch(login(user));
     }),
 

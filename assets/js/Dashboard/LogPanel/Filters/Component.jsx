@@ -22,8 +22,8 @@ const LogComponent = ({ log, updateFilter, toggleType }) => {
                 ))}
             </select>
             {Object.keys(typesList).map((type, i) => (
-                <label key={i} htmlFor={type}>
-                    Show {type}?
+                <label key={i} htmlFor={type} className="c-button">
+                    Show {type.toUpperCase()} type
                     <input type="checkbox" defaultChecked name={type} id={type} onChange={toggleType} />
                 </label>
             ))}

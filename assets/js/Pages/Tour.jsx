@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 
 import Page from './Container';
 
@@ -145,7 +144,7 @@ class TourComponent extends Component {
                             After accepting to install the application, you should notice a new icon on your homescreen.
                         </p>
                         <p className="c-chapter__body">
-                            You can now start the app, even when you're offline or on a bad network:<br/><br/><br/><br/>
+                            You can now start the app, even when you're offline or on a bad network:<br /><br /><br /><br />
                         </p>
                         <div className="l-pane-grid">
                             <div className="l-pane-grid__item">

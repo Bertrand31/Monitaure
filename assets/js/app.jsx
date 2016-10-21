@@ -35,6 +35,11 @@ const handleRouteChange = () => {
 };
 
 const checkAuth = (nextState, replace, callback) => {
+    // If the server fails to answer within 2 seconds, we render
+    // the app anyway, using the state from localStorage
+    const requestTimeout = setTimeout(() => {
+        callback();
+    }, 2000);
     API.isLoggedIn(GETer, (err, res) => {
         if (err || !res) return callback();
 
@@ -42,11 +47,6 @@ const checkAuth = (nextState, replace, callback) => {
         clearTimeout(requestTimeout);
         return callback();
     });
-    // If the server fails to answer within 2 seconds, we render
-    // the app anyway, using the state from localStorage
-    const requestTimeout = setTimeout(() => {
-        callback();
-    }, 2000);
 };
 
 const requireAuth = (nextState, replace) => {

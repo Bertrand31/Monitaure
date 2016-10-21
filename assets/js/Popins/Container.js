@@ -5,9 +5,7 @@ import PopinsList from './Component';
 const mapStateToProps = state => ({ popins: state.popins });
 
 const mapDispatchToProps = dispatch => ({
-    destroy: (id) => {
-        dispatch(destroy(id));
-    },
+    destroy: id => dispatch(destroy(id)),
 });
 
 const PopinsListContainer = connect(

@@ -17,7 +17,7 @@ const DashboardComponent = ({ children, openMenu, closeMenu }) => (
             transitionLeaveTimeout={300}
         >
             {React.cloneElement(children, {
-                key: location.pathname
+                key: location.pathname,
             })}
         </ReactCSSTransitionGroup>
     </Swipeable>
