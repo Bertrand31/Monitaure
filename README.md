@@ -27,7 +27,7 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * Push notifications, on both mobile devices and desktop computers ;
     * JSX and some Jade for HTML ;
     * SASS for CSS ;
-    * Babel to transpile ES6 to older (ES5) Javascript ;
+    * Babel to transpile ES6 & ES7 to older (ES5) Javascript ;
     * Webpack to bundle everything up.
 * Back-end:
     * NodeJS application built on Sails.js framework ;
