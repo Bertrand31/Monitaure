@@ -1,21 +1,15 @@
-const async = require('async');
 const net = require('net');
 
-const checkPort = (check, callback) => {
+const ping = (domainNameOrIP, port, callback) => {
     const timeStart = Date.now();
 
     const callbackObject = {
-        checkId: check.id,
-        checkName: check.name,
-        checkEmailNotifications: check.emailNotifications,
-        checkOwner: check.owner,
-        checkHistory: check.history,
         open: false,
         duration: null,
         date: new Date(),
     };
 
-    const connection = net.connect(check.port, check.domainNameOrIP, () => {
+    const connection = net.connect(port, domainNameOrIP, () => {
         callbackObject.open = true;
         callbackObject.duration = Date.now() - timeStart;
         connection.destroy();
@@ -35,35 +29,35 @@ const checkPort = (check, callback) => {
     }, sails.config.checkTimeout);
 };
 
-const pingHandling = (ping) => {
-    CheckManagement.insertHistory(DB.fetchOne, DB.update, ping, (err) => {
+const pingHandling = (check, ping) => {
+    CheckManagement.insertHistory(DB.fetchOne, DB.update, check.id, ping, (err) => {
         if (err) return sails.log.error(err);
     });
 
-    const lastCheckHistory = ping.checkHistory[ping.checkHistory.length - 1] || null;
+    const lastCheckHistory = check.history[check.history.length - 1] || null;
     // If email notifications are activated for this check and
     // this isn't the first time we ping it
-    if (ping.checkEmailNotifications && lastCheckHistory !== null) {
+    if (check.emailNotifications && lastCheckHistory !== null) {
         // If the check is down and wasn't last time we checked
         if (!ping.open && lastCheckHistory.duration !== null) {
-            DB.fetchOne('user', ping.checkOwner, (err, user) => {
+            DB.fetchOne('user', check.owner, (err, user) => {
                 if (err) sails.log.error(err);
-                Notifications.sendDownAlert(user, ping.checkId, ping.checkName);
+
+                Notifications.sendDownAlert(user, check.id, check.name);
             });
         // If the check is up and was down last time we checked
         } else if (ping.open && lastCheckHistory.duration === null) {
-            DB.fetchOne('user', ping.checkOwner, (err, user) => {
+            let downtime = 0;
+            let i = check.history.length - 1;
+            while (typeof check.history[i] !== 'undefined' && check.history[i].duration === null) {
+                downtime += sails.config.checkInterval / 60000;
+                i--;
+            }
+
+            DB.fetchOne('user', check.owner, (err, user) => {
                 if (err) sails.log.error(err);
 
-                let downtime = 0;
-                let i = ping.checkHistory.length - 1;
-
-                while (ping.checkHistory[i].duration === null) {
-                    downtime += sails.config.checkInterval / 60000;
-                    i--;
-                }
-
-                Notifications.sendUpAlert(user, ping.checkId, ping.checkName, downtime);
+                Notifications.sendUpAlert(user, check.id, check.name, downtime);
             });
         }
     }
@@ -74,18 +68,12 @@ module.exports = (fetcher) => {
         fetcher('check', {}, (err, checks) => {
             if (err) sails.log.error(err);
 
-            const asyncChecks = [];
-
             checks.forEach((check) => {
-                asyncChecks.push((callback) => {
-                    checkPort(check, result => callback(null, result));
+                ping(check.domainNameOrIP, check.port, (result) => {
+                    pingHandling(check, result);
                 });
             });
 
-            async.parallel(asyncChecks, (err, pings) => {
-                if (err) throw err;
-                pings.forEach(ping => pingHandling(ping));
-            });
         });
     }, sails.config.checkInterval);
 };

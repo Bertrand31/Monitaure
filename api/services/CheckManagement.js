@@ -132,10 +132,11 @@ module.exports = {
      * Insert a ping into a check's history
      * @param {Function} fetcher - a function fetching a single record
      * @param {Function} updater - a function updating a record
+     * @param {String} checkId - the id of the check we want to update
      * @param {Object} ping - the result of a connexion attempt to a check
      */
-    insertHistory(fetcher, updater, ping, callback) {
-        fetcher('check', ping.checkId, (err, check) => {
+    insertHistory(fetcher, updater, checkId, ping, callback) {
+        fetcher('check', checkId, (err, check) => {
             if (err) return callback(err);
 
             const newHistoryArray = Utilities.garbageCollection(check.history, new Date());
