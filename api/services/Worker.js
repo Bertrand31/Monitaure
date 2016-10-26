@@ -68,10 +68,18 @@ module.exports = (fetcher) => {
         fetcher('check', {}, (err, checks) => {
             if (err) sails.log.error(err);
 
-            checks.forEach((check) => {
-                ping(check.domainNameOrIP, check.port, (result) => {
-                    pingHandling(check, result);
-                });
+            // We throttle the pings, so it does not saturate the server ressources (mainly BW and CPU)
+            // To calculate the interval between the pings, we figure out the time window all the pings
+            // have to run without overlapping with the next cycle of pings. Then, we divide that number
+            // with the number of checks minus one since the first ping will run with 0 delay
+            const interval = (sails.config.checkInterval - sails.config.checkTimeout) / (checks.length - 1);
+
+            checks.forEach((check, i) => {
+                setTimeout(() => {
+                    ping(check.domainNameOrIP, check.port, (result) => {
+                        pingHandling(check, result);
+                    });
+                }, interval * i);
             });
 
         });
