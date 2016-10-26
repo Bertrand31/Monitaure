@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-import Sidebar from './Component';
+import SidebarComponent from './Component';
 
 import { GETer, POSTer } from '../../serverIO/ajaxMethods';
 import * as API from '../../serverIO/dataHandling';
@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => ({
 const SidebarContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Sidebar);
+)(SidebarComponent);
 
 export default SidebarContainer;
 

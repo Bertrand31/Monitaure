@@ -70,14 +70,12 @@
     "whatwg-fetch": "^1.0.0"
   },
   "scripts": {
-    "start:dev": "NODE_ENV=development; nodemon app.js --ignore assets/ --ignore public/ --ignore webpack.config.js",
+    "start:dev": "NODE_ENV=development; nodemon app.js --ignore interface/ --ignore public/ --ignore webpack.config.js",
     "start:prod": "NODE_ENV=production sails lift",
     "webpack:dev": "webpack --watch --color --progress",
     "webpack:prod": "webpack --color --progress",
     "lint:back": "./node_modules/eslint/bin/eslint.js . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback; exit 0",
-    "lint:back-fix": "./node_modules/eslint/bin/eslint.js . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback --fix; exit 0",
-    "lint:front": "./node_modules/eslint/bin/eslint.js assets/js/ -c .eslintrcfront.js --ext .js --ext .jsx --cache; exit 0",
-    "lint:front-fix": "./node_modules/eslint/bin/eslint.js assets/js/ -c .eslintrcfront.js --ext .js --ext .jsx --cache --fix; exit 0",
+    "lint:front": "./node_modules/eslint/bin/eslint.js interface/ -c .eslintrcfront.js --ext .js --ext .jsx --cache; exit 0",
     "test": "mocha test/unit.js"
   },
   "main": "app.js",

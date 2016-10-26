@@ -14,7 +14,7 @@ export function emailSent() {
     };
 }
 
-export function login(data) {
+export function login(data = {}) {
     return {
         type: types.USER_LOGIN,
         user: data,
