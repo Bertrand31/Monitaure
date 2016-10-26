@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="31px" height="31px" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+    <title>Up</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Buttons" transform="translate(-359.000000, -113.000000)">
+            <g id="Up" transform="translate(359.000000, 113.000000)">
+                <circle id="Oval-7-Copy" fill="#25DC32" transform="translate(15.500000, 15.500000) rotate(-180.000000) translate(-15.500000, -15.500000) " cx="15.5" cy="15.5" r="15.5"></circle>
+                <path d="M16.863961,17.1213203 L19.6066017,14.3786797 L21.7279221,16.5 L16.4246212,21.8033009 L15.363961,22.863961 L9,16.5 L11.1213203,14.3786797 L13.863961,17.1213203 L13.863961,9 L16.863961,9 L16.863961,17.1213203 Z" id="Combined-Shape-Copy" fill="#FFFFFF" transform="translate(15.363961, 15.931981) rotate(-180.000000) translate(-15.363961, -15.931981) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

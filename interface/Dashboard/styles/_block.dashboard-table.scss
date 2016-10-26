@@ -64,8 +64,10 @@
     background-position: center center;
     background-repeat:no-repeat;
 }
-[data-health="up"], .c-cell-up { background-image:url('../../svgs/status-ok.svg'); }
-[data-health="down"], .c-cell-down { background-image:url('../../svgs/status-error.svg'); }
+[data-health="up"] { background-image:url('../../svgs/status-ok.svg'); }
+.c-cell-up { background-image:url('../svgs/log-up.svg'); }
+[data-health="down"] { background-image:url('../../svgs/status-error.svg'); }
+.c-cell-down { background-image:url('../svgs/log-down.svg'); }
 [data-health="waiting"] { background-image:url('../../svgs/status-waiting.svg'); }
 
 [data-speed="slow"] { color:$warn; }
