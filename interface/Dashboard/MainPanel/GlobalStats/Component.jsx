@@ -27,10 +27,9 @@ const calcGlobalStats = (checks) => {
 
     Object.values(checks).forEach((check) => {
         if (check.id !== 'tmpID') {
-            historyLength = check.history.length - 1;
-            if (historyLength > 0) {
+            if (check.history.length > 0) {
                 totalPopulatedChecks++;
-                if (check.history[historyLength].duration !== null) {
+                if (check.history[check.history.length - 1].duration !== null) {
                     checksUp++;
                 }
                 availabilitiesSum += check.availability;
