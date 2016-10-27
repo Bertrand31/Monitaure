@@ -14,13 +14,13 @@
     global.toolbox.precache(filesToCache);
     global.toolbox.router.get('/images/*', global.toolbox.cacheFirst, {
         cache: {
-            name: 'asset-cache-v1.9',
+            name: 'asset-cache-v2.0',
             maxEntries: 30,
         },
     });
     global.toolbox.router.get('/User/getdata/', global.toolbox.fastest, {
         cache: {
-            name: 'data-cache-v1.9',
+            name: 'data-cache-v2.0',
             maxEntries: 1,
         },
     });
@@ -40,21 +40,21 @@
     global.toolbox.router.get('/avatar/*', global.toolbox.fastest, {
         origin: /gravatar\.com/,
         cache: {
-            name: 'static-vendor-cache-v1.9',
+            name: 'static-vendor-cache-v2.0',
             maxEntries: 1,
         },
     });
     global.toolbox.router.get('/(.*)', global.toolbox.cacheFirst, {
         origin: /fonts\.gstatic\.com/,
         cache: {
-            name: 'static-vendor-cache-v1.9',
+            name: 'static-vendor-cache-v2.0',
             maxEntries: 10,
         },
     });
     global.toolbox.router.get('/css', global.toolbox.fastest, {
         origin: /fonts\.googleapis\.com/,
         cache: {
-            name: 'dynamic-vendor-cache-v1.9',
+            name: 'dynamic-vendor-cache-v2.0',
             maxEntries: 5,
         },
     });
