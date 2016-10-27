@@ -138,6 +138,7 @@ module.exports = {
     insertHistory(fetcher, updater, checkId, ping, callback) {
         fetcher('check', checkId, (err, check) => {
             if (err) return callback(err);
+            if (!check) return callback(null);
 
             const newHistoryArray = Utilities.garbageCollection(check.history, new Date());
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
