@@ -156,3 +156,11 @@ input[type="submit"] {
         display:none;
     }
 }
+.c-filters {
+    margin:2em 1em;
+    flex-direction:row;
+    align-items:center;
+    .c-input {
+        margin:0 3em 0 0;
+    }
+}

@@ -78,7 +78,7 @@
     &:disabled {
         border:0;
     }
-    // Weird hack to keep Chrome from putting a yellow
+    // Hack to keep Chrome from putting a yellow
     // background on autocompleted text fields
     &:-webkit-autofill {
         -webkit-box-shadow: 0 0 0px 1000px white inset;
@@ -87,4 +87,36 @@
 .input__text--dark {
     color:$softwhite;
     margin:0; // Unrelated, but dark fields are inside the table
+}
+.input-select__wrapper {
+    position:relative;
+    max-width:250px;
+    &:after {
+        content:'';
+        display:block;
+        height:100%;
+        width:1px;
+        position:absolute;
+        right:16%;
+        top:0;
+        background:$lighter;
+    }
+}
+.input-select {
+    width:100%;
+    padding:.7em;
+    min-width:250px;
+    border:1px solid $lighter;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+    background:$dark url('../../svgs/select-arrows.svg') 94% center no-repeat;;
+    background-size:10px;
+    color:#fff;
+    border-radius:4px;
+    font-size:.75em;
+    position:relative;
+    &::-ms-expand {
+        display:none;
+    }
 }

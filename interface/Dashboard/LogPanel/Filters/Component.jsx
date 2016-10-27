@@ -14,18 +14,20 @@ const LogComponent = ({ log, updateFilter, toggleType }) => {
 
 
     return (
-        <form>
-            <select name="checkId" onChange={updateFilter}>
-                <option value="">Show all checks</option>
-                {Object.keys(checksList).map(checkId => (
-                    <option key={checkId} value={checkId}>{checksList[checkId]}</option>
-                ))}
-            </select>
+        <form className="c-filters">
+            <div className="c-input input-select__wrapper">
+                <select className="input-select" name="checkId" onChange={updateFilter}>
+                    <option value="">All checks</option>
+                    {Object.keys(checksList).map(checkId => (
+                        <option key={checkId} value={checkId}>{checksList[checkId]}</option>
+                    ))}
+                </select>
+            </div>
             {Object.keys(typesList).map((type, i) => (
-                <label key={i} htmlFor={type} className="c-button">
-                    Show {type.toUpperCase()} type
-                    <input type="checkbox" defaultChecked name={type} id={type} onChange={toggleType} />
-                </label>
+                <div className="c-input input-checkbox" key={i}>
+                    <input className="input-checkbox__box" type="checkbox" defaultChecked name={type} id={type} onChange={toggleType} />
+                    <label className="input-checkbox__label" htmlFor={type}>Show {type.toUpperCase()} alerts</label>
+                </div>
             ))}
         </form>
     );

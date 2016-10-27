@@ -25,7 +25,14 @@ class LogComponent extends Component {
         const { log, logFilters } = this.props;
 
         if (log.length < 1) {
-            return <p>Nothing to show yet!</p>;
+            return (
+                <div className="centered__wrapper">
+                    <p className="centered">
+                        Ooops 😱 Nothing to show yet!<br /><br /><br /><br />
+                        <img width="300" src="/images/log-empty.svg" alt="No log entry to show yet!" />
+                    </p>
+                </div>
+            );
         }
 
         let filteredLog = log.filter(logEntry =>

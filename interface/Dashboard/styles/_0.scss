@@ -294,3 +294,10 @@ html,body {
         padding:1em .3em;
     }
 }
+.c-filters {
+    margin:1em;
+    flex-direction:column;
+    .c-input {
+        margin:1em 0 0;
+    }
+}
