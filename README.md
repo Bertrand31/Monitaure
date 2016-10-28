@@ -11,8 +11,6 @@ The application does not need any client-side installation or configuration.
 
 [![Monitaure main dashboard](https://monitaure.io/images/dashboard-sample.png)](https://monitaure.io)
 
-[Getting started guide](https://github.com/Bertrand31/Monitaure/wiki/Monitaure-tour---%5BTEMPORARY-PAGE%5D).
-
 ## Why it's awesome
 
 From a technical standpoint, here are some of the key aspects of Monitaure:
