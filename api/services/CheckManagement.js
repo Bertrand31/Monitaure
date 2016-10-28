@@ -1,17 +1,11 @@
 /**
 * Calculates a check's various stats by analyzing its history
-* Trims the check's history to only return a specified number of pings
-*  @param {Object} check - the raw db record of a check
+*  @param {Object} historyArray - a check's history array
 *  @param {Number} historyLength - the number of history entries to return
 *  @returns {Object}
 */
-const calcCheckStats = (check, historyLength) => {
-    const historyArray = check.history;
-    const historyArrayLength = historyArray.length;
-
-    if (historyArray.length === 0) {
-        return null;
-    }
+const calcCheckStats = (historyArray) => {
+    if (historyArray.length < 1) return null;
 
     const checkInterval = sails.config.checkInterval;
     let sum = 0;
@@ -31,16 +25,37 @@ const calcCheckStats = (check, historyLength) => {
         }
     });
 
-    const percent = 100 - (totalOutage * 100) / (historyArrayLength * checkInterval);
+    const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
 
     return {
         min,
         max,
-        avg: Math.round(sum / historyArrayLength),
+        avg: Math.round(sum / historyArray.length),
         availability: Utilities.customFloor(percent, 2),
         lastOutage,
-        history: historyArray.slice(-historyLength),
     };
+};
+
+/*
+* Trims the check's history to only return a specified number of pings
+* and its statistics
+* @param {Object} check - a check's raw DB record
+* @param {Number} desiredHistoryLength - the number of history entries to return
+* @returns {Object}
+*/
+const formatChecks = (checks, desiredHistoryLength) => {
+    const checksObject = {};
+
+    checks.forEach((check) => {
+        checksObject[check.id] = Object.assign(
+            {},
+            check,
+            { history: check.history.slice(-desiredHistoryLength) },
+            calcCheckStats(check.history)
+        );
+    });
+
+    return checksObject;
 };
 
 module.exports = {
@@ -52,14 +67,9 @@ module.exports = {
      * @param {Function} callback
      */
     getChecks(fetcher, userId, callback) {
-        fetcher('check', { owner: userId }, (err, checksArray) => {
-            const checksObject = {};
+        fetcher('check', { owner: userId }, (err, checks) => {
 
-            checksArray.forEach((check) => {
-                checksObject[check.id] = Object.assign(check, calcCheckStats(check, 20));
-            });
-
-            return callback(err, checksObject);
+            return callback(err, formatChecks(checks, 20));
         });
     },
 
