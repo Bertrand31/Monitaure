@@ -92,14 +92,14 @@ input[type=number] {
 }
 .c-child-change-enter.c-child-change-enter-active {
     opacity: 1;
-    transition: all .25s ease-in;
+    transition: all .5s ease-in;
 }
 .c-child-change-leave {
     opacity: 1;
 }
 .c-child-change-leave.c-child-change-leave-active {
     opacity: 0.01;
-    transition: all .25s ease-in;
+    transition: all .3s ease-in;
 }
 
 .c-popover-change-enter {

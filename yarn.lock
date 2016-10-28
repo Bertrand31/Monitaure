@@ -5422,6 +5422,12 @@ react-router@^2.8.1:
     loose-envify "^1.2.0"
     warning "^3.0.0"
 
+react-scroll:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.4.4.tgz#5da0358539f2d5e4945a8ab526ec3d10244b891f"
+  dependencies:
+    object-assign "^4.0.1"
+
 react-swipeable@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-3.7.0.tgz#c51f1a9c21e132d06bb95bf75554d23f89385162"

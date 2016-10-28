@@ -56,6 +56,7 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
+    "react-scroll": "^1.4.4",
     "react-swipeable": "^3.7.0",
     "redux": "^3.6.0",
     "sails": "^0.12.8",

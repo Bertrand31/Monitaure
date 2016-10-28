@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
 
 import Page from './Container';
 
@@ -20,28 +21,28 @@ class TourComponent extends Component {
                 <nav className="c-pane c-pane--chapters">
                     <ul className="c-chapters">
                         <li className="c-chapters__el">
-                            <a className="c-chapters__link c-chapters__link--start" href="#gettingstarted">
+                            <ScrollLink className="c-chapters__link c-chapters__link--start" to="gettingstarted" smooth={true}>
                                 Getting started
-                            </a>
+                            </ScrollLink>
                         </li>
                         <li className="c-chapters__el">
-                            <a className="c-chapters__link c-chapters__link--first" href="#firstcheck">
+                            <ScrollLink className="c-chapters__link c-chapters__link--first" to="firstcheck" smooth={true}>
                                 Your first check
-                            </a>
+                            </ScrollLink>
                         </li>
                         <li className="c-chapters__el">
-                            <a className="c-chapters__link c-chapters__link--install" href="#install">
+                            <ScrollLink className="c-chapters__link c-chapters__link--install" to="install" smooth={true}>
                                 Install the app
-                            </a>
+                            </ScrollLink>
                         </li>
                         <li className="c-chapters__el">
-                            <a className="c-chapters__link c-chapters__link--notifs" href="#notifications">
+                            <ScrollLink className="c-chapters__link c-chapters__link--notifs" to="notifications" smooth={true}>
                                 Receive notifications
-                            </a>
+                            </ScrollLink>
                         </li>
                     </ul>
                 </nav>
-                <section className="c-pane c-chapter c-chapter--start">
+                <section className="c-pane c-chapter c-chapter--start" id="gettingstarted">
                     <div className="c-chapter__wrapper">
                         <div className="l-pane-grid">
                             <div className="l-pane-grid__item">
@@ -59,7 +60,7 @@ class TourComponent extends Component {
                         </div>
                     </div>
                 </section>
-                <section className="c-pane c-chapter c-chapter--first">
+                <section className="c-pane c-chapter c-chapter--first" id="firstcheck">
                     <div className="c-chapter__wrapper">
                         <h2 className="c-chapter__title c-chapter__title--first">Creating your first check</h2>
                         <p className="c-chapter__body">
@@ -132,7 +133,7 @@ class TourComponent extends Component {
                         </p>
                     </div>
                 </section>
-                <section className="c-pane c-chapter c-chapter--app">
+                <section className="c-pane c-chapter c-chapter--app" id="install">
                     <div className="c-chapter__wrapper">
                         <h2 className="c-chapter__title c-chapter__title--app">Installing the app on your phone</h2>
                         <p className="c-chapter__body">
@@ -156,7 +157,7 @@ class TourComponent extends Component {
                         </div>
                     </div>
                 </section>
-                <section className="c-pane c-chapter c-chapter--notifs">
+                <section className="c-pane c-chapter c-chapter--notifs" id="notifications">
                     <div className="c-chapter__wrapper">
                         <h2 className="c-chapter__title c-chapter__title--notifs">Receiving notifications</h2>
                         <p className="c-chapter__body">
