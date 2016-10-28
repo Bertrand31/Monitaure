@@ -3,13 +3,12 @@
 }
 .o-header__logo {
     max-width:none;
-    top:1.8em;
     z-index:1;
+    top:1.8em;
     cursor:pointer;
 }
 .c-topnav {
     position:absolute;
-    text-align:center;
     .hamburger {
         display:none;
     }

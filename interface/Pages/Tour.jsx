@@ -21,22 +21,22 @@ class TourComponent extends Component {
                 <nav className="c-pane c-pane--chapters">
                     <ul className="c-chapters">
                         <li className="c-chapters__el">
-                            <ScrollLink className="c-chapters__link c-chapters__link--start" to="gettingstarted" smooth={true}>
+                            <ScrollLink className="c-chapters__link c-chapters__link--start" to="gettingstarted" href="#gettingstarted" smooth={true}>
                                 Getting started
                             </ScrollLink>
                         </li>
                         <li className="c-chapters__el">
-                            <ScrollLink className="c-chapters__link c-chapters__link--first" to="firstcheck" smooth={true}>
+                            <ScrollLink className="c-chapters__link c-chapters__link--first" to="firstcheck" href="#firstcheck" smooth={true}>
                                 Your first check
                             </ScrollLink>
                         </li>
                         <li className="c-chapters__el">
-                            <ScrollLink className="c-chapters__link c-chapters__link--install" to="install" smooth={true}>
+                            <ScrollLink className="c-chapters__link c-chapters__link--install" to="install" href="#install" smooth={true}>
                                 Install the app
                             </ScrollLink>
                         </li>
                         <li className="c-chapters__el">
-                            <ScrollLink className="c-chapters__link c-chapters__link--notifs" to="notifications" smooth={true}>
+                            <ScrollLink className="c-chapters__link c-chapters__link--notifs" to="notifications" href="#notifications" smooth={true}>
                                 Receive notifications
                             </ScrollLink>
                         </li>

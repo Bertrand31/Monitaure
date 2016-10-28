@@ -10,22 +10,24 @@
     box-sizing:border-box;
     position:absolute;
     max-width:1400px;
+    text-align:center;
     top:13px;
     left:0;
     right:0;
     z-index:2;
     margin:0 auto;
     .hamburger {
-        position:relative;
+        position:absolute;
         z-index:2;
+        left:0;
     }
 }
 .o-header__logo {
-    position:absolute;
-    top:.6em;
+    position:relative;
     z-index:2;
+    top:.6em;
+    display:inline-block;
     max-width:140px;
-    margin:0 auto;
     text-align:center;
     .c-h1 { margin:0; }
 }
