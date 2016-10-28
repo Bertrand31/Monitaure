@@ -60,8 +60,8 @@ const PageComponent = ({ children, menuIsOpen, openPopover, toggleMenu, openMenu
                     <nav className="l-pane-grid__item c-footer__nav">
                         <ul className="c-footernav">
                             <li className="c-footernav__el"><Link to="/tour">Tour</Link></li>
-                            <li className="c-footernav__el"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('login'); }}>Log in</a></li>
-                            <li className="c-footernav__el"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('signup'); }}>Sign up</a></li>
+                            <li className="c-footernav__el"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('login'); }}>Log&nbsp;in</a></li>
+                            <li className="c-footernav__el"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('signup'); }}>Sign&nbsp;up</a></li>
                         </ul>
                     </nav>
                     <div className="l-pane-grid__item c-footer__text">
