@@ -22,14 +22,14 @@ const Navigation = ({ currentRoute, menuIsOpen, logout }) => (
         </nav>
         <nav className="c-nav misc-nav">
             <ul>
-                <li className="c-nav__item disabled">
-                    <a className="c-nav__link" href="#_" id="settings-pane">
-                        Settings
-                    </a>
-                </li>
                 <li className="c-nav__item ">
-                    <a className="c-nav__link" href="https://github.com/Bertrand31/Monitaure/issues" target="_blank" rel="noopener noreferrer">
+                    <Link className="c-nav__link" to="/tour">
                         Help
+                    </Link>
+                </li>
+                <li className="c-nav__item">
+                    <a className="c-nav__link" href="https://github.com/Bertrand31/Monitaure/issues" target="_blank" rel="noopener noreferrer" id="settings-pane">
+                        Report a bug
                     </a>
                 </li>
             </ul>
