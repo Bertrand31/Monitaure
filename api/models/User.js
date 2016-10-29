@@ -83,7 +83,7 @@ module.exports = {
         // Stores password's salted hash (10 being the number of salt rounds)
         bcrypt.genSalt(10, (err, salt) => {
             if (err) {
-                sails.log.eror(err);
+                sails.log.error(err);
                 return callback(err);
             }
 
