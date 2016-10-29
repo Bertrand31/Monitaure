@@ -66,6 +66,11 @@ module.exports = {
             defaultsTo: [],
         },
 
+        reports: {
+            type: 'array',
+            defaultsTo: [],
+        },
+
         checks: {
             collection: 'Check',
             via: 'owner',

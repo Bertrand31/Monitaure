@@ -34,4 +34,41 @@ module.exports = {
         return array.filter(el => el.date.getTime() > oneMonthAgoTimestamp);
     },
 
+    /**
+    * Calculates a check's various stats by analyzing its history
+    *  @param {Object} historyArray - a check's history array
+    *  @param {Number} historyLength - the number of history entries to return
+    *  @returns {Object}
+    */
+    calcCheckStats: (historyArray) => {
+        if (historyArray.length < 1) return null;
+
+        const checkInterval = sails.config.checkInterval;
+        let sum = 0;
+        let min = historyArray[0].duration;
+        let max = historyArray[0].duration;
+        let totalOutage = 0;
+        let lastOutage = null;
+
+        historyArray.forEach((ping) => {
+            if (ping.duration !== null) {
+                sum += ping.duration;
+                min = ping.duration < min ? ping.duration : min;
+                max = ping.duration > max ? ping.duration : max;
+            } else {
+                totalOutage += checkInterval;
+                lastOutage = ping.date;
+            }
+        });
+
+        const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
+
+        return {
+            min,
+            max,
+            avg: Math.round(sum / historyArray.length),
+            availability: Utilities.customFloor(percent, 2),
+            lastOutage,
+        };
+    },
 };

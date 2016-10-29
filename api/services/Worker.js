@@ -1,4 +1,4 @@
-const net = require('net');
+const { connect } = require('net');
 
 const ping = (domainNameOrIP, port, callback) => {
     const timeStart = Date.now();
@@ -9,7 +9,7 @@ const ping = (domainNameOrIP, port, callback) => {
         date: new Date(),
     };
 
-    const connection = net.connect(port, domainNameOrIP, () => {
+    const connection = connect(port, domainNameOrIP, () => {
         callbackObject.open = true;
         callbackObject.duration = Date.now() - timeStart;
         connection.destroy();
