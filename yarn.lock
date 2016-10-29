@@ -1772,6 +1772,10 @@ create-hmac@^1.1.0, create-hmac@^1.1.2:
     create-hash "^1.1.0"
     inherits "^2.0.1"
 
+cron-parser@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/cron-parser/-/cron-parser-1.1.0.tgz#075b84c459c155e8c482ab4d56aff99dae58352e"
+
 cross-spawn-async@^2.1.6:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/cross-spawn-async/-/cross-spawn-async-2.2.5.tgz#845ff0c0834a3ded9d160daca6d390906bb288cc"
@@ -3725,8 +3729,8 @@ jstransformer@0.0.2:
   resolved "https://registry.yarnpkg.com/JSV/-/JSV-4.0.2.tgz#d077f6825571f82132f9dffaed587b4029feff57"
 
 jsx-ast-utils@^1.0.0, jsx-ast-utils@^1.3.1:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-1.3.2.tgz#dff658782705352111f9865d40471bc4a955961e"
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-1.3.3.tgz#ccfdbe0320ba03f7a1fc4e67ceaf7e2cc0169721"
   dependencies:
     acorn-jsx "^3.0.1"
     object-assign "^4.1.0"
@@ -4085,6 +4089,10 @@ lodash@2.4.1:
 lodash@3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.8.0.tgz#376eb98bdcd9382a9365c33c4cb8250de1325b91"
+
+long-timeout@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/long-timeout/-/long-timeout-0.0.2.tgz#f36449ba89629d13a7a2b2523a4db9dd66e3ff68"
 
 longest@^1.0.1:
   version "1.0.1"
@@ -4544,6 +4552,13 @@ node-sass@^3.10.0:
     npmlog "^4.0.0"
     request "^2.61.0"
     sass-graph "^2.1.1"
+
+node-schedule:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/node-schedule/-/node-schedule-1.2.0.tgz#f03d4ebe71b0573e1708ddae0aa45d1658450cf1"
+  dependencies:
+    cron-parser "1.1.0"
+    long-timeout "0.0.2"
 
 node-uuid@~1.4.1, node-uuid@~1.4.7:
   version "1.4.7"
