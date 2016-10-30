@@ -40,4 +40,15 @@ module.exports = {
 
         Sendgrid.send(user.email, emailSubject, emailBody);
     },
+
+    /**
+     * Send a 'confirm your email address' email to a newly created user
+     * @param {Object} user - raw database record of the user we just created
+     */
+    sendNewReportsNotification(user, reports) {
+        const emailSubject = '👌 Fresh monthly reports available!';
+        const emailBody = EmailTemplates.newReports(user.username, reports);
+
+        Sendgrid.send(user.email, emailSubject, emailBody);
+    },
 };

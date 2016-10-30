@@ -87,4 +87,32 @@ module.exports = {
             </html>
         `;
     },
+    newReports(username, reports) {
+        let reportRows = ``;
+        reports.forEach((report) => {
+            const totalOutageHr = Math.floor(report.totalOutage / (1000 * 3600));
+            const totalOutageMn = report.totalOutage % (1000 * 3600) / (60 * 1000);
+            const totalOutageStr = `${totalOutageHr !== 0 ? `${totalOutageHr} hours` : ``} ${totalOutageMn} minutes`;
+            reportRows += `<tr><td>${report.checkName}</td><td>${report.availability}</td><td>${report.numberOfOutages}</td><td>${totalOutageStr}</td></tr>`;
+        });
+        return `
+            <p>
+                Hello ${username}!<br/>Here is an abstract of the new reports available.<br/>
+                To see the full reports and export them to PDF, visit <a href="https://monitaure.io/app/reports">your dashboard</a>.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Check name</th>
+                        <th>Average availability</th>
+                        <th>Number of outages</th>
+                        <th>Total outage time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${reportRows}
+                </tbody>
+            </table>
+        `;
+    },
 };
