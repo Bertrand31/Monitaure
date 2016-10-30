@@ -49,8 +49,9 @@ module.exports = {
         let max = historyArray[0].duration;
         let totalOutage = 0;
         let lastOutage = null;
+        let numberOfOutages = 0;
 
-        historyArray.forEach((ping) => {
+        historyArray.forEach((ping, i) => {
             if (ping.duration !== null) {
                 sum += ping.duration;
                 min = ping.duration < min ? ping.duration : min;
@@ -58,6 +59,9 @@ module.exports = {
             } else {
                 totalOutage += checkInterval;
                 lastOutage = ping.date;
+                if (typeof historyArray[i - 1] !== 'undefined' && historyArray[i - 1].duration !== null) {
+                    numberOfOutages++;
+                }
             }
         });
 
@@ -68,7 +72,9 @@ module.exports = {
             max,
             avg: Math.round(sum / historyArray.length),
             availability: Utilities.customFloor(percent, 2),
+            totalOutage,
             lastOutage,
+            numberOfOutages,
         };
     },
 };
