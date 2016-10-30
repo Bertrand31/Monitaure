@@ -8,6 +8,8 @@ import menuReducer from '../Menu/Reducer';
 import userReducer from '../User/Reducer';
 import checksReducer from '../Dashboard/MainPanel/ChecksTable/Reducer';
 import openCheckReducer from '../Dashboard/MainPanel/CheckStats/Reducer';
+import reportsReducer from '../Dashboard/ReportsPanel/ReportsTable/Reducer';
+import reportsFiltersReducer from '../Dashboard/ReportsPanel/Filters/Reducer';
 import logReducer from '../Dashboard/LogPanel/LogTable/Reducer';
 import logFiltersReducer from '../Dashboard/LogPanel/Filters/Reducer';
 
@@ -17,6 +19,8 @@ export default combineReducers({
     user: userReducer,
     checks: checksReducer,
     openCheckID: openCheckReducer,
+    reports: reportsReducer,
+    reportsFilters: reportsFiltersReducer,
     log: logReducer,
     logFilters: logFiltersReducer,
     menuIsOpen: menuReducer,

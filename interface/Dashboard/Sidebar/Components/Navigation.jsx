@@ -8,10 +8,10 @@ const Navigation = ({ currentRoute, menuIsOpen, logout }) => (
                 <li className={`c-nav__item ${currentRoute.match(/^\/app\/?$/) ? 'active' : ''}`}>
                     <Link className="c-nav__link" to="/app" id="dashboard-pane">Dashboard</Link>
                 </li>
-                <li className="c-nav__item disabled">
-                    <a className="c-nav__link" href="#_">
+                <li className={`c-nav__item ${currentRoute.match(/^\/app\/reports\/?$/) ? 'active' : ''}`}>
+                    <Link className="c-nav__link" to="/app/reports">
                         Reports<span className="info">0</span>
-                    </a>
+                    </Link>
                 </li>
                 <li className={`c-nav__item ${currentRoute.match(/^\/app\/log\/?$/) ? 'active' : ''}`}>
                     <Link className="c-nav__link" to="/app/log">

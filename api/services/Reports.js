@@ -8,11 +8,13 @@ module.exports = {
         fetcher('user', userId, (err, user) => callback(err, user.reports));
     },
     markAsRead(updater, userId, reports) {
-        reports.each((report) => {
-            report['seen'] = true;
-            return report;
+        console.log(reports);
+        reports.forEach((report, i) => {
+            reports[i]['seen'] = true;
+            // report['seen'] = true;
+            // return report;
         });
-        updater('user', userId, { reports }, (err) => {
+        updater('user', { id: userId }, { reports }, (err) => {
             if (err) sails.log.error(err);
         });
     },

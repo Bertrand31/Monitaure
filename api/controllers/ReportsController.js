@@ -12,7 +12,7 @@ module.exports = {
         Reports.getReports(DB.fetchOne, req.user.id, (err, reports) => {
             if (err) return res.serverError(err);
 
-            Reports.markAsRead(reports);
+            Reports.markAsRead(DB.update, req.user.id, reports);
 
             return res.json(reports);
         });

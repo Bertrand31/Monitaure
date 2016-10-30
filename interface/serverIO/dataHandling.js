@@ -53,3 +53,9 @@ export function getLog(ajaxGet, callback) {
     const url = `${window.location.origin}/Log/getall/`;
     ajaxGet(url, callback);
 }
+
+// Reports management
+export function getReports(ajaxGet, callback) {
+    const url = `${window.location.origin}/Reports/getall/`;
+    ajaxGet(url, callback);
+}

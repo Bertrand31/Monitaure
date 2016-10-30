@@ -93,7 +93,7 @@ module.exports = {
             const totalOutageHr = Math.floor(report.totalOutage / (1000 * 3600));
             const totalOutageMn = report.totalOutage % (1000 * 3600) / (60 * 1000);
             const totalOutageStr = `${totalOutageHr !== 0 ? `${totalOutageHr} hours` : ``} ${totalOutageMn} minutes`;
-            reportRows += `<tr><td>${report.checkName}</td><td>${report.availability}</td><td>${report.numberOfOutages}</td><td>${totalOutageStr}</td></tr>`;
+            reportRows += `<tr><td>${report.checkName}</td><td>${report.availability}%</td><td>${report.numberOfOutages}</td><td>${totalOutageStr}</td></tr>`;
         });
         return `
             <p>

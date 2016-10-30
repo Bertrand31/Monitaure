@@ -23,6 +23,7 @@ import Tour from './Pages/Tour.jsx';
 
 import Dashboard from './Dashboard/Container';
 import MainPanel from './Dashboard/MainPanel/Component';
+import ReportsPanel from './Dashboard/ReportsPanel/Component';
 import LogPanel from './Dashboard/LogPanel/Component';
 
 const history = syncHistoryWithStore(browserHistory, store);
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <Route path="tour" component={Tour} />
                     <Route path="app" component={Dashboard} onEnter={requireAuth}>
                         <IndexRoute component={MainPanel} />
+                        <Route path="reports" component={ReportsPanel} />
                         <Route path="log" component={LogPanel} />
                     </Route>
                 </Route>
