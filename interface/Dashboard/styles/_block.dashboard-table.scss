@@ -139,6 +139,17 @@
         background-size:17px 17px;
     }
 }
+.c-log {
+    table-layout:fixed;
+}
+.c-log__type {
+    width:60px;
+    box-sizing:border-box;
+}
+.c-log__date {
+    width:25%;
+    box-sizing:border-box;
+}
 .c-filters {
     display:flex;
     justify-content:flex-start;

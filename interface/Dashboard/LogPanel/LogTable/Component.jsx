@@ -44,7 +44,7 @@ class LogComponent extends Component {
                 <thead className="c-table__head">
                     <tr className="c-table__row">
                         <th className="c-log__type" />
-                        <th className="c-log__name">Date</th>
+                        <th className="c-log__date">Date</th>
                         <th className="c-log__message">Message</th>
                     </tr>
                 </thead>
@@ -58,7 +58,7 @@ class LogComponent extends Component {
                     {filteredLog.reverse().map((logEntry, i) => (
                         <tr className="c-table__row" key={i}>
                             <td className={`c-cell--pictogram c-cell-${logEntry.type}`} />
-                            <td>{moment(logEntry.date).format('MMMM Do, h:mm a')}</td>
+                            <td className="c-log__date">{moment(logEntry.date).format('MMMM Do, HH:mm')}</td>
                             <td>{logEntry.message}</td>
                         </tr>
                     ))}
