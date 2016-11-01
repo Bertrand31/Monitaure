@@ -1,3 +1,6 @@
+const jsreport = require('jsreport');
+const uuid = require('uuid');
+
 module.exports = {
     /**
      * Fetch all of the user's reportd from the DB
@@ -20,12 +23,14 @@ module.exports = {
     },
     /**
      * Generate reports for a given checks array
-     * @param {Object} checks - an array container check records
+     * @param {Array} checks - an array container check records
+     * @returns {Array} an array containing reports for the given checks
      */
     generateReports(checks) {
         const newReportsArray = [];
         checks.forEach((check) => {
             const newReport = Object.assign({}, Utilities.calcCheckStats(check.history), {
+                id: uuid.v4(),
                 checkId: check.id,
                 checkName: check.name,
                 date: Date.now(),
