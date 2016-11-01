@@ -11,11 +11,8 @@ module.exports = {
         fetcher('user', userId, (err, user) => callback(err, user.reports));
     },
     markAsRead(updater, userId, reports) {
-        console.log(reports);
         reports.forEach((report, i) => {
             reports[i]['seen'] = true;
-            // report['seen'] = true;
-            // return report;
         });
         updater('user', { id: userId }, { reports }, (err) => {
             if (err) sails.log.error(err);
@@ -40,5 +37,22 @@ module.exports = {
         });
 
         return newReportsArray;
+    },
+    /**
+     * Generate a PDF from a report
+     * @param {Array} checks - an array container check records
+     * @returns {Array} an array containing reports for the given checks
+     */
+    generatePDF(fetcher, userId, requestedId, callback) {
+        fetcher('user', userId, (err, user) => {
+            if (err) return callback(err);
+
+            // For some reason find() is buggy. Using filter()[0] instead.
+            const requestedReport = user.reports.filter(report => report.id === requestedId)[0];
+
+            jsreport.render(EmailTemplates.reportPDF(requestedReport))
+                .then(out => callback(null, out))
+                .catch(err => callback(err));
+        });
     },
 };
