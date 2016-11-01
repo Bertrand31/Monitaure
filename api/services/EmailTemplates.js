@@ -115,4 +115,29 @@ module.exports = {
             </table>
         `;
     },
+    reportPDF(report) {
+        const totalOutageHr = Math.floor(report.totalOutage / (1000 * 3600));
+        const totalOutageMn = report.totalOutage % (1000 * 3600) / (60 * 1000);
+        const totalOutageStr = `${totalOutageHr !== 0 ? `${totalOutageHr} hours` : ``} ${totalOutageMn} minutes`;
+        return `
+            <h1>Monitaure report</h1>
+            <h2>${report.checkName}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Average availability</th>
+                        <th>Number of outages</th>
+                        <th>Total outage time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${report.availability}%</td>
+                        <td>${report.numberOfOutages}</td>
+                        <td>${totalOutageStr}</td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+    },
 };
