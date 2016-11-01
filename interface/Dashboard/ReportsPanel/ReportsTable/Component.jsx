@@ -48,6 +48,7 @@ class LogComponent extends Component {
                         <th className="c-reports__name">Check name</th>
                         <th className="c-reports__availability">Availability</th>
                         <th className="c-reports__avg">Avg latency</th>
+                        <td />
                     </tr>
                 </thead>
                 <ReactCSSTransitionGroup
@@ -63,6 +64,14 @@ class LogComponent extends Component {
                             <td>{report.checkName}</td>
                             <td>{report.availability}% ({report.numberOfOutages} outage{report.numberOfOutages !== 1 && 's'})</td>
                             <td>{report.avg} ms</td>
+                            <td>
+                                <a
+                                    href={`/Reports/export/${report.id}`}
+                                    download={`${moment(report.date).format('YYYY-MM-DD')}-${report.checkName.replace(/ /g,'-')}.pdf`}
+                                >
+                                    Download as PDF
+                                </a>
+                            </td>
                         </tr>
                     ))}
                 </ReactCSSTransitionGroup>
