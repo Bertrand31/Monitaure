@@ -1,3 +1,4 @@
+const { scheduleJob } = require('node-schedule');
 const { connect } = require('net');
 
 const ping = (domainNameOrIP, port, callback) => {
@@ -64,7 +65,7 @@ const pingHandling = (check, ping) => {
 };
 
 module.exports = (fetcher) => {
-    setInterval(() => {
+    scheduleJob(`*/${sails.config.checkInterval} * * * *`, () => {
         fetcher('check', {}, (err, checks) => {
             if (err) sails.log.error(err);
 
@@ -83,5 +84,5 @@ module.exports = (fetcher) => {
             });
 
         });
-    }, sails.config.checkInterval);
+    });
 };
