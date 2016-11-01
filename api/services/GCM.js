@@ -12,7 +12,7 @@ module.exports = {
         subscriptions.forEach((subscription) => {
             webpush.sendNotification(subscription, payload, options)
                 // .then(res => sails.log.info(res))
-                .catch(e => sails.log.error(e));
+                .catch(e => sails.log.info(e));
         });
     },
 };
