@@ -4,5 +4,7 @@ node_js:
   - 7.0
 env:
   - NODE_ENV=production
+before_install:
+  - npm install -g mocha chai chai-datetime
 script:
   - npm test
