@@ -1,10 +1,17 @@
 language: node_js
 
 node_js:
-  - 7.0
+    - 7.0
 env:
-  - NODE_ENV=production
+    - CXX=g++-4.8
+    - NODE_ENV=production
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - g++-4.8
 before_install:
-  - npm install -g mocha chai chai-datetime
+  - npm install -g mocha
 script:
   - npm test
