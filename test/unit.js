@@ -1,7 +1,9 @@
 // const assert = require('chai').assert;
+const chai = require('chai');
 const expect = require('chai').expect;
+chai.use(require('chai-datetime'));
 
-const { customFloor, isDomainNameOrIP, garbageCollection } = require('../api/services/Utilities');
+const { customFloor, isDomainNameOrIP, garbageCollection, calcCheckStats } = require('../api/services/Utilities');
 
 describe('#utilitiy functions', () => {
     describe('customFloor function', () => {
@@ -22,17 +24,17 @@ describe('#utilitiy functions', () => {
             expect(isDomainNameOrIP([])).to.be.false;
         });
     });
+    const fakeArray = [
+        { id: 1, date: new Date("2016-09-20T17:16:47.327Z"), duration: 72 },
+        { id: 2, date: new Date("2016-10-13T17:19:47.472Z"), duration: 51 },
+        { id: 3, date: new Date("2016-10-13T18:35:31.797Z"), duration: null },
+    ];
     describe('garbageCollection function', () => {
         it('should return an empty array and not throw', () => {
             expect(garbageCollection({}, new Date())).to.be.an('array');
             expect(garbageCollection({})).to.be.an('array');
             expect(garbageCollection({})).to.be.empty;
 		});
-        const fakeArray = [
-            { id: 1, date: new Date("2016-09-20T17:16:47.327Z") },
-            { id: 2, date: new Date("2016-10-13T17:19:47.472Z") },
-            { id: 3, date: new Date("2016-10-13T18:35:31.797Z") },
-        ];
         it('should trim the first item', () => {
             const fakeDate = new Date("2016-10-21");
             const result = garbageCollection(fakeArray, fakeDate);
@@ -49,6 +51,63 @@ describe('#utilitiy functions', () => {
             const result = garbageCollection(fakeArray, fakeDate);
             expect(result).to.have.lengthOf(3);
             expect(result[0]['id']).to.equal(1);
+        });
+    });
+    describe('calcCheckStats function', () => {
+        it('should return null and not throw', () => {
+            const result = calcCheckStats(customFloor);
+            expect(result).to.be.null;
+        });
+        it('should return correct stats', () => {
+            const fakeArray1 = [
+                { date: new Date("2016-09-20T17:16:47.327Z"), duration: 72 },
+                { date: new Date("2016-10-13T17:19:47.472Z"), duration: 51 },
+                { date: new Date("2016-10-13T18:35:31.797Z"), duration: null },
+            ];
+            const result1 = calcCheckStats(customFloor, fakeArray1, 3000);
+            expect(result1).to.be.not.null;
+            expect(result1.min).to.equal(51);
+            expect(result1.max).to.equal(72);
+            expect(result1.avg).to.equal(62);
+            expect(result1.availability).to.equal(66.66);
+            expect(result1.totalOutage).to.equal(3000);
+            expect(result1.lastOutage).to.equalDate(new Date("2016-10-13T18:35:31.797Z"));
+            expect(result1.numberOfOutages).to.equal(1);
+
+            const fakeArray2 = [
+                { date: new Date("2016-10-13T18:35:31.797Z"), duration: null },
+                { date: new Date("2016-09-20T17:16:47.327Z"), duration: 1428 },
+                { date: new Date("2016-10-13T17:19:47.472Z"), duration: 51 },
+                { date: new Date("2016-10-13T18:35:31.797Z"), duration: null },
+                { date: new Date("2016-09-20T17:16:47.327Z"), duration: 72 },
+                { date: new Date("2016-10-13T17:19:47.472Z"), duration: 9000 },
+                { date: new Date("2016-10-19T18:35:31.797Z"), duration: null },
+            ];
+            const result2 = calcCheckStats(customFloor, fakeArray2, 3000);
+            expect(result2).to.be.not.null;
+            expect(result2.min).to.equal(51);
+            expect(result2.max).to.equal(9000);
+            expect(result2.avg).to.equal(2638);
+            expect(result2.availability).to.equal(57.14);
+            expect(result2.totalOutage).to.equal(9000);
+            expect(result2.lastOutage).to.equalDate(new Date("2016-10-19T18:35:31.797Z"));
+            expect(result2.numberOfOutages).to.equal(2);
+
+            const fakeArray3 = [
+                { date: new Date("2016-10-13T18:35:31.797Z"), duration: null },
+                { date: new Date("2016-09-20T17:16:47.327Z"), duration: null },
+                { date: new Date("2016-10-13T17:19:47.472Z"), duration: null },
+                { date: new Date("2016-10-13T18:35:31.797Z"), duration: null },
+            ];
+            const result3 = calcCheckStats(customFloor, fakeArray3, 100);
+            expect(result3).to.be.not.null;
+            expect(result3.min).to.be.null;
+            expect(result3.max).to.be.null;
+            expect(result3.avg).to.be.null;
+            expect(result3.availability).to.equal(0);
+            expect(result3.totalOutage).to.equal(400);
+            expect(result3.lastOutage).to.equalDate(new Date("2016-10-13T18:35:31.797Z"));
+            expect(result3.numberOfOutages).to.equal(0);
         });
     });
 });

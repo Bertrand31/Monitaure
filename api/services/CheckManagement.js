@@ -13,7 +13,7 @@ const formatChecks = (checks, desiredHistoryLength) => {
             {},
             check,
             { history: check.history.slice(-desiredHistoryLength) },
-            Utilities.calcCheckStats(check.history)
+            Utilities.calcCheckStats(Utilities.customFloor, check.history, sails.config.checkInterval)
         );
     });
 

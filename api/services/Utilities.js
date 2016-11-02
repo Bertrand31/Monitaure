@@ -40,38 +40,39 @@ module.exports = {
     *  @param {Number} historyLength - the number of history entries to return
     *  @returns {Object}
     */
-    calcCheckStats: (historyArray) => {
+    calcCheckStats: (customFloor, historyArray = [], checkInterval = 5000) => {
         if (historyArray.length < 1) return null;
 
-        const checkInterval = sails.config.checkInterval;
         let sum = 0;
-        let min = historyArray[0].duration;
+        const firstNonNullPing = historyArray.find(ping => ping.duration !== null);
+        let min = typeof firstNonNullPing !== 'undefined' ? firstNonNullPing.duration : null;
         let max = historyArray[0].duration;
-        let totalOutage = 0;
+        let totalOutages = 0;
         let lastOutage = null;
         let numberOfOutages = 0;
 
-        historyArray.forEach((ping, i) => {
+        historyArray.forEach((ping, i, array) => {
             if (ping.duration !== null) {
                 sum += ping.duration;
                 min = ping.duration < min ? ping.duration : min;
                 max = ping.duration > max ? ping.duration : max;
             } else {
-                totalOutage += checkInterval;
+                totalOutages++;
                 lastOutage = ping.date;
-                if (typeof historyArray[i - 1] !== 'undefined' && historyArray[i - 1].duration !== null) {
+                if (typeof array[i - 1] !== 'undefined' && array[i - 1].duration !== null) {
                     numberOfOutages++;
                 }
             }
         });
 
+        const totalOutage = totalOutages * checkInterval;
         const percent = 100 - (totalOutage * 100) / (historyArray.length * checkInterval);
 
         return {
             min,
             max,
-            avg: Math.round(sum / historyArray.length),
-            availability: Utilities.customFloor(percent, 2),
+            avg: sum !== 0 ? Math.round(sum / (historyArray.length - totalOutages)) : null,
+            availability: customFloor(percent, 2),
             totalOutage,
             lastOutage,
             numberOfOutages,

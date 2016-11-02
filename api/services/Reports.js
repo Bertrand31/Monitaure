@@ -26,13 +26,16 @@ module.exports = {
     generateReports(checks) {
         const newReportsArray = [];
         checks.forEach((check) => {
-            const newReport = Object.assign({}, Utilities.calcCheckStats(check.history), {
-                id: uuid.v4(),
-                checkId: check.id,
-                checkName: check.name,
-                date: Date.now(),
-                seen: false,
-            });
+            const newReport = Object.assign({},
+                Utilities.calcCheckStats(Utilities.customFloor, check.history, sails.config.checkInterval),
+                {
+                    id: uuid.v4(),
+                    checkId: check.id,
+                    checkName: check.name,
+                    date: Date.now(),
+                    seen: false,
+                }
+            );
             newReportsArray.push(newReport);
         });
 

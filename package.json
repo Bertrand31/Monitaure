@@ -36,6 +36,7 @@
     "babel-preset-stage-2": "^6.18.0",
     "bcrypt": "^0.8.7",
     "chai": "^3.5.0",
+    "chai-datetime": "^1.4.1",
     "chartist": "^0.10.1",
     "connect-redis": "3.1.0",
     "css-loader": "^0.25.0",
