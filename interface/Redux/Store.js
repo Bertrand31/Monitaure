@@ -18,6 +18,7 @@ store.subscribe(throttle(() => {
         checks: store.getState().checks,
         globalStats: store.getState().globalStats,
         log: store.getState().log,
+        reports: store.getState().reports,
     });
 }, 1000));
 
