@@ -46,7 +46,7 @@ module.exports = {
         if (!req.wantsJSON) {
             return res.forbidden();
         }
-        if (typeof req.param('id') !== 'string' || req.param('id').length !== 24) {
+        if (typeof req.param('id') !== 'string' || req.param('id').length !== 32) {
             return res.json({ result: 'notconfirmed' });
         }
         UserManagement.confirm(DB.update, req.param('id'), (err, confirmed) => {
