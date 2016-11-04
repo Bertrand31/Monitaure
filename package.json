@@ -17,12 +17,14 @@
     "Waterline",
     "Jade",
     "RequireJS",
-    "ES6",
+    "ES2015",
+    "ES2016",
     "Babel",
     "ESLint",
     "Webpack",
-    "Service Workers",
-    "Google Cloud Messaging"
+    "Service Worker",
+    "Google Cloud Messaging",
+    "Push API"
   ],
   "dependencies": {
     "babel-core": "^6.18.0",
