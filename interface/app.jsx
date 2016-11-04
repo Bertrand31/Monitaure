@@ -18,8 +18,9 @@ import { close as closePopover } from './Pages/Popover/Actions';
 
 import App from './App/Container';
 
-import Homepage from './Pages/Homepage.jsx';
-import Tour from './Pages/Tour.jsx';
+import Homepage from './Pages/Homepage';
+import Tour from './Pages/Tour';
+import AccountConfirmation from './Pages/AccountConfirmation/Container';
 
 import Dashboard from './Dashboard/Container';
 import MainPanel from './Dashboard/MainPanel/Component';
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <Route path="reports" component={ReportsPanel} />
                         <Route path="log" component={LogPanel} />
                     </Route>
+                    <Route path="account/confirm/:confirmationToken" component={AccountConfirmation} />
                 </Route>
             </Router>
         </Provider>,

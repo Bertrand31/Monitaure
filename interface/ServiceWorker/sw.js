@@ -25,6 +25,7 @@
         },
     });
     global.toolbox.router.get('/User/getchecks/', global.toolbox.networkOnly);
+    global.toolbox.router.get('/User/confirm/', global.toolbox.networkOnly);
     global.toolbox.router.get('/Auth/*', global.toolbox.networkOnly);
     // END APP GETs
 

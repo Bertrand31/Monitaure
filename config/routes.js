@@ -10,7 +10,9 @@ module.exports.routes = {
      *                                                                          *
     ***************************************************************************/
 
-    'get /account/confirm/:id': 'UserController.confirm',
+    'get /account/confirm/*': {
+        view: 'homepage',
+    },
 
     'get /403': {
         view: '403',

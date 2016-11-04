@@ -43,13 +43,19 @@ module.exports = {
      * @returns {HTML} Renders a page depending on the account confirmation success
      */
     confirm(req, res) {
+        if (!req.wantsJSON) {
+            return res.forbidden();
+        }
+        if (typeof req.param('id') !== 'string' || req.param('id').length !== 24) {
+            return res.json({ result: 'notconfirmed' });
+        }
         UserManagement.confirm(DB.update, req.param('id'), (err, confirmed) => {
-            if (err) return res.badRequest(err);
+            if (err) return res.json({ result: 'error' });
 
             if (confirmed.length > 0) {
-                return res.render('confirmed');
+                return res.json({ result: 'confirmed' });
             } else {
-                return res.render('notconfirmed');
+                return res.json({ result: 'notconfirmed' });
             }
         });
     },

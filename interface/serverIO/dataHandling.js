@@ -5,6 +5,10 @@ export function csrfToken(ajaxGet, callback) {
 }
 
 // Users management
+export function confirmAccount(ajaxGet, confirmationToken, callback) {
+    const url = `${window.location.origin}/User/confirm/${confirmationToken}`;
+    ajaxGet(url, callback);
+}
 export function getUserData(ajaxGet, callback) {
     const url = `${window.location.origin}/User/getdata/`;
     ajaxGet(url, callback);
