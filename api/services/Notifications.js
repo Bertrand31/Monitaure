@@ -36,7 +36,7 @@ module.exports = {
      */
     sendConfirmationEmail(user) {
         const emailSubject = '🙋 Monitaure account confirmation';
-        const emailBody = EmailTemplates.Confirmation(`${baseUrl}/account/confirm/${user.confirmationToken}`, user.username);
+        const emailBody = Templates.Confirmation(`${baseUrl}/account/confirm/${user.confirmationToken}`, user.username);
 
         Sendgrid.send(user.email, emailSubject, emailBody);
     },
@@ -47,7 +47,7 @@ module.exports = {
      */
     sendNewReportsNotification(user, reports) {
         const emailSubject = '👌 Fresh monthly reports available!';
-        const emailBody = EmailTemplates.newReports(user.username, reports);
+        const emailBody = Templates.newReports(user.username, reports);
 
         Sendgrid.send(user.email, emailSubject, emailBody);
     },

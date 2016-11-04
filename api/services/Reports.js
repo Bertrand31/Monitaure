@@ -53,7 +53,7 @@ module.exports = {
             // For some reason find() is buggy. Using filter()[0] instead.
             const requestedReport = user.reports.filter(report => report.id === requestedId)[0];
 
-            jsreport.render(EmailTemplates.reportPDF(requestedReport))
+            jsreport.render(Templates.reportPDF(requestedReport))
                 .then(out => callback(null, out))
                 .catch(err => callback(err));
         });
