@@ -78,4 +78,21 @@ module.exports = {
             numberOfOutages,
         };
     },
+
+    /**
+     * Turns an amount of milliseconds into decomposed object with hours, minutes and seconds
+     * @param {Number} milliseconds - an amout of miliseconds
+     * @returns {Object} { hours, minutes, seconds }h:mm:ss
+     */
+    decomposeDuration: (milliseconds) => {
+        if (typeof milliseconds !== 'number' || milliseconds < 0) {
+            throw new Error('Incorrect milliseconds value');
+        }
+        const initialSeconds = milliseconds / 1000;
+        return {
+            hours: Math.floor(initialSeconds / 3600),
+            minutes: Math.floor((initialSeconds % 3600) / 60),
+            seconds: Math.floor((initialSeconds % 3600) % 60),
+        };
+    },
 };
