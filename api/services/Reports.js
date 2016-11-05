@@ -27,13 +27,15 @@ module.exports = {
         const newReportsArray = [];
         checks.forEach((check) => {
             const newReport = Object.assign({},
-                Utilities.calcCheckStats(Utilities.customFloor, check.history, sails.config.checkInterval),
                 {
                     id: uuid.v4(),
                     checkId: check.id,
                     checkName: check.name,
                     date: Date.now(),
                     seen: false,
+                },
+                {
+                    data: Utilities.calcCheckStats(Utilities.customFloor, check.history, sails.config.checkInterval),
                 }
             );
             newReportsArray.push(newReport);

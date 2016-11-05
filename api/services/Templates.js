@@ -90,10 +90,10 @@ module.exports = {
     newReports(username, reports) {
         let reportRows = ``;
         reports.forEach((report) => {
-            const totalOutageHr = Math.floor(report.totalOutage / (1000 * 3600));
-            const totalOutageMn = report.totalOutage % (1000 * 3600) / (60 * 1000);
+            const totalOutageHr = Math.floor(report.data.totalOutage / (1000 * 3600));
+            const totalOutageMn = report.data.totalOutage % (1000 * 3600) / (60 * 1000);
             const totalOutageStr = `${totalOutageHr !== 0 ? `${totalOutageHr} hours` : ``} ${totalOutageMn} minutes`;
-            reportRows += `<tr><td>${report.checkName}</td><td>${report.availability}%</td><td>${report.numberOfOutages}</td><td>${totalOutageStr}</td></tr>`;
+            reportRows += `<tr><td>${report.checkName}</td><td>${report.data.availability}%</td><td>${report.data.numberOfOutages}</td><td>${totalOutageStr}</td></tr>`;
         });
         return `
             <p>
@@ -116,8 +116,8 @@ module.exports = {
         `;
     },
     reportPDF(report) {
-        const totalOutageHr = Math.floor(report.totalOutage / (1000 * 3600));
-        const totalOutageMn = report.totalOutage % (1000 * 3600) / (60 * 1000);
+        const totalOutageHr = Math.floor(report.data.totalOutage / (1000 * 3600));
+        const totalOutageMn = report.data.totalOutage % (1000 * 3600) / (60 * 1000);
         const totalOutageStr = `${totalOutageHr !== 0 ? `${totalOutageHr} hours` : ``} ${totalOutageMn} minutes`;
         return `
             <h1>Monitaure report</h1>
@@ -132,8 +132,8 @@ module.exports = {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>${report.availability}%</td>
-                        <td>${report.numberOfOutages}</td>
+                        <td>${report.data.availability}%</td>
+                        <td>${report.data.numberOfOutages}</td>
                         <td>${totalOutageStr}</td>
                     </tr>
                 </tbody>

@@ -62,8 +62,8 @@ class LogComponent extends Component {
                         <tr className="c-table__row" key={i}>
                             <td className="c-reports__date">{moment(report.date).format('MMMM Do, HH:mm')}</td>
                             <td>{report.checkName}</td>
-                            <td>{report.availability}% ({report.numberOfOutages} outage{report.numberOfOutages !== 1 && 's'})</td>
-                            <td>{report.avg} ms</td>
+                            <td>{report.data.availability}% ({report.data.numberOfOutages} outage{report.data.numberOfOutages !== 1 && 's'})</td>
+                            <td>{report.data.avg} ms</td>
                             <td>
                                 <a
                                     href={`/Reports/export/${report.id}`}
