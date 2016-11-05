@@ -90,10 +90,14 @@ module.exports = {
     newReports(username, reports) {
         let reportRows = ``;
         reports.forEach((report) => {
-            const totalOutageHr = Math.floor(report.data.totalOutage / (1000 * 3600));
-            const totalOutageMn = report.data.totalOutage % (1000 * 3600) / (60 * 1000);
-            const totalOutageStr = `${totalOutageHr !== 0 ? `${totalOutageHr} hours` : ``} ${totalOutageMn} minutes`;
-            reportRows += `<tr><td>${report.checkName}</td><td>${report.data.availability}%</td><td>${report.data.numberOfOutages}</td><td>${totalOutageStr}</td></tr>`;
+            const { hours, minutes } = Utilities.decomposeDuration(report.data.totalOutage);
+            const totalOutageStr = `${hours !== 0 ? `${hours} hours` : ''} ${minutes} minutes`;
+            reportRows += `<tr>
+                <td>${report.checkName}</td>
+                <td>${report.data.availability}%</td>
+                <td>${report.data.numberOfOutages}</td>
+                <td>${totalOutageStr}</td>
+            </tr>`;
         });
         return `
             <p>
@@ -116,9 +120,8 @@ module.exports = {
         `;
     },
     reportPDF(report) {
-        const totalOutageHr = Math.floor(report.data.totalOutage / (1000 * 3600));
-        const totalOutageMn = report.data.totalOutage % (1000 * 3600) / (60 * 1000);
-        const totalOutageStr = `${totalOutageHr !== 0 ? `${totalOutageHr} hours` : ``} ${totalOutageMn} minutes`;
+        const { hours, minutes } = Utilities.decomposeDuration(report.data.totalOutage);
+        const totalOutageStr = `${hours !== 0 ? `${hours} hours` : ''} ${minutes} minutes`;
         return `
             <h1>Monitaure report</h1>
             <h2>${report.checkName}</h2>
