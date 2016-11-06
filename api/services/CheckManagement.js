@@ -68,6 +68,7 @@ module.exports = {
     updateCheck(fetcher, updater, userId, checkId, data, callback) {
         fetcher('check', checkId, (err, check) => {
             if (err) return callback(err);
+            if (!check) return callback('Check not found');
 
             if (check.owner !== userId) {
                 return callback('You do not have access to this check');
