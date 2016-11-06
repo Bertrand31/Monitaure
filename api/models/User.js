@@ -1,9 +1,3 @@
-/**
- * User.js
- *
- * @description :: User model
- */
-
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 

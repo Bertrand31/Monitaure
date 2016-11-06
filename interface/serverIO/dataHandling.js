@@ -40,7 +40,7 @@ export function createCheck(ajaxPost, data, callback) {
     ajaxPost(url, data, callback);
 }
 export function updateCheck(ajaxPost, data, callback) {
-    const url = `${window.location.origin}/Check/update`;
+    const url = `${window.location.origin}/Check/update/`;
     ajaxPost(url, data, callback);
 }
 export function destroyCheck(ajaxGet, checkId, callback) {
@@ -60,6 +60,6 @@ export function getLog(ajaxGet, callback) {
 
 // Reports management
 export function getReports(ajaxGet, callback) {
-    const url = `${window.location.origin}/Reports/getall`;
+    const url = `${window.location.origin}/Reports/getall/`;
     ajaxGet(url, callback);
 }

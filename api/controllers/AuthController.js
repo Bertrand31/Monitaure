@@ -30,6 +30,7 @@ module.exports = {
             });
         })(req, res);
     },
+
     /**
      * HTTP route for logout requests
      * @param {Object} req - HTTP request
@@ -37,8 +38,9 @@ module.exports = {
      */
     logout: (req, res) => {
         req.logout();
-        res.send({});
+        return res.ok({});
     },
+
     /**
      * HTTP route for checking whether the user's session
      * is connected and if his session is still valid
@@ -51,7 +53,6 @@ module.exports = {
                 isLoggedIn: true,
             });
         }
-
         return res.send({
             isLoggedIn: false,
         });

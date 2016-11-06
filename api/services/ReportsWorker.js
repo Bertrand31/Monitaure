@@ -8,6 +8,8 @@ module.exports = (fetcher, updater) => {
 
             users.forEach((user) => {
                 fetcher('check', { owner: user.id }, (err, checks) => {
+                    if (err) sails.log.error(err);
+
                     const newReports = Reports.generateReports(checks);
                     const allReportsArray = [
                         ...user.reports,

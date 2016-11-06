@@ -29,7 +29,7 @@ const PageComponent = ({ children, menuIsOpen, openPopover, toggleMenu, openMenu
                 <ul className={`c-topnav__menu ${menuIsOpen ? 's-menu-is-open' : ''}`}>
                     <li className="c-topnav__el"><Link to="/" className="c-topnav__link">Home</Link></li>
                     <li className="c-topnav__el"><Link to="/tour" className="c-topnav__link">Tour</Link></li>
-                    <li className="c-topnav__el"><ScrollLink className="c-topnav__link" href="#a-aboutus" to="a-aboutus" smooth={true}>About Us</ScrollLink></li>
+                    <li className="c-topnav__el"><ScrollLink className="c-topnav__link" href="#a-aboutus" to="a-aboutus" smooth>About Us</ScrollLink></li>
                     <li className="c-topnav__el--dummy" aria-hidden="true" />
                     <li className="c-topnav__el c-topnav__el--btn"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('login'); }} className="c-button--empty">Log in</a></li>
                     <li className="c-topnav__el c-topnav__el--btn"><a href="#_" onClick={(e) => { e.preventDefault(); openPopover('signup'); }} className="c-button--round">Sign up</a></li>

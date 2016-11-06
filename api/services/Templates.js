@@ -88,7 +88,7 @@ module.exports = {
         `;
     },
     newReports(username, reports) {
-        let reportRows = ``;
+        let reportRows = '';
         reports.forEach((report) => {
             const { hours, minutes } = Utilities.decomposeDuration(report.data.totalOutage);
             const totalOutageStr = `${hours !== 0 ? `${hours} hours` : ''} ${minutes} minutes`;

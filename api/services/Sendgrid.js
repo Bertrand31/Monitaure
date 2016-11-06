@@ -26,7 +26,6 @@ module.exports = {
             subject: emailObject,
             html: emailBody,
         };
-
         emailClient.sendMail(emailOptions, (err) => {
             if (err) return sails.log.error(err);
         });

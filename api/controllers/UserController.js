@@ -24,8 +24,8 @@ module.exports = {
         UserManagement.create(DB.create, req.body, (err, user) => {
             if (err) return res.badRequest(err.details);
 
-            Notifications.sendConfirmationEmail(createdUser);
-            return res.json(200, createdUser);
+            Notifications.sendConfirmationEmail(user);
+            return res.json(user);
         });
     },
 
@@ -58,7 +58,8 @@ module.exports = {
      * @param {Object} req - HTTP request (must be GET)
      * @param {Object} res - Express' response object
      */
-    setgcmcredentials(req) {
+    setgcmcredentials: (req, res) => {
         UserManagement.setGCMCredentials(DB.fetchOne, DB.update, req.user.id, req.param('subscription'));
+        return res.ok({});
     },
 };

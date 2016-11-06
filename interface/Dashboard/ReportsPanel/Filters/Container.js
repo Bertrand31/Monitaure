@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { updateFilter, hideType, showType } from './Actions';
+import { updateFilter } from './Actions';
 
 import ReportsFiltersComponent from './Component';
 

@@ -29,10 +29,7 @@ module.exports = {
      * @param {Function} callback
      */
     getChecks(fetcher, userId, callback) {
-        fetcher('check', { owner: userId }, (err, checks) => {
-
-            return callback(err, formatChecks(checks, 20));
-        });
+        fetcher('check', { owner: userId }, (err, checks) => callback(err, formatChecks(checks, 20)));
     },
 
     /**
@@ -116,11 +113,7 @@ module.exports = {
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
             // And update the DB record
-            updater('check', { id: check.id }, { history: newHistoryArray }, (err) => {
-                if (err) return callback(err);
-
-                return callback(null);
-            });
+            updater('check', { id: check.id }, { history: newHistoryArray }, callback);
         });
     },
 };
