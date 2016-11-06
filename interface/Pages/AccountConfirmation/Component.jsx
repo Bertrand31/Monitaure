@@ -30,7 +30,7 @@ class AccountConfirmationComponent extends Component {
         } else if (this.state.status === 'notconfirmed') {
             content = (
                 <div className="c-box">
-                    <h2 className="c-box__title">Activation failed. Either the user was not found or the token is invalid. Try signing up again.</h2>
+                    <h2 className="c-box__title">Activation failed. You might have followed an obsolete link. Try signing up again.</h2>
                     <a className="c-button" href="/" onClick={(e) => { e.preventDefault(); this.props.openPopover('signup'); }}>Sign up</a>
                 </div>
             );
