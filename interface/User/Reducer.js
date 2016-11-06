@@ -14,10 +14,9 @@ const userReducer = (state = { isLoggedIn: false }, action) => {
                 emailSent: true,
             };
 
-        case types.USER_LOGIN:
+        case types.USER_HYDRATE:
             return {
                 ...action.user,
-                isLoggedIn: true,
             };
         case types.USER_LOGOUT:
             return {

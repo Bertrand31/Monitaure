@@ -14,9 +14,9 @@ export function emailSent() {
     };
 }
 
-export function login(data = {}) {
+export function hydrate(data) {
     return {
-        type: types.USER_LOGIN,
+        type: types.USER_HYDRATE,
         user: data,
     };
 }

@@ -9,7 +9,7 @@ module.exports = {
     login: (req, res) => {
         passport.authenticate('local', (err, user, info) => {
             if (err || !user) {
-                return res.send({
+                return res.json({
                     message: info.message,
                     user,
                 });
@@ -20,12 +20,12 @@ module.exports = {
 
                 UserManagement.updateLastConnection(DB.update, user.id);
 
-                return res.send({
+                const formattedUser = UserManagement.formatUser(user);
+                formattedUser.isLoggedIn = true;
+
+                return res.json({
                     message: info.message,
-                    user: {
-                        username: user.username,
-                        emailHash: user.emailHash,
-                    },
+                    user: formattedUser,
                 });
             });
         })(req, res);

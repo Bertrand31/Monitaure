@@ -11,9 +11,7 @@ module.exports = {
         }
         UserManagement.getData(DB.fetchOne, req.user.id, (err, user) => {
             if (err) return res.serverError(err.details);
-            if (!user) return res.notFound();
-
-            user.isLoggedIn = true;
+            if (!user) return res.json({ isLoggedIn: false });
 
             return res.json(user);
         });

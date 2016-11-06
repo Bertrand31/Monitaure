@@ -42,14 +42,7 @@ passport.use(
                     });
                 }
 
-                const returnUser = {
-                    username,
-                    email: user.email,
-                    emailHash: user.emailHash,
-                    createdAt: user.createdAt,
-                    id: user.id,
-                };
-                return callback(null, returnUser, {
+                return callback(null, user, {
                     message: 'Logged in successfully',
                 });
             });

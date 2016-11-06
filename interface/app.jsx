@@ -45,7 +45,7 @@ const checkAuth = (nextState, replace, callback) => {
 
         if (typeof heap !== 'undefined') heap.identify(user.username);
 
-        store.dispatch(UserActions.login(user));
+        store.dispatch(UserActions.hydrate(user));
         clearTimeout(requestTimeout);
         return callback();
     });
