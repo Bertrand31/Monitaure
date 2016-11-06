@@ -8,16 +8,16 @@ module.exports.policies = {
      ***************************************************************************/
 
     '*': [
-        'isAuthenticated',
+        ['isAuthenticated', 'wantsJSON'],
     ],
 
     'UserController': {
-        'create': true,
-        'confirm': true,
+        'create': 'wantsJSON',
+        'confirm': 'wantsJSON',
     },
 
     'AuthController': {
-        'login': true,
-        'isLoggedIn': true,
+        'login': 'wantsJSON',
+        'isLoggedIn': 'wantsJSON',
     },
 };

@@ -6,9 +6,6 @@ module.exports = {
      * @returns {JSON} An error, if needs be, or the log JSON object
      */
     getall: (req, res) => {
-        if (!req.wantsJSON) {
-            return res.forbidden();
-        }
         Log.getLogs(DB.fetchOne, req.user.id, (err, data) => {
             if (err) return res.serverError(err);
 

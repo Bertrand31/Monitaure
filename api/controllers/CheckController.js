@@ -7,10 +7,7 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {JSON} Either an error or the user's and his checks' data
      */
-    getchecks(req, res) {
-        if (!req.wantsJSON) {
-            return res.forbidden();
-        }
+    find: (req, res) => {
         CheckManagement.getChecks(DB.fetch, req.user.id, (err, data) => {
             if (err) return res.serverError(err);
 
@@ -24,10 +21,7 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {JSON} Either an error or the created check
      */
-    create(req, res) {
-        if (!req.wantsJSON) {
-            return res.forbidden();
-        }
+    create: (req, res) => {
         const data = {
             name: String(req.param('name')),
             domainNameOrIP: String(req.param('domainNameOrIP')),
@@ -49,10 +43,7 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {JSON} Either an error or the updated check
      */
-    update(req, res) {
-        if (!req.wantsJSON) {
-            return res.forbidden();
-        }
+    update: (req, res) => {
         const data = {
             name: String(req.param('name')),
             emailNotifications: Boolean(req.param('emailNotifications')),
@@ -70,10 +61,7 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {JSON} Either an error or the destroyed check
      */
-    destroy(req, res) {
-        if (!req.wantsJSON) {
-            return res.forbidden();
-        }
+    destroy: (req, res) => {
         CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), (err) => {
             if (err) return res.serverError(err);
 

@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-    if (req.isAuthenticated()) {
+    if (req.wantsJSON) {
         return next();
     }
 

@@ -5,16 +5,14 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {JSON} Either an error or the corresponding user record
      */
-    getdata(req, res) {
-        if (!req.wantsJSON) {
-            return res.forbidden();
-        }
+    find: (req, res) => {
         UserManagement.getData(DB.fetchOne, req.user.id, (err, user) => {
             if (err) return res.badRequest(err.details);
 
             return res.json(user);
         });
     },
+
     /**
      * HTTP route to create a user account
      * req.body contains the user data (name, email, etc.)
@@ -22,11 +20,8 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {JSON} Either an error or the created user record
      */
-    create(req, res) {
-        if (!req.wantsJSON) {
-            return res.forbidden();
-        }
-        UserManagement.create(DB.create, req.body, (err, createdUser) => {
+    create: (req, res) => {
+        UserManagement.create(DB.create, req.body, (err, user) => {
             if (err) return res.badRequest(err.details);
 
             Notifications.sendConfirmationEmail(createdUser);
@@ -42,10 +37,7 @@ module.exports = {
      * @param {Object} res - Express' response object
      * @returns {HTML} Renders a page depending on the account confirmation success
      */
-    confirm(req, res) {
-        if (!req.wantsJSON) {
-            return res.forbidden();
-        }
+    confirm: (req, res) => {
         if (typeof req.param('id') !== 'string' || req.param('id').length !== 32) {
             return res.json({ result: 'notconfirmed' });
         }

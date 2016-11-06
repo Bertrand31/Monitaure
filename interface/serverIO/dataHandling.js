@@ -10,11 +10,11 @@ export function confirmAccount(ajaxGet, confirmationToken, callback) {
     ajaxGet(url, callback);
 }
 export function getUserData(ajaxGet, callback) {
-    const url = `${window.location.origin}/User/getdata/`;
+    const url = `${window.location.origin}/User/`;
     ajaxGet(url, callback);
 }
 export function createUser(ajaxPost, data, callback) {
-    const url = `${window.location.origin}/User/create/`;
+    const url = `${window.location.origin}/User/`;
     ajaxPost(url, data, callback);
 }
 export function setGCMCredentials(ajaxPost, data, callback) {
@@ -36,7 +36,7 @@ export function isLoggedIn(ajaxGet, callback) {
 
 // Checks management
 export function createCheck(ajaxPost, data, callback) {
-    const url = `${window.location.origin}/Check/create`;
+    const url = `${window.location.origin}/Check/`;
     ajaxPost(url, data, callback);
 }
 export function updateCheck(ajaxPost, data, callback) {
@@ -48,7 +48,7 @@ export function destroyCheck(ajaxGet, checkId, callback) {
     ajaxGet(url, callback);
 }
 export function getChecks(ajaxGet, callback) {
-    const url = `${window.location.origin}/Check/getchecks/`;
+    const url = `${window.location.origin}/Check/`;
     ajaxGet(url, callback);
 }
 
@@ -60,6 +60,6 @@ export function getLog(ajaxGet, callback) {
 
 // Reports management
 export function getReports(ajaxGet, callback) {
-    const url = `${window.location.origin}/Reports/getall/`;
+    const url = `${window.location.origin}/Reports/getall`;
     ajaxGet(url, callback);
 }
