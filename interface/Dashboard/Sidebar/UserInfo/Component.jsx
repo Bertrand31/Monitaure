@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const UserInfo = ({ username, emailHash }) => {
+const UserInfoComponent = ({ username, emailHash }) => {
     if (typeof emailHash === 'undefined' || typeof username === 'undefined') {
         return null;
     }
@@ -17,9 +17,9 @@ const UserInfo = ({ username, emailHash }) => {
     );
 };
 
-UserInfo.propTypes = {
+UserInfoComponent.propTypes = {
     username: PropTypes.string,
     emailHash: PropTypes.string,
 };
 
-export default UserInfo;
+export default UserInfoComponent;

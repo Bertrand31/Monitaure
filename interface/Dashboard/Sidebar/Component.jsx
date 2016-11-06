@@ -1,15 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
-import Navigation from './Components/Navigation';
-import UserInfo from './Components/UserInfo';
+import Navigation from './Navigation/Container';
+import UserInfo from './UserInfo/Container';
 
 class Sidebar extends Component {
     static propTypes = {
-        currentRoute: PropTypes.string.isRequired,
         menuIsOpen: PropTypes.bool.isRequired,
         toggleMenu: PropTypes.func.isRequired,
-        user: PropTypes.object.isRequired,
-        logout: PropTypes.func.isRequired,
     }
 
     componentDidMount() {
@@ -40,17 +37,10 @@ class Sidebar extends Component {
                         </h1>
                         <div className="c-dummy" />
                     </div>
-                    <Navigation
-                        unseenReports={this.props.user.unseenReports}
-                        unseenLog={this.props.user.unseenLog}
-                        currentRoute={this.props.currentRoute}
-                        menuIsOpen={this.props.menuIsOpen}
-                        toggleMenu={this.props.toggleMenu}
-                        logout={this.props.logout}
-                    />
+                    <Navigation menuIsOpen={this.props.menuIsOpen} />
                 </div>
                 <div className="sidebar-bottom" id="profile">
-                    <UserInfo username={this.props.user.username} emailHash={this.props.user.emailHash} />
+                    <UserInfo />
                 </div>
             </aside>
         );
