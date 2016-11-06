@@ -1,3 +1,6 @@
+const countAttributes = test => array => array.filter(test).length;
+const countUnseenItems = countAttributes(item => item.seen === false);
+
 module.exports = {
     /**
      * Gets a user's basic data
@@ -10,6 +13,8 @@ module.exports = {
             const simpleUser = {
                 username: user.username,
                 emailHash: user.emailHash,
+                unseenReports: countUnseenItems(user.reports),
+                unseenLog: countUnseenItems(user.log),
             };
 
             return callback(err, simpleUser);

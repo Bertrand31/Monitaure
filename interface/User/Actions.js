@@ -26,3 +26,9 @@ export function logout() {
         type: types.USER_LOGOUT,
     };
 }
+
+export function decrementUnseenReportsCount() {
+    return {
+        type: types.USER_DECREMENT_UNSEEN_REPORTS_COUNT,
+    };
+}

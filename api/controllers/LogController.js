@@ -9,8 +9,11 @@ module.exports = {
         Log.getLogs(DB.fetchOne, req.user.id, (err, data) => {
             if (err) return res.serverError(err);
 
+            Log.markAllAsRead(DB.update, req.user.id, data);
+
             return res.json(data);
         });
     },
+
 };
 

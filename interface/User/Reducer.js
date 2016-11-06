@@ -13,6 +13,7 @@ const userReducer = (state = { isLoggedIn: false }, action) => {
                 ...state,
                 emailSent: true,
             };
+
         case types.USER_LOGIN:
             return {
                 ...action.user,
@@ -21,6 +22,12 @@ const userReducer = (state = { isLoggedIn: false }, action) => {
         case types.USER_LOGOUT:
             return {
                 isLoggedIn: false,
+            };
+
+        case types.USER_DECREMENT_UNSEEN_REPORTS_COUNT:
+            return {
+                ...state,
+                unseenReports: state.unseenReports - 1,
             };
 
         default:

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-const Navigation = ({ currentRoute, menuIsOpen, logout }) => (
+const Navigation = ({ unseenReports, unseenLog, currentRoute, menuIsOpen, logout }) => (
     <div className={`sidebar__nav--wrapper ${menuIsOpen ? '' : 's-is-hidden'}`}>
         <nav className="c-nav main-nav">
             <ul>
@@ -10,12 +10,12 @@ const Navigation = ({ currentRoute, menuIsOpen, logout }) => (
                 </li>
                 <li className={`c-nav__item ${currentRoute.match(/^\/app\/reports\/?$/) ? 'active' : ''}`}>
                     <Link className="c-nav__link" to="/app/reports">
-                        Reports<span className="info">0</span>
+                        Reports<span className="info">{unseenReports}</span>
                     </Link>
                 </li>
                 <li className={`c-nav__item ${currentRoute.match(/^\/app\/log\/?$/) ? 'active' : ''}`}>
                     <Link className="c-nav__link" to="/app/log">
-                        Log
+                        Log<span className="info">{unseenLog}</span>
                     </Link>
                 </li>
             </ul>
@@ -51,6 +51,8 @@ const Navigation = ({ currentRoute, menuIsOpen, logout }) => (
 );
 
 Navigation.propTypes = {
+    unseenReports: PropTypes.number,
+    unseenLog: PropTypes.number,
     currentRoute: PropTypes.string.isRequired,
     menuIsOpen: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,

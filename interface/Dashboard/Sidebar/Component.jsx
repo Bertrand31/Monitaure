@@ -40,7 +40,14 @@ class Sidebar extends Component {
                         </h1>
                         <div className="c-dummy" />
                     </div>
-                    <Navigation currentRoute={this.props.currentRoute} menuIsOpen={this.props.menuIsOpen} toggleMenu={this.props.toggleMenu} logout={this.props.logout} />
+                    <Navigation
+                        unseenReports={this.props.user.unseenReports}
+                        unseenLog={this.props.user.unseenLog}
+                        currentRoute={this.props.currentRoute}
+                        menuIsOpen={this.props.menuIsOpen}
+                        toggleMenu={this.props.toggleMenu}
+                        logout={this.props.logout}
+                    />
                 </div>
                 <div className="sidebar-bottom" id="profile">
                     <UserInfo username={this.props.user.username} emailHash={this.props.user.emailHash} />
