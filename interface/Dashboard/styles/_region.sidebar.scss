@@ -38,7 +38,9 @@
 }
 .info {
     background:$info;
-    border-radius:1em;
+    border-radius:100%;
+    text-align:center;
+    min-width:.7em;
     color:$dark;
     padding:.3em .5em;
     font:700 .75em $montserrat;
