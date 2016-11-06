@@ -65,7 +65,11 @@ const pingHandling = (check, ping) => {
 };
 
 module.exports = (fetcher) => {
-    scheduleJob(`*/${sails.config.checkInterval} * * * *`, () => {
+    let checkInterval;
+    try { checkInterval = sails.config.checkInterval / 60000; }
+    catch (err) { checkInterval = 5; }
+
+    scheduleJob(`*/${checkInterval} * * * *`, () => {
         fetcher('check', {}, (err, checks) => {
             if (err) sails.log.error(err);
 
