@@ -33,9 +33,9 @@ export function POSTer(url, data, callback) {
     .catch(err => callback(err, null));
 };
 
-export function PUTer(url, data, callback) {
+export function PATCHer(url, data, callback) {
     fetch(url, {
-        method: 'PUT',
+        method: 'PATCH',
         credentials: 'same-origin',
         body: JSON.stringify(data),
         headers: new Headers({

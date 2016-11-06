@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { POSTer, GETer, PUTer, DELETEer } from '../../../serverIO/ajaxMethods';
+import { POSTer, GETer, PATCHer, DELETEer } from '../../../serverIO/ajaxMethods';
 import * as API from '../../../serverIO/dataHandling';
 import { create as popinCreate } from '../../../Popins/Actions';
 
@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => ({
         } else {
             dispatch(actions.saveWorkingCheck(data));
 
-            API.updateCheck(PUTer, data, (err) => {
+            API.updateCheck(PATCHer, data, (err) => {
                 if (err) return dispatch(popinCreate('alert', err.message));
             });
         }
