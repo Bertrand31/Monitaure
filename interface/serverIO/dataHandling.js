@@ -29,10 +29,6 @@ export function logout(ajaxPost, callback) {
     const url = `${window.location.origin}/Auth/logout/`;
     ajaxPost(url, {}, callback);
 }
-export function isLoggedIn(ajaxGet, callback) {
-    const url = `${window.location.origin}/Auth/isLoggedIn/`;
-    ajaxGet(url, callback);
-}
 
 // Checks management
 export function getChecks(ajaxGet, callback) {

@@ -18,6 +18,9 @@ module.exports.policies = {
 
     'AuthController': {
         'login': 'wantsJSON',
-        'isLoggedIn': 'wantsJSON',
+    },
+
+    'UserController': {
+        'find': 'wantsJSON',
     },
 };

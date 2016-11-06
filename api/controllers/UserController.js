@@ -6,8 +6,14 @@ module.exports = {
      * @returns {JSON} Either an error or the corresponding user record
      */
     find: (req, res) => {
+        if (!req.isAuthenticated()) {
+            return res.json({ isLoggedIn: false });
+        }
         UserManagement.getData(DB.fetchOne, req.user.id, (err, user) => {
-            if (err) return res.badRequest(err.details);
+            if (err) return res.serverError(err.details);
+            if (!user) return res.notFound();
+
+            user.isLoggedIn = true;
 
             return res.json(user);
         });

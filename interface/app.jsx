@@ -40,10 +40,12 @@ const checkAuth = (nextState, replace, callback) => {
     const requestTimeout = setTimeout(() => {
         callback();
     }, 2000);
-    API.isLoggedIn(GETer, (err, res) => {
-        if (err || !res) return callback();
+    API.getUserData(GETer, (err, user) => {
+        if (err || !user) return callback();
 
-        store.dispatch(res.isLoggedIn ? UserActions.login() : UserActions.logout());
+        if (typeof heap !== 'undefined') heap.identify(user.username);
+
+        store.dispatch(UserActions.login(user));
         clearTimeout(requestTimeout);
         return callback();
     });
