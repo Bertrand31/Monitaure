@@ -35,21 +35,21 @@ export function isLoggedIn(ajaxGet, callback) {
 }
 
 // Checks management
+export function getChecks(ajaxGet, callback) {
+    const url = `${window.location.origin}/Check/`;
+    ajaxGet(url, callback);
+}
 export function createCheck(ajaxPost, data, callback) {
     const url = `${window.location.origin}/Check/`;
     ajaxPost(url, data, callback);
 }
-export function updateCheck(ajaxPost, data, callback) {
-    const url = `${window.location.origin}/Check/update/`;
-    ajaxPost(url, data, callback);
+export function updateCheck(ajaxPut, data, callback) {
+    const url = `${window.location.origin}/Check/${data.id}/`;
+    ajaxPut(url, data, callback);
 }
-export function destroyCheck(ajaxGet, checkId, callback) {
-    const url = `${window.location.origin}/Check/destroy/${checkId}`;
-    ajaxGet(url, callback);
-}
-export function getChecks(ajaxGet, callback) {
-    const url = `${window.location.origin}/Check/`;
-    ajaxGet(url, callback);
+export function destroyCheck(ajaxDelete, checkId, callback) {
+    const url = `${window.location.origin}/Check/${checkId}/`;
+    ajaxDelete(url, callback);
 }
 
 // Log management

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { POSTer, GETer } from '../../../serverIO/ajaxMethods';
+import { POSTer, GETer, PUTer, DELETEer } from '../../../serverIO/ajaxMethods';
 import * as API from '../../../serverIO/dataHandling';
 import { create as popinCreate } from '../../../Popins/Actions';
 
@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
     destroy: (id) => {
         dispatch(actions.destroyCheck(id));
         if (id !== 'tmpID') {
-            API.destroyCheck(GETer, id, (err) => {
+            API.destroyCheck(DELETEer, id, (err) => {
                 if (err) return dispatch(popinCreate('alert', err.message));
             });
         }
@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => ({
         } else {
             dispatch(actions.saveWorkingCheck(data));
 
-            API.updateCheck(POSTer, data, (err) => {
+            API.updateCheck(PUTer, data, (err) => {
                 if (err) return dispatch(popinCreate('alert', err.message));
             });
         }

@@ -58,18 +58,25 @@ class CheckRow extends Component {
             inputValue = Number(inputValue);
         }
 
-        this.props.functions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
+        return this.props.functions.updateWorkingCheck(this.props.row.id, inputName, inputValue);
     }
     handleKeyPress(e) {
         if (e.keyCode === 13) {
-            this.props.functions.saveWorkingCheck(this.props.row);
+            return this.props.functions.saveWorkingCheck(this.props.row);
         } else if (e.keyCode === 27) {
             if (this.props.row.id === 'tmpID') {
-                this.props.functions.destroy('tmpID');
+                return this.props.functions.destroy('tmpID');
             } else {
-                this.props.functions.unsetWorkingCheck(this.props.row.id);
+                return this.props.functions.unsetWorkingCheck(this.props.row.id);
             }
         }
+    }
+    handleDestroy(e) {
+        e.preventDefault();
+        if (this.props.isOpenCheck) {
+            this.props.functions.closeCheckStats();
+        }
+        return this.props.functions.destroy(this.props.row.id);
     }
 
     render() {
@@ -158,10 +165,7 @@ class CheckRow extends Component {
                     className="c-checks__destroy"
                 >
                     <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            this.props.functions.destroy(this.props.row.id);
-                        }}
+                        onClick={(e) => this.handleDestroy(e)}
                         className="destroy-check"
                     / >
                 </td>
