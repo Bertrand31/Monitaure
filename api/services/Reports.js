@@ -10,14 +10,25 @@ module.exports = {
     getReports(fetcher, userId, callback) {
         fetcher('user', userId, (err, user) => callback(err, user.reports));
     },
-    markAsRead(updater, userId, reports) {
-        reports.forEach((report, i) => {
-            reports[i]['seen'] = true;
-        });
-        updater('user', { id: userId }, { reports }, (err) => {
+
+    /**
+     * Mark a report a read
+     * @param {Function} fetcher - a function fetching a single record
+     * @param {Object} userId - the ID of the user
+     */
+    markAsRead(fetcher, updater, userId, reportId) {
+        fetcher('user', userId, (err, user) => {
             if (err) sails.log.error(err);
+
+            reports = [ ...user.reports ];
+            reports[reportId].seen = true;
+
+            updater('user', { id: userId }, { reports }, (err) => {
+                if (err) sails.log.error(err);
+            });
         });
     },
+
     /**
      * Generate reports for a given checks array
      * @param {Array} checks - an array container check records

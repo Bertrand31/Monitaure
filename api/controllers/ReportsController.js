@@ -9,11 +9,22 @@ module.exports = {
         Reports.getReports(DB.fetchOne, req.user.id, (err, reports) => {
             if (err) return res.serverError(err);
 
-            Reports.markAsRead(DB.update, req.user.id, reports);
-
             return res.json(reports);
         });
     },
+
+    /**
+     * HTTP route to mark a report as read
+     * @param {Object} req - HTTP GET request
+     * @param {Object} res - Express' response object
+     * @returns {JSON} An error, if needs be, or an empty json object
+     */
+    markasread: (req, res) => {
+        Reports.markAsRead(DB.fetchOne, DB.update, req.user.id, req.param('id'));
+
+        return res.ok({});
+    },
+
     /**
      * HTTP route to generate a PDF from a report
      * @param {Object} req - HTTP GET request
