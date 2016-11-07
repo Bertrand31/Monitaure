@@ -87,6 +87,9 @@ input[type=number] {
         &::after { bottom:-5px; }
     }
 }
+.c-child-change-enter, .c-child-leave {
+    min-height:100vh;
+}
 .c-child-change-enter {
     opacity: 0.01;
 }
