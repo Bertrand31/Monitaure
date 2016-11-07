@@ -30,8 +30,9 @@ import LogPanel from './Dashboard/LogPanel/Component';
 const history = syncHistoryWithStore(browserHistory, store);
 
 const handleRouteChange = () => {
-    store.dispatch(closeMenu());
-    store.dispatch(closePopover());
+    const { menuIsOpen, openPopover } = store.getState();
+    menuIsOpen && store.dispatch(closeMenu());
+    openPopover && store.dispatch(closePopover());
 };
 
 const checkAuth = (nextState, replace, callback) => {
