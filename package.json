@@ -28,6 +28,7 @@
   ],
   "dependencies": {
     "babel-core": "^6.18.0",
+    "babel-jest": "^17.0.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-react-constant-elements": "^6.9.1",
     "babel-plugin-transform-react-inline-elements": "^6.8.0",
@@ -37,12 +38,11 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
     "bcrypt": "^0.8.7",
-    "chai": "^3.5.0",
-    "chai-datetime": "^1.4.1",
     "chartist": "^0.10.1",
     "connect-redis": "3.1.0",
     "css-loader": "^0.25.0",
     "jade": "^1.11.0",
+    "jest": "^17.0.0",
     "jsreport": "^1.0.9",
     "lodash": "^4.16.4",
     "moment": "^2.15.2",
@@ -83,7 +83,8 @@
     "webpack:prod": "webpack --color --progress",
     "lint:back": "./node_modules/eslint/bin/eslint.js . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback; exit 0",
     "lint:front": "./node_modules/eslint/bin/eslint.js interface/ -c .eslintrcfront.js --ext .js --ext .jsx --cache; exit 0",
-    "test": "mocha test/unit.js"
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "main": "app.js",
   "repository": {
