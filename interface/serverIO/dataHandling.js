@@ -39,9 +39,9 @@ export function createCheck(ajaxPost, data, callback) {
     const url = `${window.location.origin}/Check/`;
     ajaxPost(url, data, callback);
 }
-export function updateCheck(ajaxPatch, data, callback) {
+export function updateCheck(ajaxPut, data, callback) {
     const url = `${window.location.origin}/Check/${data.id}/`;
-    ajaxPatch(url, data, callback);
+    ajaxPut(url, data, callback);
 }
 export function destroyCheck(ajaxDelete, checkId, callback) {
     const url = `${window.location.origin}/Check/${checkId}/`;

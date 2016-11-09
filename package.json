@@ -88,7 +88,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cua/Monitaure.git"
+    "url": "git@github.com:Bertrand31/Monitaure.git"
   },
   "author": "Bertrand Junqua <bertrandjun@gmail.com> (http://awebsiteabout.me)",
   "license": "GPL-3.0",
