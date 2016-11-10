@@ -77,7 +77,7 @@
     "whatwg-fetch": "^1.0.0"
   },
   "scripts": {
-    "start:dev": "NODE_ENV=development; nodemon app.js --ignore interface/ --ignore public/ --ignore webpack.config.js",
+    "start:dev": "NODE_ENV=development; nodemon --inspect app.js --ignore interface/ --ignore public/ --ignore webpack.config.js",
     "start:prod": "NODE_ENV=production sails lift",
     "webpack:dev": "webpack --watch --color --progress",
     "webpack:prod": "webpack --color --progress",
