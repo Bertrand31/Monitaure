@@ -1,3 +1,6 @@
+const DB = require('../services/DB');
+const { getLogs, markAllAsRead } = require('../services/Log');
+
 module.exports = {
     /**
      * HTTP route to fetch all log entries
@@ -6,10 +9,10 @@ module.exports = {
      * @returns {JSON} An error, if needs be, or the log JSON object
      */
     getall: (req, res) => {
-        Log.getLogs(DB.fetchOne, req.user.id, (err, data) => {
+        getLogs(DB.fetchOne, req.user.id, (err, data) => {
             if (err) return res.serverError(err);
 
-            Log.markAllAsRead(DB.update, req.user.id, data);
+            markAllAsRead(DB.update, req.user.id, data);
 
             return res.json(data);
         });

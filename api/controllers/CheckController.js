@@ -1,3 +1,6 @@
+const DB = require('../services/DB');
+const { getChecks, createCheck, updateCheck, destroyCheck } = require('../services/CheckManagement');
+
 module.exports = {
 
     /**
@@ -8,7 +11,7 @@ module.exports = {
      * @returns {JSON} Either an error or the user's and his checks' data
      */
     find: (req, res) => {
-        CheckManagement.getChecks(DB.fetch, req.user.id, (err, data) => {
+        getChecks(DB.fetch, req.user.id, (err, data) => {
             if (err) return res.serverError(err);
 
             return res.json(data);
@@ -29,7 +32,7 @@ module.exports = {
             emailNotifications: Boolean(req.param('emailNotifications')),
             owner: req.user.id,
         };
-        CheckManagement.createCheck(DB.fetch, DB.create, req.user.id, data, (err, created) => {
+        createCheck(DB.fetch, DB.create, req.user.id, data, (err, created) => {
             return res.json({ err, created, });
         });
     },
@@ -45,7 +48,7 @@ module.exports = {
             name: String(req.param('name')),
             emailNotifications: Boolean(req.param('emailNotifications')),
         };
-        CheckManagement.updateCheck(DB.fetchOne, DB.update, req.user.id, req.param('id'), data, (err, updated) => {
+        updateCheck(DB.fetchOne, DB.update, req.user.id, req.param('id'), data, (err, updated) => {
             if (err) return res.serverError(err);
 
             return res.json(updated[0]);
@@ -59,7 +62,7 @@ module.exports = {
      * @returns {JSON} Either an error or the destroyed check
      */
     destroy: (req, res) => {
-        CheckManagement.destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), (err) => {
+        destroyCheck(DB.fetchOne, DB.destroy, req.user.id, req.param('id'), (err) => {
             if (err) return res.serverError(err);
 
             return res.json({});

@@ -1,3 +1,7 @@
+const DB = require('../services/DB');
+const { getData, create, confirm, setGCMCredentials } = require('../services/UserManagement');
+const { sendConfirmationEmail } = require('../services/Notifications');
+
 module.exports = {
     /**
      * HTTP route to fetch a user's data
@@ -9,7 +13,7 @@ module.exports = {
         if (!req.isAuthenticated()) {
             return res.json({ isLoggedIn: false });
         }
-        UserManagement.getData(DB.fetchOne, req.user.id, (err, user) => {
+        getData(DB.fetchOne, req.user.id, (err, user) => {
             if (err) return res.serverError(err.details);
             if (!user) return res.json({ isLoggedIn: false });
 
@@ -25,10 +29,10 @@ module.exports = {
      * @returns {JSON} Either an error or the created user record
      */
     create: (req, res) => {
-        UserManagement.create(DB.create, req.body, (err, user) => {
+        create(DB.create, req.body, (err, user) => {
             if (err) return res.badRequest(err.details);
 
-            Notifications.sendConfirmationEmail(user);
+            sendConfirmationEmail(user);
             return res.json(user);
         });
     },
@@ -45,7 +49,7 @@ module.exports = {
         if (typeof req.param('id') !== 'string' || req.param('id').length !== 32) {
             return res.json({ result: 'notconfirmed' });
         }
-        UserManagement.confirm(DB.update, req.param('id'), (err, confirmed) => {
+        confirm(DB.update, req.param('id'), (err, confirmed) => {
             if (err) return res.json({ result: 'error' });
 
             if (confirmed.length > 0) {
@@ -63,7 +67,7 @@ module.exports = {
      * @param {Object} res - Express' response object
      */
     setgcmcredentials: (req, res) => {
-        UserManagement.setGCMCredentials(DB.fetchOne, DB.update, req.user.id, req.param('subscription'));
+        setGCMCredentials(DB.fetchOne, DB.update, req.user.id, req.param('subscription'));
         return res.ok({});
     },
 };

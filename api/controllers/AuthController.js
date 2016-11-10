@@ -1,4 +1,6 @@
 const passport = require('passport');
+const DB = require('../services/DB');
+const { updateLastConnection, formatUser } = require('../services/UserManagement');
 
 module.exports = {
     /**
@@ -18,9 +20,9 @@ module.exports = {
             req.login(user, (err) => {
                 if (err) res.send(err);
 
-                UserManagement.updateLastConnection(DB.update, user.id);
+                updateLastConnection(DB.update, user.id);
 
-                const formattedUser = UserManagement.formatUser(user);
+                const formattedUser = formatUser(user);
                 formattedUser.isLoggedIn = true;
 
                 return res.json({
