@@ -77,7 +77,7 @@
     "whatwg-fetch": "^1.0.0"
   },
   "scripts": {
-    "start:dev": "NODE_ENV=development; nodemon --inspect app.js --ignore interface/ --ignore public/ --ignore webpack.config.js",
+    "start:dev": "NODE_ENV=development; nodemon app.js --ignore interface/ --ignore public/ --ignore webpack.config.js",
     "start:prod": "NODE_ENV=production sails lift",
     "webpack:dev": "webpack --watch --color --progress",
     "webpack:prod": "webpack --color --progress",
@@ -95,9 +95,9 @@
   "license": "GPL-3.0",
   "devDependencies": {
     "eslint": "^3.7.1",
-    "eslint-config-airbnb": "12.0.0",
+    "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.0.1",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-jsx-a11y": "^3.0.1",
     "eslint-plugin-react": "^6.4.1"
   }
 }
