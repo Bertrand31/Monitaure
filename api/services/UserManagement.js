@@ -25,7 +25,7 @@ module.exports = {
             if (err) return callback(err);
             if (!user) return callback();
 
-            const formattedUser = UserManagement.formatUser(user);
+            const formattedUser = this.formatUser(user);
             formattedUser.isLoggedIn = true;
 
             return callback(null, formattedUser);

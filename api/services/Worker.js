@@ -1,5 +1,9 @@
+const config = require('../../config/local');
 const { scheduleJob } = require('node-schedule');
 const { connect } = require('net');
+const { insertHistory } = require('./CheckManagement');
+const { sendDownAlert, sendUpAlert } = require('./Notifications');
+const DB = require('./DB');
 
 const ping = (domainNameOrIP, port, callback) => {
     const timeStart = Date.now();
@@ -27,11 +31,11 @@ const ping = (domainNameOrIP, port, callback) => {
             connection.destroy();
             return callback(callbackObject);
         }
-    }, sails.config.checkTimeout);
+    }, config.checkTimeout);
 };
 
 const pingHandling = (check, ping) => {
-    CheckManagement.insertHistory(DB.fetchOne, DB.update, check.id, ping, (err) => {
+    insertHistory(DB.fetchOne, DB.update, check.id, ping, (err) => {
         if (err) return sails.log.error(err);
     });
 
@@ -44,21 +48,21 @@ const pingHandling = (check, ping) => {
             DB.fetchOne('user', check.owner, (err, user) => {
                 if (err) sails.log.error(err);
 
-                Notifications.sendDownAlert(user, check.id, check.name);
+                sendDownAlert(user, check.id, check.name);
             });
         // If the check is up and was down last time we checked
         } else if (ping.open && lastCheckHistory.duration === null) {
             let downtime = 0;
             let i = check.history.length - 1;
             while (typeof check.history[i] !== 'undefined' && check.history[i].duration === null) {
-                downtime += sails.config.checkInterval / 60000;
+                downtime += config.checkInterval / 60000;
                 i--;
             }
 
             DB.fetchOne('user', check.owner, (err, user) => {
                 if (err) sails.log.error(err);
 
-                Notifications.sendUpAlert(user, check.id, check.name, downtime);
+                sendUpAlert(user, check.id, check.name, downtime);
             });
         }
     }
@@ -66,7 +70,7 @@ const pingHandling = (check, ping) => {
 
 module.exports = (fetcher) => {
     let checkInterval;
-    try { checkInterval = sails.config.checkInterval / 60000; }
+    try { checkInterval = config.checkInterval / 60000; }
     catch (err) { checkInterval = 5; }
 
     scheduleJob(`*/${checkInterval} * * * *`, () => {
@@ -77,7 +81,7 @@ module.exports = (fetcher) => {
             // To calculate the interval between the pings, we figure out the time window all the pings
             // have to run without overlapping with the next cycle of pings. Then, we divide that number
             // with the number of checks minus one since the first ping will run with 0 delay
-            const interval = (sails.config.checkInterval - sails.config.checkTimeout) / (checks.length - 1);
+            const interval = (config.checkInterval - config.checkTimeout) / (checks.length - 1);
 
             checks.forEach((check, i) => {
                 setTimeout(() => {

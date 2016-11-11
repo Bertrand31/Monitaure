@@ -1,12 +1,14 @@
 const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
 
-const appEmail = sails.config.emailAddress;
+const config = require('../../config/local');
+
+const appEmail = config.emailAddress;
 
 const sendgridOptions = {
     auth: {
-        api_user: sails.config.sendgridUsername,
-        api_key: sails.config.sendgridPassword,
+        api_user: config.sendgridUsername,
+        api_key: config.sendgridPassword,
     },
 };
 

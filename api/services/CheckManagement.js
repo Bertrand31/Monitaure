@@ -1,3 +1,6 @@
+const config = require('../../config/local');
+const { calcCheckStats, isDomainNameOrIP, customFloor, garbageCollection } = require('./Utilities');
+
 /*
 * Trims the check's history to only return a specified number of pings
 * and its statistics
@@ -13,7 +16,7 @@ const formatChecks = (checks, desiredHistoryLength) => {
             {},
             check,
             { history: check.history.slice(-desiredHistoryLength) },
-            Utilities.calcCheckStats(Utilities.customFloor, check.history, sails.config.checkInterval)
+            calcCheckStats(customFloor, check.history, config.checkInterval)
         );
     });
 
@@ -44,9 +47,9 @@ module.exports = {
         fetcher('check', { owner: userId }, (err, checks) => {
             if (err) return callback(err);
 
-            if (checks.length >= sails.config.checkNbLimit) {
+            if (checks.length >= config.checkNbLimit) {
                 return callback('You reached the limit of ten checks per user');
-            } else if (!Utilities.isDomainNameOrIP(checkData.domainNameOrIP)) {
+            } else if (!isDomainNameOrIP(checkData.domainNameOrIP)) {
                 return callback('Incorrect domain name or IP address');
             } else if (!checkData.name || !checkData.port) {
                 return callback('Incorrect attributes');
@@ -110,7 +113,7 @@ module.exports = {
             if (err) return callback(err);
             if (!check) return callback(null);
 
-            const newHistoryArray = Utilities.garbageCollection(check.history, new Date());
+            const newHistoryArray = garbageCollection(check.history, new Date());
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
             // And update the DB record

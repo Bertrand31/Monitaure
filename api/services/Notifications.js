@@ -1,4 +1,11 @@
-const baseUrl = sails.config.baseUrl;
+const DB = require('./DB');
+const { addLogEntry } = require('./Log');
+const Sendgrid = require('./Sendgrid');
+const GCM = require('./GCM');
+
+const config = require('../../config/local');
+
+const baseUrl = config.baseUrl;
 
 module.exports = {
     /**
@@ -12,7 +19,7 @@ module.exports = {
 
         Sendgrid.send(user.email, alertTitle, alertText);
         GCM.send(user.gcmSubscriptions, alertText);
-        Log.addLogEntry(DB.update, user, checkId, checkName, 'down', alertText);
+        addLogEntry(DB.update, user, checkId, checkName, 'down', alertText);
     },
 
     /**
@@ -27,7 +34,7 @@ module.exports = {
 
         Sendgrid.send(user.email, alertTitle, alertText);
         GCM.send(user.gcmSubscriptions, alertText);
-        Log.addLogEntry(DB.update, user, checkId, checkName, 'up', alertText);
+        addLogEntry(DB.update, user, checkId, checkName, 'up', alertText);
     },
 
     /**

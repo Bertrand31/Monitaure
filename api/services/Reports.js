@@ -1,5 +1,6 @@
 const jsreport = require('jsreport');
 const uuid = require('uuid');
+const config = require('../../config/local');
 
 module.exports = {
     /**
@@ -46,7 +47,7 @@ module.exports = {
                     seen: false,
                 },
                 {
-                    data: Utilities.calcCheckStats(Utilities.customFloor, check.history, sails.config.checkInterval),
+                    data: Utilities.calcCheckStats(Utilities.customFloor, check.history, config.checkInterval),
                 }
             );
             newReportsArray.push(newReport);
