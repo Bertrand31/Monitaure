@@ -81,8 +81,8 @@
     "start:prod": "NODE_ENV=production sails lift",
     "webpack:dev": "webpack --watch --color --progress",
     "webpack:prod": "webpack --color --progress",
-    "lint:back": "./node_modules/eslint/bin/eslint.js . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback; exit 0",
-    "lint:front": "./node_modules/eslint/bin/eslint.js interface/ -c .eslintrcfront.js --ext .js --ext .jsx --cache; exit 0",
+    "lint:back": "eslint . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback; exit 0",
+    "lint:front": "eslint interface/ -c .eslintrcfront.js --ext .js --ext .jsx --cache; exit 0",
     "test": "jest",
     "test:watch": "npm test -- --watch"
   },
