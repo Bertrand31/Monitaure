@@ -67,6 +67,7 @@ export const checksReducer = (state = {}, action) => {
             Object.keys(newState).forEach((checkId) => {
                 if (typeof state[checkId] !== 'undefined' && state[checkId].isEditing) {
                     newState[checkId] = {
+                        ...newState[checkId],
                         name: state[checkId].name,
                         emailNotifications: state[checkId].emailNotifications,
                     };
@@ -83,7 +84,7 @@ export const checksReducer = (state = {}, action) => {
         }
 
         case types.CHECK_DESTROY: {
-            const copy = Object.assign({}, state);
+            const copy = { ...state };
             delete copy[action.id];
             return copy;
         }
