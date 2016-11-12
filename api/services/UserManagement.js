@@ -20,7 +20,7 @@ module.exports = {
      * @param {Object} user - user data (name, emailHash)
      * @param {Function} callback
      */
-    getData: (fetcher, userId, callback) => {
+    getData(fetcher, userId, callback) {
         fetcher('user', userId, (err, user) => {
             if (err) return callback(err);
             if (!user) return callback();
