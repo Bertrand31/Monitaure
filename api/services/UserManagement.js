@@ -20,7 +20,7 @@ module.exports = {
      * @param {Object} user - user data (name, emailHash)
      * @param {Function} callback
      */
-    getData(fetcher, userId, callback) {
+    getData: (fetcher, userId, callback) => {
         fetcher('user', userId, (err, user) => {
             if (err) return callback(err);
             if (!user) return callback();
@@ -37,7 +37,8 @@ module.exports = {
      * @param {Object} userData - user data (name, email, etc.)
      * @param {Function} callback
      */
-    create(creator, userData, callback) {
+    create: (creator, userData, callback) => {
+        console.log(userData);
         if (userData.password !== userData.confirmPassword) {
             return callback('passwords-mismatch');
         }
@@ -56,7 +57,7 @@ module.exports = {
      * @param {Function} updater - record update function
      * @param {String} userId - user id
      */
-    updateLastConnection(updater, userId) {
+    updateLastConnection: (updater, userId) => {
         updater('user', { id: userId }, { lastConnection: new Date() }, (err) => {
             if (err) return sails.log.error(err);
         });
@@ -69,7 +70,7 @@ module.exports = {
      * @param {String} userId - user id
      * @param {String} subscription - the user's Google Cloud Messaging subscription
      */
-    setGCMCredentials(fetcher, updater, userId, subscription) {
+    setGCMCredentials: (fetcher, updater, userId, subscription) => {
         fetcher('user', userId, (err, user) => {
             if (err) return sails.log.error(err);
 
@@ -93,7 +94,7 @@ module.exports = {
      * @param {String} confirmationToken - confirmation token
      * @param {Function} callback
      */
-    confirm(updater, confirmationToken, callback) {
+    confirm: (updater, confirmationToken, callback) => {
         updater('user', { confirmationToken }, { confirmedAccount: true }, callback);
     },
 };

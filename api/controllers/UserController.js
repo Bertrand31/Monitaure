@@ -39,7 +39,6 @@ module.exports = {
 
     /**
      * HTTP route to confirm a newly created user account
-     * Is called like this: /account/confirm/:confirmationToken
      * The confirmation token is passed as the 'id' paramter
      * @param {Object} req - HTTP request (must be GET)
      * @param {Object} res - Express' response object
