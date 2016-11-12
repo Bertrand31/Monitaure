@@ -1,5 +1,7 @@
 const jsreport = require('jsreport');
 const uuid = require('uuid');
+const { customFloor, calcCheckStats } = require('./Utilities');
+const { reportPDF } = require('./Templates');
 const config = require('../../config/local');
 
 module.exports = {
@@ -47,7 +49,7 @@ module.exports = {
                     seen: false,
                 },
                 {
-                    data: Utilities.calcCheckStats(Utilities.customFloor, check.history, config.checkInterval),
+                    data: calcCheckStats(customFloor, check.history, config.checkInterval),
                 }
             );
             newReportsArray.push(newReport);
@@ -67,7 +69,7 @@ module.exports = {
             // For some reason find() is buggy. Using filter()[0] instead.
             const requestedReport = user.reports.filter(report => report.id === requestedId)[0];
 
-            jsreport.render(Templates.reportPDF(requestedReport))
+            jsreport.render(reportPDF(requestedReport))
                 .then(out => callback(null, out))
                 .catch(err => callback(err));
         });

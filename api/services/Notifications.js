@@ -2,6 +2,7 @@ const DB = require('./DB');
 const { addLogEntry } = require('./Log');
 const Sendgrid = require('./Sendgrid');
 const GCM = require('./GCM');
+const Templates = require('./Templates');
 
 const config = require('../../config/local');
 
