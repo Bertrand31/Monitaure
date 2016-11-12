@@ -12,15 +12,12 @@ module.exports.policies = {
     ],
 
     'UserController': {
+        'find': 'wantsJSON',
         'create': 'wantsJSON',
         'confirm': 'wantsJSON',
     },
 
     'AuthController': {
         'login': 'wantsJSON',
-    },
-
-    'UserController': {
-        'find': 'wantsJSON',
     },
 };
