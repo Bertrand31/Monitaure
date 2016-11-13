@@ -1,7 +1,9 @@
 const jsreport = require('jsreport');
 const uuid = require('uuid');
+
 const { customFloor, calcCheckStats } = require('./Utilities');
 const { reportPDF } = require('./Templates');
+
 const config = require('../../config/local');
 
 module.exports = {

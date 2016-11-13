@@ -1,9 +1,11 @@
-const config = require('../../config/local');
 const { scheduleJob } = require('node-schedule');
 const { connect } = require('net');
+
+const DB = require('./DB');
 const { insertHistory } = require('./CheckManagement');
 const { sendDownAlert, sendUpAlert } = require('./Notifications');
-const DB = require('./DB');
+
+const config = require('../../config/local');
 
 const ping = (domainNameOrIP, port, callback) => {
     const timeStart = Date.now();
