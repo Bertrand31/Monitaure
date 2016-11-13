@@ -1,3 +1,5 @@
+const { garbageCollection } = require('./Utilities');
+
 module.exports = {
     /**
      * Fetch all of the user's log entries from the DB
@@ -41,7 +43,7 @@ module.exports = {
             seen: false,
         };
 
-        const log = Utilities.garbageCollection(user.log, new Date());
+        const log = garbageCollection(user.log, new Date());
         log.push(newLogEntry);
 
         updater('user', { id: user.id }, { log }, (err) => {
