@@ -83,7 +83,7 @@
     "webpack:prod": "webpack --color --progress",
     "lint:back": "eslint . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback; exit 0",
     "lint:front": "eslint interface/ -c .eslintrcfront.js --ext .js --ext .jsx --cache; exit 0",
-    "test": "jest --coverage",
+    "test": "jest && codecov",
     "test:watch": "npm test -- --watch"
   },
   "jest": {
