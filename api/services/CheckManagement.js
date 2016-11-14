@@ -1,5 +1,6 @@
-const config = require('../../config/local');
 const { calcCheckStats, isDomainNameOrIP, customFloor, garbageCollection } = require('./Utilities');
+
+const config = require('../../config/local');
 
 /*
 * Trims the check's history to only return a specified number of pings

@@ -1,4 +1,5 @@
 const passport = require('passport');
+
 const DB = require('../services/DB');
 const { updateLastConnection, formatUser } = require('../services/UserManagement');
 
