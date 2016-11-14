@@ -1,4 +1,6 @@
 const webpush = require('web-push');
+const sails = require('sails');
+
 const config = require('../../config/local');
 
 const options = { gcmAPIKey: config.gcmServerKey };
