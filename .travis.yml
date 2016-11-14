@@ -10,8 +10,12 @@ addons:
             - ubuntu-toolchain-r-test
         packages:
             - g++-4.8
+
+install:
+  - npm install -g codecov
+
 script:
-  - npm test
+  - npm run coverage
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)

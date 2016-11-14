@@ -84,7 +84,12 @@
     "lint:back": "eslint . -c .eslintrcback.js --ext .js --cache --ignore-path .eslintignoreback; exit 0",
     "lint:front": "eslint interface/ -c .eslintrcfront.js --ext .js --ext .jsx --cache; exit 0",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "coverage": "npm test -- --coverage"
+  },
+  "jest": {
+     "coverageDirectory": "./coverage/",
+     "collectCoverage": true
   },
   "main": "app.js",
   "repository": {
