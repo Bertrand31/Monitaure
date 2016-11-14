@@ -15,7 +15,7 @@ install:
   - npm install -g codecov
 
 script:
-  - npm run coverage
+  - npm test
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
