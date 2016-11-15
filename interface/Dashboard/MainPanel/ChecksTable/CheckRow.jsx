@@ -30,7 +30,10 @@ class CheckRow extends Component {
         // We wait for the input to be initialized
         setTimeout(() => { this.checknameInput.focus(); }, 0);
     }
-    onCheckRowClick() {
+    onCheckRowClick(e) {
+        if (e.target.classList.contains('destroy-check')) {
+            return;
+        }
         if (!this.props.isOpenCheck) {
             this.props.functions.openCheckStats(this.props.row);
         } else {
@@ -71,8 +74,7 @@ class CheckRow extends Component {
             }
         }
     }
-    handleDestroy(e) {
-        e.preventDefault();
+    handleDestroy() {
         if (this.props.isOpenCheck) {
             this.props.functions.closeCheckStats();
         }
@@ -84,7 +86,7 @@ class CheckRow extends Component {
             <tr
                 className={`c-table__row ${this.props.isOpenCheck ? 's-is-open' : ''}`}
                 id={this.props.row.id}
-                onClick={() => this.onCheckRowClick()}
+                onClick={(e) => this.onCheckRowClick(e)}
             >
                 <td className="c-checks__status" data-health={this.props.checkState} />
                 <td className="c-checks__name">
@@ -165,7 +167,7 @@ class CheckRow extends Component {
                     className="c-checks__destroy"
                 >
                     <button
-                        onClick={(e) => this.handleDestroy(e)}
+                        onClick={() => this.handleDestroy()}
                         className="destroy-check"
                     / >
                 </td>
