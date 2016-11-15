@@ -23,12 +23,12 @@ const common = {
         rules: [
             {
                 test: /\.jsx?$/,
-                use: 'babel',
+                use: 'babel-loader',
                 exclude: /node_modules/,
             },
             {
                 test: /\.(svg|png|jpg)$/,
-                use: 'url',
+                use: 'url-loader',
             },
             {
                 test: /\.scss/,
