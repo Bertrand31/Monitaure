@@ -2,7 +2,7 @@ import * as types from './Constants';
 
 import reducer from './Reducer';
 
-describe('log reducer', () => {
+describe('log table reducer', () => {
     it('should return default state', () => {
         expect(
             reducer(undefined, {})

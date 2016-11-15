@@ -5,6 +5,11 @@ import reducer from './Reducer';
 describe('popinsReducer', () => {
     it('should correctly add a popin', () => {
         expect(
+            reducer(undefined, {})
+        ).toEqual({});
+    });
+    it('should correctly add a popin', () => {
+        expect(
             reducer(undefined, {
                 type: types.POPIN_CREATE,
                 id: 0,
