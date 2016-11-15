@@ -49,7 +49,8 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
 * Misc:
     * [IPV6-ready](http://ready.chair6.net/?url=https%3A%2F%2Fmonitaure.io) ;
     * Sendgrid to send transactionnal emails (account confirmation, alerts, etc.) ;
-    * Travis CI for build testing ;
+    * Jest for tests and code coverage ;
+    * Travis CI and Codecov for build testing ;
     * ESLint and Codacy for code style and quality review ;
     * Heap Analytics for retroactive interaction statistics.
 
