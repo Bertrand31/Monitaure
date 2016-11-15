@@ -16,6 +16,7 @@ node_modules
 
 public/app.js
 public/sw.js
+coverage
 
 ################################################
 # Sails.js / Waterline
