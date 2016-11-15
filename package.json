@@ -55,7 +55,7 @@
     "rc": "1.1.6",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
-    "react-chartist": "^0.10.2",
+    "react-chartist": "^0.11.0",
     "react-dom": "^15.3.2",
     "react-fastclick": "^2.1.2",
     "react-redux": "^4.4.5",
@@ -73,8 +73,8 @@
     "uuid": "^2.0.3",
     "web-push": "^3.0.0",
     "webpack": "^2.1.0-beta.25",
-    "webpack-merge": "^0.15.0",
-    "whatwg-fetch": "^1.0.0"
+    "webpack-merge": "^0.16.0",
+    "whatwg-fetch": "^2.0.0"
   },
   "scripts": {
     "start:dev": "NODE_ENV=development; nodemon app.js --ignore interface/ --ignore public/ --ignore webpack.config.js",
@@ -87,8 +87,8 @@
     "test:watch": "npm test -- --watch"
   },
   "jest": {
-     "coverageDirectory": "./coverage/",
-     "collectCoverage": true
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   },
   "main": "app.js",
   "repository": {
