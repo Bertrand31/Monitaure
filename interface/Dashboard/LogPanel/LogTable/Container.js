@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { GETer } from '../../../serverIO/ajaxMethods';
 import * as API from '../../../serverIO/dataHandling';
 import { create as popinCreate } from '../../../Popins/Actions';
+import { resetUnseenLogCount } from '../../../User/Actions';
 
 import * as actions from './Actions';
 
@@ -21,6 +22,8 @@ const mapDispatchToProps = dispatch => ({
             return dispatch(actions.hydrateLog(data));
         });
     },
+
+    resetUnseenLogCount: () => dispatch(resetUnseenLogCount()),
 });
 
 const LogTableContainer = connect(

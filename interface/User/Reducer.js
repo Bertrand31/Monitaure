@@ -29,6 +29,12 @@ const userReducer = (state = { isLoggedIn: false }, action) => {
                 unseenReports: state.unseenReports - 1,
             };
 
+        case types.USER_RESET_UNSEEN_LOG_COUNT:
+            return {
+                ...state,
+                unseenLog: 0,
+            };
+
         default:
             return state;
     }

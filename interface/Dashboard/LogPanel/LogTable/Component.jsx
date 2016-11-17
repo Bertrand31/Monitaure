@@ -8,6 +8,7 @@ class LogComponent extends Component {
         log: PropTypes.array.isRequired,
         logFilters: PropTypes.object.isRequired,
         hydrateLog: PropTypes.func.isRequired,
+        resetUnseenLogCount: PropTypes.func.isRequired,
     }
 
     componentDidMount() {
@@ -16,6 +17,8 @@ class LogComponent extends Component {
             this.props.hydrateLog();
             this.autoRefresh = setInterval(this.props.hydrateLog, 2 * 60 * 1000);
         }
+        // We reset the 'unseen log' count to 0, since the user just saw everything new
+        this.props.resetUnseenLogCount();
     }
     componentWillUnmount() {
         clearInterval(this.autoRefresh);

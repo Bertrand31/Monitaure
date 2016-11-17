@@ -15,7 +15,7 @@ describe('user reducer', () => {
 
     const fakeState = {
         username: 'Bertrand31',
-        unseenLog: 1,
+        unseenLog: 2,
         unseenReports: 8,
         loggedIn: true,
         emailSent: false,
@@ -93,6 +93,21 @@ describe('user reducer', () => {
             {
                 ...fakeState,
                 unseenReports: 7,
+            }
+        );
+    });
+
+    it('should set unseenLog to 0', () => {
+        expect(
+            reducer(fakeState,
+                {
+                    type: types.USER_RESET_UNSEEN_LOG_COUNT,
+                }
+            )
+        ).toEqual(
+            {
+                ...fakeState,
+                unseenLog: 0,
             }
         );
     });

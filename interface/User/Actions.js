@@ -32,3 +32,9 @@ export function decrementUnseenReportsCount() {
         type: types.USER_DECREMENT_UNSEEN_REPORTS_COUNT,
     };
 }
+
+export function resetUnseenLogCount() {
+    return {
+        type: types.USER_RESET_UNSEEN_LOG_COUNT,
+    };
+}

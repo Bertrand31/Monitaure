@@ -1,6 +1,6 @@
 import * as types from './Constants';
 
-import { update, emailSent, hydrate, logout, decrementUnseenReportsCount } from './Actions';
+import { update, emailSent, hydrate, logout, decrementUnseenReportsCount, resetUnseenLogCount } from './Actions';
 
 describe('update action creator', () => {
     it('should return correct action object', () => {
@@ -64,6 +64,18 @@ describe('decrementUnseenReportsCount action creator', () => {
         ).toEqual(
             {
                 type: types.USER_DECREMENT_UNSEEN_REPORTS_COUNT,
+            }
+        );
+    });
+});
+
+describe('resetUnseenLogCount action creator', () => {
+    it('should return correct action object', () => {
+        expect(
+            resetUnseenLogCount()
+        ).toEqual(
+            {
+                type: types.USER_RESET_UNSEEN_LOG_COUNT,
             }
         );
     });
