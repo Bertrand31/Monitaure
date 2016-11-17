@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { GETer } from '../serverIO/ajaxMethods';
-import * as API from '../serverIO/dataHandling';
+// import { GETer } from '../serverIO/ajaxMethods';
+// import * as API from '../serverIO/dataHandling';
 
 import { create as popinCreate } from '../Popins/Actions';
 import * as SWActions from '../ServiceWorker/Actions';
@@ -42,9 +42,10 @@ const mapDispatchToProps = dispatch => ({
             window.addEventListener('offline', updateOnlineStatus);
         });
     },
-    getCSRFToken: () => API.csrfToken(GETer, (err, { _csrf }) =>
-        sessionStorage.setItem('csrfToken', _csrf)
-    ),
+
+    // getCSRFToken: () => API.csrfToken(GETer, (err, { _csrf }) =>
+    //     sessionStorage.setItem('csrfToken', _csrf)
+    // ),
 });
 
 const AppContainer = connect(

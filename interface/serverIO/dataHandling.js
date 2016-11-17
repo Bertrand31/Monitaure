@@ -1,8 +1,8 @@
 // Security
-export function csrfToken(ajaxGet, callback) {
-    const url = `${window.location.origin}/csrfToken/`;
-    ajaxGet(url, callback);
-}
+// export function csrfToken(ajaxGet, callback) {
+//     const url = `${window.location.origin}/csrfToken/`;
+//     ajaxGet(url, callback);
+// }
 
 // Users management
 export function confirmAccount(ajaxGet, confirmationToken, callback) {

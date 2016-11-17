@@ -7,7 +7,7 @@ import './styles/index.scss';
 
 class AppComponent extends Component {
     static propTypes = {
-        getCSRFToken: PropTypes.func.isRequired,
+        // getCSRFToken: PropTypes.func.isRequired,
         watchConnectivityState: PropTypes.func.isRequired,
         activateSW: PropTypes.func.isRequired,
         subscribeToPush: PropTypes.func.isRequired,
@@ -17,7 +17,7 @@ class AppComponent extends Component {
     }
 
     componentWillMount() {
-        this.props.getCSRFToken();
+        // this.props.getCSRFToken();
         this.props.watchConnectivityState();
 
         if (this.props.isLoggedIn && 'serviceWorker' in navigator) {

@@ -25,7 +25,7 @@ export function POSTer(url, data, callback) {
         headers: new Headers({
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-CSRF-Token': sessionStorage.getItem('csrfToken'),
+            // 'X-CSRF-Token': sessionStorage.getItem('csrfToken'),
         }),
     })
     .then(handleError)
@@ -41,7 +41,7 @@ export function PUTer(url, data, callback) {
         headers: new Headers({
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-CSRF-Token': sessionStorage.getItem('csrfToken'),
+            // 'X-CSRF-Token': sessionStorage.getItem('csrfToken'),
         }),
     })
     .then(handleError)
@@ -56,7 +56,7 @@ export function DELETEer(url,  callback) {
         headers: new Headers({
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-CSRF-Token': sessionStorage.getItem('csrfToken'),
+            // 'X-CSRF-Token': sessionStorage.getItem('csrfToken'),
         }),
     })
     .then(handleError)
