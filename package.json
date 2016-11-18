@@ -29,7 +29,7 @@
   "dependencies": {
     "babel-core": "^6.18.0",
     "babel-jest": "^17.0.0",
-    "babel-loader": "^6.2.5",
+    "babel-loader": "^6.2.8",
     "babel-plugin-transform-react-constant-elements": "^6.9.1",
     "babel-plugin-transform-react-inline-elements": "^6.8.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.2.9",
@@ -40,7 +40,7 @@
     "bcrypt": "^0.8.7",
     "chartist": "^0.10.1",
     "connect-redis": "3.1.0",
-    "css-loader": "^0.25.0",
+    "css-loader": "^0.26.0",
     "jade": "^1.11.0",
     "jest": "^17.0.0",
     "jsreport": "^1.0.9",
@@ -70,10 +70,10 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "uuid": "^2.0.3",
+    "uuid": "^3.0.0",
     "web-push": "^3.0.0",
     "webpack": "^2.1.0-beta.25",
-    "webpack-merge": "^0.16.0",
+    "webpack-merge": "^0.17.0",
     "whatwg-fetch": "^2.0.0"
   },
   "scripts": {
