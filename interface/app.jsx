@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+// import 'babel-polyfill';
 import 'react-fastclick';
 
 import React from 'react';
