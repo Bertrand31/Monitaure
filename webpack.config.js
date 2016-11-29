@@ -4,7 +4,7 @@ const merge = require('webpack-merge');
 const common = {
     context: __dirname,
     entry: {
-        app: ['whatwg-fetch', './interface/app.jsx'],
+        app: './interface/app.jsx',
         sw: './interface/ServiceWorker/sw.js',
     },
 
