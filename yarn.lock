@@ -5267,7 +5267,7 @@ lodash.clonedeep@^3.0.0:
     lodash._baseclone "^3.0.0"
     lodash._bindcallback "^3.0.0"
 
-lodash.clonedeep@^4.3.2:
+lodash.clonedeep@^4.3.2, lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
 
@@ -9016,10 +9016,11 @@ webidl-conversions@^3.0.0, webidl-conversions@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"
 
-webpack-merge@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-1.0.1.tgz#d8dd735edf1419b922d154ec9a192854e6ed4e0e"
+webpack-merge:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-1.0.2.tgz#b28f4c895361f1a985a96952760d7170679779b4"
   dependencies:
+    lodash.clonedeep "^4.5.0"
     lodash.differencewith "^4.5.0"
     lodash.isequal "^4.4.0"
     lodash.isfunction "^3.0.8"
