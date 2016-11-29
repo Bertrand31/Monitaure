@@ -70,10 +70,10 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "uuid": "^3.0.0",
-    "web-push": "^3.0.0",
+    "uuid": "^3.0.1",
+    "web-push": "^3.2.1",
     "webpack": "^2.1.0-beta.25",
-    "webpack-merge": "^0.18.0",
+    "webpack-merge": "^1.0.1",
     "whatwg-fetch": "^2.0.0"
   },
   "scripts": {
@@ -98,7 +98,7 @@
   "author": "Bertrand Junqua <bertrandjun@gmail.com> (http://awebsiteabout.me)",
   "license": "GPL-3.0",
   "devDependencies": {
-    "eslint": "^3.7.1",
+    "eslint": "^3.11.0",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^3.0.1",
