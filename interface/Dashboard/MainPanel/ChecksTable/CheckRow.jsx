@@ -86,7 +86,7 @@ class CheckRow extends Component {
             <tr
                 className={`c-table__row ${this.props.isOpenCheck ? 's-is-open' : ''}`}
                 id={this.props.row.id}
-                onClick={(e) => this.onCheckRowClick(e)}
+                onClick={this.onCheckRowClick.bind(this)}
             >
                 <td className="c-checks__status" data-health={this.props.checkState} />
                 <td className="c-checks__name">
@@ -96,8 +96,8 @@ class CheckRow extends Component {
                         disabled={!this.props.row.isEditing}
                         type="text"
                         onClick={e => e.stopPropagation()}
-                        onChange={e => this.handleChange(e)}
-                        onKeyDown={e => this.handleKeyPress(e)}
+                        onChange={this.handleChange.bind(this)}
+                        onKeyDown={this.handleKeyPress.bind(this)}
                         defaultValue={this.props.row.name}
                         placeholder="e.g. HTTP @ Google"
                         ref={ref => this.checknameInput = ref}
@@ -109,8 +109,8 @@ class CheckRow extends Component {
                         name="domainNameOrIP"
                         disabled={!this.props.row.isEditing || !this.props.isNewCheck}
                         type="text"
-                        onChange={e => this.handleChange(e)}
-                        onKeyDown={e => this.handleKeyPress(e)}
+                        onChange={this.handleChange.bind(this)}
+                        onKeyDown={this.handleKeyPress.bind(this)}
                         defaultValue={this.props.row.domainNameOrIP}
                         placeholder="e.g. google.fr"
                     />
@@ -121,8 +121,8 @@ class CheckRow extends Component {
                         name="port"
                         disabled={!this.props.row.isEditing || !this.props.isNewCheck}
                         type="number"
-                        onChange={e => this.handleChange(e)}
-                        onKeyDown={e => this.handleKeyPress(e)}
+                        onChange={this.handleChange.bind(this)}
+                        onKeyDown={this.handleKeyPress.bind(this)}
                         defaultValue={this.props.row.port}
                         min="1"
                         max="65535"
@@ -146,7 +146,7 @@ class CheckRow extends Component {
                             name="emailNotifications"
                             disabled={!this.props.row.isEditing}
                             type="checkbox"
-                            onChange={e => this.handleChange(e)}
+                            onChange={this.handleChange.bind(this)}
                             defaultChecked={this.props.row.emailNotifications}
                         />
                         <label
@@ -157,7 +157,7 @@ class CheckRow extends Component {
                 </td>
                 <td className="c-checks__edit">
                     <button
-                        onClick={e => this.onEditClick(e)}
+                        onClick={this.onEditClick.bind(this)}
                         className={`c-settings-check ${this.props.row.isEditing ? 'is-editing' : 'is-not-editing'}`}
                     >
                         {this.props.row.isEditing ? 'OK' : ''}
@@ -167,7 +167,7 @@ class CheckRow extends Component {
                     className="c-checks__destroy"
                 >
                     <button
-                        onClick={() => this.handleDestroy()}
+                        onClick={this.handleDestroy.bind(this)}
                         className="destroy-check"
                     / >
                 </td>
