@@ -74,8 +74,8 @@ after@0.8.1:
   resolved "https://registry.yarnpkg.com/after/-/after-0.8.1.tgz#ab5d4fb883f596816d3515f8f791c0af486dd627"
 
 ajv-keywords@^1.0.0, ajv-keywords@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.1.1.tgz#02550bc605a3e576041565628af972e06c549d50"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.2.0.tgz#676c4f087bfe1e8b12dca6fda2f3c74f417b099c"
 
 ajv@^4.7.0:
   version "4.9.0"
@@ -1495,8 +1495,8 @@ camelcase@^3.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-3.0.0.tgz#32fc4b9fcdaf845fcdf7e73bb97cac2261f0ab0a"
 
 caniuse-db@^1.0.30000539, caniuse-db@^1.0.30000578:
-  version "1.0.30000588"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000588.tgz#20baa051c5bd7e33ae32c7781b5379289c3d39d2"
+  version "1.0.30000590"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000590.tgz#306e2b133ce467e8341b2accd223256b4040b2be"
 
 captains-log@~0.11.5:
   version "0.11.11"
@@ -4719,9 +4719,9 @@ jsrender@0.9.76:
   dependencies:
     through2 "^2.0.0"
 
-jsreport-assets@0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/jsreport-assets/-/jsreport-assets-0.4.0.tgz#858862ec4a75af472a11838e91d286b15d909622"
+jsreport-assets@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/jsreport-assets/-/jsreport-assets-0.5.0.tgz#3e3d915e692711bb169e77737826d8c37968a220"
   dependencies:
     async-replace "1.0.1"
     bluebird "3.4.6"
@@ -4764,23 +4764,23 @@ jsreport-browser-client-dist@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/jsreport-browser-client-dist/-/jsreport-browser-client-dist-1.0.2.tgz#331f2c2e447f83c6c1888e98a5a338fd1c209418"
 
-jsreport-browser-client@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/jsreport-browser-client/-/jsreport-browser-client-1.1.2.tgz#ababae957c82c9dab4327e087b67c7ef74536543"
+jsreport-browser-client@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/jsreport-browser-client/-/jsreport-browser-client-1.2.0.tgz#fdcb3e774ad0b3fd7d273b20978f955e335e2e6d"
   dependencies:
     jsreport-browser-client-dist "1.0.2"
 
-jsreport-child-templates@0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/jsreport-child-templates/-/jsreport-child-templates-0.4.0.tgz#d2dc144dfc1adb12ceaa8520ae62729eb7838860"
+jsreport-child-templates@0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/jsreport-child-templates/-/jsreport-child-templates-0.4.1.tgz#41746e1ad2c227f02659bc41ea7c86a2a6fb1d31"
   dependencies:
     async-replace "1.0.0"
     node.extend "1.1.5"
     q "1.4.1"
 
-jsreport-core@1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/jsreport-core/-/jsreport-core-1.0.9.tgz#fe748cfb2644a87884cce1ad4014d49a191e5fc0"
+jsreport-core@1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/jsreport-core/-/jsreport-core-1.0.10.tgz#f3facb12a7fc78057c04e6a0413bd81d9470ab51"
   dependencies:
     app-root-path "1.2.0"
     debug "2.2.0"
@@ -4793,7 +4793,7 @@ jsreport-core@1.0.9:
     node.extend "1.1.5"
     q "1.4.1"
     reap "0.1.0"
-    script-manager "0.5.6"
+    script-manager "0.5.7"
     streamifier "0.1.1"
     underscore "1.8.3"
     winston "2.2.0"
@@ -4930,9 +4930,9 @@ jsreport-resources@1.0.1:
     q "1.4.1"
     string "3.3.1"
 
-jsreport-sample-template@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/jsreport-sample-template/-/jsreport-sample-template-1.0.1.tgz#4864388a4da078dbaf5b6a404ab118c583e41452"
+jsreport-sample-template@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/jsreport-sample-template/-/jsreport-sample-template-1.0.2.tgz#3aa41fb20be6c11d9ad0699d06a85080fc8e222b"
 
 jsreport-scheduling@1.0.4:
   version "1.0.4"
@@ -4952,9 +4952,9 @@ jsreport-scripts@1.2.0:
     q "1.4.1"
     shortid "2.2.6"
 
-jsreport-studio@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/jsreport-studio/-/jsreport-studio-1.2.1.tgz#0397ba5e6a7fb4c56adbedfcf30750c2b0aeea6f"
+jsreport-studio@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/jsreport-studio/-/jsreport-studio-1.2.2.tgz#ee2636c810d877386f11ff8d3a8978f91557be70"
   dependencies:
     compression "1.6.2"
     express "4.13.4"
@@ -4997,17 +4997,17 @@ jsreport-xlsx@1.1.3:
     xml2js "0.4.16"
     yauzl "2.4.3"
 
-jsreport@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/jsreport/-/jsreport-1.2.0.tgz#902dde15eb44b7d1cf7bf8f28d3cd9a2cd220c1a"
+jsreport@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/jsreport/-/jsreport-1.2.1.tgz#9ee483e78b962bc79adc5cbb3caf21b5e1f9eb2b"
   dependencies:
     commander "2.9.0"
-    jsreport-assets "0.4.0"
+    jsreport-assets "0.5.0"
     jsreport-authentication "1.0.3"
     jsreport-authorization "1.0.2"
-    jsreport-browser-client "1.1.2"
-    jsreport-child-templates "0.4.0"
-    jsreport-core "1.0.9"
+    jsreport-browser-client "1.2.0"
+    jsreport-child-templates "0.4.1"
+    jsreport-core "1.0.10"
     jsreport-data "1.0.1"
     jsreport-debug "1.0.3"
     jsreport-express "1.0.2"
@@ -5022,10 +5022,10 @@ jsreport@^1.2.0:
     jsreport-public-templates "1.0.1"
     jsreport-reports "1.0.2"
     jsreport-resources "1.0.1"
-    jsreport-sample-template "1.0.1"
+    jsreport-sample-template "1.0.2"
     jsreport-scheduling "1.0.4"
     jsreport-scripts "1.2.0"
-    jsreport-studio "1.2.1"
+    jsreport-studio "1.2.2"
     jsreport-templates "1.0.1"
     jsreport-text "1.0.1"
     jsreport-xlsx "1.1.3"
@@ -5969,7 +5969,7 @@ node-schedule@^1.2.0:
     cron-parser "1.1.0"
     long-timeout "0.0.2"
 
-node-uuid@~1.4.0, node-uuid@~1.4.1, node-uuid@~1.4.7, node-uuid@1.4.7:
+node-uuid@~1.4.0, node-uuid@~1.4.1, node-uuid@~1.4.7:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.7.tgz#6da5a17668c4b3dd59623bda11cf7fa4c1f60a6f"
 
@@ -7810,9 +7810,9 @@ scandirectory@^2.5.0:
     safefs "^3.1.2"
     taskgroup "^4.0.5"
 
-script-manager@0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/script-manager/-/script-manager-0.5.6.tgz#9ef7e25c778b944f2e19dfa42683316c21117472"
+script-manager@0.5.7:
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/script-manager/-/script-manager-0.5.7.tgz#90980b8427435aaeff039c1111f7c2ee6187eb5f"
   dependencies:
     net-cluster "0.0.2"
     portscanner "1.0.0"
@@ -8024,13 +8024,12 @@ simple-odata-server@0.2.0:
     xmlbuilder "2.5.0"
 
 skipper-disk@~0.5.0:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/skipper-disk/-/skipper-disk-0.5.6.tgz#ee9e8dd4faf098ee414c102971df752fa9bfc85f"
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/skipper-disk/-/skipper-disk-0.5.7.tgz#0cb2483cd7191ba1f6b8361cfc6523802c2056b7"
   dependencies:
     debug "2.2.0"
     fs-extra "0.30.0"
     lodash "3.10.1"
-    node-uuid "1.4.7"
 
 skipper@~0.6.0:
   version "0.6.5"
@@ -8203,8 +8202,8 @@ sort-keys@^1.0.0:
     is-plain-obj "^1.0.0"
 
 source-list-map@^0.1.4, source-list-map@~0.1.0:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-0.1.6.tgz#e1e6f94f0b40c4d28dcf8f5b8766e0e45636877f"
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-0.1.7.tgz#d4b5ce2a46535c72c7e8527c71a77d250618172e"
 
 source-map-support@^0.4.2:
   version "0.4.6"
@@ -8664,8 +8663,8 @@ ua-parser-js@^0.7.9:
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
 
 uglify-js@^2.6, uglify-js@~2.7.3:
-  version "2.7.4"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.4.tgz#a295a0de12b6a650c031c40deb0dc40b14568bd2"
+  version "2.7.5"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.5.tgz#4612c0c7baaee2ba7c487de4904ae122079f2ca8"
   dependencies:
     async "~0.2.6"
     source-map "~0.5.1"
@@ -9016,7 +9015,7 @@ webidl-conversions@^3.0.0, webidl-conversions@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"
 
-webpack-merge:
+webpack-merge@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-1.0.2.tgz#b28f4c895361f1a985a96952760d7170679779b4"
   dependencies:
@@ -9191,10 +9190,11 @@ worker-farm@^1.3.1:
     xtend ">=4.0.0 <4.1.0-0"
 
 wrap-ansi@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-2.0.0.tgz#7d30f8f873f9a5bbc3a64dabc8d177e071ae426f"
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-2.1.0.tgz#d8fc3d284dd05794fe84973caecdd1cf824fdd85"
   dependencies:
     string-width "^1.0.1"
+    strip-ansi "^3.0.1"
 
 wrappy@1:
   version "1.0.2"
@@ -9278,9 +9278,9 @@ yargs-parser@^2.4.1:
     camelcase "^3.0.0"
     lodash.assign "^4.0.6"
 
-yargs-parser@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-4.1.0.tgz#313df030f20124124aeae8fbab2da53ec28c56d7"
+yargs-parser@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-4.2.0.tgz#6ced869cd05a3dca6a1eaee38b68aeed4b0b4101"
   dependencies:
     camelcase "^3.0.0"
 
@@ -9316,8 +9316,8 @@ yargs@^4.7.1:
     yargs-parser "^2.4.1"
 
 yargs@^6.0.0, yargs@^6.3.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.4.0.tgz#816e1a866d5598ccf34e5596ddce22d92da490d4"
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.5.0.tgz#a902e23a1f0fe912b2a03f6131b7ed740c9718ff"
   dependencies:
     camelcase "^3.0.0"
     cliui "^3.2.0"
@@ -9332,7 +9332,7 @@ yargs@^6.0.0, yargs@^6.3.0:
     which-module "^1.0.0"
     window-size "^0.2.0"
     y18n "^3.2.1"
-    yargs-parser "^4.1.0"
+    yargs-parser "^4.2.0"
 
 yargs@~3.10.0:
   version "3.10.0"
