@@ -36,8 +36,9 @@ module.exports = {
 
     /**
     * Calculates a check's various stats by analyzing its history
+    *  @param {Function} customFloor - a custom Math.floor function
     *  @param {Object} historyArray - a check's history array
-    *  @param {Number} historyLength - the number of history entries to return
+    *  @param {Object} checkInterval - the time interval between two checks
     *  @returns {Object}
     */
     calcCheckStats: (customFloor, historyArray = [], checkInterval = 5000) => {

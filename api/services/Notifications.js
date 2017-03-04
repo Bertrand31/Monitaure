@@ -51,7 +51,8 @@ module.exports = {
 
     /**
      * Send a 'confirm your email address' email to a newly created user
-     * @param {Object} user - raw database record of the user we just created
+     * @param {Object} user - raw database record of the user we are sending the reports to
+     * @param {Object} reports - an array of the reports we are sending
      */
     sendNewReportsNotification(user, reports) {
         const emailSubject = '👌 Fresh monthly reports available!';

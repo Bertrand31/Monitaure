@@ -1,31 +1,32 @@
 const countAttributes = test => array => array.filter(test).length;
 const countUnseenItems = countAttributes(item => item.seen === false);
 
-module.exports = {
-    /**
-     * Formats a raw 'User' record
-     * @param {Object} user - 'User' record
-     * @param {Object} formatted user
-     */
-    formatUser: user => ({
-        username: user.username,
-        emailHash: user.emailHash,
-        unseenReports: countUnseenItems(user.reports),
-        unseenLog: countUnseenItems(user.log),
-    }),
+/**
+ * Formats a raw 'User' record
+ * @param {Object} user - 'User' record
+ * @param {Object} formatted user
+ */
+const formatUser = user => ({
+    username: user.username,
+    emailHash: user.emailHash,
+    unseenReports: countUnseenItems(user.reports),
+    unseenLog: countUnseenItems(user.log),
+});
 
+module.exports = {
+    formatUser,
     /**
      * Gets a user's basic data
      * @param {Function} fetcher - record fetching function
      * @param {Object} user - user data (name, emailHash)
      * @param {Function} callback
      */
-    getData(fetcher, userId, callback) {
+    getData: (fetcher, userId, callback) => {
         fetcher('user', userId, (err, user) => {
             if (err) return callback(err);
             if (!user) return callback();
 
-            const formattedUser = this.formatUser(user);
+            const formattedUser = formatUser(user);
             formattedUser.isLoggedIn = true;
 
             return callback(null, formattedUser);

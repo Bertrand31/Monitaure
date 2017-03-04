@@ -1,4 +1,6 @@
 const { scheduleJob } = require('node-schedule');
+const Reports = require('./Reports');
+const Notifications = require('./Notifications');
 
 module.exports = (fetcher, updater) => {
     scheduleJob('0 0 1 * *', () => {
