@@ -27,7 +27,7 @@ From a technical standpoint, here are some of the key aspects of Monitaure:
     * JSX and some Jade for HTML ;
     * SASS for CSS ;
     * Babel to transpile ES6 & ES7 to older (ES5) Javascript ;
-    * Webpack to bundle everything up.
+    * Webpack 2 to bundle everything up.
 * Back-end:
     * NodeJS application built on Sails.js framework ;
     * MongoDB database for data storage ;
