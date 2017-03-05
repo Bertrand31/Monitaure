@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
 
 const LoginFormContainer = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(LoginFormComponent);
 
 export default LoginFormContainer;

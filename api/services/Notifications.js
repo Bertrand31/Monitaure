@@ -24,7 +24,7 @@ module.exports = {
     },
 
     /**
-     * Send an alert to an user telling him a check is back up
+     * Send an alert to a user telling him a check is back up
      * @param {String} user - a usr object from the database
      * @param {String} checkName - name of the check that is back up
      * @param {Number} outageDuration - number of minutes the check was down
@@ -39,7 +39,7 @@ module.exports = {
     },
 
     /**
-     * Send a 'confirm your email address' email to a newly created user
+     * Send a confirmation email to a newly created user
      * @param {Object} user - raw database record of the user we just created
      */
     sendConfirmationEmail(user) {

@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
 
 const SignupFormContainer = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(SignupFormComponent);
 
 export default SignupFormContainer;

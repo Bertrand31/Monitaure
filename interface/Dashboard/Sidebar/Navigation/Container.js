@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
 
 const NavigationContainer = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(NavigationComponent);
 
 export default NavigationContainer;

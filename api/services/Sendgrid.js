@@ -1,3 +1,4 @@
+const { log } = require('sails');
 const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
 
@@ -19,7 +20,7 @@ module.exports = {
      * Send an email through Sendgrid
      * @param {String} userEmail - the email address we will be sending to
      * @param {String} emailObject - the object of the email
-     * @param {String} emailBody - the body of the email
+     * @param {String} emailBody - the body of the email (HTML)
      */
     send(userEmail, emailObject, emailBody) {
         const emailOptions = {
@@ -29,7 +30,7 @@ module.exports = {
             html: emailBody,
         };
         emailClient.sendMail(emailOptions, (err) => {
-            if (err) return sails.log.error(err);
+            if (err) return log.error(err);
         });
     },
 };

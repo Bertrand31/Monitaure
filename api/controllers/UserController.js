@@ -42,7 +42,7 @@ module.exports = {
      * The confirmation token is passed as the 'id' paramter
      * @param {Object} req - HTTP request (must be GET)
      * @param {Object} res - Express' response object
-     * @returns {HTML} Renders a page depending on the account confirmation success
+     * @returns {JSON} Sends back a object containing the result
      */
     confirm: (req, res) => {
         if (typeof req.param('id') !== 'string' || req.param('id').length !== 32) {
@@ -51,11 +51,7 @@ module.exports = {
         confirm(DB.update, req.param('id'), (err, confirmed) => {
             if (err) return res.json({ result: 'error' });
 
-            if (confirmed.length > 0) {
-                return res.json({ result: 'confirmed' });
-            } else {
-                return res.json({ result: 'notconfirmed' });
-            }
+            return res.json({ result: confirmed.length > 0 ? 'confirmed' : 'notconfirmed' });
         });
     },
 

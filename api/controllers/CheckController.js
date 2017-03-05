@@ -4,11 +4,11 @@ const { getChecks, createCheck, updateCheck, destroyCheck } = require('../servic
 module.exports = {
 
     /**
-     * HTTP route to get a the user's data (name, emailHash),
+     * HTTP route to get the user's own data (name, emailHash),
      * his checks and their stats
      * @param {Object} req - HTTP request (must be GET)
      * @param {Object} res - Express' response object
-     * @returns {JSON} Either an error or the user's and his checks' data
+     * @returns {JSON} Either an error or the user and his checks' data
      */
     find: (req, res) => {
         getChecks(DB.fetch, req.user.id, (err, data) => {
@@ -32,9 +32,7 @@ module.exports = {
             emailNotifications: Boolean(req.param('emailNotifications')),
             owner: req.user.id,
         };
-        createCheck(DB.fetch, DB.create, req.user.id, data, (err, created) => {
-            return res.json({ err, created, });
-        });
+        createCheck(DB.fetch, DB.create, req.user.id, data, (err, created) => res.json({ err, created }));
     },
 
     /**

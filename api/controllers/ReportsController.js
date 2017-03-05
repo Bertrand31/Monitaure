@@ -36,7 +36,7 @@ module.exports = {
      */
     export: (req, res) => {
         generatePDF(DB.fetchOne, req.user.id, req.param('id'), (err, out) => {
-            if (err) return res.send(err.message);
+            if (err) return res.serverError(err);
 
             return out.stream.pipe(res);
         });

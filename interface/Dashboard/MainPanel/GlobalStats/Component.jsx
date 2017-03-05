@@ -22,7 +22,6 @@ const calcGlobalStats = (checks) => {
     let checksUp = 0;
     let totalPopulatedChecks = 0;
     let availabilitiesSum = 0;
-    let historyLength = 0;
     const lastError = { time: null, checkName: null };
 
     Object.values(checks).forEach((check) => {

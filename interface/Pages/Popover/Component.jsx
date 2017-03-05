@@ -17,16 +17,16 @@ const PopoverComponent = ({ openPopover, closePopover }) => {
     }
 
     return (
-            <ReactCSSTransitionGroup
-                component="div"
-                className={`c-popover-overlay ${form ? '' : 's-is-hidden'}`}
-                transitionName="c-popover-change"
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={300}
-                onClick={closePopover}
-            >
-                {form}
-            </ReactCSSTransitionGroup>
+        <ReactCSSTransitionGroup
+            component="div"
+            className={`c-popover-overlay ${form ? '' : 's-is-hidden'}`}
+            transitionName="c-popover-change"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}
+            onClick={closePopover}
+        >
+            {form}
+        </ReactCSSTransitionGroup>
     );
 };
 

@@ -51,8 +51,7 @@ const Navigation = ({ user, currentRoute, menuIsOpen, logout }) => (
 );
 
 Navigation.propTypes = {
-    unseenReports: PropTypes.number,
-    unseenLog: PropTypes.number,
+    user: PropTypes.object.isRequired,
     currentRoute: PropTypes.string.isRequired,
     menuIsOpen: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,

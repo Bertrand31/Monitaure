@@ -7,9 +7,7 @@ module.exports = {
      * @param {Object} userId - the ID of the user
      */
     getLogs: (fetcher, userId, callback) => {
-        fetcher('user', userId, (err, user) => {
-			return callback(err, user.log);
-		});
+        fetcher('user', userId, (err, user) => callback(err, user.log));
     },
 
     /**
@@ -18,7 +16,7 @@ module.exports = {
      * @param {Object} userId - the ID of the user
      * @param {Array} log - a log array
      */
-	markAllAsRead: (updater, userId, log) => {
+    markAllAsRead: (updater, userId, log) => {
         log.map(logEntry => logEntry.seen = true);
 
         updater('user', { id: userId }, { log }, (err) => {

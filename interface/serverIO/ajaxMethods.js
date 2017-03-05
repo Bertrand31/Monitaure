@@ -15,7 +15,7 @@ export function GETer(url, callback) {
     .then(handleError)
     .then(json => callback(null, json))
     .catch(err => callback(err, null));
-};
+}
 
 export function POSTer(url, data, callback) {
     fetch(url, {
@@ -31,7 +31,7 @@ export function POSTer(url, data, callback) {
     .then(handleError)
     .then(json => callback(null, json))
     .catch(err => callback(err, null));
-};
+}
 
 export function PUTer(url, data, callback) {
     fetch(url, {
@@ -47,9 +47,9 @@ export function PUTer(url, data, callback) {
     .then(handleError)
     .then(json => callback(null, json))
     .catch(err => callback(err, null));
-};
+}
 
-export function DELETEer(url,  callback) {
+export function DELETEer(url, callback) {
     fetch(url, {
         method: 'DELETE',
         credentials: 'same-origin',
@@ -62,4 +62,4 @@ export function DELETEer(url,  callback) {
     .then(handleError)
     .then(json => callback(null, json))
     .catch(err => callback(err, null));
-};
+}

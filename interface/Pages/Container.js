@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 
 const HomepageContainer = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(HomepageComponent);
 
 export default HomepageContainer;

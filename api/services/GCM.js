@@ -1,5 +1,5 @@
 const webpush = require('web-push');
-const sails = require('sails');
+const { log } = require('sails');
 
 const config = require('../../config/local');
 
@@ -14,8 +14,8 @@ module.exports = {
     send(subscriptions, payload) {
         subscriptions.forEach((subscription) => {
             webpush.sendNotification(subscription, payload, options)
-                // .then(res => sails.log.info(res))
-                .catch(e => sails.log.info(e));
+                // .then(res => log.info(res))
+                .catch(e => log.info(e));
         });
     },
 };

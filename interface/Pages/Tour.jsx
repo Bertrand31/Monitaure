@@ -13,7 +13,7 @@ class TourComponent extends Component {
                 <section className="c-pane c-pane--big c-pane--tour">
                     <div className="c-pane--big__wrapper">
                         <div className="c-content">
-                            <h2 className="c-chapter__title" className="c-h2--big">How to use Monitaure</h2>
+                            <h2 className="c-chapter__title c-h2--big">How to use Monitaure</h2>
                             <h3 className="c-h3--small">This page will teach you the basics of the app</h3>
                         </div>
                     </div>

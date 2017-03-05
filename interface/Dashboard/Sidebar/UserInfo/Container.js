@@ -7,6 +7,6 @@ const mapStateToProps = state => ({
     emailHash: state.user.emailHash,
 });
 
-const UserInfoContainer = connect( mapStateToProps)(UserInfoComponent);
+const UserInfoContainer = connect(mapStateToProps)(UserInfoComponent);
 
 export default UserInfoContainer;

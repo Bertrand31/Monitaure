@@ -118,7 +118,7 @@ module.exports = {
             newHistoryArray.push({ date: ping.date, duration: ping.open ? ping.duration : null });
 
             // And update the DB record
-            updater('check', { id: check.id }, { history: newHistoryArray }, callback);
+            return updater('check', { id: check.id }, { history: newHistoryArray }, callback);
         });
     },
 };
