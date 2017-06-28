@@ -13,7 +13,7 @@ const common = {
     },
 
     output: {
-        path: 'public/',
+        path: __dirname + '/public/',
         filename: '[name].js',
         chunkFilename: '[chunkhash].app.js',
         publicPath: '/',
